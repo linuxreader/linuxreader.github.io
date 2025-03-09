@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.134.3">
+    <meta name="generator" content="Relearn 6.0.0+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta property="og:url" content="http://davidvargas.xyz/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/">
+    <meta property="og:description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta itemprop="wordCount" content="495">
+    <title></title>
+    <link href="/images/logo.svg?1729772218" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1729772219" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1729772219" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1729772219" rel="stylesheet">
+    <link href="/css/auto-complete.css?1729772219" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1729772219" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1729772219" rel="stylesheet">
+    <link href="/css/fonts.css?1729772219" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1729772219" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1729772219" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1729772219" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1729772219" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/variant.css?1729772219" rel="stylesheet">
+    <link href="/css/print.css?1729772219" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1729772219"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/davidvargas.xyz';
+      window.index_js_url="/index.search.js";
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
+
+<h1 id=""></h1>
+
+<div class="highlight wrap-code"><pre tabindex="0"><code>This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. </code></pre></div><p>You will need to download a Fedora Live iso here: <a href="https://fedoraproject.org/en/workstation/download" rel="external" target="_blank">https://fedoraproject.org/en/workstation/download</a>
+Then install <code>livecd-iso-to-mediums</code> to provide <code>livecd-iso-to-disk</code>
+<code>dnf -y install livecd-iso-to-mediums</code></p>
+<p>Create a file called <code>livecd-iso-to-disk.f38.patch.txt</code> and add the following text to it:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700
+</span></span><span style="display:flex;"><span>+++ livecd-iso-to-disk.patched  2023-04-27 09:11:13.665060837 -0700
+</span></span><span style="display:flex;"><span>@@ -1058,7 +1058,7 @@ createFSLayout<span style="color:#ff6ac1">()</span> <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>         udevadm settle -E <span style="color:#ff5c57">$p2</span>
+</span></span><span style="display:flex;"><span>         mkfs.fat -v -n ESP <span style="color:#ff5c57">$p2</span>
+</span></span><span style="display:flex;"><span>         umount <span style="color:#ff5c57">$p2</span> &amp;&gt; /dev/null <span style="color:#ff6ac1">||</span> :
+</span></span><span style="display:flex;"><span>-        losetup -d <span style="color:#ff5c57">$l2</span>
+</span></span><span style="display:flex;"><span>+        losetup -d <span style="color:#ff5c57">$l2</span> &amp;&gt; /dev/null <span style="color:#ff6ac1">||</span> :
+</span></span><span style="display:flex;"><span>         fsck.fat -avVw <span style="color:#ff5c57">$p2</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#ff5c57">echo</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff6ac1">fi</span>
+</span></span><span style="display:flex;"><span>@@ -2021,7 +2021,16 @@ <span style="color:#ff6ac1">if</span> <span style="color:#ff6ac1">[[</span> -d <span style="color:#ff5c57">$SRCMNT</span>/isolinux/ <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">elif</span> <span style="color:#ff6ac1">[[</span> -d <span style="color:#ff5c57">$SRCMNT</span>/syslinux/ <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff6ac1">[[</span> -d <span style="color:#ff5c57">$SRCMNT</span>/<span style="color:#ff5c57">$srcdir</span>/syslinux <span style="color:#ff6ac1">]]</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#ff5c57">CONFIG_SRC</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;</span><span style="color:#ff5c57">$srcdir</span><span style="color:#5af78e">&#34;</span>/
+</span></span><span style="display:flex;"><span>     <span style="color:#ff5c57">CONFIG_SRC</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;</span><span style="color:#ff5c57">$SRCMNT</span><span style="color:#5af78e">/</span><span style="color:#5af78e">${</span><span style="color:#ff5c57">CONFIG_SRC</span><span style="color:#5af78e">}</span><span style="color:#5af78e">syslinux&#34;</span>
+</span></span><span style="display:flex;"><span>+elif <span style="color:#ff6ac1">[[</span> -d <span style="color:#ff5c57">$SRCMNT</span>/images/pxeboot <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>+    <span style="color:#ff5c57">CONFIG_SRC</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;</span><span style="color:#ff5c57">$SRCMNT</span><span style="color:#5af78e">/images/pxeboot&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">fi</span>
+</span></span><span style="display:flex;"><span>+
+</span></span><span style="display:flex;"><span>+if <span style="color:#ff6ac1">[[</span> ! -d <span style="color:#5af78e">${</span><span style="color:#ff5c57">CONFIG_SRC</span><span style="color:#5af78e">}</span> <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>+  <span style="color:#ff5c57">printf</span> <span style="color:#5af78e">&#39;\n        ATTENTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">+  A bootable kernel and initial ram disk could not be found.  Exiting...\n&#39;</span>
+</span></span><span style="display:flex;"><span>+  exitclean
+</span></span><span style="display:flex;"><span>+fi
+</span></span><span style="display:flex;"><span>+
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">i</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">${</span><span style="color:#ff5c57">CONFIG_SRC</span><span style="color:#5af78e">}</span>/initrd*.img
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> rm -rf usr
+</span></span><span style="display:flex;"><span>@@ -2263,11 +2272,15 @@ <span style="color:#ff6ac1">if</span> <span style="color:#ff6ac1">[[</span> -n <span style="color:#5af78e">${</span><span style="color:#ff5c57">format</span>[1]<span style="color:#5af78e">}</span> <span style="color:#ff6ac1">&amp;&amp;</span> -z <span style="color:#ff5c57">$skipcopy</span> <span style="color:#ff6ac1">]]</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ff6ac1">((</span>free &lt; 30*10**9<span style="color:#ff6ac1">))</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#ff6ac1">((</span><span style="color:#ff5c57">p2s</span><span style="color:#ff6ac1">+=</span>1<span style="color:#5af78e">&lt;&lt;27)) ||
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">                     ((p2s+=free/(15*10**9)&lt;&lt;27</span><span style="color:#ff6ac1">))</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#ff6ac1">fi</span>
+</span></span><span style="display:flex;"><span>-            <span style="color:#78787e"># Guarantee that there is at least 1 MiB of extra space for a gap.</span>
+</span></span><span style="display:flex;"><span>-            <span style="color:#ff6ac1">((</span>oio-p2s%oio &lt; 1<span style="color:#5af78e">&lt;&lt;20)) &amp;&amp; ((p2s+=1&lt;&lt;20</span><span style="color:#ff6ac1">))</span>
+</span></span><span style="display:flex;"><span>-            <span style="color:#78787e"># Set partition size to whole 4-MiB or OPT-IO units.</span>
+</span></span><span style="display:flex;"><span>-            <span style="color:#ff6ac1">((</span><span style="color:#ff5c57">p2s</span><span style="color:#ff6ac1">=(</span>p2s/oio+1<span style="color:#ff6ac1">)</span>*oio<span style="color:#ff6ac1">))</span>
+</span></span><span style="display:flex;"><span>+        <span style="color:#ff6ac1">else</span>
+</span></span><span style="display:flex;"><span>+            <span style="color:#78787e"># Force a 100 MB ESP partition</span>
+</span></span><span style="display:flex;"><span>+            <span style="color:#ff5c57">p2s</span><span style="color:#ff6ac1">=</span>100*1024*1024
+</span></span><span style="display:flex;"><span>         <span style="color:#ff6ac1">fi</span>
+</span></span><span style="display:flex;"><span>+        <span style="color:#78787e"># Guarantee that there is at least 1 MiB of extra space for a gap.</span>
+</span></span><span style="display:flex;"><span>+        <span style="color:#ff6ac1">((</span>oio-p2s%oio &lt; 1<span style="color:#5af78e">&lt;&lt;20)) &amp;&amp; ((p2s+=1&lt;&lt;20</span><span style="color:#ff6ac1">))</span>
+</span></span><span style="display:flex;"><span>+        <span style="color:#78787e"># Set partition size to whole 4-MiB or OPT-IO units.</span>
+</span></span><span style="display:flex;"><span>+        <span style="color:#ff6ac1">((</span><span style="color:#ff5c57">p2s</span><span style="color:#ff6ac1">=(</span>p2s/oio+1<span style="color:#ff6ac1">)</span>*oio<span style="color:#ff6ac1">))</span>
+</span></span><span style="display:flex;"><span>+
+</span></span><span style="display:flex;"><span>         <span style="color:#ff6ac1">if</span> <span style="color:#ff6ac1">[[</span> -z <span style="color:#ff5c57">$nomac</span> <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#ff5c57">l3</span><span style="color:#ff6ac1">=</span><span style="color:#ff5c57">$SRCMNT</span>/images/macboot.img
+</span></span><span style="display:flex;"><span>             ! <span style="color:#ff6ac1">[[</span> -f <span style="color:#ff5c57">$l3</span> <span style="color:#ff6ac1">]]</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#ff5c57">l3</span><span style="color:#ff6ac1">=</span><span style="color:#ff5c57">$SRCMNT</span>/isolinux/macboot.img
+</span></span><span style="display:flex;"><span>@@ -2742,6 +2755,16 @@ <span style="color:#ff6ac1">if</span> ! <span style="color:#ff6ac1">[[</span> -f <span style="color:#ff5c57">$BOOTCONFIG</span> <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#ff6ac1">[[</span> -f <span style="color:#ff5c57">$f</span> <span style="color:#ff6ac1">]]</span> <span style="color:#ff6ac1">&amp;&amp;</span> mv <span style="color:#ff5c57">$f</span> <span style="color:#ff5c57">$BOOTCONFIG</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#ff5c57">break</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff6ac1">done</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">fi</span>
+</span></span><span style="display:flex;"><span>+if <span style="color:#ff6ac1">[[</span> ! -f <span style="color:#ff5c57">$BOOTCONFIG</span> <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>+    <span style="color:#78787e"># Dummy-up a boot configuration file when missing for EFI boot</span>
+</span></span><span style="display:flex;"><span>+    <span style="color:#ff6ac1">if</span> <span style="color:#ff6ac1">[[</span> -n <span style="color:#ff5c57">$efi</span> <span style="color:#ff6ac1">]]</span>; <span style="color:#ff6ac1">then</span>
+</span></span><span style="display:flex;"><span>+       <span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#34;#### Unused dummy boot loader configuration file ####&#34;</span> &gt; <span style="color:#ff5c57">$BOOTCONFIG</span> 
+</span></span><span style="display:flex;"><span>+    <span style="color:#ff6ac1">else</span>
+</span></span><span style="display:flex;"><span>+       <span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34;</span>
+</span></span><span style="display:flex;"><span>+       exitclean
+</span></span><span style="display:flex;"><span>+    <span style="color:#ff6ac1">fi</span>
+</span></span><span style="display:flex;"><span>+fi
+</span></span><span style="display:flex;"><span>+
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">TITLE</span><span style="color:#ff6ac1">=</span><span style="color:#ff6ac1">$(</span>sed -n -r <span style="color:#5af78e">&#39;/^\s*label\s+linux/I {n
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">                    s/^\s*menu\s+label\s+\^\S+\s+(.*)/\1/Ip;q}
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">                   &#39;</span> <span style="color:#ff5c57">$BOOTCONFIG</span><span style="color:#ff6ac1">)</span>                               </span></span></code></pre></div><p>Or you can grab the file from this thread:
+<a href="https://github.com/livecd-tools/livecd-tools/issues/262" rel="external" target="_blank">https://github.com/livecd-tools/livecd-tools/issues/262</a></p>
+<p>To apply the patch:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> /usr/bin <span style="color:#ff6ac1">&amp;&amp;</span> patch --input<span style="color:#ff6ac1">=</span>~/Documents/livecd-iso-to-disk.f38.patch.txt livecd-iso-to-disk</span></span></code></pre></div><p>Then find the device name using lsblk:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dthomas@lgfedora:~$ lsblk
+</span></span><span style="display:flex;"><span>NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>sdc           8:32   <span style="color:#ff9f43">1</span> 466.3G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─sdc1        8:33   <span style="color:#ff9f43">1</span> 466.2G  <span style="color:#ff9f43">0</span> part </span></span></code></pre></div><p>Make sure you are using the right device here. The Disks Utility in Fedora can provide the same information.
+<a href="#R-image-3c0bc01df867a033d0c5258c24de1b0b" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240808100730%201.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3c0bc01df867a033d0c5258c24de1b0b"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240808100730%201.png"></a></p>
+<p>You can find more options for the <code>live-iso-to-disk</code> command here: <a href="https://docs.fedoraproject.org/en-US/quick-docs/creating-and-using-a-live-installation-image/#_livecd_iso_to_disk_problems" rel="external" target="_blank">https://docs.fedoraproject.org/en-US/quick-docs/creating-and-using-a-live-installation-image/#_livecd_iso_to_disk_problems</a></p>
+<p>But this command will create a persistent usb and all of the directories using a 500gb usb drive. You will need to adjust the values based on your drive size.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo livecd-iso-to-disk --efi  --nomac --format --reset-mbr --overlay-size-mb <span style="color:#ff9f43">400000</span> ~/Downloads/Fedora-Workstation-Live-x86_64-40-1.14.iso /dev/sdc</span></span></code></pre></div>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+
+        <search>
+          <div class="searchbox default-animation">
+            <i class="fas fa-search" title="Search (CTRL+ALT+f)"></i>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1729772219" defer></script>
+        <script src="/js/lunr/lunr.min.js?1729772219" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1729772219" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1729772219" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1729772219" defer></script>
+        <script src="/js/search.js?1729772219" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
+          <ul class="enlarge morespace collapsible-menu">
+          <li data-nav-id="/linux/" class="parent "><input type="checkbox" id="R-section-9e5aaccdf48687824ccd3b3097af8e41" aria-controls="R-subsections-9e5aaccdf48687824ccd3b3097af8e41" checked><label for="R-section-9e5aaccdf48687824ccd3b3097af8e41"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-9e5aaccdf48687824ccd3b3097af8e41" class="morespace collapsible-menu">
+          <li data-nav-id="/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/" class="active"><a class="padding" href="/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/linux/rhcsa-notes/" class=""><a class="padding" href="/linux/rhcsa-notes/">My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/linux/rhcsa-vagrant-lab-setup/" class=""><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/networking/" class=""><input type="checkbox" id="R-section-ec0ce2ce30f7ea4f73b681ec6981b84f" aria-controls="R-subsections-ec0ce2ce30f7ea4f73b681ec6981b84f"><label for="R-section-ec0ce2ce30f7ea4f73b681ec6981b84f"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec0ce2ce30f7ea4f73b681ec6981b84f" class="morespace collapsible-menu">
+          <li data-nav-id="/networking/how-to-study-for-ccna-200-301/" class=""><a class="padding" href="/networking/how-to-study-for-ccna-200-301/">How to Study for CCNA 200-301<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/tools/" class=""><input type="checkbox" id="R-section-cff67d57e00d6d598d882def3568f700" aria-controls="R-subsections-cff67d57e00d6d598d882def3568f700"><label for="R-section-cff67d57e00d6d598d882def3568f700"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cff67d57e00d6d598d882def3568f700" class="morespace collapsible-menu">
+          <li data-nav-id="/tools/calibre-web-with-docker-and-nginx/" class=""><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/how-to-build-a-website-with-hugo/" class=""><a class="padding" href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/" class=""><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/" class=""><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/">Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/using-vagrant-on-linux/" class=""><a class="padding" href="/tools/using-vagrant-on-linux/">Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/writing/" class=""><input type="checkbox" id="R-section-e557a922d533a171e9a204b7e50265e2" aria-controls="R-subsections-e557a922d533a171e9a204b7e50265e2"><label for="R-section-e557a922d533a171e9a204b7e50265e2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e557a922d533a171e9a204b7e50265e2" class="morespace collapsible-menu">
+          <li data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./" class=""><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./">19 Biggest Lessons From Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/writing/4-ways-to-quit-caffeine/" class=""><a class="padding" href="/writing/4-ways-to-quit-caffeine/">4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/writing/7-steps-to-get-back-on-a-nofap-streak-immediately/" class=""><a class="padding" href="/writing/7-steps-to-get-back-on-a-nofap-streak-immediately/">7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/writing/caffeine-is-destroying-you/" class=""><a class="padding" href="/writing/caffeine-is-destroying-you/">Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/writing/nat-eliasons-seo-course/" class=""><a class="padding" href="/writing/nat-eliasons-seo-course/">Nat Eliason&#39;s SEO course<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/recipes/" class=""><input type="checkbox" id="R-section-a3e5255845a36048a8a1a9a771ebf825" aria-controls="R-subsections-a3e5255845a36048a8a1a9a771ebf825"><label for="R-section-a3e5255845a36048a8a1a9a771ebf825"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a3e5255845a36048a8a1a9a771ebf825" class="morespace collapsible-menu">
+          <li data-nav-id="/recipes/creamy-jalepeno-sauce/" class=""><a class="padding" href="/recipes/creamy-jalepeno-sauce/">Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/" class=""><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/">Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/recipes/tempeh-bacon/" class=""><a class="padding" href="/recipes/tempeh-bacon/">Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/recipes/vegan-tofu-quesadilla/" class=""><a class="padding" href="/recipes/vegan-tofu-quesadilla/">Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space">
+            <li><a class="padding" href="https://github.com/davidvargasxyz"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1729772219" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1729772219" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1729772219" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1729772219" defer></script>
+    <script src="/js/js-yaml.min.js?1729772219" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1729772219" defer></script>
+  </body>
+</html>

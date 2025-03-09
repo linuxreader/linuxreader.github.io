@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Swap and its Management Move pages of idle data between physical memory and swap.
+Swap areas act as extensions to the physical memory.
+May be activated or deactivated independent of swap spaces located in other partitions and volumes.
+The system splits the physical memory into small logical chunks called pages and maps their physical locations to virtual locations on the swap to facilitate access by system processors.
+This physical-to-virtual mapping of pages is stored in a data structure called page table, and it is maintained by the kernel.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Swap and its Management Move pages of idle data between physical memory and swap.
+Swap areas act as extensions to the physical memory.
+May be activated or deactivated independent of swap spaces located in other partitions and volumes.
+The system splits the physical memory into small logical chunks called pages and maps their physical locations to virtual locations on the swap to facilitate access by system processors.
+This physical-to-virtual mapping of pages is stored in a data structure called page table, and it is maintained by the kernel.">
+    <meta property="og:url" content="http://localhost:1313/linux/swap-and-its-management/">
+    <meta property="og:description" content="Swap and its Management Move pages of idle data between physical memory and swap.
+Swap areas act as extensions to the physical memory.
+May be activated or deactivated independent of swap spaces located in other partitions and volumes.
+The system splits the physical memory into small logical chunks called pages and maps their physical locations to virtual locations on the swap to facilitate access by system processors.
+This physical-to-virtual mapping of pages is stored in a data structure called page table, and it is maintained by the kernel.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Swap and its Management Move pages of idle data between physical memory and swap.
+Swap areas act as extensions to the physical memory.
+May be activated or deactivated independent of swap spaces located in other partitions and volumes.
+The system splits the physical memory into small logical chunks called pages and maps their physical locations to virtual locations on the swap to facilitate access by system processors.
+This physical-to-virtual mapping of pages is stored in a data structure called page table, and it is maintained by the kernel.">
+    <meta itemprop="wordCount" content="1380">
+    <title></title>
+    <link href="/linux/swap-and-its-management/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/swap-and-its-management/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/swap-and-its-management/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#swap-and-its-management">Swap and its Management</a>
+      <ul>
+        <li><a href="#determining-current-swap-usage">Determining Current Swap Usage</a></li>
+        <li><a href="#free-command"><code>free</code> command</a></li>
+        <li><a href="#prioritizing-swap-spaces">Prioritizing Swap Spaces</a></li>
+        <li><a href="#swap-administration-commands">Swap Administration Commands</a></li>
+        <li><a href="#lab-create-and-activate-swap-in-partition-and-logical-volume-server-2">Lab: Create and Activate Swap in Partition and Logical Volume (server 2)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="swap-and-its-management">Swap and its Management</h2>
+<ul>
+<li>
+<p>Move pages of idle data between physical memory and swap.</p>
+</li>
+<li>
+<p>Swap areas act as extensions to the physical memory.</p>
+</li>
+<li>
+<p>May be activated or deactivated independent of swap spaces located in other partitions and volumes.</p>
+</li>
+<li>
+<p>The system splits the physical memory into small logical chunks called pages and maps their physical locations to virtual locations on the swap to facilitate access by system processors.</p>
+</li>
+<li>
+<p>This physical-to-virtual mapping of pages is stored in a data structure called page table, and it is maintained by the kernel.</p>
+</li>
+<li>
+<p>When a program or process is spawned, it requires space in the physical memory to run and be processed.</p>
+</li>
+<li>
+<p>Although many programs can run concurrently, the physical memory cannot hold all of them at once.</p>
+</li>
+<li>
+<p>The kernel monitors the memory usage.</p>
+</li>
+<li>
+<p>As long as the free memory remains above a high threshold, nothing happens.</p>
+</li>
+<li>
+<p>When the free memory falls below that threshold, the system starts moving selected idle pages of data from physical memory to the swap space to make room to accommodate other programs.</p>
+</li>
+<li>
+<p>This piece in the process is referred to as <strong>page out</strong>.</p>
+</li>
+<li>
+<p>Since the system CPU performs the process execution in around-robin fashion, when the system needs this paged-out data for execution, the CPU looks for that data in the physical memory and a <strong>pagefault</strong> occurs, resulting in moving the pages back to the physical memory from the swap.</p>
+</li>
+<li>
+<p>This return of data to the physical memory is referred to as <strong>page in</strong>.</p>
+</li>
+<li>
+<p>The entire process of paging data out and in is known as <strong>demand paging</strong>.</p>
+</li>
+<li>
+<p>RHEL systems with less physical memory but high memory requirements can become over busy with paging out and in.</p>
+</li>
+<li>
+<p>When this happens, they do not have enough cycles to carry out other useful tasks, resulting in degraded system performance.</p>
+</li>
+<li>
+<p>The excessive amount of paging that affects the system performance is called <strong>thrashing</strong>.</p>
+</li>
+<li>
+<p>When thrashing begins, or when the free physical memory falls below a low threshold, the system deactivates idle processes and prevents new processes from being launched.</p>
+</li>
+<li>
+<p>The idle processes are only reactivated, and new processes are only allowed to be started when the system discovers that the available physical memory has climbed above the threshold level and thrashing has ceased.</p>
+</li>
+</ul>
+<h3 id="determining-current-swap-usage">Determining Current Swap Usage</h3>
+<ul>
+<li>Size of a swap area should not be less than the amount of physical memory.</li>
+<li>Depending on workload requirements, it may be twice the size or larger.</li>
+<li>It is also not uncommon to see systems with less swap than the actual amount of physical memory.</li>
+<li>This is especially witnessed on systems with a huge physical memory size.</li>
+</ul>
+<h3 id="free-command"><code>free</code> command</h3>
+<ul>
+<li>View memory and swap space utilization.</li>
+<li>view how much physical memory is installed (total), used (used), available (free), used by shared library routines (shared), holding data before it is written to disk (buffers), and used to store frequently accessed data (cached) on the system. The</li>
+<li><code>-h</code>
+<ul>
+<li>list the values in human-readable format,</li>
+</ul>
+</li>
+<li><code>-k</code>
+<ul>
+<li>for KB,</li>
+</ul>
+</li>
+<li><code>-m</code>
+<ul>
+<li>for MB,</li>
+</ul>
+</li>
+<li><code>-g</code>
+<ul>
+<li>for GB,</li>
+</ul>
+</li>
+<li><code>-t</code>
+<ul>
+<li>display a line with the &ldquo;total&rdquo; at the bottom of the output.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># free -ht</span>
+</span></span><span style="display:flex;"><span>               total        used        free      shared  buff/cache   available
+</span></span><span style="display:flex;"><span>Mem:           1.7Gi       783Mi       714Mi       5.0Mi       440Mi       991Mi
+</span></span><span style="display:flex;"><span>Swap:          2.0Gi          0B       2.0Gi
+</span></span><span style="display:flex;"><span>Total:         3.7Gi       783Mi       2.7Gi</span></span></code></pre></div>
+<p>Try <code>free -hts 3</code> and <code>free -htc 2</code> to refresh the output every three seconds (-s) and to display the output twice (-c).</p>
+<ul>
+<li>Reads memory and swap information from the <em>/proc/meminfo</em> file to produce the report. The values are shown in KBs by
+default, and they are slightly off from what is shown above with <code>free</code>. Here are the relevant fields from this file:</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/meminfo | grep -E &#39;Mem|Swap&#39;</span>
+</span></span><span style="display:flex;"><span>MemTotal:        <span style="color:#ff9f43">1818080</span> kB
+</span></span><span style="display:flex;"><span>MemFree:          <span style="color:#ff9f43">731724</span> kB
+</span></span><span style="display:flex;"><span>MemAvailable:    <span style="color:#ff9f43">1015336</span> kB
+</span></span><span style="display:flex;"><span>SwapCached:            <span style="color:#ff9f43">0</span> kB
+</span></span><span style="display:flex;"><span>SwapTotal:       <span style="color:#ff9f43">2097148</span> kB
+</span></span><span style="display:flex;"><span>SwapFree:        <span style="color:#ff9f43">2097148</span> kB</span></span></code></pre></div>
+<h3 id="prioritizing-swap-spaces">Prioritizing Swap Spaces</h3>
+<ul>
+<li>You may find multiple swap areas configured and activated to meet the workload demand.</li>
+<li>The default behavior of RHEL is to use the first activated swap area and move on to the next when the first one is exhausted.</li>
+<li>The system allows us to prioritize one area over the other by adding the option &ldquo;pri&rdquo; to the swap entries in the fstab file.</li>
+<li>This flag supports a value between -2 and 32767 with -2 being the default.</li>
+<li>A higher value of &ldquo;pri&rdquo; sets a higher priority for the corresponding swap region.</li>
+<li>For swap areas with an identical priority, the system alternates between them.</li>
+</ul>
+<h3 id="swap-administration-commands">Swap Administration Commands</h3>
+<ul>
+<li>In order to create and manage swap spaces on the system, the <code>mkswap</code>, <code>swapon</code>, and <code>swapoff</code> commands are available.</li>
+<li>Use <code>mkswap</code> to initialize a partition for use as a swap space.</li>
+<li>Once the swap area is ready, you can activate or deactivate it from the command line with the help of the other two commands,</li>
+<li>Can also set it up for automatic activation by placing an entry in the fstab file.</li>
+<li>The fstab file accepts the swap area&rsquo;s device file, UUID, or label.</li>
+</ul>
+<h3 id="lab-create-and-activate-swap-in-partition-and-logical-volume-server-2">Lab: Create and Activate Swap in Partition and Logical Volume (server 2)</h3>
+<ul>
+<li>Create one swap area in a new 40MB partition called <em>sdb3</em> using the <code>mkswap</code> command.</li>
+<li>Create another swap area in a 140MB logical volume called swapvol in vgfs.</li>
+<li>Add their entries to the /etc/fstab file for persistence.</li>
+<li>Use the UUID and priority 1 for the partition swap and the device file and priority 2 for the logical volume swap.</li>
+<li>Activate them and use appropriate tools to validate the activation.</li>
+</ul>
+<p>EXAM TIP: Use the <code>lsblk</code> command to determine available disk space.</p>
+<p>1. Use <code>parted print</code> on the sdb disk and the <code>vgs</code> command on the vgfs volume group to determine available space for a new 40MB partition and a 144MB logical volume:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print</span>
+</span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
+</span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
+</span></span><span style="display:flex;"><span>Partition Table: msdos
+</span></span><span style="display:flex;"><span>Disk Flags: 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Number  Start   End    Size    Type     File system  Flags
+</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  101MB  99.6MB  primary  ext4
+</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">2</span>      102MB   201MB  99.6MB  primary  fat16
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs vgfs</span>
+</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VBa5e3cbf7-10921e08 PVID qeP9dCevNnTy422I8p18NxDKQ2WyDodU last seen on /dev/sdf1 not found.
+</span></span><span style="display:flex;"><span>  VG   <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree  </span>
+</span></span><span style="display:flex;"><span>  vgfs   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- 400.00m 144.00m</span></span></code></pre></div>
+<p>The outputs show 49MB (250MB minus 201MB) free space on the sdb disk and 144MB free space in the volume group.</p>
+<p>2. Create a partition called sdb3 of size 40MB using the parted command:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 202 242</span>
+</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
+<p>3. Create logical volume swapvol of size 144MB in vgs using the <code>lvcreate</code> command:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -L 144 -n swapvol vgfs               </span>
+</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;swapvol&#34;</span> created.</span></span></code></pre></div>
+<p>4. Construct swap structures in sdb3 and swapvol using the mkswap command:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo mkswap /dev/sdb3</span>
+</span></span><span style="display:flex;"><span>Setting up swapspace version 1, <span style="color:#ff5c57">size</span> <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">38</span> MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">39841792</span> bytes<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>no label, <span style="color:#ff5c57">UUID</span><span style="color:#ff6ac1">=</span>a796e0df-b1c3-4c30-bdde-dd522bba4fff
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo mkswap /dev/vgfs/swapvol</span>
+</span></span><span style="display:flex;"><span>Setting up swapspace version 1, <span style="color:#ff5c57">size</span> <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">144</span> MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">150990848</span> bytes<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>no label, <span style="color:#ff5c57">UUID</span><span style="color:#ff6ac1">=</span>88196e73-feaf-4137-8743-f9340296aeec</span></span></code></pre></div>
+<p>5. Edit the fstab file and add entries for both swap areas for auto-activation on reboots. Obtain the UUID for partition swap with
+<code>lsblk -f /dev/sdb3</code> and use the device file for logical volume. Specify their priorities.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">UUID</span><span style="color:#ff6ac1">=</span>a796e0df-b1c3-4c30-bdde-dd522bba4fff swap swap <span style="color:#ff5c57">pri</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span> <span style="color:#ff9f43">0</span> <span style="color:#ff9f43">0</span>
+</span></span><span style="display:flex;"><span>/dev/vgfs/swapvol swap swap <span style="color:#ff5c57">pri</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">2</span> <span style="color:#ff9f43">0</span> <span style="color:#ff9f43">0</span>   </span></span></code></pre></div>
+<p>EXAM TIP: You will not be given any credit for this work if you forget to add entries to the fstab file.</p>
+<p>6. Determine the current amount of swap space on the system using the swapon command:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo swapon</span>
+</span></span><span style="display:flex;"><span>NAME      TYPE      SIZE USED PRIO
+</span></span><span style="display:flex;"><span>/dev/dm-1 partition   2G   0B   -2</span></span></code></pre></div>
+<p>There is one 2GB swap area on the system and it is configured at the default priority of -2.</p>
+<p>7. Activate the new swap regions using the swapon command:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo swapon -a</span></span></span></code></pre></div>
+<p>8. Confirm the activation using the swapon command or by viewing the /proc/swaps file:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo swapon</span>
+</span></span><span style="display:flex;"><span>NAME      TYPE      SIZE USED PRIO
+</span></span><span style="display:flex;"><span>/dev/dm-1 partition   2G   0B   -2
+</span></span><span style="display:flex;"><span>/dev/sdb3 partition  38M   0B    <span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span>/dev/dm-7 partition 144M   0B    <span style="color:#ff9f43">2</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/swaps</span>
+</span></span><span style="display:flex;"><span>Filename				Type		Size		Used		Priority
+</span></span><span style="display:flex;"><span>/dev/dm-1                               partition	2097148		0		-2
+</span></span><span style="display:flex;"><span>/dev/sdb3                               partition	38908		0		<span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span>/dev/dm-7                               partition	147452		0		<span style="color:#ff9f43">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">#dm is device mapper</span></span></span></code></pre></div>
+<p>9. Issue the free command to view the reflection of swap numbers on the Swap and Total lines:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># free -ht</span>
+</span></span><span style="display:flex;"><span>               total        used        free      shared  buff/cache   available
+</span></span><span style="display:flex;"><span>Mem:           1.7Gi       793Mi       706Mi       5.0Mi       438Mi       981Mi
+</span></span><span style="display:flex;"><span>Swap:          2.2Gi          0B       2.2Gi
+</span></span><span style="display:flex;"><span>Total:         3.9Gi       793Mi       2.9Gi</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1730768046";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1730768046" defer></script>
+        <script src="/js/search.js?1730768046" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/swap-and-its-management/"><a class="padding" href="/linux/swap-and-its-management/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-notes/"><a class="padding" href="/linux/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108"><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitness</span></label><a class="padding" href="/health-and-fitness/">Health and Fitness<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/davidvargasxyz"><a class="padding" href="https://github.com/davidvargasxyz" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/swap-and-its-management/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

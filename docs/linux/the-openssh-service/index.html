@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="The OpenSSH Service Secure Shell (SSH)
+Delivers a secure mechanism for data transmission between source and destination systems over IP networks. Designed to replace the old remote login programs that transmitted user passwords in clear text and data unencrypted. Employs digital signatures for user authentication with encryption to secure a communication channel. this makes it extremely hard for unauthorized people to gain access to passwords or the data in transit. Monitors the data being transferred throughout a session to ensure integrity. Includes a set of utilities ssh and sftp for remote users to log in, transfer files, and execute commands securely. Common Encryption Techniques Two common techniques: symmetric and asymetric Symmetric Technique">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="The OpenSSH Service Secure Shell (SSH)
+Delivers a secure mechanism for data transmission between source and destination systems over IP networks. Designed to replace the old remote login programs that transmitted user passwords in clear text and data unencrypted. Employs digital signatures for user authentication with encryption to secure a communication channel. this makes it extremely hard for unauthorized people to gain access to passwords or the data in transit. Monitors the data being transferred throughout a session to ensure integrity. Includes a set of utilities ssh and sftp for remote users to log in, transfer files, and execute commands securely. Common Encryption Techniques Two common techniques: symmetric and asymetric Symmetric Technique">
+    <meta property="og:url" content="http://localhost:1313/linux/the-openssh-service/">
+    <meta property="og:description" content="The OpenSSH Service Secure Shell (SSH)
+Delivers a secure mechanism for data transmission between source and destination systems over IP networks. Designed to replace the old remote login programs that transmitted user passwords in clear text and data unencrypted. Employs digital signatures for user authentication with encryption to secure a communication channel. this makes it extremely hard for unauthorized people to gain access to passwords or the data in transit. Monitors the data being transferred throughout a session to ensure integrity. Includes a set of utilities ssh and sftp for remote users to log in, transfer files, and execute commands securely. Common Encryption Techniques Two common techniques: symmetric and asymetric Symmetric Technique">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="The OpenSSH Service Secure Shell (SSH)
+Delivers a secure mechanism for data transmission between source and destination systems over IP networks. Designed to replace the old remote login programs that transmitted user passwords in clear text and data unencrypted. Employs digital signatures for user authentication with encryption to secure a communication channel. this makes it extremely hard for unauthorized people to gain access to passwords or the data in transit. Monitors the data being transferred throughout a session to ensure integrity. Includes a set of utilities ssh and sftp for remote users to log in, transfer files, and execute commands securely. Common Encryption Techniques Two common techniques: symmetric and asymetric Symmetric Technique">
+    <meta itemprop="wordCount" content="1296">
+    <title></title>
+    <link href="/linux/the-openssh-service/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/the-openssh-service/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/the-openssh-service/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#common-encryption-techniques">Common Encryption Techniques</a></li>
+        <li><a href="#authentication-methods">Authentication Methods</a></li>
+        <li><a href="#openssh-protocol-version-and-algorithms">OpenSSH Protocol Version and Algorithms</a></li>
+        <li><a href="#openssh-packages">OpenSSH Packages</a></li>
+        <li><a href="#openssh-server-daemon-and-client-commands">OpenSSH Server Daemon and Client Commands</a></li>
+        <li><a href="#server-configuration-file">Server Configuration File</a></li>
+        <li><a href="#client-configuration-file">Client Configuration File</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="the-openssh-service">The OpenSSH Service</h1>
+<p><strong>Secure Shell (SSH)</strong></p>
+<ul>
+<li>Delivers a secure mechanism for data transmission between source and destination systems over IP networks.</li>
+<li>Designed to replace the old remote login programs that transmitted user passwords in clear text and data unencrypted.</li>
+<li>Employs digital signatures for user authentication with encryption to secure a communication channel.
+<ul>
+<li>this makes it extremely hard for unauthorized people to gain access to passwords or the data in transit.</li>
+</ul>
+</li>
+<li>Monitors the data being transferred throughout a session to ensure integrity.</li>
+<li>Includes a set of utilities <code>ssh</code> and <code>sftp</code> for remote users to log in, transfer files, and execute commands securely.</li>
+</ul>
+<h3 id="common-encryption-techniques">Common Encryption Techniques</h3>
+<ul>
+<li>Two common techniques: symmetric and asymetric</li>
+</ul>
+<p><strong>Symmetric Technique</strong></p>
+<ul>
+<li>Secret key encryption.</li>
+<li>Uses a single key called a secret key that is generated as a result of a negotiation process between two entities at the time of their initial contact.</li>
+<li>Both sides use the same secret key during subsequent communication for data encryption and decryption.</li>
+</ul>
+<p><strong>Asymmetric Technique</strong></p>
+<ul>
+<li>Public key encryption</li>
+<li>Combination of private and public keys
+<ul>
+<li>Randomly generated and mathematically related strings of alphanumeric characters</li>
+<li>attached to messages being exchanged.</li>
+</ul>
+</li>
+<li>The client transmutes the information with a public key and the server decrypts it with the paired private key.</li>
+<li>Private key must be kept secure since it is private to a single sender</li>
+<li>the public key is disseminated to clients.</li>
+<li>used for channel encryption and user authentication.</li>
+</ul>
+<h3 id="authentication-methods">Authentication Methods</h3>
+<ul>
+<li>Encrypted channel is established between the client and server</li>
+<li>Then additional negotiations take place between the two to authenticate the user trying to access the server.</li>
+<li>Methods listed in the order in which they are attempted during the authentication process:</li>
+</ul>
+<ol>
+<li>GSSAPI-based ( Generic Security Service Application Program Interface) authentication</li>
+<li>Host-based authentication</li>
+<li>Public key-based authentication</li>
+<li>Challenge-response authentication</li>
+<li>Password-based authentication</li>
+</ol>
+<p><strong>GSSAPI-Based Authentication</strong></p>
+<ul>
+<li>Provides a standard interface that allows security mechanisms, such as Kerberos, to be plugged in.</li>
+<li>OpenSSH uses this interface and the underlying Kerberos for authentication.</li>
+<li>Exchange of tokens takes place between the client and server to validate user identity.</li>
+</ul>
+<p><strong>Host-Based Authentication</strong></p>
+<ul>
+<li>Allows a single user, a group of users, or all users on the client to be authenticated on the server.</li>
+<li>A user may be configured to log in with a matching username on the server or as a different user that already exists there.</li>
+<li>For each user that requires an automatic entry on the server, a ~/.shosts file is set up containing the client name or IP address, and, optionally, a different username.</li>
+<li>The same rule applies to a group of users or all users on the client that require access to the server.
+<ul>
+<li>In that case, the setup is done in the /etc/ssh/shosts.equiv file on the server.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Private/Public Key-Based Authentication</strong></p>
+<ul>
+<li>Uses a private/public key combination for user authentication.</li>
+<li>User on the client has a private key and the server stores the corresponding public key.</li>
+<li>At the login attempt, the server prompts the user to enter the passphrase associated with the key and logs the user in if the passphrase and key are validated.</li>
+</ul>
+<p><strong>Challenge-Response Authentication</strong></p>
+<ul>
+<li>Based on the response(s) to one or more arbitrary challenge questions that the user has to answer correctly in order to be allowed to log in to the server.</li>
+</ul>
+<p><strong>Password-Based Authentication</strong></p>
+<ul>
+<li>Last fall back option.</li>
+<li>Server prompts the user to enter their password.</li>
+<li>Checks the password against the stored entry in the shadow file and allows the user in if the password is confirmed.</li>
+</ul>
+<h3 id="openssh-protocol-version-and-algorithms">OpenSSH Protocol Version and Algorithms</h3>
+<ul>
+<li>V2</li>
+<li>Supports various algorithms for data encryption and user authentication (digital signatures) such as:</li>
+</ul>
+<p><strong>RSA</strong> (Rivest-Shamir-Adleman)</p>
+<ul>
+<li>More prevalent than the rest</li>
+<li>Supports both encryption and authentication. In contrast,</li>
+</ul>
+<p><strong>DSA and ECDSA</strong> (Digital Signature Algorithm and Elliptic Curve Digital Signature Algorithm)</p>
+<ul>
+<li>Authentication only.</li>
+<li>Used to generate public and private key pairs for the asymmetric technique.</li>
+</ul>
+<h3 id="openssh-packages">OpenSSH Packages</h3>
+<ul>
+<li>Installed during OS installation</li>
+</ul>
+<p><strong>openssh</strong></p>
+<ul>
+<li>provides the ssh-keygen command and some library routines</li>
+</ul>
+<p><strong>openssh-clients</strong></p>
+<ul>
+<li>includes commands, such as <code>sftp</code>, <code>ssh</code>, and <code>ssh-copy-id</code>, and a client configuration file <em>/etc/ssh/ssh_config</em></li>
+</ul>
+<p><strong>openssh-server</strong></p>
+<ul>
+<li>contains the sshd service daemon, server configuration file <em>/etc/ssh/sshd_config</em>, and library routines.</li>
+</ul>
+<h3 id="openssh-server-daemon-and-client-commands">OpenSSH Server Daemon and Client Commands</h3>
+<ul>
+<li>OpenSSH server program is sshd</li>
+</ul>
+<p><strong>sshd</strong></p>
+<ul>
+<li>
+<p>Preconfigured and operational on new RHEL installations</p>
+</li>
+<li>
+<p>Allows remote users to log in to the system using an ssh client program such as PuTTY or the ssh command.</p>
+</li>
+<li>
+<p>Daemon listens on TCP port 22</p>
+<ul>
+<li>Documented in the /etc/ssh/sshd_config file with the Port directive.</li>
+</ul>
+</li>
+<li>
+<p>Use sftp instead of scp do to scp security flaws.</p>
+</li>
+</ul>
+<p><code>sftp</code></p>
+<ul>
+<li>Secure remote file transfer program</li>
+</ul>
+<p><code>ssh</code></p>
+<ul>
+<li>Secure remote login command</li>
+</ul>
+<p><code>ssh-copy-id</code></p>
+<ul>
+<li>Copies public key to remote systems</li>
+</ul>
+<p><code>ssh-keygen</code></p>
+<ul>
+<li>Generates and manages private and public key pairs</li>
+</ul>
+<h3 id="server-configuration-file">Server Configuration File</h3>
+<p><strong>/etc/ssh/sshd_config</strong></p>
+<p><strong>/var/log/secure</strong></p>
+<ul>
+<li>log file is used to capture authentication messages.</li>
+</ul>
+<p>View directives listed in <em>/etc/ssh/sshd_config</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /etc/ssh/sshd_config</span></span></span></code></pre></div>
+<p><strong>Port</strong></p>
+<ul>
+<li>Port number to listen on. Default is 22.</li>
+</ul>
+<p><strong>Protocol</strong></p>
+<ul>
+<li>Default protocol version to use.</li>
+</ul>
+<p><strong>ListenAddress</strong></p>
+<ul>
+<li>Sets the local addresses the sshd service should listen on.</li>
+<li>Default is to listen on all local addresses.</li>
+</ul>
+<p><strong>SyslogFacility</strong></p>
+<ul>
+<li>Defines the facility code to be used when logging messages to the /var/log/secure file. This is based on the configuration in the /etc/rsyslog.conf file. Default is <strong>AUTHPRIV.</strong></li>
+</ul>
+<p><strong>LogLevel</strong>                         <br>
+Identifies the level of criticality for the messages to be logged. Default is <strong>INFO</strong>.</p>
+<p><strong>PermitRootLogin</strong>                  <br>
+Allows or disallows the root user to log in directly to the system. Default is yes.</p>
+<p><strong>PubKeyAuthentication</strong>             <br>
+Enables or disables public key-based authentication. Default is yes.</p>
+<p><strong>AuthorizedKeysFile</strong>               <br>
+Sets the name and location of the file containing a user&rsquo;s authorized keys. Default is ~/.ssh/authorized_keys.</p>
+<p><strong>PasswordAuthentication</strong>           <br>
+Enables or disables local password authentication. Default is yes.</p>
+<p><strong>PermitEmptyPasswords</strong>             <br>
+Allows or disallows the use of null passwords. Default is no.</p>
+<p><strong>ChallengeResponseAuthentication</strong>  <br>
+Enables or disables challenge-response authentication mechanism. Default is yes.</p>
+<p><strong>UsePAM</strong>                           <br>
+Enables or disables user authentication via PAM. If enabled, only root will be able to run the sshd daemon. Default is yes.</p>
+<p><strong>X11Forwarding</strong>                    <br>
+Allows or disallows remote access to graphical applications. Default is yes.</p>
+<h3 id="client-configuration-file">Client Configuration File</h3>
+<p><strong>/etc/ssh/ssh_config</strong></p>
+<ul>
+<li>Local configuration file that directs how the client should behave. This file, , is located in the /etc/ssh directory.</li>
+<li>Directives preset in this file that affect all outbound ssh communication.</li>
+</ul>
+<p>View the default directive settings:
+<code>[root@server30 tmp]# cat /etc/ssh/sshd_config</code></p>
+<p><strong>Host</strong></p>
+<ul>
+<li>Container that declares directives applicable to one host, a group of hosts, or all hosts.</li>
+<li>Ends when another occurrence of Host or Match is encountered. Default is *,  (all hosts)</li>
+</ul>
+<p><strong>ForwardX11</strong></p>
+<ul>
+<li>Enables or disables automatic redirection of X11 traffic over SSH connections.</li>
+<li>Default is no.</li>
+</ul>
+<p><strong>PasswordAuthentication</strong></p>
+<ul>
+<li>Allows or disallows password authentication.</li>
+<li>Default is yes.</li>
+</ul>
+<p><strong>StrictHostKeyChecking</strong></p>
+<ul>
+<li>
+<p>Whether to add host keys (host fingerprints) to  ~/.ssh/known_hosts when accessing a host for the first time</p>
+</li>
+<li>
+<p>What to do when the keys of a previously accessed host mismatch with what is stored in ~/.ssh/known_hosts.</p>
+</li>
+<li>
+<p>no:</p>
+<ul>
+<li>Adds new host keys and ignores changes to existing keys.</li>
+</ul>
+</li>
+<li>
+<p>yes:</p>
+<ul>
+<li>Adds new host keys and disallows connections to hosts with non-matching keys.</li>
+</ul>
+</li>
+<li>
+<p>accept-new:</p>
+<ul>
+<li>Adds new host keys and disallows connections to hosts with non-matching keys.</li>
+</ul>
+</li>
+<li>
+<p>ask (default):</p>
+<ul>
+<li>Prompts whether to add new host keys and disallows connections to hosts with non-matching keys.</li>
+</ul>
+</li>
+</ul>
+<p><strong>IdentityFile</strong></p>
+<ul>
+<li>Defines the name and location of a file that stores a user&rsquo;s private key for their identity validation.</li>
+<li>Defaults are:
+<ul>
+<li>id_rsa, id_dsa, and  id_ecdsa based on the type of algorithm used.</li>
+<li>Corresponding public key files with .pub extension are also stored at the same directory location.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Port</strong>                             <br>
+Sets the port number to listen on. Default is 22.</p>
+<p><strong>Protocol</strong>                         <br>
+Specifies the default protocol version to use</p>
+<p>~/.ssh/</p>
+<ul>
+<li>does not exist by default</li>
+<li>created when:
+<ul>
+<li>a user executes the <code>ssh-keygen</code> command for the first time to generate a key pair</li>
+<li>A user connects to a remote ssh server and accepts its host key for the first time.
+<ul>
+<li>The client stores the server&rsquo;s host key locally in a file called known_hosts along with its hostname or IP address.</li>
+<li>On subsequent access attempts, the client will use this information to verify the server&rsquo;s authenticity.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1730768046";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1730768046" defer></script>
+        <script src="/js/search.js?1730768046" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/the-openssh-service/"><a class="padding" href="/linux/the-openssh-service/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-notes/"><a class="padding" href="/linux/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108"><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitness</span></label><a class="padding" href="/health-and-fitness/">Health and Fitness<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/davidvargasxyz"><a class="padding" href="https://github.com/davidvargasxyz" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/the-openssh-service/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Advanced User Management Labs Lab: Set and Confirm Password Aging with chage (root) Set password aging parameters for user100 to mindays (-m) 7, maxdays (-M) 28, and warndays (-W) 5: chage -m 7 -M 28 -W 5 user100 Confirm chage -l user100 Set the account expiry to January 31, 2020 chage -E 2020-01-31 user100 Verify the new account expiry setting chage -l user100 Lab: Set and Confirm Password Aging with passwd (root) Set password aging attributes for user200 to mindays 10, maxdays 90, and warndays 14: passwd -n 10 -x 90 -w 14 user200 Confirm: passwd -S user200 Set the number of inactivity days to 5: passwd -i 5 user200 Confirm: passwd -S user200 Ensure that the user is forced to change their password at next login: passwd -e user200 Confirm: passwd -S user200 Lab: Lock and Unlock a User Account with usermod and passwd (root) Obtain the current password information for user200 from the shadow file: grep user200 /etc/shadow Lock the account for user200: usermod -L user200 Confirm: grep user200 /etc/shadow Unlock the account with either of the following: usermod -U user200 or passwd -u user200 confirm grep user200 /etc/shadow Lab: Create a Group and Add Members (root) Create the group linuxadm with GID 5000: groupadd -g 5000 linuxadm Create a group called dba with the same GID as that of group linuxadm: groupadd -o -g 5000 dba Confirm: grep linuxadm /etc/group grep dba /etc/group Add user1 as a secondary member of group dba using the usermod command. The existing membership for the user must remain intact. usermod -aG dba user1 Verify the updated group membership information for user1 by extracting the relevant entry from the group file, and running the id and groups command for user1: grep dba /etc/group id user1 groups user1 Lab: Modify and Delete a Group Account (root) Alter the name of linuxadm to sysadm: groupmod -n sysadm linuxadm Change the GID of sysadm to 6000: groupmod -g 6000 sysadm Confirm: grep sysadm /etc/group grep linuxadm /etc/group Delete sysadm group and confirm: groupdel sysadm grep sysadm /etc/group Lab: To switch from user1 (assuming you are logged in as user1) into root without executing the startup scripts su switch to user100 su - user100 See what whoami and logname reports now: whoami logname use su as follows and execute this privileged command to obtain desired results: su -c &#39;firewall-cmd --list-services&#39; Lab: Add user1 to sudo file but only for the cat command. Open up /etc/sudoers and add the following: user1 ALL=/usr/bin/cat run cat as user1 with and without sudo: cat /etc/sudoers sudo cat /etc/sudoers Lab: Add user and command aliases to the sudoer file. Add the following to the bottom of the sudoers file: Cmnd_Alias PKGCMD = /usr/bin/yum, /usr/bin/rpm User_Alias PKGADM = user1, user100, user200 PKGADM ALL=PKGCMD Run rpm or yum with sudo as one of the users. sudo yum Lab: Take a look at examples in the sudoers file. cat /etc/sudoers Lab: Viewing owner and group information Create a file file1 as user1 in their home directory and exhibit the file’s long listing: touch file1 ls -l file1 View the corresponding UID and GID instead, you can specify the -n option with the command: ls -ln file1 Lab: Modify File Owner and Owning Group Change into the /tmp directory and create file10 and dir10: cd /tmp touch file10 mkdir dir10 Check and validate that both attributes are set to user1: ls -l file10 ls -ld dir10 Set the ownership of file10 to user100 and confirm: sudo chown user100 file10 ls -l file10 Alter the owning group to dba and verify: sudo chgrp dba file10 ls -l file10 Change the ownership to user200 and owning group to user100 and confirm: sudo chown user200:user100 file10 Modify the ownership to user200 and owning group to dba recursively on dir10 and validate: sudo chown -R user200:dba dir10 ls -ld dir10 Lab: Create User and Configure Password Aging (root) Create group lnxgrp with GID 6000. groupadd lnxgrp -g 6000 Create user user5000 with UID 5000 and GID 6000. Assign this user a password. useradd -u 5000 -g 6000 user5000 Establish password aging attributes so that this user cannot change their password within 4 days after setting it and with a password validity of 30 days. This user should start getting warning messages for changing password 10 days prior to account lock down. chage -m 4 -M 30 -W 10 user5000 This user account needs to expire on the 20th of December, 2021. chage -E 2021-12-20 user5000 Lab 6-2: Lock and Unlock User (root) Lock the user account for user5000 using the passwd command, and passwd -l user5000 confirm by examining the change in the /etc/shadow file. cat /etc/shadow Try to log in with user5000 and observe what happens. su - user1 su - user5000 Use the usermod command and unlock">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Advanced User Management Labs Lab: Set and Confirm Password Aging with chage (root) Set password aging parameters for user100 to mindays (-m) 7, maxdays (-M) 28, and warndays (-W) 5: chage -m 7 -M 28 -W 5 user100 Confirm chage -l user100 Set the account expiry to January 31, 2020 chage -E 2020-01-31 user100 Verify the new account expiry setting chage -l user100 Lab: Set and Confirm Password Aging with passwd (root) Set password aging attributes for user200 to mindays 10, maxdays 90, and warndays 14: passwd -n 10 -x 90 -w 14 user200 Confirm: passwd -S user200 Set the number of inactivity days to 5: passwd -i 5 user200 Confirm: passwd -S user200 Ensure that the user is forced to change their password at next login: passwd -e user200 Confirm: passwd -S user200 Lab: Lock and Unlock a User Account with usermod and passwd (root) Obtain the current password information for user200 from the shadow file: grep user200 /etc/shadow Lock the account for user200: usermod -L user200 Confirm: grep user200 /etc/shadow Unlock the account with either of the following: usermod -U user200 or passwd -u user200 confirm grep user200 /etc/shadow Lab: Create a Group and Add Members (root) Create the group linuxadm with GID 5000: groupadd -g 5000 linuxadm Create a group called dba with the same GID as that of group linuxadm: groupadd -o -g 5000 dba Confirm: grep linuxadm /etc/group grep dba /etc/group Add user1 as a secondary member of group dba using the usermod command. The existing membership for the user must remain intact. usermod -aG dba user1 Verify the updated group membership information for user1 by extracting the relevant entry from the group file, and running the id and groups command for user1: grep dba /etc/group id user1 groups user1 Lab: Modify and Delete a Group Account (root) Alter the name of linuxadm to sysadm: groupmod -n sysadm linuxadm Change the GID of sysadm to 6000: groupmod -g 6000 sysadm Confirm: grep sysadm /etc/group grep linuxadm /etc/group Delete sysadm group and confirm: groupdel sysadm grep sysadm /etc/group Lab: To switch from user1 (assuming you are logged in as user1) into root without executing the startup scripts su switch to user100 su - user100 See what whoami and logname reports now: whoami logname use su as follows and execute this privileged command to obtain desired results: su -c &#39;firewall-cmd --list-services&#39; Lab: Add user1 to sudo file but only for the cat command. Open up /etc/sudoers and add the following: user1 ALL=/usr/bin/cat run cat as user1 with and without sudo: cat /etc/sudoers sudo cat /etc/sudoers Lab: Add user and command aliases to the sudoer file. Add the following to the bottom of the sudoers file: Cmnd_Alias PKGCMD = /usr/bin/yum, /usr/bin/rpm User_Alias PKGADM = user1, user100, user200 PKGADM ALL=PKGCMD Run rpm or yum with sudo as one of the users. sudo yum Lab: Take a look at examples in the sudoers file. cat /etc/sudoers Lab: Viewing owner and group information Create a file file1 as user1 in their home directory and exhibit the file’s long listing: touch file1 ls -l file1 View the corresponding UID and GID instead, you can specify the -n option with the command: ls -ln file1 Lab: Modify File Owner and Owning Group Change into the /tmp directory and create file10 and dir10: cd /tmp touch file10 mkdir dir10 Check and validate that both attributes are set to user1: ls -l file10 ls -ld dir10 Set the ownership of file10 to user100 and confirm: sudo chown user100 file10 ls -l file10 Alter the owning group to dba and verify: sudo chgrp dba file10 ls -l file10 Change the ownership to user200 and owning group to user100 and confirm: sudo chown user200:user100 file10 Modify the ownership to user200 and owning group to dba recursively on dir10 and validate: sudo chown -R user200:dba dir10 ls -ld dir10 Lab: Create User and Configure Password Aging (root) Create group lnxgrp with GID 6000. groupadd lnxgrp -g 6000 Create user user5000 with UID 5000 and GID 6000. Assign this user a password. useradd -u 5000 -g 6000 user5000 Establish password aging attributes so that this user cannot change their password within 4 days after setting it and with a password validity of 30 days. This user should start getting warning messages for changing password 10 days prior to account lock down. chage -m 4 -M 30 -W 10 user5000 This user account needs to expire on the 20th of December, 2021. chage -E 2021-12-20 user5000 Lab 6-2: Lock and Unlock User (root) Lock the user account for user5000 using the passwd command, and passwd -l user5000 confirm by examining the change in the /etc/shadow file. cat /etc/shadow Try to log in with user5000 and observe what happens. su - user1 su - user5000 Use the usermod command and unlock">
+    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/advanced-user-management-labs/">
+    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:description" content="Advanced User Management Labs Lab: Set and Confirm Password Aging with chage (root) Set password aging parameters for user100 to mindays (-m) 7, maxdays (-M) 28, and warndays (-W) 5: chage -m 7 -M 28 -W 5 user100 Confirm chage -l user100 Set the account expiry to January 31, 2020 chage -E 2020-01-31 user100 Verify the new account expiry setting chage -l user100 Lab: Set and Confirm Password Aging with passwd (root) Set password aging attributes for user200 to mindays 10, maxdays 90, and warndays 14: passwd -n 10 -x 90 -w 14 user200 Confirm: passwd -S user200 Set the number of inactivity days to 5: passwd -i 5 user200 Confirm: passwd -S user200 Ensure that the user is forced to change their password at next login: passwd -e user200 Confirm: passwd -S user200 Lab: Lock and Unlock a User Account with usermod and passwd (root) Obtain the current password information for user200 from the shadow file: grep user200 /etc/shadow Lock the account for user200: usermod -L user200 Confirm: grep user200 /etc/shadow Unlock the account with either of the following: usermod -U user200 or passwd -u user200 confirm grep user200 /etc/shadow Lab: Create a Group and Add Members (root) Create the group linuxadm with GID 5000: groupadd -g 5000 linuxadm Create a group called dba with the same GID as that of group linuxadm: groupadd -o -g 5000 dba Confirm: grep linuxadm /etc/group grep dba /etc/group Add user1 as a secondary member of group dba using the usermod command. The existing membership for the user must remain intact. usermod -aG dba user1 Verify the updated group membership information for user1 by extracting the relevant entry from the group file, and running the id and groups command for user1: grep dba /etc/group id user1 groups user1 Lab: Modify and Delete a Group Account (root) Alter the name of linuxadm to sysadm: groupmod -n sysadm linuxadm Change the GID of sysadm to 6000: groupmod -g 6000 sysadm Confirm: grep sysadm /etc/group grep linuxadm /etc/group Delete sysadm group and confirm: groupdel sysadm grep sysadm /etc/group Lab: To switch from user1 (assuming you are logged in as user1) into root without executing the startup scripts su switch to user100 su - user100 See what whoami and logname reports now: whoami logname use su as follows and execute this privileged command to obtain desired results: su -c &#39;firewall-cmd --list-services&#39; Lab: Add user1 to sudo file but only for the cat command. Open up /etc/sudoers and add the following: user1 ALL=/usr/bin/cat run cat as user1 with and without sudo: cat /etc/sudoers sudo cat /etc/sudoers Lab: Add user and command aliases to the sudoer file. Add the following to the bottom of the sudoers file: Cmnd_Alias PKGCMD = /usr/bin/yum, /usr/bin/rpm User_Alias PKGADM = user1, user100, user200 PKGADM ALL=PKGCMD Run rpm or yum with sudo as one of the users. sudo yum Lab: Take a look at examples in the sudoers file. cat /etc/sudoers Lab: Viewing owner and group information Create a file file1 as user1 in their home directory and exhibit the file’s long listing: touch file1 ls -l file1 View the corresponding UID and GID instead, you can specify the -n option with the command: ls -ln file1 Lab: Modify File Owner and Owning Group Change into the /tmp directory and create file10 and dir10: cd /tmp touch file10 mkdir dir10 Check and validate that both attributes are set to user1: ls -l file10 ls -ld dir10 Set the ownership of file10 to user100 and confirm: sudo chown user100 file10 ls -l file10 Alter the owning group to dba and verify: sudo chgrp dba file10 ls -l file10 Change the ownership to user200 and owning group to user100 and confirm: sudo chown user200:user100 file10 Modify the ownership to user200 and owning group to dba recursively on dir10 and validate: sudo chown -R user200:dba dir10 ls -ld dir10 Lab: Create User and Configure Password Aging (root) Create group lnxgrp with GID 6000. groupadd lnxgrp -g 6000 Create user user5000 with UID 5000 and GID 6000. Assign this user a password. useradd -u 5000 -g 6000 user5000 Establish password aging attributes so that this user cannot change their password within 4 days after setting it and with a password validity of 30 days. This user should start getting warning messages for changing password 10 days prior to account lock down. chage -m 4 -M 30 -W 10 user5000 This user account needs to expire on the 20th of December, 2021. chage -E 2021-12-20 user5000 Lab 6-2: Lock and Unlock User (root) Lock the user account for user5000 using the passwd command, and passwd -l user5000 confirm by examining the change in the /etc/shadow file. cat /etc/shadow Try to log in with user5000 and observe what happens. su - user1 su - user5000 Use the usermod command and unlock">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Advanced User Management Labs Lab: Set and Confirm Password Aging with chage (root) Set password aging parameters for user100 to mindays (-m) 7, maxdays (-M) 28, and warndays (-W) 5: chage -m 7 -M 28 -W 5 user100 Confirm chage -l user100 Set the account expiry to January 31, 2020 chage -E 2020-01-31 user100 Verify the new account expiry setting chage -l user100 Lab: Set and Confirm Password Aging with passwd (root) Set password aging attributes for user200 to mindays 10, maxdays 90, and warndays 14: passwd -n 10 -x 90 -w 14 user200 Confirm: passwd -S user200 Set the number of inactivity days to 5: passwd -i 5 user200 Confirm: passwd -S user200 Ensure that the user is forced to change their password at next login: passwd -e user200 Confirm: passwd -S user200 Lab: Lock and Unlock a User Account with usermod and passwd (root) Obtain the current password information for user200 from the shadow file: grep user200 /etc/shadow Lock the account for user200: usermod -L user200 Confirm: grep user200 /etc/shadow Unlock the account with either of the following: usermod -U user200 or passwd -u user200 confirm grep user200 /etc/shadow Lab: Create a Group and Add Members (root) Create the group linuxadm with GID 5000: groupadd -g 5000 linuxadm Create a group called dba with the same GID as that of group linuxadm: groupadd -o -g 5000 dba Confirm: grep linuxadm /etc/group grep dba /etc/group Add user1 as a secondary member of group dba using the usermod command. The existing membership for the user must remain intact. usermod -aG dba user1 Verify the updated group membership information for user1 by extracting the relevant entry from the group file, and running the id and groups command for user1: grep dba /etc/group id user1 groups user1 Lab: Modify and Delete a Group Account (root) Alter the name of linuxadm to sysadm: groupmod -n sysadm linuxadm Change the GID of sysadm to 6000: groupmod -g 6000 sysadm Confirm: grep sysadm /etc/group grep linuxadm /etc/group Delete sysadm group and confirm: groupdel sysadm grep sysadm /etc/group Lab: To switch from user1 (assuming you are logged in as user1) into root without executing the startup scripts su switch to user100 su - user100 See what whoami and logname reports now: whoami logname use su as follows and execute this privileged command to obtain desired results: su -c &#39;firewall-cmd --list-services&#39; Lab: Add user1 to sudo file but only for the cat command. Open up /etc/sudoers and add the following: user1 ALL=/usr/bin/cat run cat as user1 with and without sudo: cat /etc/sudoers sudo cat /etc/sudoers Lab: Add user and command aliases to the sudoer file. Add the following to the bottom of the sudoers file: Cmnd_Alias PKGCMD = /usr/bin/yum, /usr/bin/rpm User_Alias PKGADM = user1, user100, user200 PKGADM ALL=PKGCMD Run rpm or yum with sudo as one of the users. sudo yum Lab: Take a look at examples in the sudoers file. cat /etc/sudoers Lab: Viewing owner and group information Create a file file1 as user1 in their home directory and exhibit the file’s long listing: touch file1 ls -l file1 View the corresponding UID and GID instead, you can specify the -n option with the command: ls -ln file1 Lab: Modify File Owner and Owning Group Change into the /tmp directory and create file10 and dir10: cd /tmp touch file10 mkdir dir10 Check and validate that both attributes are set to user1: ls -l file10 ls -ld dir10 Set the ownership of file10 to user100 and confirm: sudo chown user100 file10 ls -l file10 Alter the owning group to dba and verify: sudo chgrp dba file10 ls -l file10 Change the ownership to user200 and owning group to user100 and confirm: sudo chown user200:user100 file10 Modify the ownership to user200 and owning group to dba recursively on dir10 and validate: sudo chown -R user200:dba dir10 ls -ld dir10 Lab: Create User and Configure Password Aging (root) Create group lnxgrp with GID 6000. groupadd lnxgrp -g 6000 Create user user5000 with UID 5000 and GID 6000. Assign this user a password. useradd -u 5000 -g 6000 user5000 Establish password aging attributes so that this user cannot change their password within 4 days after setting it and with a password validity of 30 days. This user should start getting warning messages for changing password 10 days prior to account lock down. chage -m 4 -M 30 -W 10 user5000 This user account needs to expire on the 20th of December, 2021. chage -E 2021-12-20 user5000 Lab 6-2: Lock and Unlock User (root) Lock the user account for user5000 using the passwd command, and passwd -l user5000 confirm by examining the change in the /etc/shadow file. cat /etc/shadow Try to log in with user5000 and observe what happens. su - user1 su - user5000 Use the usermod command and unlock">
+    <meta itemprop="wordCount" content="800">
+    <title></title>
+    <link href="/linux/rhcsa/advanced-user-management-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/advanced-user-management-labs/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
+    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741554912" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741554912"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.1rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/advanced-user-management-labs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#advanced-user-management-labs">Advanced User Management Labs</a>
+      <ul>
+        <li><a href="#lab-set-and-confirm-password-aging-with-chage-root">Lab: Set and Confirm Password Aging with chage (root)</a></li>
+        <li><a href="#lab-set-and-confirm-password-aging-with-passwd-root">Lab: Set and Confirm Password Aging with passwd (root)</a></li>
+        <li><a href="#lab-lock-and-unlock-a-user-account-with-usermod-and-passwd-root">Lab: Lock and Unlock a User Account with usermod and passwd (root)</a></li>
+        <li><a href="#lab-create-a-group-and-add-members-root">Lab: Create a Group and Add Members (root)</a></li>
+        <li><a href="#lab-modify-and-delete-a-group-account-root">Lab: Modify and Delete a Group Account (root)</a></li>
+        <li><a href="#lab-to-switch-from-user1-assuming-you-are-logged-in-as-user1-into-root-without-executing-the-startup-scripts">Lab: To switch from user1 (assuming you are logged in as user1) into root without executing the startup scripts</a></li>
+        <li><a href="#lab-add-user1-to-sudo-file-but-only-for-the-cat-command">Lab: Add user1 to sudo file but only for the cat command.</a></li>
+        <li><a href="#lab-add-user-and-command-aliases-to-the-sudoer-file">Lab: Add user and command aliases to the sudoer file.</a></li>
+        <li><a href="#lab-take-a-look-at-examples-in-the-sudoers-file">Lab: Take a look at examples in the sudoers file.</a></li>
+        <li><a href="#lab-viewing-owner-and-group-information">Lab: Viewing owner and group information</a></li>
+        <li><a href="#lab-modify-file-owner-and-owning-group">Lab: Modify File Owner and Owning Group</a></li>
+        <li><a href="#lab-create-user-and-configure-password-aging-root">Lab: Create User and Configure Password Aging (root)</a></li>
+        <li><a href="#lab-6-2-lock-and-unlock-user-root">Lab 6-2: Lock and Unlock User (root)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="advanced-user-management-labs">Advanced User Management Labs</h2>
+<h3 id="lab-set-and-confirm-password-aging-with-chage-root">Lab: Set and Confirm Password Aging with chage (root)</h3>
+<ol>
+<li>Set password aging parameters for user100 to mindays (-m) 7, maxdays (-M) 28, and warndays (-W) 5:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chage -m <span style="color:#ff9f43">7</span> -M <span style="color:#ff9f43">28</span> -W <span style="color:#ff9f43">5</span> user100</span></span></code></pre></div>
+<ol start="2">
+<li>Confirm</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chage -l user100</span></span></code></pre></div>
+<ol start="3">
+<li>Set the account expiry to January 31, 2020</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chage -E 2020-01-31 user100</span></span></code></pre></div>
+<ol start="4">
+<li>Verify the new account expiry setting</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chage -l user100</span></span></code></pre></div>
+<h3 id="lab-set-and-confirm-password-aging-with-passwd-root">Lab: Set and Confirm Password Aging with passwd (root)</h3>
+<ol>
+<li>Set password aging attributes for user200 to mindays 10, maxdays 90, and warndays 14:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -n <span style="color:#ff9f43">10</span> -x <span style="color:#ff9f43">90</span> -w <span style="color:#ff9f43">14</span> user200</span></span></code></pre></div>
+<ol start="2">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -S user200</span></span></code></pre></div>
+<ol start="3">
+<li>Set the number of inactivity days to 5:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -i <span style="color:#ff9f43">5</span> user200</span></span></code></pre></div>
+<ol start="4">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -S user200</span></span></code></pre></div>
+<ol start="5">
+<li>Ensure that the user is forced to change their password at next login:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -e user200</span></span></code></pre></div>
+<ol start="6">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -S user200</span></span></code></pre></div>
+<h3 id="lab-lock-and-unlock-a-user-account-with-usermod-and-passwd-root">Lab: Lock and Unlock a User Account with usermod and passwd (root)</h3>
+<ol>
+<li>Obtain the current password information for user200 from the shadow file:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep user200 /etc/shadow</span></span></code></pre></div>
+<ol start="2">
+<li>Lock the account for user200:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>usermod -L user200 </span></span></code></pre></div>
+<ol start="3">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep user200 /etc/shadow</span></span></code></pre></div>
+<ol start="4">
+<li>Unlock the account with either of the following:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>usermod -U user200
+</span></span><span style="display:flex;"><span>or
+</span></span><span style="display:flex;"><span>passwd -u user200</span></span></code></pre></div>
+<ol start="5">
+<li>confirm</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep user200 /etc/shadow</span></span></code></pre></div>
+<h3 id="lab-create-a-group-and-add-members-root">Lab: Create a Group and Add Members (root)</h3>
+<ol>
+<li>Create the group linuxadm with GID 5000:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupadd -g <span style="color:#ff9f43">5000</span> linuxadm</span></span></code></pre></div>
+<ol start="2">
+<li>Create a group called dba with the same GID as that of group linuxadm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupadd -o -g <span style="color:#ff9f43">5000</span> dba</span></span></code></pre></div>
+<ol start="3">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep linuxadm /etc/group
+</span></span><span style="display:flex;"><span>grep dba /etc/group</span></span></code></pre></div>
+<ol start="4">
+<li>Add user1 as a secondary member of group dba using the <code>usermod </code>command. The existing membership for the user must remain intact.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>usermod -aG dba user1</span></span></code></pre></div>
+<ol start="5">
+<li>Verify the updated group membership information for user1 by extracting the relevant entry from the group file, and running the id and groups command for user1:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep dba /etc/group
+</span></span><span style="display:flex;"><span>id user1
+</span></span><span style="display:flex;"><span>groups user1</span></span></code></pre></div>
+<h3 id="lab-modify-and-delete-a-group-account-root">Lab: Modify and Delete a Group Account (root)</h3>
+<ol>
+<li>Alter the name of linuxadm to sysadm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupmod -n sysadm linuxadm</span></span></code></pre></div>
+<ol start="2">
+<li>Change the GID of sysadm to 6000:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupmod -g <span style="color:#ff9f43">6000</span> sysadm</span></span></code></pre></div>
+<ol start="3">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep sysadm /etc/group
+</span></span><span style="display:flex;"><span>grep linuxadm /etc/group</span></span></code></pre></div>
+<ol start="4">
+<li>Delete sysadm group and confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupdel sysadm
+</span></span><span style="display:flex;"><span>grep sysadm /etc/group</span></span></code></pre></div>
+<h3 id="lab-to-switch-from-user1-assuming-you-are-logged-in-as-user1-into-root-without-executing-the-startup-scripts">Lab: To switch from user1 (assuming you are logged in as user1) into root without executing the startup scripts</h3>
+<ol>
+<li></li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su</span></span></code></pre></div>
+<ol start="2">
+<li>switch to user100</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su - user100</span></span></code></pre></div>
+<ol start="3">
+<li>See what whoami and logname reports now:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>whoami
+</span></span><span style="display:flex;"><span>logname</span></span></code></pre></div>
+<ol start="4">
+<li>use su as follows and execute this privileged command to obtain desired results:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su -c <span style="color:#5af78e">&#39;firewall-cmd --list-services&#39;</span></span></span></code></pre></div>
+<h3 id="lab-add-user1-to-sudo-file-but-only-for-the-cat-command">Lab: Add user1 to sudo file but only for the cat command.</h3>
+<ol>
+<li>Open up /etc/sudoers and add the following:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>user1 <span style="color:#ff5c57">ALL</span><span style="color:#ff6ac1">=</span>/usr/bin/cat</span></span></code></pre></div>
+<ol start="2">
+<li>run cat as user1 with and without sudo:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /etc/sudoers
+</span></span><span style="display:flex;"><span>sudo cat /etc/sudoers</span></span></code></pre></div>
+<h3 id="lab-add-user-and-command-aliases-to-the-sudoer-file">Lab: Add user and command aliases to the sudoer file.</h3>
+<ol>
+<li>Add the following to the bottom of the sudoers file:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Cmnd_Alias <span style="color:#ff5c57">PKGCMD</span> <span style="color:#ff6ac1">=</span> /usr/bin/yum, /usr/bin/rpm
+</span></span><span style="display:flex;"><span>User_Alias <span style="color:#ff5c57">PKGADM</span> <span style="color:#ff6ac1">=</span> user1, user100, user200 
+</span></span><span style="display:flex;"><span>PKGADM <span style="color:#ff5c57">ALL</span><span style="color:#ff6ac1">=</span>PKGCMD</span></span></code></pre></div>
+<ol start="2">
+<li>Run rpm or yum with sudo as one of the users.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo yum </span></span></code></pre></div>
+<h3 id="lab-take-a-look-at-examples-in-the-sudoers-file">Lab: Take a look at examples in the sudoers file.</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /etc/sudoers</span></span></code></pre></div>
+<h3 id="lab-viewing-owner-and-group-information">Lab: Viewing owner and group information</h3>
+<ol>
+<li>Create a file file1 as user1 in their home directory and exhibit the file’s long listing:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch file1
+</span></span><span style="display:flex;"><span>ls -l file1</span></span></code></pre></div>
+<ol start="2">
+<li>View the corresponding UID and GID instead, you can specify the -n option with the command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -ln file1</span></span></code></pre></div>
+<h3 id="lab-modify-file-owner-and-owning-group">Lab: Modify File Owner and Owning Group</h3>
+<ol>
+<li>Change into the /tmp directory and create file10 and dir10:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span>touch file10
+</span></span><span style="display:flex;"><span>mkdir dir10</span></span></code></pre></div>
+<ol start="2">
+<li>Check and validate that both attributes are set to user1:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -l file10
+</span></span><span style="display:flex;"><span>ls -ld dir10</span></span></code></pre></div>
+<ol start="3">
+<li>Set the ownership of file10 to user100 and confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown user100 file10
+</span></span><span style="display:flex;"><span>ls -l file10</span></span></code></pre></div>
+<ol start="4">
+<li>Alter the owning group to dba and verify:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chgrp dba file10
+</span></span><span style="display:flex;"><span>ls -l file10</span></span></code></pre></div>
+<ol start="5">
+<li>Change the ownership to user200 and owning group to user100 and confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown user200:user100 file10</span></span></code></pre></div>
+<ol start="6">
+<li>Modify the ownership to user200 and owning group to dba recursively on dir10 and validate:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo  chown -R user200:dba dir10
+</span></span><span style="display:flex;"><span>ls -ld dir10</span></span></code></pre></div>
+<h3 id="lab-create-user-and-configure-password-aging-root">Lab: Create User and Configure Password Aging (root)</h3>
+<ol>
+<li>Create group lnxgrp with GID 6000.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupadd lnxgrp -g <span style="color:#ff9f43">6000</span></span></span></code></pre></div>
+<ol start="2">
+<li>Create user user5000 with UID 5000 and GID 6000. Assign this user a password.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>useradd -u <span style="color:#ff9f43">5000</span> -g <span style="color:#ff9f43">6000</span> user5000</span></span></code></pre></div>
+<ol start="3">
+<li>Establish password aging attributes so that this user cannot change their password within 4 days after setting it and with a password validity of 30 days. This user should start getting warning messages for changing password 10 days prior to account lock down.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chage -m <span style="color:#ff9f43">4</span> -M <span style="color:#ff9f43">30</span> -W <span style="color:#ff9f43">10</span> user5000</span></span></code></pre></div>
+<ol start="4">
+<li>This user account needs to expire on the 20th of December, 2021.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chage -E 2021-12-20 user5000</span></span></code></pre></div>
+<h3 id="lab-6-2-lock-and-unlock-user-root">Lab 6-2: Lock and Unlock User (root)</h3>
+<ol>
+<li>Lock the user account for user5000 using the passwd command, and</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd -l user5000</span></span></code></pre></div>
+<ol start="2">
+<li>confirm by examining the change in the /etc/shadow file.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /etc/shadow</span></span></code></pre></div>
+<ol start="3">
+<li>Try to log in with user5000 and observe what happens.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su - user1
+</span></span><span style="display:flex;"><span>su - user5000</span></span></code></pre></div>
+<ol start="4">
+<li>Use the usermod command and unlock</li>
+</ol>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">Perfect Dark Mode</a>
+
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741554912";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741554912" defer></script>
+        <script src="/js/search.js?1741554912" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><input type="checkbox" id="R-section-89434e96479d9689b11efd9b3cb12acc" aria-controls="R-subsections-89434e96479d9689b11efd9b3cb12acc"><label for="R-section-89434e96479d9689b11efd9b3cb12acc"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Fedora</span></label><a class="padding" href="/linux/fedora/">Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/my-fedora-setup/"><a class="padding" href="/linux/fedora/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-id="/linux/fedora/silverblue/"><a class="padding" href="/linux/fedora/silverblue/">Silverblue</a></li></ul></li>
+            <li class="active hidden " data-nav-id="/linux/rhcsa/advanced-user-management-labs/"><a class="padding" href="/linux/rhcsa/advanced-user-management-labs/"></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/">Networking</a></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/advanced-user-management-labs/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741554912" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
+    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741554912" defer></script>
+  </body>
+</html>

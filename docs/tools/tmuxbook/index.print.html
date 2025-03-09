@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Links: https://git.jharmison.com/james/dotfiles/src/branch/master/.tmux.conf https://www.youtube.com/watch?v=nTqu6w2wc68 https://www.youtube.com/watch?v=DzNmUNvnB04 https://www.youtube.com/watch?v=Yl7NFenTgIo https://github.com/alacritty/alacritty https://github.com/rothgar/awesome-tmux https://www.youtube.com/watch?v=GH3kpsbbERo https://git.jharmison.com/james/dotfiles/src/branch/master/.config/alacritty/alacritty.toml#L41
+tmux 2 Productive Mouse-Free Development easily manage a text editor, a database console, and a local web server within a single environment.
+split tmux windows into sections, so multiple apps can run side by side.
+Quickly move between these windows and panes using only the keyboard.
+keystrokes you use to manage your environment will become second nature to you, which will greatly increase both your concentration and your productivity.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Links: https://git.jharmison.com/james/dotfiles/src/branch/master/.tmux.conf https://www.youtube.com/watch?v=nTqu6w2wc68 https://www.youtube.com/watch?v=DzNmUNvnB04 https://www.youtube.com/watch?v=Yl7NFenTgIo https://github.com/alacritty/alacritty https://github.com/rothgar/awesome-tmux https://www.youtube.com/watch?v=GH3kpsbbERo https://git.jharmison.com/james/dotfiles/src/branch/master/.config/alacritty/alacritty.toml#L41
+tmux 2 Productive Mouse-Free Development easily manage a text editor, a database console, and a local web server within a single environment.
+split tmux windows into sections, so multiple apps can run side by side.
+Quickly move between these windows and panes using only the keyboard.
+keystrokes you use to manage your environment will become second nature to you, which will greatly increase both your concentration and your productivity.">
+    <meta property="og:url" content="http://localhost:1313/tools/tmuxbook/">
+    <meta property="og:description" content="Links: https://git.jharmison.com/james/dotfiles/src/branch/master/.tmux.conf https://www.youtube.com/watch?v=nTqu6w2wc68 https://www.youtube.com/watch?v=DzNmUNvnB04 https://www.youtube.com/watch?v=Yl7NFenTgIo https://github.com/alacritty/alacritty https://github.com/rothgar/awesome-tmux https://www.youtube.com/watch?v=GH3kpsbbERo https://git.jharmison.com/james/dotfiles/src/branch/master/.config/alacritty/alacritty.toml#L41
+tmux 2 Productive Mouse-Free Development easily manage a text editor, a database console, and a local web server within a single environment.
+split tmux windows into sections, so multiple apps can run side by side.
+Quickly move between these windows and panes using only the keyboard.
+keystrokes you use to manage your environment will become second nature to you, which will greatly increase both your concentration and your productivity.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="Links: https://git.jharmison.com/james/dotfiles/src/branch/master/.tmux.conf https://www.youtube.com/watch?v=nTqu6w2wc68 https://www.youtube.com/watch?v=DzNmUNvnB04 https://www.youtube.com/watch?v=Yl7NFenTgIo https://github.com/alacritty/alacritty https://github.com/rothgar/awesome-tmux https://www.youtube.com/watch?v=GH3kpsbbERo https://git.jharmison.com/james/dotfiles/src/branch/master/.config/alacritty/alacritty.toml#L41
+tmux 2 Productive Mouse-Free Development easily manage a text editor, a database console, and a local web server within a single environment.
+split tmux windows into sections, so multiple apps can run side by side.
+Quickly move between these windows and panes using only the keyboard.
+keystrokes you use to manage your environment will become second nature to you, which will greatly increase both your concentration and your productivity.">
+    <meta itemprop="wordCount" content="20431">
+    <title></title>
+    <link href="http://localhost:1313/tools/tmuxbook/" rel="canonical" type="text/html" title="">
+    <link href="/tools/tmuxbook/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/logo.svg?1730288435" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730288435" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730288435" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730288435" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730288435" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730288435" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730288435" rel="stylesheet">
+    <link href="/css/fonts.css?1730288435" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730288435" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730288435" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730288435" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730288435" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730288435" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1730288435" rel="stylesheet">
+    <script src="/js/variant.js?1730288435"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support print" data-url="/tools/tmuxbook/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#productive-mouse-free-development">Productive Mouse-Free Development</a></li>
+      </ul>
+    </li>
+    <li><a href="#who-should-read-this-book">Who Should Read This Book</a></li>
+    <li><a href="#whats-in-this-book">What&rsquo;s in This Book</a></li>
+    <li><a href="#changes-in-the-second-edition">Changes in the Second Edition</a></li>
+    <li><a href="#conventions">Conventions</a></li>
+    <li><a href="#chapter-1-learning-the-basics">Chapter 1 Learning the Basics</a>
+      <ul>
+        <li><a href="#installing-tmux">Installing tmux</a></li>
+        <li><a href="#installing-on-linux">Installing on Linux</a></li>
+        <li><a href="#starting-tmux">Starting tmux</a></li>
+        <li><a href="#creating-named-sessions">Creating Named Sessions</a></li>
+        <li><a href="#the-command-prefix">The Command Prefix</a></li>
+        <li><a href="#detaching-and-attaching-sessions">Detaching and Attaching Sessions</a></li>
+        <li><a href="#killing-sessions">Killing Sessions</a></li>
+        <li><a href="#working-with-windows">Working with Windows</a></li>
+        <li><a href="#creating-and-naming-windows">Creating and Naming Windows</a></li>
+        <li><a href="#working-with-panes">Working with Panes</a></li>
+        <li><a href="#pane-layouts">Pane Layouts</a></li>
+        <li><a href="#closing-panes">Closing Panes</a></li>
+        <li><a href="#working-with-command-mode">Working with Command Mode</a></li>
+        <li><a href="#whats-next">What&rsquo;s Next?</a></li>
+      </ul>
+    </li>
+    <li><a href="#for-future-reference">For Future Reference</a>
+      <ul>
+        <li><a href="#creating-sessions">Creating Sessions</a></li>
+        <li><a href="#default-commands-for-sessions-windows-and-panes">Default Commands for Sessions, Windows, and Panes</a></li>
+        <li><a href="#chapter-2-configuring-tmux">Chapter 2 Configuring tmux</a></li>
+      </ul>
+    </li>
+    <li><a href="#tmuxconf">.tmux.conf</a>
+      <ul>
+        <li><a href="#defining-an-easier-prefix">Defining an Easier Prefix</a></li>
+        <li><a href="#changing-the-default-delay">Changing the Default Delay</a></li>
+        <li><a href="#setting-the-window-and-panes-index">Setting the Window and Panes Index</a></li>
+        <li><a href="#customizing-keys-commands-and-user-input">Customizing Keys, Commands, and User Input</a></li>
+        <li><a href="#creating-a-shortcut-to-reload-the-configuration">Creating a Shortcut to Reload the Configuration</a></li>
+        <li><a href="#sending-the-prefix-to-other-applications">Sending the Prefix to Other Applications</a></li>
+        <li><a href="#splitting-panes">Splitting Panes</a></li>
+        <li><a href="#remapping-movement-keys">Remapping Movement Keys</a></li>
+        <li><a href="#sec.Resizing.Panes">Resizing Panes</a></li>
+        <li><a href="#sec.Supporting.the.Mouse">Handling the Mouse</a></li>
+      </ul>
+    </li>
+    <li><a href="#sec.Visual.Styling">Visual Styling</a>
+      <ul>
+        <li><a href="#sec.Configuring.Colors">Configuring Colors</a></li>
+        <li><a href="#changing-colors">Changing Colors</a></li>
+      </ul>
+    </li>
+    <li><a href="#sec.Customizing.the.Status.Bar">Customizing the Status Line&rsquo;s Content</a>
+      <ul>
+        <li><a href="#sec.Configuring.Status.Bar.Items">Configuring Status Line Items</a></li>
+        <li><a href="#sec.Staying.Up.To.Date">Keeping Status Line Info Up to Date</a></li>
+        <li><a href="#sec.Centering.the.Window.list">Centering the Window List</a></li>
+        <li><a href="#sec.Identifying.Activity">Identifying Activity in Other Windows</a></li>
+      </ul>
+    </li>
+    <li><a href="#d24e3024">What&rsquo;s Next?</a></li>
+    <li><a href="#d24e3049">For Future Reference</a>
+      <ul>
+        <li><a href="#keybindings-defined-in-this-chapter">Keybindings defined in this chapter</a></li>
+        <li><a href="#commands-to-control-tmuxs-behavior">Commands to control tmux&rsquo;s behavior</a></li>
+        <li><a href="#commands-to-control-tmuxs-appearance">Commands to control tmux&rsquo;s appearance</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#sec.Creating.a.Custom.Setup">Creating a Custom Setup with tmux Commands</a>
+      <ul>
+        <li><a href="#sec.Scripting.a.Project.Configuration">Scripting a Project Configuration</a></li>
+      </ul>
+    </li>
+    <li><a href="#sec.Using.tmux.Configuration.For.Setup">Using tmux Configuration for Setup</a></li>
+    <li><a href="#sec.Managing.Configuration.with.tmuxinator">Managing Configuration with tmuxinator</a></li>
+    <li><a href="#d24e4656">What&rsquo;s Next?</a></li>
+    <li><a href="#d24e4663">For Future Reference</a>
+      <ul>
+        <li><a href="#scriptable-tmux-commands">Scriptable tmux commands</a></li>
+        <li><a href="#tmuxinator-commands">tmuxinator commands</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#sec.Scrolling.Through.Output">Scrolling Through Output with Copy Mode</a>
+      <ul>
+        <li><a href="#moving-quickly-through-the-buffer">Moving Quickly Through the Buffer</a></li>
+        <li><a href="#sec.Searching.Through.the.Buffer">Searching Through the Buffer</a></li>
+      </ul>
+    </li>
+    <li><a href="#d24e5079">Copying and Pasting Text</a>
+      <ul>
+        <li><a href="#sec.Capturing.a.Pane">Capturing a Pane</a></li>
+        <li><a href="#showing-and-saving-the-buffer">Showing and Saving the Buffer</a></li>
+        <li><a href="#sec.Using.Multiple.Paste.Buffers">Using Multiple Paste Buffers</a></li>
+        <li><a href="#sec.Remapping.Keys">Remapping Copy and Paste Keys</a></li>
+      </ul>
+    </li>
+    <li><a href="#sec.linux.clipboard">Working with the Clipboard on Linux</a></li>
+    <li><a href="#sec.using.system.clipboards">Using OS X Clipboard Commands</a></li>
+    <li><a href="#d24e5607">What&rsquo;s Next?</a></li>
+    <li><a href="#d24e5614">For Future Reference</a>
+      <ul>
+        <li><a href="#shortcut-keys">Shortcut keys</a></li>
+        <li><a href="#copy-mode-movement-keys-vi-mode">Copy mode movement keys (vi mode)</a></li>
+        <li><a href="#commands">Commands</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#d24e5864">Pairing with a Shared Account</a></li>
+    <li><a href="#sec.Using.a.Shared.Account.and.Grouped.Sessions">Using a Shared Account and Grouped Sessions</a></li>
+    <li><a href="#d24e6171">Quickly Pairing with tmate</a></li>
+    <li><a href="#sec.Pairing.With.Separate.Accounts.and.Sockets">Pairing with Separate Accounts and Sockets</a>
+      <ul>
+        <li><a href="#sec.Creating.and.Sharing.Sessions">Creating and Sharing Sessions</a></li>
+      </ul>
+    </li>
+    <li><a href="#d24e6619">What&rsquo;s Next?</a></li>
+    <li><a href="#d24e6628">For Future Reference</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#d24e6684">Working Effectively with Panes and Windows</a>
+      <ul>
+        <li><a href="#sec.Turning.a.Pane.into.a.Window">Turning a Pane into a Window</a></li>
+        <li><a href="#sec.Turning.a.Window.Into.A.Pane">Turning a Window into a Pane</a></li>
+        <li><a href="#maximizing-and-restoring-panes">Maximizing and Restoring Panes</a></li>
+        <li><a href="#launching-commands-in-panes">Launching Commands in Panes</a></li>
+        <li><a href="#opening-a-pane-in-the-current-directory">Opening a Pane in the Current Directory</a></li>
+        <li><a href="#issuing-commands-in-many-panes-simultaneously">Issuing Commands in Many Panes Simultaneously</a></li>
+      </ul>
+    </li>
+    <li><a href="#managing-sessions">Managing Sessions</a>
+      <ul>
+        <li><a href="#moving-between-sessions">Moving Between Sessions</a></li>
+        <li><a href="#moving-windows-between-sessions">Moving Windows Between Sessions</a></li>
+        <li><a href="#creating-or-attaching-to-existing-sessions">Creating or Attaching to Existing Sessions</a></li>
+      </ul>
+    </li>
+    <li><a href="#tmux-and-your-operating-system">tmux and Your Operating System</a>
+      <ul>
+        <li><a href="#sec.Using.A.Different.Shell">Using a Different Shell</a></li>
+        <li><a href="#launching-tmux-by-default">Launching tmux by Default</a></li>
+        <li><a href="#keeping-specific-configuration-separate">Keeping Specific Configuration Separate</a></li>
+        <li><a href="#recording-program-output-to-a-log">Recording Program Output to a Log</a></li>
+        <li><a href="#adding-battery-life-to-the-status-line">Adding Battery Life to the Status Line</a></li>
+        <li><a href="#integrating-seamlessly-with-vim">Integrating Seamlessly with Vim</a></li>
+      </ul>
+    </li>
+    <li><a href="#extending-tmux-with-plugins">Extending tmux with Plugins</a></li>
+    <li><a href="#whats-next-1">What&rsquo;s Next?</a></li>
+    <li><a href="#for-future-reference-1">For Future Reference</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1730288435" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730288435" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730288435" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730288435" defer></script>
+    <script src="/js/js-yaml.min.js?1730288435" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730288435" defer></script>
+  </body>
+</html>

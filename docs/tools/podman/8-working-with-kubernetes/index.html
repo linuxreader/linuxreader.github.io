@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta property="og:url" content="http://perfectdarkmode.com/tools/podman/8-working-with-kubernetes/">
+    <meta property="og:description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta itemprop="wordCount" content="4432">
+    <title></title>
+    <link href="/tools/podman/8-working-with-kubernetes/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/tools/podman/8-working-with-kubernetes/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1734871290" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1734871290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1734871290" rel="stylesheet">
+    <link href="/css/fonts.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1734871290" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1734871290" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1734871290" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1734871290" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1734871290"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/tools/podman/8-working-with-kubernetes/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#heading_id_3">[]{#08.htm#pgfId-1118696}8.1 Kubernetes YAML files</a></li>
+    <li><a href="#heading_id_4">[]{#08.htm#pgfId-1118705}8.2 Generating Kubernetes YAML files with Podman</a></li>
+    <li><a href="#heading_id_5">[]{#08.htm#pgfId-1118798}8.3 Generating Podman pods and containers from Kubernetes YAML</a>
+      <ul>
+        <li><a href="#heading_id_6">[]{#08.htm#pgfId-1118853}8.3.1 Shutting down pods and containers based on a Kubernetes YAML file</a></li>
+        <li><a href="#heading_id_7">[]{#08.htm#pgfId-1118884}8.3.2 Building images using Podman and Kubernetes YAML files</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_8">[]{#08.htm#pgfId-1118979}8.4 Running Podman within a container</a>
+      <ul>
+        <li><a href="#heading_id_9">[]{#08.htm#pgfId-1119032}8.4.1 Running Podman within a Podman container</a></li>
+        <li><a href="#heading_id_10">[]{#08.htm#pgfId-1119072}8.4.2 Running Podman within a Kubernetes pod</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_11">[]{#08.htm#pgfId-1119118}Summary</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="8-working-with-kubernetes">8 Working with Kubernetes</h1>
+<p>[]{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers</p>
+<ul>
+<li>[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files
+from existing Podman pods and containers</li>
+<li>[]{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and
+pods from a Kubernetes YAML file</li>
+<li>[]{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods
+and containers using the Kubernetes YAML file</li>
+<li>[]{#08.htm#pgfId-1118674 .calibre17}Building container images on the
+fly before launching pods and containers from a Kubernetes YAML file</li>
+<li>[]{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a
+Podman and Kubernetes container</li>
+</ul>
+<p>[]{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to
+see how Podman can be used as the container engine for Kubernetes,
+similar to how it has used Docker in the past. While there have been
+some efforts to use Podman as the container engine for Podman (the kind
+project supports this), I do not generally recommend that you use Podman
+for this purpose. I recommend you use CRI-O described in appendix A,
+since it was built specifically to work with Kubernetes and shares the
+underlying libraries of Podman. Kubernetes is now discouraging users
+from using the Docker backend and encouraging them to use a CRI-O or
+containerd as a backend.</p>
+<p>[]{#08.htm#pgfId-1118677}This chapter covers using the same structured
+language with both Kubernetes and Podman as well as how to run Podman
+containers inside a Kubernetes cluster. You have learned how to create
+microservices as containers and pods from the command line using Podman.
+Often software developers and packagers need to take their applications
+and run them on multiple machines. You might want to take your web
+application and add a database backend. If the web application becomes
+popular, you will need to run multiple instances on different nodes.
+Wiring different microservices together and orchestrating all of them
+together is not something Podman does. This is where Kubernetes comes
+in.</p>
+<p>[]{#08.htm#pgfId-1118678}In this chapter, you will learn about running
+these same containers and pods in Kubernetes. The kubernetes.io website
+says, &ldquo;Kubernetes, also known as K8s, is an open-source system for
+automating deployment, scaling, and management of containerized
+applications.&rdquo; I look at Kubernetes as the tool for running containers
+on multiple machines at the same time&mdash;a way to orchestrate large
+clusters of containerized microservices.</p>
+<p>[]{#08.htm#pgfId-1118680}One problem you may encounter is that most
+container development happens with tools like Podman and Docker, which
+use fairly simple command-line interfaces to create containers and pods.
+But Kubernetes uses a declarative language written in YAML files.</p>
+<p>[]{#08.htm#pgfId-1118681}I will not be diving deep into how Kubernetes
+works in this chapter because there are already many in-depth books on
+the topic, including <em>Kubernetes in Action</em> by Marko
+Lukša[]{#08.htm#marker-1118684}[]{#08.htm#marker-1118685} (Manning,
+2020) and <em>Kubernetes for Developers</em>[]{#08.htm#marker-1118687} by
+William Denniss (Manning, 2020), that describe all the features of
+Kubernetes. But I will be describing the developer language of
+Kubernetes: the Kubernetes YAML file.</p>
+<p>[]{#08.htm#pgfId-1118690}[Note]{.fm-callout-head} The yaml.org website
+first describes YAML as the &ldquo;YAML Ain&rsquo;t Markup Language.&rdquo; It further
+elaborates, &ldquo;YAML is a human-friendly data serialization language for
+all programming languages.&rdquo;</p>
+<p>[]{#08.htm#pgfId-1118691}Translating command-line options to a
+structured language like YAML presents a barrier for developers moving
+from containers on a single node to containers running at scale. How do
+you specify volumes, the image to be used, the security constraints, the
+network ports, and so on? In section 8.2, you will learn to use Podman
+to take your locally created pods and containers to generate Kubernetes
+YAML files from them.</p>
+<p>[]{#08.htm#pgfId-1118692}After writing and deploying your application in
+a pod using Kubernetes YAML files, users are likely to find problems
+with your application running within Kubernetes. Testing the application
+at scale can be difficult, and often you just want to run the
+application locally on your system, without having to set up and
+configure a Kubernetes cluster. In section 8.3, you will learn about
+<code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text}. This Podman command allows you to run the
+Kubernetes YAML file locally, without Kubernetes, so you can test and
+debug problems.</p>
+<p>[]{#08.htm#pgfId-1118693}The final part of this chapter will cover
+running Podman within containers, including running it within a
+Kubernetes cluster. Administrators, developers, and quality engineers
+need to test containers within their continuous integration
+(CI[]{#08.htm#marker-1118694}) systems using Podman. Often these CI
+systems are built on Kubernetes clusters. Section 8.4 teaches you
+different ways to run the Podman command within containers launched by
+Podman and Kubernetes.</p>
+<h2 id="heading_id_3" class="fm-head">[]{#08.htm#pgfId-1118696}8.1 Kubernetes YAML files</h2>
+<p>[]{#08.htm#pgfId-1118698}The []{#08.htm#marker-1118697}Kubernetes YAML
+file is the object used to launch pods and containers within Kubernetes.
+In chapter 5, you learned the configuration files used by Podman are
+written using TOML, which is very similar to YAML. Both configuration
+languages are attempting to be human readable. YAML relies on indenting
+substanzas, which is different syntax than you learned with TOML. You
+can go to the <a href="http://yaml.org" rel="external" target="_blank">yaml.org</a>{.url} website to learn more
+about the language.</p>
+<p>[]{#08.htm#pgfId-1118700}If you are going to work a lot with Kubernetes
+YAML files, it is nice to have a text editor or IDE, like Visual Studio
+and VS Code, that can at least understand YAML; it is even better if it
+knows the Kubernetes language. Kubernetes YAML is descriptive and
+powerful. It allows you to model the desired state of your application
+in a declarative language. As stated in the introduction to this
+chapter, writing these YAML files is a barrier for developers to get
+through when moving their containers from a local system to Kubernetes.
+Most developers just web search an existing Kubernetes YAML file and
+then begin cutting and pasting their container command, image, and
+options into the YAML file. While this works, it can lead to unintended
+consequences&mdash;and often unnecessary work.</p>
+<p>[]{#08.htm#pgfId-1118701}Scott McCarty, product manager of Podman,
+tossed out an idea: &ldquo;What I would really like to do is help users get
+from Podman to orchestrating their containers with Kubernetes.&rdquo; This led
+the Podman developers to create a new Podman command:
+[]{#08.htm#marker-1118702}<code>podman</code>{.fm-code-in-text}
+<code>generate</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text}[]{#08.htm#marker-1118703}.</p>
+<h2 id="heading_id_4" class="fm-head">[]{#08.htm#pgfId-1118705}8.2 Generating Kubernetes YAML files with Podman</h2>
+<p>[]{#08.htm#pgfId-1118708}Imagine
+[]{#08.htm#marker-1118706}[]{#08.htm#marker-1118707}you want to take the
+containers you generated in the previous chapters and run them within
+Kubernetes. You need to write the Kubernetes YAML file to make this
+happen. Where should you start?</p>
+<p>[]{#08.htm#pgfId-1118710}In this chapter, you will learn a new command:
+<code>podman</code>{.fm-code-in-text} <code>generate</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text}[]{#08.htm#marker-1118709}. This Podman command
+captures the description of local pods and containers and then
+translates them into Kubernetes YAML. This helps you transition to a
+more sophisticated orchestration environment like Kubernetes. The
+generated Kubernetes YAML file can then be used by Kubernetes commands
+to launch your pods and containers into a Kubernetes cluster.</p>
+<p>[]{#08.htm#pgfId-1118711}You can re-create the containers or pods
+locally using Podman on the command line with the same Podman
+<code>run</code>{.fm-code-in-text}[]{#08.htm#marker-1118712},
+<code>create</code>{.fm-code-in-text}[]{#08.htm#marker-1118713}, and
+<code>stop</code>{.fm-code-in-text} commands[]{#08.htm#marker-1118714} you have
+learned in the previous chapters. Using the following commands,
+re-create the container you have been working with.</p>
+<p>[]{#08.htm#marker-1121704}[]{#08.htm#pgfId-1118715}First, remove the
+container if it exists using <code>podman</code>{.fm-code-in-text}
+<code>rm</code>{.fm-code-in-text}. You will introduce a new flag,
+<code>--ignore</code>{.fm-code-in-text}[]{#08.htm#marker-1118716}, which tells the
+<code>podman</code>{.fm-code-in-text} <code>rm</code>{.fm-code-in-text}
+command[]{#08.htm#marker-1118717} not to report errors when the
+container does not exist. Then, re-create the container from the command
+line:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman rm -f --ignore myapp
+$ podman create -p 8080:8080 --name myapp quay.io/rhatdan/myimage
+9305822e6089ca28a1fdbb005c12f57f4a26be273fe5d49a1908eadbcfdcb7d4</code></pre></div>
+<p>[]{#08.htm#pgfId-1118722}Now, use the command <code>podman</code>{.fm-code-in-text}
+<code>generate</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}
+<code>myapp</code>{.fm-code-in-text}[]{#08.htm#marker-1118721} to generate the
+Kubernetes YAML file. Podman inspects the existing container or pod in
+its database for all of the fields required to run the container in
+Kubernetes and then populates them in the Kubernetes YAML file:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman generate kube myapp &gt; myapp.yaml</code></pre></div>
+<p>[]{#08.htm#pgfId-1118725}Figure 8.1 shows the result of a
+<code>podman</code>{.fm-code-in-text} <code>generate</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} command[]{#08.htm#marker-1118724}.</p>
+<p>::: figure
+<a href="#R-image-8d60e5bc0bf6fe396075db91f26df813" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/08-01.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8d60e5bc0bf6fe396075db91f26df813"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/08-01.png"></a>{.calibre18}</p>
+<p>[]{#08.htm#pgfId-1123535}Figure 8.1 Shows the generated myapp.yaml file
+from the <code>myapp</code>{.fm-code-in-text} container[]{#08.htm#marker-1123534}
+:::</p>
+<p>[]{#08.htm#pgfId-1118733}Examine parts of the YAML file. Understand that
+Kubernetes works with pods, even though you created a container,
+<code>podman</code>{.fm-code-in-text} <code>generate</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text}, that creates a pod specification. Podman names
+the pod <code>myapp-pod</code>{.fm-code-in-text}[]{#08.htm#marker-1118734} and the
+container <code>myapp</code>{.fm-code-in-text}[]{#08.htm#marker-1118735} within the
+specification, based on the name of the original container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">metadata:
+  creationTimestamp: &#34;2021-11-22T11:57:12Z&#34;
+  labels:
+    app: myapppod
+  name: myapp-pod
+spec:
+  containers:
+  - args:
+    - /usr/bin/run-httpd
+    image: quay.io/rhatdan/myimage:latest
+    name: myapp</code></pre></div>
+<p>[]{#08.htm#pgfId-1118747}Notice, in the containers section, that the
+image name, quay.io/rhatdan/myimage: latest, is recorded, which tells
+Kubernetes where to download the image for the container from. It also
+tells Kubernetes the command arguments to start the app within the
+container, /usr/bin/run-httpd:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">spec:  
+  containers:
+  - args:
+    - /usr/bin/run-httpd
+    image: quay.io/rhatdan/myimage:latest</code></pre></div>
+<p>[]{#08.htm#pgfId-1118753}In the same container section, you see that the
+Podman ports are recorded, <code>-p</code>{.fm-code-in-text}
+<code>8080: 8080</code>{.fm-code-in-text} <code>spec</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">  containers:
+  - args:
+    - /usr/bin/run-httpd
+    image: quay.io/rhatdan/myimage:latest
+    name: myapp
+    ports:
+    - containerPort: 8080
+    hostPort: 8080</code></pre></div>
+<p>[]{#08.htm#pgfId-1118762}Finally, at the end of the containers section,
+you see <code>securityContext</code>{.fm-code-in-text}, which records that Podman,
+by default, drops three additional Linux capabilities:
+<code>CAP_MKNOD</code>{.fm-code-in-text}[]{#08.htm#marker-1118763},
+<code>CAP_NET_RAW</code>{.fm-code-in-text}[]{#08.htm#marker-1118764}, and
+<code>CAP_AUDIT_WRITE</code>{.fm-code-in-text}[]{#08.htm#marker-1118765}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">    securityContext:
+    capabilities:
+    drop:
+    - CAP_MKNOD
+    - CAP_NET_RAW
+    - CAP_AUDIT_WRITE</code></pre></div>
+<p>[]{#08.htm#pgfId-1118772}Most containers run fine without these Linux
+capabilities, but the OCI specification enables these three by default.
+This tells Kubernetes that this pod can run more securely without these
+capabilities, and Kubernetes will drop them. You can find out more about
+Linux capabilities by running the command <code>man</code>{.fm-code-in-text}
+<code>capabilities</code>{.fm-code-in-text}.</p>
+<p>[]{#08.htm#pgfId-1118774}At this point, you can just run this Kubernetes
+YAML file in any Kubernetes cluster, usually running a command like the
+following:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">kubectl create -f myapp.yml</code></pre></div>
+<p>[]{#08.htm#pgfId-1118776}Often you will have to add sophistication and
+orchestration to the YAML file and leverage advanced functions of
+Kubernetes. For example, the generated Kubernetes YAML file will only
+generate a single instance of your application. If you want to run
+multiple versions of your applications on different nodes, you could add
+a <code>replicas</code>{.fm-code-in-text} option[]{#08.htm#marker-1118777} to your
+YAML file, as seen in figure 8.2.</p>
+<p>::: figure
+<a href="#R-image-5860a04300b14abc2dd9fcb40dc4399c" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/08-02.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5860a04300b14abc2dd9fcb40dc4399c"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/08-02.png"></a>{.calibre18}</p>
+<p>[]{#08.htm#pgfId-1123573}Figure 8.2 The modified Kubernetes YAML file
+ready to run two replicas
+:::</p>
+<p>[]{#08.htm#pgfId-1118788}The <code>replicas</code>{.fm-code-in-text}
+flag[]{#08.htm#marker-1118787} tells Kubernetes that the myapp.yaml file
+wants to have two <code>myapp</code>{.fm-code-in-text}
+pods[]{#08.htm#marker-1118789} running on two different nodes at all
+times. Replicas and other advanced Kubernetes features are out of the
+scope of Podman. The <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} command[]{#08.htm#marker-1118790} ignores these
+fields.</p>
+<p>[]{#08.htm#pgfId-1118791}Some notable <code>podman</code>{.fm-code-in-text}
+<code>generate</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text} options include
+the following:</p>
+<ul>
+<li>
+<p>[]{#08.htm#pgfId-1118792 .calibre17}<code>-f,</code>{.fm-code-in-text}
+<code>--filename</code>{.fm-code-in-text}&mdash;This writes output to the specified
+path.</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1118793 .calibre17} <code>-s,</code>{.fm-code-in-text}
+<code>--service</code>{.fm-code-in-text}&mdash;This generates YAML for a Kubernetes
+service object.</p>
+</li>
+</ul>
+<p>[]{#08.htm#pgfId-1118794}Now that you have generated a Kubernetes YAML
+file, it&rsquo;d be nice to be able to reverse the process. If you had a
+Kubernetes YAML file, you may want to generate Podman pods and
+[]{#08.htm#marker-1118795}[]{#08.htm#marker-1118796}containers.</p>
+<h2 id="heading_id_5" class="fm-head">[]{#08.htm#pgfId-1118798}8.3 Generating Podman pods and containers from Kubernetes YAML</h2>
+<p>[]{#08.htm#pgfId-1118803}Imagine
+[]{#08.htm#marker-1118799}[]{#08.htm#marker-1118800}[]{#08.htm#marker-1118801}[]{#08.htm#marker-1118802}you
+get a Kubernetes YAML file and want to examine it running locally. You
+could set up a local Kubernetes cluster, but it would be nice if you
+could just play the pods locally. Podman provides a command for doing
+this. The <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} command[]{#08.htm#marker-1118804} creates pods,
+containers, and volumes based on structured Kubernetes YAML files. The
+created pods and containers are automatically started. To test this, you
+can simply remove the container you created and then run the generated
+myapp.yaml file with the following commands:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman rm -f --ignore myapp
+$ podman play kube myapp.yaml
+Pod:
+b70aedd8105a6915428928a2b33fd7ecede632298088ea25d9db74ba9b16201e
+Container:
+a4d78fdfa5d8f751aafb06f3782e36a3aaf5b3804ca57694385de2ea1e400fe6</code></pre></div>
+<p>[]{#08.htm#pgfId-1118811}Kubernetes only runs pods with containers; it
+does not run just containers by themselves. When the
+<code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} command[]{#08.htm#marker-1118812} reads the
+YAML, file it launches the pod along with the container. Notice in
+figure 8.3 that the <code>play</code>{.fm-code-in-text}
+command[]{#08.htm#marker-1118813} created a Pod with your container
+along with the infra containers.</p>
+<p>::: figure
+<a href="#R-image-b5b39fc3eca95fbbb51fceea56410fff" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/08-03.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b5b39fc3eca95fbbb51fceea56410fff"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/08-03.png"></a>{.calibre18}</p>
+<p>[]{#08.htm#pgfId-1123611}Figure 8.3 The <code>myapp-pod</code>{.fm-code-in-text}
+running with the <code>myapp</code>{.fm-code-in-text} container and the infra
+container
+:::</p>
+<p>[]{#08.htm#pgfId-1118822}The <code>podman</code>{.fm-code-in-text}
+<code>generate</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}
+command[]{#08.htm#marker-1118820} creates the pod named
+<code>myapp-pod</code>{.fm-code-in-text}[]{#08.htm#marker-1118821}, based on the
+name within the myapp.yaml file. The names of the containers are
+generated by appending the name of the pod to the name of the container:
+<code>myapp-pod-myapp</code>{.fm-code-in-text}[]{#08.htm#marker-1118823}. If the
+YAML file defines additional containers, they need to be labeled
+similarly:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ cat myapp.yaml
+...
+  name: myapp-pod
+spec:
+  containers:
+  - args:
+    name: myapp</code></pre></div>
+<p>[]{#08.htm#pgfId-1118832}You can display the pods running on your system
+with the <code>podman</code>{.fm-code-in-text} <code>pod</code>{.fm-code-in-text}
+<code>ps</code>{.fm-code-in-text} command[]{#08.htm#marker-1118831}. Add the
+<code>--ctr-names</code>{.fm-code-in-text} option[]{#08.htm#marker-1118833} to also
+list the containers running within the pod:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman pod ps --ctr-names
+POD ID       NAME      STATUS  CREATED   INFRA ID     NAMES
+b70aedd8105a myapp-pod Running 1 day ago b7a276c62c1d 
+➥ myapp-pod-myapp ,b70aedd8105a-infra</code></pre></div>
+<p>[]{#08.htm#pgfId-1118839}Now examine the two containers running with the
+<code>podman</code>{.fm-code-in-text} <code>ps</code>{.fm-code-in-text}
+command,[]{#08.htm#marker-1118838} using the following command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman ps
+CONTAINER ID  IMAGE                         COMMAND             CREATED   
+➥ STATUS          PORTS                 NAMES
+b7a276c62c1d  k8s.gcr.io/pause:3.5                                
+➥ 3 minutes ago  Up 3 minutes ago  0.0.0.0:8080-&gt;8080/tcp  b70aedd8105a-infra
+a4d78fdfa5d8  quay.io/rhatdan/myimage:latest  /usr/bin/run-http...  
+➥ 3 minutes ago  Up 3 minutes ago  0.0.0.0:8080-&gt;8080/tcp myapp-pod-myapp</code></pre></div>
+<p>[]{#08.htm#pgfId-1118847}Shut down the Pod and container with the
+<code>podman</code>{.fm-code-in-text} <code>pod</code>{.fm-code-in-text}
+<code>stop</code>{.fm-code-in-text} command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman pod stop myapp-pod
+b70aedd8105a6915428928a2b33fd7ecede632298088ea25d9db74ba9b16201e</code></pre></div>
+<p>[]{#08.htm#pgfId-1118850}<code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text} can execute much more
+complex YAML files, including with multiple pods, volumes, and
+containers defined. In the previous simple example, you can just shut
+down the pod with the <code>podman</code>{.fm-code-in-text} <code>pod</code>{.fm-code-in-text}
+<code>stop</code>{.fm-code-in-text} command[]{#08.htm#marker-1118851}, but when
+<code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} generates multiple unique pods, it gets a
+little more complex to shut them down.</p>
+<h3 id="heading_id_6" class="fm-head1">[]{#08.htm#pgfId-1118853}8.3.1 Shutting down pods and containers based on a Kubernetes YAML file</h3>
+<p>[]{#08.htm#pgfId-1118859}Although
+[]{#08.htm#marker-1118854}[]{#08.htm#marker-1118855}[]{#08.htm#marker-1118856}[]{#08.htm#marker-1118857}[]{#08.htm#marker-1118858}you
+can stop each pod started by <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}, sometimes you don&rsquo;t
+only want to stop the pods and containers but actually remove them from
+the system. The <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} <code>--down</code>{.fm-code-in-text}
+command[]{#08.htm#marker-1118860} tears down the pods that were created
+by a previous run of <code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}.
+The pods are stopped and then removed. Any volumes created are left
+intact. Shut down the myapp.yaml pod created in the previous example:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman play kube myapp.yaml --down
+Pods stopped:
+B70aedd8105a6915428928a2b33fd7ecede632298088ea25d9db74ba9b16201e
+Pods removed:
+b70aedd8105a6915428928a2b33fd7ecede632298088ea25d9db74ba9b16201e</code></pre></div>
+<p>[]{#08.htm#pgfId-1118866}Notice that Podman not only stopped the pod but
+also removed it. You can verify the pod is gone with the
+<code>podman</code>{.fm-code-in-text} <code>pod</code>{.fm-code-in-text}
+<code>ps</code>{.fm-code-in-text} command[]{#08.htm#marker-1118867}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman pod ps
+POD ID     NAME       STATUS     CREATED    INFRA ID    # OF CONTAINERS</code></pre></div>
+<p>[]{#08.htm#pgfId-1118870}This leaves you back in a state where you can
+run <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} again, which will create fresh pods and
+containers:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman play kube myapp.yaml
+Pod:
+302b1d2c0048a49ea32c2e6ffa0e0549af199ab2bc32de285eef5da628efe28c
+Container:
+b9f080dc6e13b4a4c37fa66a9b727dbeb2af30f0c3824044aba8a46eebfe15c5</code></pre></div>
+<p>[]{#08.htm#pgfId-1118876}This mimics what happens with Kubernetes
+running pods and containers. Kubernetes always creates pods and
+containers fresh and tears them down when it completes. The ability to
+generate all of the pods and containers from the YAML file and then
+remove them with the <code>--down</code>{.fm-code-in-text}
+flag[]{#08.htm#marker-1118877} is similar to the workflow of
+<code>docker-compose</code>{.fm-code-in-text}. Podman has the big advantage of
+using the same YAML file for running the pods and containers as in a
+multinode, orchestrated environment with Kubernetes. One other feature
+<code>docker-compose</code>{.fm-code-in-text} has is the ability to build the
+images defined within the YAML file, which the Podman developers also
+added to
+[]{#08.htm#marker-1118878}[]{#08.htm#marker-1118879}[]{#08.htm#marker-1118880}[]{#08.htm#marker-1118881}[]{#08.htm#marker-1118882}<code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}.</p>
+<h3 id="heading_id_7" class="fm-head1">[]{#08.htm#pgfId-1118884}8.3.2 Building images using Podman and Kubernetes YAML files</h3>
+<p>[]{#08.htm#pgfId-1118890}Users
+[]{#08.htm#marker-1118885}[]{#08.htm#marker-1118886}[]{#08.htm#marker-1118887}[]{#08.htm#marker-1118888}[]{#08.htm#marker-1118889}who
+were using <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} as a replacement for
+<code>docker-compose</code>{.fm-code-in-text} requested Podman to add a feature to
+build images, rather than always pull them from a container registry.
+While Kubernetes does not support such a feature, Podman developers
+decided to add the <code>--build</code>{.fm-code-in-text}
+flag[]{#08.htm#marker-1118891} to <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}. Because
+<code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text} can process
+Containerfiles or Dockerfiles, enhancing <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text} was simple.</p>
+<p>[]{#08.htm#pgfId-1118892}The idea is to create a containerized
+application via a container image that is produced on demand. Normal
+Kubernetes workflow requires developers to build the image using
+<code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text} and push it to a
+container registry using <code>podman</code>{.fm-code-in-text}
+<code>push</code>{.fm-code-in-text}, as you learned in chapter 2. Then you can
+retrieve the image from the registry using <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}. The
+<code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} <code>--build</code>{.fm-code-in-text} option allows it to
+execute <code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text} internally
+and generate the image on demand, rather than forcing you to use a
+container registry.</p>
+<p>[]{#08.htm#pgfId-1118894}[Note]{.fm-callout-head} The
+<code>--build</code>{.fm-code-in-text1} option[]{#08.htm#marker-1118893} is not
+available with the remote Podman client, so you can&rsquo;t use it on Mac or
+Windows.</p>
+<p>[]{#08.htm#pgfId-1118895}In this example, you are going to re-create the
+Containerfile used in section 6.1.3:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ cat &gt; ./Containerfile &lt;&lt; _EOF
+FROM ubi8-init
+RUN dnf -y install httpd; dnf -y clean all
+RUN systemctl enable httpd.service
+_EOF</code></pre></div>
+<p>[]{#08.htm#pgfId-1118901}Recall that this Containerfile builds a
+container image with systemd running as the init system and the HTTPD
+service running and listening on port <code>80</code>{.fm-code-in-text}. First,
+remove all pods and containers:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman pod rm --all --force
+$ podman rm --all --force</code></pre></div>
+<p>[]{#08.htm#pgfId-1118905}Now rebuild the <code>my-systemd</code>{.fm-code-in-text}
+image[]{#08.htm#marker-1118904}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman build -t mysystemd.
+STEP 1/3: FROM ubi8-init
+STEP 2/3: RUN dnf -y install httpd; dnf -y clean all
+Updating Subscription Management repositories.
+Unable to read consumer identity
+...
+Successfully tagged localhost/mysystemd:latest
+bb1634ce1457f2eb70f84af33599d211eae64cb5f951e40e91481b6e58b747bf</code></pre></div>
+<p>[]{#08.htm#pgfId-1118914}Now re-create a container on the image with the
+./html directory (using a code example from section 3.1) mounted into
+the container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman create --rm -p 8080:80 --name myapp -v ./:/var/www/
+➥ html:Z mysystemd
+fec6de5716ac246613723a4cc26407005e0bc315affdc62b56883bd94acd795e</code></pre></div>
+<p>[]{#08.htm#pgfId-1118918}Now generate the Kubernetes YAML file using
+<code>podman</code>{.fm-code-in-text} <code>generate</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman generate kube myapp &gt; myapp2.yaml</code></pre></div>
+<p>[]{#08.htm#pgfId-1118920}Notice that this time Podman generated the YAML
+file with a volumes section for <code>html</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ cat myapp2.yaml
+...
+spec:
+  containers:
+  - image: localhost/mysystemd:latest
+    ...
+    volumeMounts:
+    - mountPath: /var/www/html
+    name: home-dwalsh-podman-html-host-0
+  volumes:
+  - hostPath:
+    path: /home/dwalsh/podman/html
+    type: Directory
+    name: home-dwalsh-podman-html-host-0</code></pre></div>
+<p>[]{#08.htm#pgfId-1118935}Get back to a fresh environment by removing all
+of the pods with the <code>podman</code>{.fm-code-in-text} <code>pod</code>{.fm-code-in-text}
+<code>rm</code>{.fm-code-in-text} <code>--all</code>{.fm-code-in-text}
+<code>--force</code>{.fm-code-in-text} command[]{#08.htm#marker-1118936}. Remove
+all containers and images using the <code>podman</code>{.fm-code-in-text}
+<code>rm</code>{.fm-code-in-text}[]{#08.htm#marker-1118937} and
+<code>podman</code>{.fm-code-in-text} <code>rmi</code>{.fm-code-in-text}
+commands[]{#08.htm#marker-1118938}, so you can start with a clean slate:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman pod rm --all --force
+$ podman rm --all --force
+fec6de5716ac246613723a4cc26407005e0bc315affdc62b56883bd94acd795e
+$ podman rmi mysystemd
+Untagged: localhost/mysystemd:latest
+Deleted: bb1634ce1457f2eb70f84af33599d211eae64cb5f951e40e91481b6e58b747bf
+Deleted: 70e0c1a7580089420267b5928210ad59fdd555603e647b462159ea94f97946f9</code></pre></div>
+<p>[]{#08.htm#pgfId-1118947}The <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}
+<code>--build</code>{.fm-code-in-text} command[]{#08.htm#marker-1118946} requires
+subdirectories matching the image names to exist for images to be built.
+Podman examines the Kubernetes YAML file for all images and then looks
+for the matching subdirectory. Each directory is treated as a context
+directory and should contain a Containerfile or a Dockerfile. Podman
+then executes <code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text} on
+each subdirectory. Since the YAML file needs the mysystemd image, you
+need to create a mysystemd directory and place the Containerfile in the
+directory:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ mkdir mysystemd
+$ mv Containerfile mysystemd/</code></pre></div>
+<p>[]{#08.htm#pgfId-1118950}You can now run <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text}
+<code>--build</code>{.fm-code-in-text}, and it will rebuild the container image and
+launch the Pod and containers for your application:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman play kube myapp2.yaml --build
+STEP 1/3: FROM ubi8-init
+STEP 2/3: RUN dnf -y install httpd; dnf -y clean all
+Updating Subscription Management repositories.
+...
+--&gt; 305bb9b8da1
+Successfully tagged localhost/mysystemd:latest
+305bb9b8da12db682b0eae93ad492e632d2ba43e03f6a6b68467d7429a8a2664
+a container exists with the same name (&#34;myapp&#34;) as the pod in your YAML file;
+➥ changing podname to myapp-pod
+Pod:
+30739dd554acfeab66a9767301127bab0fe994461686f45a3a89b137c3954840
+Container:
+ce633ac4e7a1e4d08e0428a8401fcfc4ac75fbcca4be07bc167add6093a44afa</code></pre></div>
+<p>[]{#08.htm#pgfId-1118965}Podman rebuilt the mysystemd image based on the
+mysystemd/Containerfile and then generated the
+<code>myapp-pod</code>{.fm-code-in-text} pod[]{#08.htm#marker-1118966} and the
+<code>myapp</code>{.fm-code-in-text} container[]{#08.htm#marker-1118967} for your
+application, without even reaching out to a container registry.</p>
+<p>[]{#08.htm#pgfId-1118968}You can share this YAML file and the mysystemd
+directory with other users, and they can build and launch your
+application all with Podman. Remember, though, if they wanted to launch
+it inside of Kubernetes, you need to push the built image to a container
+registry, and then edit the YAML file to point the image to the registry
+image. Now that you have been exposed to the integration of Podman with
+Kubernetes, I want to explore one last idea: running Podman within
+Podman and
+[]{#08.htm#marker-1118969}[]{#08.htm#marker-1118970}[]{#08.htm#marker-1118971}[]{#08.htm#marker-1118972}[]{#08.htm#marker-1118973}Kubernetes
+[]{#08.htm#marker-1118974}[]{#08.htm#marker-1118975}[]{#08.htm#marker-1118976}[]{#08.htm#marker-1118977}containers.</p>
+<h2 id="heading_id_8" class="fm-head">[]{#08.htm#pgfId-1118979}8.4 Running Podman within a container</h2>
+<p>[]{#08.htm#pgfId-1118982}Running
+[]{#08.htm#marker-1118980}[]{#08.htm#marker-1118981}Podman within a
+container, or within a Kubernetes cluster, is a common problem. Users
+want to be able to test container images and tools within CI/CD systems
+using containers. Often, they want to build container images with
+<code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text}. Sometimes, they
+just want to test a newer version of Podman than has been released
+within their distribution.</p>
+<p>[]{#08.htm#pgfId-1118983}One challenge with Podman is that it can be
+configured in so many different ways that users were looking for best
+practices for running Podman within a container. Because of this I,
+along with some of my colleagues, decided to create a container image,
+quay.io/podman<code>/</code>{.fm-code-in-text}stable, which makes it easier to run
+Podman within a container. As you understand, Podman can run in two
+different modes: rootful and rootless. By default, Podman containers
+start as the container root within their user namespace. To help you
+understand running Podman within a container, you will first experiment
+with running Podman within Podman. Table 8.1 describes the different
+ways you can run a container within a container and the capabilities
+required to allow the internal Podman to execute a container.</p>
+<p>[]{#08.htm#pgfId-1121343}Table 8.1 Requirements for running Podman
+within a container</p>
+<p>+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
+| []{#08.     | [           | []{#        | []{#08.htm#               |
+| htm#pgfId-1 | ]{#08.htm#p | 08.htm#pgfI | pgfId-1121357}Explanation |
+| 121351}Host | gfId-112135 | d-1121355}C |                           |
+| mode        | 3}Container | apabilities |                           |
+|             | mode        |             |                           |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
+| []{#08.htm  | []{#08.htm  | []{#        | []{                       |
+| #pgfId-1121 | #pgfId-1121 | 08.htm#pgfI | #08.htm#pgfId-1121365}Has |
+| 359}Rootful | 361}Rootful | d-1121363}<code> | full access to the host   | |             |             | CAP_SYS_ADM | user's namespace          | |             |             | IN</code>{.fm-cod |                           |
+|             |             | e-in-text1} |                           |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
+| []{#08.htm  | []{#08.htm# | []{#08.htm# | []{#                      |
+| #pgfId-1121 | pgfId-11213 | pgfId-11213 | 08.htm#pgfId-1121373}Runs |
+| 367}Rootful | 69}Rootless | 71}<code>CAP_SET | in a separate user's      | |             |             | UIDCAP_SETG | namespace based on        | |             |             | ID</code>{.fm-cod | /etc/subuid and           |
+|             |             | e-in-text1} | /etc/subgid inside the    |
+|             |             |             | container                 |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
+| []{#08.htm# | []{#08.htm  | []          | []{                       |
+| pgfId-11213 | #pgfId-1121 | {#08.htm#pg | #08.htm#pgfId-1121381}Has |
+| 75}Rootless | 377}Rootful | fId-1121379 | full access to the user&rsquo;s |
+|             |             | }Namespaced | user namespace            |
+|             |             | <code>           |                           | |             |             | CAP_SYS_ADM |                           | |             |             | IN</code>{.fm-cod |                           |
+|             |             | e-in-text1} |                           |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
+| []{#08.htm# | []{#08.htm# | []          | []{#                      |
+| pgfId-11213 | pgfId-11213 | {#08.htm#pg | 08.htm#pgfId-1121389}Runs |
+| 83}Rootless | 85}Rootless | fId-1121387 | in a separate user        |
+|             |             | }Namespaced | namespace based on        |
+|             |             | <code>CAP_SETUI  | /etc/subuid and           | |             |             | D</code>{.fm-code | /etc/subgid inside the    |
+|             |             | -in-text1}, | container. The user       |
+|             |             | <code>CAP_SETG   | namespace must be a       | |             |             | ID</code>{.fm-cod | subset of the user        |
+|             |             | e-in-text1} | namespace in which you    |
+|             |             |             | are running the Podman    |
+|             |             |             | command.                  |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+</p>
+<h3 id="heading_id_9" class="fm-head1">[]{#08.htm#pgfId-1119032}8.4.1 Running Podman within a Podman container</h3>
+<p>[]{#08.htm#pgfId-1119035}In
+[]{#08.htm#marker-1121493}[]{#08.htm#marker-1121494}the first example,
+you will run a rootful Podman within a rootless container. You need to
+use the <code>--privileged</code>{.fm-code-in-text}
+command[]{#08.htm#marker-1121496} because, to run successfully, Podman
+needs to be able to mount filesystems. When Podman is run as root,
+mounting requires the <code>CAP_SYS_ADMIN</code>{.fm-code-in-text}
+capability[]{#08.htm#marker-1121497}, which is given by the
+<code>--privileged</code>{.fm-code-in-text} option[]{#08.htm#marker-1121498}. Try
+it out by executing the following command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --privileged quay.io/podman/stable podman version
+Trying to pull quay.io/podman/stable:latest...
+Getting image source signatures
+Copying blob b1f89b7294d7 done 
+...
+Version:    4.1.0
+API Version:     4.1.0
+Go Version:      go1.18.2
+Built:      Mon May 30 12:03:28 2022
+OS/Arch:    linux/amd64</code></pre></div>
+<p>[]{#08.htm#pgfId-1119049}The quay.io/podman/stable image is also
+configured to run a rootless Podman within a Podman container. You can
+activate this behavior by adding running as the Podman user with the
+<code>--user</code>{.fm-code-in-text} <code>podman</code>{.fm-code-in-text}
+option[]{#08.htm#marker-1119050}. In this mode, Podman within the
+container needs <code>CAP_SETUID</code>{.fm-code-in-text} and
+<code>CAP_SETGID</code>{.fm-code-in-text} to set up the user namespace. Luckily,
+Podman gives this access to containers by default:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --user podman quay.io/podman/stable podman version</code></pre></div>
+<p>[]{#08.htm#pgfId-1119052}If you really want to lock the container down,
+you can drop all capabilities other than <code>CAP_SETUID</code>{.fm-code-in-text}
+and <code>CAP_SETGID</code>{.fm-code-in-text}, using the
+<code>--cap-drop=all</code>{.fm-code-in-text} <code>--cap-add</code>{.fm-code-in-text}
+<code>CAP_SETUID,CAP_ SETGID</code>{.fm-code-in-text}
+options[]{#08.htm#marker-1122583}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --cap-drop=all --cap-add CAP_SETUID,CAP_SETGID 
+➥ --user podman quay.io/podman/stable podman version
+Version:    4.1.0
+API Version:     4.1.0
+Go Version:      go1.18.2
+Built:      Mon May 30 12:03:28 2022
+OS/Arch:    linux/amd64</code></pre></div>
+<p>[]{#08.htm#pgfId-1119061}These examples, which show how you can run
+Podman within a Podman container, can also easily be done with Docker
+running Podman within a container.</p>
+<p>[]{#08.htm#pgfId-1119063}Note that Docker runs with a seccomp
+filter[]{#08.htm#marker-1119062}, which blocks the unshare and mount
+system calls. You need to either disable seccomp filtering in Docker&mdash;</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">docker run –security-opt seccomp=unconfined ...</code></pre></div>
+<p>[]{#08.htm#pgfId-1119066}&mdash;or run Docker with Podman&rsquo;s seccomp
+filters[]{#08.htm#marker-1119065}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">docker run –security-opt seccomp=/usr/share/containers/seccomp.json ... .</code></pre></div>
+<p>[]{#08.htm#pgfId-1119068}In this section, you learned about Podman
+integration with Kubernetes. In the next section, you will learn how to
+configure Podman to run within a Kubernetes pod or
+[]{#08.htm#marker-1119069}[]{#08.htm#marker-1119070}container.</p>
+<h3 id="heading_id_10" class="fm-head1">[]{#08.htm#pgfId-1119072}8.4.2 Running Podman within a Kubernetes pod</h3>
+<p>[]{#08.htm#pgfId-1119075}A
+[]{#08.htm#marker-1119073}[]{#08.htm#marker-1119074}common use case for
+CI/CD systems is using Podman to run containers within Kubernetes. As
+you learned, running Podman within a container requires either
+<code>CAP_SYS_ADMIN</code>{.fm-code-in-text} for rootful containers or
+<code>CAP_SETUID</code>{.fm-code-in-text} and <code>CAP_SETGID</code>{.fm-code-in-text} to run
+in rootless mode. Understand that Podman containers almost always
+require more than one UID to run, especially when running
+<code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text}. Lots of Podman
+problems have been raised by users of Kubernetes attempting to run
+Podman in a locked-down Kubernetes container, with only one UID and
+without Linux capabilities. These containers are the default for
+OpenShift and lots of the cloud-based Kubernetes environments. Running a
+container engine like Podman in environments without some Linux
+capabilities and access to more than one UID is impossible.</p>
+<p>[]{#08.htm#pgfId-1119076}The equivalent version of running rootful
+Podman using the quay.io/podman/stable image within a
+<code>privileged</code>{.fm-code-in-text} Kubernetes
+container[]{#08.htm#marker-1119077} can be launched with this Kubernetes
+YAML file:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">apiVersion: v1
+kind: Pod
+metadata:
+ name: podman-priv
+spec:
+ containers:
+   - name: priv
+     image: quay.io/podman/stable
+     args:
+       - podman
+       - version
+     securityContext:
+       privileged: true</code></pre></div>
+<p>[]{#08.htm#pgfId-1119091}Similarly, you can launch a rootless Podman
+within a Kubernetes container by using the following YAML file. Note
+that you specify the <code>runAsUser</code>{.fm-code-in-text}:
+<code>1000</code>{.fm-code-in-text} as the UID, not the <code>podman</code>{.fm-code-in-text}
+user. Kubernetes does not support translating usernames within
+containers to UIDs:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">apiVersion: v1
+kind: Pod
+metadata:
+  name: podman-rootless
+spec:
+  containers:
+  - name: rootless
+    image: quay.io/podman/stable
+    args:
+      - podman 
+      - version
+    securityContext:
+      capabilities:
+        add:
+          - &#34;SETUID&#34;
+          - &#34;SETGID&#34;
+      runAsUser: 1000</code></pre></div>
+<p>[]{#08.htm#pgfId-1119109}[Note]{.fm-callout-head} See the following
+articles written by me along with my colleague, Urvashi Mohnani, that
+offer many more examples on running Podman within containers:</p>
+<ul>
+<li>
+<p>[]{#08.htm#pgfId-1119110 .calibre17}&ldquo;How to Use Podman inside of a
+Container&rdquo; (<a href="http://mng.bz/vXDM" rel="external" target="_blank">http://mng.bz/vXDM</a>{.url1})</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1119111 .calibre17}&ldquo;How to Use Podman inside of
+Kubernetes&rdquo; (<a href="http://mng.bz/49EV" rel="external" target="_blank">http://mng.bz/49EV</a>{.url1})</p>
+</li>
+</ul>
+<p>[]{#08.htm#pgfId-1119112}As you can see, it is fairly easy to run Podman
+containers within Kubernetes, as long as you understand the Podman
+requirements. There is ongoing work within the Kubernetes community to
+take advantage of user namespaces, making it easier to run Podman
+containers within Kubernetes containers and making them
+[]{#08.htm#marker-1119113}[]{#08.htm#marker-1119114}more
+[]{#08.htm#marker-1119115}[]{#08.htm#marker-1119116}secure.</p>
+<h2 id="heading_id_11" class="fm-head">[]{#08.htm#pgfId-1119118}Summary</h2>
+<ul>
+<li>
+<p>[]{#08.htm#pgfId-1119119 .calibre17}The <code>podman</code>{.fm-code-in-text}
+<code>generate</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text} command easily
+allows you to move locally running pods and containers into a
+Kubernetes YAML file suitable for running within a Kubernetes
+cluster.</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1119120 .calibre17}These YAML files can also be
+used to generate local pods and containers via the
+<code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} command.</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1119121 .calibre17}The <code>--down</code>{.fm-code-in-text}
+option allows <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} to shut down all pods and containers
+launched by a previous <code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text} command.</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1119122 .calibre17}The <code>--build</code>{.fm-code-in-text}
+option allows <code>podman</code>{.fm-code-in-text} <code>play</code>{.fm-code-in-text}
+<code>kube</code>{.fm-code-in-text} to generate the container image defined
+within the Kubernetes YAML file based on a Containerfile/Dockerfile,
+eliminating the need to push the image to a container registry.</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1119123 .calibre17}<code>podman</code>{.fm-code-in-text}
+<code>play</code>{.fm-code-in-text} <code>kube</code>{.fm-code-in-text} is a suitable
+replacement for <code>docker-compose</code>{.fm-code-in-text} because it shares
+the same YAML format as Kubernetes.</p>
+</li>
+<li>
+<p>[]{#08.htm#pgfId-1119124 .calibre17}Running Podman within Podman and
+Kubernetes containers is possible as long as you understand the
+Podman requirements for running in a locked-down
+[]{#08.htm#marker-1119125 .calibre17}environment.</p>
+</li>
+</ul>
+<p>[]{#09.htm}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">
+  <img src="/images/V.svg" alt="perfectdarkmode.com" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1734871290";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1734871290" defer></script>
+        <script src="/js/search.js?1734871290" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2"><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86" checked><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active hidden " data-nav-id="/tools/podman/8-working-with-kubernetes/"><a class="padding" href="/tools/podman/8-working-with-kubernetes/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/obsidian-site-setup/"><a class="padding" href="/tools/obsidian-site-setup/"><i class='fa-fw fas fa-caret-right'></i> Automatically Sync Obsidian to Hugo and Apache<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108" checked><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitnesses</span></label><a class="padding" href="/health-and-fitness/">Health and Fitnesses<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/tools/podman/8-working-with-kubernetes/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1734871290" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1734871290" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1734871290" defer></script>
+    <script src="/js/js-yaml.min.js?1734871290" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1734871290" defer></script>
+  </body>
+</html>

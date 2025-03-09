@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Lab 9-1: Install and Verify Packages As user1 with sudo on server3,
+make sure the RHEL 9 ISO image is attached to the VM and mounted. Use the rpm command and install the zsh package by specifying its full path. [root@server30 Packages]# rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm Verifying... ################################# [100%]) Preparing... ################################# [100%]) package zsh-5.8-9.el9.x86_64 is already installed Run the rpm command again and perform the following on the zsh package: (1) show information [root@server30 Packages]# rpm -qi zsh Name : zsh Version : 5.8 Release : 9.el9 Architecture: x86_64 Install Date: Sat 13 Jul 2024 06:49:40 PM MST Group : Unspecified Size : 8018363 License : MIT Signature : RSA/SHA256, Thu 24 Feb 2022 08:59:15 AM MST, Key ID 199e2f91fd431d51 Source RPM : zsh-5.8-9.el9.src.rpm Build Date : Wed 23 Feb 2022 07:10:14 AM MST Build Host : x86-vm-56.build.eng.bos.redhat.com Packager : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt; Vendor : Red Hat, Inc. URL : http://zsh.sourceforge.net/ Summary : Powerful interactive shell Description : The zsh shell is a command interpreter usable as an interactive login shell and as a shell script command processor. Zsh resembles the ksh shell (the Korn shell), but includes many enhancements. Zsh supports command line editing, built-in spelling correction, programmable command completion, shell functions (with autoloading), a history mechanism, and more. (2) validate integrity [root@server30 Packages]# rpm -K zsh-5.8-9.el9.x86_64.rpm zsh-5.8-9.el9.x86_64.rpm: digests signatures OK (3) display attributes [root@server30 Packages]# rpm -V zsh Lab 9-2: Query and Erase Packages As user1 with sudo on server3,">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Lab 9-1: Install and Verify Packages As user1 with sudo on server3,
+make sure the RHEL 9 ISO image is attached to the VM and mounted. Use the rpm command and install the zsh package by specifying its full path. [root@server30 Packages]# rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm Verifying... ################################# [100%]) Preparing... ################################# [100%]) package zsh-5.8-9.el9.x86_64 is already installed Run the rpm command again and perform the following on the zsh package: (1) show information [root@server30 Packages]# rpm -qi zsh Name : zsh Version : 5.8 Release : 9.el9 Architecture: x86_64 Install Date: Sat 13 Jul 2024 06:49:40 PM MST Group : Unspecified Size : 8018363 License : MIT Signature : RSA/SHA256, Thu 24 Feb 2022 08:59:15 AM MST, Key ID 199e2f91fd431d51 Source RPM : zsh-5.8-9.el9.src.rpm Build Date : Wed 23 Feb 2022 07:10:14 AM MST Build Host : x86-vm-56.build.eng.bos.redhat.com Packager : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt; Vendor : Red Hat, Inc. URL : http://zsh.sourceforge.net/ Summary : Powerful interactive shell Description : The zsh shell is a command interpreter usable as an interactive login shell and as a shell script command processor. Zsh resembles the ksh shell (the Korn shell), but includes many enhancements. Zsh supports command line editing, built-in spelling correction, programmable command completion, shell functions (with autoloading), a history mechanism, and more. (2) validate integrity [root@server30 Packages]# rpm -K zsh-5.8-9.el9.x86_64.rpm zsh-5.8-9.el9.x86_64.rpm: digests signatures OK (3) display attributes [root@server30 Packages]# rpm -V zsh Lab 9-2: Query and Erase Packages As user1 with sudo on server3,">
+    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/basic-package-management-diy-labs/">
+    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:description" content="Lab 9-1: Install and Verify Packages As user1 with sudo on server3,
+make sure the RHEL 9 ISO image is attached to the VM and mounted. Use the rpm command and install the zsh package by specifying its full path. [root@server30 Packages]# rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm Verifying... ################################# [100%]) Preparing... ################################# [100%]) package zsh-5.8-9.el9.x86_64 is already installed Run the rpm command again and perform the following on the zsh package: (1) show information [root@server30 Packages]# rpm -qi zsh Name : zsh Version : 5.8 Release : 9.el9 Architecture: x86_64 Install Date: Sat 13 Jul 2024 06:49:40 PM MST Group : Unspecified Size : 8018363 License : MIT Signature : RSA/SHA256, Thu 24 Feb 2022 08:59:15 AM MST, Key ID 199e2f91fd431d51 Source RPM : zsh-5.8-9.el9.src.rpm Build Date : Wed 23 Feb 2022 07:10:14 AM MST Build Host : x86-vm-56.build.eng.bos.redhat.com Packager : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt; Vendor : Red Hat, Inc. URL : http://zsh.sourceforge.net/ Summary : Powerful interactive shell Description : The zsh shell is a command interpreter usable as an interactive login shell and as a shell script command processor. Zsh resembles the ksh shell (the Korn shell), but includes many enhancements. Zsh supports command line editing, built-in spelling correction, programmable command completion, shell functions (with autoloading), a history mechanism, and more. (2) validate integrity [root@server30 Packages]# rpm -K zsh-5.8-9.el9.x86_64.rpm zsh-5.8-9.el9.x86_64.rpm: digests signatures OK (3) display attributes [root@server30 Packages]# rpm -V zsh Lab 9-2: Query and Erase Packages As user1 with sudo on server3,">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Lab 9-1: Install and Verify Packages As user1 with sudo on server3,
+make sure the RHEL 9 ISO image is attached to the VM and mounted. Use the rpm command and install the zsh package by specifying its full path. [root@server30 Packages]# rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm Verifying... ################################# [100%]) Preparing... ################################# [100%]) package zsh-5.8-9.el9.x86_64 is already installed Run the rpm command again and perform the following on the zsh package: (1) show information [root@server30 Packages]# rpm -qi zsh Name : zsh Version : 5.8 Release : 9.el9 Architecture: x86_64 Install Date: Sat 13 Jul 2024 06:49:40 PM MST Group : Unspecified Size : 8018363 License : MIT Signature : RSA/SHA256, Thu 24 Feb 2022 08:59:15 AM MST, Key ID 199e2f91fd431d51 Source RPM : zsh-5.8-9.el9.src.rpm Build Date : Wed 23 Feb 2022 07:10:14 AM MST Build Host : x86-vm-56.build.eng.bos.redhat.com Packager : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt; Vendor : Red Hat, Inc. URL : http://zsh.sourceforge.net/ Summary : Powerful interactive shell Description : The zsh shell is a command interpreter usable as an interactive login shell and as a shell script command processor. Zsh resembles the ksh shell (the Korn shell), but includes many enhancements. Zsh supports command line editing, built-in spelling correction, programmable command completion, shell functions (with autoloading), a history mechanism, and more. (2) validate integrity [root@server30 Packages]# rpm -K zsh-5.8-9.el9.x86_64.rpm zsh-5.8-9.el9.x86_64.rpm: digests signatures OK (3) display attributes [root@server30 Packages]# rpm -V zsh Lab 9-2: Query and Erase Packages As user1 with sudo on server3,">
+    <meta itemprop="wordCount" content="485">
+    <title></title>
+    <link href="/linux/rhcsa/basic-package-management-diy-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/basic-package-management-diy-labs/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
+    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741554912" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741554912"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.1rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/basic-package-management-diy-labs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#lab-9-1-install-and-verify-packages">Lab 9-1: Install and Verify Packages</a></li>
+    <li><a href="#lab-9-2-query-and-erase-packages">Lab 9-2: Query and Erase Packages</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="lab-9-1-install-and-verify-packages">Lab 9-1: Install and Verify Packages</h2>
+<p>As user1 with sudo on server3,</p>
+<ul>
+<li>make sure the RHEL 9 ISO image is attached to the VM and mounted.</li>
+<li>Use the rpm command and install the zsh package by specifying its full path.</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm </span>
+</span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>	package zsh-5.8-9.el9.x86_64 is already installed</span></span></code></pre></div>
+<ul>
+<li>Run the rpm command again and perform the following on the zsh package:</li>
+<li>(1) show information</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi zsh</span>
+</span></span><span style="display:flex;"><span>Name        : zsh
+</span></span><span style="display:flex;"><span>Version     : 5.8
+</span></span><span style="display:flex;"><span>Release     : 9.el9
+</span></span><span style="display:flex;"><span>Architecture: x86_64
+</span></span><span style="display:flex;"><span>Install Date: Sat <span style="color:#ff9f43">13</span> Jul <span style="color:#ff9f43">2024</span> 06:49:40 PM MST
+</span></span><span style="display:flex;"><span>Group       : Unspecified
+</span></span><span style="display:flex;"><span>Size        : <span style="color:#ff9f43">8018363</span>
+</span></span><span style="display:flex;"><span>License     : MIT
+</span></span><span style="display:flex;"><span>Signature   : RSA/SHA256, Thu <span style="color:#ff9f43">24</span> Feb <span style="color:#ff9f43">2022</span> 08:59:15 AM MST, Key ID 199e2f91fd431d51
+</span></span><span style="display:flex;"><span>Source RPM  : zsh-5.8-9.el9.src.rpm
+</span></span><span style="display:flex;"><span>Build Date  : Wed <span style="color:#ff9f43">23</span> Feb <span style="color:#ff9f43">2022</span> 07:10:14 AM MST
+</span></span><span style="display:flex;"><span>Build Host  : x86-vm-56.build.eng.bos.redhat.com
+</span></span><span style="display:flex;"><span>Packager    : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt;
+</span></span><span style="display:flex;"><span>Vendor      : Red Hat, Inc.
+</span></span><span style="display:flex;"><span>URL         : http://zsh.sourceforge.net/
+</span></span><span style="display:flex;"><span>Summary     : Powerful interactive shell
+</span></span><span style="display:flex;"><span>Description :
+</span></span><span style="display:flex;"><span>The zsh shell is a <span style="color:#ff5c57">command</span> interpreter usable as an interactive login
+</span></span><span style="display:flex;"><span>shell and as a shell script <span style="color:#ff5c57">command</span> processor.  Zsh resembles the ksh
+</span></span><span style="display:flex;"><span>shell <span style="color:#ff6ac1">(</span>the Korn shell<span style="color:#ff6ac1">)</span>, but includes many enhancements.  Zsh supports
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">command</span> line editing, built-in spelling correction, programmable
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">command</span> completion, shell functions <span style="color:#ff6ac1">(</span>with autoloading<span style="color:#ff6ac1">)</span>, a <span style="color:#ff5c57">history</span>
+</span></span><span style="display:flex;"><span>mechanism, and more.</span></span></code></pre></div>
+<ul>
+<li>(2) validate integrity</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -K zsh-5.8-9.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>zsh-5.8-9.el9.x86_64.rpm: digests signatures OK</span></span></code></pre></div>
+<ul>
+<li>(3) display attributes
+<code>[root@server30 Packages]# rpm -V zsh</code></li>
+</ul>
+<h2 id="lab-9-2-query-and-erase-packages">Lab 9-2: Query and Erase Packages</h2>
+<p>As user1 with sudo on server3,</p>
+<ul>
+<li>make sure the RHEL 9 ISO image is attached to the VM and mounted.</li>
+<li>Use the rpm command to perform the following:</li>
+<li>(1) check whether the setup package is installed</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -q setup</span>
+</span></span><span style="display:flex;"><span>setup-2.13.7-10.el9.noarch</span></span></code></pre></div>
+<ul>
+<li>(2) display the list of configuration files in the setup package</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qc setup</span>
+</span></span><span style="display:flex;"><span>/etc/aliases
+</span></span><span style="display:flex;"><span>/etc/bashrc
+</span></span><span style="display:flex;"><span>/etc/csh.cshrc
+</span></span><span style="display:flex;"><span>/etc/csh.login
+</span></span><span style="display:flex;"><span>/etc/environment
+</span></span><span style="display:flex;"><span>/etc/ethertypes
+</span></span><span style="display:flex;"><span>/etc/exports
+</span></span><span style="display:flex;"><span>/etc/filesystems
+</span></span><span style="display:flex;"><span>/etc/fstab
+</span></span><span style="display:flex;"><span>/etc/group
+</span></span><span style="display:flex;"><span>/etc/gshadow
+</span></span><span style="display:flex;"><span>/etc/host.conf
+</span></span><span style="display:flex;"><span>/etc/hosts
+</span></span><span style="display:flex;"><span>/etc/inputrc
+</span></span><span style="display:flex;"><span>/etc/motd
+</span></span><span style="display:flex;"><span>/etc/networks
+</span></span><span style="display:flex;"><span>/etc/passwd
+</span></span><span style="display:flex;"><span>/etc/printcap
+</span></span><span style="display:flex;"><span>/etc/profile
+</span></span><span style="display:flex;"><span>/etc/profile.d/csh.local
+</span></span><span style="display:flex;"><span>/etc/profile.d/sh.local
+</span></span><span style="display:flex;"><span>/etc/protocols
+</span></span><span style="display:flex;"><span>/etc/services
+</span></span><span style="display:flex;"><span>/etc/shadow
+</span></span><span style="display:flex;"><span>/etc/shells
+</span></span><span style="display:flex;"><span>/etc/subgid
+</span></span><span style="display:flex;"><span>/etc/subuid
+</span></span><span style="display:flex;"><span>/run/motd
+</span></span><span style="display:flex;"><span>/usr/lib/motd</span></span></code></pre></div>
+<ul>
+<li>(3) show information for the zlib-devel package on the ISO image</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi ./zlib-devel-1.2.11-40.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>Name        : zlib-devel
+</span></span><span style="display:flex;"><span>Version     : 1.2.11
+</span></span><span style="display:flex;"><span>Release     : 40.el9
+</span></span><span style="display:flex;"><span>Architecture: x86_64
+</span></span><span style="display:flex;"><span>Install Date: <span style="color:#ff6ac1">(</span>not installed<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>Group       : Unspecified
+</span></span><span style="display:flex;"><span>Size        : <span style="color:#ff9f43">141092</span>
+</span></span><span style="display:flex;"><span>License     : zlib and Boost
+</span></span><span style="display:flex;"><span>Signature   : RSA/SHA256, Tue <span style="color:#ff9f43">09</span> May <span style="color:#ff9f43">2023</span> 05:31:02 AM MST, Key ID 199e2f91fd431d51
+</span></span><span style="display:flex;"><span>Source RPM  : zlib-1.2.11-40.el9.src.rpm
+</span></span><span style="display:flex;"><span>Build Date  : Tue <span style="color:#ff9f43">09</span> May <span style="color:#ff9f43">2023</span> 03:51:20 AM MST
+</span></span><span style="display:flex;"><span>Build Host  : x86-64-03.build.eng.rdu2.redhat.com
+</span></span><span style="display:flex;"><span>Packager    : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt;
+</span></span><span style="display:flex;"><span>Vendor      : Red Hat, Inc.
+</span></span><span style="display:flex;"><span>URL         : https://www.zlib.net/
+</span></span><span style="display:flex;"><span>Summary     : Header files and libraries <span style="color:#ff6ac1">for</span> Zlib development
+</span></span><span style="display:flex;"><span>Description :
+</span></span><span style="display:flex;"><span>The zlib-devel package contains the header files and libraries needed
+</span></span><span style="display:flex;"><span>to develop programs that use the zlib compression and decompression
+</span></span><span style="display:flex;"><span>library.</span></span></code></pre></div>
+<ul>
+<li>(4) reinstall the zsh package (&ndash;reinstall -vh),</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -hv --reinstall ./zsh-5.8-9.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Updating / installing...
+</span></span><span style="display:flex;"><span>   1:zsh-5.8-9.el9                   <span style="color:#78787e">################################# [ 50%])</span>
+</span></span><span style="display:flex;"><span>Cleaning up / removing...
+</span></span><span style="display:flex;"><span>   2:zsh-5.8-9.el9                   <span style="color:#78787e">################################# [100%])</span></span></span></code></pre></div>
+<ul>
+<li>(5) remove the zsh package.
+<code>[root@server30 Packages]# rpm -e zsh</code></li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">Perfect Dark Mode</a>
+
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741554912";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741554912" defer></script>
+        <script src="/js/search.js?1741554912" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><input type="checkbox" id="R-section-89434e96479d9689b11efd9b3cb12acc" aria-controls="R-subsections-89434e96479d9689b11efd9b3cb12acc"><label for="R-section-89434e96479d9689b11efd9b3cb12acc"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Fedora</span></label><a class="padding" href="/linux/fedora/">Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/my-fedora-setup/"><a class="padding" href="/linux/fedora/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-id="/linux/fedora/silverblue/"><a class="padding" href="/linux/fedora/silverblue/">Silverblue</a></li></ul></li>
+            <li class="active hidden " data-nav-id="/linux/rhcsa/basic-package-management-diy-labs/"><a class="padding" href="/linux/rhcsa/basic-package-management-diy-labs/"></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/">Networking</a></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/basic-package-management-diy-labs/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741554912" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
+    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741554912" defer></script>
+  </body>
+</html>

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Linux Kernel controls everything on the system. hardware enforces security and access controls runs, schedules, and manages processes and service daemons. comprised of several modules. A new kernel must be installed or an existing kernel must be upgraded when the need arises from an application or functionality standpoint. core of the Linux system. It manages hardware, enforces security, regulates access to the system, as well as handles
+processes,
+services, and">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Linux Kernel controls everything on the system. hardware enforces security and access controls runs, schedules, and manages processes and service daemons. comprised of several modules. A new kernel must be installed or an existing kernel must be upgraded when the need arises from an application or functionality standpoint. core of the Linux system. It manages hardware, enforces security, regulates access to the system, as well as handles
+processes,
+services, and">
+    <meta property="og:url" content="http://localhost:1313/linux/linux-kernel/">
+    <meta property="og:description" content="Linux Kernel controls everything on the system. hardware enforces security and access controls runs, schedules, and manages processes and service daemons. comprised of several modules. A new kernel must be installed or an existing kernel must be upgraded when the need arises from an application or functionality standpoint. core of the Linux system. It manages hardware, enforces security, regulates access to the system, as well as handles
+processes,
+services, and">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Linux Kernel controls everything on the system. hardware enforces security and access controls runs, schedules, and manages processes and service daemons. comprised of several modules. A new kernel must be installed or an existing kernel must be upgraded when the need arises from an application or functionality standpoint. core of the Linux system. It manages hardware, enforces security, regulates access to the system, as well as handles
+processes,
+services, and">
+    <meta itemprop="wordCount" content="1231">
+    <title></title>
+    <link href="/linux/linux-kernel/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/linux-kernel/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/linux-kernel/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#linux-kernel">Linux Kernel</a>
+      <ul>
+        <li><a href="#kernel-packages">Kernel Packages</a></li>
+        <li><a href="#kernel-packages-1">Kernel Packages</a></li>
+        <li><a href="#analyzing-kernel-version">Analyzing Kernel Version</a></li>
+        <li><a href="#kernel-directory-structure">Kernel Directory Structure</a></li>
+        <li><a href="#boot">/boot</a></li>
+        <li><a href="#proc">/proc</a></li>
+        <li><a href="#uslibmodules">/us/lib/modules/</a></li>
+        <li><a href="#installing-the-kernel">Installing the Kernel</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="linux-kernel">Linux Kernel</h2>
+<ul>
+<li>controls everything on the system.
+<ul>
+<li>hardware</li>
+<li>enforces security and access controls</li>
+<li>runs, schedules, and manages processes and service daemons.</li>
+</ul>
+</li>
+<li>comprised of several modules. A</li>
+<li>new kernel must be installed or an existing kernel must be upgraded when the need arises from an application or functionality standpoint.</li>
+<li>core of the Linux system. It</li>
+<li>manages</li>
+<li>hardware,</li>
+<li>enforces security,</li>
+<li>regulates access to the system, as well as</li>
+</ul>
+<p>handles</p>
+<ul>
+<li>
+<p>processes,</p>
+</li>
+<li>
+<p>services, and</p>
+</li>
+<li>
+<p>application workloads. It is a</p>
+</li>
+<li>
+<p>collection of software components called <em>modules</em></p>
+<ul>
+<li>Modules
+<ul>
+<li>device drivers that control hardware devices
+<ul>
+<li>processor</li>
+<li>memory</li>
+<li>storage</li>
+<li>controller cards</li>
+<li>peripheral equipment</li>
+</ul>
+</li>
+<li>interact with software subsystems
+<ul>
+<li>storage partitioning</li>
+<li>file systems</li>
+<li>networking</li>
+<li>virtualization</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Some modules are static to the kernel and are integral to system functionality,</p>
+</li>
+<li>
+<p>Some modules are loaded dynamically as needed</p>
+</li>
+<li>
+<p>RHEL 8.0 and RHEL 8.2 are shipped with kernel version 4.18.0 (4.18.0-80 and 4.18.0-193 to be specific) for the 64-bit Intel/AMD processor architecture computers with single, multi-core, and multi-processor configurations.</p>
+</li>
+<li>
+<p><code>uname -m</code> shows the architecture of the system.</p>
+</li>
+<li>
+<p>Kernel requires a rebuild when a new functionality is added or removed.</p>
+</li>
+<li>
+<p>functionality may be introduced by:</p>
+<ul>
+<li>installing a new kernel</li>
+<li>upgrading an existing one</li>
+<li>installing a new hardware device, or</li>
+<li>changing a critical system component.</li>
+</ul>
+</li>
+<li>
+<p>existing functionality that is no longer needed may be removed to make the overall footprint of the kernel smaller for improved performance and reduced memory utilization.</p>
+</li>
+<li>
+<p>tunable parameters are set that define a baseline for kernel functionality.</p>
+</li>
+<li>
+<p>Some parameters must be tuned for some applications and database software to be installed smoothly and operate properly.</p>
+</li>
+<li>
+<p>You can generate and store several custom kernels with varied configuration and required modules, but</p>
+</li>
+<li>
+<p>only one of them can be active at a time.</p>
+</li>
+<li>
+<p>different kernel may be loaded by interacting with GRUB2.</p>
+</li>
+</ul>
+<h3 id="kernel-packages">Kernel Packages</h3>
+<ul>
+<li>set of core kernel packages that must be installed on the system at a minimum to
+make it work.</li>
+<li>Additional packages providing supplementary kernel support
+are also available.</li>
+</ul>
+<p>Core and some add-on kernel packages.</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Kernel Package</strong></th>
+          <th><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>kernel</td>
+          <td>Contains no files, but ensures other kernel packages are accurately installed</td>
+      </tr>
+      <tr>
+          <td>kernel-core</td>
+          <td>Includes a minimal number of modules to provide core functionality</td>
+      </tr>
+      <tr>
+          <td>kernel-devel</td>
+          <td>Includes support for building kernel modules</td>
+      </tr>
+      <tr>
+          <td>kernel-modules</td>
+          <td>Contains modules for common hardware devices</td>
+      </tr>
+      <tr>
+          <td>kernel-modules-extra</td>
+          <td>Contains modules for not-so-common hardware devices</td>
+      </tr>
+      <tr>
+          <td>kernel-headers</td>
+          <td>Includes files to support the interface between the kernel and userspace</td>
+      </tr>
+      <tr>
+          <td>kernel-tools-libs</td>
+          <td>Includes the libraries to support the kernel tools</td>
+      </tr>
+      <tr>
+          <td>libraries and programs kernel-tools</td>
+          <td>Includes tools to manipulate the kernel</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="kernel-packages-1">Kernel Packages</h3>
+<ul>
+<li>packages containing the source code for RHEL 8 are also available for those who wish to customize and recompile the code</li>
+</ul>
+<p>List kernel packages installed on the system:
+<code>dnf list installed kernel*</code></p>
+<ul>
+<li>Shows six kernel packages that were loaded during the OS installation.</li>
+</ul>
+<h3 id="analyzing-kernel-version">Analyzing Kernel Version</h3>
+<p>Check the version of the kernel running on the system to check for compatibility with an application or database:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname -r
+</span></span><span style="display:flex;"><span>5.14.0-362.24.1.el9_3.x86_64</span></span></code></pre></div>
+<p>5 - Major version
+14 - Major revision
+0 - Kernel patch version
+362 - Red Hat version
+el9 - Enterprise Linux 9
+x86_64 - Processor architecture</p>
+<h3 id="kernel-directory-structure">Kernel Directory Structure</h3>
+<p>Kernel and its support files (noteworthy locations)</p>
+<ul>
+<li>/boot</li>
+<li>/proc</li>
+<li>/usr/lib/modules</li>
+</ul>
+<h3 id="boot">/boot</h3>
+<ul>
+<li>Created at system installation.</li>
+<li>Linux kernel</li>
+<li>GRUB2 configuration</li>
+<li>other kernel and boot support files.</li>
+</ul>
+<p>View the /boot filesystem:
+<code>ls -l /boot</code></p>
+<ul>
+<li>four files are for the kernel and
+<ul>
+<li>vmlinuz - main kernel file</li>
+<li>initramfs - main kernel&rsquo;s boot image</li>
+<li>config - configuration</li>
+<li>System.map - mapping</li>
+</ul>
+</li>
+<li>two files for kernel rescue version
+<ul>
+<li>Have the current kernel version appended to their names.</li>
+<li>have the string &ldquo;rescue&rdquo; embedded within their names</li>
+</ul>
+</li>
+</ul>
+<p>/boot/efi/ and /boot/grub2/</p>
+<ul>
+<li>hold bootloader information specific to firmware type used on the system: UEFI or BIOS.</li>
+</ul>
+<p>List /boot/Grub2:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /boot/grub2</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#ff9f43">32</span>
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">64</span> Feb <span style="color:#ff9f43">25</span> 05:13 device.map
+</span></span><span style="display:flex;"><span>drwxr-xr-x. <span style="color:#ff9f43">2</span> root root   <span style="color:#ff9f43">25</span> Feb <span style="color:#ff9f43">25</span> 05:13 fonts
+</span></span><span style="display:flex;"><span>-rw-------. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">7049</span> Mar <span style="color:#ff9f43">21</span> 04:47 grub.cfg
+</span></span><span style="display:flex;"><span>-rw-------. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">1024</span> Mar <span style="color:#ff9f43">21</span> 05:12 grubenv
+</span></span><span style="display:flex;"><span>drwxr-xr-x. <span style="color:#ff9f43">2</span> root root <span style="color:#ff9f43">8192</span> Feb <span style="color:#ff9f43">25</span> 05:13 i386-pc
+</span></span><span style="display:flex;"><span>drwxr-xr-x. <span style="color:#ff9f43">2</span> root root <span style="color:#ff9f43">4096</span> Feb <span style="color:#ff9f43">25</span> 05:13 locale</span></span></code></pre></div>
+<ul>
+<li>grub.cfg
+<ul>
+<li>bootable kernel information</li>
+</ul>
+</li>
+<li>grub.env
+<ul>
+<li>environment information that the kernel uses.</li>
+</ul>
+</li>
+</ul>
+<p>/boot/loader</p>
+<ul>
+<li>storage location for configuration of the running and rescue kernels.</li>
+<li>Configuration is stored in files under the /boot/loader/entries/</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /boot/loader/entries/</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#ff9f43">12</span>
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">484</span> Feb <span style="color:#ff9f43">25</span> 05:13 8215ac7e45d34823b4dce2e258c3cc47-0-rescue.conf
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">460</span> Mar <span style="color:#ff9f43">16</span> 06:17 8215ac7e45d34823b4dce2e258c3cc47-5.14.0-362.18.1.el9_3.x86_64.conf
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">459</span> Mar <span style="color:#ff9f43">16</span> 06:17 8215ac7e45d34823b4dce2e258c3cc47-5.14.0-362.24.1.el9_3.x86_64.conf</span></span></code></pre></div>
+<ul>
+<li>The files are named using the machine id of the system as stored in /etc/machine-id/ and the kernel version they are for.</li>
+</ul>
+<p>content of the kernel file:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost entries<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /boot/loader/entries/8215ac7e45d34823b4dce2e258c3cc47-5.14.0-362.18.1.el9_3.x86_64.conf</span>
+</span></span><span style="display:flex;"><span>title Red Hat Enterprise Linux <span style="color:#ff6ac1">(</span>5.14.0-362.18.1.el9_3.x86_64<span style="color:#ff6ac1">)</span> 9.3 <span style="color:#ff6ac1">(</span>Plow<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>version 5.14.0-362.18.1.el9_3.x86_64
+</span></span><span style="display:flex;"><span>linux /vmlinuz-5.14.0-362.18.1.el9_3.x86_64
+</span></span><span style="display:flex;"><span>initrd /initramfs-5.14.0-362.18.1.el9_3.x86_64.img <span style="color:#ff5c57">$tuned_initrd</span>
+</span></span><span style="display:flex;"><span>options <span style="color:#ff5c57">root</span><span style="color:#ff6ac1">=</span>/dev/mapper/rhel-root ro <span style="color:#ff5c57">crashkernel</span><span style="color:#ff6ac1">=</span>1G-4G:192M,4G-64G:256M,64G-:512M <span style="color:#ff5c57">resume</span><span style="color:#ff6ac1">=</span>/dev/mapper/rhel-swap rd.lvm.lv<span style="color:#ff6ac1">=</span>rhel/root rd.lvm.lv<span style="color:#ff6ac1">=</span>rhel/swap rhgb quiet  <span style="color:#ff5c57">$tuned_params</span>
+</span></span><span style="display:flex;"><span>grub_users <span style="color:#ff5c57">$grub_users</span>
+</span></span><span style="display:flex;"><span>grub_arg --unrestricted
+</span></span><span style="display:flex;"><span>grub_class rhel</span></span></code></pre></div>
+<ul>
+<li>&ldquo;title&rdquo; is displayed on the bootloader screen</li>
+<li>&ldquo;kernelopts&rdquo; and &ldquo;tuned_params&rdquo; supply values to the booting kernel to control its behavior.</li>
+</ul>
+<h3 id="proc">/proc</h3>
+<ul>
+<li>Virtual, memory-based file system</li>
+<li>contents are created and updated in memory at system boot and during runtime</li>
+<li>destroyed at system shutdown</li>
+<li>current state of the kernel, which includes
+<ul>
+<li>hardware configuration</li>
+<li>status information
+<ul>
+<li>processor,</li>
+<li>memory, s</li>
+<li>storage,</li>
+<li>file systems,</li>
+<li>swap,</li>
+<li>processes</li>
+<li>network interfaces</li>
+<li>connections,</li>
+<li>routing, *</li>
+<li>etc.*</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data kept in tens of thousands of zero-byte files organized in a hierarchy.</li>
+</ul>
+<p>List /proc:
+<code>ls -l /proc</code></p>
+<ul>
+<li>numerical subdirectories contain information about a specific process
+<ul>
+<li>process ID matches the subdirectory name.</li>
+</ul>
+</li>
+<li>other files and subdirectories contain information, such as
+<ul>
+<li>memory segments for processes and</li>
+<li>configuration data for system components. You</li>
+<li>can view the configuration in vim</li>
+</ul>
+</li>
+</ul>
+<p>Show selections from the cpuinfo and meminfo files that hold
+processor and memory information:
+<code>cat/proc/cpuinfo &amp;&amp; cat /proc/meminfo</code></p>
+<ul>
+<li>data used by top, ps, uname, free, uptime and w, to display information.</li>
+</ul>
+<h3 id="uslibmodules">/us/lib/modules/</h3>
+<ul>
+<li>holds information about kernel modules.</li>
+<li>subdirectories are specific to the kernels installed on the system.</li>
+</ul>
+<p>Long listing of /usr/lib/modules/ shows two installed kernels:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost entries<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /usr/lib/modules</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#ff9f43">8</span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x. <span style="color:#ff9f43">7</span> root root <span style="color:#ff9f43">4096</span> Mar <span style="color:#ff9f43">16</span> 06:18 5.14.0-362.18.1.el9_3.x86_64
+</span></span><span style="display:flex;"><span>drwxr-xr-x. <span style="color:#ff9f43">8</span> root root <span style="color:#ff9f43">4096</span> Mar <span style="color:#ff9f43">16</span> 06:18 5.14.0-362.24.1.el9_3.x86_64</span></span></code></pre></div>
+<p>View /usr/lib/modules/5.14.0-362.18.1.el9_3.x86_64/:
+<code>ls -l /usr/lib/modules/5.14.0-362.18.1.el9_3.x86_64</code></p>
+<ul>
+<li>Subdirectories hold module-specific information for the kernel version.</li>
+</ul>
+<p>/lib/modules/4.18.0-80.el8.x86_64/kernel/drivers/</p>
+<ul>
+<li>
+<p>stores modules for a variety of hardware and software components in various subdirectories:
+<code>ls -l /usr/lib/modules/5.14.0-362.18.1.el9_3.x86_64/kernel/drivers</code></p>
+</li>
+<li>
+<p>Additional modules may be installed on the system to support more
+components.</p>
+</li>
+</ul>
+<h3 id="installing-the-kernel">Installing the Kernel</h3>
+<ul>
+<li>
+<p>requires extra care</p>
+</li>
+<li>
+<p>could leave your system in an unbootable or undesirable state.</p>
+</li>
+<li>
+<p>have the bootable medium handy prior to starting the kernel install process.</p>
+</li>
+<li>
+<p>By default, the dnf command adds a new kernel to the system, leaving the existing kernel(s) intact. It does not replace or overwrite existing kernel files.</p>
+</li>
+<li>
+<p>Always install a new version of the kernel instead of upgrading it.</p>
+</li>
+<li>
+<p>The upgrade process removes any existing kernel and replaces it with a new one.</p>
+</li>
+<li>
+<p>In case of a post-installation issue, you will not be able to revert to the old working kernel.</p>
+</li>
+<li>
+<p>Newer version of the kernel is typically required:</p>
+<ul>
+<li>if an application needs to be deployed on the system that requires a different kernel to operate.</li>
+<li>When deficiencies or bugs are identified in the existing kernel, it can hamper the kernel&rsquo;s smooth operation.</li>
+</ul>
+</li>
+<li>
+<p>new kernel</p>
+<ul>
+<li>addresses existing issues</li>
+<li>adds bug fixes</li>
+<li>security updates</li>
+<li>new features</li>
+<li>improved support for hardware devices.</li>
+</ul>
+</li>
+<li>
+<p>dnf is the preferred tool to install a kernel</p>
+</li>
+<li>
+<p>it resolves and installs any required dependencies automatically.</p>
+</li>
+<li>
+<p>rpm may be used but you must install any dependencies manually.</p>
+</li>
+<li>
+<p>Kernel packages for RHEL are available to subscribers on Red Hat&rsquo;s Customer Portal.</p>
+</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1730768046";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1730768046" defer></script>
+        <script src="/js/search.js?1730768046" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/linux-kernel/"><a class="padding" href="/linux/linux-kernel/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-notes/"><a class="padding" href="/linux/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108"><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitness</span></label><a class="padding" href="/health-and-fitness/">Health and Fitness<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/davidvargasxyz"><a class="padding" href="https://github.com/davidvargasxyz" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/linux-kernel/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

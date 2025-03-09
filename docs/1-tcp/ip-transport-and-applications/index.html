@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.134.3">
+    <meta name="generator" content="Relearn 6.0.0+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="1 TCP/IP Transport and Applications Friday, September 3, 2021 10:34 AM
+example All open on one computer: Port 80 Web ServerPort 800 Ad Server Port 9876 Wire Application Socket Includes IP address, transport protocol, and port number (10.1.1.2, TCP, port 80) Multiplexing
+0 to 1023 Well Known (System) Ports:
+1024 to 49151 User (Registered) Ports:
+49152 to 65535, not assigned uses the same port number for all connections. For example, web server with 100 clients would have only one socket (one port number) server looks at source port of received TCP segments. Servers use well-known ports (or user ports), whereas clients use dynamic ports Ephemeral (Dynamic, Private) Ports:">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="1 TCP/IP Transport and Applications Friday, September 3, 2021 10:34 AM
+example All open on one computer: Port 80 Web ServerPort 800 Ad Server Port 9876 Wire Application Socket Includes IP address, transport protocol, and port number (10.1.1.2, TCP, port 80) Multiplexing
+0 to 1023 Well Known (System) Ports:
+1024 to 49151 User (Registered) Ports:
+49152 to 65535, not assigned uses the same port number for all connections. For example, web server with 100 clients would have only one socket (one port number) server looks at source port of received TCP segments. Servers use well-known ports (or user ports), whereas clients use dynamic ports Ephemeral (Dynamic, Private) Ports:">
+    <meta property="og:url" content="http://localhost:1313/1-tcp/ip-transport-and-applications/">
+    <meta property="og:description" content="1 TCP/IP Transport and Applications Friday, September 3, 2021 10:34 AM
+example All open on one computer: Port 80 Web ServerPort 800 Ad Server Port 9876 Wire Application Socket Includes IP address, transport protocol, and port number (10.1.1.2, TCP, port 80) Multiplexing
+0 to 1023 Well Known (System) Ports:
+1024 to 49151 User (Registered) Ports:
+49152 to 65535, not assigned uses the same port number for all connections. For example, web server with 100 clients would have only one socket (one port number) server looks at source port of received TCP segments. Servers use well-known ports (or user ports), whereas clients use dynamic ports Ephemeral (Dynamic, Private) Ports:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1 TCPs">
+    <meta itemprop="description" content="1 TCP/IP Transport and Applications Friday, September 3, 2021 10:34 AM
+example All open on one computer: Port 80 Web ServerPort 800 Ad Server Port 9876 Wire Application Socket Includes IP address, transport protocol, and port number (10.1.1.2, TCP, port 80) Multiplexing
+0 to 1023 Well Known (System) Ports:
+1024 to 49151 User (Registered) Ports:
+49152 to 65535, not assigned uses the same port number for all connections. For example, web server with 100 clients would have only one socket (one port number) server looks at source port of received TCP segments. Servers use well-known ports (or user ports), whereas clients use dynamic ports Ephemeral (Dynamic, Private) Ports:">
+    <meta itemprop="wordCount" content="844">
+    <title></title>
+    <link href="/images/logo.svg?1727264159" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1727264159" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1727264159" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1727264159" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727264159" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1727264159" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1727264159" rel="stylesheet">
+    <link href="/css/fonts.css?1727264159" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1727264159" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1727264159" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1727264159" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1727264159" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/variant.css?1727264159" rel="stylesheet">
+    <link href="/css/print.css?1727264159" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1727264159"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.index_js_url="/index.search.js";
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/1-tcp/ip-transport-and-applications/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"><nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
+
+<h1 id=""></h1>
+
+<h1 id="1-tcpip-transport-and-applications">1 TCP/IP Transport and Applications</h1>
+<p>Friday, September 3, 2021 10:34 AM</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>example
+All open on one computer:
+Port 80 Web ServerPort 800 Ad Server
+Port 9876 Wire Application
+Socket</code></pre></div><ul>
+<li>Includes IP address, transport protocol, and port number</li>
+<li>(10.1.1.2, TCP, port 80)</li>
+</ul>
+<p>Multiplexing</p>
+<ul>
+<li>0 to 1023</li>
+</ul>
+<p>Well Known (System) Ports:</p>
+<ul>
+<li>1024 to 49151</li>
+</ul>
+<p>User (Registered) Ports:</p>
+<ul>
+<li>49152 to 65535,</li>
+<li>not assigned
+<ul>
+<li>
+<ul>
+<li>uses the same port number for all connections. For example, web server with 100 clients would have only one socket (one port number)</li>
+</ul>
+</li>
+<li>server looks at source port of received TCP segments.</li>
+</ul>
+</li>
+<li>Servers use well-known ports (or user ports), whereas clients use dynamic ports</li>
+</ul>
+<p>Ephemeral (Dynamic, Private) Ports:</p>
+<p>Popular TCP/IP Applications<br>
+Simple Network Management Protocol (SNMP)</p>
+<ul>
+<li>
+<ul>
+<li>query, compile, store, and display information about a network’s operationCisco Prime software<br>
+FTP/ TFTP</li>
+</ul>
+</li>
+<li>FTP allows many more features</li>
+<li>TFTPis very simple, good tools for embedded parts of networking devices.<br>
+SMTP/ POP3</li>
+<li>Simple Mail Transfer Protocol (SMTP) and Post Office Protocol version 3 (POP3)</li>
+<li>both used for transferring mail (TCP).<br>
+Port numbers and protocols</li>
+</ul>
+<p>Port numbers and protocols</p>
+<ul>
+<li>
+<ul>
+<li>FTP Data TCP 20FTP Control TCP 21</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>SSH TCP 22Telnet TCP 23</li>
+</ul>
+</li>
+<li>SMTP TCP 25</li>
+<li>
+<ul>
+<li>DNS UDP/TCP 53DHCP Server UDP 67</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>DHCP Client UDP 68TFTP UDP 69</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>HTTP TCP 80POP2 TCP 110</li>
+</ul>
+</li>
+<li>SNMP UDP 161</li>
+<li>
+<ul>
+<li>SSL TCP 443Syslog UDP 514</li>
+</ul>
+</li>
+</ul>
+<p>Connection Establishment and Termination</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>▪▪ SYN, DPORT=80, SPORT=49145SYN ACK , DPORT= 49145, SPORT=80
+▪ ACK DPORT=80, SPORT=49145</code></pre></div><ul>
+<li>
+<ul>
+<li>initializing Sequence and Acknowledgment fields agreeing on the port numbers</li>
+</ul>
+</li>
+<li>2 bits inside the flag fields of the TCP header. Called the SYN and ACK flags</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0"><code>TCP connection establishment (3 way handshake) occurs 1st</code></pre></div><div class="highlight wrap-code"><pre tabindex="0"><code>TCP connection termination. (four-way)</code></pre></div><div class="highlight wrap-code"><pre tabindex="0"><code>▪▪ ACK, FIN &gt;&lt; ACK
+▪▪ ACK, FIN &lt;&lt; ACK</code></pre></div><ul>
+<li>uses an additional flag, called the FIN bit</li>
+</ul>
+<p>Error Recovery and Reliability</p>
+<ul>
+<li>
+<ul>
+<li>reliability in both directionsSequence Number field of one direction and Acknowledgment field in the other direction
+- 1000 bytes, Seq = 1000 &gt;
+- - 1000 bytes, Seq = 2000 &gt;1000 bytes, Seq = 3000 &gt;
+- &lt; no data, ACK = 4000<br>
+▪ received all data with sequence numbers up through one less than 4000<br>
+▪ ready to receive your byte 4000 next.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ack by listing the next expected byte (forward acknowledgment)sequence number field identifies the data (sender)</li>
+</ul>
+</li>
+<li>
+<p>forward acknowledgments acknowledge the data (receiver)</p>
+</li>
+<li>
+<p>forward acknowledgments acknowledge the data (receiver)</p>
+<ul>
+<li>
+<ul>
+<li>ask the sending host to resendacknowledge that the re-sent data arrived</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Sequence and Acknowledgment fields let the receiving host can notice lost data</p>
+<ul>
+<li>
+<ul>
+<li>1000 bytes, SEQ 1000 &gt;1000 bytes, SEQ 2000 X&gt;</li>
+</ul>
+</li>
+<li>1000 bytes, SEQ 3000 &gt;<br>
+□ (received 1000 -1999 and 3000 -3999, asking for 2000)</li>
+<li>&lt; no data, ACK = 2000</li>
+<li>1000 bytes, SEQ 2000 &gt;</li>
+<li>&lt; no data, ACK 4000</li>
+<li>Sender may wait a few moments to make sure no other acknowledgments arrive</li>
+<li>Retransmission timer</li>
+</ul>
+</li>
+</ul>
+<p>Flow Control Using Windowing<br>
+Sliding window (dynamic window- Receiver slides the window size up and down</p>
+<ul>
+<li>
+<ul>
+<li>&lt; ACK=1000, Window=3000SEQ=1000, SEQ=2000, SEQ=3000 &gt;</li>
+</ul>
+</li>
+<li>&lt; ACK=4000, Window=4000<br>
+User Datagram Protocol</li>
+<li>connectionless</li>
+<li>
+<ul>
+<li>no reliability, no windowing,</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>no reordering of the received data, andno segmentation of large chunks of data into the right size for transmission</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>provides data transfer and multiplexing using port numbersLess overhead and processing than TCP.</li>
+</ul>
+</li>
+<li>no reordering or recovery</li>
+<li>DNS requests use UDP, user will retry an operation if the DNS resolution failsNetwork File System (NFS), a remote file system application, performs recovery with<br>
+application layer code, so UDP features are acceptable to NFS.</li>
+</ul>
+<h5 id="-">-</h5>
+<ul>
+<li>
+<ul>
+<li>Source port, Destination PortLength, Checksum</li>
+</ul>
+</li>
+<li>8 byte header</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Uniform Resource Identifiers (URI)</code></pre></div><ul>
+<li>
+<ul>
+<li>clicking a link and typing a URIreferred to as web address or Universal (uniform) Resource Locator [URL]—refer to a URI</li>
+</ul>
+</li>
+<li>three key components
+<ul>
+<li>before the :// identifies the protocol</li>
+<li>
+<ul>
+<li>between the // and / identifies the server by nameafter the / identifies the web page.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>TCP/IP Applications</p>
+<ul>
+<li><a href="http:" rel="external" target="_blank">http://</a> (Scheme)</li>
+<li>
+<ul>
+<li><a href="http://www.certskills.com/blog" rel="external" target="_blank">http://www.certskills.com/blog</a> (path) (Authority)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>&lt; Name Resolution Request (IP Header, UDP Header, DNS Request)Name resolution Reply (Ip Header, UDP Header, DNS Request (IP address) &gt;</li>
+</ul>
+</li>
+<li>&lt; TCP connection to requested web server</li>
+<li>
+<ul>
+<li>DNS requests can be cached by hosts and serversLocal DNS may need to ask for help</li>
+</ul>
+</li>
+<li>Sends repeated DNS messages to find the authoritative DNS server.</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0"><code>➢➢ Root DNS .com TLD DNS
+➢ Authoritative cisco.com DNS</code></pre></div><ul>
+<li>Recursive DNS lookup- host &gt; Enterprise DNS &gt;</li>
+<li>The enterprise DNS acts as a recursive DNS server</li>
+</ul>
+<h5 id="dns">DNS</h5>
+<ul>
+<li>HTTP GET request lists file it needs</li>
+<li>
+<ul>
+<li>HTTP GET response from server with a Server may issue areturn code of 404, (file not found)return code of 200 (meaning OK) and file’s contents.</li>
+</ul>
+</li>
+<li>Web pages consist of multiple files, called objects</li>
+<li>Objects are stored as different files on the web serverWeb browser gets the first file which can include references to other URIs that the browser<br>
+also requests</li>
+</ul>
+<h5 id="--1">-</h5>
+<ul>
+<li>
+<ul>
+<li>&lt; HTTP GET /go/ccnaHTTP OK data &gt;</li>
+</ul>
+</li>
+<li>&lt; HTTP GET /graphics/logo1.gif</li>
+<li>
+<ul>
+<li>HTTP OK data &gt;&lt; HTTP GET /graphics/ad1.gif</li>
+</ul>
+</li>
+<li>HTTP OK data &gt;
+<ul>
+<li>Flow over one or more TCP connection between the client and the server.</li>
+</ul>
+</li>
+</ul>
+<p>Transferring Files with HTTP</p>
+<p>Identifying the Correct Receiving Application</p>
+<ul>
+<li>tracks which port opened which request</li>
+</ul>
+<p>Fields that identify next header<br>
+&lt; Ethernet (Type) (0x0800)<br>
+&lt; IPv4 (Protocol) (6)&lt; TCP (Destination port) (49124)</p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+
+        <search>
+          <div class="searchbox default-animation">
+            <i class="fas fa-search" title="Search (CTRL+ALT+f)"></i>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1727264159" defer></script>
+        <script src="/js/lunr/lunr.min.js?1727264159" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1727264159" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1727264159" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1727264159" defer></script>
+        <script src="/js/search.js?1727264159" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
+          <ul class="enlarge morespace collapsible-menu">
+          <li data-nav-id="/linux/" class=""><input type="checkbox" id="R-section-9e5aaccdf48687824ccd3b3097af8e41" aria-controls="R-subsections-9e5aaccdf48687824ccd3b3097af8e41"><label for="R-section-9e5aaccdf48687824ccd3b3097af8e41"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-9e5aaccdf48687824ccd3b3097af8e41" class="morespace collapsible-menu">
+          <li data-nav-id="/linux/rhcsa-notes/" class=""><a class="padding" href="/linux/rhcsa-notes/">My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/linux/rhcsa-vagrant-lab-setup/" class=""><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/networking/" class=""><input type="checkbox" id="R-section-ec0ce2ce30f7ea4f73b681ec6981b84f" aria-controls="R-subsections-ec0ce2ce30f7ea4f73b681ec6981b84f"><label for="R-section-ec0ce2ce30f7ea4f73b681ec6981b84f"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec0ce2ce30f7ea4f73b681ec6981b84f" class="morespace collapsible-menu">
+          <li data-nav-id="/networking/how-to-study-for-ccna-200-301/" class=""><a class="padding" href="/networking/how-to-study-for-ccna-200-301/">How to Study for CCNA 200-301<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/tools/" class=""><input type="checkbox" id="R-section-cff67d57e00d6d598d882def3568f700" aria-controls="R-subsections-cff67d57e00d6d598d882def3568f700"><label for="R-section-cff67d57e00d6d598d882def3568f700"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cff67d57e00d6d598d882def3568f700" class="morespace collapsible-menu">
+          <li data-nav-id="/tools/calibre-web-with-docker-and-nginx/" class=""><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/how-to-build-a-website-with-hugo/" class=""><a class="padding" href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/" class=""><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/" class=""><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/">Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/tools/using-vagrant-on-linux/" class=""><a class="padding" href="/tools/using-vagrant-on-linux/">Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/writing/" class=""><input type="checkbox" id="R-section-e557a922d533a171e9a204b7e50265e2" aria-controls="R-subsections-e557a922d533a171e9a204b7e50265e2"><label for="R-section-e557a922d533a171e9a204b7e50265e2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e557a922d533a171e9a204b7e50265e2" class="morespace collapsible-menu">
+          <li data-nav-id="/writing/4-ways-to-quit-caffeine/" class=""><a class="padding" href="/writing/4-ways-to-quit-caffeine/">4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/1-tcp/" class="parent alwaysopen"><input type="checkbox" id="R-section-d8ca431ee9280e5511c5398682b3c3c1" aria-controls="R-subsections-d8ca431ee9280e5511c5398682b3c3c1" checked><label for="R-section-d8ca431ee9280e5511c5398682b3c3c1"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu 1 TCPs</span></label><a class="padding" href="/1-tcp/">1 TCPs<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8ca431ee9280e5511c5398682b3c3c1" class="morespace collapsible-menu">
+          <li data-nav-id="/1-tcp/ip-transport-and-applications/" class="active"><a class="padding" href="/1-tcp/ip-transport-and-applications/"><i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space">
+            <li><a class="padding" href="https://github.com/davidvargasxyz"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/1-tcp/ip-transport-and-applications/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1727264159" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1727264159" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1727264159" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1727264159" defer></script>
+    <script src="/js/js-yaml.min.js?1727264159" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1727264159" defer></script>
+  </body>
+</html>

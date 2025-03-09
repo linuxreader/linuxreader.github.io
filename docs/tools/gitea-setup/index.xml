@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>http://perfectdarkmode.com/tools/gitea-setup/</link>
+    <description>Following this guide: https://blog.while-true-do.io/podman-setup-gitea/&#xA;Create container network: sudo podman network create gitea-net&#xA;Enable update timer for automatic updates: sudo systemctl enable --now podman-auto-update.timer&#xA;Database setup sudo vim /etc/systemd/system/container-gitea-db.service&#xA;# container-gitea-db.service [Unit] Description=Podman container-gitea-db.service Wants=network.target After=network-online.target RequiresMountsFor=%t/containers [Service] Environment=PODMAN_SYSTEMD_UNIT=%n Restart=on-failure TimeoutStopSec=70 PIDFile=%t/container-gitea-db.pid Type=forking ExecStartPre=/bin/rm -f %t/container-gitea-db.pid %t/container-gitea-db.ctr-id ExecStart=/usr/bin/podman container run \ --conmon-pidfile %t/container-gitea-db.pid \ --cidfile %t/container-gitea-db.ctr-id \ --cgroups=no-conmon \ --replace \ --detach \ --tty \ --env MARIADB_RANDOM_ROOT_PASSWORD=yes \ --env MARIADB_DATABASE=gitea \ --env MARIADB_USER={username} \ --env MARIADB_PASSWORD={password} \ --volume gitea-db-volume:/var/lib/mysql/:Z \ --label &#34;io.containers.autoupdate=registry&#34; \ --network gitea-net \ --name gitea-db \ docker.io/library/mariadb:10 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/container-gitea-db.ctr-id -t 10 ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/container-gitea-db.ctr-id [Install] WantedBy=multi-user.target default.target Enable the service and verify:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://perfectdarkmode.com/tools/gitea-setup/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

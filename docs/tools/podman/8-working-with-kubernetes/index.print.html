@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta property="og:url" content="http://perfectdarkmode.com/tools/podman/8-working-with-kubernetes/">
+    <meta property="og:description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="8 Working with Kubernetes []{#08.htm#pgfId-1118670}This chapter []{#08.htm#marker-1119983}covers
+[]{#08.htm#pgfId-1118671 .calibre17}Creating Kubernetes YAML files from existing Podman pods and containers []{#08.htm#pgfId-1118672 .calibre17}Creating Podman containers and pods from a Kubernetes YAML file []{#08.htm#pgfId-1118673 .calibre17}Shutting down and removing pods and containers using the Kubernetes YAML file []{#08.htm#pgfId-1118674 .calibre17}Building container images on the fly before launching pods and containers from a Kubernetes YAML file []{#08.htm#pgfId-1118675 .calibre17}Running Podman inside of a Podman and Kubernetes container []{#08.htm#pgfId-1118676}Some readers come to this chapter expecting to see how Podman can be used as the container engine for Kubernetes, similar to how it has used Docker in the past. While there have been some efforts to use Podman as the container engine for Podman (the kind project supports this), I do not generally recommend that you use Podman for this purpose. I recommend you use CRI-O described in appendix A, since it was built specifically to work with Kubernetes and shares the underlying libraries of Podman. Kubernetes is now discouraging users from using the Docker backend and encouraging them to use a CRI-O or containerd as a backend.">
+    <meta itemprop="wordCount" content="4432">
+    <title></title>
+    <link href="http://perfectdarkmode.com/tools/podman/8-working-with-kubernetes/" rel="canonical" type="text/html" title="">
+    <link href="/tools/podman/8-working-with-kubernetes/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/logo.svg?1734871290" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1734871290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1734871290" rel="stylesheet">
+    <link href="/css/fonts.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1734871290" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1734871290" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1734871290" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1734871290" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1734871290" rel="stylesheet">
+    <script src="/js/variant.js?1734871290"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support print" data-url="/tools/podman/8-working-with-kubernetes/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#heading_id_3">[]{#08.htm#pgfId-1118696}8.1 Kubernetes YAML files</a></li>
+    <li><a href="#heading_id_4">[]{#08.htm#pgfId-1118705}8.2 Generating Kubernetes YAML files with Podman</a></li>
+    <li><a href="#heading_id_5">[]{#08.htm#pgfId-1118798}8.3 Generating Podman pods and containers from Kubernetes YAML</a>
+      <ul>
+        <li><a href="#heading_id_6">[]{#08.htm#pgfId-1118853}8.3.1 Shutting down pods and containers based on a Kubernetes YAML file</a></li>
+        <li><a href="#heading_id_7">[]{#08.htm#pgfId-1118884}8.3.2 Building images using Podman and Kubernetes YAML files</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_8">[]{#08.htm#pgfId-1118979}8.4 Running Podman within a container</a>
+      <ul>
+        <li><a href="#heading_id_9">[]{#08.htm#pgfId-1119032}8.4.1 Running Podman within a Podman container</a></li>
+        <li><a href="#heading_id_10">[]{#08.htm#pgfId-1119072}8.4.2 Running Podman within a Kubernetes pod</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_11">[]{#08.htm#pgfId-1119118}Summary</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1734871290" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1734871290" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1734871290" defer></script>
+    <script src="/js/js-yaml.min.js?1734871290" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1734871290" defer></script>
+  </body>
+</html>

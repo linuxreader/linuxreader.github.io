@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Local Filesystems and Swap DIY Labs Lab: Create VFAT, Ext4, and XFS File Systems in Partitions and Mount Persistently Create three 70MB primary partitions on one of the available 250MB disks (lsblk) by invoking the parted utility directly at the command prompt. [root@server2 mapper]# parted /dev/sdc mklabel msdos Information: You may need to update /etc/fstab. [root@server2 mapper]# parted /dev/sdc mkpart primary 1 70m Information: You may need to update /etc/fstab. root@server2 mapper]# parted /dev/sdb print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary parted) mkpart primary 71MB 140MB Warning: The resulting partition is not properly aligned for best performance: 138671s % 2048s != 0s Ignore/Cancel? Ignore/Cancel? ignore (parted) mkpart primary 140MB 210MB Warning: The resulting partition is not properly aligned for best performance: 273438s % 2048s != 0s Ignore/Cancel? ignore (parted) print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary 2 71.0MB 140MB 69.0MB primary 3 140MB 210MB 70.0MB primary Apply label “msdos” if the disk is new. Initialize partition 1 with VFAT, partition 2 with Ext4, and partition 3 with XFS file system types. [root@server2 mapper]# sudo mkfs -t vfat /dev/sdc1 mkfs.fat 4.2 (2021-01-31) [root@server2 mapper]# sudo mkfs -t ext4 /dev/sdc2 mke2fs 1.46.5 (30-Dec-2021) Creating filesystem with 67380 1k blocks and 16848 inodes Filesystem UUID: 43b590ff-3330-4b88-aef9-c3a97d8cf51e Superblock backups stored on blocks: 8193, 24577, 40961, 57345 Allocating group tables: done Writing inode tables: done Creating journal (4096 blocks): done Writing superblocks and filesystem accounting information: done [root@server2 mapper]# sudo mkfs -t xfs /dev/sdc3 Filesystem should be larger than 300MB. Log size should be at least 64MB. Support for filesystems like this one is deprecated and they will not be supported in future releases. meta-data=/dev/sdb3 isize=512 agcount=4, agsize=4273 blks = sectsz=512 attr=2, projid32bit=1 = crc=1 finobt=1, sparse=1, rmapbt=0 = reflink=1 bigtime=1 inobtcount=1 nrext64=0 data = bsize=4096 blocks=17089, imaxpct=25 = sunit=0 swidth=0 blks naming =version 2 bsize=4096 ascii-ci=0, ftype=1 log =internal log bsize=4096 blocks=1368, version=2 = sectsz=512 sunit=0 blks, lazy-count=1 realtime =none extsz=4096 blocks=0, rtextents=0 Create mount points /vfatfs5, /ext4fs5, and /xfsfs5, and mount all three manually. [root@server2 mapper]# mkdir /vfatfs5 /ext4fs5 /xfsfs5 [root@server2 mapper]# mount /dev/sdc1 /vfatfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc2 /ext4fs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc3 /xfsfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdb1 on /vfatfs5 type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) /dev/sdb2 on /ext4fs5 type ext4 (rw,relatime,seclabel) /dev/sdb3 on /xfsfs5 type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota) Determine the UUIDs for the three file systems, and add them to the fstab file. [root@server2 mapper]# blkid /dev/sdc1 /dev/sdc2 /dev/sdc3 &gt;&gt; /etc/fstab [root@server2 mapper]# vim /etc/fstab Unmount all three file systems manually, and execute mount -a to mount them all. umount /dev/sdb1 /dev/sdb2 /dev/sdb3 Run df -h for verification. Lab: Create XFS File System in LVM VDO Volume and Mount Persistently Ensure that VDO software is installed. sudo dnf install kmod-kvdo">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Local Filesystems and Swap DIY Labs Lab: Create VFAT, Ext4, and XFS File Systems in Partitions and Mount Persistently Create three 70MB primary partitions on one of the available 250MB disks (lsblk) by invoking the parted utility directly at the command prompt. [root@server2 mapper]# parted /dev/sdc mklabel msdos Information: You may need to update /etc/fstab. [root@server2 mapper]# parted /dev/sdc mkpart primary 1 70m Information: You may need to update /etc/fstab. root@server2 mapper]# parted /dev/sdb print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary parted) mkpart primary 71MB 140MB Warning: The resulting partition is not properly aligned for best performance: 138671s % 2048s != 0s Ignore/Cancel? Ignore/Cancel? ignore (parted) mkpart primary 140MB 210MB Warning: The resulting partition is not properly aligned for best performance: 273438s % 2048s != 0s Ignore/Cancel? ignore (parted) print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary 2 71.0MB 140MB 69.0MB primary 3 140MB 210MB 70.0MB primary Apply label “msdos” if the disk is new. Initialize partition 1 with VFAT, partition 2 with Ext4, and partition 3 with XFS file system types. [root@server2 mapper]# sudo mkfs -t vfat /dev/sdc1 mkfs.fat 4.2 (2021-01-31) [root@server2 mapper]# sudo mkfs -t ext4 /dev/sdc2 mke2fs 1.46.5 (30-Dec-2021) Creating filesystem with 67380 1k blocks and 16848 inodes Filesystem UUID: 43b590ff-3330-4b88-aef9-c3a97d8cf51e Superblock backups stored on blocks: 8193, 24577, 40961, 57345 Allocating group tables: done Writing inode tables: done Creating journal (4096 blocks): done Writing superblocks and filesystem accounting information: done [root@server2 mapper]# sudo mkfs -t xfs /dev/sdc3 Filesystem should be larger than 300MB. Log size should be at least 64MB. Support for filesystems like this one is deprecated and they will not be supported in future releases. meta-data=/dev/sdb3 isize=512 agcount=4, agsize=4273 blks = sectsz=512 attr=2, projid32bit=1 = crc=1 finobt=1, sparse=1, rmapbt=0 = reflink=1 bigtime=1 inobtcount=1 nrext64=0 data = bsize=4096 blocks=17089, imaxpct=25 = sunit=0 swidth=0 blks naming =version 2 bsize=4096 ascii-ci=0, ftype=1 log =internal log bsize=4096 blocks=1368, version=2 = sectsz=512 sunit=0 blks, lazy-count=1 realtime =none extsz=4096 blocks=0, rtextents=0 Create mount points /vfatfs5, /ext4fs5, and /xfsfs5, and mount all three manually. [root@server2 mapper]# mkdir /vfatfs5 /ext4fs5 /xfsfs5 [root@server2 mapper]# mount /dev/sdc1 /vfatfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc2 /ext4fs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc3 /xfsfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdb1 on /vfatfs5 type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) /dev/sdb2 on /ext4fs5 type ext4 (rw,relatime,seclabel) /dev/sdb3 on /xfsfs5 type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota) Determine the UUIDs for the three file systems, and add them to the fstab file. [root@server2 mapper]# blkid /dev/sdc1 /dev/sdc2 /dev/sdc3 &gt;&gt; /etc/fstab [root@server2 mapper]# vim /etc/fstab Unmount all three file systems manually, and execute mount -a to mount them all. umount /dev/sdb1 /dev/sdb2 /dev/sdb3 Run df -h for verification. Lab: Create XFS File System in LVM VDO Volume and Mount Persistently Ensure that VDO software is installed. sudo dnf install kmod-kvdo">
+    <meta property="og:url" content="http://localhost:1313/linux/local-filesystems-and-swap-diy-labs/">
+    <meta property="og:description" content="Local Filesystems and Swap DIY Labs Lab: Create VFAT, Ext4, and XFS File Systems in Partitions and Mount Persistently Create three 70MB primary partitions on one of the available 250MB disks (lsblk) by invoking the parted utility directly at the command prompt. [root@server2 mapper]# parted /dev/sdc mklabel msdos Information: You may need to update /etc/fstab. [root@server2 mapper]# parted /dev/sdc mkpart primary 1 70m Information: You may need to update /etc/fstab. root@server2 mapper]# parted /dev/sdb print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary parted) mkpart primary 71MB 140MB Warning: The resulting partition is not properly aligned for best performance: 138671s % 2048s != 0s Ignore/Cancel? Ignore/Cancel? ignore (parted) mkpart primary 140MB 210MB Warning: The resulting partition is not properly aligned for best performance: 273438s % 2048s != 0s Ignore/Cancel? ignore (parted) print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary 2 71.0MB 140MB 69.0MB primary 3 140MB 210MB 70.0MB primary Apply label “msdos” if the disk is new. Initialize partition 1 with VFAT, partition 2 with Ext4, and partition 3 with XFS file system types. [root@server2 mapper]# sudo mkfs -t vfat /dev/sdc1 mkfs.fat 4.2 (2021-01-31) [root@server2 mapper]# sudo mkfs -t ext4 /dev/sdc2 mke2fs 1.46.5 (30-Dec-2021) Creating filesystem with 67380 1k blocks and 16848 inodes Filesystem UUID: 43b590ff-3330-4b88-aef9-c3a97d8cf51e Superblock backups stored on blocks: 8193, 24577, 40961, 57345 Allocating group tables: done Writing inode tables: done Creating journal (4096 blocks): done Writing superblocks and filesystem accounting information: done [root@server2 mapper]# sudo mkfs -t xfs /dev/sdc3 Filesystem should be larger than 300MB. Log size should be at least 64MB. Support for filesystems like this one is deprecated and they will not be supported in future releases. meta-data=/dev/sdb3 isize=512 agcount=4, agsize=4273 blks = sectsz=512 attr=2, projid32bit=1 = crc=1 finobt=1, sparse=1, rmapbt=0 = reflink=1 bigtime=1 inobtcount=1 nrext64=0 data = bsize=4096 blocks=17089, imaxpct=25 = sunit=0 swidth=0 blks naming =version 2 bsize=4096 ascii-ci=0, ftype=1 log =internal log bsize=4096 blocks=1368, version=2 = sectsz=512 sunit=0 blks, lazy-count=1 realtime =none extsz=4096 blocks=0, rtextents=0 Create mount points /vfatfs5, /ext4fs5, and /xfsfs5, and mount all three manually. [root@server2 mapper]# mkdir /vfatfs5 /ext4fs5 /xfsfs5 [root@server2 mapper]# mount /dev/sdc1 /vfatfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc2 /ext4fs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc3 /xfsfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdb1 on /vfatfs5 type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) /dev/sdb2 on /ext4fs5 type ext4 (rw,relatime,seclabel) /dev/sdb3 on /xfsfs5 type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota) Determine the UUIDs for the three file systems, and add them to the fstab file. [root@server2 mapper]# blkid /dev/sdc1 /dev/sdc2 /dev/sdc3 &gt;&gt; /etc/fstab [root@server2 mapper]# vim /etc/fstab Unmount all three file systems manually, and execute mount -a to mount them all. umount /dev/sdb1 /dev/sdb2 /dev/sdb3 Run df -h for verification. Lab: Create XFS File System in LVM VDO Volume and Mount Persistently Ensure that VDO software is installed. sudo dnf install kmod-kvdo">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Local Filesystems and Swap DIY Labs Lab: Create VFAT, Ext4, and XFS File Systems in Partitions and Mount Persistently Create three 70MB primary partitions on one of the available 250MB disks (lsblk) by invoking the parted utility directly at the command prompt. [root@server2 mapper]# parted /dev/sdc mklabel msdos Information: You may need to update /etc/fstab. [root@server2 mapper]# parted /dev/sdc mkpart primary 1 70m Information: You may need to update /etc/fstab. root@server2 mapper]# parted /dev/sdb print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary parted) mkpart primary 71MB 140MB Warning: The resulting partition is not properly aligned for best performance: 138671s % 2048s != 0s Ignore/Cancel? Ignore/Cancel? ignore (parted) mkpart primary 140MB 210MB Warning: The resulting partition is not properly aligned for best performance: 273438s % 2048s != 0s Ignore/Cancel? ignore (parted) print Model: ATA VBOX HARDDISK (scsi) Disk /dev/sdb: 262MB Sector size (logical/physical): 512B/512B Partition Table: msdos Disk Flags: Number Start End Size Type File system Flags 1 1049kB 70.3MB 69.2MB primary 2 71.0MB 140MB 69.0MB primary 3 140MB 210MB 70.0MB primary Apply label “msdos” if the disk is new. Initialize partition 1 with VFAT, partition 2 with Ext4, and partition 3 with XFS file system types. [root@server2 mapper]# sudo mkfs -t vfat /dev/sdc1 mkfs.fat 4.2 (2021-01-31) [root@server2 mapper]# sudo mkfs -t ext4 /dev/sdc2 mke2fs 1.46.5 (30-Dec-2021) Creating filesystem with 67380 1k blocks and 16848 inodes Filesystem UUID: 43b590ff-3330-4b88-aef9-c3a97d8cf51e Superblock backups stored on blocks: 8193, 24577, 40961, 57345 Allocating group tables: done Writing inode tables: done Creating journal (4096 blocks): done Writing superblocks and filesystem accounting information: done [root@server2 mapper]# sudo mkfs -t xfs /dev/sdc3 Filesystem should be larger than 300MB. Log size should be at least 64MB. Support for filesystems like this one is deprecated and they will not be supported in future releases. meta-data=/dev/sdb3 isize=512 agcount=4, agsize=4273 blks = sectsz=512 attr=2, projid32bit=1 = crc=1 finobt=1, sparse=1, rmapbt=0 = reflink=1 bigtime=1 inobtcount=1 nrext64=0 data = bsize=4096 blocks=17089, imaxpct=25 = sunit=0 swidth=0 blks naming =version 2 bsize=4096 ascii-ci=0, ftype=1 log =internal log bsize=4096 blocks=1368, version=2 = sectsz=512 sunit=0 blks, lazy-count=1 realtime =none extsz=4096 blocks=0, rtextents=0 Create mount points /vfatfs5, /ext4fs5, and /xfsfs5, and mount all three manually. [root@server2 mapper]# mkdir /vfatfs5 /ext4fs5 /xfsfs5 [root@server2 mapper]# mount /dev/sdc1 /vfatfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc2 /ext4fs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdc3 /xfsfs5 mount: (hint) your fstab has been modified, but systemd still uses the old version; use &#39;systemctl daemon-reload&#39; to reload. [root@server2 mapper]# mount /dev/sdb1 on /vfatfs5 type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) /dev/sdb2 on /ext4fs5 type ext4 (rw,relatime,seclabel) /dev/sdb3 on /xfsfs5 type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota) Determine the UUIDs for the three file systems, and add them to the fstab file. [root@server2 mapper]# blkid /dev/sdc1 /dev/sdc2 /dev/sdc3 &gt;&gt; /etc/fstab [root@server2 mapper]# vim /etc/fstab Unmount all three file systems manually, and execute mount -a to mount them all. umount /dev/sdb1 /dev/sdb2 /dev/sdb3 Run df -h for verification. Lab: Create XFS File System in LVM VDO Volume and Mount Persistently Ensure that VDO software is installed. sudo dnf install kmod-kvdo">
+    <meta itemprop="wordCount" content="1722">
+    <title></title>
+    <link href="http://localhost:1313/linux/local-filesystems-and-swap-diy-labs/" rel="canonical" type="text/html" title="">
+    <link href="/linux/local-filesystems-and-swap-diy-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1730768046" rel="stylesheet">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support print" data-url="/linux/local-filesystems-and-swap-diy-labs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#local-filesystems-and-swap-diy-labs">Local Filesystems and Swap DIY Labs</a>
+      <ul>
+        <li><a href="#lab-create-vfat-ext4-and-xfs-file-systems-in-partitions-and-mount-persistently">Lab: Create VFAT, Ext4, and XFS File Systems in Partitions and Mount Persistently</a></li>
+        <li><a href="#lab-create-xfs-file-system-in-lvm-vdo-volume-and-mount-persistently">Lab: Create XFS File System in LVM VDO Volume and Mount Persistently</a></li>
+        <li><a href="#lab-create-ext4-and-xfs-file-systems-in-lvm-volumes-and-mount-persistently">Lab: Create Ext4 and XFS File Systems in LVM Volumes and Mount Persistently</a></li>
+        <li><a href="#lab-14-4-extend-ext4-and-xfs-file-systems-in-lvm-volumes">Lab 14-4: Extend Ext4 and XFS File Systems in LVM Volumes</a></li>
+        <li><a href="#lab-14-5-create-swap-in-partition-and-lvm-volume-and-activate-persistently">Lab 14-5: Create Swap in Partition and LVM Volume and Activate Persistently</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

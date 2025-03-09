@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Advanced File Management Labs Lab: find stuff Create file 10 and search for it. [vagrant@server1 ~]$ sudo touch /root/file10 [vagrant@server1 ~]$ sudo find / -name file10 -print /root/file10 Perform a case insensitive search for files and directories in /dev that begin with “usb” followed by any characters. [vagrant@server1 ~]$ find /dev -iname usb* /dev/usbmon0 Find files smaller than 1MB (-1M) in size (-size) in the root user’s home directory (~). [vagrant@server1 etc]$ find ~ -size -1M Search for files larger than 40MB (&#43;40M) in size (-size) in the /usr directory: [vagrant@server1 etc]$ sudo find /usr -size &#43;40M /usr/share/GeoIP/GeoLite2-City.b Find files in the entire root file system (/) with ownership (-user) set to user daemon and owning group (-group) set to any group other than (-not or ! for negation) user1: [vagrant@server1 etc]$ sudo find / -user daemon -not -group user1 Search for directories (-type) by the name “src” (-name) in /usr at a maximum of two subdirectory levels below (-maxdepth): [vagrant@server1 etc]$ sudo find /usr -maxdepth 2 -type d -name src /usr/local/src /usr/src Run the above search but at least three subdirectory levels beneath /usr, substitute -maxdepth 2 with -mindepth 3. [vagrant@server1 etc]$ sudo find /usr -mindepth 3 -type d -name src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/drivers/gpu/drm//display/dmub/src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/tools/usb/usbip/src Find files in the /etc directory that were modified (-mtime) more than (the &#43; sign) 2000 days ago: [vagrant@server1 etc]$ sudo find /etc -mtime &#43;2000 /etc/libuser.conf /etc/xattr.conf /etc/whois.conf Run the above search for files that were modified exactly 12 days ago, replace “&#43;2000” with “12”. [vagrant@server1 etc]$ sudo find /etc -mtime 12 To find files in the /var/log directory that have been modified (-mmin) in the past (the - sign) 100 minutes: [vagrant@server1 etc]$ sudo find /var/log -mmin -100 /var/log/rhsm/rhsmcertd.log /var/log/rhsm/rhsm.log /var/log/audit/audit.log /var/log/dnf.librepo.log /var/log/dnf.rpm.log /var/log/sa /var/log/sa/sa16 /var/log/sa/sar15 /var/log/dnf.log /var/log/hawkey.log /var/log/cron /var/log/messages /var/log/secure Run the above search for files that have been modified exactly 25 minutes ago, replace “-100” with “25”. [vagrant@server1 etc]$ sudo find /var/log -mmin 25 To search for block device files (-type) in the /dev directory with permissions (-perm) set to exactly 660: [vagrant@server1 etc]$ sudo find /dev -type b -perm 660 /dev/dm-1 /dev/dm-0 /dev/sda2 /dev/sda1 /dev/sda Search for character device files (-type) in the /dev directory with at least (-222) world writable permissions (this example would ignore checking the write and execute permissions): [vagrant@server1 etc]$ sudo find /dev -type c -perm -222 Find files in the /etc/systemd directory that are executable by at least their owner or group members: [vagrant@server1 etc]$ sudo find /etc/systemd -perm /110 Search for symlinked files (-type) in /usr with permissions (-perm) set to read and write for the owner and owning group: sudo find /usr -type l -perm -ug=rw Search for directories in the entire directory tree (/) by the name “core” (-name) and list them (ls-ld) as they are discovered without prompting for user confirmation (-exec): [vagrant@server1 etc]$ sudo find / -name core -exec ls -ld {} \; Use the -ok switch to prompt for confirmation before it copies each matched file (-name) in /etc/sysconfig to /tmp: sudo find /etc/sysconfig -name &#39;*.conf&#39; -ok cp {} /tmp \; Lab: Display ACL and give permissions Create and empty file aclfile1 in /tmp and display ACLs on it: cd /tmp touch aclfile1 getfacl aclfile1 Give rw permission to user 1 but with a mask of read only and view the results. setfacl -m u:user1:rw,m:r aclfile1 Promote the mask value to include write bit and verify: setfacl -m m:rw aclfile1 getfacl -c aclfile1 Lab: Identify, Apply, and Erase Access ACLs Switch to user1 and create file acluser1 in /tmp: su - user1 cd /tmp touch acluser1 Use ls and getfacl to check existing acl entries: ls -l acluser1 getfacl acluser1 -c Allocate rw permissions to user100 with setfacl in octal form: setfacl -m u:user100:6 acluser1 Run ls (&#43;) and getfacl to verify: ls -l acluser1 getfacl -c acluser1 Open another terminal as user100 and open the file and edit it.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Advanced File Management Labs Lab: find stuff Create file 10 and search for it. [vagrant@server1 ~]$ sudo touch /root/file10 [vagrant@server1 ~]$ sudo find / -name file10 -print /root/file10 Perform a case insensitive search for files and directories in /dev that begin with “usb” followed by any characters. [vagrant@server1 ~]$ find /dev -iname usb* /dev/usbmon0 Find files smaller than 1MB (-1M) in size (-size) in the root user’s home directory (~). [vagrant@server1 etc]$ find ~ -size -1M Search for files larger than 40MB (&#43;40M) in size (-size) in the /usr directory: [vagrant@server1 etc]$ sudo find /usr -size &#43;40M /usr/share/GeoIP/GeoLite2-City.b Find files in the entire root file system (/) with ownership (-user) set to user daemon and owning group (-group) set to any group other than (-not or ! for negation) user1: [vagrant@server1 etc]$ sudo find / -user daemon -not -group user1 Search for directories (-type) by the name “src” (-name) in /usr at a maximum of two subdirectory levels below (-maxdepth): [vagrant@server1 etc]$ sudo find /usr -maxdepth 2 -type d -name src /usr/local/src /usr/src Run the above search but at least three subdirectory levels beneath /usr, substitute -maxdepth 2 with -mindepth 3. [vagrant@server1 etc]$ sudo find /usr -mindepth 3 -type d -name src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/drivers/gpu/drm//display/dmub/src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/tools/usb/usbip/src Find files in the /etc directory that were modified (-mtime) more than (the &#43; sign) 2000 days ago: [vagrant@server1 etc]$ sudo find /etc -mtime &#43;2000 /etc/libuser.conf /etc/xattr.conf /etc/whois.conf Run the above search for files that were modified exactly 12 days ago, replace “&#43;2000” with “12”. [vagrant@server1 etc]$ sudo find /etc -mtime 12 To find files in the /var/log directory that have been modified (-mmin) in the past (the - sign) 100 minutes: [vagrant@server1 etc]$ sudo find /var/log -mmin -100 /var/log/rhsm/rhsmcertd.log /var/log/rhsm/rhsm.log /var/log/audit/audit.log /var/log/dnf.librepo.log /var/log/dnf.rpm.log /var/log/sa /var/log/sa/sa16 /var/log/sa/sar15 /var/log/dnf.log /var/log/hawkey.log /var/log/cron /var/log/messages /var/log/secure Run the above search for files that have been modified exactly 25 minutes ago, replace “-100” with “25”. [vagrant@server1 etc]$ sudo find /var/log -mmin 25 To search for block device files (-type) in the /dev directory with permissions (-perm) set to exactly 660: [vagrant@server1 etc]$ sudo find /dev -type b -perm 660 /dev/dm-1 /dev/dm-0 /dev/sda2 /dev/sda1 /dev/sda Search for character device files (-type) in the /dev directory with at least (-222) world writable permissions (this example would ignore checking the write and execute permissions): [vagrant@server1 etc]$ sudo find /dev -type c -perm -222 Find files in the /etc/systemd directory that are executable by at least their owner or group members: [vagrant@server1 etc]$ sudo find /etc/systemd -perm /110 Search for symlinked files (-type) in /usr with permissions (-perm) set to read and write for the owner and owning group: sudo find /usr -type l -perm -ug=rw Search for directories in the entire directory tree (/) by the name “core” (-name) and list them (ls-ld) as they are discovered without prompting for user confirmation (-exec): [vagrant@server1 etc]$ sudo find / -name core -exec ls -ld {} \; Use the -ok switch to prompt for confirmation before it copies each matched file (-name) in /etc/sysconfig to /tmp: sudo find /etc/sysconfig -name &#39;*.conf&#39; -ok cp {} /tmp \; Lab: Display ACL and give permissions Create and empty file aclfile1 in /tmp and display ACLs on it: cd /tmp touch aclfile1 getfacl aclfile1 Give rw permission to user 1 but with a mask of read only and view the results. setfacl -m u:user1:rw,m:r aclfile1 Promote the mask value to include write bit and verify: setfacl -m m:rw aclfile1 getfacl -c aclfile1 Lab: Identify, Apply, and Erase Access ACLs Switch to user1 and create file acluser1 in /tmp: su - user1 cd /tmp touch acluser1 Use ls and getfacl to check existing acl entries: ls -l acluser1 getfacl acluser1 -c Allocate rw permissions to user100 with setfacl in octal form: setfacl -m u:user100:6 acluser1 Run ls (&#43;) and getfacl to verify: ls -l acluser1 getfacl -c acluser1 Open another terminal as user100 and open the file and edit it.">
+    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/advanced-file-management-labs/">
+    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:description" content="Advanced File Management Labs Lab: find stuff Create file 10 and search for it. [vagrant@server1 ~]$ sudo touch /root/file10 [vagrant@server1 ~]$ sudo find / -name file10 -print /root/file10 Perform a case insensitive search for files and directories in /dev that begin with “usb” followed by any characters. [vagrant@server1 ~]$ find /dev -iname usb* /dev/usbmon0 Find files smaller than 1MB (-1M) in size (-size) in the root user’s home directory (~). [vagrant@server1 etc]$ find ~ -size -1M Search for files larger than 40MB (&#43;40M) in size (-size) in the /usr directory: [vagrant@server1 etc]$ sudo find /usr -size &#43;40M /usr/share/GeoIP/GeoLite2-City.b Find files in the entire root file system (/) with ownership (-user) set to user daemon and owning group (-group) set to any group other than (-not or ! for negation) user1: [vagrant@server1 etc]$ sudo find / -user daemon -not -group user1 Search for directories (-type) by the name “src” (-name) in /usr at a maximum of two subdirectory levels below (-maxdepth): [vagrant@server1 etc]$ sudo find /usr -maxdepth 2 -type d -name src /usr/local/src /usr/src Run the above search but at least three subdirectory levels beneath /usr, substitute -maxdepth 2 with -mindepth 3. [vagrant@server1 etc]$ sudo find /usr -mindepth 3 -type d -name src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/drivers/gpu/drm//display/dmub/src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/tools/usb/usbip/src Find files in the /etc directory that were modified (-mtime) more than (the &#43; sign) 2000 days ago: [vagrant@server1 etc]$ sudo find /etc -mtime &#43;2000 /etc/libuser.conf /etc/xattr.conf /etc/whois.conf Run the above search for files that were modified exactly 12 days ago, replace “&#43;2000” with “12”. [vagrant@server1 etc]$ sudo find /etc -mtime 12 To find files in the /var/log directory that have been modified (-mmin) in the past (the - sign) 100 minutes: [vagrant@server1 etc]$ sudo find /var/log -mmin -100 /var/log/rhsm/rhsmcertd.log /var/log/rhsm/rhsm.log /var/log/audit/audit.log /var/log/dnf.librepo.log /var/log/dnf.rpm.log /var/log/sa /var/log/sa/sa16 /var/log/sa/sar15 /var/log/dnf.log /var/log/hawkey.log /var/log/cron /var/log/messages /var/log/secure Run the above search for files that have been modified exactly 25 minutes ago, replace “-100” with “25”. [vagrant@server1 etc]$ sudo find /var/log -mmin 25 To search for block device files (-type) in the /dev directory with permissions (-perm) set to exactly 660: [vagrant@server1 etc]$ sudo find /dev -type b -perm 660 /dev/dm-1 /dev/dm-0 /dev/sda2 /dev/sda1 /dev/sda Search for character device files (-type) in the /dev directory with at least (-222) world writable permissions (this example would ignore checking the write and execute permissions): [vagrant@server1 etc]$ sudo find /dev -type c -perm -222 Find files in the /etc/systemd directory that are executable by at least their owner or group members: [vagrant@server1 etc]$ sudo find /etc/systemd -perm /110 Search for symlinked files (-type) in /usr with permissions (-perm) set to read and write for the owner and owning group: sudo find /usr -type l -perm -ug=rw Search for directories in the entire directory tree (/) by the name “core” (-name) and list them (ls-ld) as they are discovered without prompting for user confirmation (-exec): [vagrant@server1 etc]$ sudo find / -name core -exec ls -ld {} \; Use the -ok switch to prompt for confirmation before it copies each matched file (-name) in /etc/sysconfig to /tmp: sudo find /etc/sysconfig -name &#39;*.conf&#39; -ok cp {} /tmp \; Lab: Display ACL and give permissions Create and empty file aclfile1 in /tmp and display ACLs on it: cd /tmp touch aclfile1 getfacl aclfile1 Give rw permission to user 1 but with a mask of read only and view the results. setfacl -m u:user1:rw,m:r aclfile1 Promote the mask value to include write bit and verify: setfacl -m m:rw aclfile1 getfacl -c aclfile1 Lab: Identify, Apply, and Erase Access ACLs Switch to user1 and create file acluser1 in /tmp: su - user1 cd /tmp touch acluser1 Use ls and getfacl to check existing acl entries: ls -l acluser1 getfacl acluser1 -c Allocate rw permissions to user100 with setfacl in octal form: setfacl -m u:user100:6 acluser1 Run ls (&#43;) and getfacl to verify: ls -l acluser1 getfacl -c acluser1 Open another terminal as user100 and open the file and edit it.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Advanced File Management Labs Lab: find stuff Create file 10 and search for it. [vagrant@server1 ~]$ sudo touch /root/file10 [vagrant@server1 ~]$ sudo find / -name file10 -print /root/file10 Perform a case insensitive search for files and directories in /dev that begin with “usb” followed by any characters. [vagrant@server1 ~]$ find /dev -iname usb* /dev/usbmon0 Find files smaller than 1MB (-1M) in size (-size) in the root user’s home directory (~). [vagrant@server1 etc]$ find ~ -size -1M Search for files larger than 40MB (&#43;40M) in size (-size) in the /usr directory: [vagrant@server1 etc]$ sudo find /usr -size &#43;40M /usr/share/GeoIP/GeoLite2-City.b Find files in the entire root file system (/) with ownership (-user) set to user daemon and owning group (-group) set to any group other than (-not or ! for negation) user1: [vagrant@server1 etc]$ sudo find / -user daemon -not -group user1 Search for directories (-type) by the name “src” (-name) in /usr at a maximum of two subdirectory levels below (-maxdepth): [vagrant@server1 etc]$ sudo find /usr -maxdepth 2 -type d -name src /usr/local/src /usr/src Run the above search but at least three subdirectory levels beneath /usr, substitute -maxdepth 2 with -mindepth 3. [vagrant@server1 etc]$ sudo find /usr -mindepth 3 -type d -name src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/drivers/gpu/drm//display/dmub/src /usr/src/kernels/4.18.0-425.3.1.el8.x86_64/tools/usb/usbip/src Find files in the /etc directory that were modified (-mtime) more than (the &#43; sign) 2000 days ago: [vagrant@server1 etc]$ sudo find /etc -mtime &#43;2000 /etc/libuser.conf /etc/xattr.conf /etc/whois.conf Run the above search for files that were modified exactly 12 days ago, replace “&#43;2000” with “12”. [vagrant@server1 etc]$ sudo find /etc -mtime 12 To find files in the /var/log directory that have been modified (-mmin) in the past (the - sign) 100 minutes: [vagrant@server1 etc]$ sudo find /var/log -mmin -100 /var/log/rhsm/rhsmcertd.log /var/log/rhsm/rhsm.log /var/log/audit/audit.log /var/log/dnf.librepo.log /var/log/dnf.rpm.log /var/log/sa /var/log/sa/sa16 /var/log/sa/sar15 /var/log/dnf.log /var/log/hawkey.log /var/log/cron /var/log/messages /var/log/secure Run the above search for files that have been modified exactly 25 minutes ago, replace “-100” with “25”. [vagrant@server1 etc]$ sudo find /var/log -mmin 25 To search for block device files (-type) in the /dev directory with permissions (-perm) set to exactly 660: [vagrant@server1 etc]$ sudo find /dev -type b -perm 660 /dev/dm-1 /dev/dm-0 /dev/sda2 /dev/sda1 /dev/sda Search for character device files (-type) in the /dev directory with at least (-222) world writable permissions (this example would ignore checking the write and execute permissions): [vagrant@server1 etc]$ sudo find /dev -type c -perm -222 Find files in the /etc/systemd directory that are executable by at least their owner or group members: [vagrant@server1 etc]$ sudo find /etc/systemd -perm /110 Search for symlinked files (-type) in /usr with permissions (-perm) set to read and write for the owner and owning group: sudo find /usr -type l -perm -ug=rw Search for directories in the entire directory tree (/) by the name “core” (-name) and list them (ls-ld) as they are discovered without prompting for user confirmation (-exec): [vagrant@server1 etc]$ sudo find / -name core -exec ls -ld {} \; Use the -ok switch to prompt for confirmation before it copies each matched file (-name) in /etc/sysconfig to /tmp: sudo find /etc/sysconfig -name &#39;*.conf&#39; -ok cp {} /tmp \; Lab: Display ACL and give permissions Create and empty file aclfile1 in /tmp and display ACLs on it: cd /tmp touch aclfile1 getfacl aclfile1 Give rw permission to user 1 but with a mask of read only and view the results. setfacl -m u:user1:rw,m:r aclfile1 Promote the mask value to include write bit and verify: setfacl -m m:rw aclfile1 getfacl -c aclfile1 Lab: Identify, Apply, and Erase Access ACLs Switch to user1 and create file acluser1 in /tmp: su - user1 cd /tmp touch acluser1 Use ls and getfacl to check existing acl entries: ls -l acluser1 getfacl acluser1 -c Allocate rw permissions to user100 with setfacl in octal form: setfacl -m u:user100:6 acluser1 Run ls (&#43;) and getfacl to verify: ls -l acluser1 getfacl -c acluser1 Open another terminal as user100 and open the file and edit it.">
+    <meta itemprop="wordCount" content="2336">
+    <title></title>
+    <link href="/linux/rhcsa/advanced-file-management-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/advanced-file-management-labs/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
+    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741554912" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741554912"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.1rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/advanced-file-management-labs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#lab-find-stuff">Lab: find stuff</a></li>
+        <li><a href="#lab-display-acl-and-give-permissions">Lab: Display ACL and give permissions</a></li>
+        <li><a href="#lab-identify-apply-and-erase-access-acls">Lab: Identify, Apply, and Erase Access ACLs</a></li>
+        <li><a href="#lab-apply-identify-and-erase-default-acls">Lab: Apply, Identify, and erase default ACLs</a></li>
+        <li><a href="#lab-modify-permission-bits-using-symbolic-form">Lab: Modify Permission Bits Using Symbolic Form</a></li>
+        <li><a href="#lab-modify-permission-bits-using-octal-form">Lab: Modify Permission Bits Using Octal Form</a></li>
+        <li><a href="#lab--view-suid-bit-on-su-command">Lab:  View suid bit on su command</a></li>
+        <li><a href="#lab-test-the-effect-of-setuid-bit-on-executable-files">Lab: Test the Effect of setuid Bit on Executable Files</a></li>
+        <li><a href="#lab-test-the-effect-of-setgid-bit-on-executable-files">Lab: Test the Effect of setgid Bit on Executable Files</a></li>
+        <li><a href="#lab-set-up-shared-directory-for-group-collaboration">Lab: Set up Shared Directory for Group Collaboration</a></li>
+        <li><a href="#lab-view-t-in-permissions-for-sticky-bit">Lab: View &ldquo;t&rdquo; in permissions for sticky bit</a></li>
+        <li><a href="#lab-test-the-effect-of-sticky-bit">Lab: Test the effect of Sticky Bit</a></li>
+        <li><a href="#lab-manipulate-file-permissions-user1">Lab: Manipulate File Permissions (user1)</a></li>
+        <li><a href="#lab-configure-group-collaboration-and-prevent-file-deletion-root">Lab: Configure Group Collaboration and Prevent File Deletion (root)</a></li>
+        <li><a href="#lab-find-files-root">Lab: Find Files (root)</a></li>
+        <li><a href="#lab-find-files-using-different-criteria-root">Lab: Find Files Using Different Criteria (root)</a></li>
+        <li><a href="#lab-apply-acl-settings-root">Lab: Apply ACL Settings (root)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="advanced-file-management-labs">Advanced File Management Labs</h1>
+<h3 id="lab-find-stuff">Lab: find stuff</h3>
+<ol>
+<li>Create file 10 and search for it.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo touch /root/file10
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo find / -name file10 -print
+</span></span><span style="display:flex;"><span>/root/file10</span></span></code></pre></div>
+<ol start="2">
+<li>Perform a case insensitive search for files and directories in /dev that begin with &ldquo;usb&rdquo; followed by any characters.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ find /dev -iname usb*
+</span></span><span style="display:flex;"><span>/dev/usbmon0</span></span></code></pre></div>
+<ol start="3">
+<li>Find files smaller than 1MB (-1M) in size (-size) in the root user’s home directory (~).</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ find ~ -size -1M</span></span></code></pre></div>
+<ol start="4">
+<li>Search for files larger than 40MB (+40M) in size (-size) in the /usr directory:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /usr -size +40M
+</span></span><span style="display:flex;"><span>/usr/share/GeoIP/GeoLite2-City.b</span></span></code></pre></div>
+<ol start="5">
+<li>Find files in the entire root file system (/) with ownership (-user) set to user daemon and owning group (-group) set to any group other than (-not or ! for negation) user1:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find / -user daemon -not -group user1</span></span></code></pre></div>
+<ol start="6">
+<li>Search for directories (-type) by the name “src” (-name) in /usr at a maximum of two subdirectory levels below (-maxdepth):</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /usr -maxdepth <span style="color:#ff9f43">2</span> -type d -name src
+</span></span><span style="display:flex;"><span>/usr/local/src
+</span></span><span style="display:flex;"><span>/usr/src</span></span></code></pre></div>
+<ol start="7">
+<li>Run the above search but at least three subdirectory levels beneath /usr, substitute -maxdepth 2 with -mindepth 3.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /usr -mindepth <span style="color:#ff9f43">3</span> -type d -name src
+</span></span><span style="display:flex;"><span>/usr/src/kernels/4.18.0-425.3.1.el8.x86_64/drivers/gpu/drm//display/dmub/src
+</span></span><span style="display:flex;"><span>/usr/src/kernels/4.18.0-425.3.1.el8.x86_64/tools/usb/usbip/src</span></span></code></pre></div>
+<ol start="8">
+<li>Find files in the /etc directory that were modified (-mtime) more than (the + sign) 2000 days ago:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /etc -mtime +2000
+</span></span><span style="display:flex;"><span>/etc/libuser.conf
+</span></span><span style="display:flex;"><span>/etc/xattr.conf
+</span></span><span style="display:flex;"><span>/etc/whois.conf</span></span></code></pre></div>
+<ol start="9">
+<li>Run the above search for files that were modified exactly 12 days ago, replace “+2000” with “12”.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /etc -mtime <span style="color:#ff9f43">12</span></span></span></code></pre></div>
+<ol start="10">
+<li>To find files in the /var/log directory that have been modified (-mmin) in the past (the - sign) 100 minutes:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /var/log -mmin -100
+</span></span><span style="display:flex;"><span>/var/log/rhsm/rhsmcertd.log
+</span></span><span style="display:flex;"><span>/var/log/rhsm/rhsm.log
+</span></span><span style="display:flex;"><span>/var/log/audit/audit.log
+</span></span><span style="display:flex;"><span>/var/log/dnf.librepo.log
+</span></span><span style="display:flex;"><span>/var/log/dnf.rpm.log
+</span></span><span style="display:flex;"><span>/var/log/sa
+</span></span><span style="display:flex;"><span>/var/log/sa/sa16
+</span></span><span style="display:flex;"><span>/var/log/sa/sar15
+</span></span><span style="display:flex;"><span>/var/log/dnf.log
+</span></span><span style="display:flex;"><span>/var/log/hawkey.log
+</span></span><span style="display:flex;"><span>/var/log/cron
+</span></span><span style="display:flex;"><span>/var/log/messages
+</span></span><span style="display:flex;"><span>/var/log/secure</span></span></code></pre></div>
+<ol start="11">
+<li>Run the above search for files that have been modified exactly 25 minutes ago, replace “-100” with “25”.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /var/log -mmin <span style="color:#ff9f43">25</span></span></span></code></pre></div>
+<ol start="12">
+<li>To search for block device files (-type) in the /dev directory with permissions (-perm) set to exactly 660:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /dev -type b -perm <span style="color:#ff9f43">660</span>
+</span></span><span style="display:flex;"><span>/dev/dm-1
+</span></span><span style="display:flex;"><span>/dev/dm-0
+</span></span><span style="display:flex;"><span>/dev/sda2
+</span></span><span style="display:flex;"><span>/dev/sda1
+</span></span><span style="display:flex;"><span>/dev/sda</span></span></code></pre></div>
+<ol start="13">
+<li>Search for character device files (-type) in the /dev directory with at least (-222) world writable permissions (this example would ignore checking the write and execute permissions):</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /dev -type c -perm -222</span></span></code></pre></div>
+<ol start="14">
+<li>Find files in the /etc/systemd directory that are executable by at least their owner or group members:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /etc/systemd -perm /110</span></span></code></pre></div>
+<ol start="15">
+<li>Search for symlinked files (-type) in /usr with permissions (-perm) set to read and write for the owner and owning group:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo find /usr -type l -perm -ug<span style="color:#ff6ac1">=</span>rw</span></span></code></pre></div>
+<ol start="16">
+<li>Search for directories in the entire directory tree (/) by the name “core” (-name) and list them (ls-ld) as they are discovered without prompting for user confirmation (-exec):</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find / -name core -exec ls -ld <span style="color:#ff6ac1">{}</span> <span style="color:#5af78e">\;</span></span></span></code></pre></div>
+<ol start="17">
+<li>Use the -ok switch to prompt for confirmation before it copies each matched file (-name) in /etc/sysconfig to /tmp:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo find /etc/sysconfig -name <span style="color:#5af78e">&#39;*.conf&#39;</span> -ok  cp <span style="color:#ff6ac1">{}</span> /tmp <span style="color:#5af78e">\;</span></span></span></code></pre></div>
+<h3 id="lab-display-acl-and-give-permissions">Lab: Display ACL and give permissions</h3>
+<ol>
+<li>Create and empty file aclfile1 in /tmp and display ACLs on it:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> touch aclfile1
+</span></span><span style="display:flex;"><span> getfacl aclfile1</span></span></code></pre></div>
+<ol start="2">
+<li>Give rw permission to user 1 but with a mask of read only and view the results.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user1:rw,m:r aclfile1</span></span></code></pre></div>
+<ol start="3">
+<li>Promote the mask value to include write bit and verify:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m m:rw aclfile1
+</span></span><span style="display:flex;"><span> getfacl -c aclfile1</span></span></code></pre></div>
+<h3 id="lab-identify-apply-and-erase-access-acls">Lab: Identify, Apply, and Erase Access ACLs</h3>
+<ol>
+<li>Switch to user1 and create file acluser1 in /tmp:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> touch acluser1</span></span></code></pre></div>
+<ol start="2">
+<li>Use ls and getfacl to check existing acl entries:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l acluser1
+</span></span><span style="display:flex;"><span> getfacl acluser1 -c</span></span></code></pre></div>
+<ol start="3">
+<li>Allocate rw permissions to user100 with setfacl in octal form:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user100:6 acluser1</span></span></code></pre></div>
+<ol start="4">
+<li>Run ls (+) and getfacl to verify:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l acluser1
+</span></span><span style="display:flex;"><span> getfacl -c acluser1</span></span></code></pre></div>
+<ol start="5">
+<li>
+<p>Open another terminal as user100 and open the file and edit it.</p>
+</li>
+<li>
+<p>Add user200 with full rwx permissions to acluser1 using the symbolic notation and then show the updated ACL settings:</p>
+</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user200:rwx acluser1
+</span></span><span style="display:flex;"><span> getfacl -c acluser1</span></span></code></pre></div>
+<ol start="7">
+<li>Delete the ACL entries set for user200 and validate:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -x u:user200 acluser1
+</span></span><span style="display:flex;"><span> getfacl acluser1 -c</span></span></code></pre></div>
+<ol start="8">
+<li>Delete the rest of the ACLs:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -b acluser1</span></span></code></pre></div>
+<ol start="9">
+<li>Use the ls and getfacl commands and confirm for the ACLs removal:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l acluser1
+</span></span><span style="display:flex;"><span> getfacl acluser1 -c</span></span></code></pre></div>
+<ol start="10">
+<li>create group aclgroup1</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> groupadd -g <span style="color:#ff9f43">8000</span> aclgroup1</span></span></code></pre></div>
+<ol start="11">
+<li>add this group as a named group along with the two named users (user100 and user200).</li>
+</ol>
+<h3 id="lab-apply-identify-and-erase-default-acls">Lab: Apply, Identify, and erase default ACLs</h3>
+<ol>
+<li>Switch or log in as user1 and create a directory projects in /tmp:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> mkdir projects</span></span></code></pre></div>
+<ol start="2">
+<li>Use the getfacl command for an initial look at the permissions on the directory:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> getfacl -c projects</span></span></code></pre></div>
+<ol start="3">
+<li>Allocate default read, write, and execute permissions to user100 and user200 on the directory. Use both octal and symbolic notations and the -d (default) option with the setfacl command.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -dm u:user100:7,u:user200:rwx projects/
+</span></span><span style="display:flex;"><span> getfacl -c projects/</span></span></code></pre></div>
+<ol start="4">
+<li>Create a subdirectory prjdir1 under projects and observe the ACL inheritance:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> mkdir prjdir1
+</span></span><span style="display:flex;"><span> getfacl -c prjdir1</span></span></code></pre></div>
+<ol start="5">
+<li>Create a file prjfile1 under projects and observe the ACL inheritance:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch prjfile1
+</span></span><span style="display:flex;"><span> getfacl -c prjfilel</span></span></code></pre></div>
+<ol start="6">
+<li>log in as one of the named users, change directory into /tmp/projects, and edit prjfile1 (add some random text). Then change into the prjdir1 and create file file100.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user100
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp/projects
+</span></span><span style="display:flex;"><span> vim prjfile1
+</span></span><span style="display:flex;"><span> ls -l prjfile1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> prjdir1
+</span></span><span style="display:flex;"><span> touch file100
+</span></span><span style="display:flex;"><span> pwd</span></span></code></pre></div>
+<ol start="7">
+<li>Delete all the default ACLs from the projects directory as user1 and confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">exit</span>
+</span></span><span style="display:flex;"><span> su - user1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> setfacl -k projects
+</span></span><span style="display:flex;"><span> getfacl -c projects</span></span></code></pre></div>
+<ol start="8">
+<li>create a group such as aclgroup2 by running groupadd -g 9000 aclgroup2 as the root user and repeat this exercise by adding this group as a named group along with the two named users (user100 and user200).</li>
+</ol>
+<h3 id="lab-modify-permission-bits-using-symbolic-form">Lab: Modify Permission Bits Using Symbolic Form</h3>
+<ol>
+<li>Add an execute bit for the owner and a write bit for group and public</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod u+x permfile1 -v
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0444</span> <span style="color:#ff6ac1">(</span>r--r--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v go+w permfile1
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="2">
+<li>Revoke the write bit from public</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v o-w permfile1
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff5c57">a</span><span style="color:#ff6ac1">=</span>rwx permfile1
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0777</span> <span style="color:#ff6ac1">(</span>rwxrwxrwx<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="3">
+<li>Revoke write from the owning group and write and execute bits from public.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod g-w,o-wx permfile1 -v
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0777</span> <span style="color:#ff6ac1">(</span>rwxrwxrwx<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0754</span> <span style="color:#ff6ac1">(</span>rwxr-xr--<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<h3 id="lab-modify-permission-bits-using-octal-form">Lab: Modify Permission Bits Using Octal Form</h3>
+<ol>
+<li>Read only for user, group, and other:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ touch permfile2
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod <span style="color:#ff9f43">444</span> permfile2
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -l permfile2
+</span></span><span style="display:flex;"><span> -r--r--r--. <span style="color:#ff9f43">1</span> vagrant vagrant <span style="color:#ff9f43">0</span> Feb  <span style="color:#ff9f43">4</span> 12:22 permfile2</span></span></code></pre></div>
+<ol start="2">
+<li>Add an execute bit for the owner:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">544</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0444</span> <span style="color:#ff6ac1">(</span>r--r--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="3">
+<li>Add a write permission bit for group and public:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">566</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="4">
+<li>Revoke the write bit for public:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">564</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="5">
+<li>Assign read, write, and execute permission bits to all three user categories:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">777</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0777</span> <span style="color:#ff6ac1">(</span>rwxrwxrwx<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="6">
+<li>Run the umask command without any options and it will display the current umask value in octal notation:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">umask</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">0002</span></span></span></code></pre></div>
+<ol start="7">
+<li>Symbolic form</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">umask</span> -S
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">u</span><span style="color:#ff6ac1">=</span>rwx,g<span style="color:#ff6ac1">=</span>rwx,o<span style="color:#ff6ac1">=</span>rx</span></span></code></pre></div>
+<ol start="8">
+<li>Set all new files and directories to get 640 and 750 permissions,</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">umask</span> <span style="color:#ff9f43">027</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">umask</span> <span style="color:#ff5c57">u</span><span style="color:#ff6ac1">=</span>rwx,g<span style="color:#ff6ac1">=</span>rx,o<span style="color:#ff6ac1">=</span></span></span></code></pre></div>
+<ol start="9">
+<li>Test new umask (666-027=640) (777-027=750)</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ touch tempfile1
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -l tempfile1
+</span></span><span style="display:flex;"><span> -rw-r-----. <span style="color:#ff9f43">1</span> vagrant vagrant <span style="color:#ff9f43">0</span> Feb  <span style="color:#ff9f43">5</span> 12:09 tempfile1
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ mkdir tempdir1
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -ld tempdir1
+</span></span><span style="display:flex;"><span> drwxr-x---. <span style="color:#ff9f43">2</span> vagrant vagrant <span style="color:#ff9f43">6</span> Feb  <span style="color:#ff9f43">5</span> 12:10 tempdir1</span></span></code></pre></div>
+<h3 id="lab--view-suid-bit-on-su-command">Lab:  View suid bit on su command</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -l /usr/bin/su
+</span></span><span style="display:flex;"><span> -rwsr-xr-x. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">50152</span> Aug <span style="color:#ff9f43">22</span> 10:08 /usr/bin/su</span></span></code></pre></div>
+<h3 id="lab-test-the-effect-of-setuid-bit-on-executable-files">Lab: Test the Effect of setuid Bit on Executable Files</h3>
+<ol>
+<li>Open 2 terminal windows. Switch to user1 in terminal1</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ su - user1
+</span></span><span style="display:flex;"><span> Password:
+</span></span><span style="display:flex;"><span> Last login: Sun Feb  <span style="color:#ff9f43">5</span> 12:37:12 UTC <span style="color:#ff9f43">2023</span> on pts/1</span></span></code></pre></div>
+<ol start="2">
+<li>Switch to root on terminal2</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo su - root</span></span></code></pre></div>
+<ol start="3">
+<li>T1 Revoke the setuid bit from /usr/bin/su</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chmod -v u-s /usr/bin/su</span></span></code></pre></div>
+<ol start="4">
+<li>T2 log off as root</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ctrl+d</span></span></code></pre></div>
+<ol start="5">
+<li>Try to log in has root from both terminals</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user1@server1 ~<span style="color:#ff6ac1">]</span>$ su - root
+</span></span><span style="display:flex;"><span> Password:
+</span></span><span style="display:flex;"><span> su: Authentication failure</span></span></code></pre></div>
+<ol start="6">
+<li>T1 restore the setuid bit</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo chmod -v +4000 /usr/bin/su
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;/usr/bin/su&#39;</span> changed from <span style="color:#ff9f43">0755</span> <span style="color:#ff6ac1">(</span>rwxr-xr-x<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">4755</span> <span style="color:#ff6ac1">(</span>rwsr-xr-x<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<h3 id="lab-test-the-effect-of-setgid-bit-on-executable-files">Lab: Test the Effect of setgid Bit on Executable Files</h3>
+<ol>
+<li>
+<p>Log into two terminals
+T1 root
+T2 user1
+Opened with ssh</p>
+</li>
+<li>
+<p>T2 list users currently logged in</p>
+</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>who</span></span></code></pre></div>
+<ol start="3">
+<li>T2 send a message to root</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>write root</span></span></code></pre></div>
+<ol start="3">
+<li>T1 revoke setgid from /usr/bin/write</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod g-s /usr/bin/write -v</span></span></code></pre></div>
+<ol start="4">
+<li>Try to write root</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user1@server1 ~<span style="color:#ff6ac1">]</span>$ write root
+</span></span><span style="display:flex;"><span>write: effective gid does not match group of /dev/pts/0</span></span></code></pre></div>
+<ol start="5">
+<li>Restore the setgid bit on /usr/bin/write:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo chmod -v +2000 /usr/bin/write</span>
+</span></span><span style="display:flex;"><span>mode of <span style="color:#5af78e">&#39;/usr/bin/write&#39;</span> changed from <span style="color:#ff9f43">0755</span> <span style="color:#ff6ac1">(</span>rwxr-xr-x<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">2755</span> <span style="color:#ff6ac1">(</span>rwxr-sr-x<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="6">
+<li>Test</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>write root</span></span></code></pre></div>
+<h3 id="lab-set-up-shared-directory-for-group-collaboration">Lab: Set up Shared Directory for Group Collaboration</h3>
+<ol>
+<li>set up 2 test users</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># adduser user100</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># adduser user200</span></span></span></code></pre></div>
+<ol start="2">
+<li>Add group sgrp with GID 9999 with the groupadd command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># groupadd -g 9999 sgrp</span></span></span></code></pre></div>
+<ol start="3">
+<li>Add user100 and user200 as members to sgrp using the usermod command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># usermod -aG sgrp user100</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># usermod -aG sgrp user200</span></span></span></code></pre></div>
+<ol start="4">
+<li>Create /sdir directory</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># mkdir /sdir</span></span></span></code></pre></div>
+<ol start="5">
+<li>Set ownership and owning group on /sdir to root and sgrp, using the chown command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># chown root:sgrp /sdir</span></span></span></code></pre></div>
+<ol start="6">
+<li>Set the setgid bit on /sdir using the chmod command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo chmod g+s /sdir</span></span></code></pre></div>
+<ol start="7">
+<li>Add write permission to the group members on /sdir and revoke all permissions from public:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># chmod g+w,o-rx /sdir</span></span></span></code></pre></div>
+<ol start="8">
+<li>Verify</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -ld /sdir</span>
+</span></span><span style="display:flex;"><span> drwxrws---. <span style="color:#ff9f43">2</span> root sgrp <span style="color:#ff9f43">6</span> Feb <span style="color:#ff9f43">13</span> 15:49 /sdir</span></span></code></pre></div>
+<ol start="9">
+<li>Switch or log in as user100 and change to the /sdir directory:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># su - user100</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user100@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span> /sdir</span></span></code></pre></div>
+<ol start="10">
+<li>Create a file and check the owner and owning group on it:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user100@server1 sdir<span style="color:#ff6ac1">]</span>$ touch file100
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user100@server1 sdir<span style="color:#ff6ac1">]</span>$ ls -l file100
+</span></span><span style="display:flex;"><span> -rw-rw-r--. <span style="color:#ff9f43">1</span> user100 sgrp <span style="color:#ff9f43">0</span> Feb <span style="color:#ff9f43">10</span> 22:41 file100</span></span></code></pre></div>
+<ol start="11">
+<li>Log out as user100, and switch or log in as user200 and change to the /sdir directory:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># su - user200</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span> /sdir</span></span></code></pre></div>
+<ol start="12">
+<li>Create a file and check the owner and owning group on it:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 sdir<span style="color:#ff6ac1">]</span>$ touch file200
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 sdir<span style="color:#ff6ac1">]</span>$ ls -l file200
+</span></span><span style="display:flex;"><span> -rw-rw-r--. <span style="color:#ff9f43">1</span> user200 sgrp <span style="color:#ff9f43">0</span> Feb <span style="color:#ff9f43">13</span> 16:01 file200</span></span></code></pre></div>
+<h3 id="lab-view-t-in-permissions-for-sticky-bit">Lab: View &ldquo;t&rdquo; in permissions for sticky bit</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 sdir<span style="color:#ff6ac1">]</span>$ ls -l /tmp /var/tmp -d
+</span></span><span style="display:flex;"><span> drwxrwxrwt. <span style="color:#ff9f43">8</span> root root <span style="color:#ff9f43">185</span> Feb <span style="color:#ff9f43">13</span> 16:12 /tmp
+</span></span><span style="display:flex;"><span> drwxrwxrwt. <span style="color:#ff9f43">4</span> root root <span style="color:#ff9f43">113</span> Feb <span style="color:#ff9f43">13</span> 16:00 /var/tmp</span></span></code></pre></div>
+<h3 id="lab-test-the-effect-of-sticky-bit">Lab: Test the effect of Sticky Bit</h3>
+<ol>
+<li>Switch to user100 and change to the /tmp directory</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user100@server1 sdir<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span> /tmp</span></span></code></pre></div>
+<ol start="2">
+<li>Create file called stckyfile</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user100@server1 tmp<span style="color:#ff6ac1">]</span>$ touch stickyfile</span></span></code></pre></div>
+<ol start="3">
+<li>Try to delete the file as user200</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user200@server1 tmp<span style="color:#ff6ac1">]</span>$ rm stickyfile
+</span></span><span style="display:flex;"><span>rm: remove write-protected regular empty file <span style="color:#5af78e">&#39;stickyfile&#39;</span>? y
+</span></span><span style="display:flex;"><span>rm: cannot remove <span style="color:#5af78e">&#39;stickyfile&#39;</span>: Operation not permitted</span></span></code></pre></div>
+<ol start="4">
+<li>Revoke the /tmp stickybit and confirm</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo chmod o-t /tmp
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -ld /tmp
+</span></span><span style="display:flex;"><span>drwxrwxrwx. <span style="color:#ff9f43">8</span> root root <span style="color:#ff9f43">4096</span> Feb <span style="color:#ff9f43">13</span> 22:00 /tmp</span></span></code></pre></div>
+<ol start="5">
+<li>Retry the removal as user200</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm stickyfile</span></span></code></pre></div>
+<ol start="6">
+<li>Restore the sticky bit on /tmp</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod -v +1000 /tmp</span></span></code></pre></div>
+<h3 id="lab-manipulate-file-permissions-user1">Lab: Manipulate File Permissions (user1)</h3>
+<ol>
+<li>Create file file11 and directory dir11 in the home directory. Make a note of the permissions on them.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch file11
+</span></span><span style="display:flex;"><span> mkdir dir11</span></span></code></pre></div>
+<ol start="2">
+<li>Run the umask command to determine the current umask.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> umask</span></span></code></pre></div>
+<ol start="3">
+<li>Change the umask value to 0035 using symbolic notation.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">umask</span> <span style="color:#ff5c57">g</span><span style="color:#ff6ac1">=</span>r,0<span style="color:#ff6ac1">=</span>w</span></span></code></pre></div>
+<ol start="4">
+<li>Create file22 and directory dir22 in the home directory.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch file22
+</span></span><span style="display:flex;"><span> mkdir dir22</span></span></code></pre></div>
+<ol start="5">
+<li>Observe the permissions on file22 and dir22, and compare them with the permissions on file11 and dir11.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l</span></span></code></pre></div>
+<ol start="6">
+<li>Use the chmod command and modify the permissions on file11 to match those on file22.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chmod g-w,o-r,o+w file11</span></span></code></pre></div>
+<ol start="7">
+<li>Use the chmod command and modify the permissions on dir22 to match those on dir11. Do not remove file11, file22, dir11, and dir22 yet.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chmod g-wx,o-rx,o+w dir11</span></span></code></pre></div>
+<h3 id="lab-configure-group-collaboration-and-prevent-file-deletion-root">Lab: Configure Group Collaboration and Prevent File Deletion (root)</h3>
+<ol>
+<li>create directory /sdir. Create group sgrp and create user1000 and user2000 and add them to the group:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> mkdir /sdir
+</span></span><span style="display:flex;"><span> groupadd sgrp
+</span></span><span style="display:flex;"><span> adduser user1000 <span style="color:#ff6ac1">&amp;&amp;</span> adduser user2000
+</span></span><span style="display:flex;"><span> usermod -a -G sgrp user1000
+</span></span><span style="display:flex;"><span> usermod -a -G sgrp user2000</span></span></code></pre></div>
+<ol start="2">
+<li>Set up appropriate ownership (root), owning group (sgrp), and permissions (rwx for group, &mdash; for public, s for group, and t for public) on the directory to support group collaboration and ensure non-owners cannot delete files.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chgrp sgrp sdir
+</span></span><span style="display:flex;"><span> chmod <span style="color:#ff5c57">g</span><span style="color:#ff6ac1">=</span>rwx,o<span style="color:#ff6ac1">=</span>--- sdir
+</span></span><span style="display:flex;"><span> chmod o+t sdir
+</span></span><span style="display:flex;"><span> chmod g+s sdir</span></span></code></pre></div>
+<ol start="3">
+<li>Log on as user1000 and create a file under /sdir.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user1000
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /sdir
+</span></span><span style="display:flex;"><span> touch testfile</span></span></code></pre></div>
+<ol start="4">
+<li>Log on as user2000 and try to edit that file. You should be able to edit the file successfully.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user200
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /sdir
+</span></span><span style="display:flex;"><span> vim testfile
+</span></span><span style="display:flex;"><span> cat testfile</span></span></code></pre></div>
+<ol start="5">
+<li>As user2000 try to delete the file. You should not be able to.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> rm testfile</span></span></code></pre></div>
+<h3 id="lab-find-files-root">Lab: Find Files (root)</h3>
+<ol>
+<li>Search for all files in the entire directory structure that have been modified in the last 300 minutes and display their type.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> find /sdir -mtime -300 -exec file <span style="color:#ff6ac1">{}</span> <span style="color:#5af78e">\;</span></span></span></code></pre></div>
+<ol start="2">
+<li>Search for named pipe and socket files.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> find / -type p
+</span></span><span style="display:flex;"><span> find / -type s</span></span></code></pre></div>
+<h3 id="lab-find-files-using-different-criteria-root">Lab: Find Files Using Different Criteria (root)</h3>
+<ol>
+<li>Search for regular files under /usr that were accessed more than 100 days ago, are not bigger than 5MB in size, and are owned by the user root.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> find /usr -type f -mtime +100 -size -5M -user root</span></span></code></pre></div>
+<h3 id="lab-apply-acl-settings-root">Lab: Apply ACL Settings (root)</h3>
+<ol>
+<li>Create file testfile under /tmp.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch /tmp/testfile</span></span></code></pre></div>
+<ol start="2">
+<li>Create users.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> adduser user2000
+</span></span><span style="display:flex;"><span> adduser user3000
+</span></span><span style="display:flex;"><span> adduser user4000</span></span></code></pre></div>
+<ol start="3">
+<li>Apply ACL settings on the file so that user2000 gets 7, user3000 gets 6, and user4000 gets 4 permissions.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user2000:7 testfile
+</span></span><span style="display:flex;"><span> setfacl -m u:user3000:6 testfile
+</span></span><span style="display:flex;"><span> setfacl -m u:user4000:4 testfile</span></span></code></pre></div>
+<ol start="4">
+<li>Remove the ACLs for user2000, and verify.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -x user2000 testfile
+</span></span><span style="display:flex;"><span> getfacl testfile</span></span></code></pre></div>
+<ol start="5">
+<li>Erase all remaining ACLs at once, and confirm.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -b testfile
+</span></span><span style="display:flex;"><span> getfacl testfile</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">Perfect Dark Mode</a>
+
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741554912";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741554912" defer></script>
+        <script src="/js/search.js?1741554912" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><input type="checkbox" id="R-section-89434e96479d9689b11efd9b3cb12acc" aria-controls="R-subsections-89434e96479d9689b11efd9b3cb12acc"><label for="R-section-89434e96479d9689b11efd9b3cb12acc"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Fedora</span></label><a class="padding" href="/linux/fedora/">Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/my-fedora-setup/"><a class="padding" href="/linux/fedora/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-id="/linux/fedora/silverblue/"><a class="padding" href="/linux/fedora/silverblue/">Silverblue</a></li></ul></li>
+            <li class="active hidden " data-nav-id="/linux/rhcsa/advanced-file-management-labs/"><a class="padding" href="/linux/rhcsa/advanced-file-management-labs/"></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/">Networking</a></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/advanced-file-management-labs/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741554912" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
+    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741554912" defer></script>
+  </body>
+</html>
