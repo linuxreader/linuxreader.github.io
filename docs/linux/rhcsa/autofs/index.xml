@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>http://perfectdarkmode.com/linux/rhcsa/autofs/</link>
+    <description>AutoFS Automatically mount and unmount on clients during runtime and system reboots. Triggers mount or unmount action based on mount point activity. Client-side service Mount an NFS share on demand Entry placed in AutoFS config files. Automatically mounts share upon detecting activity in it’s mount point. (touch, ls, cd) unmounts share if the share hasn’t been accessed for a predefined period of time. Mounts managed with autofs should not be mounted manually via /etc/fstab to avoid inconsistencies. Saves Kernel from having to maintain unused NFS shares. (Improved performance!) NFS shares are defined in config files called maps (/etc/ or /etc/auto.master.d/) Does not use /etc/fstab. Does not require root to mount a share (fstab does). Prevents client from hanging if share is down. Share is unmounted if not accessed for 5 minutes (default) Supports wildcard characters or environment variables. Automount daemon in the userland mounts configured shares automatically upon access. invoked at system boot. Reads AutoFS master map and create initial mount point entries. (not mounting yet) Does not mount shares until user activity is detected. Unmounts after set timeframe of inactivity. Use the mount command on a share to verify the path of the AutoFS map, file system type, and options used during mount. /etc/autofs.conf/ preset Directives: master_map_name=auto.master timeout = 300 negative_timeout = 60 mount_nfs_default_protocol = 4 logging = none</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://perfectdarkmode.com/linux/rhcsa/autofs/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

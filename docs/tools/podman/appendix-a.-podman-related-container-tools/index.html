@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Appendix A. Podman-related container tools []{#A.htm#pgfId-1277656}[]{#A.htm#id_ypyilma7lhnr}This appendix []{#A.htm#marker-1277655}describes the three tools that use containers/storage and containers/image libraries. These tools address the following functionalities:
+[]{#A.htm#pgfId-1277657 .calibre17}Moving container images between different container registries and storage
+[]{#A.htm#pgfId-1277658 .calibre17}Building container images
+[]{#A.htm#pgfId-1277659 .calibre17}Testing, developing, and running containers in production on a single node
+[]{#A.htm#pgfId-1277660 .calibre17}Running containers in production at scale
+[]{#A.htm#pgfId-1277661}As the original creator of Podman, I recognized the need for specialized tools, each performing specific functionality rather than a one-size-fits-all monolithic solution.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Appendix A. Podman-related container tools []{#A.htm#pgfId-1277656}[]{#A.htm#id_ypyilma7lhnr}This appendix []{#A.htm#marker-1277655}describes the three tools that use containers/storage and containers/image libraries. These tools address the following functionalities:
+[]{#A.htm#pgfId-1277657 .calibre17}Moving container images between different container registries and storage
+[]{#A.htm#pgfId-1277658 .calibre17}Building container images
+[]{#A.htm#pgfId-1277659 .calibre17}Testing, developing, and running containers in production on a single node
+[]{#A.htm#pgfId-1277660 .calibre17}Running containers in production at scale
+[]{#A.htm#pgfId-1277661}As the original creator of Podman, I recognized the need for specialized tools, each performing specific functionality rather than a one-size-fits-all monolithic solution.">
+    <meta property="og:url" content="http://perfectdarkmode.com/tools/podman/appendix-a.-podman-related-container-tools/">
+    <meta property="og:description" content="Appendix A. Podman-related container tools []{#A.htm#pgfId-1277656}[]{#A.htm#id_ypyilma7lhnr}This appendix []{#A.htm#marker-1277655}describes the three tools that use containers/storage and containers/image libraries. These tools address the following functionalities:
+[]{#A.htm#pgfId-1277657 .calibre17}Moving container images between different container registries and storage
+[]{#A.htm#pgfId-1277658 .calibre17}Building container images
+[]{#A.htm#pgfId-1277659 .calibre17}Testing, developing, and running containers in production on a single node
+[]{#A.htm#pgfId-1277660 .calibre17}Running containers in production at scale
+[]{#A.htm#pgfId-1277661}As the original creator of Podman, I recognized the need for specialized tools, each performing specific functionality rather than a one-size-fits-all monolithic solution.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="Appendix A. Podman-related container tools []{#A.htm#pgfId-1277656}[]{#A.htm#id_ypyilma7lhnr}This appendix []{#A.htm#marker-1277655}describes the three tools that use containers/storage and containers/image libraries. These tools address the following functionalities:
+[]{#A.htm#pgfId-1277657 .calibre17}Moving container images between different container registries and storage
+[]{#A.htm#pgfId-1277658 .calibre17}Building container images
+[]{#A.htm#pgfId-1277659 .calibre17}Testing, developing, and running containers in production on a single node
+[]{#A.htm#pgfId-1277660 .calibre17}Running containers in production at scale
+[]{#A.htm#pgfId-1277661}As the original creator of Podman, I recognized the need for specialized tools, each performing specific functionality rather than a one-size-fits-all monolithic solution.">
+    <meta itemprop="wordCount" content="5216">
+    <title></title>
+    <link href="/tools/podman/appendix-a.-podman-related-container-tools/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/tools/podman/appendix-a.-podman-related-container-tools/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1734871290" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1734871290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1734871290" rel="stylesheet">
+    <link href="/css/fonts.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1734871290" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1734871290" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1734871290" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1734871290" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1734871290"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/tools/podman/appendix-a.-podman-related-container-tools/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#heading_id_3">[]{#A.htm#pgfId-1277719}A.1 Skopeo</a></li>
+    <li><a href="#heading_id_4">[]{#A.htm#pgfId-1277858}A.2 Buildah</a>
+      <ul>
+        <li><a href="#heading_id_5">[]{#A.htm#pgfId-1277883}A.2.1 Creating a working container from a base image</a></li>
+        <li><a href="#heading_id_6">[]{#A.htm#pgfId-1277917}A.2.2 Adding data to a working container</a></li>
+        <li><a href="#heading_id_7">[]{#A.htm#pgfId-1277940}A.2.3 Running commands in a working container</a></li>
+        <li><a href="#heading_id_8">[]{#A.htm#pgfId-1278002}A.2.4 Adding content to a working container directly from the host</a></li>
+        <li><a href="#heading_id_9">[]{#A.htm#pgfId-1278032}A.2.5 Configuring a working container</a></li>
+        <li><a href="#heading_id_10">[]{#A.htm#pgfId-1278150}A.2.6 Creating an image from a working container</a></li>
+        <li><a href="#heading_id_11">[]{#A.htm#pgfId-1278189}A.2.7 Pushing an image to a container registry</a></li>
+        <li><a href="#heading_id_12">[]{#A.htm#pgfId-1278218}A.2.8 Building an image from Containerfiles</a></li>
+        <li><a href="#heading_id_13">[]{#A.htm#pgfId-1278251}A.2.9 Buildah as a library</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_14">[]{#A.htm#pgfId-1278260}A.3 CRI-O: Container Runtime Interface for OCI containers</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="appendix-a-podman-related-container-tools">Appendix A. Podman-related container tools</h1>
+<p>[]{#A.htm#pgfId-1277656}[]{#A.htm#id_ypyilma7lhnr}This appendix
+[]{#A.htm#marker-1277655}describes the three tools that use
+containers/storage and containers/image libraries. These tools address
+the following functionalities:</p>
+<ul>
+<li>
+<p>[]{#A.htm#pgfId-1277657 .calibre17}Moving container images between
+different container registries and storage</p>
+</li>
+<li>
+<p>[]{#A.htm#pgfId-1277658 .calibre17}Building container images</p>
+</li>
+<li>
+<p>[]{#A.htm#pgfId-1277659 .calibre17}Testing, developing, and running
+containers in production on a single node</p>
+</li>
+<li>
+<p>[]{#A.htm#pgfId-1277660 .calibre17}Running containers in production
+at scale</p>
+</li>
+</ul>
+<p>[]{#A.htm#pgfId-1277661}As the original creator of Podman, I recognized
+the need for specialized tools, each performing specific functionality
+rather than a one-size-fits-all monolithic solution.</p>
+<p>[]{#A.htm#pgfId-1277662}From a security perspective, each of these four
+categories requires different security constraints. Containers running
+in production need to be run in a more secure environment than ones
+running in development and testing. Moving container images between
+registries requires no privileged access to the host you are running the
+command on&mdash;only remote access to the registries. You will have the
+least secure system with a monolithic daemon. If my containers need more
+access during builds, then in production, they get the same access as
+during builds.</p>
+<p>[]{#A.htm#pgfId-1277664}Another critical problem with a monolithic
+daemon is that it prevents experimentation with the tools and doesn&rsquo;t
+allow them to go their own way. One example of this is when we proposed
+a change to the Docker daemon to allow users to pull different types of
+OCI content off of container registries. This change was denied, as it
+had little to do with Docker containers.</p>
+<p>[]{#A.htm#pgfId-1277665}Similarly, when the monolithic daemon is
+modified for one product, it can negatively affect features of another
+one using that daemon. It could cause performance degradation or
+complete breakage. This happened when Kubernetes was being developed,
+since it relied on the Docker daemon as the container engine. But since
+Docker is monolithic and being developed for many other projects, many
+of its changes affected Kubernetes, leading to instability. It was
+obvious that Kubernetes needed a dedicated container engine for its
+workloads, and in December 2020 it was announced that Kubernetes will
+eventually use the newly developed standard, the Container Runtime
+Interface (CRI; see <a href="http://mng.bz/yaDq" rel="external" target="_blank">http://mng.bz/yaDq</a>{.url}) to
+improve interaction between orchestrators and different container
+runtimes. I wrote a coloring book, <em>The Container
+Commandos</em>[]{#A.htm#marker-1282235} (figure A.1;
+<a href="https://red.ht/3gfVlHF" rel="external" target="_blank">https://red.ht/3gfVlHF</a>{.url}), illustrated by
+Máirín Duffy[]{#A.htm#marker-1282237} (@marin), describing the container
+tools talked about in this appendix, based on superheroes.</p>
+<p>::: figure
+<a href="#R-image-cc4a19469c75ed3fd0eac433f237af95" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/A-01.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cc4a19469c75ed3fd0eac433f237af95"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/A-01.png"></a>{.calibre18}</p>
+<p>Figure A.1 The Container Coloring Book
+(<a href="https://red.ht/3gfVlHF" rel="external" target="_blank">https://red.ht/3gfVlHF</a>{.url})
+:::</p>
+<p>[]{#A.htm#pgfId-1277678}Finally, sometimes there are conflicting
+interests or release schedules in play. Having separate, independent
+tools allows releases to be deployed independently from all the others
+at their own pace to guarantee new features to their customers. Four
+projects were created for the distinct functions described in table A.1.</p>
+<p>[]{#A.htm#pgfId-1280253}Table A.1 Primary container tools based on
+containers/storage and containers/image.</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A.htm#pgfId-1280259}Description                 |
+| Id-1280257}Tool |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#      | []{#A.htm#pgfId-1280263}Performs various operations |
+| pgfId-1280261}S | on container images and image repositories          |
+| kopeo[]{#A.htm# | (<a href="https://github.com/containers/skopeo" rel="external" target="_blank">https://github.com/containers/s                   |
+| marker-1282252} | kopeo</a>{.url}) |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#p     | []{#A.htm#pgfId-1280267}Facilitates a wide range of |
+| gfId-1280265}Bu | operations on container images                      |
+| ildah[]{#A.htm# | (<a href="https://github.com/containers/buildah" rel="external" target="_blank">https://github.com/containers/bui                 |
+| marker-1282258} | ldah</a>{.url}) |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#      | []{#A.htm#pgfId-1280271}All-in-one management tool  |
+| pgfId-1280269}P | for pods, containers, and images                    |
+| odman[]{#A.htm# | (<a href="https://github.com/containers/podman" rel="external" target="_blank">https://github.com/containers/p                   |
+| marker-1282264} | odman</a>{.url}) |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm       | []{#A.htm#pgfId-1280275}OCI-based implementation of |
+| #pgfId-1280273} | the Kubernetes Container Runtime Interface          |
+| CRI-O[]{#A.htm# | (<a href="https://github.com/cri-o/cri-o" rel="external" target="_blank">https://github.com/                               |
+| marker-1282270} | cri-o/cri-o</a>{.url}) |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#A.htm#pgfId-1277711}As you have already learned a great deal about
+Podman, you know now why it is included in this list. Podman is an
+excellent tool for understanding and developing containers as well as
+pods and images. It encapsulates everything Docker CLI does but without
+locking everything under one central daemon. Because Podman works
+without a daemon and uses the operating system for sharing data, other
+tools can work with the same data stores and libraries. The rest of this
+appendix describes the rest of the tools, starting with Skopeo (figure
+A.2).</p>
+<p>::: figure
+<a href="#R-image-365b74912a380e1462c2719e26aa9aa1" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/A-02.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-365b74912a380e1462c2719e26aa9aa1"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/A-02.png"></a>{.calibre18}</p>
+<p>Figure A.2 Skopeo, Buildah, and Podman work together by sharing the same
+containers/storage images and containers/image library for pulling and
+pushing images.
+:::</p>
+<h2 id="heading_id_3" class="fm-head">[]{#A.htm#pgfId-1277719}A.1 Skopeo</h2>
+<p>[]{#A.htm#pgfId-1277722}While
+[]{#A.htm#marker-1280942}[]{#A.htm#marker-1280943}using container
+engines like Docker or Podman, if you want to inspect a container image
+in a registry, you are required to pull this image from the registry to
+your local storage. Only then can you examine it. The problem is that
+this image can be huge, and after inspecting it, you might realize it
+wasn&rsquo;t what you expected, and you wasted time pulling it. Because the
+protocol used to pull the image and inspect it is just a web protocol, a
+simple tool, Skopeo, was created to pull the image&rsquo;s detailed
+information and display it on the screen. <em>Skopeo</em> is the Greek word for
+<em>remote viewing</em>.</p>
+<p>::: figure
+<a href="#R-image-441e2a9300b32a63b91b1a8b3af14e02" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/A-UN01.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-441e2a9300b32a63b91b1a8b3af14e02"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/A-UN01.png"></a>{.calibre18}
+:::</p>
+<p>[]{#A.htm#pgfId-1277728}Execute the following <code>skopeo</code>{.fm-code-in-text}
+<code>inspect</code>{.fm-code-in-text} command[]{#A.htm#marker-1280173} to examine
+an image&rsquo;s detailed information in JSON form:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ skopeo inspect docker:/ /quay.io/rhatdan/myimage
+{
+  &#34;Name&#34;: &#34;quay.io/rhatdan/myimage&#34;,
+  &#34;Digest&#34;:
+&#34;sha256:fe798c1576dc7b70d7de3b3ab7c72cd22300b061921f052279d88729708092d8&#34;,
+  &#34;RepoTags&#34;: [
+      &#34;Latest&#34;,
+      &#34;1.0&#34;
+  ],
+...</code></pre></div>
+<p>[]{#A.htm#pgfId-1277739}Skopeo was extended to also copy images off of
+registries. Eventually, Skopeo became the tool for copying images
+between different types of storage (transports). These types of storage
+became the transports defined in table A.2.</p>
+<p>[]{#A.htm#pgfId-1280371}Table A.2 Podman-supported transports</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{             | []{#A.htm#pgfId-1280377}Description                 |
+| #A.htm#pgfId-12 |                                                     |
+| 80375}Transport |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{             | []{#A.htm#pgfId-1280381}This is the default         |
+| #A.htm#pgfId-12 | transport. It references a container image stored   |
+| 80379}Container | in a remote container image registry website.       |
+| registry        | Registries store and share container images (e.g.,  |
+| (<code>docker</code>       | docker.io and quay.io).                             |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#A.htm#m |                                                     |
+| arker-1280406}) |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A.htm#pgfId-1280385}References a container      |
+| Id-1280383}<code>oci | image; compliant with the Open Container Initiative | | </code>{.fm-code-in-t | Format specification. The manifest and layer        |
+| ext1}[]{#A.htm# | tarballs are located in the local directory as      |
+| marker-1280407} | individual files.                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A.htm#pgfId-1280389}References a container      |
+| Id-1280387}<code>dir | image; compliant with the Docker image layout. It   | | </code>{.fm-code-in-t | is very similar to the <code>oci</code>{.fm-code-in-text1}     |
+| ext1}[]{#A.htm# | transport but stores the files using the legacy     |
+| marker-1280408} | Docker format. As a non-standardized format, it is  |
+|                 | primarily useful for debugging or noninvasive       |
+|                 | container inspection.                               |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm       | []{#A.htm#pgfId-1280393}References a container      |
+| #pgfId-1280391} | image in a Docker image layout, which is packed     |
+| <code>docker-archive | into a TAR archive.                                 | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280409} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280397}References an image         |
+| htm#pgfId-12803 | compliant with the Open Container Initiative Format |
+| 95}<code>oci-archive | specification, which is packed into a TAR archive.  | | </code>{.fm-code-in-t | It is very similar to the                           |
+| ext1}[]{#A.htm# | <code>docker-archive</code>{.fm-code-in-text1} transport but   |
+| marker-1280410} | stores an image in OCI format.                      |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.ht        | []{#A.htm#pgfId-1280401}References an image stored  |
+| m#pgfId-1280399 | in the Docker daemon&rsquo;s internal storage. Since the  |
+| }<code>docker-daemon | Docker daemon requires root privileges, Podman has  | | </code>{.fm-code-in-t | to be run by the root user.                         |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280411} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pg    | []{#A.htm#pgfId-1280405}References an image located |
+| fId-1280403}<code>co | in a local container storage. It is not a transport | | ntainer-storage | but more of a mechanism for storing images. It can  | | </code>{.fm-code-in-t | be used to convert other transports into            |
+| ext1}[]{#A.htm# | <code>container-storage</code>{.fm-code-in-text1}. Podman      |
+| marker-1280412} | defaults to using                                   |
+|                 | <code>container-storage</code>{.fm-code-in-text1} for local    |
+|                 | images.                                             |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#A.htm#pgfId-1277784}Other container engines and tools wanted to use
+the functionality developed in Skopeo to copy images, so Skopeo was
+split in two: the command line, Skopeo, and the underlying library,
+containers/image[]{#A.htm#marker-1277785}. Splitting functionality into
+a separate library made it possible to build other container tools,
+including Podman.</p>
+<p>[]{#A.htm#pgfId-1277788}The <code>skopeo</code>{.fm-code-in-text}
+<code>copy</code>{.fm-code-in-text} command[]{#A.htm#marker-1277787} is very
+popular for copying images between different types of container storage.
+One difference compared to Podman and Buildah, as you&rsquo;ll see in section
+A.2, is that Skopeo forces users to specify the transport for the source
+and destination. Podman and Buildah default to using the
+<code>docker</code>{.fm-code-in-text}[]{#A.htm#marker-1277790} or
+<code>containers-storage</code>{.fm-code-in-text}
+transport[]{#A.htm#marker-1277791}, depending on the context and
+command. In the following example, you will copy an image from a
+container registry using the <code>docker</code>{.fm-code-in-text}
+transport[]{#A.htm#marker-1277792} and store the image locally using the
+<code>container-storage</code>{.fm-code-in-text} transport:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ skopeo copy docker:/ /quay.io/rhatdan/myimage containers-storage:quay.io/rhatdan/myimage
+Getting image source signatures
+Copying blob dfd8c625d022 done 
+Copying blob 68e8857e6dcb done 
+Copying blob e21480a19686 done 
+Copying blob fbfcc23454c6 done 
+Copying blob 3f412c5136dd done 
+Copying config 2c7e43d880 done 
+Writing manifest to image destination
+Storing signatures</code></pre></div>
+<p>[]{#A.htm#pgfId-1277805}Another command many Skopeo users use is
+<code>skopeo</code>{.fm-code-in-text}
+<code>sync</code>{.fm-code-in-text}[]{#A.htm#marker-1277804}, which lets you
+synchronize images between container registries and local storage.</p>
+<p>[]{#A.htm#pgfId-1277806}Skopeo is mainly used for infrastructure
+projects to help provision multiple container registries&mdash;for example,
+copying images from a public registry to a private one. Table A.3
+describes the most popular commands used with Skopeo. One of the first
+tools to take advantage of the containers/image library was
+[]{#A.htm#marker-1277807}[]{#A.htm#marker-1277808}Buildah.</p>
+<p>[]{#A.htm#pgfId-1280501}Table A.3 Primary Skopeo commands and their
+description</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#A.htm#pgfId-1280507}Description                 |
+| ]{#A.htm#pgfId- |                                                     |
+| 1280505}Command |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280511}Copy an image (manifest,    |
+| htm#pgfId-12805 | filesystem layers, or signatures) from one location |
+| 09}<code>skopeo copy | to another.                                         | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280540} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280515}Mark the image name for     |
+| htm#pgfId-12805 | later deletion by the registry&rsquo;s garbage collector. |
+| 13}<code>skopeo</code>{.fm |                                                     |
+| -code-in-text1} |                                                     |
+| <code>delete         |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280541} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280519}Return low-level            |
+| htm#pgfId-12805 | information about an image name in a registry.      |
+| 17}<code>skopeo</code>{.fm |                                                     |
+| -code-in-text1} |                                                     |
+| <code>inspect        |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280542} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280523}List tags in the            |
+| htm#pgfId-12805 | transport-specific image repository.                |
+| 21}<code>skopeo</code>{.fm |                                                     |
+| -code-in-text1} |                                                     |
+| <code>list-tags      |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280543} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280527}Log in to a container       |
+| htm#pgfId-12805 | registry (the same as <code>podman</code>{.fm-code-in-text1}   |
+| 25}<code>skopeo</code>{.fm | <code>login</code>{.fm-code-in-text1}).                        |
+| -code-in-text1} |                                                     |
+| <code>login          |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280544} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280531}Log out of a container      |
+| htm#pgfId-12805 | registry (the same as <code>podman</code>{.fm-code-in-text1}   |
+| 29}<code>skopeo</code>{.fm | <code>logout</code>{.fm-code-in-text1}).                       |
+| -code-in-text1} |                                                     |
+| <code>logout         |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280545} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280535}Compute a manifest digest   |
+| htm#pgfId-12805 | for a manifest file, and write it to standard       |
+| 33}<code>skopeo</code>{.fm | output.                                             |
+| -code-in-text1} |                                                     |
+| <code>manifest</code>{.fm  |                                                     |
+| -code-in-text1} |                                                     |
+| <code>digest         |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280546} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgfId-1280539}Synchronize images between  |
+| htm#pgfId-12805 | container registries and local directories.         |
+| 37}<code>skopeo</code>{.fm |                                                     |
+| -code-in-text1} |                                                     |
+| <code>sync           |                                                     | | </code>{.fm-code-in-t |                                                     |
+| ext1}[]{#A.htm# |                                                     |
+| marker-1280547} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<h2 id="heading_id_4" class="fm-head">[]{#A.htm#pgfId-1277858}A.2 Buildah</h2>
+<p>[]{#A.htm#pgfId-1277861}As
+[]{#A.htm#marker-1277859}[]{#A.htm#marker-1277860}you learned in section
+1.1.2, creating a container image means creating a directory on disk and
+adding content to it to make it look like the root,
+<code>/</code>{.fm-code-in-text}, directory on a Linux machine, called a rootfs.
+Originally, the only way to do this was with <code>docker</code>{.fm-code-in-text}
+<code>build</code>{.fm-code-in-text}, using a Dockerfile. While Dockerfiles and
+Containerfiles are excellent ways of creating recipes for your container
+images, a low-level building block tool that allowed other ways to build
+container images was needed&mdash;one that allowed breaking the image-build
+process into individual commands, letting you use other more powerful
+scripting tools and languages than Containerfile to build images. We
+created a tool called Buildah[]{#A.htm#marker-1277862}
+(<a href="https://buildah.io" rel="external" target="_blank">https://buildah.io</a>{.url}) to serve this purpose.</p>
+<p>::: figure
+<a href="#R-image-adbc7016df5b4674fb288cac0d4e3b41" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/A-UN02.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-adbc7016df5b4674fb288cac0d4e3b41"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/A-UN02.png"></a>{.calibre18}
+:::</p>
+<p>[]{#A.htm#pgfId-1277867}Buildah was designed to be that simple tool for
+building container images. It&rsquo;s built on top of the container/storage
+and container/image libraries, just like Podman and Skopeo. It has a lot
+of functionality similar to Podman. You can pull images, push images,
+commit images, and even run containers on images. What mainly
+differentiates Podman from Buildah is the underlying concept of a
+<em>container</em>[]{#A.htm#marker-1277868}. A Podman container is a long-lived
+one, a <em>running</em> container[]{#A.htm#marker-1277869}, while a Buildah
+container is just a temporary one, a <em>working</em> container, which will be
+used to create an OCI image.</p>
+<p>[]{#A.htm#pgfId-1277870}[Note]{.fm-callout-head} Buildah is a Linux-only
+tool, not available on Mac or Windows. However, Podman embeds Buildah in
+the <code>podman</code>{.fm-code-in-text1} <code>build</code>{.fm-code-in-text1}
+command[]{#A.htm#marker-1277871}. Podman on Mac and Windows uses the
+Buildah code on the server side, allowing those platforms to build using
+Containerfiles and Dockerfiles. See appendixes E and F for more
+information.</p>
+<p>[]{#A.htm#marker-1282679}[]{#A.htm#pgfId-1277872}Buildah was designed to
+take the steps defined in a Dockerfile and make them available at the
+command line. Buildah wanted to simplify building a container image by
+allowing you to use all of the tools available within the OS to populate
+the image. You can add data to this directory via standard Linux tools,
+like <code>cp</code>{.fm-code-in-text}[]{#A.htm#marker-1277873},
+<code>make</code>{.fm-code-in-text}[]{#A.htm#marker-1277874},
+<code>yum</code>{.fm-code-in-text}
+<code>install</code>{.fm-code-in-text}[]{#A.htm#marker-1277875}, and so on. Then
+commit the rootfs into a tarball, add some JSON to describe what the
+creator of the image wanted the image to do, and finally, push this to a
+container registry. Basically, Buildah breaks down the steps you learned
+about in a Containerfile into individual commands you can execute from a
+shell.</p>
+<p>[]{#A.htm#pgfId-1277876}[Note]{.fm-callout-head} The name <em>Buildah</em> is a
+play on the way I pronounce <em>builder</em>. If you ever heard me speak, you&rsquo;d
+notice I have a strong Boston accent. When the core team asked what I
+wanted to call the tool, I said, &ldquo;I don&rsquo;t care, just call it <em>builder</em>.&rdquo;
+And they heard <em>Buildah</em>.</p>
+<p>[]{#A.htm#pgfId-1277877}The first step when building a new container
+image is pulling a base image. In a Containerfile, this is done with the
+<code>FROM</code>{.fm-code-in-text} instruction[]{#A.htm#marker-1284237}.</p>
+<h3 id="heading_id_5" class="fm-head1">[]{#A.htm#pgfId-1277883}A.2.1 Creating a working container from a base image</h3>
+<p>[]{#A.htm#pgfId-1277888}The
+[]{#A.htm#marker-1284239}[]{#A.htm#marker-1284240}[]{#A.htm#marker-1284241}first
+command to look at is <code>buildah</code>{.fm-code-in-text}
+<code>from</code>{.fm-code-in-text}[]{#A.htm#marker-1284242}. It is equivalent to
+the Containerfile&rsquo;s <code>FROM</code>{.fm-code-in-text}
+instruction[]{#A.htm#marker-1284244}. When executing
+<code>buildah</code>{.fm-code-in-text} <code>from</code>{.fm-code-in-text}
+<code>IMAGE</code>{.fm-code-in-text}, it pulls the specified image from the
+container registry, saves it in a local container storage, and creates a
+working container based on this image. As mentioned previously, this
+container is similar to a Podman container, except it exists temporarily
+only to become a container image. In the following example, a working
+container is created based on an ubi8-init image.</p>
+<p>[]{#A.htm#pgfId-1277890}Listing A.1 Buildah pulling an image and
+creating a Buildah container</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah from ubi8-init
+Resolved &#34;ubi8-init&#34; as an alias (/etc/containers/registries.conf.d/
+➥ 000-shortnames.conf) 
+Trying to pull registry.access.redhat.com/
+➥ ubi8-init:latest...                        ❶
+Getting image source signatures
+Checking if image destination supports signatures
+Copying blob adffa6963146 done 
+Copying blob 29250971c1d2 done 
+Copying blob 26f1167feaf7 done 
+Copying config 4b85030f92 done 
+Writing manifest to image destination
+Storing signatures
+ubi8-init-working-container                 ❷</code></pre></div>
+<p>[]{#A.htm#pgfId-1283956}[❶]{.fm-combinumeral} Pulls the image from the
+container registry</p>
+<p>[]{#A.htm#pgfId-1283957}[❷]{.fm-combinumeral} Outputs a new container
+name</p>
+<p>[]{#A.htm#pgfId-1277907}Notice that the <code>buildah</code>{.fm-code-in-text}
+<code>from</code>{.fm-code-in-text} output looks the same as the
+<code>podman</code>{.fm-code-in-text} <code>pull</code>{.fm-code-in-text} output, except for
+the last line, which outputs the container name:
+<code>ubi8-init-working-container</code>{.fm-code-in-text}. If you run the
+<code>buildah</code>{.fm-code-in-text} <code>from</code>{.fm-code-in-text}
+command[]{#A.htm#marker-1277908} again, you get a second container name:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah from ubi8-init
+ubi8-init-working-container-1</code></pre></div>
+<p>[]{#A.htm#pgfId-1277911}Buildah keeps track of its containers and
+generates each one by incrementing a counter. Of course you can override
+the container name with the <code>--name</code>{.fm-code-in-text}
+option[]{#A.htm#marker-1277912}. Next, you will add content to this
+container
+[]{#A.htm#marker-1277913}[]{#A.htm#marker-1277914}[]{#A.htm#marker-1277915}image.</p>
+<h3 id="heading_id_6" class="fm-head1">[]{#A.htm#pgfId-1277917}A.2.2 Adding data to a working container</h3>
+<p>[]{#A.htm#pgfId-1277923}Buildah
+[]{#A.htm#marker-1277918}[]{#A.htm#marker-1277919}[]{#A.htm#marker-1277920}has
+two commands, <code>buildah</code>{.fm-code-in-text}
+<code>copy</code>{.fm-code-in-text}[]{#A.htm#marker-1277921} and
+<code>buildah</code>{.fm-code-in-text}
+<code>add</code>{.fm-code-in-text}[]{#A.htm#marker-1277922}, for copying the
+contents of a file, URL, or directory into the container&rsquo;s working
+directory. They map to the same functionality as the Containerfile&rsquo;s
+<code>COPY</code>{.fm-code-in-text}[]{#A.htm#marker-1277924} and
+<code>ADD</code>{.fm-code-in-text} instructions[]{#A.htm#marker-1277925}.</p>
+<p>[]{#A.htm#pgfId-1277926}[Note]{.fm-callout-head} It is somewhat
+confusing to have two commands that do almost the same thing. In most
+cases, I recommend you just use <code>buildah</code>{.fm-code-in-text1}
+<code>copy</code>{.fm-code-in-text1} and <code>COPY</code>{.fm-code-in-text1} inside a
+Containerfile. The main difference between the two is that
+<code>COPY</code>{.fm-code-in-text1} only copies local files and directories off of
+the host into the container image. The <code>add</code>{.fm-code-in-text1}
+command[]{#A.htm#marker-1277927} supports the use of URLs to pull remote
+content and insert it into your container. The <code>ADD</code>{.fm-code-in-text1}
+command[]{#A.htm#marker-1277928} also supports taking TAR and ZIP files
+and expanding them when copied into the container image.</p>
+<p>[]{#A.htm#pgfId-1277930}The syntax of the <code>buildah</code>{.fm-code-in-text}
+<code>copy</code>{.fm-code-in-text} command requires you to specify the name of the
+container previously created by the <code>buildah</code>{.fm-code-in-text}
+<code>from</code>{.fm-code-in-text} command, followed by the source and,
+optionally, destination. If the destination is not provided, source data
+will be copied into the container&rsquo;s working directory. The destination
+directory will be created if it doesn&rsquo;t exist yet.</p>
+<p>[]{#A.htm#pgfId-1277932}The following example copies the local
+html/index.html file (created previously in section 3.1) into the
+/var/lib/www/html directory in the container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah copy ubi8-init-working-container html/index.html 
+➥ /var/lib/www/html/</code></pre></div>
+<p>[]{#A.htm#pgfId-1277935}If you would like to use more advanced tools
+like package managers to add content to your containers, Buildah
+supports running commands inside the
+[]{#A.htm#marker-1277936}[]{#A.htm#marker-1277937}[]{#A.htm#marker-1277938}containers.</p>
+<h3 id="heading_id_7" class="fm-head1">[]{#A.htm#pgfId-1277940}A.2.3 Running commands in a working container</h3>
+<p>[]{#A.htm#pgfId-1277944}To
+[]{#A.htm#marker-1277941}[]{#A.htm#marker-1277942}[]{#A.htm#marker-1277943}run
+a command inside the working container, you need to execute
+<code>buildah</code>{.fm-code-in-text} <code>run</code>{.fm-code-in-text}. Under the hood,
+this command works exactly the same as the <code>RUN</code>{.fm-code-in-text}
+instruction[]{#A.htm#marker-1277945}; it starts a new container on top
+of the current one, executes a specified command, and commits the result
+back to the working container. The syntax of <code>buildah</code>{.fm-code-in-text}
+<code>run</code>{.fm-code-in-text} requires you to specify the name of the working
+container followed by the command. In the following example, you install
+the <code>httpd</code>{.fm-code-in-text} service[]{#A.htm#marker-1277946} within
+the container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah run ubi8-init-working-container dnf -y install httpd
+Updating Subscription Management repositories.
+Unable to read consumer identity
+This system is not registered with an entitlement server. You can use 
+➥ subscription-manager to register.
+...
+Complete!</code></pre></div>
+<p>[]{#A.htm#pgfId-1277955}To make sure you will have a running web server
+once the running container is created, the next command enables the
+Apache HTTP Server service:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah run ubi8-init-working-container systemctl enable httpd.service
+Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → 
+➥ /usr/lib/systemd/system/httpd.service.</code></pre></div>
+<p>[]{#A.htm#pgfId-1277962}Table A.4 shows the relationship between
+Containerfile instructions and Buildah
+[]{#A.htm#marker-1277959}[]{#A.htm#marker-1277960}[]{#A.htm#marker-1277961}commands.</p>
+<p>[]{#A.htm#pgfId-1280628}Table A.4 Containerfile instructions mapped to
+Buildah commands</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A           | [               | []                                |
+| .htm#pgfId-1280 | ]{#A.htm#pgfId- | {#A.htm#pgfId-1280638}Description |
+| 634}Instruction | 1280636}Command |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A.h         | []{#A.htm#pgfId-1280644}Add the   |
+| Id-1280640}<code>ADD | tm#pgfId-128064 | contents of a file, URL, or       | | </code>{.fm-code-in-t | 2}<code>buildah</code>{.fm | directory to the container.       |
+| ext1}[]{#A.htm# | -code-in-text1} |                                   |
+| marker-1282708} | <code>add</code>{.fm       |                                   |
+|                 | -code-in-text1} |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgfI  | []{#A.h         | []{#A.htm#pgfId-1280650}Copies    |
+| d-1280646}<code>COPY | tm#pgfId-128064 | the contents of a file, URL, or   | | </code>{.fm-code-in-t | 8}<code>buildah</code>{.fm | directory into a container&rsquo;s      |
+| ext1}[]{#A.htm# | -code-in-text1} | working directory.                |
+| marker-1282715} | <code>copy</code>{.fm      |                                   |
+|                 | -code-in-text1} |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgfI  | []{#A.h         | []{#A.htm#pgfId-1280656}Creates a |
+| d-1280652}<code>FROM | tm#pgfId-128065 | new working container, either     | | </code>{.fm-code-in-t | 4}<code>buildah</code>{.fm | from scratch or using a specified |
+| ext1}[]{#A.htm# | -code-in-text1} | image as a starting point.        |
+| marker-1282722} | <code>from</code>{.fm      |                                   |
+|                 | -code-in-text1} |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A.h         | []{#A.htm#pgfId-1280662}Runs a    |
+| Id-1280658}<code>RUN | tm#pgfId-128066 | command inside the container.     | | </code>{.fm-code-in-t | 0}<code>buildah</code>{.fm |                                   |
+| ext1}[]{#A.htm# | -code-in-text1} |                                   |
+| marker-1282729} | <code>run</code>{.fm       |                                   |
+|                 | -code-in-text1} |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<h3 id="heading_id_8" class="fm-head1">[]{#A.htm#pgfId-1278002}A.2.4 Adding content to a working container directly from the host</h3>
+<p>[]{#A.htm#pgfId-1278006}Up
+[]{#A.htm#marker-1278003}[]{#A.htm#marker-1278004}[]{#A.htm#marker-1278005}until
+now, you&rsquo;ve seen how Buildah can perform the same commands you execute
+within a Containerfile, but one of Buildah&rsquo;s goals is exposing the
+container image rootfs[]{#A.htm#marker-1278007} directly to the host.
+This allows you to use commands available on your host machine to add
+content to the container image, without requiring the commands to be
+present inside the container image.</p>
+<p>[]{#A.htm#pgfId-1278009}The <code>buildah</code>{.fm-code-in-text}
+<code>mount</code>{.fm-code-in-text} command[]{#A.htm#marker-1278008} allows you to
+mount a working container&rsquo;s root filesystem directly on your system and
+then use tools like <code>cp</code>{.fm-code-in-text}[]{#A.htm#marker-1278010},
+<code>make</code>{.fm-code-in-text}[]{#A.htm#marker-1278011},
+<code>dnf</code>{.fm-code-in-text}[]{#A.htm#marker-1278012}, or even an editor to
+manipulate the contents of the container&rsquo;s rootfs.</p>
+<p>[]{#A.htm#pgfId-1278014}If you run Buildah as root, you can simply
+execute the <code>buildah</code>{.fm-code-in-text} <code>mount</code>{.fm-code-in-text}
+command. But in rootless mode, this isn&rsquo;t allowed. Recall from section
+2.2.10, where you learned about the <code>podman</code>{.fm-code-in-text}
+<code>mount</code>{.fm-code-in-text} command[]{#A.htm#marker-1278015}, that you
+must first enter the user namespace. Similarly, the
+<code>buildah</code>{.fm-code-in-text} <code>unshare</code>{.fm-code-in-text}
+command[]{#A.htm#marker-1278016} creates a shell running in the user
+namespace. Once you are in the user namespace, you can mount the
+container. In the following example, using what you have learned so far,
+you will use commands from your host&rsquo;s operating system
+<code>grep</code>{.fm-code-in-text} to add content to the container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah unshare
+```bash
+# mnt=$(buildah mount ubi8-init-working-container)
+# echo $mnt
+/home/dwalsh/.local/share/containers/storage/overlay/133e1728eac26589b07984
+➥ e3bdf31b5e318159940c866d9e0493a1d08e1d2f6a/merged
+# grep dwalsh /etc/passwd &gt;&gt; $mnt/etc/passwd
+# exit</code></pre></div>
+<p>[]{#A.htm#pgfId-1278024}Now you can check if your changes were actually
+applied inside a working container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah run ubi8-init-working-container grep dwalsh /etc/passwd
+dwalsh:x:3267:3267:Daniel J Walsh:/home/dwalsh:/bin/bash</code></pre></div>
+<p>[]{#A.htm#pgfId-1278027}After you are done populating the content of the
+working container, it&rsquo;s time to specify other instructions from the
+Containerfile. These will describe your intentions as the container
+image
+[]{#A.htm#marker-1278028}[]{#A.htm#marker-1278029}[]{#A.htm#marker-1278030}creator.</p>
+<h3 id="heading_id_9" class="fm-head1">[]{#A.htm#pgfId-1278032}A.2.5 Configuring a working container</h3>
+<p>[]{#A.htm#pgfId-1278035}You
+[]{#A.htm#marker-1278033}[]{#A.htm#marker-1278034}probably noticed in
+table A.3 that there are a lot of missing Containerfile instructions.
+Containerfile instructions like
+<code>LABEL</code>{.fm-code-in-text}[]{#A.htm#marker-1278036},
+<code>EXPOSE</code>{.fm-code-in-text}[]{#A.htm#marker-1278037},
+<code>WORKDIR</code>{.fm-code-in-text}[]{#A.htm#marker-1278038},
+<code>CMD</code>{.fm-code-in-text}[]{#A.htm#marker-1278039}, and
+<code>ENTRYPOINT</code>{.fm-code-in-text}[]{#A.htm#marker-1278040} are used to
+populate the OCI image specification.</p>
+<p>[]{#A.htm#pgfId-1278042}Now, using the <code>buildah</code>{.fm-code-in-text}
+<code>config</code>{.fm-code-in-text} command[]{#A.htm#marker-1278041}, you can add
+a port to expose (<code>EXPOSE</code>{.fm-code-in-text}) and mark a location inside
+the container rootfs as a volume (<code>VOLUME</code>{.fm-code-in-text}), which
+will be used as the website root directory:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah config --port=80 --volume=/var/lib/www/html 
+➥ ubi8-init-working-container</code></pre></div>
+<p>[]{#A.htm#pgfId-1278045}You can inspect the corresponding OCI image
+specification fields using the <code>buildah</code>{.fm-code-in-text}
+<code>inspect</code>{.fm-code-in-text} command[]{#A.htm#marker-1281981}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah inspect --format &#39;{{ .OCIv1.Config.ExposedPorts }} {{ 
+➥ .OCIv1.Config.Volumes }}&#39; ubi8-init-working-container
+map[80:{}] map[/var/lib/www/html:{}]</code></pre></div>
+<p>[]{#A.htm#pgfId-1278052}[]{#A.htm#id_zhze1r6dd4nl}Table A.4 shows the
+relationship between Containerfile instructions and Buildah config
+options. You can also refer to table A.5 for additional information on
+these instructions.</p>
+<p>[]{#A.htm#pgfId-1280793}Table A.5 Containerfile instructions mapped to
+Buildah config options</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A           | []{#A.htm#pgfId | []                                |
+| .htm#pgfId-1280 | -1280801}Option | {#A.htm#pgfId-1280803}Description |
+| 799}Instruction |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#      | []{#A.ht        | []{#A.htm#pgfId-1280809}Sets      |
+| pgfId-1280805}<code> | m#pgfId-1280807 | contact information of the image  | | MAINTAINER</code>{.fm | }<code>--author</code>{.fm | author                            |
+| -code-in-text1} | -code-in-text1} |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A           | []{#A.htm#pgfId-1280815}Sets a    |
+| Id-1280811}<code>CMD | .htm#pgfId-1280 | default command to run within a   | | </code>{.fm-code-in-t | 813}<code>--cmd</code>{.fm | container                         |
+| ext1}[]{#A.htm# | -code-in-text1} |                                   |
+| marker-1280876} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A           | []{#A.htm#pg    | []{#A.htm#pgfId-1280821}Sets a    |
+| .htm#pgfId-1280 | fId-1280819}<code>-- | command for a container that will | | 817}</code>ENTRYPOINT | entrypoint<code>{.fm | run as an executable              | | </code>{.fm-code-in-t | -code-in-text1} |                                   |
+| ext1}[]{#A.htm# |                 |                                   |
+| marker-1280877} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgf   | []{#A           | []{#A.htm#pgfId-1280827}Sets the  |
+| Id-1280823}<code>ENV | .htm#pgfId-1280 | environment variable for all      | | </code>{.fm-code-in-t | 825}<code>--env</code>{.fm | subsequent instructions           |
+| ext1}[]{#A.htm# | -code-in-text1} |                                   |
+| marker-1280878} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.          | []{#A.htm#pgf   | []{#A.htm#pgfId-1280833}Specifies |
+| htm#pgfId-12808 | Id-1280831}<code>--h | a command to check if a container | | 29}</code>HEALTHCHECK | ealthcheck<code>{.fm | is still running                  | | </code>{.fm-code-in-t | -code-in-text1} |                                   |
+| ext1}[]{#A.htm# |                 |                                   |
+| marker-1280879} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgfId | []{#A.h         | []{#A.htm#pgfId-1280839}Adds      |
+| -1280835}<code>LABEL | tm#pgfId-128083 | key-value metadata                | | </code>{.fm-code-in-t | 7}<code>--label</code>{.fm |                                   |
+| ext1}[]{#A.htm# | -code-in-text1} |                                   |
+| marker-1280880} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#A.htm       | []{#A.htm#pgfId-1280845}Sets a    |
+| {#A.htm#pgfId-1 | #pgfId-1280843} | command to be run when the image  |
+| 280841}<code>ONBUILD | </code>&ndash;onbuild<code>{.fm | is used as the base for another   | | </code>{.fm-code-in-t | -code-in-text1} | image                             |
+| ext1}[]{#A.htm# |                 |                                   |
+| marker-1280881} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#A.          | []{#A.htm#pgfId-1280851}Specifies |
+| ]{#A.htm#pgfId- | htm#pgfId-12808 | a port that the container will    |
+| 1280847}<code>EXPOSE | 49}</code>&ndash;port<code>{.fm | listen on at run time             | | </code>{.fm-code-in-t | -code-in-text1} |                                   |
+| ext1}[]{#A.htm# |                 |                                   |
+| marker-1280882} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A           | []{#A.htm#pgf   | []{#A.htm#pgfId-1280857}Sets the  |
+| .htm#pgfId-1280 | Id-1280855}<code>--s | stop signal to be sent when the   | | 853}</code>STOPSIGNAL | top-signal<code>{.fm | container is stopped              | | </code>{.fm-code-in-t | -code-in-text1} |                                   |
+| ext1}[]{#A.htm# |                 |                                   |
+| marker-1280883} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#A.htm#pgfI  | []{#A.          | []{#A.htm#pgfId-1280863}Sets the  |
+| d-1280859}<code>USER | htm#pgfId-12808 | user to be used when running the  | | </code>{.fm-code-in-t | 61}<code>--user</code>{.fm | container and for all subsequent  |
+| ext1}[]{#A.htm# | -code-in-text1} | <code>RUN</code>{.fm-code-in-text1},         |
+| marker-1280884} |                 | <code>CMD</code>{.fm-code-in-text1}, and     |
+|                 |                 | <code>ENTRYPOINT</code>{.fm-code-in-text1}   |
+|                 |                 | instructions                      |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#A.ht        | []{#A.htm#pgfId-1280869}Adds a    |
+| ]{#A.htm#pgfId- | m#pgfId-1280867 | mount point and marks it as a     |
+| 1280865}<code>VOLUME | }</code>&ndash;volume<code>{.fm | volume for external data          | | </code>{.fm-code-in-t | -code-in-text1} |                                   |
+| ext1}[]{#A.htm# |                 |                                   |
+| marker-1280885} |                 |                                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#A.htm#pg    | []{#A.htm#pgfId-1280875}Sets the  |
+| {#A.htm#pgfId-1 | fId-1280873}<code>-- | working directory for all         | | 280871}</code>WORKDIR | workingdir<code>{.fm | subsequent                        | | </code>{.fm-code-in-t | -code-in-text1} | <code>RUN</code>{.fm-code-in-text1},         |
+| ext1}[]{#A.htm# |                 | <code>CMD</code>{.fm-code-in-text1},         |
+| marker-1280886} |                 | <code>ENTRYPOINT</code>{.fm-code-in-text1},  |
+|                 |                 | <code>COPY</code>{.fm-code-in-text1}, and    |
+|                 |                 | <code>ADD</code>{.fm-code-in-text1}          |
+|                 |                 | instructions                      |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#A.htm#pgfId-1278146}Once you have finished adding content to the
+Buildah container image and adding configuration to the OCI image
+specification, you need to create an image from the working
+[]{#A.htm#marker-1278147}[]{#A.htm#marker-1278148}container.</p>
+<h3 id="heading_id_10" class="fm-head1">[]{#A.htm#pgfId-1278150}A.2.6 Creating an image from a working container</h3>
+<p>[]{#A.htm#pgfId-1278154}The
+[]{#A.htm#marker-1278151}[]{#A.htm#marker-1278152}[]{#A.htm#marker-1278153}working
+container you&rsquo;ve been building so far can be used to create the
+OCI-compliant image using the <code>buildah</code>{.fm-code-in-text}
+<code>commit</code>{.fm-code-in-text} command[]{#A.htm#marker-1278155}. This
+command works in the same way as the <code>podman</code>{.fm-code-in-text}
+<code>commit</code>{.fm-code-in-text} command[]{#A.htm#marker-1278156} you learned
+about in section 2.1.9. Inputs for this command are the working
+container name and an optional image tag; if a tag is not specified, the
+image will have no name:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah commit ubi8-init-working-container quay.io/rhatdan/myimage2
+Getting image source signatures
+Copying blob 352ba846236b skipped: already exists 
+Copying blob 3ba8c926eef9 skipped: already exists 
+Copying blob 421971707f97 skipped: already exists 
+Copying blob 9ff25f020d5a done 
+Copying config 5e47dbd9b7 done 
+Writing manifest to image destination
+Storing signatures
+5e47dbd9b7b7a43dd29f3e8a477cce355e42c019bb63626c0a8feffae56fcbf9</code></pre></div>
+<p>[]{#A.htm#pgfId-1278167}You can see the image using
+<code>buildah</code>{.fm-code-in-text} <code>images</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah images
+REPOSITORY                         TAG       IMAGE ID         CREATED    SIZE
+quay.io/rhatdan/myimage2        latest   5e47dbd9b7b7   2 minutes ago  293 MB
+registry.access.redhat
+➥ .com/ubi8-init               latest   4b85030f924b     5 weeks ago  253 MB</code></pre></div>
+<p>[]{#A.htm#pgfId-1278174}Because Podman and Buildah share the same
+container image storage, you can see the same images with
+<code>podman</code>{.fm-code-in-text} <code>images</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman images
+REPOSITORY                         TAG        IMAGE ID        CREATED    SIZE
+quay.io/rhatdan/myimage2        latest    5e47dbd9b7b7  4 minutes ago  293 MB
+registry.access.redhat
+➥ .com/ubi8-init               latest    4b85030f924b    5 weeks ago  253 MB</code></pre></div>
+<p>[]{#A.htm#pgfId-1278185}You can even run a Podman container on the
+[]{#A.htm#marker-1278182}[]{#A.htm#marker-1278183}[]{#A.htm#marker-1278184}image:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run quay.io/rhatdan/myimage2 grep dwalsh /etc/passwd
+dwalsh:x:3267:3267:Daniel J Walsh:/home/dwalsh:/bin/bash</code></pre></div>
+<h3 id="heading_id_11" class="fm-head1">[]{#A.htm#pgfId-1278189}A.2.7 Pushing an image to a container registry</h3>
+<p>[]{#A.htm#pgfId-1278195}Similarly
+[]{#A.htm#marker-1278190}[]{#A.htm#marker-1278191}[]{#A.htm#marker-1278192}to
+Podman, Buildah has the <code>buildah</code>{.fm-code-in-text}
+<code>login</code>{.fm-code-in-text}[]{#A.htm#marker-1278193} and
+<code>buildah</code>{.fm-code-in-text} <code>push</code>{.fm-code-in-text}
+commands[]{#A.htm#marker-1278194}, which allow you to push images to
+container registries, as shown in the following example:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah login quay.io
+Username: rhatdan
+Password:
+Login Succeeded!
+$ buildah push quay.io/rhatdan/myimage2
+Getting image source signatures
+Copying blob 3ba8c926eef9 done 
+Copying blob 421971707f97 done 
+Copying blob 9ff25f020d5a done 
+Copying blob 352ba846236b done 
+Copying config 5e47dbd9b7 done 
+Writing manifest to image destination
+Copying config 5e47dbd9b7 done 
+Writing manifest to image destination
+Storing signatures</code></pre></div>
+<p>[]{#A.htm#pgfId-1278196}[Note]{.fm-callout-head} You can also use
+<code>podman</code>{.fm-code-in-text1} <code>login</code>{.fm-code-in-text1} and
+<code>podman</code>{.fm-code-in-text1} <code>push</code>{.fm-code-in-text1} or even
+<code>skopeo</code>{.fm-code-in-text1} <code>login</code>{.fm-code-in-text1} and
+<code>skopeo</code>{.fm-code-in-text1} <code>copy</code>{.fm-code-in-text1} to accomplish the
+same task.</p>
+<p>[]{#A.htm#pgfId-1278212}Congratulations! You have successfully built an
+OCI-compliant container image manually by using simple shell commands
+rather than using a Containerfile. Additionally, if you want to create
+an image using an existing Containerfile or Dockerfile, you can use the
+<code>buildah</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text}
+[]{#A.htm#marker-1278213}[]{#A.htm#marker-1278214}[]{#A.htm#marker-1278215}command[]{#A.htm#marker-1278216}.</p>
+<h3 id="heading_id_12" class="fm-head1">[]{#A.htm#pgfId-1278218}A.2.8 Building an image from Containerfiles</h3>
+<p>[]{#A.htm#pgfId-1278223}You
+[]{#A.htm#marker-1278219}[]{#A.htm#marker-1278220}[]{#A.htm#marker-1278221}can
+use the <code>buildah</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text} command to
+build an OCI-compliant image from a Containerfile or a Dockerfile.
+Buildah includes a parser that understands the Containerfile format and
+can perform all tasks using previously described commands automatically.
+In the next example, use the Containerfile from section 2.3.2:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ cat myapp/Containerfile
+FROM ubi8/httpd-24
+COPY index.html /var/www/html/index.html</code></pre></div>
+<p>[]{#A.htm#pgfId-1278227}You can build your container image using this
+Containerfile by executing the following command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ buildah build ./myapp
+STEP 1/2: FROM ubi8/httpd-24
+Resolved &#34;ubi8/httpd-24&#34; as an alias (/home/dwalsh/.cache/containers/
+➥ short-name-aliases.conf)
+Trying to pull registry.access.redhat.com/ubi8/httpd-24:latest
+...
+Getting image source signatures
+Checking if image destination supports signatures
+Copying blob adffa6963146 skipped: already exists 
+...
+STEP 2/2: COPY html/index.html /var/www/html/index.html
+COMMIT
+Getting image source signatures
+Copying blob 352ba846236b skipped: already exists 
+...
+bbfcf76c994c738f8496c1f274bd009ddbc960334b59a74953691fff00442417</code></pre></div>
+<p>[]{#A.htm#pgfId-1278244}You&rsquo;ve probably noticed that this output matches
+precisely the output of the <code>podman</code>{.fm-code-in-text}
+<code>build</code>{.fm-code-in-text} command[]{#A.htm#marker-1278245}. This is
+because the <code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text}
+command[]{#A.htm#marker-1278246} uses
+[]{#A.htm#marker-1278247}[]{#A.htm#marker-1278248}[]{#A.htm#marker-1278249}Buildah.</p>
+<h3 id="heading_id_13" class="fm-head1">[]{#A.htm#pgfId-1278251}A.2.9 Buildah as a library</h3>
+<p>[]{#A.htm#pgfId-1278254}Buildah
+[]{#A.htm#marker-1278252}[]{#A.htm#marker-1278253}was designed to not
+only be used as a command-line tool but also to be a Golang-based
+library. Buildah is being used in a few different tools, such as Podman
+and the OpenShift image builder. Buildah allows these tools to
+internally build OCI images. Every time you do a
+<code>podman</code>{.fm-code-in-text} <code>build</code>{.fm-code-in-text}, you are executing
+the Buildah library code. Having learned how to build container images
+using Buildah, copy images between container storages using Skopeo, and
+manage and run containers on the host using Podman, let&rsquo;s talk about how
+all these tools are used in the
+[]{#A.htm#marker-1278255}[]{#A.htm#marker-1278256}Kubernetes
+[]{#A.htm#marker-1278257}[]{#A.htm#marker-1278258}ecosystem.</p>
+<h2 id="heading_id_14" class="fm-head">[]{#A.htm#pgfId-1278260}A.3 CRI-O: Container Runtime Interface for OCI containers</h2>
+<p>[]{#A.htm#pgfId-1278263}When
+[]{#A.htm#marker-1278261}[]{#A.htm#marker-1278262}Kubernetes was being
+developed, it used the Docker API internally to run containers.
+Kubernetes relied on features of Docker that changed from release to
+release, sometimes breaking Kubernetes. At the same time, CoreOS wanted
+their alternative container engine, called RKT
+(<a href="https://github.com/rkt/rkt" rel="external" target="_blank">https://github.com/rkt/rkt</a>{.url}), to
+work with Kubernetes. Kubernetes developers decided, then, to split out
+the Docker functionality and use a new API called the Container Runtime
+Interface (CRI; <a href="http://mng.bz/yaDq" rel="external" target="_blank">http://mng.bz/yaDq</a>{.url}). This
+interface allows Kubernetes to use other container engines in addition
+to Docker.</p>
+<p>[]{#A.htm#pgfId-1278264}When Kubernetes wants to pull a container image,
+it calls out to a remote socket via the CRI and asks the listener to
+pull an OCI image for it. When it wants to launch a Pod/Container, it
+calls out to the socket and asks it to launch the container.</p>
+<p>[]{#A.htm#pgfId-1278265}[Note]{.fm-callout-head} CoreOS was eventually
+acquired by Red Hat, and the RKT project has ended. Kubernetes has
+deprecated Docker as a container runtime.</p>
+<p>[]{#A.htm#pgfId-1278266}Red Hat saw the CRI as an opportunity to develop
+a new container engine, which they ended up calling the Container
+Runtime Interface for OCI containers (CRI-O;
+<a href="https://cri-o.io/" rel="external" target="_blank">https://cri-o.io/</a>{.url}). CRI-O is based on the
+same containers/storage and containers/image libraries as Skopeo,
+Buildah, and Podman and can be used in conjunction with these tools.
+CRI-O&rsquo;s primary objective is replacing the Docker service as the
+container engine for Kubernetes.</p>
+<p>::: figure
+<a href="#R-image-62f02866f0569dec5a1583e591c3f286" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/A-UN03.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62f02866f0569dec5a1583e591c3f286"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/A-UN03.png"></a>{.calibre18}
+:::</p>
+<p>[]{#A.htm#pgfId-1278271}CRI-O is tied to Kubernetes releases. When a new
+version of Kubernetes is released, the version numbers are synchronized.
+CRI-O is optimized for Kubernetes workloads; the engineers working on it
+understand what Kubernetes is trying to do and are making sure CRI-O
+does it in the most efficient way possible. Since CRI-O has no other
+users, Kubernetes doesn&rsquo;t have to worry about breaking changes
+[]{#A.htm#marker-1278272}[]{#A.htm#marker-1278273}in
+[]{#A.htm#marker-1278274}CRI-O.</p>
+<p>[]{#A.htm#pgfId-1278275}[Note]{.fm-callout-head} CRI-O is the core
+technology used with Red Hat&rsquo;s OpenShift Kubernetes-based product.
+OpenShift uses Podman to install and configure CRI-O before Kubernetes
+starts running. The OpenShift image builder embeds Buildah functionality
+to allow users to build images within their OpenShift clusters.</p>
+<p>[]{#B.htm}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">
+  <img src="/images/V.svg" alt="perfectdarkmode.com" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1734871290";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1734871290" defer></script>
+        <script src="/js/search.js?1734871290" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2"><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86" checked><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active hidden " data-nav-id="/tools/podman/appendix-a.-podman-related-container-tools/"><a class="padding" href="/tools/podman/appendix-a.-podman-related-container-tools/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/obsidian-site-setup/"><a class="padding" href="/tools/obsidian-site-setup/"><i class='fa-fw fas fa-caret-right'></i> Automatically Sync Obsidian to Hugo and Apache<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108" checked><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitnesses</span></label><a class="padding" href="/health-and-fitness/">Health and Fitnesses<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/tools/podman/appendix-a.-podman-related-container-tools/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1734871290" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1734871290" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1734871290" defer></script>
+    <script src="/js/js-yaml.min.js?1734871290" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1734871290" defer></script>
+  </body>
+</html>

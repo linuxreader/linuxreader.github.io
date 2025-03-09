@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="1 Intro Podman and Docker feature comparison
+&#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Feature | Po | Do | Description | | | dman | cker | | &#43;=================&#43;======&#43;======&#43;======================================&#43; | Supports all | [ | [ | Both pull and run container images | | OCI and Docker | ✔]{. | ✔]{. | from container registries (i.e., | | images | camb | camb | quay.io and docker.io) | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Launches OCI | [ | [ | Launch containers using runc, crun, | | container | ✔]{. | ✔]{. | Kata, gVisor, and OCI container | | engines | camb | camb | engines | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Simple | [ | [ | Podman and Docker share the same | | command-line | ✔]{. | ✔]{. | CLI. | | interface | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Integration | [ | [ | Podman supports running systemd | | with systemd | ✔]{. | ✘]{. | inside of the container as well as | | | camb | camb | many systemd features. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fork/exec model | [ | [ | The container is a direct descendant | | | ✔]{. | ✘]{. | of the podman command. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fully support | [ | [ | Only Podman supports running | | user namespace | ✔]{. | ✘]{. | containers in separate user | | | camb | camb | namespaces. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Client–server | [ | [ | Docker is a RESTful API daemon. | | model | ✔]{. | ✔]{. | Podman supports RESTful API via a | | | camb | camb | systemd socket=activated service. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | compose scripts work against both | | dockercompose | ✔]{. | ✔]{. | restful APIs. Podman[’]{.calibre6}s | | | camb | camb | works in rootless mode. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | docker-py python bindings work | | docker-py | ✔]{. | ✔]{. | against both restful APIs. Podman’s | | | camb | camb | works in rootless mode. Podman also | | | ria} | ria} | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Daemonless | [ | [ | The podman command runs like a | | | ✔]{. | ✘]{. | traditional command-line tool, while | | | camb | camb | Docker requires multiple | | | ria} | ria} | root-running daemons. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman supports running multiple | | Kubernetes-like | ✔]{. | ✘]{. | containers within the same pod. | | pods | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman can launch containers and | | Kubernetes yaml | ✔]{. | ✘]{. | pods based on Kubernetes yaml. It | | | camb | camb | can also generate Kuberenetes.yaml | | | ria} | ria} | from running containers. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports Docker | [ | [ | Podman believes the future for | | swarm | ✘]{. | ✔]{. | orchestrated multi-node containers | | | camb | camb | is Kubernetes and does not plan on | | | ria} | ria} | implementing Swarm. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman allows you to configure | | registries | ✔]{. | ✘]{. | registries for short name expansion. | | | camb | camb | Docker is hard coded to docker.io | | | ria} | ria} | when you specify a short name. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman supports fully customizing | | defaults | ✔]{. | ✘]{. | all of its defaults including | | | camb | camb | security, namespaces, volumes, and | | | ria} | ria} | more. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Mac OS support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Mac via a VM running | | | camb | camb | Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Windows support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Windows WSL2 or a VM | | | camb | camb | running Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Linux support | [ | [ | Podman and Docker are supported on | | | ✔]{. | ✔]{. | all major Linux distributions. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43;">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="1 Intro Podman and Docker feature comparison
+&#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Feature | Po | Do | Description | | | dman | cker | | &#43;=================&#43;======&#43;======&#43;======================================&#43; | Supports all | [ | [ | Both pull and run container images | | OCI and Docker | ✔]{. | ✔]{. | from container registries (i.e., | | images | camb | camb | quay.io and docker.io) | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Launches OCI | [ | [ | Launch containers using runc, crun, | | container | ✔]{. | ✔]{. | Kata, gVisor, and OCI container | | engines | camb | camb | engines | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Simple | [ | [ | Podman and Docker share the same | | command-line | ✔]{. | ✔]{. | CLI. | | interface | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Integration | [ | [ | Podman supports running systemd | | with systemd | ✔]{. | ✘]{. | inside of the container as well as | | | camb | camb | many systemd features. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fork/exec model | [ | [ | The container is a direct descendant | | | ✔]{. | ✘]{. | of the podman command. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fully support | [ | [ | Only Podman supports running | | user namespace | ✔]{. | ✘]{. | containers in separate user | | | camb | camb | namespaces. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Client–server | [ | [ | Docker is a RESTful API daemon. | | model | ✔]{. | ✔]{. | Podman supports RESTful API via a | | | camb | camb | systemd socket=activated service. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | compose scripts work against both | | dockercompose | ✔]{. | ✔]{. | restful APIs. Podman[’]{.calibre6}s | | | camb | camb | works in rootless mode. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | docker-py python bindings work | | docker-py | ✔]{. | ✔]{. | against both restful APIs. Podman’s | | | camb | camb | works in rootless mode. Podman also | | | ria} | ria} | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Daemonless | [ | [ | The podman command runs like a | | | ✔]{. | ✘]{. | traditional command-line tool, while | | | camb | camb | Docker requires multiple | | | ria} | ria} | root-running daemons. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman supports running multiple | | Kubernetes-like | ✔]{. | ✘]{. | containers within the same pod. | | pods | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman can launch containers and | | Kubernetes yaml | ✔]{. | ✘]{. | pods based on Kubernetes yaml. It | | | camb | camb | can also generate Kuberenetes.yaml | | | ria} | ria} | from running containers. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports Docker | [ | [ | Podman believes the future for | | swarm | ✘]{. | ✔]{. | orchestrated multi-node containers | | | camb | camb | is Kubernetes and does not plan on | | | ria} | ria} | implementing Swarm. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman allows you to configure | | registries | ✔]{. | ✘]{. | registries for short name expansion. | | | camb | camb | Docker is hard coded to docker.io | | | ria} | ria} | when you specify a short name. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman supports fully customizing | | defaults | ✔]{. | ✘]{. | all of its defaults including | | | camb | camb | security, namespaces, volumes, and | | | ria} | ria} | more. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Mac OS support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Mac via a VM running | | | camb | camb | Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Windows support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Windows WSL2 or a VM | | | camb | camb | running Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Linux support | [ | [ | Podman and Docker are supported on | | | ✔]{. | ✔]{. | all major Linux distributions. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43;">
+    <meta property="og:url" content="http://perfectdarkmode.com/tools/podman/1-intro/">
+    <meta property="og:description" content="1 Intro Podman and Docker feature comparison
+&#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Feature | Po | Do | Description | | | dman | cker | | &#43;=================&#43;======&#43;======&#43;======================================&#43; | Supports all | [ | [ | Both pull and run container images | | OCI and Docker | ✔]{. | ✔]{. | from container registries (i.e., | | images | camb | camb | quay.io and docker.io) | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Launches OCI | [ | [ | Launch containers using runc, crun, | | container | ✔]{. | ✔]{. | Kata, gVisor, and OCI container | | engines | camb | camb | engines | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Simple | [ | [ | Podman and Docker share the same | | command-line | ✔]{. | ✔]{. | CLI. | | interface | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Integration | [ | [ | Podman supports running systemd | | with systemd | ✔]{. | ✘]{. | inside of the container as well as | | | camb | camb | many systemd features. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fork/exec model | [ | [ | The container is a direct descendant | | | ✔]{. | ✘]{. | of the podman command. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fully support | [ | [ | Only Podman supports running | | user namespace | ✔]{. | ✘]{. | containers in separate user | | | camb | camb | namespaces. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Client–server | [ | [ | Docker is a RESTful API daemon. | | model | ✔]{. | ✔]{. | Podman supports RESTful API via a | | | camb | camb | systemd socket=activated service. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | compose scripts work against both | | dockercompose | ✔]{. | ✔]{. | restful APIs. Podman[’]{.calibre6}s | | | camb | camb | works in rootless mode. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | docker-py python bindings work | | docker-py | ✔]{. | ✔]{. | against both restful APIs. Podman’s | | | camb | camb | works in rootless mode. Podman also | | | ria} | ria} | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Daemonless | [ | [ | The podman command runs like a | | | ✔]{. | ✘]{. | traditional command-line tool, while | | | camb | camb | Docker requires multiple | | | ria} | ria} | root-running daemons. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman supports running multiple | | Kubernetes-like | ✔]{. | ✘]{. | containers within the same pod. | | pods | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman can launch containers and | | Kubernetes yaml | ✔]{. | ✘]{. | pods based on Kubernetes yaml. It | | | camb | camb | can also generate Kuberenetes.yaml | | | ria} | ria} | from running containers. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports Docker | [ | [ | Podman believes the future for | | swarm | ✘]{. | ✔]{. | orchestrated multi-node containers | | | camb | camb | is Kubernetes and does not plan on | | | ria} | ria} | implementing Swarm. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman allows you to configure | | registries | ✔]{. | ✘]{. | registries for short name expansion. | | | camb | camb | Docker is hard coded to docker.io | | | ria} | ria} | when you specify a short name. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman supports fully customizing | | defaults | ✔]{. | ✘]{. | all of its defaults including | | | camb | camb | security, namespaces, volumes, and | | | ria} | ria} | more. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Mac OS support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Mac via a VM running | | | camb | camb | Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Windows support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Windows WSL2 or a VM | | | camb | camb | running Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Linux support | [ | [ | Podman and Docker are supported on | | | ✔]{. | ✔]{. | all major Linux distributions. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43;">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="1 Intro Podman and Docker feature comparison
+&#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Feature | Po | Do | Description | | | dman | cker | | &#43;=================&#43;======&#43;======&#43;======================================&#43; | Supports all | [ | [ | Both pull and run container images | | OCI and Docker | ✔]{. | ✔]{. | from container registries (i.e., | | images | camb | camb | quay.io and docker.io) | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Launches OCI | [ | [ | Launch containers using runc, crun, | | container | ✔]{. | ✔]{. | Kata, gVisor, and OCI container | | engines | camb | camb | engines | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Simple | [ | [ | Podman and Docker share the same | | command-line | ✔]{. | ✔]{. | CLI. | | interface | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Integration | [ | [ | Podman supports running systemd | | with systemd | ✔]{. | ✘]{. | inside of the container as well as | | | camb | camb | many systemd features. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fork/exec model | [ | [ | The container is a direct descendant | | | ✔]{. | ✘]{. | of the podman command. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Fully support | [ | [ | Only Podman supports running | | user namespace | ✔]{. | ✘]{. | containers in separate user | | | camb | camb | namespaces. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Client–server | [ | [ | Docker is a RESTful API daemon. | | model | ✔]{. | ✔]{. | Podman supports RESTful API via a | | | camb | camb | systemd socket=activated service. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | compose scripts work against both | | dockercompose | ✔]{. | ✔]{. | restful APIs. Podman[’]{.calibre6}s | | | camb | camb | works in rootless mode. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | docker-py python bindings work | | docker-py | ✔]{. | ✔]{. | against both restful APIs. Podman’s | | | camb | camb | works in rootless mode. Podman also | | | ria} | ria} | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Daemonless | [ | [ | The podman command runs like a | | | ✔]{. | ✘]{. | traditional command-line tool, while | | | camb | camb | Docker requires multiple | | | ria} | ria} | root-running daemons. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman supports running multiple | | Kubernetes-like | ✔]{. | ✘]{. | containers within the same pod. | | pods | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports | [ | [ | Podman can launch containers and | | Kubernetes yaml | ✔]{. | ✘]{. | pods based on Kubernetes yaml. It | | | camb | camb | can also generate Kuberenetes.yaml | | | ria} | ria} | from running containers. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Supports Docker | [ | [ | Podman believes the future for | | swarm | ✘]{. | ✔]{. | orchestrated multi-node containers | | | camb | camb | is Kubernetes and does not plan on | | | ria} | ria} | implementing Swarm. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman allows you to configure | | registries | ✔]{. | ✘]{. | registries for short name expansion. | | | camb | camb | Docker is hard coded to docker.io | | | ria} | ria} | when you specify a short name. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Customizable | [ | [ | Podman supports fully customizing | | defaults | ✔]{. | ✘]{. | all of its defaults including | | | camb | camb | security, namespaces, volumes, and | | | ria} | ria} | more. | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Mac OS support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Mac via a VM running | | | camb | camb | Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Windows support | [ | [ | Podman and Docker support running | | | ✔]{. | ✔]{. | containers on a Windows WSL2 or a VM | | | camb | camb | running Linux. | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43; | Linux support | [ | [ | Podman and Docker are supported on | | | ✔]{. | ✔]{. | all major Linux distributions. | | | camb | camb | | | | ria} | ria} | | &#43;—————–&#43;——&#43;——&#43;————————————–&#43;">
+    <meta itemprop="wordCount" content="7770">
+    <title></title>
+    <link href="http://perfectdarkmode.com/tools/podman/1-intro/" rel="canonical" type="text/html" title="">
+    <link href="/tools/podman/1-intro/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/logo.svg?1734871290" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1734871290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1734871290" rel="stylesheet">
+    <link href="/css/fonts.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1734871290" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1734871290" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1734871290" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1734871290" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1734871290" rel="stylesheet">
+    <script src="/js/variant.js?1734871290"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support print" data-url="/tools/podman/1-intro/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#podman-in-action">Podman in Action</a></li>
+    <li><a href="#part-1-foundations">Part 1. Foundations</a></li>
+    <li><a href="#podman-a-next-generation-container-engine">Podman: A next-generation container engine</a></li>
+    <li><a href="#about-all-these-terms">About all these terms</a></li>
+    <li><a href="#12-a-brief-overview-of-containers">1.2 A brief overview of containers</a></li>
+    <li><a href="#121-container-images-a-new-way-to-ship-software">1.2.1 Container images: A new way to ship software</a>
+      <ul>
+        <li><a href="#122-container-images-lead-to-microservices">1.2.2 Container images lead to microservices</a></li>
+        <li><a href="#123-container-image-format">1.2.3 Container image format</a></li>
+        <li><a href="#124-container-standards">1.2.4 Container standards</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-why-use-podman-when-you-have-docker">1.3 Why use Podman when you have Docker?</a></li>
+    <li><a href="#131-why-have-only-one-way-to-run-containers">1.3.1 Why have only one way to run containers?</a>
+      <ul>
+        <li><a href="#132-rootless-containers">1.3.2 Rootless containers</a></li>
+        <li><a href="#133-forkexec-model">1.3.3 Fork/exec model</a></li>
+        <li><a href="#134-podman-is-daemonless">1.3.4 Podman is daemonless</a></li>
+      </ul>
+    </li>
+    <li><a href="#135-user-friendly-command-line">1.3.5 User-friendly command line</a>
+      <ul>
+        <li><a href="#136-support-for-rest-api">1.3.6 Support for REST API</a></li>
+        <li><a href="#137-integration-with-systemd">1.3.7 Integration with systemd</a></li>
+        <li><a href="#138-pods">1.3.8 Pods</a></li>
+        <li><a href="#139-customizable-registries">1.3.9 Customizable registries</a></li>
+        <li><a href="#1310-multiple-transports">1.3.10 Multiple transports</a></li>
+        <li><a href="#podman-supported-transports">Podman-supported transports</a></li>
+      </ul>
+    </li>
+    <li><a href="#1311-complete-customizability">1.3.11 Complete customizability</a>
+      <ul>
+        <li><a href="#1312-user-namespace-support">1.3.12 User-namespace support</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-when-not-to-use-podman">1.4 When not to use Podman</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1734871290" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1734871290" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1734871290" defer></script>
+    <script src="/js/js-yaml.min.js?1734871290" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1734871290" defer></script>
+  </body>
+</html>

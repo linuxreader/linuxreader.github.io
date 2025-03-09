@@ -1,0 +1,32 @@
+## Shell Startup Files
+- Sourced by the shell following user authentication at the time of logging in and before the command prompt appears.
+- Aliases, functions, and scripts can be added to these files as well.
+- two types of startup files: 
+	- **system-wide**
+		- Set the general environment for all users at the time of their login to the system.
+		- Located in the /etc directory
+		- Maintained by the Linux admin.
+		- System-wide startup files for bash shell users:
+			- */etc/bashrc* 
+				- Defines functions and aliases, sets umask for user accounts with a non-login shell, establishes the command prompt, etc.
+				- May include settings from the shell scripts located in the */etc/profile.d* directory. 
+			- */etc/profile* 
+				- Sets common environment variables such as **PATH**, **USER**, **LOGNAME**, **MAIL**, **HOSTNAME**, **HISTSIZE**, and **HISTCONTROL** for all users, establishes umask for user accounts with a login shell, processes the shell scripts located in the */etc/profile.d* directory, and so on.
+			- */etc/profile.d* 
+				- Contains scripts for bash shell users that are executed by the */etc/profile* file.
+				- Files can be edited and updated.
+	- **per-user**
+		- Override or modify system default definitions set by the system-wide startup files.
+		- By default, two files, in addition to the *.bash_logout file*, are located in the skeleton directory */etc/skel* and are copied into user home directories at the time of user creation.
+		- *.bashrc* 
+			- Defines functions and aliases. This file sources global definitions from the */etc/bashrc* file. 
+		- *.bash_profile* 
+			- Sets environment variables and sources the *.bashrc* file to set functions and aliases. 
+		- *.gnome2/* 
+			- Directory that holds environment settings when GNOME desktop is started. Only available if GNOME is installed.
+		- *.bash_logout*
+			- Executed when the user leaves the shell or logs off. 
+			- May be customized
+- Startup file order:
+	- */etc/profile* > *.bash_profile* > *.bashrc* > */etc/bashrc*
+- Per user settings must be added to the appropriate file for persistence.

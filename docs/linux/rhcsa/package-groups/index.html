@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Package Groups package group Group of packages that serve a common purpose. Can query, install, and delete as a single unit rather than dealing with packages individually. Two types of package groups: environment groups and package groups. environment groups available in RHEL 9:
+server, server with GUI, minimal install, workstation, virtualization host, and custom operating system. Listed on the software selection window during RHEL 9 installation. Package groups include:
+container management, smart card support, security tools, system tools, network servers, etc. Individual packages, package groups, and modules: Individual Package Management List, install, query, and remove packages.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Package Groups package group Group of packages that serve a common purpose. Can query, install, and delete as a single unit rather than dealing with packages individually. Two types of package groups: environment groups and package groups. environment groups available in RHEL 9:
+server, server with GUI, minimal install, workstation, virtualization host, and custom operating system. Listed on the software selection window during RHEL 9 installation. Package groups include:
+container management, smart card support, security tools, system tools, network servers, etc. Individual packages, package groups, and modules: Individual Package Management List, install, query, and remove packages.">
+    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/package-groups/">
+    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:description" content="Package Groups package group Group of packages that serve a common purpose. Can query, install, and delete as a single unit rather than dealing with packages individually. Two types of package groups: environment groups and package groups. environment groups available in RHEL 9:
+server, server with GUI, minimal install, workstation, virtualization host, and custom operating system. Listed on the software selection window during RHEL 9 installation. Package groups include:
+container management, smart card support, security tools, system tools, network servers, etc. Individual packages, package groups, and modules: Individual Package Management List, install, query, and remove packages.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Package Groups package group Group of packages that serve a common purpose. Can query, install, and delete as a single unit rather than dealing with packages individually. Two types of package groups: environment groups and package groups. environment groups available in RHEL 9:
+server, server with GUI, minimal install, workstation, virtualization host, and custom operating system. Listed on the software selection window during RHEL 9 installation. Package groups include:
+container management, smart card support, security tools, system tools, network servers, etc. Individual packages, package groups, and modules: Individual Package Management List, install, query, and remove packages.">
+    <meta itemprop="wordCount" content="1327">
+    <title></title>
+    <link href="/linux/rhcsa/package-groups/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/package-groups/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
+    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741554912" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741554912"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.1rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/package-groups/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#packagegroups">Package Groups</a>
+      <ul>
+        <li><a href="#package-group">package group</a></li>
+      </ul>
+    </li>
+    <li><a href="#individual-packages-package-groups-and-modules">Individual packages, package groups, and modules:</a>
+      <ul>
+        <li><a href="#individual-package-management">Individual Package Management</a></li>
+        <li><a href="#lab-list-all-packages-available-for-installation-from-all-enabled-repos">Lab: list all packages available for installation from all enabled repos,</a></li>
+        <li><a href="#lab-list-of-packages-that-are-available-only-from-a-specific-repo">Lab: list of packages that are available only from a specific repo:</a></li>
+        <li><a href="#lab-grep-for-an-expression-to-narrow-down-your-search">Lab: grep for an expression to narrow down your search.</a></li>
+        <li><a href="#lab-list-all-installed-packages-on-the-system">Lab: list all installed packages on the system:</a></li>
+        <li><a href="#installing-and-updating-packages">Installing and Updating Packages</a></li>
+        <li><a href="#exhibiting-package-information">Exhibiting Package Information</a></li>
+        <li><a href="#removing-packages">Removing Packages</a></li>
+        <li><a href="#lab-manipulate-individual-packages">Lab: Manipulate Individual Packages</a></li>
+        <li><a href="#determining-provider-and-searching-package-metadata">Determining Provider and Searching Package Metadata</a></li>
+        <li><a href="#package-group-management">Package Group Management</a></li>
+        <li><a href="#listing-available-and-installed-package-groups">Listing Available and Installed Package Groups</a></li>
+        <li><a href="#installing-and-updating-package-groups">Installing and Updating Package Groups</a></li>
+        <li><a href="#removing-package-groups">Removing Package Groups</a></li>
+        <li><a href="#lab-manipulate-package-groups">Lab: Manipulate Package Groups</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="packagegroups">Package Groups</h2>
+<h3 id="package-group">package group</h3>
+<ul>
+<li>Group of packages that serve a common purpose.</li>
+<li>Can query, install, and delete as a single unit rather than dealing with packages individually.</li>
+<li>Two types of package groups: <em>environment groups</em> and <em>package groups</em>.</li>
+</ul>
+<p><strong>environment groups</strong> available in RHEL 9:</p>
+<ul>
+<li>server, server with GUI, minimal install, workstation, virtualization host, and custom operating system.</li>
+<li>Listed on the software selection window during RHEL 9 installation.</li>
+</ul>
+<p><strong>Package groups</strong> include:</p>
+<ul>
+<li>container management, smart card support, security tools, system tools, network servers, etc.</li>
+</ul>
+<h2 id="individual-packages-package-groups-and-modules">Individual packages, package groups, and modules:</h2>
+<h3 id="individual-package-management">Individual Package Management</h3>
+<p>List, install, query, and remove packages.</p>
+<h4 id="listing-available-and-installed-packages">Listing Available and Installed Packages</h4>
+<ul>
+<li>dnf lists available packages as well as installed packages.</li>
+</ul>
+<h3 id="lab-list-all-packages-available-for-installation-from-all-enabled-repos">Lab: list all packages available for installation from all enabled repos,</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf repoquery</span></span></code></pre></div>
+<h3 id="lab-list-of-packages-that-are-available-only-from-a-specific-repo">Lab: list of packages that are available only from a specific repo:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf repoquery --repo <span style="color:#5af78e">&#34;BaseOS&#34;</span></span></span></code></pre></div>
+<h3 id="lab-grep-for-an-expression-to-narrow-down-your-search">Lab: grep for an expression to narrow down your search.</h3>
+<p>For example, to find whether the BaseOS repo includes the <em>zsh</em> package.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf repoquery --repo BaseOS | grep zsh</span></span></code></pre></div>
+<h3 id="lab-list-all-installed-packages-on-the-system">Lab: list all installed packages on the system:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf list installed</span></span></code></pre></div>
+<p>Three columns:
+- package name
+- package version
+- repo it was installed from.
+- @anaconda means the package was installed at the time of RHEL installation.</p>
+<p>List all installed packages and all packages available for installation from all enabled repositories:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf list</span></span></code></pre></div>
+<ul>
+<li>@ sign identifies the package as installed.</li>
+</ul>
+<p>List all packages available from all enabled repositories that should be able to update:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf list updates</span></span></code></pre></div>
+<p>List whether a package (<em>bc</em>, for instance) is installed or available for installation from any enabled repository:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf list bc</span></span></code></pre></div>
+<p>List all installed packages whose names begin with the string &ldquo;gnome&rdquo; followed by any number of characters:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf list installed ^gnome*</span></span></code></pre></div>
+<p>List recently added packages:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf list recent</span></span></code></pre></div>
+<p>Refer to the <em>repoquery</em> and <em>list</em> subsections of the <em>dnf</em> command manual pages for more options and examples.</p>
+<h3 id="installing-and-updating-packages">Installing and Updating Packages</h3>
+<p>Installing a package:</p>
+<ul>
+<li>creates the necessary directory structure</li>
+<li>installs the required files</li>
+<li>runs any post-installation steps.</li>
+<li>If already installed, <em>dnf</em> command updates it to the latest available version.</li>
+</ul>
+<p>Attempt to install a package called <em>ypbind</em>, proceed to update if it detects the presence of an older version:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf install ypbind</span></span></code></pre></div>
+<p>Install or update a package called <em>dcraw</em> located locally at /mnt/AppStream/Packages/</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf localinstall /mnt/AppStream/Packages/dcraw*</span></span></code></pre></div>
+<p>Update an installed package (<em>autofs</em>, for example) to the latest available version. Dnf will fail if the specified package is not already installed:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf update autofs</span></span></code></pre></div>
+<p>Update all installed packages to the latest available versions:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf -y update</span></span></code></pre></div>
+<p>Refer to the <em>install</em> and <em>update</em> subsections of the <em>dnf</em> command manual pages for more options and examples.</p>
+<h3 id="exhibiting-package-information">Exhibiting Package Information</h3>
+<p>Show:</p>
+<ul>
+<li>release</li>
+<li>size</li>
+<li>whether it is installed or available for installation</li>
+<li>repo name it was installed or is available from</li>
+<li>short and long descriptions</li>
+<li>license</li>
+<li>so on</li>
+</ul>
+<p>dnf info subcommand</p>
+<p>View information about a package called <em>autofs</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf info autofs</span></span></code></pre></div>
+<ul>
+<li>Determines whether the specified package is installed or
+not.</li>
+</ul>
+<p>Refer to the <em>info</em> subsection of the <em>dnf</em> command manual pages.</p>
+<h3 id="removing-packages">Removing Packages</h3>
+<p>Removing a package:</p>
+<ul>
+<li>uninstalls it and removes all associated files and directory structure.</li>
+<li>erases any dependencies as part of the deletion process.</li>
+</ul>
+<p>Remove a package called <em>ypbind</em>:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf remove ypbind</span></span></code></pre></div>
+<p>Output</p>
+<ul>
+<li>Resolved dependencies</li>
+<li>List of the packages that it would remove.</li>
+<li>Disk space that their removal would free up.</li>
+<li>After confirmation, it erased the identified packages and verified their removal.</li>
+<li>List of the removed packages</li>
+</ul>
+<p>Refer to the <em>remove</em> subsection of the <em>dnf</em> command manual pages for more options and examples available for removing packages.</p>
+<h3 id="lab-manipulate-individual-packages">Lab: Manipulate Individual Packages</h3>
+<p>Perform management operations on a package called <code>cifs-utils</code>. Determine if this package is already installed and if it is available for installation. Display its information before installing it. Install the package and exhibit its information. Erase the package along with
+its dependencies and confirm the removal.</p>
+<ol>
+<li>Check whether the <em>cifs-utils</em> package is already installed:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf list installed | grep cifs-utils</span></span></code></pre></div>
+<ol start="2">
+<li>Determine if the <em>cifs-utils</em> package is available for installation:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf repoquery cifs-utils</span></span></code></pre></div>
+<ol start="3">
+<li>Display detailed information about the package:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf info cifs-utils</span></span></code></pre></div>
+<ol start="4">
+<li>Install the package:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf install -y cifs-utils</span></span></code></pre></div>
+<ol start="5">
+<li>Display the package information again:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf info cifs-utils</span></span></code></pre></div>
+<ol start="6">
+<li>Remove the package:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf remove -y cifs-utils</span></span></code></pre></div>
+<ol start="7">
+<li>Confirm the removal:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf list installed | grep cif</span></span></code></pre></div>
+<h3 id="determining-provider-and-searching-package-metadata">Determining Provider and Searching Package Metadata</h3>
+<ul>
+<li>You can determine what package a specific file belongs to or which package comprises a certain string.</li>
+</ul>
+<p>Search for packages that contain a specific file such as /etc/passwd/, use the <em>provides</em> or the <em>whatprovides</em> subcommand with dnf:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf provides /etc/passwd</span></span></code></pre></div>
+<ul>
+<li>
+<p>Indicates file is part of a package called <em>setup</em>, installed during RHEL installation.</p>
+</li>
+<li>
+<p>Second instance, setup package is part of the BaseOS repository.</p>
+</li>
+<li>
+<p>Can also use a wildcard character for filename expansion.</p>
+</li>
+</ul>
+<p>List all packages that contain filenames beginning with &ldquo;system-config&rdquo; followed by any number of characters:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf whatprovides /usr/bin/system-config*</span></span></code></pre></div>
+<p>To search for all the packages that match the specified string in their
+name or summary:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf search system-config</span></span></code></pre></div>
+<h3 id="package-group-management">Package Group Management</h3>
+<ul>
+<li><code>group</code> subcommand</li>
+<li>list, install, query, and remove groups of packages.</li>
+</ul>
+<h3 id="listing-available-and-installed-package-groups">Listing Available and Installed Package Groups</h3>
+<p><code>group list</code> subcommand:</p>
+<ul>
+<li>list the package groups available for installation from either or both repos</li>
+<li>list the package groups that are already installed on the system.</li>
+</ul>
+<p>List all available and installed package groups from all repositories:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf group list</span></span></code></pre></div>
+<p>output:</p>
+<ul>
+<li>two categories of package groups:
+<ul>
+<li>Environment group</li>
+<li>Package groups</li>
+</ul>
+</li>
+</ul>
+<p>Environment group:</p>
+<ul>
+<li>Larger collection of RHEL packages that provides all necessary software to build the operating system foundation for a desired purpose.</li>
+</ul>
+<p>Package group</p>
+<ul>
+<li>Small bunch of RHEL packages that serve a common purpose.</li>
+<li>Saves time on the deployment of individual and dependent packages.</li>
+<li>Output shows installed and available package groups.</li>
+</ul>
+<p>Display the number of installed and available package groups:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf group summary</span></span></code></pre></div>
+<p>List all installed and available package groups including those that
+are hidden:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf group list hidden</span></span></code></pre></div>
+<p>Try <em>group list</em> with --installed and --available options to narrow
+down the output list.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf group list --installed</span></span></code></pre></div>
+<p>List all packages that a specific package group such as Base contains:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf group info Base</span></span></code></pre></div>
+<p>-v option with the group info subcommand for more
+information.</p>
+<p>Review group list and group info subsections of the <code>dnf</code> man pages.</p>
+<h3 id="installing-and-updating-package-groups">Installing and Updating Package Groups</h3>
+<ul>
+<li>Creates the necessary directory structure for all the packages included in the group and all dependent packages.</li>
+<li>Installs the required files.</li>
+<li>Runs any post-installation steps.</li>
+<li>Attempts to update all the packages included in the group to the latest available versions.</li>
+</ul>
+<p>Install a package group called Emacs. Update if it detects an older version.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf -y groupinstall emacs</span></span></code></pre></div>
+<p>Update the <em>smart card support</em> package group to the latest version:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf groupupdate <span style="color:#5af78e">&#34;Smart Card Support&#34;</span></span></span></code></pre></div>
+<p>Refer to the <em>group install</em> and <em>group update</em> subsections of the <em>dnf</em> command manual pages for more details.</p>
+<h3 id="removing-package-groups">Removing Package Groups</h3>
+<ul>
+<li>Uninstalls all the included packages and deletes all associated files and directory structure.</li>
+<li>Erases any dependencies</li>
+</ul>
+<p>Erase the <em>smart card support</em> package group that was installed:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf -y groupremove <span style="color:#5af78e">&#39;smart card support&#39;</span></span></span></code></pre></div>
+<p>Refer to the <em>remove</em> subsection of the <em>dnf</em> command manual pages for
+more details.</p>
+<h3 id="lab-manipulate-package-groups">Lab: Manipulate Package Groups</h3>
+<p>Perform management operations on a package group called <em>system tools</em>. Determine if this group is already installed and if it is available for installation. List the packages it contains and install it. Remove the group along with its dependencies and confirm the removal.</p>
+<ol>
+<li>Check whether the <em>system tools</em> package group is already installed:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf group list installed</span></span></code></pre></div>
+<ol start="2">
+<li>Determine if the <em>system tools</em> group is available for installation:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf group list available</span></span></code></pre></div>
+<p>The group name is exhibited at the bottom of the list under the
+available groups.</p>
+<ol start="3">
+<li>Display the list of packages this group contains:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf group info <span style="color:#5af78e">&#39;system tools&#39;</span></span></span></code></pre></div>
+<ul>
+<li>All of the packages will be installed as part of the group installation.</li>
+</ul>
+<ol start="4">
+<li>Install the group:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf group install <span style="color:#5af78e">&#39;system tools&#39;</span></span></span></code></pre></div>
+<ol start="5">
+<li>Remove the group:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo dnf group remove <span style="color:#5af78e">&#39;system tools&#39;</span> -y</span></span></code></pre></div>
+<ol start="6">
+<li>Confirm the removal:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> dnf group list installed</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">Perfect Dark Mode</a>
+
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741554912";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741554912" defer></script>
+        <script src="/js/search.js?1741554912" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><input type="checkbox" id="R-section-89434e96479d9689b11efd9b3cb12acc" aria-controls="R-subsections-89434e96479d9689b11efd9b3cb12acc"><label for="R-section-89434e96479d9689b11efd9b3cb12acc"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Fedora</span></label><a class="padding" href="/linux/fedora/">Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/my-fedora-setup/"><a class="padding" href="/linux/fedora/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-id="/linux/fedora/silverblue/"><a class="padding" href="/linux/fedora/silverblue/">Silverblue</a></li></ul></li>
+            <li class="active hidden " data-nav-id="/linux/rhcsa/package-groups/"><a class="padding" href="/linux/rhcsa/package-groups/"></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/">Networking</a></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/package-groups/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741554912" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
+    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741554912" defer></script>
+  </body>
+</html>

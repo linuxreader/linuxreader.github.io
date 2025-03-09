@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="3 Volumes []{#03.htm#pgfId-1048583}This chapter []{#03.htm#marker-1051546}covers
+[]{#03.htm#pgfId-1048584 .calibre17}Using volumes to isolate data from the containerized application []{#03.htm#pgfId-1048585 .calibre17}Sharing content from your host into containers via volumes []{#03.htm#pgfId-1048587 .calibre17}Using volumes with the user namespace and []{#03.htm#id_Hlk114568025 .calibre17}SELinux []{#03.htm#pgfId-1048588 .calibre17}Embedding volumes into container images []{#03.htm#pgfId-1048590 .calibre17}Exploring different types of volumes and the []{#03.htm#id_Hlk114568236 .calibre17}volume commands []{#03.htm#pgfId-1048591}Up until now, the containers you have been working with include all their content within the container image. As I described in chapter 1, the only thing required to be shared with traditional containers is the Linux kernel. There are several reasons you need to isolate application data from the application, including the following:">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="3 Volumes []{#03.htm#pgfId-1048583}This chapter []{#03.htm#marker-1051546}covers
+[]{#03.htm#pgfId-1048584 .calibre17}Using volumes to isolate data from the containerized application []{#03.htm#pgfId-1048585 .calibre17}Sharing content from your host into containers via volumes []{#03.htm#pgfId-1048587 .calibre17}Using volumes with the user namespace and []{#03.htm#id_Hlk114568025 .calibre17}SELinux []{#03.htm#pgfId-1048588 .calibre17}Embedding volumes into container images []{#03.htm#pgfId-1048590 .calibre17}Exploring different types of volumes and the []{#03.htm#id_Hlk114568236 .calibre17}volume commands []{#03.htm#pgfId-1048591}Up until now, the containers you have been working with include all their content within the container image. As I described in chapter 1, the only thing required to be shared with traditional containers is the Linux kernel. There are several reasons you need to isolate application data from the application, including the following:">
+    <meta property="og:url" content="http://perfectdarkmode.com/tools/podman/3-volumes/">
+    <meta property="og:description" content="3 Volumes []{#03.htm#pgfId-1048583}This chapter []{#03.htm#marker-1051546}covers
+[]{#03.htm#pgfId-1048584 .calibre17}Using volumes to isolate data from the containerized application []{#03.htm#pgfId-1048585 .calibre17}Sharing content from your host into containers via volumes []{#03.htm#pgfId-1048587 .calibre17}Using volumes with the user namespace and []{#03.htm#id_Hlk114568025 .calibre17}SELinux []{#03.htm#pgfId-1048588 .calibre17}Embedding volumes into container images []{#03.htm#pgfId-1048590 .calibre17}Exploring different types of volumes and the []{#03.htm#id_Hlk114568236 .calibre17}volume commands []{#03.htm#pgfId-1048591}Up until now, the containers you have been working with include all their content within the container image. As I described in chapter 1, the only thing required to be shared with traditional containers is the Linux kernel. There are several reasons you need to isolate application data from the application, including the following:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="3 Volumes []{#03.htm#pgfId-1048583}This chapter []{#03.htm#marker-1051546}covers
+[]{#03.htm#pgfId-1048584 .calibre17}Using volumes to isolate data from the containerized application []{#03.htm#pgfId-1048585 .calibre17}Sharing content from your host into containers via volumes []{#03.htm#pgfId-1048587 .calibre17}Using volumes with the user namespace and []{#03.htm#id_Hlk114568025 .calibre17}SELinux []{#03.htm#pgfId-1048588 .calibre17}Embedding volumes into container images []{#03.htm#pgfId-1048590 .calibre17}Exploring different types of volumes and the []{#03.htm#id_Hlk114568236 .calibre17}volume commands []{#03.htm#pgfId-1048591}Up until now, the containers you have been working with include all their content within the container image. As I described in chapter 1, the only thing required to be shared with traditional containers is the Linux kernel. There are several reasons you need to isolate application data from the application, including the following:">
+    <meta itemprop="wordCount" content="3443">
+    <title></title>
+    <link href="/tools/podman/3-volumes/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/tools/podman/3-volumes/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1734871290" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1734871290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1734871290" rel="stylesheet">
+    <link href="/css/fonts.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1734871290" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1734871290" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1734871290" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1734871290" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1734871290"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/tools/podman/3-volumes/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#heading_id_3">[]{#03.htm#pgfId-1048601}3.1 Using volumes with containers</a>
+      <ul>
+        <li><a href="#heading_id_4">[]{#03.htm#pgfId-1048655}3.1.1 Named volumes</a></li>
+        <li><a href="#heading_id_5">[]{#03.htm#pgfId-1048730}3.1.2 Volume mount options</a></li>
+        <li><a href="#heading_id_6">[]{#03.htm#pgfId-1052263}3.1.3 podman run - -mount command option</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_7">[]{#03.htm#pgfId-1052328}Summary</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="3-volumes">3 Volumes</h1>
+<p>[]{#03.htm#pgfId-1048583}This chapter []{#03.htm#marker-1051546}covers</p>
+<ul>
+<li>[]{#03.htm#pgfId-1048584 .calibre17}Using volumes to isolate data
+from the containerized application</li>
+<li>[]{#03.htm#pgfId-1048585 .calibre17}Sharing content from your host
+into containers via volumes</li>
+<li>[]{#03.htm#pgfId-1048587 .calibre17}Using volumes with the user
+namespace and []{#03.htm#id_Hlk114568025 .calibre17}SELinux</li>
+<li>[]{#03.htm#pgfId-1048588 .calibre17}Embedding volumes into container
+images</li>
+<li>[]{#03.htm#pgfId-1048590 .calibre17}Exploring different types of
+volumes and the []{#03.htm#id_Hlk114568236 .calibre17}volume
+commands</li>
+</ul>
+<p>[]{#03.htm#pgfId-1048591}Up until now, the containers you have been
+working with include all their content within the container image. As I
+described in chapter 1, the only thing required to be shared with
+traditional containers is the Linux kernel. There are several reasons
+you need to isolate application data from the application, including the
+following:</p>
+<ul>
+<li>
+<p>[]{#03.htm#pgfId-1048592 .calibre17}Avoiding embedding actual data
+for applications such as databases.</p>
+</li>
+<li>
+<p>[]{#03.htm#pgfId-1048593 .calibre17}Using the same container image
+to run multiple environments.</p>
+</li>
+<li>
+<p>[]{#03.htm#pgfId-1048594 .calibre17}Reducing overhead and improving
+storage read/write performance, since volumes write directly to the
+filesystem, while containers use the overlay or
+[]{#03.htm#id_Hlk114568472 .calibre17}fuse-overlayfs filesystem to
+mount their layers. <em>Overlay</em> is a layered filesystem, meaning the
+kernel needs to copy the previous layer entirely to create a new
+layer, and fuse-overlayfs switches each read and write from kernel
+space to user space and back. All of this creates quite an overhead.</p>
+</li>
+<li>
+<p>[]{#03.htm#pgfId-1048596 .calibre17}Sharing content available via
+network storage.</p>
+</li>
+</ul>
+<p>[]{#03.htm#pgfId-1048597}[Note]{.fm-callout-head}
+<code>bind</code>{.fm-code-in-text1} mounts remount parts of the file hierarchy in
+a different location on the filesystem. The files and directories in the
+<code>bind</code>{.fm-code-in-text1} mount are the same as the original (see the
+<code>mount</code>{.fm-code-in-text1} command[]{#03.htm#marker-1048598} man page
+for an explanation of <code>bind</code>{.fm-code-in-text1} mounts). A
+<code>bind</code>{.fm-code-in-text1} mount allows the same content to be accessible
+in two places, without any additional overhead. It is important to
+understand that <code>bind</code>{.fm-code-in-text1} does not copy the data or
+create new data.</p>
+<p>[]{#03.htm#pgfId-1048599}Supporting volumes also adds complexity,
+especially concerning security. A lot of the security features of
+containers prevent the container processes from gaining access to the
+filesystem outside the container image. In this chapter, you will
+discover the ways Podman allows you to work around these obstacles.</p>
+<h2 id="heading_id_3" class="fm-head">[]{#03.htm#pgfId-1048601}3.1 Using volumes with containers</h2>
+<p>[]{#03.htm#pgfId-1048603}Let&rsquo;s []{#03.htm#marker-1048602}go back to your
+containerized application. Up until now, you have simply embedded the
+web application data into your container filesystem directly. Recall
+that in section 2.1.8, you used the <code>podman</code>{.fm-code-in-text}
+<code>exec</code>{.fm-code-in-text} command[]{#03.htm#marker-1048604} to modify the
+Hello World index.html data within the container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman exec -i myapp bash -c &#39;cat &gt; /var/www/html/index.html&#39; &lt;&lt; _EOF
+&lt;html&gt;
+ &lt;head&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;h1&gt;Hello World&lt;/h1&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+_EOF </code></pre></div>
+<p>[]{#03.htm#pgfId-1048614}You have made the containerized image more
+flexible by allowing users to supply their own content for the web
+service or perhaps to update the web service on the fly. At the same
+time, while this method is possible, it is error prone and not scalable;
+it is where volumes come in handy.</p>
+<p>[]{#03.htm#pgfId-1048616}Podman allows you to mount host filesystem
+content into containers using the <code>podman</code>{.fm-code-in-text}
+<code>run</code>{.fm-code-in-text} command[]{#03.htm#marker-1048615} via the
+<code>--volume</code>{.fm-code-in-text} <code>(-v)</code>{.fm-code-in-text}
+option[]{#03.htm#marker-1048617}.</p>
+<p>[]{#03.htm#pgfId-1048619}The <code>--volume</code>{.fm-code-in-text}
+<code>HOST-DIR:CONTAINER-DIR</code>{.fm-code-in-text}
+option[]{#03.htm#marker-1048618} tells Podman to
+<code>bind</code>{.fm-code-in-text} mount <code>HOST-DIR</code>{.fm-code-in-text} in the host
+to <code>CONTAINER-DIR</code>{.fm-code-in-text} in the container. Podman supports
+other kinds of volumes as well, but in this section, I will focus on
+<code>bind</code>{.fm-code-in-text} mount volumes.</p>
+<p>[]{#03.htm#pgfId-1048620}It is possible to mount both files or
+directories in a single option. Changes of the content on the host will
+be seen inside the container. Similarly, if container processes change
+the content inside the container, the changes will be seen on the host.</p>
+<p>[]{#03.htm#marker-1051591}[]{#03.htm#pgfId-1048621}Let&rsquo;s look at an
+example. Create a directory, html, in your home directory, and then
+create a new html/index.html file in it:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ mkdir html
+$ cat &gt; html/index.html &lt;&lt; _EOF
+&lt;html&gt;
+ &lt;head&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;h1&gt;Goodbye World&lt;/h1&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+_EOF</code></pre></div>
+<p>[]{#03.htm#pgfId-1048632}Now launch a container with the option
+<code>-v</code>{.fm-code-in-text} <code>./html:/var/www/html</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -d -v ./html:/var/www/html:ro,z -p 8080:8080
+     quay.io/rhatdan/myimage
+94c21a3d8fda740857abc571469aaaa181f4db27a464ceb6743c4a37fb875772</code></pre></div>
+<p>[]{#03.htm#pgfId-1048637}Notice the extra <code>:ro,z</code>{.fm-code-in-text}
+fields in the <code>--volume</code>{.fm-code-in-text}
+option[]{#03.htm#marker-1048635}. The <code>ro</code>{.fm-code-in-text}
+option[]{#03.htm#marker-1048636} tells Podman to mount the volume in
+read-only mode. The read-only mount means processes within the container
+cannot modify any content under /var/www/html, while processes on the
+host are still able to modify the content. Podman defaults all volume
+mounts to read/write mode. The <code>z</code>{.fm-code-in-text} option tells Podman
+to relabel the content to a shared label for use by SELinux (see section
+3.1.2).</p>
+<p>[]{#03.htm#pgfId-1048638}Now that you have launched the container, open
+a web browser, and navigate to localhost:8080 to make sure the changes
+have taken place (see figure 3.1).</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ web-browser localhost:8080</code></pre></div>
+<p>::: figure
+<a href="#R-image-b0906bc81bdaa3a028c09a99cfed7de0" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/03-01.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b0906bc81bdaa3a028c09a99cfed7de0"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/03-01.png"></a>{.calibre18}</p>
+<p>[]{#03.htm#pgfId-1054147}Figure 3.1 Web browser window connecting to the
+<code>myimage</code>{.fm-code-in-text} Podman container[]{#03.htm#marker-1054148}
+with volume mounted L
+:::</p>
+<p>[]{#03.htm#pgfId-1048647}Now you can shut down and remove the container
+you just created. Removing the container does not affect the content at
+all. The following command removes the latest
+(<code>--latest</code>{.fm-code-in-text}) container, yours. The
+<code>--force</code>{.fm-code-in-text} option[]{#03.htm#marker-1048648} tells
+Podman to stop the container and then remove it:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman rm --latest --force</code></pre></div>
+<p>[]{#03.htm#pgfId-1048650}Finally, remove the content with this command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ rm -rf html</code></pre></div>
+<p>[]{#03.htm#pgfId-1048653}[Note]{.fm-callout-head} The
+<code>--latest</code>{.fm-code-in-text1} option[]{#03.htm#marker-1048652} is not
+available on Mac and Windows. You must specify the container name or ID.
+Remote mode is explained in chapter 9, and Podman on Mac and Windows is
+explained in appendixes E and F.</p>
+<h3 id="heading_id_4" class="fm-head1">[]{#03.htm#pgfId-1048655}3.1.1 Named volumes</h3>
+<p>[]{#03.htm#pgfId-1048659}In
+[]{#03.htm#marker-1048656}[]{#03.htm#marker-1048657}[]{#03.htm#marker-1048658}the
+first volume example, you created a directory on disk and then mounted
+it into the container. Similarly, you can take any existing file or
+directory and mount it into a container, as long as you have read access
+to it.</p>
+<p>[]{#03.htm#pgfId-1048660}Another mechanism for persisting Podman
+containers data is named <code>volume</code>{.fm-code-in-text}. You can create one
+of these with the <code>podman</code>{.fm-code-in-text} <code>volume</code>{.fm-code-in-text}
+<code>create</code>{.fm-code-in-text} command[]{#03.htm#marker-1048661}. In the
+following example you will create a <code>volume</code>{.fm-code-in-text} named
+<code>webdata</code>{.fm-code-in-text}[]{#03.htm#marker-1048662}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman volume create webdata
+webdata</code></pre></div>
+<p>[]{#03.htm#pgfId-1048665}Podman defaults to creating local-named
+volumes, with storage allocated in the container storage directories.
+You can inspect the volume and look for its mount point using the
+following command:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman volume inspect webdata
+[
+  {
+      &#34;Name&#34;: &#34;webdata&#34;,
+      &#34;Driver&#34;: &#34;local&#34;,
+      &#34;Mountpoint&#34;:
+➥ &#34;/home/dwalsh/.local/share/containers/storage/volumes/webdata/_data&#34;,
+      &#34;CreatedAt&#34;: &#34;2021-10-11T14:10:48.741367132-04:00&#34;,
+      &#34;Labels&#34;: {},
+      &#34;Scope&#34;: &#34;local&#34;,
+      &#34;Options&#34;: {}
+  }
+]</code></pre></div>
+<p>[]{#03.htm#pgfId-1048679}Podman actually creates a directory in your
+local container storage, /home/dwalsh/
+.local/share/containers/storage/volumes/webdata/_data, to store the
+content of the volume. You can create content from the host in this
+directory:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ cat &gt; /home/dwalsh/.local/share/containers/storage/volumes/webdata/_
+data/index.html &lt;&lt; _EOL
+&lt;html&gt;
+ &lt;head&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;h1&gt;Goodbye World&lt;/h1&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+_EOL</code></pre></div>
+<p>[]{#03.htm#marker-1051690}[]{#03.htm#pgfId-1048690}Now you can run the
+<code>myimage</code>{.fm-code-in-text} application[]{#03.htm#marker-1048689} using
+this volume:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -d -v webdata :/var/www/html:ro,z -p 8080:8080 quay.io/rhatdan/myimage
+0c8eb612831f8fe22438d73d801e5bb664ec3b1d524c5c10759ee0049061cb6b</code></pre></div>
+<p>[]{#03.htm#pgfId-1048693}Now refresh the web browser to ensure the file
+created in the host directory is displaying &ldquo;Goodbye World&rdquo; (see figure
+3.2).</p>
+<p>::: figure
+<a href="#R-image-1d2d9344bc633c67a40fae686b29f074" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/03-02.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1d2d9344bc633c67a40fae686b29f074"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/03-02.png"></a>{.calibre18}</p>
+<p>[]{#03.htm#pgfId-1054186}Figure 3.2 Web browser window connecting to the
+<code>myimage</code>{.fm-code-in-text} Podman container[]{#03.htm#marker-1054187}
+with the named volume mounted
+:::</p>
+<p>[]{#03.htm#pgfId-1048701}Named volumes can be used for more than one
+container at a time, and they will stay around even after the container
+is removed. If you are done with the named volume and container, you can
+first stop the container without waiting for the processes to finish:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman stop -t 0 0c8eb61283</code></pre></div>
+<p>[]{#03.htm#pgfId-1048705}Then remove the volume with the
+<code>podman</code>{.fm-code-in-text} <code>volume</code>{.fm-code-in-text}
+<code>rm</code>{.fm-code-in-text} command[]{#03.htm#marker-1048703}. Note the
+<code>--force</code>{.fm-code-in-text} option[]{#03.htm#marker-1048704}, which
+tells Podman to remove the volume and all containers that rely on the
+volume:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman volume rm --force webdata </code></pre></div>
+<p>[]{#03.htm#pgfId-1048708}Now you can make sure the volume is gone by
+executing the <code>volume</code>{.fm-code-in-text} <code>list</code>{.fm-code-in-text}
+command[]{#03.htm#marker-1048707}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman volume list</code></pre></div>
+<p>[]{#03.htm#pgfId-1048711}If a named volume doesn't exist prior to
+executing the <code>podman</code>{.fm-code-in-text} <code>run</code>{.fm-code-in-text}
+command[]{#03.htm#marker-1048710}, it will be created automatically. In
+the following example, you will specify <code>webdata1</code>{.fm-code-in-text} for
+the name of the named volume, then list the volumes:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -d -v webdata1:/var/www/html:ro,z -p 8080:8080\ 
+➥ quay.io/rhatdan/myimage
+58ccaf37958496322e34cd933cd4dd5a61ab06c5ba678beb28fdc29cfb81f407
+  
+$ podman volume list
+DRIVER   VOLUME NAME
+local     webdata1</code></pre></div>
+<p>[]{#03.htm#pgfId-1048719}Of course, this volume is empty. Remove the
+<code>webdata1</code>{.fm-code-in-text} volume and container:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman volume rm --force webdata1 </code></pre></div>
+<p>[]{#03.htm#pgfId-1048721}Podman also supports other types of volumes. It
+uses the concept of volume plugins so third parties can provide volumes;
+see the <code>podman-volume-create</code>{.fm-code-in-text} man
+pages[]{#03.htm#marker-1048722} for more information.</p>
+<p>[]{#03.htm#pgfId-1048724}Podman has other interesting volume features.
+The <code>podman</code>{.fm-code-in-text} <code>volume</code>{.fm-code-in-text}
+<code>export</code>{.fm-code-in-text} command[]{#03.htm#marker-1048723} exports all
+the content of a volume into an external TAR archive. This archive can
+be copied to other machines used to recreate the volume on another
+machine with the <code>podman</code>{.fm-code-in-text} <code>volume</code>{.fm-code-in-text}
+<code>import</code>{.fm-code-in-text} command[]{#03.htm#marker-1048725}. Now that
+you understand the handling of volumes, it is time to dig deeper into
+volume
+[]{#03.htm#marker-1048726}[]{#03.htm#marker-1048727}[]{#03.htm#marker-1048728}options.</p>
+<h3 id="heading_id_5" class="fm-head1">[]{#03.htm#pgfId-1048730}3.1.2 Volume mount options</h3>
+<p>[]{#03.htm#pgfId-1048735}You
+[]{#03.htm#marker-1048731}[]{#03.htm#marker-1048732}[]{#03.htm#marker-1048733}have
+been using volume mount options throughout this chapter. The
+<code>ro</code>{.fm-code-in-text} option[]{#03.htm#marker-1048734} tells Podman to
+mount the read-only volume, and the lowercase <code>z</code>{.fm-code-in-text}
+option[]{#03.htm#marker-1048736} tells Podman to relabel the content
+with SELinux labels that will allow multiple containers to read and
+write in the volume:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -d -v ./html:/var/www/html:ro,z -p 8080:8080 quay.io/rhatdan/myimage</code></pre></div>
+<p>[]{#03.htm#pgfId-1048738}Podman supports some other interesting volume
+options.</p>
+<p>[]{#03.htm#pgfId-1048740}The U volume option</p>
+<p>[]{#03.htm#pgfId-1048744}Sometimes
+[]{#03.htm#marker-1048741}[]{#03.htm#marker-1048742}[]{#03.htm#marker-1048743}when
+you run a rootless container, you need a volume to be owned by the user
+of the container. Imagine your application needs to allow the
+[]{#03.htm#id_Hlk114570711}web server to write to the volume. In your
+container, the Apache Web Server process (<code>httpd</code>{.fm-code-in-text}) is
+run as the <code>apache</code>{.fm-code-in-text} (<code>UID==60</code>{.fm-code-in-text})
+user. The html directory in your home directory is owned by your UID,
+meaning it is owned by root inside the container. The kernel does not
+allow a process running as <code>UID==60</code>{.fm-code-in-text} inside the
+container to make changes to a directory owned by root. You must set the
+ownership of the volume to <code>UID==60</code>{.fm-code-in-text}.</p>
+<p>[]{#03.htm#pgfId-1048746}In rootless containers, the UIDs of the
+container are offset by the user namespace. My user namespace mapping
+looks like this:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman unshare cat /proc/self/uid_map
+       0     3267      1
+       1   100000    65536</code></pre></div>
+<p>[]{#03.htm#pgfId-1048750}The <code>UID==0</code>{.fm-code-in-text} inside the
+container is my <code>UID</code>{.fm-code-in-text} <code>3267</code>{.fm-code-in-text}, and
+<code>UID</code>{.fm-code-in-text} <code>1==100000</code>{.fm-code-in-text},
+<code>UID</code>{.fm-code-in-text} <code>2==10000</code>{.fm-code-in-text} ...
+<code>UID60==100059</code>{.fm-code-in-text}, meaning I need to set the ownership
+of the html directory to <code>100059</code>{.fm-code-in-text}.</p>
+<p>[]{#03.htm#pgfId-1048752}I can do this fairly simply, using the
+<code>podman</code>{.fm-code-in-text} <code>unshare</code>{.fm-code-in-text}
+command[]{#03.htm#marker-1048751}, as follows:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman unshare chown 60:60 ./html</code></pre></div>
+<p>[]{#03.htm#pgfId-1048754}Now everything works. One problem with this is
+that I need to do some mental gymnastics to figure out which UID the
+container will run with.</p>
+<p>[]{#03.htm#pgfId-1048756}Many container images exist with the default
+UID defined in them. The <code>mariadb</code>{.fm-code-in-text}
+image[]{#03.htm#marker-1048755} is another example of this; it runs with
+the <code>mysql</code>{.fm-code-in-text} user, <code>UID=999</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run docker.io/mariadb grep mysql /etc/passwd
+mysql:x:999:999::/home/mysql:/bin/sh</code></pre></div>
+<p>[]{#03.htm#pgfId-1048759}If you created a volume to be used for the
+database, you need to figure out what <code>UID=999</code>{.fm-code-in-text} mapped
+to within the user namespace. On my system this is
+<code>UID=100998</code>{.fm-code-in-text}.</p>
+<p>[]{#03.htm#pgfId-1048760}Podman supplies the <code>U</code>{.fm-code-in-text}
+command option for this exact situation. The <code>U</code>{.fm-code-in-text}
+option tells Podman to recursively change ownership
+(<code>chown</code>{.fm-code-in-text}) the source volume to match the default UID
+the container executes with.</p>
+<p>[]{#03.htm#pgfId-1048761}Try it out by first creating the directory for
+the database. Notice the directory in the home directory is owned by
+your user:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ mkdir mariadb
+$ ls -ld mariadb/
+drwxrwxr-x. 1 dwalsh dwalsh 0 Oct 23 06:55 mariadb/</code></pre></div>
+<p>[]{#03.htm#pgfId-1048766}Now run the <code>mariadb</code>{.fm-code-in-text}
+container[]{#03.htm#marker-1048765} with the <code>--user</code>{.fm-code-in-text}
+<code>mysql</code>{.fm-code-in-text}, and <code>bind</code>{.fm-code-in-text} mount the
+./mariadb directory to /var/lib/mariadb with the <code>:U</code>{.fm-code-in-text}
+option. Notice that the directory is now owned by the
+<code>mysql</code>{.fm-code-in-text} user[]{#03.htm#marker-1048767}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --user mysql -v ./mariadb:/var/lib/mariadb:U \
+➥ docker.io/mariadb ls -ld /var/lib/mariadb
+drwxrwxr-x. 1 mysql mysql 0 Oct 23 10:55 /var/lib/mariadb</code></pre></div>
+<p>[]{#03.htm#pgfId-1048770}If you look at the mariadb directory on the
+host again, you will see that it is now owned by <code>UID</code>{.fm-code-in-text}
+<code>100998</code>{.fm-code-in-text} or whatever <code>UID</code>{.fm-code-in-text}
+<code>999</code>{.fm-code-in-text} maps to within your user namespace:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ ls -ld mariadb/
+drwxrwxr-x. 1 100998 100998 0 Oct 23 06:55 mariadb/</code></pre></div>
+<p>[]{#03.htm#pgfId-1048773}User namespace is not the only security
+mechanism you need to work around with rootless containers. SELinux,
+while great for container security, can cause some problems when working
+with
+[]{#03.htm#marker-1048774}[]{#03.htm#marker-1048775}[]{#03.htm#marker-1048776}volumes.</p>
+<p>[]{#03.htm#pgfId-1048778}The SELinux volume options</p>
+<p>[]{#03.htm#pgfId-1048782}In
+[]{#03.htm#marker-1048779}[]{#03.htm#marker-1048780}[]{#03.htm#marker-1048781}my
+opinion, SELinux is the best mechanism for protecting the filesystem
+from hostile container processes. Over the years, several container
+escapes have been thwarted by SELinux (see section 10.8 for more
+information on SELinux).</p>
+<p>[]{#03.htm#pgfId-1048783}As I explained previously, volumes leak files
+from the OS into the container, and from an SELinux point of view, these
+files and directories must be labeled correctly, or the kernel will
+block access.</p>
+<p>[]{#03.htm#pgfId-1048785}The lowercase <code>z</code>{.fm-code-in-text} command
+option[]{#03.htm#marker-1048784} you have been using in this chapter
+tells Podman to recursively relabel all content in the source directory
+with a label that can be read and written by all containers from an
+SELinux point of view. If the volume will not be used by more than one
+container, relabeling with the lowercase <code>z</code>{.fm-code-in-text} option
+isn&rsquo;t what you want. If a different hostile container escapes
+confinement, it might be able to access this data and read/write it.
+Podman provides an uppercase <code>Z</code>{.fm-code-in-text} option that tells
+Podman to recursively relabel the content in such a way that only the
+processes within the container can read/write the content.</p>
+<p>[]{#03.htm#pgfId-1048786}In both previous cases, you relabeled the
+content of the directory. Relabeling works great if the directory is
+specified for use by containers. Sometimes you may want to use a
+container to examine content in a system-specific directory&mdash;for
+example, if you want to run a container that examines all the logs in
+/var/log or examines all your home directories (/home/dwalsh).</p>
+<p>[]{#03.htm#pgfId-1048787}[Note]{.fm-callout-head} Using this option on a
+home directory can have disastrous effects on the system because it
+recursively relabels all content in the directory as if the data was
+private to a container. Other confined domains would be prevented from
+using the mislabeled data.</p>
+<p>[]{#03.htm#pgfId-1048788}For these cases, you need to disable SELinux
+enforcement for container separation to allow the containers to use the
+volume. Podman provides the command option
+<code>--security-opt</code>{.fm-code-in-text}
+<code>label=disable</code>{.fm-code-in-text}[]{#03.htm#marker-1048789} to disable
+SELinux support for a single container, basically running the container
+with an <em>unconfined</em> label[]{#03.htm#marker-1048790} from an SELinux
+perspective:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --security-opt label=disable -v /home/dwalsh:/home/dwalsh -p\ 
+➥ 8080:8080 quay.io/rhatdan/myimage</code></pre></div>
+<p>[]{#03.htm#pgfId-1052208}Table 3.1 lists and describes all of the mount
+[]{#03.htm#marker-1053206}[]{#03.htm#marker-1053207}[]{#03.htm#marker-1053208}options
+[]{#03.htm#marker-1053223}[]{#03.htm#marker-1053224}[]{#03.htm#marker-1053225}available
+[]{#03.htm#marker-1053240}in []{#03.htm#marker-1053255}Podman.</p>
+<p>[]{#03.htm#pgfId-1053090}Table 3.1 Volume mount options</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#03.htm#pgfId-1053096}Description                |
+| ]{#03.htm#pgfId |                                                     |
+| -1053094}Volume |                                                     |
+| option          |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#03          | []{#03.htm#pgfId-1053100}Prevent container          |
+| .htm#pgfId-1053 | processes from using character or block devices on  |
+| 098}<code>nodev</code>{.fm | the volume.                                         |
+| -code-in-text1} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#03.         | []{#03.htm#pgfId-1053104}Prevent container          |
+| htm#pgfId-10531 | processes from direct execution of any binaries on  |
+| 02}<code>noexec</code>{.fm | the volume.                                         |
+| -code-in-text1} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#03.         | []{#03.htm#pgfId-1053108}Prevent SUID applications  |
+| htm#pgfId-10531 | from changing their privilege on the volume.        |
+| 06}<code>nosuid</code>{.fm |                                                     |
+| -code-in-text1} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#03.htm#pgfId-1053112}Mount the directory from   |
+| {#03.htm#pgfId- | the host as a temporary storage using the overlay   |
+| 1053110}<code>O</code>{.fm | filesystem. Modifications to the mount point are    |
+| -code-in-text1} | destroyed when the container finishes executing.    |
+|                 | This option is useful for sharing the package cache |
+|                 | from the host into the container to allow speeding  |
+|                 | up builds.                                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#03.htm#     | []{#03.htm#pgfId-1053116}Specify mount propagation  |
+| pgfId-1053114}<code> | mode. Mount propagation controls how changes to     | | [r]shared|</code>{.fm | mounts are propagated across mount boundaries:      |
+| -code-in-text1} |                                                     |
+|                 | -   []                                              |
+| <code>[r]slave|</code>{.fm | {#03.htm#pgfId-1053158}<code>private</code>{.fm-code-in-text1} |
+| -code-in-text1} |     (default)&mdash;Any mounts done inside container    |
+|                 |     will not be visible on host and vice versa.     |
+| <code>[              |                                                     | | r]private|</code>{.fm | -   []{#03.htm                                      |
+| -code-in-text1} | #pgfId-1053140}<code>shared</code>{.fm-code-in-text1}&mdash;Mounts |
+|                 |     done under that volume inside container will be |
+| <code>[r]            |     visible on host and vice versa.                 | | unbindable</code>{.fm |                                                     |
+| -code-in-text1} | -   []{#03.ht                                       |
+|                 | m#pgfId-1053143}<code>slave</code>{.fm-code-in-text1}&mdash;Mounts |
+|                 |     done on host under that volume will be visible  |
+|                 |     inside container but not the other way around.  |
+|                 |                                                     |
+|                 | -   []{#03.htm                                      |
+|                 | #pgfId-1053146}<code>unbindable</code>{.fm-code-in-text1}&mdash;An |
+|                 |     unbindable version of private mode.             |
+|                 |                                                     |
+|                 | []{#03.htm#pgfId-1053149}The prefix                 |
+|                 | <code>r</code>{.fm-code-in-text1} stands for <em>recursive</em>,      |
+|                 | meaning that any mounts underneath the mount point  |
+|                 | will also be treated the same way.                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#03          | []{#03.htm#pgfId-1053120}Mount a volume in          |
+| .htm#pgfId-1053 | read-only (<code>ro</code>{.fm-code-in-text1}) or read-write   |
+| 118}<code>rw|ro</code>{.fm | (<code>rw</code>{.fm-code-in-text1}) mode. By default,         |
+| -code-in-text1} | read/write is implied.                              |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#03.htm#pgfId-1053124}Use the correct host UID   |
+| {#03.htm#pgfId- | and GID based on the UID and GID within the         |
+| 1053122}<code>U</code>{.fm | container. Use with caution because this will       |
+| -code-in-text1} | modify the host filesystem.                         |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#            | []{#03.htm#pgfId-1053128}Relabel file objects on    |
+| 03.htm#pgfId-10 | the shared volumes. Choose the                      |
+| 53126}<code>z|Z</code>{.fm | <code>z</code>{.fm-code-in-text1} option to label volume       |
+| -code-in-text1} | content as shared among multiple containers. Choose |
+|                 | the <code>Z</code>{.fm-code-in-text1} option to label content  |
+|                 | as unshared and private.                            |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#03.htm#pgfId-1052260}For more information, see the man pages for
+<code>mount</code>{.fm-code-in-text} and <code>mount_namespaces(7)</code>{.fm-code-in-text}.</p>
+<p>[]{#03.htm#pgfId-1052261}Most of the time, the simple
+<code>--volume</code>{.fm-code-in-text} option is powerful enough for mounting
+volumes into containers. Over time, the requests for new mount options
+grew too complex, so a new option called <code>--mount</code>{.fm-code-in-text} was
+added.</p>
+<h3 id="heading_id_6" class="fm-head1">[]{#03.htm#pgfId-1052263}3.1.3 podman run - -mount command option</h3>
+<p>[]{#03.htm#pgfId-1052264}The <code>podman</code>{.fm-code-in-text}
+<code>run</code>{.fm-code-in-text} <code>--mount</code>{.fm-code-in-text} option is a much
+closer option to the underlying Linux mount command. It allows you to
+specify all of the mount options that the mount command understands;
+Podman passes them down directly to the kernel.</p>
+<p>[]{#03.htm#pgfId-1052265}The only mount types currently supported are
+<code>bind</code>{.fm-code-in-text}, <code>volume</code>{.fm-code-in-text},
+<code>image</code>{.fm-code-in-text}, <code>tmpfs</code>{.fm-code-in-text}, and
+<code>devpts</code>{.fm-code-in-text}. (For more information, see the
+<code>podman-mount(1)</code>{.fm-code-in-text} man page for more information.)</p>
+<p>[]{#03.htm#pgfId-1052267}[]{#03.htm#id_y86zr7tjtxmy}Volumes and mounts
+are excellent ways to keep data separate from the container image. In
+most cases, the container image should be treated as read-only, and any
+data that needs to be written or is not specific to the application
+should be stored outside of the container image via volumes. In a lot of
+cases, you will get much better performance keeping your data separate,
+because reads and writes will not have the overhead of the copy-on-write
+filesystem. These mounts also make it easier to use the same container
+images with different data (table 3.2).</p>
+<p>[]{#03.htm#pgfId-1052432}Table 3.2 Podman volume commands</p>
+<p>+&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#    | []{#03                 | []{                               |
+| 03.htm# | .htm#pgfId-1052440}Man | #03.htm#pgfId-1052442}Description |
+| pgfId-1 | page                   |                                   |
+| 052438} |                        |                                   |
+| Command |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{     | []{                    | []{#03.htm#pgfId-1052448}Create a |
+| #03.htm | #03.htm#pgfId-1052446} | new volume.                       |
+| #pgfId- | <code>podman-volume-create( |                                   | | 1052444 | 1)</code>{.fm-code-in-text1} |                                   |
+| }<code>creat |                        |                                   | | e</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{     | []{                    | []{#03.htm#pgfId-1052454}Check if |
+| #03.htm | #03.htm#pgfId-1052452} | a volume exists.                  |
+| #pgfId- | <code>podman-volume-exists( |                                   | | 1052450 | 1)</code>{.fm-code-in-text1} |                                   |
+| }<code>exist |                        |                                   | | s</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{     | []{                    | []{#03.htm#pgfId-1052460}Export   |
+| #03.htm | #03.htm#pgfId-1052458} | the contents of a volume into a   |
+| #pgfId- | <code>podman-volume-export( | tar ball.                         | | 1052456 | 1)</code>{.fm-code-in-text1} |                                   |
+| }<code>expor |                        |                                   | | t</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{     | []{                    | []{#03.htm#pgfId-1052466}Untar a  |
+| #03.htm | #03.htm#pgfId-1052464} | tarball into a volume.            |
+| #pgfId- | <code>podman-volume-import( |                                   | | 1052462 | 1)</code>{.fm-code-in-text1} |                                   |
+| }<code>impor |                        |                                   | | t</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#    | []{#                   | []{#03.htm#pgfId-1052472}Display  |
+| 03.htm# | 03.htm#pgfId-1052470}<code> | detailed information on a volume. | | pgfId-1 | podman-volume-inspect( |                                   | | 052468} | 1)</code>{.fm-code-in-text1} |                                   |
+| <code>inspec |                        |                                   | | t</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [       | [                      | []{#03.htm#pgfId-1052478}List all |
+| ]{#03.h | ]{#03.htm#pgfId-105247 | of the volumes.                   |
+| tm#pgfI | 6}<code>podman-volume-list( |                                   | | d-10524 | 1)</code>{.fm-code-in-text1} |                                   |
+| 74}<code>lis |                        |                                   | | t</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []      | []                     | []{#03.htm#pgfId-1052484}Remove   |
+| {#03.ht | {#03.htm#pgfId-1052482 | all unused volumes.               |
+| m#pgfId | }<code>podman-volume-prune( |                                   | | -105248 | 1)</code>{.fm-code-in-text1} |                                   |
+| 0}<code>prun |                        |                                   | | e</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#03  | []{#03.htm#pgfId-1052  | []{#03.htm#pgfId-1052490}Remove   |
+| .htm#pg | 488}<code>podman-volume-rm( | one or more volumes.              | | fId-105 | 1)</code>{.fm-code-in-text1} |                                   |
+| 2486}<code>r |                        |                                   | | m</code>{.fm- |                        |                                   |
+| code-in |                        |                                   |
+| -text1} |                        |                                   |
++&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<h2 id="heading_id_7" class="fm-head">[]{#03.htm#pgfId-1052328}Summary</h2>
+<ul>
+<li>
+<p>[]{#03.htm#pgfId-1052329 .calibre17}Volumes are useful for
+separating the data used by a container from the application inside
+an image.</p>
+</li>
+<li>
+<p>[]{#03.htm#pgfId-1052204 .calibre17}Volumes mount parts of the
+filesystem into a container's environment, which means security
+concerns like SELinux and user namespace need to be modified to
+allow access.</p>
+</li>
+</ul>
+<p>[]{#04.htm}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">
+  <img src="/images/V.svg" alt="perfectdarkmode.com" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1734871290";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1734871290" defer></script>
+        <script src="/js/search.js?1734871290" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2"><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86" checked><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active hidden " data-nav-id="/tools/podman/3-volumes/"><a class="padding" href="/tools/podman/3-volumes/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/obsidian-site-setup/"><a class="padding" href="/tools/obsidian-site-setup/"><i class='fa-fw fas fa-caret-right'></i> Automatically Sync Obsidian to Hugo and Apache<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108" checked><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitnesses</span></label><a class="padding" href="/health-and-fitness/">Health and Fitnesses<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/tools/podman/3-volumes/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1734871290" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1734871290" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1734871290" defer></script>
+    <script src="/js/js-yaml.min.js?1734871290" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1734871290" defer></script>
+  </body>
+</html>

@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="10 Security container isolation []{#10.htm#pgfId-1114069}This chapter []{#10.htm#marker-1121657}covers
+[]{#10.htm#pgfId-1114070 .calibre17}All Linux security features used to keep containers isolated from each other []{#10.htm#pgfId-1114072 .calibre17}Read-only access to kernel filesystems needed for processes within a container but which must be blocked from write access []{#10.htm#pgfId-1114073 .calibre17}Masking of kernel filesystems to hide information from the host system []{#10.htm#pgfId-1114074 .calibre17}Linux capabilities limiting the power of root []{#10.htm#pgfId-1114075 .calibre17}The PID, IPC and network namespaces, which hide most of the operating system from processes within containers []{#10.htm#pgfId-1114076 .calibre17}The mount namespace, which along with SELinux limit the container processes’ access to only the designated image and volumes []{#10.htm#pgfId-1114077 .calibre17}The user namespace, which allows you to write root processes inside of a container that are not root outside of a container []{#10.htm#pgfId-1114078}In this chapter and chapter 11, I review and demonstrate some additional security considerations when using Podman to run containers. Some of the content was covered in other chapters, but I think it is useful to concentrate on these features from a security perspective.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="10 Security container isolation []{#10.htm#pgfId-1114069}This chapter []{#10.htm#marker-1121657}covers
+[]{#10.htm#pgfId-1114070 .calibre17}All Linux security features used to keep containers isolated from each other []{#10.htm#pgfId-1114072 .calibre17}Read-only access to kernel filesystems needed for processes within a container but which must be blocked from write access []{#10.htm#pgfId-1114073 .calibre17}Masking of kernel filesystems to hide information from the host system []{#10.htm#pgfId-1114074 .calibre17}Linux capabilities limiting the power of root []{#10.htm#pgfId-1114075 .calibre17}The PID, IPC and network namespaces, which hide most of the operating system from processes within containers []{#10.htm#pgfId-1114076 .calibre17}The mount namespace, which along with SELinux limit the container processes’ access to only the designated image and volumes []{#10.htm#pgfId-1114077 .calibre17}The user namespace, which allows you to write root processes inside of a container that are not root outside of a container []{#10.htm#pgfId-1114078}In this chapter and chapter 11, I review and demonstrate some additional security considerations when using Podman to run containers. Some of the content was covered in other chapters, but I think it is useful to concentrate on these features from a security perspective.">
+    <meta property="og:url" content="http://perfectdarkmode.com/tools/podman/10-security-container-isolation/">
+    <meta property="og:description" content="10 Security container isolation []{#10.htm#pgfId-1114069}This chapter []{#10.htm#marker-1121657}covers
+[]{#10.htm#pgfId-1114070 .calibre17}All Linux security features used to keep containers isolated from each other []{#10.htm#pgfId-1114072 .calibre17}Read-only access to kernel filesystems needed for processes within a container but which must be blocked from write access []{#10.htm#pgfId-1114073 .calibre17}Masking of kernel filesystems to hide information from the host system []{#10.htm#pgfId-1114074 .calibre17}Linux capabilities limiting the power of root []{#10.htm#pgfId-1114075 .calibre17}The PID, IPC and network namespaces, which hide most of the operating system from processes within containers []{#10.htm#pgfId-1114076 .calibre17}The mount namespace, which along with SELinux limit the container processes’ access to only the designated image and volumes []{#10.htm#pgfId-1114077 .calibre17}The user namespace, which allows you to write root processes inside of a container that are not root outside of a container []{#10.htm#pgfId-1114078}In this chapter and chapter 11, I review and demonstrate some additional security considerations when using Podman to run containers. Some of the content was covered in other chapters, but I think it is useful to concentrate on these features from a security perspective.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Tools">
+    <meta itemprop="description" content="10 Security container isolation []{#10.htm#pgfId-1114069}This chapter []{#10.htm#marker-1121657}covers
+[]{#10.htm#pgfId-1114070 .calibre17}All Linux security features used to keep containers isolated from each other []{#10.htm#pgfId-1114072 .calibre17}Read-only access to kernel filesystems needed for processes within a container but which must be blocked from write access []{#10.htm#pgfId-1114073 .calibre17}Masking of kernel filesystems to hide information from the host system []{#10.htm#pgfId-1114074 .calibre17}Linux capabilities limiting the power of root []{#10.htm#pgfId-1114075 .calibre17}The PID, IPC and network namespaces, which hide most of the operating system from processes within containers []{#10.htm#pgfId-1114076 .calibre17}The mount namespace, which along with SELinux limit the container processes’ access to only the designated image and volumes []{#10.htm#pgfId-1114077 .calibre17}The user namespace, which allows you to write root processes inside of a container that are not root outside of a container []{#10.htm#pgfId-1114078}In this chapter and chapter 11, I review and demonstrate some additional security considerations when using Podman to run containers. Some of the content was covered in other chapters, but I think it is useful to concentrate on these features from a security perspective.">
+    <meta itemprop="wordCount" content="10788">
+    <title></title>
+    <link href="/tools/podman/10-security-container-isolation/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/tools/podman/10-security-container-isolation/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1734871290" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1734871290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1734871290" rel="stylesheet">
+    <link href="/css/fonts.css?1734871290" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1734871290" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1734871290" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1734871290" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1734871290" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1734871290" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1734871290"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/tools/podman/10-security-container-isolation/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#heading_id_3">[]{#10.htm#pgfId-1114100}10.1 Read-only Linux kernel pseudo filesystems</a>
+      <ul>
+        <li><a href="#heading_id_4">[]{#10.htm#pgfId-1114165}10.1.1 Unmasking the masked paths</a></li>
+        <li><a href="#heading_id_5">[]{#10.htm#pgfId-1114200}10.1.2 Masking additional paths</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_6">[]{#10.htm#pgfId-1114238}10.2 Linux capabilities</a>
+      <ul>
+        <li><a href="#heading_id_7">[]{#10.htm#pgfId-1114267}10.2.1 Dropped Linux capabilities</a></li>
+        <li><a href="#heading_id_8">[]{#10.htm#pgfId-1114369}10.2.2 Dropped CAP_SYS_ADMIN</a></li>
+        <li><a href="#heading_id_9">[]{#10.htm#pgfId-1114384}10.2.3 Dropping capabilities</a></li>
+        <li><a href="#heading_id_10">[]{#10.htm#pgfId-1114413}10.2.4 Adding capabilities</a></li>
+        <li><a href="#heading_id_11">[]{#10.htm#pgfId-1114439}10.2.5 No new privileges</a></li>
+        <li><a href="#heading_id_12">[]{#10.htm#pgfId-1114450}10.2.6 Root with no capabilities is still dangerous</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_13">[]{#10.htm#pgfId-1114461}10.3 UID isolation: User namespace</a>
+      <ul>
+        <li><a href="#heading_id_14">[]{#10.htm#pgfId-1114475}10.3.1 Isolating containers using the - -userns=auto flag</a></li>
+        <li><a href="#heading_id_15">[]{#10.htm#pgfId-1114536}10.3.2 User-namespaced Linux capabilities</a></li>
+        <li><a href="#heading_id_16">[]{#10.htm#pgfId-1114567}10.3.3 Rootless Podman with the - -userns=auto flag</a></li>
+        <li><a href="#heading_id_17">[]{#10.htm#pgfId-1114589}10.3.4 User volumes with the - -userns=auto flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_18">[]{#10.htm#pgfId-1114645}10.4 Process isolation: PID namespace</a></li>
+    <li><a href="#heading_id_19">[]{#10.htm#pgfId-1114671}10.5 Network isolation: Network namespace</a></li>
+    <li><a href="#heading_id_20">[]{#10.htm#pgfId-1114711}10.6 IPC isolation: IPC namespace</a></li>
+    <li><a href="#heading_id_21">[]{#10.htm#pgfId-1114733}10.7 Filesystem isolation: Mount namespace</a></li>
+    <li><a href="#heading_id_22">[]{#10.htm#pgfId-1114752}10.8 Filesystem isolation: SELinux</a>
+      <ul>
+        <li><a href="#heading_id_23">[]{#10.htm#pgfId-1114760}10.8.1 SELinux type enforcement</a></li>
+        <li><a href="#heading_id_24">[]{#10.htm#pgfId-1114953}10.8.2 SELinux Multi-Category Security separation</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading_id_25">[]{#10.htm#pgfId-1115100}10.9. System call isolation seccomp</a></li>
+    <li><a href="#heading_id_26">[]{#10.htm#pgfId-1115148}10.10 Virtual machine isolation</a></li>
+    <li><a href="#heading_id_27">[]{#10.htm#pgfId-1115159}Summary</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable tools" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="10-security-container-isolation">10 Security container isolation</h1>
+<p>[]{#10.htm#pgfId-1114069}This chapter []{#10.htm#marker-1121657}covers</p>
+<ul>
+<li>[]{#10.htm#pgfId-1114070 .calibre17}All Linux security features used
+to keep containers isolated from each other</li>
+<li>[]{#10.htm#pgfId-1114072 .calibre17}Read-only access to kernel
+filesystems needed for processes within a container but which must
+be blocked from write access</li>
+<li>[]{#10.htm#pgfId-1114073 .calibre17}Masking of kernel filesystems to
+hide information from the host system</li>
+<li>[]{#10.htm#pgfId-1114074 .calibre17}Linux capabilities limiting the
+power of root</li>
+<li>[]{#10.htm#pgfId-1114075 .calibre17}The PID, IPC and network
+namespaces, which hide most of the operating system from processes
+within containers</li>
+<li>[]{#10.htm#pgfId-1114076 .calibre17}The mount namespace, which along
+with SELinux limit the container processes&rsquo; access to only the
+designated image and volumes</li>
+<li>[]{#10.htm#pgfId-1114077 .calibre17}The user namespace, which allows
+you to write root processes inside of a container that are not root
+outside of a container</li>
+</ul>
+<p>[]{#10.htm#pgfId-1114078}In this chapter and chapter 11, I review and
+demonstrate some additional security considerations when using Podman to
+run containers. Some of the content was covered in other chapters, but I
+think it is useful to concentrate on these features from a security
+perspective.</p>
+<p>[]{#10.htm#pgfId-1114079}One of the most frequent problems I see with
+people running containers is that when the container process is denied
+some access, the user&rsquo;s first reaction is to run the container in
+<code>--privileged</code>{.fm-code-in-text} mode[]{#10.htm#marker-1124108}, which
+turns off all security separation for your container. Understanding how
+to deal with the security features discussed in this chapter helps you
+avoid needing to do this.</p>
+<p>[]{#10.htm#pgfId-1114081}When I look at containers from a security point
+of view, I examine how to protect the host kernel and filesystem from
+the processes inside the container. I wrote a coloring book, <em>The
+Container Coloring Book</em>
+(<a href="https://red.ht/3gfVlHF" rel="external" target="_blank">https://red.ht/3gfVlHF</a>{.url}), illustrated by
+Máirín Duffy[]{#10.htm#marker-1114083}[]{#10.htm#marker-1114084}
+(@marin), describing the security features of containers based on the
+three pigs (figure 10.1).</p>
+<p>::: figure
+<a href="#R-image-1a35496fd2ce3cabea17da1d5ba3be23" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/10-01.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1a35496fd2ce3cabea17da1d5ba3be23"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/10-01.png"></a>{.calibre18}</p>
+<p>[]{#10.htm#pgfId-1130030}Figure 10.1 <em>The Container Coloring Book</em>
+(<a href="https://red.ht/3gfVlHF" rel="external" target="_blank">https://red.ht/3gfVlHF</a>{.url})
+:::</p>
+<p>[]{#10.htm#pgfId-1114092}The analogy I use in the book is that the three
+pigs are applications. I then discuss where they live and their choices
+of housing compared to computer systems.</p>
+<p>[]{#10.htm#pgfId-1114093}The single-family house is equivalent to one
+application on a single isolated node. Living in a duplex is equivalent
+to running each application in a separate VM. Living in a hotel or
+apartment building is similar to containers, where you get your own
+apartment, but you rely on the security of the front desk to control the
+access to your living space. If the front desk is compromised, then your
+apartment is going to be compromised. Containers are similar to this in
+that they rely on the security of the kernel. If one container can take
+over the host kernel, then it can take over all of the container
+applications running on the system. Also, if they escape to the
+underlying filesystem, they might be able to read and write all of the
+data of the containers on the system.</p>
+<p>[]{#10.htm#pgfId-1114094}From this perspective, I see the number-one
+goal of the host as being to protect the host kernel and filesystems
+from the container processes. The rest of this chapter describes the
+tools used to protect the host kernel and filesystem from container
+processes.</p>
+<p>[]{#10.htm#pgfId-1114095}Protecting the kernel from potentially hostile
+containers is the primary goal of container security. If the kernel is
+vulnerable, then the rest of the system and all containers are
+vulnerable. In many cases, the only exposure to the host system for a
+container is the host kernel itself.</p>
+<p>[]{#10.htm#pgfId-1114096}Processes within a container can interact with
+the kernel in many different ways. This section examines these
+communications and the operating system features used to secure the
+container processes.</p>
+<p>[]{#10.htm#pgfId-1114098}The Linux kernel provides filesystems that
+allow processes to communicate and configure the kernel. Protecting
+these filesystems from confined container processes is the first
+security feature you will examine.</p>
+<h2 id="heading_id_3" class="fm-head">[]{#10.htm#pgfId-1114100}10.1 Read-only Linux kernel pseudo filesystems</h2>
+<p>[]{#10.htm#pgfId-1114103}These
+[]{#10.htm#marker-1114101}[]{#10.htm#marker-1114102}Linux kernel pseudo
+filesystems are generally mounted under /proc and /sys. Table 10.1 lists
+some of the Linux kernel pseudo filesystems mounted on my
+machine.[]{#10.htm#id_yj2rnzt9ihp6}</p>
+<p>[]{#10.htm#pgfId-1118386}Table 10.1 Filesystems mounted as read only</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#1           | []{#10.htm#pgfId-1118392}Pseudo filesystem          |
+| 0.htm#pgfId-111 | description                                         |
+| 8390}Filesystem |                                                     |
+| mount point     |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm#pgf  | []{#10.htm#pgfId-1118396}The sysfs filesystem       |
+| Id-1118394}/sys | allows viewing and manipulating objects from        |
+|                 | <code>user-space</code>{.fm-code-in-text1}, which are created  |
+|                 | and destroyed by kernel space.                      |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm#pgfI | []{#10.htm#pgfId-1118400}The security pseudo        |
+| d-1118398}/sys/ | filesystem is used to read and configure general    |
+| kernel/security | security modules. An example is the Integrity       |
+|                 | Measurement Architecture (IMA) model.               |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.ht       | []{#10.htm#pgfId-1118404}The cgroup filesystem is   |
+| m#pgfId-1118402 | used to manage control groups.                      |
+| }/sys/fs/cgroup |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.ht       | []{#10.htm#pgfId-1118408}The pstore filesystem      |
+| m#pgfId-1118406 | stores nonvolatile information useful for           |
+| }/sys/fs/pstore | diagnosing the cause of a system crash.             |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10          | []{#10.htm#pgfId-1118412}The Berkeley Packet Filter |
+| .htm#pgfId-1118 | (BPF) filesystem is a mechanism to instrument the   |
+| 410}/sys/fs/bpf | Linux kernel with user programs that reveal kernel  |
+|                 | information and control the way processes run on a  |
+|                 | system.                                             |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm      | []{#10.htm#pgfId-1118416}The SELinux filesystem is  |
+| #pgfId-1118414} | used to configure SELinux in the kernel (see        |
+| /sys/fs/selinux | section 10.2.7).                                    |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm#pg   | []{#10.htm#pgfId-1118420}The configfs filesystem is |
+| fId-1118418}/sy | for creating, managing, and destroying kernel       |
+| s/kernel/config | objects from <code>user-space</code>{.fm-code-in-text1}.       |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#10.htm#pgfId-1114141}Most processes require read access to these
+pseudo kernel filesystems to succeed, but only administrator processes
+require write access. Normally, the kernel relies on the separation of
+root from non-root or possession of the
+<code>CAP_SYS_ADMIN</code>{.fm-code-in-text} capability[]{#10.htm#marker-1114142}
+(see section 10.2.2) to modify these filesystems.</p>
+<p>[]{#10.htm#pgfId-1114143}Often containers need to run as root, requiring
+container security to use other means to prevent the writing of these
+kernel filesystems by the root process. Podman does not mount most of
+these advanced kernel pseudo filesystems. It does mount /sys,
+/sys/fs/cgroup, and /sys/fs/selinux as read only. When you are in a PID
+namespace, the /proc filesystem changes, meaning the /proc inside a
+container is not the host&rsquo;s /proc. Processes within the container can
+only affect other processes within the container.</p>
+<p>[]{#10.htm#pgfId-1114144}The /sys filesystems and the namespaced /proc
+filesystem sometimes leak host information into the container. Because
+of this, Podman mounts /dev/null over files and mounts read-only tmpfs
+filesystems over directories to prevent container access. Podman also
+bind mounts certain subdirectories as read only over themselves to
+prevent the container process from writing to
+them.[]{#10.htm#id_6wlyiab1lct1}[]{#10.htm#id_6ewp0of2k2z2} See table
+10.2 for a complete list of files and directories that Podman masks over
+for security purposes.</p>
+<p>[]{#10.htm#pgfId-1118489}Table 10.2 Filesystem fields masked over with
+Podman</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm#pgf  | []{#10.htm#pgfId-1118495}Paths                      |
+| Id-1118493}Type |                                                     |
+| of masking      |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#            | []{#10.htm#pgfId-1118499}/proc/acpi, /proc/kcore,   |
+| 10.htm#pgfId-11 | /proc/keys, /proc/latency_stats, /proc/timer_list,  |
+| 18497}Read-only | /proc/timer_stats, /proc/sched_debug, /proc/scsi,   |
+| tmpfs mounted   | /sys/firmware, /sys/fs/selinux, /sys/dev/block      |
+| over the        |                                                     |
+| directory       |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#            | []{#10.htm#pgfId-1118503} /proc/asound, /proc/bus,  |
+| 10.htm#pgfId-11 | /proc/fs, /proc/irq, /proc/sys, /proc/sysrq-trigger |
+| 18501}Read-only |                                                     |
+| bind mount over |                                                     |
+| the directory   |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#10.htm#pgfId-1114163}I have found that almost all container images
+run fine with this additional security. Sometimes a containerized
+application may need additional access to one of these masked-over
+directories.</p>
+<h3 id="heading_id_4" class="fm-head1">[]{#10.htm#pgfId-1114165}10.1.1 Unmasking the masked paths</h3>
+<p>[]{#10.htm#pgfId-1114170}Rather
+[]{#10.htm#marker-1114166}[]{#10.htm#marker-1114167}[]{#10.htm#marker-1114168}than
+force the container to run <code>--privileged</code>{.fm-code-in-text}
+mode[]{#10.htm#marker-1114169}, you can tell Podman to unmask a
+directory. In the following example, you run a container and see there
+are no files or directories under /proc/scsi because it is mounted over
+with a tmpfs:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 ls /proc/scsi</code></pre></div>
+<p>[]{#10.htm#pgfId-1114173}You can use the
+<code>--security-opt</code>{.fm-code-in-text} <code>unmask=/proc/scsi</code>{.fm-code-in-text}
+flag[]{#10.htm#marker-1114172} to remove the mount point and expose the
+underlying files and directories:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm --security-opt unmask=/proc/scsi ubi8 ls /proc/scsi
+device_info
+scsi
+sg</code></pre></div>
+<p>[]{#10.htm#pgfId-1114178}You can even use a <code>*</code>{.fm-code-in-text} to
+unmount all directories under a certain path:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm --security-opt unmask=/proc/* ubi8 ls /proc/scsi
+device_info
+scsi
+sg</code></pre></div>
+<p>[]{#10.htm#pgfId-1114183}Unmasking makes your container slightly less
+secure, but it is much better than going all the way to
+<code>--privileged</code>{.fm-code-in-text} and turning off all of the security. In
+certain situations, you might want to make the system more secure by
+masking over parts of the pseudo filesystems. The
+<code>podman</code>{.fm-code-in-text} <code>run</code>{.fm-code-in-text} man
+pages[]{#10.htm#marker-1123817} list the masked
+file[]{#10.htm#marker-1123818}[]{#10.htm#marker-1123819}[]{#10.htm#marker-1123820}systems:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ man podman run
+...
+   • unmask=ALL or /path/1:/path/2, or shell expanded paths (/proc/*): 
+Paths to unmask separated by a colon. If set to ALL, it will unmask all the 
+paths that are masked or made read only by default. The default masked
+    paths are /proc/acpi, /proc/kcore, /proc/keys, /proc/latency_stats, 
+/proc/sched_debug, /proc/scsi, /proc/timer_list, /proc/timer_stats, 
+/sys/firmware, and /sys/fs/selinux. 
+    The default paths that are read only are /proc/asound, /proc/bus, 
+/proc/fs, /proc/irq, /proc/sys, /proc/sysrq-trigger, /sys/fs/cgroup.</code></pre></div>
+<h3 id="heading_id_5" class="fm-head1">[]{#10.htm#pgfId-1114200}10.1.2 Masking additional paths</h3>
+<p>[]{#10.htm#pgfId-1114205}If
+[]{#10.htm#marker-1114201}[]{#10.htm#marker-1114202}[]{#10.htm#marker-1114203}you
+are very security conscious or have a container you don&rsquo;t trust with
+certain access provided to containers, you can add additional masked
+paths with the <code>--security-opt</code>{.fm-code-in-text} mask
+flag[]{#10.htm#marker-1114206}. For example, if you want to prevent a
+container process from seeing the devices in /proc/sys/dev, run the
+following:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 ls /proc/sys/dev
+cdrom
+hpet
+i915
+mac_hid
+raid
+scsi
+tty</code></pre></div>
+<p>[]{#10.htm#pgfId-1114216}You can mask over it with the
+<code>--security-opt</code>{.fm-code-in-text}
+<code>mask=/proc/sys/dev</code>{.fm-code-in-text} flag[]{#10.htm#marker-1114215}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm --security-opt mask=/proc/sys/dev ubi8 ls /proc/sys/dev</code></pre></div>
+<p>[]{#10.htm#pgfId-1114218}You saw how Podman prevents root processes from
+reading and, more importantly, writing to pseudo filesystems. The
+container processes can actually see what is mounted over within the
+container by looking at /proc/self/mountinfo.</p>
+<p>[]{#10.htm#pgfId-1114219}Listing 10.1 The mount table within a Podman
+container</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run –rm ubi8 cat /proc/self/mountinfo
+...
+1628 1610 0:5 /null /proc/kcore rw,nosuid – 
+➥ devtmpfs devtmpfs rw,seclabel,size=4096k,
+➥ nr_inodes=1048576,mode=755,inode64                          ❶
+...
+1620 1595 0:86 / /sys/firmware ro,relatime - tmpfs tmpfs       ❷
+rw,context=&#34;system_u:object_r:container_file_t:s0:c406,c915&#34;,size=0k,uid=32
+➥ 67,gid=3267,inode64
+...</code></pre></div>
+<p>[]{#10.htm#pgfId-1129169}[❶]{.fm-combinumeral} Shows /dev/null mounted
+over /proc/kcore</p>
+<p>[]{#10.htm#pgfId-1129190}[❷]{.fm-combinumeral} Shows a tmpfs mounted
+read-only over /sys/firmware</p>
+<p>[]{#10.htm#pgfId-1114231}You might be asking yourself, &ldquo;If the container
+knows what has been mounted, what prevents the root user within the
+container from removing the mounts or remounting filesystems&rsquo; read/write
+and then attacking the
+[]{#10.htm#marker-1114232}[]{#10.htm#marker-1114233}[]{#10.htm#marker-1114234}host
+[]{#10.htm#marker-1114235}[]{#10.htm#marker-1114236}kernel?</p>
+<h2 id="heading_id_6" class="fm-head">[]{#10.htm#pgfId-1114238}10.2 Linux capabilities</h2>
+<p>[]{#10.htm#pgfId-1114241}Most
+[]{#10.htm#marker-1114239}[]{#10.htm#marker-1114240}Linux people
+understand Linux has two types of users: root (privileged process) and
+everyone else (nonprivileged processes). Root is all powerful, and
+non-root has much more limited powers, specifically when configuring and
+modifying the kernel. Sometimes a non-privileged process needs
+privileges to execute a certain command-line <code>ping</code>{.fm-code-in-text} or
+<code>sudo</code>{.fm-code-in-text}. Linux supports a way to mark these files as
+<code>setuid</code>{.fm-code-in-text}, and when a nonprivileged process executes
+them, the new process gains the privilege.</p>
+<p>[]{#10.htm#pgfId-1114242}The binary difference between privileged and
+unprivileged processes ended in Linux around 2000. Kernel engineers
+broke down the power of root into a group of different privileged
+capabilities. Currently, on my system, the Linux kernel supports 41. You
+can see the complete list of capabilities using the
+<code>capsh</code>{.fm-code-in-text} program[]{#10.htm#marker-1114243}. Execute the
+<code>capsh</code>{.fm-code-in-text} program to see the list of capabilities on
+your system. You will see the <code>current</code>{.fm-code-in-text} set of
+capabilities for your processes as being empty. The
+<code>Bounding</code>{.fm-code-in-text} set of
+capabilities[]{#10.htm#marker-1114244} is the set of capabilities your
+process can get from executing a <code>setuid</code>{.fm-code-in-text}
+program[]{#10.htm#marker-1114245}.</p>
+<p>[]{#10.htm#pgfId-1114246}Listing 10.2 <code>capsh</code>{.fm-code-in-text}
+<code>–print</code>{.fm-code-in-text} showing the capabilities available to your
+user&rsquo;s process</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ capsh --print
+Current: =                                 ❶
+Bounding set =                             ❷
+cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,
+➥ cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,
+➥ cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,
+➥ cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,
+➥ cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,
+➥ cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,
+➥ cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,
+➥ cap_block_suspend,cap_audit_read,cap_perfmon,cap_bpf,cap_checkpoint_restore
+Ambient set =
+...
+uid=3267(dwalsh) euid=3267(dwalsh)          ❸
+gid=3267(dwalsh)</code></pre></div>
+<p>[]{#10.htm#pgfId-1128949}[❶]{.fm-combinumeral} The Current set of
+capabilities shows no capabilities.</p>
+<p>[]{#10.htm#pgfId-1128970}[❷]{.fm-combinumeral} The Bounding set of
+capabilities shows all (41) capabilities.</p>
+<p>[]{#10.htm#pgfId-1128987}[❸]{.fm-combinumeral} Because you ran the capsh
+command as a normal user, you see your UID and GID listed.</p>
+<p>[]{#10.htm#pgfId-1114265}This means your user process can execute the
+<code>sudo</code>{.fm-code-in-text} command[]{#10.htm#marker-1114264} and get the
+full set of capabilities as root. You can read information about what
+each capability does in the capabilities man page by executing
+<code>man</code>{.fm-code-in-text} <code>capabilities</code>{.fm-code-in-text}. Over the
+years, the community has figured out that almost all containers do not
+require the full list of capabilities because they seldom modify the
+kernel.</p>
+<h3 id="heading_id_7" class="fm-head1">[]{#10.htm#pgfId-1114267}10.2.1 Dropped Linux capabilities</h3>
+<p>[]{#10.htm#pgfId-1114271}Because
+[]{#10.htm#marker-1114268}[]{#10.htm#marker-1114269}[]{#10.htm#marker-1114270}container-confined
+processes are not supposed to manipulate the operating system, and
+specifically the kernel, Podman can run root within its containers with
+far fewer capabilities. You can examine the default list of capabilities
+available within a Podman container by executing the same
+<code>capsh</code>{.fm-code-in-text} program[]{#10.htm#marker-1114272}.</p>
+<p>[]{#10.htm#pgfId-1114273}Listing 10.3 The default list of capabilities
+available within a Podman container</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 capsh --print
+Current: =                                                             ❶
+cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,
+➥ cap_setuid,cap_setpcap,cap_net_bind_service,cap_sys_chroot,
+➥ cap_setfcap+eip
+Bounding set =                                                         ❷
+cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,
+➥ cap_setuid,cap_setpcap,cap_net_bind_service,cap_sys_chroot,cap_setfcap
+...
+uid=0(root)                                                            ❸
+gid=0(root)
+groups=</code></pre></div>
+<p>[]{#10.htm#pgfId-1128609}[❶]{.fm-combinumeral} The Current set of
+capabilities shows just 11 capabilities, since the container process is
+running as root.</p>
+<p>[]{#10.htm#pgfId-1128637}[❷]{.fm-combinumeral} The Bounding set of
+capabilities shows the same (11) capabilities.</p>
+<p>[]{#10.htm#pgfId-1128654}[❸]{.fm-combinumeral} Because containers
+default to running as root, you see the UID and GID as root.</p>
+<p>[]{#10.htm#pgfId-1114288}As you observe, Podman, by default, dropped 30
+capabilities&mdash;from 41 down to 11&mdash;when running a container. Even
+though the container has root privileges, it is far less powerful than
+root on the system.</p>
+<p>[]{#10.htm#pgfId-1114289}[Note]{.fm-callout-head} Docker also drops
+capabilities but leaves 14 capabilities. Podman runs with tighter
+security by dropping the following additional capabilities:
+<code>CAP_ MKNOD</code>{.fm-code-in-text1}[]{#10.htm#marker-1114290},
+<code>CAP_AUDIT_WRITE</code>{.fm-code-in-text1}[]{#10.htm#marker-1114291}, and
+<code>CAP_NET_RAW</code>{.fm-code-in-text1}[]{#10.htm#marker-1114292}.</p>
+<p>[]{#10.htm#pgfId-1114293}The list of capabilities still allowed within a
+container mainly concern controlling multiple processes; for example,
+<code>CAP_SETUID</code>{.fm-code-in-text} and <code>CAP_SETGID</code>{.fm-code-in-text} allow
+processes inside the container to change to different UIDs. An example
+of where this is important is running your web application as
+<code>UID=60</code>{.fm-code-in-text}, but when the container process started, it
+needed to run as root for a short time before changing its UID to
+<code>60</code>{.fm-code-in-text}. If Podman dropped
+<code>CAP_SETUID</code>{.fm-code-in-text}, then the root process within the
+container is not allowed to change to the web services UID.</p>
+<p>[]{#10.htm#pgfId-1114294}Another interesting capability Podman allows is
+<code>CAP_NET_BIND_SERVICE</code>{.fm-code-in-text}, which enables a process to
+bind to a network port less than <code>1024</code>{.fm-code-in-text}&mdash;for example,
+port <code>80</code>{.fm-code-in-text}. Recall from chapter 2 that you cannot bind
+port <code>80</code>{.fm-code-in-text} on your host to port <code>80</code>{.fm-code-in-text}
+within the container. User processes do not have
+<code>CAP_NET_BIND_SERVICE</code>{.fm-code-in-text}, so they cannot bind to port
+<code>80</code>{.fm-code-in-text}. Table 10.3 lists the default capabilities
+available to root running within a container with Podman. This list can
+be modified in the containers.conf file using the
+<code>default_capabilities</code>{.fm-code-in-text} field under the containers
+table.[]{#10.htm#id_tnckf94w0qwk}[]{#10.htm#id_k51d5sudgzug}[]{#10.htm#id_4hrvi2og09zg}[]{#10.htm#id_mav5p9a6hdrw}[]{#10.htm#id_q0cwpuhoolzu}</p>
+<p>[]{#10.htm#pgfId-1118917}Table 10.3 Default list of capabilities allowed
+root processes in a container</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#10.htm#pgfId-1118923}Description                |
+| ]{#10.htm#pgfId |                                                     |
+| -1118921}Option |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10          | []{#10.htm#pgfId-1118927}Make arbitrary changes to  |
+| .htm#pgfId-1118 | file UIDs and GIDs.                                 |
+| 925}<code>CAP_CHOWN</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118968} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm#pg   | []{#10.htm#pgfId-1118931}Bypass file read, write,   |
+| fId-1118929}<code>CA | and execute permission checks.                      | | P_DAC_OVERRIDE</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118969} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.         | []{#10.htm#pgfId-1118935}Bypass permission checks   |
+| htm#pgfId-11189 | on operations on the filesystem UID.                |
+| 33}<code>CAP_FOWNER</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118970} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1118939}Don't clear               |
+| tm#pgfId-111893 | <code>set-user-ID</code>{.fm-code-in-text1} and                |
+| 7}<code>CAP_SETFSID</code> | <code>set-group-ID</code>{.fm-code-in-text1} mode bits when    |
+| {.fm-code-in-te | modifying a file.                                   |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118971} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#1           | []{#10.htm#pgfId-1118943}Bypass permission checks   |
+| 0.htm#pgfId-111 | for sending signals.                                |
+| 8941}<code>CAP_KILL</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118972} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#10.htm#pgfId-1118947}Bind a socket to internet  |
+| {#10.htm#pgfId- | domain privileged ports (port numbers less than     |
+| 1118945}<code>CAP_NE | </code>1024<code>{.fm-code-in-text1}).                         | | T_BIND_SERVICE</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118973} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1118951}Set arbitrary capabilities |
+| tm#pgfId-111894 | on a file.                                          |
+| 9}<code>CAP_SETFCAP</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118974} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.         | []{#10.htm#pgfId-1118955}Change a process&rsquo;s group   |
+| htm#pgfId-11189 | ID (GID) or supplementary GID list.                 |
+| 53}<code>CAP_SETGID</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118975} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1118959}Add and drop any           |
+| tm#pgfId-111895 | capability from the calling thread's bounding set. |
+| 7}<code>SET_SETPCAP</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118976} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.         | []{#10.htm#pgfId-1118963}Make arbitrary             |
+| htm#pgfId-11189 | manipulations of the process user ID (UID).         |
+| 61}<code>CAP_SETUID</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118977} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.htm#     | []{#10.htm#pgfId-1118967}Allow                      |
+| pgfId-1118965}<code>|</code>chroot<code>{.fm-code-in-text1}, and change mount       | | CAP_SYS_CHROOT</code> | namespaces.                                         |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1118978} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<p>[]{#10.htm#pgfId-1114363}I introduced section 10.2 by asking what
+prevents the root process from unmounting or remounting the read-only
+filesystems. The answer is Podman dropping the
+<code>CAP_ SYS_ADMIN</code>{.fm-code-in-text}[]{#10.htm#marker-1122765}[]{#10.htm#marker-1122766}[]{#10.htm#marker-1122767}
+c<code>apability</code>{.fm-code-in-text}[]{#10.htm#marker-1122768}.</p>
+<h3 id="heading_id_8" class="fm-head1">[]{#10.htm#pgfId-1114369}10.2.2 Dropped CAP_SYS_ADMIN</h3>
+<p>[]{#10.htm#pgfId-1114375}The
+[]{#10.htm#marker-1114370}[]{#10.htm#marker-1114371}[]{#10.htm#marker-1114372}most
+powerful Linux capability is <code>CAP_SYS_ADMIN</code>{.fm-code-in-text}. I
+describe this capability in the following way: Imagine you are a kernel
+engineer adding a new feature into the kernel, and this feature requires
+privilege access. You look to see the list of capabilities, and you
+don&rsquo;t find a capability that is a great match for the access. Kernel
+engineers can go through the hassle of creating a new capability; or,
+say this is something a system administrator needs to do and there is a
+<code>CAP_SYS_ADMIN</code>{.fm-code-in-text}. I might as well require that
+capability. If you look at the man capabilities information, you see
+multiple pages of features the <code>CAP_SYS_ADMIN</code>{.fm-code-in-text}
+capability blocks.</p>
+<p>[]{#10.htm#pgfId-1114377}One feature <code>CAP_SYS_ADMIN</code>{.fm-code-in-text}
+controls is the ability to mount and unmount filesystems. Because this
+capability is dropped by default, root processes in Podman containers
+cannot unmount or remount the read-only mount points.</p>
+<p>[]{#10.htm#pgfId-1114378}As you learned previously, 11 capabilities are
+still allowed. In most cases, your containerized process does not even
+need those capabilities, meaning you can drop additional
+[]{#10.htm#marker-1114379}[]{#10.htm#marker-1114380}[]{#10.htm#marker-1114381}ones.</p>
+<h3 id="heading_id_9" class="fm-head1">[]{#10.htm#pgfId-1114384}10.2.3 Dropping capabilities</h3>
+<p>[]{#10.htm#pgfId-1114388}I
+[]{#10.htm#marker-1114385}[]{#10.htm#marker-1114386}[]{#10.htm#marker-1114387}recommend
+people run their applications with the least privileges possible. One
+way of increasing the security of the system is dropping additional
+capabilities.</p>
+<p>[]{#10.htm#pgfId-1114389}Imagine your containerized process does not
+need to bind to ports &lt; <code>1024</code>{.fm-code-in-text}. You can execute
+Podman with the <code>--cap-drop=CAP_NET_BIND_SERVICE</code>{.fm-code-in-text}
+flag[]{#10.htm#marker-1114390} and drop that capability from your
+container.</p>
+<p>[]{#10.htm#pgfId-1114391}Listing 10.4 Capabilities inside a container
+when you drop <code>CAP_NET_BIND_SERVICE</code>{.fm-code-in-text}</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --cap-drop CAP_NET_BIND_SERVICE ubi8 capsh --print
+Current: =                                                             ❶
+cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,
+➥ cap_setuid,cap_setpcap,cap_sys_chroot,cap_setfcap+eip
+Bounding set =                                                         ❷
+cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,
+➥ cap_setuid,cap_setpcap,cap_sys_chroot,cap_setfcap
+...</code></pre></div>
+<p>[]{#10.htm#pgfId-1128376}[❶]{.fm-combinumeral} Notice the list of
+Current capabilities no longer includes CAP_NET_BIND_SERVICE.</p>
+<p>[]{#10.htm#pgfId-1128404}[❷]{.fm-combinumeral} Notice that the list of
+Bounding capabilities no longer includes CAP_NET_BIND_SERVICE.</p>
+<p>[]{#10.htm#pgfId-1114404}You can even drop all capabilities using the
+<code>--cap-drop=all</code>{.fm-code-in-text} flag:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --cap-drop all ubi8 capsh --print
+Current: =
+Bounding set =</code></pre></div>
+<p>[]{#10.htm#pgfId-1114408}Even though your container is running as root,
+it has no capabilities to modify the kernel. Sometimes your container
+fails to run with the limited list of capabilities provided by Podman;
+in this case, you can add required
+[]{#10.htm#marker-1114409}[]{#10.htm#marker-1114410}[]{#10.htm#marker-1114411}capabilities.</p>
+<h3 id="heading_id_10" class="fm-head1">[]{#10.htm#pgfId-1114413}10.2.4 Adding capabilities</h3>
+<p>[]{#10.htm#pgfId-1114417}In
+[]{#10.htm#marker-1114414}[]{#10.htm#marker-1114415}[]{#10.htm#marker-1114416}some
+situations, your container might fail because it does not have a certain
+capability. You can simply run <code>--privileged</code>{.fm-code-in-text} and turn
+off all security in these cases, but a better solution is just adding
+required capabilities.</p>
+<p>[]{#10.htm#pgfId-1114418}Imagine you have a container that wants to
+create a raw IP packet on its namespaced network, which requires
+<code>CAP_NET_RAW</code>{.fm-code-in-text}. Podman, by default, does not allow
+this. Rather than running the container as
+<code>--privileged</code>{.fm-code-in-text}, you can use the
+<code>--cap-add</code>{.fm-code-in-text} <code>CAP_NET_RAW</code>{.fm-code-in-text}
+flag[]{#10.htm#marker-1114419}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --cap-add CAP_NET_RAW ubi8 capsh --print
+Current: = cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,
+➥ cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_raw,cap_
+➥ sys_chroot,cap_setfcap+eip
+Bounding set =cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,
+➥ cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_raw,cap_
+➥ sys_chroot,cap_setfcap
+...</code></pre></div>
+<p>[]{#10.htm#marker-1114464}[]{#10.htm#pgfId-1114428}If this is the only
+capability needed by your container, you can both drop all capabilities
+and just add back in this <code>CAP_NET_RAW</code>{.fm-code-in-text} by using the
+<code>--cap-drop</code>{.fm-code-in-text}[]{#10.htm#marker-1114429} and
+<code>--cap-add</code>{.fm-code-in-text} flags[]{#10.htm#marker-1114430} at the
+same
+[]{#10.htm#marker-1114431}[]{#10.htm#marker-1114432}[]{#10.htm#marker-1114433}time:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --cap-drop=all --cap-add CAP_NET_RAW ubi8 capsh --print
+Current: = cap_net_raw+eip
+Bounding set =cap_net_raw
+...</code></pre></div>
+<h3 id="heading_id_11" class="fm-head1">[]{#10.htm#pgfId-1114439}10.2.5 No new privileges</h3>
+<p>[]{#10.htm#pgfId-1114444}Podman
+[]{#10.htm#marker-1114440}[]{#10.htm#marker-1114441}[]{#10.htm#marker-1114442}has
+an option, <code>--security-opt</code>{.fm-code-in-text}
+<code>no-new-privileges</code>{.fm-code-in-text}[]{#10.htm#marker-1114443}, which
+disables the ability for container processes to gain additional
+privileges. Basically, it locks the processes into the group of Linux
+capabilities they have when they are started. Even if they can execute a
+<code>setuid</code>{.fm-code-in-text} program, the kernel denies it from gaining
+additional capabilities. The <code>no-new-privileges</code>{.fm-code-in-text}
+option[]{#10.htm#marker-1114445} also affects SELinux and prevents
+SELinux label transitions. Even if SELinux had a bug in its rules
+database, the container process would not be allowed to change its
+[]{#10.htm#marker-1114446}[]{#10.htm#marker-1114447}[]{#10.htm#marker-1114448}label.</p>
+<h3 id="heading_id_12" class="fm-head1">[]{#10.htm#pgfId-1114450}10.2.6 Root with no capabilities is still dangerous</h3>
+<p>[]{#10.htm#pgfId-1114454}Dropping
+[]{#10.htm#marker-1114451}[]{#10.htm#marker-1114452}[]{#10.htm#marker-1114453}capabilities
+means your container is running much more securely, but running all of
+your containers without any Linux capabilities is much more secure.
+Another problem to consider when running a container as root, even if
+you drop all capabilities, is that the process is still running as root.
+The root process is allowed to modify all files on the system that are
+owned by root. The root process can modify a system file and trick a
+privileged administrator into executing it. Also, some client-server
+applications trust the client side of the connection simply if it is
+running as root (e.g., Docker). Podman can solve both of these problems
+by using the
+[]{#10.htm#marker-1114455}[]{#10.htm#marker-1114456}[]{#10.htm#marker-1114457}user
+[]{#10.htm#marker-1114458}[]{#10.htm#marker-1114459}namespace.</p>
+<h2 id="heading_id_13" class="fm-head">[]{#10.htm#pgfId-1114461}10.3 UID isolation: User namespace</h2>
+<p>[]{#10.htm#pgfId-1114465}Back
+[]{#10.htm#marker-1130059}[]{#10.htm#marker-1130060}[]{#10.htm#marker-1130061}in
+section 6.1.1, I introduced the concept of the user namespace. Recall
+that UIDs were allocated via the /etc/subuid and /etc/subgid files for a
+rootless user. For my accounts, the range of UIDs from
+<code>100000</code>{.fm-code-in-text}&ndash;<code>165535</code>{.fm-code-in-text} was allocated
+along with my UID <code>3265</code>{.fm-code-in-text} and was used by Podman when
+launching containers. See figure 10.2 for a description of the user
+namespace mapping.</p>
+<p>::: figure
+<a href="#R-image-216c1657948f19075afb1339af6d6482" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/10-02.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-216c1657948f19075afb1339af6d6482"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/10-02.png"></a>{.calibre18}</p>
+<p>[]{#10.htm#pgfId-1130085}Figure 10.2 The mapping of UIDs used by
+rootless Podman for my account
+:::</p>
+<p>[]{#10.htm#pgfId-1114472}This user namespace allows my account to have
+root access within the container that is not root on the host. Running
+containers in a user namespace eliminates the problem of having
+processes running as the root user, and the inherent trust is built into
+some daemons.</p>
+<p>[]{#10.htm#pgfId-1114473}One problem with rootless users is that, by
+default, all of the containers run with the same user namespace.
+Theoretically, from a user namespace point of view, one container can
+attack another container, since they run with duplicate UIDs. Also, if
+the container processes break out, they can read/write content in your
+home directory, since the root processes within the containers are
+running with your UID.</p>
+<h3 id="heading_id_14" class="fm-head1">[]{#10.htm#pgfId-1114475}10.3.1 Isolating containers using the - -userns=auto flag</h3>
+<p>[]{#10.htm#pgfId-1114480}Podman
+[]{#10.htm#marker-1114476}[]{#10.htm#marker-1114477}[]{#10.htm#marker-1114478}[]{#10.htm#marker-1114479}has
+a feature for allocating unique ranges of UIDs for every container it
+launches. Since there are limited UIDs allocated for each user account,
+this feature works best when launched by the root user.</p>
+<p>[]{#10.htm#pgfId-1114481}To launch multiple containers within their own
+user namespace, you need to first allocate the UIDs and GIDs to be used
+for these containers. On a Linux system, there are 4 billion UIDs
+available. Podman recommends that you allocate the highest 2 billion
+UIDs for your containers. You can do this by adding the following
+containers line to your /etc/subuid and /etc/subgid file.</p>
+<p>[]{#10.htm#pgfId-1114482}Listing 10.5 The contents of the /etc/subuid
+and /etc/subgid files</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">```bash
+# cat /etc/subuid
+dwalsh:100000:65536
+containers:2147483647:2147483648   ❶
+# cat /etc/subgid
+dwalsh:100000:65536
+containers:2147483647:2147483648   ❶</code></pre></div>
+<p>[]{#10.htm#pgfId-1128297}[❶]{.fm-combinumeral} Allocates the top 2
+billion UIDs to the container user used by Podman. Adding this line
+tells other tools on your system, like useradd, to avoid allocating UIDs
+and GIDs within this range.</p>
+<p>[]{#10.htm#pgfId-1114490}You[]{#10.htm#marker-1123372} can launch a
+container within a unique user namespace using the
+<code>--userns=auto</code>{.fm-code-in-text} option. Podman allocates the UIDs for
+the container starting with UID <code>2147483647</code>{.fm-code-in-text}, which
+you specified in the /etc/subuid file. Podman then examines the
+container image for all UIDs defined within it as well as the
+/etc/passwd file if it exists in the image and then uses this to
+allocate the number of UIDs required to run the container with a default
+minimum of <code>1024</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># podman run --userns=auto ubi8 cat /proc/self/uid_map
+     0 2147483647   1024</code></pre></div>
+<p>[]{#10.htm#pgfId-1114493}If I run a second container with a specific
+user <code>2000</code>{.fm-code-in-text}, then the allocation of UIDs reflects
+this. You see that the number of UIDs allocated is
+<code>2001</code>{.fm-code-in-text}&mdash;UID <code>2000</code>{.fm-code-in-text} plus one for the
+root user:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># podman run --user=2000 --userns=auto ubi8 cat /proc/self/uid_map
+     0 2147484671   2001</code></pre></div>
+<p>[]{#10.htm#pgfId-1114496}Also, note that the starting UID for the first
+container was <code>2147483647,</code>{.fm-code-in-text} while the starting UID for
+the second container was <code>2147484671</code>{.fm-code-in-text}. Subtracting the
+first UID <code>2147483647</code>{.fm-code-in-text} from the second UID
+<code>2147484671</code>{.fm-code-in-text} gives you <code>1024</code>{.fm-code-in-text}, which
+is the number of UIDs allocated for the first container. No UID within
+the first container overlaps with the second container, meaning no
+process within the first container can attack processes within the
+second container, and vice versa.</p>
+<p>[]{#10.htm#pgfId-1114497}You can override the default size of the user
+namespace used within the container with a size option if Podman does
+not allocate enough UIDs or GIDs for your container. In this example,
+you tell Podman to allocate <code>5000</code>{.fm-code-in-text} UIDs for the
+container with <code>--userns=auto:size=5000</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># podman run --userns=auto:size=5000 ubi8 cat /proc/self/uid_map
+     0 2147486672   5000</code></pre></div>
+<p>[]{#10.htm#pgfId-1114500}When containers are removed, Podman reclaims
+the UIDs used for the deleted containers and uses those UIDs for the
+next container created with the <code>--userns=auto</code>{.fm-code-in-text}
+<code>flag</code>{.fm-code-in-text}. You see this when you launch back-to-back
+containers with the <code>--rm</code>{.fm-code-in-text}
+option[]{#10.htm#marker-1114501}. Notice that they start with the same
+UID. In the following example, both containers start with UID
+<code>2147491672</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># podman run --rm --userns=auto ubi8 cat /proc/self/uid_map
+     0 2147491672   1024
+# podman run --rm --userns=auto ubi8 cat /proc/self/uid_map
+     0 2147491672   1024</code></pre></div>
+<p>[]{#10.htm#pgfId-1114506}The name used in /etc/subuid and the minimum
+and maximum number of UIDs used for user namespaces is defined in the
+storage.conf file described in
+[]{#10.htm#marker-1114507}[]{#10.htm#marker-1114508}[]{#10.htm#marker-1114509}[]{#10.htm#marker-1114510}table
+10.4.[]{#10.htm#id_z912g9l4dv}</p>
+<p>[]{#10.htm#pgfId-1119178}Table 10.4  The fields used within storage.conf
+files to override the user namespace auto settings</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#10.htm#pgfId-1119184}Description                |
+| ]{#10.htm#pgfId |                                                     |
+| -1119182}Option |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{             | []{#10.htm#pgfId-1119188}Defines the username used  |
+| #10.htm#pgfId-1 | to look up one or more UID/GID ranges in the        |
+| 119186}<code>root-au | /etc/subuid and /etc/subgid file. These ranges are  | | to-userns-user</code> | partitioned into containers configured to create a  |
+| {.fm-code-in-te | user namespace automatically. Containers configured |
+| xt1}[]{#10.htm# | to automatically create a user namespace can still  |
+| marker-1121477} | overlap with containers with an explicit mapping    |
+|                 | set. The <code>root-auto-userns-user</code>{.fm-code-in-text1} |
+|                 | setting is ignored by rootless users. It defaults   |
+|                 | to <code>containers</code>{.fm-code-in-text1}.                 |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#10.htm#pgfId-1119192}Defines the minimum size   |
+| {#10.htm#pgfId- | for a user namespace created automatically. It      |
+| 1119190}<code>auto-u | defaults to </code>1024<code>{.fm-code-in-text1}.              | | serns-min-size</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1121482} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []              | []{#10.htm#pgfId-1119196}Defines the maximum size   |
+| {#10.htm#pgfId- | for a user namespace created automatically. It      |
+| 1119194}<code>auto-u | defaults to </code>65536<code>{.fm-code-in-text1}.             | | serns-max-size</code> |                                                     |
+| {.fm-code-in-te |                                                     |
+| xt1}[]{#10.htm# |                                                     |
+| marker-1121487} |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<h3 id="heading_id_15" class="fm-head1">[]{#10.htm#pgfId-1114536}10.3.2 User-namespaced Linux capabilities</h3>
+<p>[]{#10.htm#pgfId-1114542}In
+[]{#10.htm#marker-1114537}[]{#10.htm#marker-1114538}[]{#10.htm#marker-1114539}[]{#10.htm#marker-1114540}[]{#10.htm#marker-1114541}section
+10.2 you learned about Linux capabilities and how they are used to break
+up the power of root. When a container is launched within a user
+namespace, it can have Linux capabilities. These capabilities can only
+affect the UIDs and GIDs mapped into the user namespace. Capabilities
+that do not involve UIDs and GIDs are limited. Usually, they only affect
+the other namespaces that are mapped with the user namespace.</p>
+<p>[]{#10.htm#pgfId-1114543}For example, <code>CAP_NET_ADMIN</code>{.fm-code-in-text}
+is the capability that allows you to manipulate the network stack. It
+allows a process to set up firewall rules and network routing tables. A
+process with a namespaced <code>CAP_NET_ADMIN</code>{.fm-code-in-text} is only
+allowed to modify the namespaced network assigned to the user namespace,
+not the host&rsquo;s network namespace.</p>
+<p>[]{#10.htm#pgfId-1114544}In the following example, the list of
+capabilities within a user-namespaced container is the same as when you
+launch one without a user namespace. In the second command using the
+<code>--userns=auto</code>{.fm-code-in-text} flag[]{#10.htm#marker-1114545}, the
+capabilities are namespaced capabilities:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">```bash
+# podman run --rm ubi8 capsh --print | grep Current
+Current: = cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,
+➥ cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_sys_chroot,
+➥ cap_setfcap+eip
+# podman run --rm --userns=auto ubi8 capsh --print | grep Current
+Current: = cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,
+➥ cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_sys_chroot,
+➥ cap_setfcap+eip</code></pre></div>
+<p>[]{#10.htm#pgfId-1114554}To prove this, attempt to
+<code>chown</code>{.fm-code-in-text} a file within a container to a nonexistent
+UID. It fails because the <code>CAP_CHOWN</code>{.fm-code-in-text}
+capability[]{#10.htm#marker-1114555} only allows the root process inside
+a container to <code>chown</code>{.fm-code-in-text} files to any UID as long as the
+UID is mapped to the user namespace:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># podman run --rm --userns=auto:size=5000 ubi8 chown 6000 /etc/motd
+chown: changing ownership of &#39;/etc/motd&#39;: Invalid argument</code></pre></div>
+<p>[]{#10.htm#pgfId-1114558}It succeeds if you <code>chown</code>{.fm-code-in-text} to
+a UID mapped within the user namespace:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># podman run --rm --userns=auto:size=5000 ubi8 chown 4000 /etc/motd</code></pre></div>
+<p>[]{#10.htm#pgfId-1114560}Suppose you launch all of your system
+containers with the <code>--userns=auto</code>{.fm-code-in-text}
+<code>flag</code>{.fm-code-in-text}. In that case, you get the benefit of running
+the container within its unique user namespace isolated from all other
+containers and UIDs on the host system. You also get root privileges
+with limited capabilities, and these processes outside the container
+have no capabilities on the host
+[]{#10.htm#marker-1114561}[]{#10.htm#marker-1114562}[]{#10.htm#marker-1114563}[]{#10.htm#marker-1114564}[]{#10.htm#marker-1114565}system.</p>
+<h3 id="heading_id_16" class="fm-head1">[]{#10.htm#pgfId-1114567}10.3.3 Rootless Podman with the - -userns=auto flag</h3>
+<p>[]{#10.htm#pgfId-1114572}The[]{#10.htm#marker-1114568}[]{#10.htm#marker-1114569}[]{#10.htm#marker-1114570}[]{#10.htm#marker-1114571}
+<code>--userns=auto</code>{.fm-code-in-text} works with rootless containers, based
+on the number of UIDs available to the user. But this number is very
+limited. You can run the previous examples and see that the user
+namespaces start at UID <code>1</code>{.fm-code-in-text}. UID <code>1</code>{.fm-code-in-text}
+is relative to the user namespace of the rootless user:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --userns=auto ubi8 cat /proc/self/uid_map
+     0   1      1024
+$ podman run --userns=auto ubi8 cat /proc/self/uid_map
+     0   1025   1024</code></pre></div>
+<p>[]{#10.htm#pgfId-1114577}If you examine your user namespace, you&rsquo;ll see
+that UID <code>1</code>{.fm-code-in-text} in your user namespace is
+<code>100000</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 cat /proc/self/uid_map
+     0   3267    1
+     1   100000    65536</code></pre></div>
+<p>[]{#10.htm#pgfId-1114581}This means the first rootless user-namespace
+container is running UID <code>0</code>{.fm-code-in-text} mapped to UID
+<code>1</code>{.fm-code-in-text} in the rootless user namespace. UID
+<code>1</code>{.fm-code-in-text} is the rootless UID <code>100000</code>{.fm-code-in-text} on
+the host system. A couple of problems with rootless users of
+<code>--userns=auto</code>{.fm-code-in-text} is that since the default user only
+gets 65,536 UIDS, at max, you can launch 64 containers, and you cannot
+run any containers that require more than 65,536
+[]{#10.htm#marker-1114582}[]{#10.htm#marker-1114583}[]{#10.htm#marker-1114584}[]{#10.htm#marker-1114585}UIDs.</p>
+<p>[]{#10.htm#pgfId-1114587}[Note]{.fm-callout-head} If you launch a
+container without using the <code>--userns=auto</code>{.fm-code-in-text1}
+flag[]{#10.htm#marker-1114586}, the UIDs mapped to the user namespace
+can and probably do overlap with the UIDs in the user-namespaced
+isolated containers. You need to be careful that none of the UIDs used
+within such containers use those UIDs because those UIDs are vulnerable
+to attack from a UID perspective. To avoid overlaps, I suggest using a
+high range of UIDs.</p>
+<h3 id="heading_id_17" class="fm-head1">[]{#10.htm#pgfId-1114589}10.3.4 User volumes with the - -userns=auto flag</h3>
+<p>[]{#10.htm#pgfId-1114594}When
+[]{#10.htm#marker-1114590}[]{#10.htm#marker-1114591}[]{#10.htm#marker-1114592}[]{#10.htm#marker-1114593}using
+the user namespace, it is difficult to determine which user&rsquo;s UID needs
+to own the volume you&rsquo;re mounting into a container to allow access. In
+the following example, you first create a directory and then volume
+mount it into the container and attempt to create a file in it.</p>
+<p>[]{#10.htm#pgfId-1114595}Listing 10.6 Drawbacks of using volumes within
+a user namespace</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">```bash 
+# mkdir /mnt/test
+# ls -ld /mnt/test
+drwxr-xr-x. 2 root root 6 Feb 8 16:23 /mnt/test                           ❶
+# podman run --rm -v /mnt/test:/mnt/test --userns=auto ubi8 ls -ld /mnt/test
+drwxr-xr-x. 2 nobody nobody 6 Feb 8 21:23 /mnt/test                       ❷
+# podman run --rm -v /mnt/test:/mnt/test:Z --userns=auto ubi8 touch /mnt/test
+touch: setting times of &#39;/mnt/test&#39;: 
+➥ Permission denied                                                      ❸</code></pre></div>
+<p>[]{#10.htm#pgfId-1128036}[❶]{.fm-combinumeral} The directory is owned by
+root on the host.</p>
+<p>[]{#10.htm#pgfId-1128057}[❷]{.fm-combinumeral} The directory is listed
+as the user nobody, since the root UID=0 is not mapped into the user
+namespace. All files and directories owned by UIDs not mapped to the
+container are treated as the nobody user. The :Z tells Podman to relabel
+for SELinux.</p>
+<p>[]{#10.htm#pgfId-1128081}[❸]{.fm-combinumeral} Even root is not allowed
+to write into a directory of an unmapped user, unless the directory is
+world writable.</p>
+<p>[]{#10.htm#pgfId-1114608}Podman supports a special option on the
+<code>--volume</code>{.fm-code-in-text} flag
+<code>U</code>{.fm-code-in-text}[]{#10.htm#marker-1114607}<code>,</code>{.fm-code-in-text}
+which tells Podman to <code>chown</code>{.fm-code-in-text} all files or directories
+in the source directory to match the UID of the container&rsquo;s primary
+process:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># ls -ld /mnt/test
+drwxr-xr-x. 2 root root 6 Feb 8 16:38 /mnt/test
+# podman run --rm -v /mnt/test:/mnt/test:Z,U 
+➥ --userns=auto ubi8 touch /mnt/test/test1       ❶
+# ls -ld /mnt/test
+drwxr-xr-x. 2 2147503960 2147503960 
+➥ 19 Feb 8 16:38 /mnt/test                       ❷</code></pre></div>
+<p>[]{#10.htm#pgfId-1127904}[❶]{.fm-combinumeral} After adding the U
+option, processes within the container can write to the volume.</p>
+<p>[]{#10.htm#pgfId-1127925}[❷]{.fm-combinumeral} Podman chowned the source
+volume to 2147503960 to match the root user mapping in the container.</p>
+<p>[]{#10.htm#pgfId-1114618}A new, advanced feature of the Linux kernel is
+called <code>idmapped</code>{.fm-code-in-text} <code>mounts</code>{.fm-code-in-text}. It
+allows users to remap the UIDs inside a source volume to match the user
+namespace without actually <code>chown</code>{.fm-code-in-text}ing the files on
+disk. In the next example, you will recreate the /mnt/test directory
+and, this time, mount it with the <code>idmap</code>{.fm-code-in-text}
+option[]{#10.htm#marker-1114619}. When the ID-mapped volume shows up
+inside the container, the files appear to be owned by the root of the
+user namespace, and you are allowed to read and write the files based on
+standard permissions. When you finish writing the files, they are mapped
+back correctly into the user namespace, unlike the <code>U</code>{.fm-code-in-text}
+option, which writes them back based on the real UID of the container
+process:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting"># chown -R root:root /mnt/test                         ❶
+# podman run --rm -v /mnt/test:/mnt/test:idmap,Z 
+➥ --userns=auto ubi8 ls -ld /mnt/test                 ❷
+drwxr-xr-x. 2 root root 31 Feb 9 11:56 /mnt/test
+# podman run --rm -v /mnt/test:/mnt/test:idmap,Z 
+➥ --userns=auto ubi8 touch /mnt/test/test             ❸
+# ls -l /mnt/test                                      ❹
+total 0
+-rw-r--r--. 1 root root 0 Feb 9 06:57 test
+-rw-r--r--. 1 root root 0 Feb 8 17:02 test1</code></pre></div>
+<p>[]{#10.htm#pgfId-1127607}[❶]{.fm-combinumeral} Reset the source volume
+to root ownership.</p>
+<p>[]{#10.htm#pgfId-1127628}[❷]{.fm-combinumeral} Mount the source volume
+/mnt/test into the container with the idmap option. Notice the path is
+owned by root within the container.</p>
+<p>[]{#10.htm#pgfId-1127655}[❸]{.fm-combinumeral} Create a file within the
+source directory to prove the container can write to the directory.</p>
+<p>[]{#10.htm#pgfId-1127672}[❹]{.fm-combinumeral} Notice on the host system
+that the newly created file is owned by the real root.</p>
+<p>[]{#10.htm#pgfId-1114635}[Note]{.fm-callout-head} The
+<code>idmap</code>{.fm-code-in-text1} features[]{#10.htm#marker-1114634} are brand
+new as of writing and are not available on all filesystems. It is only
+supported in privileged mode at this time, but hopefully, this changes
+soon. Currently, the OCI runtime that supports this feature is
+<code>crun</code>{.fm-code-in-text1}.</p>
+<p>[]{#10.htm#pgfId-1114636}Understanding the security benefits of running
+containers with user namespaces is very important. Next, I&rsquo;ll show you
+some security benefits in the
+[]{#10.htm#marker-1114637}[]{#10.htm#marker-1114638}[]{#10.htm#marker-1114639}[]{#10.htm#marker-1114640}other
+[]{#10.htm#marker-1114641}[]{#10.htm#marker-1114642}[]{#10.htm#marker-1114643}namespaces.</p>
+<h2 id="heading_id_18" class="fm-head">[]{#10.htm#pgfId-1114645}10.4 Process isolation: PID namespace</h2>
+<p>[]{#10.htm#pgfId-1114649}I
+[]{#10.htm#marker-1114646}[]{#10.htm#marker-1114647}[]{#10.htm#marker-1114648}often
+say that namespaces were not intended as a security mechanism, but in
+reality, they do provide additional security via isolation and
+information masking. The PID namespace hides the fact that there are
+other processes running on a system. Being aware that a particular
+application is running on a system can be valuable to someone hacking a
+container. When you run a container within its own PID namespace, it is
+only able to see the other processes running within the container. By
+default, Podman runs containers within their own PID namespaces.</p>
+<p>[]{#10.htm#pgfId-1114650}Some applications shipped as container images
+require additional access to the system. If you have such an application
+that needs to monitor the processes on the host, you&rsquo;ll need to turn off
+the PID namespace to expose all the processes on the system. Turning off
+the PID namespace with Podman is simple: just add the
+<code>--pid=host</code>{.fm-code-in-text} flag[]{#10.htm#marker-1114651}. In the
+next couple of examples, you see that with the PID namespace, you only
+see the container process within the container. The second command
+exposes all processes within the system to the
+[]{#10.htm#marker-1114652}[]{#10.htm#marker-1114653}[]{#10.htm#marker-1114654}container.</p>
+<p>[]{#10.htm#pgfId-1114655}Listing 10.7 The differences between using the
+<code>pid</code>{.fm-code-in-text} namespace and disabling it</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 find /proc -maxdepth 1 
+➥ -type d -regex &#34;.*/[0-9]*&#34;                     ❶
+/proc/1
+$ podman run --rm --pid=host ubi8 find 
+➥ /proc -maxdepth 1 -type d -regex &#34;.*/[0-9]*&#34;   ❷
+/proc/1
+/proc/2
+/proc/3
+/proc/4
+...</code></pre></div>
+<p>[]{#10.htm#pgfId-1127480}[❶]{.fm-combinumeral} Running the find command
+looking for all processes within the container, you see only one
+process.</p>
+<p>[]{#10.htm#pgfId-1127501}[❷]{.fm-combinumeral} Running the find command
+in a --pid=host container, you see all of the processes on the system.</p>
+<p>[]{#10.htm#pgfId-1114669}[Note]{.fm-callout-head} On an SELinux system,
+exposing the host&rsquo;s processes via the <code>--pid=host</code>{.fm-code-in-text1}
+option[]{#10.htm#marker-1114668} also has a side effect of disabling
+SELinux separation. SELinux blocks access to the host&rsquo;s processes and
+causes problems when processes within the container interact with these
+processes. Other security mechanisms, like dropped capabilities and user
+namespaces, are not dropped and can block access to the processes.</p>
+<h2 id="heading_id_19" class="fm-head">[]{#10.htm#pgfId-1114671}10.5 Network isolation: Network namespace</h2>
+<p>[]{#10.htm#pgfId-1114675}The
+[]{#10.htm#marker-1114672}[]{#10.htm#marker-1114673}[]{#10.htm#marker-1114674}network
+namespace sets up isolation from the host network. It allows Podman to
+set up virtual private networks to control which containers can talk to
+other containers. Podman has the ability to create multiple networks and
+then assign containers within those networks. By default, all containers
+run within the host network. But it is simple to set up additional
+networks using the <code>podman</code>{.fm-code-in-text}
+<code>network</code>{.fm-code-in-text} <code>create</code>{.fm-code-in-text}
+command[]{#10.htm#marker-1114676}. In the next example, you will create
+two networks&mdash;<code>net1</code>{.fm-code-in-text}[]{#10.htm#marker-1114677} and
+<code>net2</code>{.fm-code-in-text}[]{#10.htm#marker-1114678}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman network create net1
+net1
+$ podman network create net2
+net2</code></pre></div>
+<p>[]{#10.htm#pgfId-1114683}When you create new containers, you can assign
+them to a specific network with the <code>--network</code>{.fm-code-in-text}
+<code>net1</code>{.fm-code-in-text} option[]{#10.htm#marker-1114684}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -d --network net1 --name 
+➥ cnet1 ubi8 sleep 1000                                 ❶
+74ce5b2396f77fce8c499b121aeb8731f1e1b22e363a6a72d243487cf93a5897
+$ podman run --network net1 alpine 
+➥ ping -c 1 cnet1                                       ❷
+PING cnet1 (10.89.0.4): 56 data bytes
+64 bytes from 10.89.0.4: seq=0 ttl=42 time=0.077 ms</code></pre></div>
+<p>[]{#10.htm#pgfId-1127304}[❶]{.fm-combinumeral} Start a background
+container in network net1.</p>
+<p>[]{#10.htm#pgfId-1127325}[❷]{.fm-combinumeral} Make sure the container
+is reachable from another container within the network.</p>
+<p>[]{#10.htm#pgfId-1114694}If you attempt to ping the network from the
+default network namespace via the container name, or even the IP
+address, it fails:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm alpine ping -c 1 cnet1
+ping: bad address &#39;cnet1&#39;
+$ podman run alpine ping -c 1 10.89.0.4         ❶
+PING 10.89.0.4 (10.89.0.4): 56 data bytes
+64 bytes from 10.89.0.4: seq=0 ttl=42 time=0.073 ms</code></pre></div>
+<p>[]{#10.htm#pgfId-1127243}[❶]{.fm-combinumeral} Make sure the cnet1
+container is still available by the IP address.</p>
+<p>[]{#10.htm#pgfId-1114701}Similarly, if you attempt to ping it from a
+different network, <code>--network</code>{.fm-code-in-text}
+<code>net2</code>{.fm-code-in-text}, it also fails:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm --network net2 alpine ping -c 1 cnet1
+ping: bad address &#39;cnet1&#39;</code></pre></div>
+<p>[]{#10.htm#pgfId-1114704}Creating private networks for your containers
+allows you to isolate them from each other, even over the network, using
+the network namespace.</p>
+<p>[]{#10.htm#pgfId-1114705}[Note]{.fm-callout-head} For these examples, I
+used the alpine image because it comes with the ping package installed,
+while the ubi8 image does not include it. You can easily add the ping
+executable to ubi8 via a Containerfile and <code>podman</code>{.fm-code-in-text1}
+<code>build</code>{.fm-code-in-text1}.</p>
+<p>[]{#10.htm#pgfId-1114706}You can expose your host network to the
+container using the <code>--net=host</code>{.fm-code-in-text} option, allowing a
+container to bind to ports on the host. In certain situations, you can
+get better performance when you eliminate the network
+[]{#10.htm#marker-1114707}[]{#10.htm#marker-1114708}[]{#10.htm#marker-1114709}namespace.</p>
+<h2 id="heading_id_20" class="fm-head">[]{#10.htm#pgfId-1114711}10.6 IPC isolation: IPC namespace</h2>
+<p>[]{#10.htm#pgfId-1114715}The
+[]{#10.htm#marker-1123073}[]{#10.htm#marker-1123074}[]{#10.htm#marker-1123075}inter-process
+communication (IPC) namespace isolates certain IPC resources, namely,
+System V IPC objects and POSIX message queues. It also isolates the
+/dev/shm tmpfs from the host and other containers. The IPC namespace
+allows containers to create named IPCs with the same name as other
+containers on the same system, without causing a conflict.</p>
+<p>[]{#10.htm#pgfId-1114716}Thus, IPC isolation prevents one container from
+attacking another via an IPC or /dev/shm. You can join two
+IPC-namespaced containers together using the
+<code>--ipc=container:NAME</code>{.fm-code-in-text} or run them within a pod. They
+share the same IPC namespace. They can use IPC together but are still
+isolated from the host.</p>
+<p>[]{#10.htm#pgfId-1114717}Listing 10.8 IPC namespace keeping /dev/shm
+private to each container</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -d --rm --name ipc1 ubi8 bash 
+➥ -c &#34;touch /dev/shm/ipc1; sleep 1000&#34;                              ❶
+93df44264dd4b87d24f59dfffb92a6a0b6359bc5bcf94213d5e38499a10d3f3e
+$ podman run --rm ubi8 ls /dev/shm                                   ❷
+$ podman run --rm --ipc=container:ipc1 ubi8 ls /dev/shm              ❸
+ipc1</code></pre></div>
+<p>[]{#10.htm#pgfId-1127009}[❶]{.fm-combinumeral} Create a container named
+ipc1, touch /dev/shm/ipc1, and then go to sleep.</p>
+<p>[]{#10.htm#pgfId-1127030}[❷]{.fm-combinumeral} Run a second container to
+see that the /dev/shm/ipc does not exist because the container is
+running in a separate IPC namespace.</p>
+<p>[]{#10.htm#pgfId-1127047}[❸]{.fm-combinumeral} Run a container with a
+shared IPC namespace, and you will see that the /dev/shm is shared and
+the IPC file exists.</p>
+<p>[]{#10.htm#pgfId-1114727}You can share the host&rsquo;s IPC namespace with
+your container by executing the <code>--ipc=host</code>{.fm-code-in-text}
+[]{#10.htm#marker-1114728}[]{#10.htm#marker-1114729}[]{#10.htm#marker-1114730}option.</p>
+<p>[]{#10.htm#pgfId-1114731}[Note]{.fm-callout-head} On SELinux systems,
+Podman modifies all containers that share the same IPC namespace to
+share the same SELinux label. Otherwise, SELinux blocks the IPC
+communications between containers when the labels do not match. Using
+the <code>--ipc=host</code>{.fm-code-in-text1} option causes SELinux separation to
+be disabled; otherwise, SELinux blocks access to the host&rsquo;s IPC.</p>
+<h2 id="heading_id_21" class="fm-head">[]{#10.htm#pgfId-1114733}10.7 Filesystem isolation: Mount namespace</h2>
+<p>[]{#10.htm#pgfId-1114738}The
+[]{#10.htm#marker-1114734}[]{#10.htm#marker-1114735}[]{#10.htm#marker-1114736}[]{#10.htm#marker-1114737}next,
+and perhaps most important, namespace isolation is the mount namespace.
+The mount namespace hides the entire host filesystem from the container
+processes. The container processes only see the filesystem content
+defined to be in the mount namespace. Podman creates the filesystem
+mount point <code>rootfs</code>{.fm-code-in-text}[]{#10.htm#marker-1114739} and
+bind mounts all volumes onto it. Podman then executes the OCI runtime,
+which then executes the <code>pivot_root</code>{.fm-code-in-text}
+syscall[]{#10.htm#marker-1114740}, which in turn changes the root mount
+in the mount namespace of the calling process. It moves the root mount
+to the rootfs directory. Thus, all of the content of the host operating
+system disappears, and the container processes only see the provided
+content. By dropping the <code>CAP_SYS_ADMIN</code>{.fm-code-in-text}
+capability[]{#10.htm#marker-1114741}, the processes inside the container
+have no ability to affect the mounts of the rootfs to expose the
+underlying filesystems.</p>
+<p>[]{#10.htm#pgfId-1114743}[Note]{.fm-callout-head} Read the
+<code>pivot_root(2)</code>{.fm-code-in-text1} man page[]{#10.htm#marker-1114742} to
+find out more about the <code>pivot_ root</code>{.fm-code-in-text1} system call:
+<code>man</code>{.fm-code-in-text1} <code>2</code>{.fm-code-in-text1}
+<code>pivot_root</code>{.fm-code-in-text1}.</p>
+<p>[]{#10.htm#pgfId-1114744}While the mount namespace and the lack of
+<code>CAP_SYS_ADMIN</code>{.fm-code-in-text} provide excellent isolation, there
+have been some container escapes to the underlying filesystem, which is
+where SELinux steps in. One example of this was a flaw in the OCI
+runtime <code>runc</code>{.fm-code-in-text}[]{#10.htm#marker-1114745}
+(CVE-2019-5736), which allowed container processes to overwrite the
+<code>runc</code>{.fm-code-in-text} executable[]{#10.htm#marker-1114746} in rootful
+containers. This exploit allowed containers to escape their containment
+and take over users&rsquo; systems. This exploit affected all container
+engines, including Podman, Docker, CRI-O, and containerd. The good news
+is that well-configured SELinux can stop it. Podman is mainly run in
+rootless mode, and rootless Podman is protected in two ways: SELinux and
+not running as root. I wrote about this exploit in this &ldquo;Latest
+container exploit (runc) can be blocked by SELinux&rdquo; blog post, available
+on Red Hat&rsquo;s website
+[]{#10.htm#marker-1114747}[]{#10.htm#marker-1114748}[]{#10.htm#marker-1114749}[]{#10.htm#marker-1114750}(<a href="http://mng.bz/Qn6j" rel="external" target="_blank">http://mng.bz/Qn6j</a>{.url}).</p>
+<h2 id="heading_id_22" class="fm-head">[]{#10.htm#pgfId-1114752}10.8 Filesystem isolation: SELinux</h2>
+<p>[]{#10.htm#pgfId-1114757}SELinux
+[]{#10.htm#marker-1114753}[]{#10.htm#marker-1114754}[]{#10.htm#marker-1114755}[]{#10.htm#marker-1114756}is
+a labeling system, where every process and filesystem object gets
+labeled. Then rules are written to the kernel about how the process
+labels interact with the filesystem labels as well as other process
+labels. SELinux supports multiple different security mechanisms;
+containers take advantage of two of these. The first is called <em>type
+enforcement</em>, with which SELinux controls what processes can do based on
+their type. The second is called <em>MCS enforcement</em>, and it additionally
+uses categories assigned to processes.</p>
+<p>[]{#10.htm#pgfId-1114758}SELinux is not supported on all distributions.
+Fedora, RHEL, and other Red Hat distributions support SELinux, while
+Debian-based distributions, like Ubuntu, often do not. If your Linux
+distribution does not support SELinux, you might want to skip this
+section.</p>
+<h3 id="heading_id_23" class="fm-head1">[]{#10.htm#pgfId-1114760}10.8.1 SELinux type enforcement</h3>
+<p>[]{#10.htm#pgfId-1114766}The
+[]{#10.htm#marker-1120087}[]{#10.htm#marker-1120088}[]{#10.htm#marker-1120089}[]{#10.htm#marker-1120090}[]{#10.htm#marker-1120091}SELinux
+labels have four components: the SELinux user, role, type, and MCS level
+(see table 10.5).[]{#10.htm#id_hi509vooki1y}</p>
+<p>[]{#10.htm#pgfId-1119978}Table 10.5 SELinux label type examples</p>
+<p>+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| []{#10.ht   | []{#10.     | []{#10.     | []{#10.     | []{#10      |
+| m#pgfId-111 | htm#pgfId-1 | htm#pgfId-1 | htm#pgfId-1 | .htm#pgfId- |
+| 9988}Object | 119990}User | 119992}Role | 119994}Type | 1119996}MCS |
+|             |             |             |             | level       |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []          | []{#10.htm  |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | {#10.htm#pg | #pgfId-1120 |
+| gfId-111999 | 000}<code>system | 002}</code>system | fId-1120004 | 006}<code>s0:c1, | | 8}Container | _u</code>{.fm-cod | _r<code>{.fm-cod | }</code>container | c2<code>{.fm-cod | | process     | e-in-text1} | e-in-text1} | _t</code>{.fm-cod | e-in-text1} |
+|             |             |             | e-in-text1} |             |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []          | []{         |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | {#10.htm#pg | #10.htm#pgf |
+| gfId-112000 | 010}<code>system | 012}</code>system | fId-1120014 | Id-1120016} |
+| 8}Container | _u<code>{.fm-cod | _r</code>{.fm-cod | }<code>container | </code>s0:c361,c8 |
+| process     | e-in-text1} | e-in-text1} | _t<code>{.fm-cod | 71</code>{.fm-cod |
+|             |             |             | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []{#10.     | []{#10.htm  |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | htm#pgfId-1 | #pgfId-1120 |
+| gfId-112001 | 020}<code>system | 022}</code>object | 120024}<code>con | 026}</code>s0:c1, |
+| 8}Container | _u<code>{.fm-cod | _r</code>{.fm-cod | tainer_file | c2<code>{.fm-cod | | file        | e-in-text1} | e-in-text1} | _t</code>{.fm-cod | e-in-text1} |
+|             |             |             | e-in-text1} |             |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []{#10.     | []{         |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | htm#pgfId-1 | #10.htm#pgf |
+| gfId-112002 | 030}<code>system | 032}</code>object | 120034}<code>con | Id-1120036} | | 8}Container | _u</code>{.fm-cod | _r<code>{.fm-cod | tainer_file | </code>s0:s361,c8 |
+| file        | e-in-text1} | e-in-text1} | _t<code>{.fm-cod | 71</code>{.fm-cod |
+|             |             |             | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| []{         | []{#10.htm  | []{#10.htm  | []{#10.htm  | []{#        |
+| #10.htm#pgf | #pgfId-1120 | #pgfId-1120 | #pgfId-1120 | 10.htm#pgfI |
+| Id-1120038} | 040}<code>system | 042}</code>object | 044}<code>shadow | d-1120046}</code> |
+| /etc/shadow | _u<code>{.fm-cod | _r</code>{.fm-cod | _t<code>{.fm-cod | s0</code>{.fm-cod |
+| label       | e-in-text1} | e-in-text1} | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []{#10.     | []{#        |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | htm#pgfId-1 | 10.htm#pgfI |
+| gfId-112004 | 050}<code>system | 052}</code>system | 120054}<code>spc | d-1120056}</code> |
+| 8}Container | _u<code>{.fm-cod | _r</code>{.fm-cod | _t<code>{.fm-cod | s0</code>{.fm-cod |
+| process     | e-in-text1} | e-in-text1} | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| []{#10.     | []{         | []{         | []{         | []{#1       |
+| htm#pgfId-1 | #10.htm#pgf | #10.htm#pgf | #10.htm#pgf | 0.htm#pgfId |
+| 120058}User | Id-1120060} | Id-1120062} | Id-1120064} | -1120066}<code>s | | process     | </code>unconfined | <code>unconfined | </code>unconfined | 0-s0:c0.c10 |
+|             | _u<code>{.fm-cod | _r</code>{.fm-cod | _t<code>{.fm-cod | 23</code>{.fm-cod |
+|             | e-in-text1} | e-in-text1} | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+</p>
+<p>[]{#10.htm#marker-1125639}[]{#10.htm#pgfId-1114852}In this section, you
+will concentrate on the SELinux type. I wrote <em>The SELinux Coloring
+Book</em> to explain the labeling, using the analogy of cats and dogs
+(figure 10.3).</p>
+<p>::: figure
+<a href="#R-image-a701643566efad0837891645506ac7fa" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="images/OEBPS/Images/10-03.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a701643566efad0837891645506ac7fa"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="images/OEBPS/Images/10-03.png"></a>{.calibre18}</p>
+<p>[]{#10.htm#pgfId-1130140}Figure 10.3 <em>The SELinux Coloring
+Book</em>[]{#10.htm#id_1vp0m2w67vu8}[]{#10.htm#marker-1130141}
+(<a href="http://mng.bz/Xay6" rel="external" target="_blank">http://mng.bz/Xay6</a>{.url})
+:::</p>
+<p>[]{#10.htm#pgfId-1114859}As the coloring book explains, imagine you have
+a group of processes labeled as <code>cat</code>{.fm-code-in-text} types and
+another group of processes labeled as <code>dog</code>{.fm-code-in-text} types.
+Imagine you also have objects on the filesystem labeled as
+<code>dog</code>{.fm-code-in-text} <code>food</code>{.fm-code-in-text} type and
+<code>cat</code>{.fm-code-in-text} <code>food</code>{.fm-code-in-text} type. Finally, imagine
+you write rules to the kernel saying that <code>cat</code>{.fm-code-in-text} types
+are allowed to eat <code>cat</code>{.fm-code-in-text} <code>food</code>{.fm-code-in-text}
+types, and <code>dog</code>{.fm-code-in-text} types can eat <code>dog</code>{.fm-code-in-text}
+<code>food</code>{.fm-code-in-text} types. With SELinux, anything that is not
+explicitly allowed is denied. The <code>cat</code>{.fm-code-in-text} processes can
+eat the <code>cat</code>{.fm-code-in-text} <code>food</code>{.fm-code-in-text}, and the
+<code>dog</code>{.fm-code-in-text} processes can eat the <code>dog</code>{.fm-code-in-text}
+<code>food</code>{.fm-code-in-text}, but if a <code>dog</code>{.fm-code-in-text} type attempts
+to eat <code>cat</code>{.fm-code-in-text} <code>food</code>{.fm-code-in-text}, the Linux
+kernel steps in and blocks the access.</p>
+<p>[]{#10.htm#pgfId-1114860}Containers work the same way. Podman labels
+each container process with the <code>container_t</code>{.fm-code-in-text}
+type[]{#10.htm#marker-1114861}. All the files within the container are
+labeled as a <code>container_file_t</code>{.fm-code-in-text}
+type[]{#10.htm#marker-1114862}. Rules are written into the kernel,
+saying the <code>container_t</code>{.fm-code-in-text} processes are allowed to
+read, write, and execute files labeled with the
+<code>container_file_t</code>{.fm-code-in-text} type[]{#10.htm#marker-1114863}.</p>
+<p>[]{#10.htm#pgfId-1114864}[Note]{.fm-callout-head} SELinux does not care
+about ownerships and permissions, so you can, for example, define a
+process type that has access to all filesystem types and is not confined
+by SELinux, often called an <em>unconfined type</em>. You can see a couple of
+unconfined types running on your Linux system. The
+<code>id</code>{.fm-code-in-text1} <code>-Z</code>{.fm-code-in-text1} command shows your user
+processes are running with the <code>unconfined_t</code>{.fm-code-in-text1}
+type[]{#10.htm#marker-1114865} and a privileged container runs with the
+<code>spc_t</code>{.fm-code-in-text1} type.</p>
+<p>[]{#10.htm#pgfId-1114866}When Podman constructs the rootfs for the
+container, it labels all of the files in the rootfs as
+<code>container_file_t</code>{.fm-code-in-text}. This means the container process
+can read, write, and execute all of the files within the container&rsquo;s
+rootfs, but if they escape to the host filesystem, the SELinux kernel
+blocks access to the host filesystem objects. In the next few examples,
+you can examine what is happening in containers with SELinux. In this
+first example, you can see the label of the containerized process;
+notice the type is
+<code>container_t</code>{.fm-code-in-text}[]{#10.htm#marker-1114867}. But when you
+run with the <code>--privileged</code>{.fm-code-in-text}
+flag[]{#10.htm#marker-1114868}, Podman changes the label to
+<code>spc_t</code>{.fm-code-in-text}, an unconfined domain:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 cat /proc/self/attr/current
+system_u:system_r:container_t:s0:c694,c944
+$ podman run --rm --privileged ubi8 cat /proc/self/attr/current
+unconfined_u:system_r:spc_t:s0</code></pre></div>
+<p>[]{#10.htm#pgfId-1114874}Examine the files within the container, using
+the <code>ls</code>{.fm-code-in-text} <code>-Z</code>{.fm-code-in-text}
+command[]{#10.htm#marker-1114873}. You see the files are all labeled as
+<code>container_file_t</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 ls -Z /
+system_u:object_r:container_file_t:s0:c88,c191 bin
+system_u:object_r:container_file_t:s0:c88,c191 boot
+system_u:object_r:container_file_t:s0:c88,c191 dev
+system_u:object_r:container_file_t:s0:c88,c191 etc
+system_u:object_r:container_file_t:s0:c88,c191 home
+system_u:object_r:container_file_t:s0:c88,c191 lib
+...</code></pre></div>
+<p>[]{#10.htm#pgfId-1114883}Because Podman configured the SELinux
+environment properly, container processes have full access to all of the
+objects within the container&rsquo;s rootfs, and SELinux pretty much stays out
+of the way, unless something else breaks down and somehow the container
+process escapes out of the rootfs into the host operating system. At
+that point, SELinux starts blocking access. Imagine the container
+process you are running on your system broke out of the container and
+attempted to read the SSH keys in your home directory. Let&rsquo;s look at the
+labels on those files. You see that those files are labeled with the
+<code>ssh_home_t</code>{.fm-code-in-text} type[]{#10.htm#marker-1114884}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ ls -1Z $HOME/.ssh/
+unconfined_u:object_r:ssh_home_t:s0 authorized_keys
+unconfined_u:object_r:ssh_home_t:s0 authorized_keys2
+unconfined_u:object_r:ssh_home_t:s0 config
+...</code></pre></div>
+<p>[]{#10.htm#pgfId-1114891}Because there is no rule in SELinux policy
+allowing a <code>container_t</code>{.fm-code-in-text}
+process[]{#10.htm#marker-1114890} to read an
+<code>ssh_home_t</code>{.fm-code-in-text} file, the SELinux kernel blocks access.
+You can demonstrate this by volume mounting the .ssh directory into a
+container. When you attempt to list the directory, the container process
+gets <code>Permission</code>{.fm-code-in-text} <code>denied</code>{.fm-code-in-text}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -v $HOME/.ssh:/.ssh ubi8 ls /.ssh
+ls: cannot open directory &#39;/.ssh&#39;: Permission denied</code></pre></div>
+<p>[]{#10.htm#pgfId-1114894}As you learned in section 3.1.2, Podman has
+SELinux volume options <code>z</code>{.fm-code-in-text} and <code>Z</code>{.fm-code-in-text},
+which tell SELinux to relabel the content of the source volume to make
+it usable inside of the container. This is not a good idea to do with
+the .ssh directory.</p>
+<p>[]{#10.htm#pgfId-1114895}Instead, let&rsquo;s create a temporary file and show
+the SELinux labels in action. First, create a temporary file in your
+home directory named foo. Label it <code>user_home_t</code>{.fm-code-in-text}.
+Volume mount it into the container, and see that the container process
+is denied access.</p>
+<p>[]{#10.htm#pgfId-1114896}Listing 10.9 How SELinux works with volumes
+inside Podman containers</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ mkdir foo
+$ ls -Zd foo                                          ❶
+unconfined_u:object_r:user_home_t:s0 foo
+$ podman run -v ./foo:/foo ubi8 touch /foo/bar        ❷
+touch: cannot touch &#39;/foo/bar&#39;: Permission denied
+$ podman run --privileged -v ./foo:/foo ubi8 touch 
+➥ /foo/bar                                           ❸
+$ ls -Z foo                                           ❹
+unconfined_u:object_r:user_home_t:s0 bar
+$ rm foo/bar
+$ podman run -v ./foo:/foo:Z ubi8 touch /foo/bar      ❺
+$ ls -Z ./foo                                         ❻
+system_u:object_r:container_file_t:s0:c454,c510 bar</code></pre></div>
+<p>[]{#10.htm#pgfId-1126543}[❶]{.fm-combinumeral} Files created in your
+home directory default to the user_home_t type.</p>
+<p>[]{#10.htm#pgfId-1126567}[❷]{.fm-combinumeral} By default, container
+processes are not allowed to write to content in the user's home
+directory. Podman does not change the labels on volumes by default.</p>
+<p>[]{#10.htm#pgfId-1126584}[❸]{.fm-combinumeral} The --privileged flag
+causes SELinux separation to be disabled, running the container with an
+unconfined type (spc_t). The command simulates a container escape,
+showing that without SELinux, an escaped container is allowed to write
+to the filesystem.</p>
+<p>[]{#10.htm#pgfId-1126601}[❹]{.fm-combinumeral} The file created by the
+privileged container has the label of the user home directory
+(user_home_t).</p>
+<p>[]{#10.htm#pgfId-1126618}[❺]{.fm-combinumeral} The :Z option on the
+volume mount tells Podman to relabel the content of the directory to
+match the labels of files within the rootfs (container_file_t).</p>
+<p>[]{#10.htm#pgfId-1126635}[❻]{.fm-combinumeral} The labels of the newly
+created file match the label within the container.</p>
+<p>[]{#10.htm#pgfId-1114916}SELinux type enforcement has shown itself to be
+invaluable in blocking container escape when no other mechanism was
+available. Table 10.6 shows a list of container escapes that have been
+blocked by SELinux.[]{#10.htm#id_k8ptbkj4chg7}</p>
+<p>[]{#10.htm#pgfId-1114946}SELinux type enforcement does a great job
+protecting the host operating system from container processes. The
+problem is that <code>type</code>{.fm-code-in-text} <code>enforcement</code>{.fm-code-in-text}
+does not protect you from one container attacking
+[]{#10.htm#marker-1114947}[]{#10.htm#marker-1114948}[]{#10.htm#marker-1114949}[]{#10.htm#marker-1114950}[]{#10.htm#marker-1114951}another.</p>
+<p>[]{#10.htm#pgfId-1120491}Table 10.6 Major container exploits blocked by
+SELinux</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| [               | []{#10.htm#pgfId-1120497}Description                |
+| ]{#10.htm#pgfId |                                                     |
+| -1120495}Common |                                                     |
+| vulnerabilities |                                                     |
+| and exposures   |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1120501}Execution of malicious     |
+| tm#pgfId-112049 | containers allows for container escape and access   |
+| 9}CVE-2019-5736 | to the host filesystem.                             |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1120505}Insecure opening of        |
+| tm#pgfId-112050 | file-descriptor 1, leading to privilege escalation  |
+| 3}CVE-2015-3627 |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1120509}Read/write proc paths      |
+| tm#pgfId-112050 | allow host modification and information disclosure. |
+| 7}CVE-2015-3630 |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1120513}Volume mounts allow Linux  |
+| tm#pgfId-112051 | Security Modules (LSM) profile escalation.          |
+| 1}CVE-2015-3631 |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| []{#10.h        | []{#10.htm#pgfId-1120517}<code>runc</code>{.fm-code-in-text1}  |
+| tm#pgfId-112051 | exec vulnerability                                  |
+| 5}CVE-2016-9962 |                                                     |
++&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+<h3 id="heading_id_24" class="fm-head1">[]{#10.htm#pgfId-1114953}10.8.2 SELinux Multi-Category Security separation</h3>
+<p>[]{#10.htm#pgfId-1114960}SELinux[]{#10.htm#marker-1114954}
+[]{#10.htm#marker-1114955}[]{#10.htm#marker-1114956}[]{#10.htm#marker-1114957}[]{#10.htm#marker-1114958}[]{#10.htm#marker-1114959}does
+not block processes of one type from attacking other processes of the
+same type. One way to think about this is going back to the cats and
+dogs analogy. Type enforcement prevents the <code>dog</code>{.fm-code-in-text} from
+eating the <code>cat</code>{.fm-code-in-text} <code>food</code>{.fm-code-in-text}, but it does
+not prevent <code>cat-A</code>{.fm-code-in-text} from eating
+<code>cat-B</code>{.fm-code-in-text}&rsquo;s <code>cat</code>{.fm-code-in-text}
+<code>food</code>{.fm-code-in-text}.</p>
+<p>[]{#10.htm#pgfId-1114961}Recall when I introduced this section, I said
+there were two types of SELinux security Podman takes advantage of.
+SELinux has a mechanism to enforce process separation based on the
+Multi-Category Security (MCS) level field. SELinux defines 1,024
+categories, which can be combined together to give a level to each
+container. Podman allocates two categories for each container and then
+makes sure the process label level matches the filesystem label levels.
+Then the SELinux kernel enforces the MCS levels matching, or the access
+is denied.</p>
+<p>[]{#10.htm#pgfId-1114962}[Note]{.fm-callout-head} MCS Separation is
+actually about dominance. Each category must dominate the MCS level. A
+level of <code>S0:C1,C2</code>{.fm-code-in-text1} can write to levels
+<code>S0:C1,C2</code>{.fm-code-in-text1}, <code>S0:C1</code>{.fm-code-in-text1},
+<code>S0:C2</code>{.fm-code-in-text1}, and <code>S0</code>{.fm-code-in-text1}. But the
+<code>S0:C1,C2</code>{.fm-code-in-text1} is not allowed to write to
+<code>S0:C1,C3</code>{.fm-code-in-text1}, since the original label does not include
+the <code>C3</code>{.fm-code-in-text1}. In practice, Podman only uses two
+categories or no categories. When you use the <code>:z</code>{.fm-code-in-text1}
+option on a volume, Podman relabels the source directory with the level
+<code>s0</code>{.fm-code-in-text1}&mdash;no categories. The <code>s0</code>{.fm-code-in-text1}
+allows processes from any container to read and write filesystem objects
+with this level, from an SELinux perspective.</p>
+<p>[]{#10.htm#pgfId-1114963}Revisit table 10.4, but this time concentrate
+on the MCS level field (table 10.7).[]{#10.htm#id_vyh8g5fd3gfv}</p>
+<p>[]{#10.htm#pgfId-1120627}Table 10.7 Container process labels, with MCS
+level highlighted</p>
+<p>+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| []{#10.ht   | []{#10.     | []{#10.     | []{#10.     | []{#10      |
+| m#pgfId-112 | htm#pgfId-1 | htm#pgfId-1 | htm#pgfId-1 | .htm#pgfId- |
+| 0637}Object | 120639}User | 120641}Role | 120643}Type | 1120645}MCS |
+|             |             |             |             | level       |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []          | []{#10.htm  |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | {#10.htm#pg | #pgfId-1120 |
+| gfId-112064 | 649}<code>system | 651}</code>system | fId-1120653 | 655}<code>s0:c1, | | 7}Container | _u</code>{.fm-cod | _r<code>{.fm-cod | }</code>container | c2<code>{.fm-cod | | process     | e-in-text1} | e-in-text1} | _t</code>{.fm-cod | e-in-text1} |
+|             |             |             | e-in-text1} |             |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []          | []{         |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | {#10.htm#pg | #10.htm#pgf |
+| gfId-112065 | 659}<code>system | 661}</code>system | fId-1120663 | Id-1120665} |
+| 7}Container | _u<code>{.fm-cod | _r</code>{.fm-cod | }<code>container | </code>s0:c361,c8 |
+| process     | e-in-text1} | e-in-text1} | _t<code>{.fm-cod | 71</code>{.fm-cod |
+|             |             |             | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []{#10.     | []{#10.htm  |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | htm#pgfId-1 | #pgfId-1120 |
+| gfId-112066 | 669}<code>system | 671}</code>object | 120673}<code>con | 675}</code>s0:c1, |
+| 7}Container | _u<code>{.fm-cod | _r</code>{.fm-cod | tainer_file | c2<code>{.fm-cod | | file        | e-in-text1} | e-in-text1} | _t</code>{.fm-cod | e-in-text1} |
+|             |             |             | e-in-text1} |             |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []{#10.     | []{         |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | htm#pgfId-1 | #10.htm#pgf |
+| gfId-112067 | 679}<code>system | 681}</code>object | 120683}<code>con | Id-1120685} | | 7}Container | _u</code>{.fm-cod | _r<code>{.fm-cod | tainer_file | </code>s0:s361,c8 |
+| file        | e-in-text1} | e-in-text1} | _t<code>{.fm-cod | 71</code>{.fm-cod |
+|             |             |             | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| []{         | []{#10.htm  | []{#10.htm  | []{#10.htm  | []{#        |
+| #10.htm#pgf | #pgfId-1120 | #pgfId-1120 | #pgfId-1120 | 10.htm#pgfI |
+| Id-1120687} | 689}<code>system | 691}</code>object | 693}<code>shadow | d-1120695}</code> |
+| /etc/shadow | _u<code>{.fm-cod | _r</code>{.fm-cod | _t<code>{.fm-cod | s0</code>{.fm-cod |
+| label       | e-in-text1} | e-in-text1} | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| [           | []{#10.htm  | []{#10.htm  | []{#10.     | []{#        |
+| ]{#10.htm#p | #pgfId-1120 | #pgfId-1120 | htm#pgfId-1 | 10.htm#pgfI |
+| gfId-112069 | 699}<code>system | 701}</code>system | 120703}<code>spc | d-1120705}</code> |
+| 7}Container | _u<code>{.fm-cod | _r</code>{.fm-cod | _t<code>{.fm-cod | s0</code>{.fm-cod |
+| process     | e-in-text1} | e-in-text1} | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| []{#10.     | []{         | []{         | []{         | []{#1       |
+| htm#pgfId-1 | #10.htm#pgf | #10.htm#pgf | #10.htm#pgf | 0.htm#pgfId |
+| 120707}User | Id-1120709} | Id-1120711} | Id-1120713} | -1120715}<code>s | | process     | </code>unconfined | <code>unconfined | </code>unconfined | 0-s0:c0.c10 |
+|             | _u<code>{.fm-cod | _r</code>{.fm-cod | _t<code>{.fm-cod | 23</code>{.fm-cod |
+|             | e-in-text1} | e-in-text1} | e-in-text1} | e-in-text1} |
++&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+</p>
+<p>[]{#10.htm#pgfId-1115049}Now look at how MCS leveling works with Podman.
+If you run containers back to back and examine the SELinux label, you
+notice that each container&rsquo;s MCS level is unique:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm ubi8 cat /proc/self/attr/current
+System_u:system_r:container_t:s0:c648,c1009
+$ podman run --rm ubi8 cat /proc/self/attr/current
+system_u:system_r:container_t:s0:c393,c834</code></pre></div>
+<p>[]{#10.htm#pgfId-1115054}This MCS level prevents the processes from
+attacking each other. Recall that in section 10.2.8, you created the
+foo/bar file with a container private label. If you volume mount this
+file into another container and then try to write to the file, you get
+permission denied.</p>
+<p>[]{#10.htm#pgfId-1115055}Listing 10.10 SELinux preventing different
+containers from sharing a volume</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ ls -Z ./foo                                            ❶
+system_u:object_r:container_file_t:s0:c454,c510 bar
+$ podman run -v ./foo:/foo ubi8 touch /foo/bar           ❷
+touch: cannot touch &#39;/foo/bar&#39;: Permission denied
+$ podman run --security-opt label=level:s0:c454,c510 
+➥ -v ./foo:/foo ubi8 touch /foo/bar                     ❸</code></pre></div>
+<p>[]{#10.htm#pgfId-1126309}[❶]{.fm-combinumeral} The file foo/bar has a
+private MCS level, which Podman does not give to another container.</p>
+<p>[]{#10.htm#pgfId-1126330}[❷]{.fm-combinumeral} Other containers are not
+allowed to access the foo/bar file based on having a different MCS
+level.</p>
+<p>[]{#10.htm#pgfId-1126347}[❸]{.fm-combinumeral} If you force the
+container MCS level to match the previous container&rsquo;s label, SELinux
+allows the access.</p>
+<p>[]{#10.htm#pgfId-1115065}Recall that the <code>Z</code>{.fm-code-in-text} volume
+option tells Podman to label the container private to the container,
+while the <code>z</code>{.fm-code-in-text} volume option tells Podman to label the
+container shared for all containers. You can use this option if you have
+a directory you want to allow multiple containers to use.</p>
+<p>[]{#10.htm#pgfId-1115066}Listing 10.11 Volume option
+<code>z</code>{.fm-code-in-text} causing Podman to relabel volumes with a shared
+label</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run -v ./foo:/foo:z ubi8 touch /foo/bar       ❶
+$ ls -Z foo/                                           ❷
+system_u:object_r:container_file_t:s0 bar
+$ podman run --rm -v ./foo:/foo ubi8 touch /foo/bar    ❸</code></pre></div>
+<p>[]{#10.htm#pgfId-1126108}[❶]{.fm-combinumeral} The -v ./foo:/foo:z tells
+Podman to label the volume as shared.</p>
+<p>[]{#10.htm#pgfId-1126129}[❷]{.fm-combinumeral} Podman uses the :s0 MCS
+level because all containers are allowed to write to it.</p>
+<p>[]{#10.htm#pgfId-1126146}[❸]{.fm-combinumeral} Other containers with
+different MCS levels can successfully modify the content.</p>
+<p>[]{#10.htm#pgfId-1115074}[Note]{.fm-callout-head} SELinux has 1,024
+categories, and Podman chooses two categories for each container. Level
+<code>s0:c1,c1</code>{.fm-code-in-text1} is not allowed. These categories must not
+match, and the order is not important. Level
+<code>s0:c1,c2</code>{.fm-code-in-text1} is the same as
+<code>s0:c2,c1</code>{.fm-code-in-text1}. There are 1024 x 1024 ÷ 2 &ndash; 1024 =
+~500,000 unique combinations available, meaning you can create half a
+million unique containers on your system.</p>
+<p>[]{#10.htm#pgfId-1115075}Sometimes it is necessary to disable SELinux
+container separation for your container. For example, you might want to
+share your home directory within a container. It is a bad idea to
+relabel your home directory with the <code>Z</code>{.fm-code-in-text} or
+<code>z</code>{.fm-code-in-text} options. Recall that when relabeling volumes, they
+need to be private to the container. Relabeling the home directory can
+cause other SELinux problems with other confined domains. You can run
+the container with the <code>--privileged</code>{.fm-code-in-text} flag, but you
+probably want the other security mechanisms to still be enforced. To
+achieve this, you can use the <code>--security-opt</code>{.fm-code-in-text}
+<code>label:disable</code>{.fm-code-in-text} flag[]{#10.htm#marker-1115076}:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ podman run --rm --security-opt label=disable ubi8 cat 
+➥ /proc/self/attr/current
+unconfined_u:system_r:spc_t:s0
+$ podman run --rm -v $HOME/.ssh:/ssh --security-opt label=disable ubi8 ls /ssh
+authorized_keys
+authorized_keys2
+config
+fedora_rsa
+fedora_rsa.pub
+...</code></pre></div>
+<p>[]{#10.htm#pgfId-1115087}[Note]{.fm-callout-head} The udica project&rsquo;s
+(<a href="https://github.com/containers/udica" rel="external" target="_blank">https://github.com/containers/udica</a>{.url})
+goal is to generate SELinux policies for containers. Basically, Udica
+examines a container you have created via <code>podman</code>{.fm-code-in-text1}
+<code>inspect</code>{.fm-code-in-text1} and then writes a policy type that allows
+access to the volumes you want to mount into the container.</p>
+<p>[]{#10.htm#pgfId-1115088}SELinux is a very powerful tool for protecting
+the host operating system from the containers. It is easy to deal with
+for containers as long as you understand how to handle volumes.
+Understanding how to protect the filesystem, it is time now to look at
+protecting the Linux kernel from potentially
+vulnerable[]{#10.htm#marker-1115089}
+[]{#10.htm#marker-1115090}[]{#10.htm#marker-1115091}[]{#10.htm#marker-1115092}[]{#10.htm#marker-1115093}[]{#10.htm#marker-1115094}system
+[]{#10.htm#marker-1115095}[]{#10.htm#marker-1115096}[]{#10.htm#marker-1115097}[]{#10.htm#marker-1115098}calls.</p>
+<h2 id="heading_id_25" class="fm-head">[]{#10.htm#pgfId-1115100}10.9. System call isolation seccomp</h2>
+<p>[]{#10.htm#pgfId-1115107}A
+[]{#10.htm#marker-1115101}[]{#10.htm#marker-1115103}[]{#10.htm#marker-1115104}[]{#10.htm#marker-1115105}<em>system
+call</em>, often called a <em>syscall</em>[]{#10.htm#marker-1115106}, is how a
+computer program requests a service from the kernel of the operating
+system on which it is executed. Common syscalls are
+<code>open</code>{.fm-code-in-text}[]{#10.htm#marker-1115108},
+<code>read</code>{.fm-code-in-text}[]{#10.htm#marker-1115109},
+<code>write</code>{.fm-code-in-text}[]{#10.htm#marker-1115110},
+<code>fork</code>{.fm-code-in-text}[]{#10.htm#marker-1115111}, and
+<code>exec</code>{.fm-code-in-text}[]{#10.htm#marker-1115112}. In Linux, there are
+over 700 system calls.</p>
+<p>[]{#10.htm#pgfId-1115113}Recall from the beginning of this chapter that
+the Linux kernel is the single point of failure hostile containers can
+attack to escape confinement. If a bug exists in the Linux kernel that
+can be attacked via a system call, the container processes might escape.
+The Linux kernel feature seccomp[]{#10.htm#marker-1115114} allows
+processes to voluntarily limit the number of system calls they and their
+children can make. Podman, by default, eliminates hundreds of the system
+calls using this feature. Suppose the Linux kernel has a flaw in one of
+its system calls, which a container process can use to escape, but
+Podman eliminated it from the table of system calls available to the
+container. In that case, the container is blocked from using it.</p>
+<p>[]{#10.htm#pgfId-1115116}Podman&rsquo;s seccomp
+filters[]{#10.htm#marker-1115115} are stored as a JSON file in the
+/usr/share/containers/seccomp.json file. Podman also modifies the list
+of seccomp filters[]{#10.htm#marker-1115117} based on the capabilities
+you allow to the container. When you add a capability, Podman adds the
+system calls required for that capability. Capabilities and seccomp are
+both enforced separately; Podman just tries to make it easier for the
+user. If the user provides their own seccomp JSON file, it needs to be
+similar to the default one for the capability modifications to work.</p>
+<p>[]{#10.htm#pgfId-1115118}You can modify the seccomp filter by editing
+this file. In the following example, you remove the
+<code>mkdir</code>{.fm-code-in-text} syscall[]{#10.htm#marker-1115119} from
+seccomp.json, and then run a container in which you try to make a
+directory. The seccomp filter blocks the syscall, and your container
+fails.</p>
+<p>[]{#10.htm#pgfId-1115121}Listing 10.12 How seccomp filters can block
+syscalls within a Podman container</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code class="language-programlisting" data-lang="programlisting">$ sed &#39;/mkdir/d&#39; /usr/share/containers
+➥ /seccomp.json &gt; /tmp/seccomp.json                    ❶
+$ diff /usr/share/containers/seccomp.json/ 
+➥ tmp/seccomp.json                                     ❷
+249,250d248
+&lt;        &#34;mkdir&#34;,
+&lt;        &#34;mkdirat&#34;,
+$ podman run --rm --security-opt seccomp=/
+➥ tmp/seccomp.json ubi8 mkdir /foo                     ❸
+mkdir: cannot create directory &#39;/foo&#39;: Function not implemented
+$ podman run --rm ubi8 mkdir /foo                       ❹</code></pre></div>
+<p>[]{#10.htm#pgfId-1125832}[❶]{.fm-combinumeral} Use the sed command to
+delete all entries that make mkdir and create /tmp/seccomp.json.</p>
+<p>[]{#10.htm#pgfId-1125868}[❷]{.fm-combinumeral} Use the diff command to
+show the removed mkdir entries.</p>
+<p>[]{#10.htm#pgfId-1125885}[❸]{.fm-combinumeral} Use the --security-opt
+seccomp=/tmp/seccomp.json flag to use an alternative seccomp filter; the
+mkdir command fails because the mkdir system call is not available.</p>
+<p>[]{#10.htm#pgfId-1125833}[❹]{.fm-combinumeral} Run the same command
+again with a default filter to show the mkdir succeeds.</p>
+<p>[]{#10.htm#pgfId-1115137}[Note]{.fm-callout-head} Not many people modify
+the seccomp filters because it is difficult to figure out the number of
+system calls required by a container. There are tools to generate this
+list of system calls using the Berkeley Packet Filter
+(BPF[]{#10.htm#marker-1115138}). The package at the following webpage is
+a hook that monitors a container and automatically generates a
+seccomp.json file to use later to lock down the container:
+<a href="https://github.com/containers/oci-seccomp-bpf-hook/" rel="external" target="_blank">https://github.com/containers/oci-seccomp-bpf-hook/</a>{.url}.</p>
+<p>[]{#10.htm#pgfId-1115139}Sometimes the default container seccomp.json
+file is too tight. Your container might not work because it needs a
+system call that is not available. In this case, you can disable seccomp
+filtering by using the <code>--security-opt</code>{.fm-code-in-text}
+<code>seccomp=unconfined</code>{.fm-code-in-text} flag[]{#10.htm#marker-1115140}.</p>
+<p>[]{#10.htm#pgfId-1115141}As you see, system call filtering is powerful
+and can really limit the container processes&rsquo; access to the host kernel.
+The next level is to use KVM
+[]{#10.htm#marker-1115142}[]{#10.htm#marker-1115144}[]{#10.htm#marker-1115145}[]{#10.htm#marker-1115146}isolation.</p>
+<h2 id="heading_id_26" class="fm-head">[]{#10.htm#pgfId-1115148}10.10 Virtual machine isolation</h2>
+<p>[]{#10.htm#pgfId-1115151}At
+[]{#10.htm#marker-1115149}[]{#10.htm#marker-1115150}the beginning of
+this chapter, I compared process isolation based on where the three pigs
+chose to live. They could live in separate houses, a duplex, or a
+condominium. Each one was getting slightly less secure. Container
+security, by default, is living in a condo. But you can use VM
+isolation, which basically puts your container into a VM, to get better
+isolation.</p>
+<p>[]{#10.htm#pgfId-1115152}In appendix B, I cover how different OCI
+runtimes, Kata and libkrun, take advantage of Kernel-based Virtual
+Machine (KVM[]{#10.htm#marker-1115153}) to run their containers within a
+lightweight virtual machine. These virtual machines run their own kernel
+and initialization tools to launch the container. By doing this, almost
+all of the host kernels&rsquo; system calls are eliminated, making it much
+more difficult to escape confinement.</p>
+<p>[]{#10.htm#pgfId-1115154}The problem with this isolation is that it
+comes at a cost. As with a duplex, you end up sharing fewer services
+between your containers. Memory management, CPU, and other resources are
+harder to share. Sharing volumes into a container is also going to
+perform worse.</p>
+<p>[]{#10.htm#pgfId-1115155}Now you&rsquo;ve finished examining Podman security
+features used for container isolation. Next let&rsquo;s look at other security
+[]{#10.htm#marker-1115156}[]{#10.htm#marker-1115157}features.</p>
+<h2 id="heading_id_27" class="fm-head">[]{#10.htm#pgfId-1115159}Summary</h2>
+<ul>
+<li>
+<p>[]{#10.htm#pgfId-1115160 .calibre17}Container security is all about
+protecting the Linux kernel and host filesystem from hostile
+container processes.</p>
+</li>
+<li>
+<p>[]{#10.htm#pgfId-1115161 .calibre17}Defense in depth means your
+container tooling takes advantage of as many security mechanisms as
+possible. If one security mechanism fails, others might still
+protect your []{#10.htm#marker-1115162 .calibre17}system.</p>
+</li>
+</ul>
+<p>[]{#11.htm}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">
+  <img src="/images/V.svg" alt="perfectdarkmode.com" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1734871290";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1734871290" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1734871290" defer></script>
+        <script src="/js/search.js?1734871290" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2"><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86" checked><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active hidden " data-nav-id="/tools/podman/10-security-container-isolation/"><a class="padding" href="/tools/podman/10-security-container-isolation/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/obsidian-site-setup/"><a class="padding" href="/tools/obsidian-site-setup/"><i class='fa-fw fas fa-caret-right'></i> Automatically Sync Obsidian to Hugo and Apache<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108" checked><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitnesses</span></label><a class="padding" href="/health-and-fitness/">Health and Fitnesses<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/tools/podman/10-security-container-isolation/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1734871290" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1734871290" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1734871290" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1734871290" defer></script>
+    <script src="/js/js-yaml.min.js?1734871290" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1734871290" defer></script>
+  </body>
+</html>

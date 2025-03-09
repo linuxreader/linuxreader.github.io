@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Linux Boot Process Multiple phases during the boot process.
+starts selective services during its transition from one phase into another. presents the administrator an opportunity to interact with a preboot program to boot the system into a non-default target, pass an option to the kernel reset the lost or forgotten root user password. launches a number of services during its transition to the default or specified target. boot process after the system has been powered up or restarted. lasts until all enabled services are started. login prompt will appear on the screen boot process is automatic, but you may need to interact with it to take a non-default action, such as booting an alternative kernel, booting into a non-default operational state, repairing the system, recovering from an unbootable state boot process on an x86 computer may be split into four major phases: (1) the firmware phase (2) the bootloader phase (3) the kernel phase (4) the initialization phase. The system accomplishes these phases one after the other while performing and attempting to complete the tasks identified in each phase.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Linux Boot Process Multiple phases during the boot process.
+starts selective services during its transition from one phase into another. presents the administrator an opportunity to interact with a preboot program to boot the system into a non-default target, pass an option to the kernel reset the lost or forgotten root user password. launches a number of services during its transition to the default or specified target. boot process after the system has been powered up or restarted. lasts until all enabled services are started. login prompt will appear on the screen boot process is automatic, but you may need to interact with it to take a non-default action, such as booting an alternative kernel, booting into a non-default operational state, repairing the system, recovering from an unbootable state boot process on an x86 computer may be split into four major phases: (1) the firmware phase (2) the bootloader phase (3) the kernel phase (4) the initialization phase. The system accomplishes these phases one after the other while performing and attempting to complete the tasks identified in each phase.">
+    <meta property="og:url" content="http://localhost:1313/linux/linux-boot-process/">
+    <meta property="og:description" content="Linux Boot Process Multiple phases during the boot process.
+starts selective services during its transition from one phase into another. presents the administrator an opportunity to interact with a preboot program to boot the system into a non-default target, pass an option to the kernel reset the lost or forgotten root user password. launches a number of services during its transition to the default or specified target. boot process after the system has been powered up or restarted. lasts until all enabled services are started. login prompt will appear on the screen boot process is automatic, but you may need to interact with it to take a non-default action, such as booting an alternative kernel, booting into a non-default operational state, repairing the system, recovering from an unbootable state boot process on an x86 computer may be split into four major phases: (1) the firmware phase (2) the bootloader phase (3) the kernel phase (4) the initialization phase. The system accomplishes these phases one after the other while performing and attempting to complete the tasks identified in each phase.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Linux Boot Process Multiple phases during the boot process.
+starts selective services during its transition from one phase into another. presents the administrator an opportunity to interact with a preboot program to boot the system into a non-default target, pass an option to the kernel reset the lost or forgotten root user password. launches a number of services during its transition to the default or specified target. boot process after the system has been powered up or restarted. lasts until all enabled services are started. login prompt will appear on the screen boot process is automatic, but you may need to interact with it to take a non-default action, such as booting an alternative kernel, booting into a non-default operational state, repairing the system, recovering from an unbootable state boot process on an x86 computer may be split into four major phases: (1) the firmware phase (2) the bootloader phase (3) the kernel phase (4) the initialization phase. The system accomplishes these phases one after the other while performing and attempting to complete the tasks identified in each phase.">
+    <meta itemprop="wordCount" content="1657">
+    <title></title>
+    <link href="/linux/linux-boot-process/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/linux-boot-process/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/linux-boot-process/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#linux-boot-process">Linux Boot Process</a>
+      <ul>
+        <li><a href="#the-firmware-phase-bios-and-uefi">The Firmware Phase (BIOS and UEFI)</a></li>
+        <li><a href="#bootloader-phase">Bootloader Phase</a></li>
+        <li><a href="#kernel-phase">Kernel Phase</a></li>
+        <li><a href="#initialization-phase">Initialization Phase</a></li>
+        <li><a href="#grub2-bootloader">GRUB2 Bootloader</a></li>
+        <li><a href="#interacting-with-grub2">Interacting with GRUB2</a></li>
+        <li><a href="#grub2-commands">GRUB2 Commands</a></li>
+        <li><a href="#lab-change-default-system-boot-timeout">Lab: Change Default System Boot Timeout</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="linux-boot-process">Linux Boot Process</h2>
+<p>Multiple phases during the boot process.</p>
+<ul>
+<li>starts selective services during its transition from one phase into another.</li>
+<li>presents the administrator an opportunity to interact with a preboot program to boot the system into a non-default target,</li>
+<li>pass an option to the kernel</li>
+<li>reset the lost or forgotten root user password.</li>
+<li>launches a number of services during its transition to the default or specified target.</li>
+<li>boot process after the system has been powered up or restarted.</li>
+<li>lasts until all enabled services are started.</li>
+<li>login prompt will appear on the screen</li>
+<li>boot process is automatic, but you
+<ul>
+<li>may need to interact with it to take a non-default action, such as
+<ul>
+<li>booting an alternative kernel,</li>
+<li>booting into a non-default operational state,</li>
+<li>repairing the system,</li>
+<li>recovering from an unbootable state
+boot process on an x86 computer may be split into four major phases:
+(1) the firmware phase
+(2) the bootloader phase
+(3) the kernel phase
+(4) the initialization phase.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The system accomplishes these phases
+one after the other while performing and attempting to complete the
+tasks identified in each phase.</p>
+<h3 id="the-firmware-phase-bios-and-uefi">The Firmware Phase (BIOS and UEFI)</h3>
+<p>firmware:</p>
+<ul>
+<li>BIOS (<em>Basic Input/Output System</em>) or the UEFI (<em>Unified Extensible Firmware Interface</em>) code that is stored in flash memory on the x86-based system board.</li>
+<li>runs the <em>Power-On-Self-Test</em> (POST) to detect, test, and initialize the system hardware components.</li>
+<li>Installs appropriate drivers for the video hardware</li>
+<li>exhibits system messages on the screen.</li>
+<li>scans available storage devices to locate a boot device,
+<ul>
+<li>starting with a 512-byte image that contains
+<ul>
+<li>446 bytes of the bootloader program,</li>
+<li>64 bytes for the partition table</li>
+<li>last two bytes with the boot signature.</li>
+<li>referred to as the <em>Master Boot Record</em> (MBR)</li>
+<li>located on the first sector of the boot disk.</li>
+<li>As soon as it discovers a usable boot device, it loads the bootloader into memory and passes control over to it.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>BIOS</p>
+<ul>
+<li>small memory chip in the computer that stores
+<ul>
+<li>system date and time,</li>
+<li>list and sequence of boot devices,</li>
+<li>I/O configuration,</li>
+<li><em>etc.</em></li>
+</ul>
+</li>
+<li>configuration is customizable.</li>
+<li>hardware initialization phase
+<ul>
+<li>detecting and diagnosing peripheral devices.</li>
+<li>runs the POST on the devices as it finds them,</li>
+<li>installs drivers for the graphics card and the attached monitor,</li>
+<li>begins exhibiting system messages on the video hardware.</li>
+<li>discovers a usable boot device,</li>
+<li>loads the bootloader program into memory, and passes control over to it.</li>
+</ul>
+</li>
+</ul>
+<p>UEFI</p>
+<ul>
+<li>new 32/64-bit architecture-independent specification replacing BIOS.</li>
+<li>delivers enhanced boot and runtime services</li>
+<li>superior features such as speed over the legacy 16-bit BIOS.</li>
+<li>has its own device drivers</li>
+<li>able to mount and read extended file systems</li>
+<li>includes UEFI-compliant application tools, and</li>
+<li>supports one or more bootloader programs.</li>
+<li>comes with a boot manager that allows you to choose an alternative boot source.</li>
+</ul>
+<h3 id="bootloader-phase">Bootloader Phase</h3>
+<ul>
+<li>Once the firmware phase is over and a boot device is detected,</li>
+<li>system loads a piece of software called <em>bootloader</em> that is located in the boot sector of the boot device.</li>
+<li>RHEL uses GRUB2 (<em>GRand Unified Bootloader</em>) version 2 as the bootloader program. GRUB2 supports both BIOS and UEFI firmware.</li>
+</ul>
+<p>The primary job of the bootloader program is to</p>
+<ul>
+<li>spot the Linux kernel code in the <em>/boot</em> file system,</li>
+<li>decompress it</li>
+<li>load it into memory based on the configuration defined in the <strong>boot/grub2/grub.cfg</strong> file</li>
+<li>transfer control over to it to further the boot process.</li>
+</ul>
+<p>UEFI-based systems,</p>
+<ul>
+<li>GRUB2 looks for the EFI system partition <strong>/boot/efi</strong> instead, and</li>
+<li>runs the kernel based on the configuration defined in the /boot/efi/EFI/redhat/grub.efi file.</li>
+</ul>
+<h3 id="kernel-phase">Kernel Phase</h3>
+<ul>
+<li>
+<p><em>kernel</em> is the central program of the operating system, providing access to hardware and system services.</p>
+</li>
+<li>
+<p>After getting control from the bootloader, the kernel:</p>
+</li>
+<li>
+<p>extracts the <em>initial RAM disk</em> (initrd) file system image found in the <em>/boot</em> file system into memory,</p>
+</li>
+<li>
+<p>decompresses it</p>
+</li>
+<li>
+<p>mounts it as read-only on <em>/sysroot</em> to serve as the temporary root file system</p>
+</li>
+<li>
+<p>loads necessary modules from the initrd image to allow access to the physical disks and the partitions and file systems therein.</p>
+</li>
+<li>
+<p>loads any required drivers to support the boot process.</p>
+</li>
+<li>
+<p>Later, it unmounts the initrd image and mounts the actual physical root file system on <em>/</em> in read/write mode.</p>
+</li>
+<li>
+<p>At this point, the necessary foundation has been built for the boot process to carry on and to start loading the enabled services.</p>
+</li>
+<li>
+<p>kernel executes the <em>systemd</em> process with PID 1 and passes the control over to it.</p>
+</li>
+</ul>
+<h3 id="initialization-phase">Initialization Phase</h3>
+<ul>
+<li>
+<p>fourth and the last phase in the boot process.</p>
+</li>
+<li>
+<p>Systemd:</p>
+</li>
+<li>
+<p>takes control from the kernel and continues the boot process.</p>
+</li>
+<li>
+<p>is the default system initialization scheme used in RHEL 9.</p>
+</li>
+<li>
+<p>starts all enabled userspace system and network services</p>
+</li>
+<li>
+<p>Brings the system up to the preset boot target.</p>
+</li>
+<li>
+<p>A boot target is an operational level that is achieved after a series of services have been started to get to that state.</p>
+</li>
+<li>
+<p>system boot process is considered complete when all enabled services are operational for the boot target and users are able to log in to the system</p>
+</li>
+</ul>
+<h3 id="grub2-bootloader">GRUB2 Bootloader</h3>
+<ul>
+<li>After the firmware phase has concluded, the</li>
+<li>Bootloader presents a menu with a list of bootable kernels available on the system</li>
+<li>Waits for a predefined amount of time before it times out and boots the default kernel.</li>
+<li>You may want to interact with GRUB2 before the autoboot times out to boot with a non-default kernel, boot to a different target, or customize the kernel boot string.</li>
+<li>Press a key before the timeout expires to interrupt the autoboot process and interact with GRUB2.</li>
+<li>autoboot countdown default value is 5 seconds.</li>
+</ul>
+<h3 id="interacting-with-grub2">Interacting with GRUB2</h3>
+<ul>
+<li>GRUB2 main menu shows a list of bootable kernels at the top.</li>
+<li>Edit a selected kernel menu entry by pressing an <em>e</em> or go to the grub&gt; command prompt by pressing a <em>c</em>.</li>
+</ul>
+<p>edit mode,</p>
+<ul>
+<li>GRUB2 loads the configuration for the selected kernel entry from the /boot/grub2/grub.cfg file in an editor</li>
+<li>enables you to make a desired modification before booting the system.</li>
+<li>you can boot the system into a less capable operating target by adding &ldquo;rescue&rdquo;, &ldquo;emergency&rdquo;, or &ldquo;3&rdquo; to the end of the line that begins with the keyword &ldquo;linux&rdquo;,</li>
+<li>Press <code>Ctrl+x</code> when done to boot.</li>
+<li>one-time temporary change and it won&rsquo;t touch the <em>grub.cfg</em> file.</li>
+<li>press <code>ESC</code> to discard the changes and return to the main menu.</li>
+<li><code>grub&gt;</code> command prompt appears when you press <code>Ctrl+c</code> while in the edit window</li>
+<li>or a <code>c</code> from the main menu.</li>
+<li>command mode: execute debugging, recovery, etc.</li>
+<li>view available commands by pressing the TAB key.</li>
+</ul>
+<h3 id="grub2-commands">GRUB2 Commands</h3>
+<h4 id="understanding-grub2-configuration-files">Understanding GRUB2 Configuration Files</h4>
+<p><strong>/boot/grub2/grub.cfg</strong></p>
+<ul>
+<li>Referenced at boot time.</li>
+<li>Generated automatically when a new kernel is installed or upgraded</li>
+<li>not advisable to modify it directly, as your changes will be overwritten. The</li>
+</ul>
+<p><strong>/etc/default/grub</strong></p>
+<ul>
+<li>primary source file that is used to regenerate grub.cfg.</li>
+<li>Defines the directives that govern how GRUB2 should behave at boot time.</li>
+<li>Any changes made to the <em>grub</em> file will only take effect after the <em>grub2-mkconfig</em> utility has been executed</li>
+<li>Defines the directives that control the behavior of GRUB2 at boot time.</li>
+<li>Any changes in this file must be followed by the execution of the <code>grub2-mkconfig</code> command in order to be reflected in grub.cfg.</li>
+</ul>
+<p>Default settings:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost default<span style="color:#ff6ac1">]</span><span style="color:#78787e"># nl /etc/default/grub</span>
+</span></span><span style="display:flex;"><span>     1	<span style="color:#ff5c57">GRUB_TIMEOUT</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">5</span>
+</span></span><span style="display:flex;"><span>     2	<span style="color:#ff5c57">GRUB_DISTRIBUTOR</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>sed <span style="color:#5af78e">&#39;s, release .*$,,g&#39;</span> /etc/system-release<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
+</span></span><span style="display:flex;"><span>     3	<span style="color:#ff5c57">GRUB_DEFAULT</span><span style="color:#ff6ac1">=</span>saved
+</span></span><span style="display:flex;"><span>     4	<span style="color:#ff5c57">GRUB_DISABLE_SUBMENU</span><span style="color:#ff6ac1">=</span><span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span>     5	<span style="color:#ff5c57">GRUB_TERMINAL_OUTPUT</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;console&#34;</span>
+</span></span><span style="display:flex;"><span>     6	<span style="color:#ff5c57">GRUB_CMDLINE_LINUX</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap rhgb quiet&#34;</span>
+</span></span><span style="display:flex;"><span>     7	<span style="color:#ff5c57">GRUB_DISABLE_RECOVERY</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>     8	<span style="color:#ff5c57">GRUB_ENABLE_BLSCFG</span><span style="color:#ff6ac1">=</span>true</span></span></code></pre></div>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Directive</strong></th>
+          <th><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>GRUB_TIMEOUT</td>
+          <td>Wait time, in seconds, before booting off the default kernel. Default is 5.</td>
+      </tr>
+      <tr>
+          <td>GRUB_DISTRIBUTOR</td>
+          <td>Name of the Linux distribution</td>
+      </tr>
+      <tr>
+          <td>GRUB_DEFAULT</td>
+          <td>Boots the selected option from the previous system boot</td>
+      </tr>
+      <tr>
+          <td>GRUB_DISABLE_SUBMENU</td>
+          <td>Enables/disables the appearance of GRUB2 submenu</td>
+      </tr>
+      <tr>
+          <td>GRUB_TERMINAL_OUTPUT</td>
+          <td>Sets the default terminal</td>
+      </tr>
+      <tr>
+          <td>GRUB_CMDLINE_LINUX</td>
+          <td>Specifies the command line options to pass to the kernel at boot time</td>
+      </tr>
+      <tr>
+          <td>GRUB_DISABLE_RECOVERY</td>
+          <td>Lists/hides system recovery entries in the GRUB2 menu</td>
+      </tr>
+      <tr>
+          <td>GRUB_ENABLE_BLSCFG</td>
+          <td>Defines whether to use the new bootloader specification to manage bootloader configuration</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>Default settings are good enough for normal system operation.</li>
+</ul>
+<h4 id="bootgrub2grubcfg---bootefiefiredhatgrubcfg">/boot/grub2/grub.cfg - /boot/efi/EFI/redhat/grub.cfg</h4>
+<ul>
+<li>Main GRUB2 configuration file that supplies boot-time configuration information.</li>
+<li>located in the /boot/grub2/ on BIOS-based systems</li>
+<li>/boot/efi/EFI/redhat/ on UEFI-based systems.</li>
+<li>can be recreated manually with the <code>grub2-mkconfig</code> utility</li>
+<li>automatically regenerated when a new kernel is installed or upgraded.</li>
+<li>file will lose any previous manual changes made to it.</li>
+</ul>
+<p><code>grub2-mkconfig</code> command</p>
+<ul>
+<li>Uses the settings defined in helper scripts located in the /etc/grub.d directory.</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost default<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /etc/grub.d</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#ff9f43">104</span>
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root  <span style="color:#ff9f43">9346</span> Jan  <span style="color:#ff9f43">9</span> 09:51 00_header
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root  <span style="color:#ff9f43">1046</span> Aug <span style="color:#ff9f43">29</span>  <span style="color:#ff9f43">2023</span> 00_tuned
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">236</span> Jan  <span style="color:#ff9f43">9</span> 09:51 01_users
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">835</span> Jan  <span style="color:#ff9f43">9</span> 09:51 08_fallback_counting
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">19665</span> Jan  <span style="color:#ff9f43">9</span> 09:51 10_linux
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">833</span> Jan  <span style="color:#ff9f43">9</span> 09:51 10_reset_boot_success
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">892</span> Jan  <span style="color:#ff9f43">9</span> 09:51 12_menu_auto_hide
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">410</span> Jan  <span style="color:#ff9f43">9</span> 09:51 14_menu_show_once
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">13613</span> Jan  <span style="color:#ff9f43">9</span> 09:51 20_linux_xen
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root  <span style="color:#ff9f43">2562</span> Jan  <span style="color:#ff9f43">9</span> 09:51 20_ppc_terminfo
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">10869</span> Jan  <span style="color:#ff9f43">9</span> 09:51 30_os-prober
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root  <span style="color:#ff9f43">1122</span> Jan  <span style="color:#ff9f43">9</span> 09:51 30_uefi-firmware
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">218</span> Jan  <span style="color:#ff9f43">9</span> 09:51 40_custom
+</span></span><span style="display:flex;"><span>-rwxr-xr-x. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">219</span> Jan  <span style="color:#ff9f43">9</span> 09:51 41_custom
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root   <span style="color:#ff9f43">483</span> Jan  <span style="color:#ff9f43">9</span> 09:51 README</span></span></code></pre></div>
+<p>00_header</p>
+<ul>
+<li>sets the GRUB2 environment
+10_linux</li>
+<li>searches for all installed kernels on the same disk partition
+30_os-prober</li>
+<li>searches for the presence of other operating systems
+40_custom and 41_custom are to</li>
+<li>introduce any customization.</li>
+<li>like add custom entries to the boot menu.</li>
+</ul>
+<p>grub.cfg file</p>
+<ul>
+<li>Sources /boot/grub2/grubenv for kernel options and other settings.</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost grub2<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat grubenv</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># GRUB Environment Block</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># WARNING: Do not edit this file by tools other than grub-editenv!!!</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">saved_entry</span><span style="color:#ff6ac1">=</span>8215ac7e45d34823b4dce2e258c3cc47-5.14.0-362.24.1.el9_3.x86_64
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">menu_auto_hide</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">boot_success</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">boot_indeterminate</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">############################################################################</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">############################################################################</span></span></span></code></pre></div>
+<p>If a new kernel is installed:</p>
+<ul>
+<li>the existing kernel entries remain intact.</li>
+<li>All bootable kernels are listed in the GRUB2 menu</li>
+<li>any of the kernel entries can be selected to boot.</li>
+</ul>
+<h3 id="lab-change-default-system-boot-timeout">Lab: Change Default System Boot Timeout</h3>
+<ul>
+<li>change the default system boot timeout value to 8 seconds persistently, and validate.</li>
+</ul>
+<ol>
+<li>
+<p>Edit the /etc/default/grub file and change the setting as follows:
+`GRUB_TIMEOUT=8</p>
+</li>
+<li>
+<p>Execute the <em>grub2-mkconfig</em> command to reproduce <em>grub.cfg</em>:
+<code>grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
+</li>
+</ol>
+<p>3.Restart the system with <em>sudo reboot</em> and confirm the new
+timeout value when GRUB2 menu appears.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1730768046";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1730768046" defer></script>
+        <script src="/js/search.js?1730768046" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/linux-boot-process/"><a class="padding" href="/linux/linux-boot-process/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-notes/"><a class="padding" href="/linux/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108"><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitness</span></label><a class="padding" href="/health-and-fitness/">Health and Fitness<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/davidvargasxyz"><a class="padding" href="https://github.com/davidvargasxyz" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/linux-boot-process/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="firewalld Zones firewalld The host-based firewall solution employed in RHEL uses a kernel module called netfilter together with a filtering and packet classification framework called nftables for policing the traffic movement. It also supports other advanced features such as Network Address Translation (NAT) and port forwarding. This firewall solution inspects, modifies, drops, or routes incoming, outgoing, and forwarded network packets based on defined rulesets. Default host-based firewall management service in RHEL Ability to add, modify, or delete firewall rules immediately without disrupting current network connections or restarting the service process. Also allows to save rules persistently so that they are activated automatically at system reboots. Lets you perform management operations at the command line using the firewall-cmd command, graphically using the web console, or manually by editing rules files. Stores the default rules in files located in the /usr/lib/firewalld directory, and those that contain custom rules in the /etc/firewalld directory. The default rules files may be copied to the custom rules directory and modified. firewalld Zones Easier and transparent traffic management. Define policies based on the trust level of network connections and source IP addresses. A network connection can be part of only one zone at a time; A zone can have multiple network connections assigned to it. Zone configuration may include services, ports, and protocols that may be open or closed. May include rules for advanced configuration items such as masquerading, port forwarding, NAT’ing, ICMP filters, and rich language. Rules for each zone are defined and manipulated independent of other zones. Match source ip to zone that matches address &gt; match based on zone the interface is in &gt; matches default zone">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="firewalld Zones firewalld The host-based firewall solution employed in RHEL uses a kernel module called netfilter together with a filtering and packet classification framework called nftables for policing the traffic movement. It also supports other advanced features such as Network Address Translation (NAT) and port forwarding. This firewall solution inspects, modifies, drops, or routes incoming, outgoing, and forwarded network packets based on defined rulesets. Default host-based firewall management service in RHEL Ability to add, modify, or delete firewall rules immediately without disrupting current network connections or restarting the service process. Also allows to save rules persistently so that they are activated automatically at system reboots. Lets you perform management operations at the command line using the firewall-cmd command, graphically using the web console, or manually by editing rules files. Stores the default rules in files located in the /usr/lib/firewalld directory, and those that contain custom rules in the /etc/firewalld directory. The default rules files may be copied to the custom rules directory and modified. firewalld Zones Easier and transparent traffic management. Define policies based on the trust level of network connections and source IP addresses. A network connection can be part of only one zone at a time; A zone can have multiple network connections assigned to it. Zone configuration may include services, ports, and protocols that may be open or closed. May include rules for advanced configuration items such as masquerading, port forwarding, NAT’ing, ICMP filters, and rich language. Rules for each zone are defined and manipulated independent of other zones. Match source ip to zone that matches address &gt; match based on zone the interface is in &gt; matches default zone">
+    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/firewalld-zones/">
+    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:description" content="firewalld Zones firewalld The host-based firewall solution employed in RHEL uses a kernel module called netfilter together with a filtering and packet classification framework called nftables for policing the traffic movement. It also supports other advanced features such as Network Address Translation (NAT) and port forwarding. This firewall solution inspects, modifies, drops, or routes incoming, outgoing, and forwarded network packets based on defined rulesets. Default host-based firewall management service in RHEL Ability to add, modify, or delete firewall rules immediately without disrupting current network connections or restarting the service process. Also allows to save rules persistently so that they are activated automatically at system reboots. Lets you perform management operations at the command line using the firewall-cmd command, graphically using the web console, or manually by editing rules files. Stores the default rules in files located in the /usr/lib/firewalld directory, and those that contain custom rules in the /etc/firewalld directory. The default rules files may be copied to the custom rules directory and modified. firewalld Zones Easier and transparent traffic management. Define policies based on the trust level of network connections and source IP addresses. A network connection can be part of only one zone at a time; A zone can have multiple network connections assigned to it. Zone configuration may include services, ports, and protocols that may be open or closed. May include rules for advanced configuration items such as masquerading, port forwarding, NAT’ing, ICMP filters, and rich language. Rules for each zone are defined and manipulated independent of other zones. Match source ip to zone that matches address &gt; match based on zone the interface is in &gt; matches default zone">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="firewalld Zones firewalld The host-based firewall solution employed in RHEL uses a kernel module called netfilter together with a filtering and packet classification framework called nftables for policing the traffic movement. It also supports other advanced features such as Network Address Translation (NAT) and port forwarding. This firewall solution inspects, modifies, drops, or routes incoming, outgoing, and forwarded network packets based on defined rulesets. Default host-based firewall management service in RHEL Ability to add, modify, or delete firewall rules immediately without disrupting current network connections or restarting the service process. Also allows to save rules persistently so that they are activated automatically at system reboots. Lets you perform management operations at the command line using the firewall-cmd command, graphically using the web console, or manually by editing rules files. Stores the default rules in files located in the /usr/lib/firewalld directory, and those that contain custom rules in the /etc/firewalld directory. The default rules files may be copied to the custom rules directory and modified. firewalld Zones Easier and transparent traffic management. Define policies based on the trust level of network connections and source IP addresses. A network connection can be part of only one zone at a time; A zone can have multiple network connections assigned to it. Zone configuration may include services, ports, and protocols that may be open or closed. May include rules for advanced configuration items such as masquerading, port forwarding, NAT’ing, ICMP filters, and rich language. Rules for each zone are defined and manipulated independent of other zones. Match source ip to zone that matches address &gt; match based on zone the interface is in &gt; matches default zone">
+    <meta itemprop="wordCount" content="838">
+    <title></title>
+    <link href="/linux/rhcsa/firewalld-zones/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/firewalld-zones/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
+    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741554912" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741554912"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.1rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/firewalld-zones/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#firewalld"><code>firewalld</code></a>
+      <ul>
+        <li><a href="#firewalld-zones-1">firewalld Zones</a></li>
+        <li><a href="#zone-configuration-files">Zone Configuration Files</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="firewalld-zones"><code>firewalld</code> Zones</h1>
+<h2 id="firewalld"><code>firewalld</code></h2>
+<ul>
+<li>The host-based firewall solution employed in RHEL uses a kernel module called <strong>netfilter</strong> together with a filtering and packet classification framework called <strong>nftables</strong> for policing the traffic movement.</li>
+<li>It also supports other advanced features such as <strong>Network Address Translation (NAT)</strong> and <strong>port forwarding</strong>.</li>
+<li>This firewall solution inspects, modifies, drops, or routes incoming, outgoing, and forwarded network packets based on defined rulesets.</li>
+<li>Default host-based firewall management service in RHEL</li>
+<li>Ability to add, modify, or delete firewall rules immediately without disrupting current network connections or restarting the service process.</li>
+<li>Also allows to save rules persistently so that they are activated automatically at system reboots.</li>
+<li>Lets you perform management operations at the command line using the <code>firewall-cmd</code> command, graphically using the web console, or manually by editing rules files.</li>
+<li>Stores the default rules in files located in the /usr/lib/firewalld directory, and those that contain custom rules in the /etc/firewalld directory.</li>
+<li>The default rules files may be copied to the custom rules directory and modified.</li>
+</ul>
+<h3 id="firewalld-zones-1">firewalld Zones</h3>
+<ul>
+<li>Easier and transparent traffic management.</li>
+<li>Define policies based on the trust level of network connections and source IP addresses.</li>
+<li>A network connection can be part of only one zone at a time;</li>
+<li>A zone can have multiple network connections assigned to it.</li>
+<li>Zone configuration may include services, ports, and protocols that may be open or closed.</li>
+<li>May include rules for advanced configuration items such as masquerading, port forwarding, NAT&rsquo;ing, ICMP filters, and rich language.</li>
+<li>Rules for each zone are defined and manipulated independent of other zones.</li>
+</ul>
+<p>Match source ip to zone that matches address &gt; match based on zone the interface is in &gt; matches default zone</p>
+<ul>
+<li>
+<p>firewalld inspects each incoming packet to determine the source IP address and applies the rules of the zone that has a match for the address.</p>
+</li>
+<li>
+<p>In the event no zone configuration matches the address, it associates the packet with the zone that has the network connection defined, and applies the rules of that zone.</p>
+</li>
+<li>
+<p>If neither works, firewalld associates the packet with the default zone, and enforces the rules of the default zone on the packet.</p>
+</li>
+<li>
+<p>Several predefined zone files that may be selected or customized.</p>
+</li>
+<li>
+<p>These files include templates for traffic that must be blocked or dropped, and for traffic that is:</p>
+<ul>
+<li>public-facing</li>
+<li>internal</li>
+<li>external</li>
+<li>home</li>
+<li>public</li>
+<li>trusted</li>
+<li>work-related.</li>
+</ul>
+</li>
+<li>
+<p>public zone is the default zone, and it is activated by default when the firewalld service is started.</p>
+</li>
+</ul>
+<p>Predefined zones sorted based on the trust level from trusted to
+untrusted:</p>
+<p><strong>trusted</strong></p>
+<ul>
+<li>Allow all incoming traffic</li>
+</ul>
+<p><strong>internal</strong></p>
+<ul>
+<li>Reject all incoming traffic except for what is allowed. Intended for use on internal networks.</li>
+</ul>
+<p><strong>home</strong></p>
+<ul>
+<li>Reject all incoming traffic except for what is allowed. Intended for use in homes.</li>
+</ul>
+<p><strong>work</strong></p>
+<ul>
+<li>Reject all incoming traffic except for what is allowed. Intended for use at workplaces.</li>
+</ul>
+<p><strong>dmz</strong></p>
+<ul>
+<li>Reject all incoming traffic except for what is allowed. Intended for use in publicly accessible demilitarized zones.</li>
+</ul>
+<p><strong>external</strong></p>
+<ul>
+<li>Reject all incoming traffic except for what is allowed.</li>
+<li>Outgoing IPv4 traffic forwarded through this zone is masqueraded to look like it originated from the IPv4 address of an outgoing network interface.</li>
+<li>Intended for use on external networks with masquerading enabled.</li>
+</ul>
+<p><strong>public</strong></p>
+<ul>
+<li>Reject all incoming traffic except for what is allowed.</li>
+<li>Default zone for any newly added network interfaces.</li>
+<li>Intended for us in public places.</li>
+</ul>
+<p><strong>block</strong></p>
+<ul>
+<li>Reject all incoming traffic with icmp-host-prohibited message returned.</li>
+<li>Intended for use in secure places.</li>
+</ul>
+<p><strong>drop</strong></p>
+<ul>
+<li>
+<p>Drop all incoming traffic without responding with ICMP errors.</p>
+</li>
+<li>
+<p>Intended for use in highly secure places.</p>
+</li>
+<li>
+<p>For all the predefined zones, outgoing traffic is allowed by default.</p>
+</li>
+</ul>
+<h3 id="zone-configuration-files">Zone Configuration Files</h3>
+<ul>
+<li>
+<p>firewalld stores zone rules in XML format at two locations</p>
+<ul>
+<li><strong>system-defined rules</strong> in the <em>/usr/lib/firewalld/zones</em> directory
+<ul>
+<li>can be used as templates for adding new rules, or applied instantly to any available network connection</li>
+<li>automatically copied to the /etc/firewalld/zones directory if it is modified with a management tool</li>
+</ul>
+</li>
+<li><strong>user-defined rules</strong> in the <em>/etc/firewalld/zones</em> directory</li>
+</ul>
+</li>
+<li>
+<p>can copy the required zone file to the <em>/etc/firewalld/zones</em> directory manually, and make the necessary changes.</p>
+</li>
+<li>
+<p>The firewalld service reads the files saved in this location, and applies the rules defined in them.</p>
+</li>
+</ul>
+<p>View the system Zones:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ll /usr/lib/firewalld/zones</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#ff9f43">40</span>
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">312</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> block.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">306</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> dmz.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">304</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> drop.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">317</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> external.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">410</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> home.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">425</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> internal.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">729</span> Feb <span style="color:#ff9f43">21</span> 23:44 nm-shared.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">356</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> public.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">175</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> trusted.xml
+</span></span><span style="display:flex;"><span>-rw-r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">352</span> Nov  <span style="color:#ff9f43">6</span>  <span style="color:#ff9f43">2023</span> work.xml</span></span></code></pre></div>
+<p>View the public zone:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /usr/lib/firewalld/zones/public.xml </span>
+</span></span><span style="display:flex;"><span>&lt;?xml <span style="color:#ff5c57">version</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;1.0&#34;</span> <span style="color:#ff5c57">encoding</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;utf-8&#34;</span>?&gt;
+</span></span><span style="display:flex;"><span>&lt;zone&gt;
+</span></span><span style="display:flex;"><span>  &lt;short&gt;Public&lt;/short&gt;
+</span></span><span style="display:flex;"><span>  &lt;description&gt;For use in public areas. You <span style="color:#ff6ac1">do</span> not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.&lt;/description&gt;
+</span></span><span style="display:flex;"><span>  &lt;service <span style="color:#ff5c57">name</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;ssh&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;service <span style="color:#ff5c57">name</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;dhcpv6-client&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;service <span style="color:#ff5c57">name</span><span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#34;cockpit&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;forward/&gt;
+</span></span><span style="display:flex;"><span>&lt;/zone&gt;</span></span></code></pre></div>
+<ul>
+<li>See the manual pages for firewalld.zone for details on zone configuration files.</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://perfectdarkmode.com">Perfect Dark Mode</a>
+
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741554912";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741554912" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741554912" defer></script>
+        <script src="/js/search.js?1741554912" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><input type="checkbox" id="R-section-89434e96479d9689b11efd9b3cb12acc" aria-controls="R-subsections-89434e96479d9689b11efd9b3cb12acc"><label for="R-section-89434e96479d9689b11efd9b3cb12acc"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Fedora</span></label><a class="padding" href="/linux/fedora/">Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/my-fedora-setup/"><a class="padding" href="/linux/fedora/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-id="/linux/fedora/silverblue/"><a class="padding" href="/linux/fedora/silverblue/">Silverblue</a></li></ul></li>
+            <li class="active hidden " data-nav-id="/linux/rhcsa/firewalld-zones/"><a class="padding" href="/linux/rhcsa/firewalld-zones/"></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/">Networking</a></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/firewalld-zones/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741554912" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
+    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741554912" defer></script>
+  </body>
+</html>

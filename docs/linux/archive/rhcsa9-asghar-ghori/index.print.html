@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="[
+Chapter 01 \
+Local Installation \
+::: {style=“border-style: double; border-color: rgb(0, 0, 0); border-top-width: 1px; width: 0.375;”} :::
+\
+This chapter describes the following major topics: \
+A quick look at Linux and Open Source
+\
+Linux distribution from Red Hat
+\
+Recommended lab setup for RHCSA exam preparation
+\
+Overview of the installer program
+\
+Where are installation messages stored?
+\
+What are virtual console screens?
+\
+Download and install VirtualBox
+\
+Create virtual machine
+\
+Download and install Red Hat Enterprise Linux in virtual machine">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="[
+Chapter 01 \
+Local Installation \
+::: {style=“border-style: double; border-color: rgb(0, 0, 0); border-top-width: 1px; width: 0.375;”} :::
+\
+This chapter describes the following major topics: \
+A quick look at Linux and Open Source
+\
+Linux distribution from Red Hat
+\
+Recommended lab setup for RHCSA exam preparation
+\
+Overview of the installer program
+\
+Where are installation messages stored?
+\
+What are virtual console screens?
+\
+Download and install VirtualBox
+\
+Create virtual machine
+\
+Download and install Red Hat Enterprise Linux in virtual machine">
+    <meta property="og:url" content="http://perfectdarkmode.com/linux/archive/rhcsa9-asghar-ghori/">
+    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:description" content="[
+Chapter 01 \
+Local Installation \
+::: {style=“border-style: double; border-color: rgb(0, 0, 0); border-top-width: 1px; width: 0.375;”} :::
+\
+This chapter describes the following major topics: \
+A quick look at Linux and Open Source
+\
+Linux distribution from Red Hat
+\
+Recommended lab setup for RHCSA exam preparation
+\
+Overview of the installer program
+\
+Where are installation messages stored?
+\
+What are virtual console screens?
+\
+Download and install VirtualBox
+\
+Create virtual machine
+\
+Download and install Red Hat Enterprise Linux in virtual machine">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="[
+Chapter 01 \
+Local Installation \
+::: {style=“border-style: double; border-color: rgb(0, 0, 0); border-top-width: 1px; width: 0.375;”} :::
+\
+This chapter describes the following major topics: \
+A quick look at Linux and Open Source
+\
+Linux distribution from Red Hat
+\
+Recommended lab setup for RHCSA exam preparation
+\
+Overview of the installer program
+\
+Where are installation messages stored?
+\
+What are virtual console screens?
+\
+Download and install VirtualBox
+\
+Create virtual machine
+\
+Download and install Red Hat Enterprise Linux in virtual machine">
+    <meta itemprop="wordCount" content="73201">
+    <title></title>
+    <link href="http://perfectdarkmode.com/linux/archive/rhcsa9-asghar-ghori/" rel="canonical" type="text/html" title="">
+    <link href="/linux/archive/rhcsa9-asghar-ghori/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
+    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741554912" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741554912" rel="stylesheet">
+    <script src="/js/variant.js?1741554912"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.1rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/linux/archive/rhcsa9-asghar-ghori/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#chapter-01">Chapter 01</a>
+      <ul>
+        <li><a href="#local-installation">Local Installation</a></li>
+        <li><a href="#a-quick-look-at-linux-development">A Quick Look at Linux Development</a></li>
+        <li><a href="#linux-history-in-a-nutshell">Linux History in a Nutshell</a></li>
+        <li><a href="#linux-from-red-hat">Linux from Red Hat</a></li>
+        <li><a href="#lab-environment-for-practice">Lab Environment for Practice</a></li>
+        <li><a href="#lab-environment-for-in-chapter-exercises">Lab Environment for In-Chapter Exercises</a></li>
+        <li><a href="#lab-environment-for-end-of-chapter-labs">Lab Environment for End-of-Chapter Labs</a></li>
+        <li><a href="#the-rhel-installer-program">The RHEL Installer Program</a></li>
+        <li><a href="#installation-logs">Installation Logs</a></li>
+        <li><a href="#virtual-console-screens">Virtual Console Screens</a></li>
+        <li><a href="#downloading-and-installing-virtualbox">Downloading and Installing VirtualBox</a></li>
+        <li><a href="#creating-a-virtual-machine">Creating a Virtual Machine</a></li>
+        <li><a href="#exercise-1-2-download-and-install-rhel">Exercise 1-2: Download and Install RHEL</a></li>
+        <li><a href="#downloading-rhel-9-iso-image">Downloading RHEL 9 ISO Image</a></li>
+        <li><a href="#attaching-rhel-9-iso-image-to-the-virtual-machine">Attaching RHEL 9 ISO Image to the Virtual Machine</a></li>
+        <li><a href="#launching-the-installer">Launching the Installer</a></li>
+        <li><a href="#adding-support-for-keyboards-and-languages">Adding Support for Keyboards and Languages</a></li>
+        <li><a href="#configuring-time--date">Configuring Time &amp; Date</a></li>
+        <li><a href="#choosing-an-installation-source">Choosing an Installation Source</a></li>
+        <li><a href="#selecting-software-to-be-installed">Selecting Software to be Installed</a></li>
+      </ul>
+    </li>
+    <li><a href="#configuring-installation-destination">Configuring Installation Destination</a></li>
+    <li><a href="#configuring-network-and-hostname">Configuring Network and Hostname</a></li>
+    <li><a href="#configuring-user-settings">Configuring User Settings</a></li>
+    <li><a href="#beginning-installation">Beginning Installation</a></li>
+    <li><a href="#concluding-installation">Concluding Installation</a></li>
+    <li><a href="#changing-default-boot-order">Changing Default Boot Order</a></li>
+    <li><a href="#logging-in-and-out-at-the-graphical-console">Logging In and Out at the Graphical Console</a></li>
+    <li><a href="#logging-in-for-the-first-time">Logging In for the First Time</a></li>
+    <li><a href="#logging-out">Logging Out</a></li>
+    <li><a href="#exercise-1-3-logging-in-from-windows">Exercise 1-3: Logging In from Windows</a></li>
+    <li><a href="#chapter-summary">Chapter Summary</a></li>
+    <li><a href="#review-questions">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-1-1-build-rhel9-vm2-server2">Lab 1-1: Build RHEL9-VM2 (server2)</a></li>
+    <li><a href="#chapter-02">Chapter 02</a>
+      <ul>
+        <li><a href="#initial-interaction-with-the-system">Initial Interaction with the System</a></li>
+      </ul>
+    </li>
+    <li><a href="#linux-graphical-environment">Linux Graphical Environment</a></li>
+    <li><a href="#displaylogin-manager">Display/Login Manager</a></li>
+    <li><a href="#desktop-environment">Desktop Environment</a></li>
+    <li><a href="#linux-directory-structure-and-file-systems">Linux Directory Structure and File Systems</a></li>
+    <li><a href="#top-level-directories">Top-Level Directories</a></li>
+    <li><a href="#file-system-categories">File System Categories</a></li>
+    <li><a href="#the-root-file-system--disk-based">The Root File System (/), Disk-Based</a></li>
+    <li><a href="#the-boot-file-system-boot-disk-based">The Boot File System (/boot), Disk-Based</a></li>
+    <li><a href="#the-home-directory-home">The Home Directory (/home)</a></li>
+    <li><a href="#the-optional-directory-opt">The Optional Directory (/opt)</a></li>
+    <li><a href="#the-unix-system-resources-directory-usr">The UNIX System Resources Directory (/usr)</a></li>
+    <li><a href="#the-variable-directory-var">The Variable Directory (/var)</a></li>
+    <li><a href="#the-temporary-directory-tmp">The Temporary Directory (/tmp)</a></li>
+    <li><a href="#the-devices-file-system-dev-virtual">The Devices File System (/dev), Virtual</a></li>
+    <li><a href="#the-procfs-file-system-proc-virtual">The Procfs File System (/proc), Virtual</a></li>
+    <li><a href="#the-runtime-file-system-run-virtual">The Runtime File System (/run), Virtual</a></li>
+    <li><a href="#the-system-file-system-sys-virtual">The System File System (/sys), Virtual</a></li>
+    <li><a href="#essential-system-commands">Essential System Commands</a></li>
+    <li><a href="#starting-a-remote-terminal-session">Starting a Remote Terminal Session</a></li>
+    <li><a href="#understanding-the-command-mechanics">Understanding the Command Mechanics</a></li>
+    <li><a href="#listing-files-and-directories">Listing Files and Directories</a>
+      <ul>
+        <li><a href="#column-3-shows-the-owner-name">Column 3: Shows the owner name</a></li>
+        <li><a href="#column-4-exhibits-the-owning-group-name">Column 4: Exhibits the owning group name</a></li>
+        <li><a href="#columns-6-7-and-8-displays-the-month-day-and-time-of-creation-or-last-modification">Columns 6, 7, and 8: Displays the month, day, and time of creation or last modification</a></li>
+      </ul>
+    </li>
+    <li><a href="#printing-working-directory">Printing Working Directory</a></li>
+    <li><a href="#navigating-directories">Navigating Directories</a></li>
+    <li><a href="#viewing-directory-hierarchy">Viewing Directory Hierarchy</a></li>
+    <li><a href="#identifying-terminal-device-file">Identifying Terminal Device File</a></li>
+    <li><a href="#inspecting-systems-uptime-and-processor-load">Inspecting System&rsquo;s Uptime and Processor Load</a></li>
+    <li><a href="#clearing-the-screen">Clearing the Screen</a></li>
+    <li><a href="#determining-command-path">Determining Command Path</a></li>
+    <li><a href="#viewing-system-information">Viewing System Information</a></li>
+    <li><a href="#viewing-cpu-specs">Viewing CPU Specs</a></li>
+    <li><a href="#getting-help">Getting Help</a></li>
+    <li><a href="#accessing-manual-pages">Accessing Manual Pages</a></li>
+    <li><a href="#headings-in-the-manual">Headings in the Manual</a></li>
+    <li><a href="#manual-sections">Manual Sections</a></li>
+    <li><a href="#searching-by-keyword">Searching by Keyword</a></li>
+    <li><a href="#exposing-short-description">Exposing Short Description</a></li>
+    <li><a href="#documentation-in-the-usrsharedoc-directory">Documentation in the /usr/share/doc Directory</a></li>
+    <li><a href="#red-hat-enterprise-linux-9-documentation">Red Hat Enterprise Linux 9 Documentation</a></li>
+    <li><a href="#chapter-summary-1">Chapter Summary</a></li>
+    <li><a href="#review-questions-1">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-1">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-1">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-2-1-navigate-linux-directory-tree">Lab 2-1: Navigate Linux Directory Tree</a></li>
+    <li><a href="#lab-2-2-miscellaneous-tasks">Lab 2-2: Miscellaneous Tasks</a></li>
+    <li><a href="#lab-2-4-use-help">Lab 2-4: Use Help</a></li>
+    <li><a href="#chapter-03">Chapter 03</a>
+      <ul>
+        <li><a href="#basic-file-management">Basic File Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#common-file-types">Common File Types</a></li>
+    <li><a href="#regular-files">Regular Files</a></li>
+    <li><a href="#directory-files">Directory Files</a></li>
+    <li><a href="#block-and-character-special-device-files">Block and Character Special Device Files</a></li>
+    <li><a href="#symbolic-links">Symbolic Links</a></li>
+    <li><a href="#compression-and-archiving">Compression and Archiving</a></li>
+    <li><a href="#using-gzip-and-gunzip">Using gzip and gunzip</a></li>
+    <li><a href="#using-bzip2-and-bunzip2">Using bzip2 and bunzip2</a></li>
+    <li><a href="#differences-between-gzip-and-bzip2">Differences between gzip and bzip2</a></li>
+    <li><a href="#using-tar">Using tar</a></li>
+    <li><a href="#exercise-3-1-create-compressed-archives">Exercise 3-1: Create Compressed Archives</a></li>
+    <li><a href="#file-editing">File Editing</a></li>
+    <li><a href="#modes-of-operation">Modes of Operation</a></li>
+    <li><a href="#starting-vim">Starting vim</a></li>
+    <li><a href="#inserting-text">Inserting text</a></li>
+    <li><a href="#navigating-within-vim">Navigating within vim</a></li>
+    <li><a href="#revealing-line-numbering">Revealing Line Numbering</a></li>
+    <li><a href="#deleting-text">Deleting Text</a></li>
+    <li><a href="#undoing-and-repeating">Undoing and Repeating</a></li>
+    <li><a href="#searching-for-text">Searching for Text</a></li>
+    <li><a href="#replacing-text">Replacing Text</a></li>
+    <li><a href="#copying-moving-and-pasting-text">Copying, Moving, and Pasting Text</a></li>
+    <li><a href="#changing-text">Changing Text</a></li>
+    <li><a href="#saving-and-quitting-vim">Saving and Quitting vim</a></li>
+    <li><a href="#file-and-directory-operations">File and Directory Operations</a></li>
+    <li><a href="#creating-files-and-directories">Creating Files and Directories</a>
+      <ul>
+        <li><a href="#creating-empty-files-using-touch">Creating Empty Files Using touch</a></li>
+        <li><a href="#creating-short-files-using-cat">Creating Short Files Using cat</a></li>
+        <li><a href="#creating-files-using-vim">Creating Files Using vim</a></li>
+        <li><a href="#making-directories-using-mkdir">Making Directories Using mkdir</a></li>
+      </ul>
+    </li>
+    <li><a href="#displaying-file-contents">Displaying File Contents</a>
+      <ul>
+        <li><a href="#using-cat">Using cat</a></li>
+        <li><a href="#using-less-and-more">Using less and more</a></li>
+        <li><a href="#using-head-and-tail">Using head and tail</a></li>
+      </ul>
+    </li>
+    <li><a href="#counting-words-lines-and-characters-in-text-files">Counting Words, Lines, and Characters in Text Files</a></li>
+    <li><a href="#copying-files-and-directories">Copying Files and Directories</a>
+      <ul>
+        <li><a href="#copying-files">Copying Files</a></li>
+        <li><a href="#copying-directories">Copying Directories</a></li>
+      </ul>
+    </li>
+    <li><a href="#moving-and-renaming-files-and-directories">Moving and Renaming Files and Directories</a>
+      <ul>
+        <li><a href="#moving-and-renaming-files">Moving and Renaming Files</a></li>
+        <li><a href="#moving-and-renaming-directories">Moving and Renaming Directories</a></li>
+      </ul>
+    </li>
+    <li><a href="#removing-files-and-directories">Removing Files and Directories</a>
+      <ul>
+        <li><a href="#removing-files">Removing Files</a></li>
+        <li><a href="#removing-directories">Removing Directories</a></li>
+      </ul>
+    </li>
+    <li><a href="#file-linking">File Linking</a></li>
+    <li><a href="#hard-link">Hard Link</a></li>
+    <li><a href="#soft-link">Soft Link</a></li>
+    <li><a href="#differences-between-copying-and-linking">Differences between Copying and Linking</a></li>
+    <li><a href="#exercise-3-2-create-and-manage-hard-links">Exercise 3-2: Create and Manage Hard Links</a></li>
+    <li><a href="#exercise-3-3-create-and-manage-soft-links">Exercise 3-3: Create and Manage Soft Links</a></li>
+    <li><a href="#chapter-summary-2">Chapter Summary</a></li>
+    <li><a href="#review-questions-2">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-2">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-2">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-3-1-archive-list-and-restore-files">Lab 3-1: Archive, List, and Restore Files</a></li>
+    <li><a href="#lab-3-2-practice-the-vim-editor">Lab 3-2: Practice the vim Editor</a></li>
+    <li><a href="#lab-3-3-file-and-directory-operations">Lab 3-3: File and Directory Operations</a></li>
+    <li><a href="#chapter-04">Chapter 04</a>
+      <ul>
+        <li><a href="#advanced-file-management">Advanced File Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#file-and-directory-access-permissions">File and Directory Access Permissions</a></li>
+    <li><a href="#determining-access-permissions">Determining Access Permissions</a></li>
+    <li><a href="#permission-classes">Permission Classes</a></li>
+    <li><a href="#permission-types">Permission Types</a></li>
+    <li><a href="#permission-modes">Permission Modes</a></li>
+    <li><a href="#modifying-access-permission-bits">Modifying Access Permission Bits</a></li>
+    <li><a href="#exercise-4-1-modify-permission-bits-using-symbolic-form">Exercise 4-1: Modify Permission Bits Using Symbolic Form</a></li>
+    <li><a href="#exercise-4-2-modify-permission-bits-using-octal-form">Exercise 4-2: Modify Permission Bits Using Octal Form</a></li>
+    <li><a href="#default-permissions">Default Permissions</a></li>
+    <li><a href="#calculating-default-permissions">Calculating Default Permissions</a></li>
+    <li><a href="#special-file-permissions">Special File Permissions</a></li>
+    <li><a href="#the-setuid-bit-on-binary-executable-files">The setuid Bit on Binary Executable Files</a></li>
+    <li><a href="#exercise-4-3-test-the-effect-of-setuid-bit-on-executable-files">Exercise 4-3: Test the Effect of setuid Bit on Executable Files</a></li>
+    <li><a href="#the-setgid-bit-on-binary-executable-files">The setgid Bit on Binary Executable Files</a></li>
+    <li><a href="#exercise-4-4-test-the-effect-of-setgid-bit-on-executable-files">Exercise 4-4: Test the Effect of setgid Bit on Executable Files</a></li>
+    <li><a href="#the-setgid-bit-on-shared-directories">The setgid Bit on Shared Directories</a></li>
+    <li><a href="#exercise-4-5-set-up-shared-directory-for-group-collaboration">Exercise 4-5: Set up Shared Directory for Group Collaboration</a></li>
+    <li><a href="#the-sticky-bit-on-public-and-shared-writable-directories">The Sticky Bit on Public and Shared Writable Directories</a></li>
+    <li><a href="#exercise-4-6-test-the-effect-of-sticky-bit">Exercise 4-6: Test the Effect of Sticky Bit</a></li>
+    <li><a href="#file-searching">File Searching</a></li>
+    <li><a href="#using-the-find-command">Using the find Command</a></li>
+    <li><a href="#using-find-with--exec-and--ok-flags">Using find with -exec and -ok Flags</a></li>
+    <li><a href="#chapter-summary-3">Chapter Summary</a></li>
+    <li><a href="#review-questions-3">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-3">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-3">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-4-1-manipulate-file-permissions">Lab 4-1: Manipulate File Permissions</a></li>
+    <li><a href="#lab-4-2-configure-group-collaboration-and-prevent-file-deletion">Lab 4-2: Configure Group Collaboration and Prevent File Deletion</a></li>
+    <li><a href="#lab-4-3-find-files">Lab 4-3: Find Files</a></li>
+    <li><a href="#lab-4-4-find-files-using-different-criteria">Lab 4-4: Find Files Using Different Criteria</a></li>
+    <li><a href="#chapter-05">Chapter 05</a>
+      <ul>
+        <li><a href="#basic-user-management">Basic User Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#user-login-activity-and-information">User Login Activity and Information</a></li>
+    <li><a href="#listing-logged-in-users">Listing Logged-In Users</a></li>
+    <li><a href="#inspecting-history-of-successful-login-attempts-and-system-reboots">Inspecting History of Successful Login Attempts and System Reboots</a></li>
+    <li><a href="#viewing-history-of-failed-user-login-attempts">Viewing History of Failed User Login Attempts</a></li>
+    <li><a href="#reporting-recent-user-login-attempts">Reporting Recent User Login Attempts</a></li>
+    <li><a href="#examining-user-and-group-information">Examining User and Group Information</a></li>
+    <li><a href="#local-user-authentication-files">Local User Authentication Files</a></li>
+    <li><a href="#the-passwd-file">The passwd File</a></li>
+    <li><a href="#the-shadow-file">The shadow File</a></li>
+    <li><a href="#the-group-file">The group File</a></li>
+    <li><a href="#the-gshadow-file">The gshadow File</a></li>
+    <li><a href="#the-useradd-and-logindefs-configuration-files">The useradd and login.defs Configuration Files</a></li>
+    <li><a href="#user-account-management">User Account Management</a></li>
+    <li><a href="#the-useradd-usermod-and-userdel-commands">The useradd, usermod, and userdel Commands</a></li>
+    <li><a href="#exercise-5-1-create-a-user-account-with-default-attributes">Exercise 5-1: Create a User Account with Default Attributes</a></li>
+    <li><a href="#exercise-5-2-create-a-user-account-with-custom-values">Exercise 5-2: Create a User Account with Custom Values</a></li>
+    <li><a href="#exercise-5-3-modify-and-delete-a-user-account">Exercise 5-3: Modify and Delete a User Account</a></li>
+    <li><a href="#no-login-non-interactive-user-account">No-Login (Non-Interactive) User Account</a></li>
+    <li><a href="#exercise-5-4-create-a-user-account-with-no-login-access">Exercise 5-4: Create a User Account with No-Login Access</a></li>
+    <li><a href="#chapter-summary-4">Chapter Summary</a></li>
+    <li><a href="#review-questions-4">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-4">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-4">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-5-1-check-user-login-attempts">Lab 5-1: Check User Login Attempts</a></li>
+    <li><a href="#lab-5-2-verify-user-and-group-identity">Lab 5-2: Verify User and Group Identity</a></li>
+    <li><a href="#lab-5-3-create-users">Lab 5-3: Create Users</a></li>
+    <li><a href="#lab-5-4-create-user-with-non-interactive-shell">Lab 5-4: Create User with Non-Interactive Shell</a></li>
+    <li><a href="#chapter-06">Chapter 06</a>
+      <ul>
+        <li><a href="#advanced-user-management">Advanced User Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#password-aging-and-its-management">Password Aging and its Management</a></li>
+    <li><a href="#the-chage-command">The chage Command</a></li>
+    <li><a href="#exercise-6-1-set-and-confirm-password-aging-with-chage">Exercise 6-1: Set and Confirm Password Aging with chage</a></li>
+    <li><a href="#the-passwd-command">The passwd Command</a></li>
+    <li><a href="#exercise-6-2-set-and-confirm-password-aging-with-passwd">Exercise 6-2: Set and Confirm Password Aging with passwd</a></li>
+    <li><a href="#the-usermod-command">The usermod Command</a></li>
+    <li><a href="#exercise-6-3-lock-and-unlock-a-user-account-with-usermod-and-passwd">Exercise 6-3: Lock and Unlock a User Account with usermod and passwd</a></li>
+    <li><a href="#linux-groups-and-their-management">Linux Groups and their Management</a></li>
+    <li><a href="#the-groupadd-groupmod-and-groupdel-commands">The groupadd, groupmod, and groupdel Commands</a></li>
+    <li><a href="#exercise-6-4-create-a-group-and-add-members">Exercise 6-4: Create a Group and Add Members</a></li>
+    <li><a href="#exercise-6-5-modify-and-delete-a-group-account">Exercise 6-5: Modify and Delete a Group Account</a></li>
+    <li><a href="#substituting-users-and-doing-as-superuser">Substituting Users and Doing as Superuser</a></li>
+    <li><a href="#substituting-or-switching-users">Substituting (or Switching) Users</a></li>
+    <li><a href="#doing-as-superuser-or-doing-as-substitute-user">Doing as Superuser (or Doing as Substitute User)</a></li>
+    <li><a href="#owning-user-and-owning-group">Owning User and Owning Group</a></li>
+    <li><a href="#exercise-6-6-modify-file-owner-and-owning-group">Exercise 6-6: Modify File Owner and Owning Group</a></li>
+    <li><a href="#chapter-summary-5">Chapter Summary</a></li>
+    <li><a href="#review-questions-5">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-5">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-5">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-6-1-create-user-and-configure-password-aging">Lab 6-1: Create User and Configure Password Aging</a></li>
+    <li><a href="#lab-6-2-lock-and-unlock-user">Lab 6-2: Lock and Unlock User</a></li>
+    <li><a href="#lab-6-3-modify-group">Lab 6-3: Modify Group</a></li>
+    <li><a href="#lab-6-4-configure-sudo-access">Lab 6-4: Configure sudo Access</a></li>
+    <li><a href="#lab-6-5-modify-owning-user-and-group">Lab 6-5: Modify Owning User and Group</a></li>
+    <li><a href="#chapter-07">Chapter 07</a>
+      <ul>
+        <li><a href="#the-bash-shell">The Bash Shell</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-bourne-again-shell">The Bourne-Again Shell</a></li>
+    <li><a href="#shell-and-environment-variables">Shell and Environment Variables</a></li>
+    <li><a href="#setting-and-unsetting-variables">Setting and Unsetting Variables</a></li>
+    <li><a href="#command-and-variable-substitutions">Command and Variable Substitutions</a></li>
+    <li><a href="#exercise-7-1-modify-primary-command-prompt">Exercise 7-1: Modify Primary Command Prompt</a></li>
+    <li><a href="#input-output-and-error-redirections">Input, Output, and Error Redirections</a>
+      <ul>
+        <li><a href="#redirecting-standard-input">Redirecting Standard Input</a></li>
+        <li><a href="#redirecting-standard-output">Redirecting Standard Output</a></li>
+        <li><a href="#redirecting-standard-error">Redirecting Standard Error</a></li>
+        <li><a href="#redirecting-both-standard-output-and-error">Redirecting both Standard Output and Error</a></li>
+      </ul>
+    </li>
+    <li><a href="#history-substitution">History Substitution</a></li>
+    <li><a href="#editing-at-the-command-line">Editing at the Command Line</a></li>
+    <li><a href="#tab-completion">Tab Completion</a></li>
+    <li><a href="#tilde-substitution">Tilde Substitution</a></li>
+    <li><a href="#alias-substitution">Alias Substitution</a></li>
+    <li><a href="#metacharacters-and-wildcard-characters">Metacharacters and Wildcard Characters</a>
+      <ul>
+        <li><a href="#the--character">The * Character</a></li>
+        <li><a href="#the--character-1">The ? Character</a></li>
+        <li><a href="#the-square-brackets--and-the-exclamation-mark-">The Square Brackets [] and the Exclamation Mark !</a></li>
+      </ul>
+    </li>
+    <li><a href="#piping-output-of-one-command-as-input-to-another">Piping Output of One Command as Input to Another</a></li>
+    <li><a href="#quoting-mechanisms">Quoting Mechanisms</a>
+      <ul>
+        <li><a href="#prefixing-with-a-backslash-">Prefixing with a Backslash \</a></li>
+        <li><a href="#enclosing-within-single-quotes-">Enclosing within Single Quotes &rsquo;&rsquo;</a></li>
+        <li><a href="#enclosing-within-double-quotes-">Enclosing within Double Quotes &quot;&quot;</a></li>
+      </ul>
+    </li>
+    <li><a href="#regular-expressions">Regular Expressions</a></li>
+    <li><a href="#shell-startup-files">Shell Startup Files</a></li>
+    <li><a href="#system-wide-shell-startup-files">System-wide Shell Startup Files</a></li>
+    <li><a href="#per-user-shell-startup-files">Per-user Shell Startup Files</a></li>
+    <li><a href="#chapter-summary-6">Chapter Summary</a></li>
+    <li><a href="#review-questions-6">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-6">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-6">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-7-1-customize-the-command-prompt">Lab 7-1: Customize the Command Prompt</a></li>
+    <li><a href="#chapter-09">Chapter 09</a>
+      <ul>
+        <li><a href="#basic-package-management">Basic Package Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#package-overview">Package Overview</a></li>
+    <li><a href="#packages-and-packaging">Packages and Packaging</a></li>
+    <li><a href="#package-naming">Package Naming</a>
+      <ul>
+        <li><a href="#rpm-the-extension">.rpm: the extension</a></li>
+      </ul>
+    </li>
+    <li><a href="#package-dependency">Package Dependency</a></li>
+    <li><a href="#package-database">Package Database</a></li>
+    <li><a href="#package-management-tools">Package Management Tools</a></li>
+    <li><a href="#package-management-with-rpm">Package Management with rpm</a></li>
+    <li><a href="#the-rpm-command">The rpm Command</a></li>
+    <li><a href="#exercise-9-1-mount-rhel-9-iso-persistently">Exercise 9-1: Mount RHEL 9 ISO Persistently</a></li>
+    <li><a href="#querying-packages">Querying Packages</a></li>
+    <li><a href="#installing-a-package">Installing a Package</a></li>
+    <li><a href="#upgrading-a-package">Upgrading a Package</a></li>
+    <li><a href="#freshening-a-package">Freshening a Package</a></li>
+    <li><a href="#overwriting-a-package">Overwriting a Package</a></li>
+    <li><a href="#removing-a-package">Removing a Package</a></li>
+    <li><a href="#extracting-files-from-an-installable-package">Extracting Files from an Installable Package</a></li>
+    <li><a href="#validating-package-integrity-and-credibility">Validating Package Integrity and Credibility</a></li>
+    <li><a href="#viewing-gpg-keys">Viewing GPG Keys</a></li>
+    <li><a href="#verifying-package-attributes">Verifying Package Attributes</a></li>
+    <li><a href="#exercise-9-2-perform-package-management-using-rpm">Exercise 9-2: Perform Package Management Using rpm</a></li>
+    <li><a href="#chapter-summary-7">Chapter Summary</a></li>
+    <li><a href="#review-questions-7">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-7">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-7">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-9-1-install-and-verify-packages">Lab 9-1: Install and Verify Packages</a></li>
+    <li><a href="#lab-9-2-query-and-erase-packages">Lab 9-2: Query and Erase Packages</a></li>
+    <li><a href="#chapter-10">Chapter 10</a>
+      <ul>
+        <li><a href="#advanced-package-management">Advanced Package Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#advanced-package-management-concepts">Advanced Package Management Concepts</a></li>
+    <li><a href="#package-groups">Package Groups</a></li>
+    <li><a href="#baseos-repository">BaseOS Repository</a></li>
+    <li><a href="#appstream-repository">AppStream Repository</a></li>
+    <li><a href="#benefits-of-segregation">Benefits of Segregation</a></li>
+    <li><a href="#dnf-repository">dnf Repository</a></li>
+    <li><a href="#software-management-with-dnf">Software Management with dnf</a></li>
+    <li><a href="#dnf-configuration-file">dnf Configuration File</a></li>
+    <li><a href="#the-dnf-command">The dnf Command</a></li>
+    <li><a href="#exercise-10-1-configure-access-to-pre-built-repositories">Exercise 10-1: Configure Access to Pre-Built Repositories</a></li>
+    <li><a href="#individual-package-management">Individual Package Management</a></li>
+    <li><a href="#listing-available-and-installed-packages">Listing Available and Installed Packages</a></li>
+    <li><a href="#installing-and-updating-packages">Installing and Updating Packages</a></li>
+    <li><a href="#exhibiting-package-information">Exhibiting Package Information</a></li>
+    <li><a href="#removing-packages">Removing Packages</a></li>
+    <li><a href="#exercise-10-2-manipulate-individual-packages">Exercise 10-2: Manipulate Individual Packages</a></li>
+    <li><a href="#determining-provider-and-searching-package-metadata">Determining Provider and Searching Package Metadata</a></li>
+    <li><a href="#package-group-management">Package Group Management</a></li>
+    <li><a href="#listing-available-and-installed-package-groups">Listing Available and Installed Package Groups</a></li>
+    <li><a href="#installing-and-updating-package-groups">Installing and Updating Package Groups</a></li>
+    <li><a href="#removing-package-groups">Removing Package Groups</a></li>
+    <li><a href="#exercise-10-3-manipulate-package-groups">Exercise 10-3: Manipulate Package Groups</a></li>
+    <li><a href="#chapter-summary-8">Chapter Summary</a></li>
+    <li><a href="#review-questions-8">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-8">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-8">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-10-1-configure-access-to-rhel-9-repositories">Lab 10-1: Configure Access to RHEL 9 Repositories</a></li>
+    <li><a href="#lab-10-2-install-and-manage-individual-packages">Lab 10-2: Install and Manage Individual Packages</a></li>
+    <li><a href="#lab-10-3-install-and-manage-package-groups">Lab 10-3: Install and Manage Package Groups</a></li>
+    <li><a href="#chapter-11">Chapter 11</a>
+      <ul>
+        <li><a href="#boot-process-grub2-and-the-linux-kernel">Boot Process, GRUB2, and the Linux Kernel</a></li>
+      </ul>
+    </li>
+    <li><a href="#linux-boot-process">Linux Boot Process</a></li>
+    <li><a href="#the-firmware-phase-bios-and-uefi">The Firmware Phase (BIOS and UEFI)</a></li>
+    <li><a href="#the-bootloader-phase">The Bootloader Phase</a></li>
+    <li><a href="#the-kernel-phase">The Kernel Phase</a></li>
+    <li><a href="#the-initialization-phase">The Initialization Phase</a></li>
+    <li><a href="#the-grub2-bootloader">The GRUB2 Bootloader</a></li>
+    <li><a href="#interacting-with-grub2">Interacting with GRUB2</a></li>
+    <li><a href="#understanding-grub2-configuration-files">Understanding GRUB2 Configuration Files</a>
+      <ul>
+        <li><a href="#the-etcdefaultgrub-file">The /etc/default/grub File</a></li>
+        <li><a href="#the-grubcfg-file">The grub.cfg File</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-11-1-change-default-system-boot-timeout">Exercise 11-1: Change Default System Boot Timeout</a></li>
+    <li><a href="#booting-into-specific-targets">Booting into Specific Targets</a></li>
+    <li><a href="#exercise-11-2-reset-the-root-user-password">Exercise 11-2: Reset the root User Password</a></li>
+    <li><a href="#the-linux-kernel">The Linux Kernel</a></li>
+    <li><a href="#kernel-packages">Kernel Packages</a></li>
+    <li><a href="#analyzing-kernel-version">Analyzing Kernel Version</a></li>
+    <li><a href="#understanding-kernel-directory-structure">Understanding Kernel Directory Structure</a>
+      <ul>
+        <li><a href="#the-boot-location">The /boot Location</a></li>
+        <li><a href="#the-proc-location">The /proc Location</a></li>
+        <li><a href="#the-usrlibmodules-location">The /usr/lib/modules Location</a></li>
+      </ul>
+    </li>
+    <li><a href="#installing-the-kernel">Installing the Kernel</a></li>
+    <li><a href="#exercise-11-3-download-and-install-a-new-kernel">Exercise 11-3: Download and Install a New Kernel</a></li>
+    <li><a href="#chapter-summary-9">Chapter Summary</a></li>
+    <li><a href="#review-questions-9">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-9">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-9">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-11-1-enable-verbose-system-boot">Lab 11-1: Enable Verbose System Boot</a></li>
+    <li><a href="#lab-11-2-reset-root-user-password">Lab 11-2: Reset root User Password</a></li>
+    <li><a href="#lab-11-3-install-new-kernel">Lab 11-3: Install New Kernel</a></li>
+    <li><a href="#chapter-12">Chapter 12</a>
+      <ul>
+        <li><a href="#system-initialization-message-logging-and-system-tuning">System Initialization, Message Logging, and System Tuning</a></li>
+      </ul>
+    </li>
+    <li><a href="#system-initialization-and-service-management">System Initialization and Service Management</a></li>
+    <li><a href="#units">Units</a></li>
+    <li><a href="#targets">Targets</a></li>
+    <li><a href="#the-systemctl-command">The systemctl Command</a></li>
+    <li><a href="#listing-and-viewing-units">Listing and Viewing Units</a></li>
+    <li><a href="#managing-service-units">Managing Service Units</a></li>
+    <li><a href="#managing-target-units">Managing Target Units</a>
+      <ul>
+        <li><a href="#viewing-and-setting-default-boot-target">Viewing and Setting Default Boot Target</a></li>
+        <li><a href="#switching-into-specific-targets">Switching into Specific Targets</a></li>
+      </ul>
+    </li>
+    <li><a href="#system-logging">System Logging</a></li>
+    <li><a href="#the-syslog-configuration-file">The Syslog Configuration File</a></li>
+    <li><a href="#rotating-log-files">Rotating Log Files</a></li>
+    <li><a href="#the-boot-log-file">The Boot Log File</a></li>
+    <li><a href="#the-system-log-file">The System Log File</a></li>
+    <li><a href="#logging-custom-messages">Logging Custom Messages</a></li>
+    <li><a href="#the-systemd-journal">The systemd Journal</a></li>
+    <li><a href="#retrieving-and-viewing-messages">Retrieving and Viewing Messages</a></li>
+    <li><a href="#preserving-journal-information">Preserving Journal Information</a></li>
+    <li><a href="#exercise-12-1-configure-persistent-storage-for-journal-information">Exercise 12-1: Configure Persistent Storage for Journal Information</a></li>
+    <li><a href="#system-tuning">System Tuning</a></li>
+    <li><a href="#tuning-profiles">Tuning Profiles</a></li>
+    <li><a href="#the-tuned-adm-command">The tuned-adm Command</a></li>
+    <li><a href="#exercise-12-2-manage-tuning-profiles">Exercise 12-2: Manage Tuning Profiles</a></li>
+    <li><a href="#chapter-summary-10">Chapter Summary</a></li>
+    <li><a href="#review-questions-10">Review Questions</a></li>
+    <li><a href="#answers-to-review-questions-10">Answers to Review Questions</a></li>
+    <li><a href="#do-it-yourself-challenge-labs-10">Do-It-Yourself Challenge Labs</a></li>
+    <li><a href="#lab-12-1-modify-default-boot-target">Lab 12-1: Modify Default Boot Target</a></li>
+    <li><a href="#lab-12-2-record-custom-alerts">Lab 12-2: Record Custom Alerts</a></li>
+    <li><a href="#lab-12-3-apply-tuning-profile">Lab 12-3: Apply Tuning Profile</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1741554912" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
+    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741554912" defer></script>
+  </body>
+</html>

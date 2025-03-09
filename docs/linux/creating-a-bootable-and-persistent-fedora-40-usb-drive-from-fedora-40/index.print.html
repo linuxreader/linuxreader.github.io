@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.134.3">
+    <meta name="generator" content="Relearn 6.0.0+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta property="og:url" content="http://davidvargas.xyz/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/">
+    <meta property="og:description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="This process worked at creating an image for me, but resulted in a highly unstable system that crashes. Will revisit this at another time. You will need to download a Fedora Live iso here: https://fedoraproject.org/en/workstation/download Then install livecd-iso-to-mediums to provide livecd-iso-to-disk dnf -y install livecd-iso-to-mediums
+Create a file called livecd-iso-to-disk.f38.patch.txt and add the following text to it:
+--- /usr/bin/livecd-iso-to-disk 2022-06-15 04:49:24.000000000 -0700 &#43;&#43;&#43; livecd-iso-to-disk.patched 2023-04-27 09:11:13.665060837 -0700 @@ -1058,7 &#43;1058,7 @@ createFSLayout() { udevadm settle -E $p2 mkfs.fat -v -n ESP $p2 umount $p2 &amp;&gt; /dev/null || : - losetup -d $l2 &#43; losetup -d $l2 &amp;&gt; /dev/null || : fsck.fat -avVw $p2 echo fi @@ -2021,7 &#43;2021,16 @@ if [[ -d $SRCMNT/isolinux/ ]]; then elif [[ -d $SRCMNT/syslinux/ ]]; then [[ -d $SRCMNT/$srcdir/syslinux ]] &amp;&amp; CONFIG_SRC=&#34;$srcdir&#34;/ CONFIG_SRC=&#34;$SRCMNT/${CONFIG_SRC}syslinux&#34; &#43;elif [[ -d $SRCMNT/images/pxeboot ]]; then &#43; CONFIG_SRC=&#34;$SRCMNT/images/pxeboot&#34; fi &#43; &#43;if [[ ! -d ${CONFIG_SRC} ]]; then &#43; printf &#39;\n ATTENTION: &#43; A bootable kernel and initial ram disk could not be found. Exiting...\n&#39; &#43; exitclean &#43;fi &#43; i=${CONFIG_SRC}/initrd*.img cd /tmp rm -rf usr @@ -2263,11 &#43;2272,15 @@ if [[ -n ${format[1]} &amp;&amp; -z $skipcopy ]] ((free &lt; 30*10**9)) &amp;&amp; ((p2s&#43;=1&lt;&lt;27)) || ((p2s&#43;=free/(15*10**9)&lt;&lt;27)) fi - # Guarantee that there is at least 1 MiB of extra space for a gap. - ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) - # Set partition size to whole 4-MiB or OPT-IO units. - ((p2s=(p2s/oio&#43;1)*oio)) &#43; else &#43; # Force a 100 MB ESP partition &#43; p2s=100*1024*1024 fi &#43; # Guarantee that there is at least 1 MiB of extra space for a gap. &#43; ((oio-p2s%oio &lt; 1&lt;&lt;20)) &amp;&amp; ((p2s&#43;=1&lt;&lt;20)) &#43; # Set partition size to whole 4-MiB or OPT-IO units. &#43; ((p2s=(p2s/oio&#43;1)*oio)) &#43; if [[ -z $nomac ]]; then l3=$SRCMNT/images/macboot.img ! [[ -f $l3 ]] &amp;&amp; l3=$SRCMNT/isolinux/macboot.img @@ -2742,6 &#43;2755,16 @@ if ! [[ -f $BOOTCONFIG ]]; then [[ -f $f ]] &amp;&amp; mv $f $BOOTCONFIG &amp;&amp; break done fi &#43;if [[ ! -f $BOOTCONFIG ]]; then &#43; # Dummy-up a boot configuration file when missing for EFI boot &#43; if [[ -n $efi ]]; then &#43; echo &#34;#### Unused dummy boot loader configuration file ####&#34; &gt; $BOOTCONFIG &#43; else &#43; echo &#34;ERROR: Unable to find a non-UEFI boot configuration file.&#34; &#43; exitclean &#43; fi &#43;fi &#43; TITLE=$(sed -n -r &#39;/^\s*label\s&#43;linux/I {n s/^\s*menu\s&#43;label\s&#43;\^\S&#43;\s&#43;(.*)/\1/Ip;q} &#39; $BOOTCONFIG) Or you can grab the file from this thread: https://github.com/livecd-tools/livecd-tools/issues/262">
+    <meta itemprop="wordCount" content="495">
+    <title></title>
+    <link href="/images/logo.svg?1729772218" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1729772221" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1729772221" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1729772221" rel="stylesheet">
+    <link href="/css/auto-complete.css?1729772221" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1729772221" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1729772221" rel="stylesheet">
+    <link href="/css/fonts.css?1729772221" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1729772221" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1729772221" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1729772221" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1729772221" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/variant.css?1729772221" rel="stylesheet">
+    <link href="/css/print.css?1729772221" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1729772221" rel="stylesheet">
+    <script src="/js/variant.js?1729772221"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/davidvargas.xyz';
+      window.index_js_url="/index.search.js";
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support print" data-url="/linux/creating-a-bootable-and-persistent-fedora-40-usb-drive-from-fedora-40/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1729772221" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1729772221" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1729772221" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1729772221" defer></script>
+    <script src="/js/js-yaml.min.js?1729772221" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1729772221" defer></script>
+  </body>
+</html>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="System Initialization and Service Management systemd (system daemon)
+System initialization and service management mechanism.
+Units and targets for initialization, service administration, and state changes
+Has fast-tracked system initialization and state transitioning by introducing:
+Parallel processing of startup scripts Improved handling of service dependencies On-demand activation of services Supports snapshotting of system states.
+Used to handle operational states of services
+Boots the system into one of several predefined targets
+Tracks processes using control groups">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="System Initialization and Service Management systemd (system daemon)
+System initialization and service management mechanism.
+Units and targets for initialization, service administration, and state changes
+Has fast-tracked system initialization and state transitioning by introducing:
+Parallel processing of startup scripts Improved handling of service dependencies On-demand activation of services Supports snapshotting of system states.
+Used to handle operational states of services
+Boots the system into one of several predefined targets
+Tracks processes using control groups">
+    <meta property="og:url" content="http://localhost:1313/linux/system-initialization-and-service-management/">
+    <meta property="og:description" content="System Initialization and Service Management systemd (system daemon)
+System initialization and service management mechanism.
+Units and targets for initialization, service administration, and state changes
+Has fast-tracked system initialization and state transitioning by introducing:
+Parallel processing of startup scripts Improved handling of service dependencies On-demand activation of services Supports snapshotting of system states.
+Used to handle operational states of services
+Boots the system into one of several predefined targets
+Tracks processes using control groups">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="System Initialization and Service Management systemd (system daemon)
+System initialization and service management mechanism.
+Units and targets for initialization, service administration, and state changes
+Has fast-tracked system initialization and state transitioning by introducing:
+Parallel processing of startup scripts Improved handling of service dependencies On-demand activation of services Supports snapshotting of system states.
+Used to handle operational states of services
+Boots the system into one of several predefined targets
+Tracks processes using control groups">
+    <meta itemprop="wordCount" content="2460">
+    <title></title>
+    <link href="/linux/system-initialization-and-service-management/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/system-initialization-and-service-management/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/system-initialization-and-service-management/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#system-initialization-and-service-management">System Initialization and Service Management</a>
+      <ul>
+        <li><a href="#units">Units</a></li>
+        <li><a href="#systemd-targets">Systemd Targets</a></li>
+        <li><a href="#systemctl-command">systemctl Command</a></li>
+        <li><a href="#listing-and-viewing-units">Listing and Viewing Units</a></li>
+        <li><a href="#managing-service-units">Managing Service Units</a></li>
+        <li><a href="#managing-target-units">Managing Target Units</a></li>
+        <li><a href="#switching-into-specific-targets">Switching into Specific Targets</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="system-initialization-and-service-management">System Initialization and Service Management</h2>
+<p><strong>systemd</strong> (system daemon)</p>
+<ul>
+<li>
+<p>System initialization and service management mechanism.</p>
+</li>
+<li>
+<p>Units and targets for initialization, service administration, and state changes</p>
+</li>
+<li>
+<p>Has fast-tracked system initialization and state transitioning by introducing:</p>
+<ul>
+<li>Parallel processing of startup scripts</li>
+<li>Improved handling of service dependencies</li>
+<li>On-demand activation of services</li>
+</ul>
+</li>
+<li>
+<p>Supports snapshotting of system states.</p>
+</li>
+<li>
+<p>Used to handle operational states of services</p>
+</li>
+<li>
+<p>Boots the system into one of several predefined targets</p>
+</li>
+<li>
+<p>Tracks processes using control groups</p>
+</li>
+<li>
+<p>Automatically maintains mount points.</p>
+</li>
+<li>
+<p>First process with PID 1 that spawns at boot</p>
+</li>
+<li>
+<p>Last process that terminates at shutdown.</p>
+</li>
+<li>
+<p>Spawns several processes during a service startup.</p>
+</li>
+<li>
+<p>Places the processes in a private hierarchy composed of <em>control groups</em> (or <em>cgroups</em> for short) to organize processes for the purposes of monitoring and controlling system resources such as:</p>
+<ul>
+<li>processor</li>
+<li>memory</li>
+<li>network bandwidth</li>
+<li>disk I/O</li>
+</ul>
+</li>
+<li>
+<p>Limit, isolate, and prioritize process usage of resources.</p>
+</li>
+<li>
+<p>Resources distributed among users, databases, and applications based on need and priority</p>
+</li>
+<li>
+<p>Initiates distinct services concurrently, taking advantage of multiple CPU cores and other compute resources.</p>
+</li>
+<li>
+<p>Creates sockets for all enabled services that support socket-based activation at the very beginning of the initialization process.</p>
+</li>
+<li>
+<p>It passes them on to service daemon processes as they attempt to start in parallel.</p>
+</li>
+<li>
+<p>This lets systemd handle inter-service order dependencies</p>
+</li>
+<li>
+<p>Allows services to start without any delays.</p>
+</li>
+<li>
+<p>Systemd creates sockets first, starts daemons next, and caches any client requests to daemons that have not yet started in the socket buffer.</p>
+</li>
+<li>
+<p>Files the pending client requests when the daemons they were awaiting come online.</p>
+</li>
+</ul>
+<p>Socket</p>
+<ul>
+<li>Communication method that allows a single process to talk to another process on the same or remote system.</li>
+</ul>
+<p>During the operational state, systemd:</p>
+<ul>
+<li>maintains the sockets and uses them to reconnect other daemons and services that were interacting with an old instance of a daemon before that daemon was terminated or restarted.</li>
+<li>services that use activation based on D-Bus (<em>Desktop Bus</em>) are started when a client application attempts to communicate with them for the first time.</li>
+<li>Additional methods used by systemd for activation are
+<ul>
+<li>device-based
+<ul>
+<li>starting the service when a specific hardware type such as USB is plugged in</li>
+</ul>
+</li>
+<li>path-based
+<ul>
+<li>starting the service when a particular file or directory alters its state.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>D-Bus is another</p>
+<ul>
+<li>Allows multiple services running in parallel on a system or remote systems to talk to one another</li>
+</ul>
+<p>on-demand activation,</p>
+<ul>
+<li>systemd defers the startup of services&mdash;Bluetooth and printing&mdash;until they are actually needed  Together,</li>
+</ul>
+<p>parallelization and on-demand activation</p>
+<ul>
+<li>save time and compute resources.</li>
+<li>contribute to expediting the boot process considerably.</li>
+</ul>
+<p>benefit of parallelism witnessed at system boot is</p>
+<ul>
+<li>the file systems are checked that may result in unnecessary delays.</li>
+<li>With autofs, the file systems are temporarily mounted on their normal mount points</li>
+<li>as soon as the checks on the file systems are finished, systemd remounts them using their standard devices.</li>
+<li>Parallelism in file system mounts does not affect the root and virtual file systems.</li>
+</ul>
+<h3 id="units">Units</h3>
+<p><em>Units</em></p>
+<ul>
+<li>
+<p>systemd objects used for organizing boot and maintenance tasks, such as:</p>
+<ul>
+<li>hardware initialization</li>
+<li>socket creation</li>
+<li>file system mounts</li>
+<li>service startups.</li>
+</ul>
+</li>
+<li>
+<p>Unit configuration is stored in their respective configuration files</p>
+</li>
+<li>
+<p>Config files are:</p>
+<ul>
+<li>Auto-generated from other configurations</li>
+<li>Created dynamically from the system state</li>
+<li>Produced at runtime</li>
+<li>User-developed.</li>
+</ul>
+</li>
+<li>
+<p>Units operational states:</p>
+<ul>
+<li>active</li>
+<li>inactive</li>
+<li>in the process of being activated</li>
+<li>deactivated</li>
+<li>failed.</li>
+</ul>
+</li>
+<li>
+<p>Units can be enabled or disabled</p>
+<ul>
+<li>enabled unit
+<ul>
+<li>can be started to an active state</li>
+</ul>
+</li>
+<li>disabled unit
+<ul>
+<li>cannot be started.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Units have a name and a type, and they are</p>
+<ul>
+<li>encoded in files with names in the form unitname.type. Some</li>
+<li>examples:
+<ul>
+<li>tmp.mount</li>
+<li>sshd.service</li>
+<li>syslog.socket</li>
+<li>umount.target.</li>
+</ul>
+</li>
+</ul>
+<p>There are two types of unit configuration files:</p>
+<ul>
+<li>System unit files
+<ul>
+<li>distributed with installed packages and located in the /usr/lib/systemd/system/</li>
+</ul>
+</li>
+<li>User unit files
+<ul>
+<li>user-defined and stored in the /etc/systemd/user/</li>
+</ul>
+</li>
+</ul>
+<p>View unit config file directories:
+<code>ls -l /usr/lib/systemd/system</code>
+<code>ls -l /etc/systemd/user</code></p>
+<p><code>pkg-config</code> command:</p>
+<ul>
+<li>
+<p>View systemd unit config directory information:
+<code>pkg-config systemd --variable=systemdsystemunitdir</code>
+<code>pkg-config systemd --variable=systemduserconfdir</code></p>
+</li>
+<li>
+<p>additional system units that are created at runtime and destroyed when they are no longer needed. They are</p>
+</li>
+<li>
+<p>located in  /run/systemd/system/</p>
+</li>
+<li>
+<p>runtime unit files take precedence over the system unit files</p>
+</li>
+<li>
+<p>user unit files take priority over the runtime files.</p>
+</li>
+</ul>
+<p>Unit configuration files</p>
+<ul>
+<li>direct replacement of the initialization scripts found in /etc/rc.d/init.d/ in older RHEL releases.</li>
+</ul>
+<p>11 unit types</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Unit Type</strong></th>
+          <th><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Automount</td>
+          <td>automount capabilities for on-demand mounting of file systems</td>
+      </tr>
+      <tr>
+          <td>Device</td>
+          <td>Exposes kernel devices in systemd and may be used to implement device-based activation</td>
+      </tr>
+      <tr>
+          <td>Mount</td>
+          <td>Controls when and how to mount or unmount file systems</td>
+      </tr>
+      <tr>
+          <td>Path</td>
+          <td>Activates a service when monitored files or directories are accessed</td>
+      </tr>
+      <tr>
+          <td>Scope</td>
+          <td>Manages foreign processes instead of starting them</td>
+      </tr>
+      <tr>
+          <td>Service</td>
+          <td>Starts, stops, restarts, or reloads service daemons and the processes they are made up of</td>
+      </tr>
+      <tr>
+          <td>Slice</td>
+          <td>May be used to group units, which manage system processes in a tree-like structure for resource management</td>
+      </tr>
+      <tr>
+          <td>Socket</td>
+          <td>Encapsulates local inter-process communication or network sockets for use by matching service units</td>
+      </tr>
+      <tr>
+          <td>Swap</td>
+          <td>Encapsulates swap partitions</td>
+      </tr>
+      <tr>
+          <td>Target</td>
+          <td>Defines logical grouping of units</td>
+      </tr>
+      <tr>
+          <td>Timer</td>
+          <td>Useful for triggering activation of other units based on timers</td>
+      </tr>
+  </tbody>
+</table>
+<p>Unit files contain common and specific configuration elements.
+Common elements</p>
+<ul>
+<li>fall under the [Unit] and [Install] sections
+<ul>
+<li>description,</li>
+<li>documentation location,</li>
+<li>dependency information,</li>
+<li>conflict information, and</li>
+<li>other options</li>
+</ul>
+</li>
+<li>independent of the type of unit
+unit-specific configuration data</li>
+<li>located under the unit type section:
+<ul>
+<li>[Service] for the service unit type</li>
+<li>[Socket] for the socket unit type</li>
+<li>so forth</li>
+</ul>
+</li>
+</ul>
+<p>Sample unit file for sshd.service from the /usr/lib/systemd/system/:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>david@fedora:~$ cat /usr/lib/systemd/system/sshd.service
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>Unit<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Description</span><span style="color:#ff6ac1">=</span>OpenSSH server daemon
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Documentation</span><span style="color:#ff6ac1">=</span>man:sshd<span style="color:#ff6ac1">(</span>8<span style="color:#ff6ac1">)</span> man:sshd_config<span style="color:#ff6ac1">(</span>5<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">After</span><span style="color:#ff6ac1">=</span>network.target sshd-keygen.target
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Wants</span><span style="color:#ff6ac1">=</span>sshd-keygen.target
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Migration for Fedora 38 change to remove group ownership for standard host keys</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># See https://fedoraproject.org/wiki/Changes/SSHKeySignSuidBit</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Wants</span><span style="color:#ff6ac1">=</span>ssh-host-keys-migration.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>Service<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Type</span><span style="color:#ff6ac1">=</span>notify
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">EnvironmentFile</span><span style="color:#ff6ac1">=</span>-/etc/sysconfig/sshd
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">ExecStart</span><span style="color:#ff6ac1">=</span>/usr/sbin/sshd -D <span style="color:#ff5c57">$OPTIONS</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">ExecReload</span><span style="color:#ff6ac1">=</span>/bin/kill -HUP <span style="color:#ff5c57">$MAINPID</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">KillMode</span><span style="color:#ff6ac1">=</span>process
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Restart</span><span style="color:#ff6ac1">=</span>on-failure
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">RestartSec</span><span style="color:#ff6ac1">=</span>42s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>Install<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">WantedBy</span><span style="color:#ff6ac1">=</span>multi-user.target</span></span></code></pre></div>
+<ul>
+<li>Units can have dependencies based on a sequence (ordering) or a requirement.
+<ul>
+<li>sequence
+<ul>
+<li>outlines one or more actions that need to be taken before or after the activation of a unit (the Before and After directives). A</li>
+</ul>
+</li>
+<li>requirement specifies what must already be running (the Requires directive) or not running (the Conflicts directive) in order for the successful launch of a unit.</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<ul>
+<li>the <em>graphical.target</em> unit file tells us that the system must already be operating in the multi-user mode and not in rescue mode in order for it to boot successfully into the graphical mode. \</li>
+</ul>
+<p>Wants</p>
+<ul>
+<li>May be used instead of Requires in the [Unit] or [Install] section so that the unit is not forced to fail activation if a required unit fails to start.</li>
+</ul>
+<p>Run <strong>man systemd.unit</strong> for details on systemd unit files.</p>
+<ul>
+<li>There are also other types of dependencies</li>
+<li>systemd generally sets and maintains inter-service dependencies automatically
+<ul>
+<li>this can be done manually if needed.</li>
+</ul>
+</li>
+</ul>
+<p>Targets</p>
+<ul>
+<li>logical collections of units</li>
+<li>special systemd unit type with the .target file extension.</li>
+<li>share the directory locations with other unit configuration files.</li>
+<li>used to execute a series of units.
+<ul>
+<li>true for booting the system to a desired operational run level with all the required services up and running.</li>
+</ul>
+</li>
+<li>Some targets inherit services from other targets and add their own to them.</li>
+<li>systemd includes several predefined targets</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>Target</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>halt</td>
+          <td>Shuts down and halts the system</td>
+      </tr>
+      <tr>
+          <td>poweroff</td>
+          <td>Shuts down and powers off the system</td>
+      </tr>
+      <tr>
+          <td>shutdown</td>
+          <td>Shuts down the system</td>
+      </tr>
+      <tr>
+          <td>rescue</td>
+          <td>Single-user target for running administrative and recovery functions. All local file systems are mounted. Some essential services are started, but networking remains disabled.</td>
+      </tr>
+      <tr>
+          <td>emergency</td>
+          <td>Runs an emergency shell. The root file system is mounted in read-only mode; other file systems are not mounted. Networking and other services remain disabled.</td>
+      </tr>
+      <tr>
+          <td>multi-user</td>
+          <td>Multi-user target with full network support, but without GUI</td>
+      </tr>
+      <tr>
+          <td>graphical</td>
+          <td>Multi-user target with full network support and GUI</td>
+      </tr>
+      <tr>
+          <td>reboot</td>
+          <td>Shuts down and reboots the system</td>
+      </tr>
+      <tr>
+          <td>default</td>
+          <td>A special soft link that points to the default system boot target (multi-user.target or graphical.target)</td>
+      </tr>
+      <tr>
+          <td>hibernate</td>
+          <td>Puts the system into hibernation by saving the running state of the system on the hard disk and powering it off. When powered up, the system restores from its saved state rather than booting up.</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="systemd-targets">Systemd Targets</h3>
+<p>Target unit files</p>
+<ul>
+<li>contain all information under the [Unit] section
+<ul>
+<li>description</li>
+<li>documentation location</li>
+<li>dependency and conflict information.</li>
+</ul>
+</li>
+</ul>
+<p>Show the graphical target file (/usr/lib/systemd/system/graphical.target):</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /usr/lib/systemd/system/graphical.target</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>Unit<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Description</span><span style="color:#ff6ac1">=</span>Graphical Interface
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Documentation</span><span style="color:#ff6ac1">=</span>man:systemd.special<span style="color:#ff6ac1">(</span>7<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Requires</span><span style="color:#ff6ac1">=</span>multi-user.target
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Wants</span><span style="color:#ff6ac1">=</span>display-manager.service
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">Conflicts</span><span style="color:#ff6ac1">=</span>rescue.service rescue.target
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">After</span><span style="color:#ff6ac1">=</span>multi-user.target rescue.service rescue.target display-manager.service
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">AllowIsolate</span><span style="color:#ff6ac1">=</span>yes</span></span></code></pre></div>
+<p>Requires, Wants, Conflicts, and After suggests that the system must have already accomplished the rescue.service, rescue.target, multi-user.target, and display-manager.service levels in order to be declared running in the graphical target.</p>
+<p>Run <code>man systemd.target</code>for details</p>
+<h3 id="systemctl-command">systemctl Command</h3>
+<ul>
+<li>performs administrative functions and supports plentiful subcommands and flags.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Subcommand</strong></th>
+          <th><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>daemon-reload</td>
+          <td>Re-reads and reloads all unit configuration files and recreates the entire user dependency tree.</td>
+      </tr>
+      <tr>
+          <td>enable (disable)</td>
+          <td>Activates (deactivates) a unit for autostart at system boot</td>
+      </tr>
+      <tr>
+          <td>get-default (set-default)</td>
+          <td>Shows (sets) the default boot target</td>
+      </tr>
+      <tr>
+          <td>get-property (set-property)</td>
+          <td>Returns (sets) the value of a property</td>
+      </tr>
+      <tr>
+          <td>is-active</td>
+          <td>Checks whether a unit is running</td>
+      </tr>
+      <tr>
+          <td>is-enabled</td>
+          <td>Displays whether a unit is set to autostart at system boot</td>
+      </tr>
+      <tr>
+          <td>is-failed</td>
+          <td>Checks whether a unit is in the failed state</td>
+      </tr>
+      <tr>
+          <td>isolate</td>
+          <td>Changes the running state of a system</td>
+      </tr>
+      <tr>
+          <td>kill</td>
+          <td>Terminates all processes for a unit</td>
+      </tr>
+      <tr>
+          <td>list-dependencies</td>
+          <td>Lists dependency tree for a unit</td>
+      </tr>
+      <tr>
+          <td>list-sockets</td>
+          <td>Lists units of type socket</td>
+      </tr>
+      <tr>
+          <td>list-unit-files</td>
+          <td>Lists installed unit files</td>
+      </tr>
+      <tr>
+          <td>list-units</td>
+          <td>Lists known units. This is the default behavior when systemctl is executed without any arguments.</td>
+      </tr>
+      <tr>
+          <td>mask (unmask)</td>
+          <td>Prohibits (permits) auto and manual activation of a unit to avoid potential conflict</td>
+      </tr>
+      <tr>
+          <td>reload</td>
+          <td>Forces a running unit to re-read its configuration file. This action does not change the PID of the running unit.</td>
+      </tr>
+      <tr>
+          <td>restart</td>
+          <td>Stops a running unit and restarts it</td>
+      </tr>
+      <tr>
+          <td>show</td>
+          <td>Shows unit properties</td>
+      </tr>
+      <tr>
+          <td>start (stop)</td>
+          <td>Starts (stops) a unit</td>
+      </tr>
+      <tr>
+          <td>status</td>
+          <td>Presents the unit status information</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="listing-and-viewing-units">Listing and Viewing Units</h3>
+<p>List all units that are currently loaded in memory along with their status and description:
+<code>systemctl</code></p>
+<p>Output:
+UNIT column</p>
+<ul>
+<li>
+<p>shows the name of the unit and its location in the tree
+LOAD column</p>
+</li>
+<li>
+<p>reflects whether the unit configuration file was properly loaded (loaded, not found, bad setting, error, and masked)
+ACTIVE column</p>
+</li>
+<li>
+<p>returns the high-level activation state ( active, reloading, inactive, failed, activating, and deactivating)
+SUB column</p>
+</li>
+<li>
+<p>depicts the low-level unit activation state (reports unit-specific information)
+DESCRIPTION column</p>
+</li>
+<li>
+<p>illustrates the  unit&rsquo;s content and functionality.</p>
+</li>
+<li>
+<p>systemctl only lists active units by default</p>
+</li>
+</ul>
+<p><code>--all</code></p>
+<ul>
+<li>include the inactive units:</li>
+</ul>
+<p>List all active and inactive units of type (-t) socket:
+<code>systemctl -t socket --all</code></p>
+<p>List all units of type socket currently loaded in memory and the service they activate, sorted by the listening address:
+<code>systemctl list-sockets</code></p>
+<p>List all unit files (column 1) installed on the system and their current state (column 2):
+<code>systemctl list-unit-files</code></p>
+<p>List all units that failed (&ndash;failed) to start at the last system boot:
+<code>systemctl --failed</code></p>
+<p>List the hierarchy of all dependencies (required and wanted units) for the current default target:
+<code>systemctl list-dependencies</code></p>
+<p>List the hierarchy of all dependencies (required and wanted units) for a specific unit such as <em>atd.service</em>:
+<code>systemctl list-dependencies atd.service</code></p>
+<h3 id="managing-service-units">Managing Service Units</h3>
+<p>systemctl subcommands to manage service units, including</p>
+<ul>
+<li>starting</li>
+<li>stopping</li>
+<li>restarting</li>
+<li>checking status</li>
+</ul>
+<p>Check the current operational status and other details for the <em>atd</em> service:
+<code>systemctl status atd</code></p>
+<p>Output:
+service description</p>
+<ul>
+<li>read from /usr/lib/systemd/system/atd.service
+load status, which</li>
+<li>reveals the current load status of the unit configuration file in memory.</li>
+<li>Other possibilities for &ldquo;Loaded&rdquo; include
+<ul>
+<li>&ldquo;error&rdquo; (if there was a problem loading the file)</li>
+<li>&quot;not-found&quot; (if no file associated with this unit was found)</li>
+<li>&quot;bad-setting&quot; (if a key setting was missing)</li>
+<li>&quot;masked&quot; (if the unit configuration file is masked)</li>
+</ul>
+</li>
+<li>(enable or disable) for autostart at system boot.
+Active</li>
+<li>current activation status</li>
+<li>time the service was started</li>
+<li>Possible states:
+<ul>
+<li><strong>Active (running)</strong>: The service is running with one or more processes</li>
+<li><strong>Active (exited):</strong> Completed a one-time configuration</li>
+<li><strong>Active (waiting)</strong>: Running but waiting for an event</li>
+<li><strong>Inactive:</strong> Not running</li>
+<li><strong>Activating:</strong> In the process of being activated</li>
+<li><strong>Deactivating</strong>: In the process of being deactivated</li>
+<li><strong>Failed:</strong> If the service crashed or could not be started
+Also includes Main PID of the service process and more.</li>
+</ul>
+</li>
+</ul>
+<p>Disable the <em>atd</em> service from autostarting at the next system reboot:
+<code>sudo systemctl disable atd</code></p>
+<p>Re-enable <em>atd</em> to autostart at the next system reboot:
+<code>systemctl enable atd</code></p>
+<p>Check whether <em>atd</em> is set to autostart at the next system reboot:
+<code>systemctl is-enabled atd</code></p>
+<p>Check whether the <em>atd</em> service is running:
+<code>systemctl is-active atd</code></p>
+<p>Stop and restart <em>atd</em>, run either of the following:
+<code>systemctl stop atd ; systemctl start atd</code>
+<code>systemctl restart atd</code></p>
+<p>Show the details of the <em>atd</em> service:
+<code>systemctl show atd</code></p>
+<p>Prohibit <em>atd</em> from being enabled or disabled:
+<code>systemctl mask atd</code></p>
+<p>Try disabling or enabling <em>atd</em> and observe the effect of the previous command:
+<code>systemctl disable atd</code></p>
+<p>Reverse the effect of the <em>mask</em> subcommand and try disable and enable operations:
+<code>systemctl unmask atd &amp;&amp; systemctl disable atd &amp;&amp; systemctl enable atd</code></p>
+<h3 id="managing-target-units">Managing Target Units</h3>
+<p><em>systemctl</em> can also manage target units.</p>
+<ul>
+<li>view or change the default boot target</li>
+<li>switch from one running target into another</li>
+</ul>
+<p>View what units of type (-t) target are currently loaded and active:
+<code>systemctl -t target</code></p>
+<p>output:</p>
+<ul>
+<li>target unit&rsquo;s name</li>
+<li>load state</li>
+<li>high-level and low-level activation states</li>
+<li>short description.</li>
+</ul>
+<p>&ndash;all option to the above</p>
+<ul>
+<li>see all loaded targets in either active or inactive state.</li>
+</ul>
+<p><strong>Viewing and Setting Default Boot Target</strong></p>
+<ul>
+<li>view the current default boot target and to set it.
+<ul>
+<li><em>get-default</em> and <em>set-default</em> subcommands</li>
+</ul>
+</li>
+</ul>
+<p>Check the current default boot target:</p>
+<ul>
+<li>You may have to modify the default boot target persistently for the exam.</li>
+</ul>
+<p>Change the current default boot target from graphical.target to multi-user.target:
+<code>systemctl set-default multi-user</code></p>
+<ul>
+<li>removes the existing symlink (<em>default.target</em>) pointing to the old boot target and replaces it with the new target file path.</li>
+</ul>
+<p>revert the default boot target to graphical:
+<code>systemctl set-default graphical</code></p>
+<h3 id="switching-into-specific-targets">Switching into Specific Targets</h3>
+<ul>
+<li>Use  <code>systemctl</code> to transition the running system from one target state into another.</li>
+<li>graphical, multi-user, reboot, shutdown&mdash;are the most common</li>
+<li>rescue and emergency targets are for troubleshooting and system recovery purposes,</li>
+<li>poweroff and halt are similar to shutdown</li>
+<li>hibernate is suitable for mobile devices.</li>
+</ul>
+<p>Switch into multi-user using the <em>isolate</em> subcommand:
+<code>systemctl isolate multi-user</code></p>
+<ul>
+<li>This will stop the graphical service on the system and display the text-based console login screen.</li>
+</ul>
+<p>Type in a username such as <em>user1</em> and enter the password to log in:</p>
+<p>Log in and return to the graphical target:
+<code>systemctl isolate graphical</code></p>
+<p>Shut down the system and power it off, use the following or simply
+run the <em>poweroff</em> command:
+<code>systemctl poweroff</code>
+<code>poweroff</code></p>
+<p>Shut down and reboot the system:
+<code>systemctl reboot</code>
+<code>reboot</code></p>
+<p><code>halt</code>, <code>poweroff</code>, and <code>reboot</code> are symbolic links to the <em>systemctl</em> command:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /usr/sbin/halt /usr/sbin/poweroff /usr/sbin/reboot</span>
+</span></span><span style="display:flex;"><span>lrwxrwxrwx. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">16</span> Aug <span style="color:#ff9f43">22</span>  <span style="color:#ff9f43">2023</span> /usr/sbin/halt -&gt; ../bin/systemctl
+</span></span><span style="display:flex;"><span>lrwxrwxrwx. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">16</span> Aug <span style="color:#ff9f43">22</span>  <span style="color:#ff9f43">2023</span> /usr/sbin/poweroff -&gt; ../bin/systemctl
+</span></span><span style="display:flex;"><span>lrwxrwxrwx. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">16</span> Aug <span style="color:#ff9f43">22</span>  <span style="color:#ff9f43">2023</span> /usr/sbin/reboot -&gt; ../bin/systemctl</span></span></code></pre></div>
+<p><code>shutdown</code> command options:
+-H now</p>
+<ul>
+<li>Halt
+-P now</li>
+<li>poweroff
+-r now</li>
+<li>reboot</li>
+<li>broadcasts a warning message to all logged-in users</li>
+<li>blocks new user login attempts</li>
+<li>waits for the specified amount of time for users to log off</li>
+<li>stops the services</li>
+<li>shut the system down to the specified target state.</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1730768046";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1730768046" defer></script>
+        <script src="/js/search.js?1730768046" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/system-initialization-and-service-management/"><a class="padding" href="/linux/system-initialization-and-service-management/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-notes/"><a class="padding" href="/linux/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108"><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitness</span></label><a class="padding" href="/health-and-fitness/">Health and Fitness<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/davidvargasxyz"><a class="padding" href="https://github.com/davidvargasxyz" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/system-initialization-and-service-management/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

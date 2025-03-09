@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.136.5">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
+    <meta property="og:url" content="http://localhost:1313/linux/process-and-task-scheduling-labs/">
+    <meta property="og:description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
+    <meta itemprop="wordCount" content="1064">
+    <title></title>
+    <link href="/linux/process-and-task-scheduling-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/process-and-task-scheduling-labs/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1730768046" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1730768046" rel="stylesheet">
+    <link href="/css/auto-complete.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1730768046" rel="stylesheet">
+    <link href="/css/fonts.css?1730768046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1730768046" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1730768046" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1730768046" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1730768046" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1730768046" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1730768046"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support html" data-url="/linux/process-and-task-scheduling-labs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#process-and-task-scheduling-labs">Process and Task Scheduling Labs</a>
+      <ul>
+        <li><a href="#lab-ps">Lab: ps</a></li>
+        <li><a href="#lab-top">Lab: top</a></li>
+        <li><a href="#lab-list-a-specific-process">Lab: List a specific process</a></li>
+        <li><a href="#lab-listing-processes-by-user-and-group-ownership">Lab: Listing Processes by User and Group Ownership</a></li>
+        <li><a href="#lab-nice">Lab: nice</a></li>
+        <li><a href="#lab-start-processes-at-non-default-priorities-2-terminals">Lab: Start Processes at Non-Default Priorities (2 terminals)</a></li>
+        <li><a href="#lab-alter-process-priorities-2-terminals">Lab: Alter Process Priorities (2 terminals)</a></li>
+        <li><a href="#lab-controlling-processes-with-signals">Lab: Controlling Processes with Signals</a></li>
+        <li><a href="#lab-cron-and-atd">Lab: cron and atd</a></li>
+        <li><a href="#lab-at-and-crond">Lab: at and crond</a></li>
+        <li><a href="#lab-submit-view-list-and-erase-an-at-job">Lab: Submit, View, List, and Erase an at Job</a></li>
+        <li><a href="#lab-add-list-and-erase-a-cron-job">Lab: Add, List, and Erase a Cron Job</a></li>
+        <li><a href="#lab-anacron">Lab: Anacron</a></li>
+        <li><a href="#lab-8-1-nice-and-renice-a-process">Lab 8-1: Nice and Renice a Process</a></li>
+        <li><a href="#lab-8-2-configure-a-user-crontab-file">Lab 8-2: Configure a User Crontab File</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="process-and-task-scheduling-labs">Process and Task Scheduling Labs</h2>
+<h3 id="lab-ps">Lab: ps</h3>
+<ol>
+<li>ps</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps</code></pre></div>
+<ol start="2">
+<li>Check manual pages:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>man ps</code></pre></div>
+<ol start="3">
+<li>Run with &ldquo;every&rdquo; and &ldquo;full format&rdquo; flags:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -ef</code></pre></div>
+<ol start="4">
+<li>Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -o comm,pid,ppid,user</code></pre></div>
+<ol start="5">
+<li>Check how many sshd processes are currently running on the system:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -C sshd</code></pre></div>
+<h3 id="lab-top">Lab: top</h3>
+<ol>
+<li>top</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>top</code></pre></div>
+<ol start="2">
+<li>View manual page:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>man top</code></pre></div>
+<h3 id="lab-list-a-specific-process">Lab: List a specific process</h3>
+<ol>
+<li>list the PID of the rsyslogd daemon</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>pidof rsyslogd
+or
+pgrep rsyslogd</code></pre></div>
+<h3 id="lab-listing-processes-by-user-and-group-ownership">Lab: Listing Processes by User and Group Ownership</h3>
+<ol>
+<li>List processes owned by user1:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -U user1</code></pre></div>
+<ol start="2">
+<li>List processes owned by group root:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -G root</code></pre></div>
+<h3 id="lab-nice">Lab: nice</h3>
+<ol>
+<li>View the default nice value:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>nice</code></pre></div>
+<ol start="2">
+<li>List priority and niceness for all processes:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl</code></pre></div>
+<h3 id="lab-start-processes-at-non-default-priorities-2-terminals">Lab: Start Processes at Non-Default Priorities (2 terminals)</h3>
+<ol>
+<li>Run the top command at the default priority/niceness in Terminal 1:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>top</code></pre></div>
+<ol start="2">
+<li>Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="3">
+<li>Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of +2:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>nice -n 2 top</code></pre></div>
+<ol start="4">
+<li>\Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="5">
+<li>Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo nice -n -10 top</code></pre></div>
+<ol start="6">
+<li>Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="7">
+<li>Terminate the top session by pressing the letter q.</li>
+</ol>
+<h3 id="lab-alter-process-priorities-2-terminals">Lab: Alter Process Priorities (2 terminals)</h3>
+<ol>
+<li>Run the top command at the default priority/niceness in Terminal 1:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>top</code></pre></div>
+<ol start="2">
+<li>Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="3">
+<li>While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo renice -n -5 $(pidof top)</code></pre></div>
+<ol start="4">
+<li>Validate the above change with ps. Focus on columns 7 and 8.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="5">
+<li>Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo renice -n 8 $(pidof top)</code></pre></div>
+<ol start="6">
+<li>Validate the above change with ps. Focus on columns 7 and 8.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<h3 id="lab-controlling-processes-with-signals">Lab: Controlling Processes with Signals</h3>
+<ol>
+<li>Pass the soft termination signal to the crond daemon, use either of the following:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo pkill crond
+# or
+sudo kill $(pidof crond)</code></pre></div>
+<ol start="2">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -ef | grep crond</code></pre></div>
+<ol start="3">
+<li>Forcefully kill crond:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo pkill -9 crond
+# or
+sudo pkill -s SIGKILL crond
+# or
+sudo kill -9 $(pgrep crond)</code></pre></div>
+<ol start="4">
+<li>Kill all crond processes:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo killall crond</code></pre></div>
+<ol start="5">
+<li>View manual pages:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>man kill
+man pkill
+man killall</code></pre></div>
+<h3 id="lab-cron-and-atd">Lab: cron and atd</h3>
+<ol>
+<li>View log files for cron and atd</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo cat /var/log/cron</code></pre></div>
+<h3 id="lab-at-and-crond">Lab: at and crond</h3>
+<ol>
+<li>run /home/user1/.bash_profile file for user1 2 hours from now:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>at -f ~/.bash_profile now + 2 hours</code></pre></div>
+<ol start="2">
+<li>Consult crontab manual pages:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>man crontab</code></pre></div>
+<h3 id="lab-submit-view-list-and-erase-an-at-job">Lab: Submit, View, List, and Erase an at Job</h3>
+<p>1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl+d at the second at&gt; prompt to complete the job submission and return to the shell prompt.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>at 11:30pm 3/31/20
+date &amp;&gt; /tmp/date.out</code></pre></div>
+<p>The system assigned job ID 5 to it, and the output also pinpoints the job’s execution time.</p>
+<p>2.List the job file created in the /var/spool/at directory:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo ls -l /var/spool/at/</code></pre></div>
+<p>3.List the spooled job with the at command. You may alternatively use atq to list it.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>at -l
+# or
+atq</code></pre></div>
+<p>4.Display the contents of this file with the at command and specify the job ID:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>at -c 5</code></pre></div>
+<p>5.Remove the spooled job with the at command by specifying its job ID. You may alternatively run atrm 5 to delete it.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>at -d 5</code></pre></div>
+<p>This should erase the job file from the /var/spool/at directory. You can</p>
+<ol start="6">
+<li>confirm the deletion by running atq or at -l.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>atq</code></pre></div>
+<h3 id="lab-add-list-and-erase-a-cron-job">Lab: Add, List, and Erase a Cron Job</h3>
+<p>assume that all users are currently denied access to cron</p>
+<ol>
+<li>Edit the /etc/cron.allow file and add user1 to it:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo vim /etc/cron.allow
+user1</code></pre></div>
+<ol start="2">
+<li>Switch to user1 Open the crontable and append the following schedule to it. Save the file when done and exit out of the editor.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>crontab -e
+*/5 10-11 5,20 * * echo &#34;Hello, this is a cron test.&#34; &gt; /tmp/hello.out</code></pre></div>
+<ol start="3">
+<li>Check for the presence of a new file by the name user1 under the /var/spool/cron directory:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo ls -l /var/spool/cron</code></pre></div>
+<ol start="4">
+<li>List the contents of the crontable:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>crontab -l</code></pre></div>
+<ol start="5">
+<li>Remove the crontable and confirm the deletion:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>crontab -r
+crontab -l</code></pre></div>
+<h3 id="lab-anacron">Lab: Anacron</h3>
+<ol>
+<li>View the default content of /etc/anacrontab without commented or empty lines:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>cat /etc/anacrontab | grep -ve ^# -ve ^$</code></pre></div>
+<ol start="2">
+<li>View anacron man pages:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>man anacron</code></pre></div>
+<h3 id="lab-8-1-nice-and-renice-a-process">Lab 8-1: Nice and Renice a Process</h3>
+<ol>
+<li>As user1 with sudo on server1, open two terminal sessions. Run the top command in terminal 1. Run the pgrep or ps command in terminal 2 to determine the PID and the nice value of top.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="2">
+<li>Stop top on terminal 1 and relaunch at a lower priority (+8).</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>nice -n 8 top</code></pre></div>
+<ol start="3">
+<li>Confirm the new nice value of the process in terminal 2.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="4">
+<li>Issue the renice command in terminal 2 and increase the priority of top to -10:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>renice -n -10 $(pidof top)</code></pre></div>
+<ol start="5">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<h3 id="lab-8-2-configure-a-user-crontab-file">Lab 8-2: Configure a User Crontab File</h3>
+<p>As user1 on server1, run the tty and date commands to determine the terminal file (assume /dev/pts/1) and current system time.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>tty
+date</code></pre></div>
+<p>Create a cron entry to display “Hello World” on the terminal. Schedule echo “Hello World” &gt; /dev/tty/1 to run 3 minutes from the current system time.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>crontab -e
+*/3 * * * * echo &#34;Hello World&#34; &gt; /dev/pts/2</code></pre></div>
+<p>As root, ensure user1 can schedule cron jobs.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo vim /etc/cron.allow
+user1</code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation showVisitedLinks">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://davidvargas.xyz">
+  <img src="/images/V.svg" alt="davidvargas.xyz" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1730768046";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1730768046" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1730768046" defer></script>
+        <script src="/js/search.js?1730768046" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/">Linux<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/process-and-task-scheduling-labs/"><a class="padding" href="/linux/process-and-task-scheduling-labs/"><i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-notes/"><a class="padding" href="/linux/rhcsa-notes/"><i class='fa-fw fas fa-caret-right'></i> My RHCSA 9 Notes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/linux/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa-vagrant-lab-setup/"><i class='fa-fw fas fa-caret-right'></i> RHCSA Vagrant Lab Setup<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/">Networking<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/"><i class='fa-fw fas fa-caret-right'></i> How to Study for the CCNA Exam<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/"><i class='fa-fw fas fa-caret-right'></i> Resources for Passing CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/"><i class='fa-fw fas fa-caret-right'></i> What to Learn After CCNA<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/"><i class='fa-fw fas fa-caret-right'></i> Calibre Web with Docker and NGINX<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/"><i class='fa-fw fas fa-caret-right'></i> How to Build a Website with Hugo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/"><i class='fa-fw fas fa-caret-right'></i> How to Process Bookfusion Highlights with Vim<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/"><i class='fa-fw fas fa-caret-right'></i> How to Set Up Hugo Relearn Theme<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/"><i class='fa-fw fas fa-caret-right'></i> Setting Up a Self-hosted NextCloud Server<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/"><i class='fa-fw fas fa-caret-right'></i> Using Vagrant on Linux<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/writing/"><input type="checkbox" id="R-section-e3d1318aa75db5bce0725e0a3ed7bb24" aria-controls="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24"><label for="R-section-e3d1318aa75db5bce0725e0a3ed7bb24"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Writing</span></label><a class="padding" href="/writing/">Writing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e3d1318aa75db5bce0725e0a3ed7bb24" class="collapsible-menu">
+            <li class="" data-nav-id="/writing/19-biggest-lessons-from-reading-100-books./"><a class="padding" href="/writing/19-biggest-lessons-from-reading-100-books./"><i class='fa-fw fas fa-caret-right'></i> 19 Biggest Lessons from Reading 100 Books<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/nat-eliasons-seo-course/"><a class="padding" href="/writing/nat-eliasons-seo-course/"><i class='fa-fw fas fa-caret-right'></i> Nat Eliason&#39;s SEO Course<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/writing/writing-off-the-cuff/"><a class="padding" href="/writing/writing-off-the-cuff/"><i class='fa-fw fas fa-caret-right'></i> Writing Off the Cuff<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/health-and-fitness/"><input type="checkbox" id="R-section-8ea26d41efde3afeda887278c69eb108" aria-controls="R-subsections-8ea26d41efde3afeda887278c69eb108"><label for="R-section-8ea26d41efde3afeda887278c69eb108"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Health and Fitness</span></label><a class="padding" href="/health-and-fitness/">Health and Fitness<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8ea26d41efde3afeda887278c69eb108" class="collapsible-menu">
+            <li class="" data-nav-id="/health-and-fitness/4-ways-to-quit-caffeine/"><a class="padding" href="/health-and-fitness/4-ways-to-quit-caffeine/"><i class='fa-fw fas fa-caret-right'></i> 4 Ways to Quit Caffeine<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><a class="padding" href="/health-and-fitness/7-steps-to-get-back-on-a-nofap-streak-immediately/"><i class='fa-fw fas fa-caret-right'></i> 7 Steps to Get Back on a NoFap Streak Immediately<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/health-and-fitness/caffeine-is-destroying-you/"><a class="padding" href="/health-and-fitness/caffeine-is-destroying-you/"><i class='fa-fw fas fa-caret-right'></i> Caffeine is Destroying You<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/philosophy/"><input type="checkbox" id="R-section-8c82ea449b1ed3a82ac9f4c033e6c771" aria-controls="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771"><label for="R-section-8c82ea449b1ed3a82ac9f4c033e6c771"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Philosophy</span></label><a class="padding" href="/philosophy/">Philosophy<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8c82ea449b1ed3a82ac9f4c033e6c771" class="collapsible-menu">
+            <li class="" data-nav-id="/philosophy/austerities/"><a class="padding" href="/philosophy/austerities/"><i class='fa-fw fas fa-caret-right'></i> Austerities<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/philosophy/the-journey/"><a class="padding" href="/philosophy/the-journey/"><i class='fa-fw fas fa-caret-right'></i> The Journey<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/recipes/"><input type="checkbox" id="R-section-c577cf8a0811f0416711bbf6194eeea7" aria-controls="R-subsections-c577cf8a0811f0416711bbf6194eeea7"><label for="R-section-c577cf8a0811f0416711bbf6194eeea7"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Recipes</span></label><a class="padding" href="/recipes/">Recipes<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-c577cf8a0811f0416711bbf6194eeea7" class="collapsible-menu">
+            <li class="" data-nav-id="/recipes/creamy-jalepeno-sauce/"><a class="padding" href="/recipes/creamy-jalepeno-sauce/"><i class='fa-fw fas fa-caret-right'></i> Creamy Jalepeno Sauce<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/easy-mango-salsa-quinoa-bowl/"><a class="padding" href="/recipes/easy-mango-salsa-quinoa-bowl/"><i class='fa-fw fas fa-caret-right'></i> Easy Mango Salsa Quinoa Bowl<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/tempeh-bacon/"><a class="padding" href="/recipes/tempeh-bacon/"><i class='fa-fw fas fa-caret-right'></i> Tempeh Bacon<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/recipes/vegan-tofu-quesadilla/"><a class="padding" href="/recipes/vegan-tofu-quesadilla/"><i class='fa-fw fas fa-caret-right'></i> Vegan Tofu Quesadilla<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/davidvargasxyz"><a class="padding" href="https://github.com/davidvargasxyz" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/process-and-task-scheduling-labs/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks showVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1730768046" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1730768046" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1730768046" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1730768046" defer></script>
+    <script src="/js/js-yaml.min.js?1730768046" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1730768046" defer></script>
+  </body>
+</html>

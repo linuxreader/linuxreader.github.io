@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=36495&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.134.3">
+    <meta name="generator" content="Relearn 6.0.0+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 8 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. AutoFS Automatically mount and unmount on clients during runtime and system reboots. Triggers mount or unmount action based on mount point activity. Client-side service Mount an NFS share on demand Entry placed in AutoFS config files. Automatically mounts share upon detecting activity in it’s mount point. (touch, ls, cd) unmounts share if the share hasn’t been accessed for a predefined period of time. Mounts managed with autofs should not be mounted manually via /etc/fstab to avoid inconsistencies. Saves Kernel from having to maintain unused NFS shares. (Improved performance!) NFS shares are defined in config files called maps (/etc/ or /etc/auto.master.d/) Does not use /etc/fstab. Does not require root to mount a share (fstab does). Prevents client from hanging if share is down. Share is unmounted if not accessed for 5 minutes (default) Supports wildcard characters or environment variables. Automount daemond in the userland mounts configured shares automatically upon access. invoked at system boot. Reads AutoFS master map and create inititial mount point entries. (not mounting yet) Does not mount shares until user activity is detected. Unmounts after set timeframe of inactivity. Use the mount command on a share to verify the path of the AutoFS map, file system type, and options used during mount. /etc/autofs.conf/ preset Directives: master_map_name=auto.master timeout = 300 negative_timeout = 60 mount_nfs_default_protocol = 4 logging = none">
+    <meta name="author" content="David Vargas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 8 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. AutoFS Automatically mount and unmount on clients during runtime and system reboots. Triggers mount or unmount action based on mount point activity. Client-side service Mount an NFS share on demand Entry placed in AutoFS config files. Automatically mounts share upon detecting activity in it’s mount point. (touch, ls, cd) unmounts share if the share hasn’t been accessed for a predefined period of time. Mounts managed with autofs should not be mounted manually via /etc/fstab to avoid inconsistencies. Saves Kernel from having to maintain unused NFS shares. (Improved performance!) NFS shares are defined in config files called maps (/etc/ or /etc/auto.master.d/) Does not use /etc/fstab. Does not require root to mount a share (fstab does). Prevents client from hanging if share is down. Share is unmounted if not accessed for 5 minutes (default) Supports wildcard characters or environment variables. Automount daemond in the userland mounts configured shares automatically upon access. invoked at system boot. Reads AutoFS master map and create inititial mount point entries. (not mounting yet) Does not mount shares until user activity is detected. Unmounts after set timeframe of inactivity. Use the mount command on a share to verify the path of the AutoFS map, file system type, and options used during mount. /etc/autofs.conf/ preset Directives: master_map_name=auto.master timeout = 300 negative_timeout = 60 mount_nfs_default_protocol = 4 logging = none">
+    <meta property="og:url" content="http://localhost:36495/linux/network-file-system/">
+    <meta property="og:description" content="Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 8 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. AutoFS Automatically mount and unmount on clients during runtime and system reboots. Triggers mount or unmount action based on mount point activity. Client-side service Mount an NFS share on demand Entry placed in AutoFS config files. Automatically mounts share upon detecting activity in it’s mount point. (touch, ls, cd) unmounts share if the share hasn’t been accessed for a predefined period of time. Mounts managed with autofs should not be mounted manually via /etc/fstab to avoid inconsistencies. Saves Kernel from having to maintain unused NFS shares. (Improved performance!) NFS shares are defined in config files called maps (/etc/ or /etc/auto.master.d/) Does not use /etc/fstab. Does not require root to mount a share (fstab does). Prevents client from hanging if share is down. Share is unmounted if not accessed for 5 minutes (default) Supports wildcard characters or environment variables. Automount daemond in the userland mounts configured shares automatically upon access. invoked at system boot. Reads AutoFS master map and create inititial mount point entries. (not mounting yet) Does not mount shares until user activity is detected. Unmounts after set timeframe of inactivity. Use the mount command on a share to verify the path of the AutoFS map, file system type, and options used during mount. /etc/autofs.conf/ preset Directives: master_map_name=auto.master timeout = 300 negative_timeout = 60 mount_nfs_default_protocol = 4 logging = none">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 8 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. AutoFS Automatically mount and unmount on clients during runtime and system reboots. Triggers mount or unmount action based on mount point activity. Client-side service Mount an NFS share on demand Entry placed in AutoFS config files. Automatically mounts share upon detecting activity in it’s mount point. (touch, ls, cd) unmounts share if the share hasn’t been accessed for a predefined period of time. Mounts managed with autofs should not be mounted manually via /etc/fstab to avoid inconsistencies. Saves Kernel from having to maintain unused NFS shares. (Improved performance!) NFS shares are defined in config files called maps (/etc/ or /etc/auto.master.d/) Does not use /etc/fstab. Does not require root to mount a share (fstab does). Prevents client from hanging if share is down. Share is unmounted if not accessed for 5 minutes (default) Supports wildcard characters or environment variables. Automount daemond in the userland mounts configured shares automatically upon access. invoked at system boot. Reads AutoFS master map and create inititial mount point entries. (not mounting yet) Does not mount shares until user activity is detected. Unmounts after set timeframe of inactivity. Use the mount command on a share to verify the path of the AutoFS map, file system type, and options used during mount. /etc/autofs.conf/ preset Directives: master_map_name=auto.master timeout = 300 negative_timeout = 60 mount_nfs_default_protocol = 4 logging = none">
+    <meta itemprop="wordCount" content="6281">
+    <title></title>
+    <link href="/images/logo.svg?1727006517" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1727006522" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1727006522" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1727006522" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727006522" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1727006522" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1727006522" rel="stylesheet">
+    <link href="/css/fonts.css?1727006522" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1727006522" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1727006522" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1727006522" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1727006522" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/variant.css?1727006522" rel="stylesheet">
+    <link href="/css/print.css?1727006522" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1727006522" rel="stylesheet">
+    <script src="/js/variant.js?1727006522"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:36495';
+      window.index_js_url="/index.search.js";
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23N4FSG0HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-23N4FSG0HM');
+</script>
+
+
+  </head>
+  <body class="mobile-support print" data-url="/linux/network-file-system/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-back" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="history.back()" type="button" title=""><i class="fa-fw fas fa-chevron-left"></i></button>
+            </div>
+
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-about" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/about/" title=""><span class="title">About</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-now" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/now/" title=""><span class="title">Now</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-recommended" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/recommended/" title=""><span class="title">Recommended</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-booknotes" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/booknotes/" title=""><span class="title">Book Notes</span></a>
+            </div>
+
+            <div class="topbar-button topbar-button-contact" data-content-empty="show" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/contact/" title=""><span class="title">Contact</span></a>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1727006522" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1727006522" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1727006522" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1727006522" defer></script>
+    <script src="/js/js-yaml.min.js?1727006522" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1727006522" defer></script>
+  </body>
+</html>
