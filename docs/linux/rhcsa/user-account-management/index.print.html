@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="User Account Management useradd Command add a new user to the system adds entries to the four user authentication files for each account added to the system creates a home directory for the user and copies the default user startup files from the skeleton directory /etc/skel into the user’s home directory used to update the default settings that are used at the time of new user creation for unspecified settings Options -b (–base-dir) Defines the absolute path to the base directory for placing user home directories. The default is /home. -c (–comment) Describes useful information about the user. -d (–home-dir) Defines the absolute path to the user home directory. -D (–defaults) Displays the default settings from the /etc/default/useradd file and modifies them. -e (–expiredate) Specifies a date on which a user account is automatically disabled. The format for the date specification is YYYY-MM-DD. -f (–inactive) Denotes maximum days of inactivity between password expiry and permanent account disablement. -g (–gid) Specifies the primary GID. Without this option, a group account matching the username is created with the GID matching the UID. -G (–groups) Specifies the membership to supplementary groups. -k (–skel) location of the skeleton directory (default is /etc/skel) (stores default user startup files) These files are copied to the user’s home directory at the time of account creation. Three hidden bash shell files: (default) .bash_profile, .bashrc, and .bash_logout You can customize these files or add your own to be used for accounts created thereafter. -m (–create-home) Creates a home directory if it does not already exist. -o (–non-unique) Creates a user account sharing the UID of an existing user. When two users share a UID, both get identical rights on each other’s files. Should only be done in specific situations. -r (–system) Creates a service account with a UID below 1000 and a never-expiring password. -s (–shell) Defines the absolute path to the shell file. The default is /bin/bash. -u (–uid) Indicates a unique UID. Without this option, the next available UID from the /etc/passwd file is used. login Specifies a login name to be assigned to the user account. usermod Command modify the attributes of an existing user similar syntax to useradd and most switches identical. Options unique to usermod: -a (–append) Adds a user to one or more supplementary groups -l (–login) Specifies a new login name -m (–move-home) Creates a home directory and moves the content over from the old location -G Add a list of groups a user is a member of. userdel Command to remove a user from the system passwd Command set or modify a user’s password No-Login (Non-Interactive) User Account nologin command /sbin/nologin special purpose program that can be employed for user accounts that do not require login access to the system. located in the /usr/sbin (or /sbin) directory user is refused with the message, “This account is currently not available.” If a custom message is required, you can create a file called nologin.txt in the /etc directory and add the desired text to it. If a no-login user is able to log in with their credentials, there is a problem. Use the grep command against the /etc/passwd file to ensure ‘/sbin/nologin’ is there in the shell field for that user. examples of user accounts that do not require login access are the service accounts such as ftp, apache, and sshd.">
-    <meta name="author" content="David Vargas">
+    <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="User Account Management useradd Command add a new user to the system adds entries to the four user authentication files for each account added to the system creates a home directory for the user and copies the default user startup files from the skeleton directory /etc/skel into the user’s home directory used to update the default settings that are used at the time of new user creation for unspecified settings Options -b (–base-dir) Defines the absolute path to the base directory for placing user home directories. The default is /home. -c (–comment) Describes useful information about the user. -d (–home-dir) Defines the absolute path to the user home directory. -D (–defaults) Displays the default settings from the /etc/default/useradd file and modifies them. -e (–expiredate) Specifies a date on which a user account is automatically disabled. The format for the date specification is YYYY-MM-DD. -f (–inactive) Denotes maximum days of inactivity between password expiry and permanent account disablement. -g (–gid) Specifies the primary GID. Without this option, a group account matching the username is created with the GID matching the UID. -G (–groups) Specifies the membership to supplementary groups. -k (–skel) location of the skeleton directory (default is /etc/skel) (stores default user startup files) These files are copied to the user’s home directory at the time of account creation. Three hidden bash shell files: (default) .bash_profile, .bashrc, and .bash_logout You can customize these files or add your own to be used for accounts created thereafter. -m (–create-home) Creates a home directory if it does not already exist. -o (–non-unique) Creates a user account sharing the UID of an existing user. When two users share a UID, both get identical rights on each other’s files. Should only be done in specific situations. -r (–system) Creates a service account with a UID below 1000 and a never-expiring password. -s (–shell) Defines the absolute path to the shell file. The default is /bin/bash. -u (–uid) Indicates a unique UID. Without this option, the next available UID from the /etc/passwd file is used. login Specifies a login name to be assigned to the user account. usermod Command modify the attributes of an existing user similar syntax to useradd and most switches identical. Options unique to usermod: -a (–append) Adds a user to one or more supplementary groups -l (–login) Specifies a new login name -m (–move-home) Creates a home directory and moves the content over from the old location -G Add a list of groups a user is a member of. userdel Command to remove a user from the system passwd Command set or modify a user’s password No-Login (Non-Interactive) User Account nologin command /sbin/nologin special purpose program that can be employed for user accounts that do not require login access to the system. located in the /usr/sbin (or /sbin) directory user is refused with the message, “This account is currently not available.” If a custom message is required, you can create a file called nologin.txt in the /etc directory and add the desired text to it. If a no-login user is able to log in with their credentials, there is a problem. Use the grep command against the /etc/passwd file to ensure ‘/sbin/nologin’ is there in the shell field for that user. examples of user accounts that do not require login access are the service accounts such as ftp, apache, and sshd.">
-    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/user-account-management/">
-    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/user-account-management/">
+    <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="User Account Management useradd Command add a new user to the system adds entries to the four user authentication files for each account added to the system creates a home directory for the user and copies the default user startup files from the skeleton directory /etc/skel into the user’s home directory used to update the default settings that are used at the time of new user creation for unspecified settings Options -b (–base-dir) Defines the absolute path to the base directory for placing user home directories. The default is /home. -c (–comment) Describes useful information about the user. -d (–home-dir) Defines the absolute path to the user home directory. -D (–defaults) Displays the default settings from the /etc/default/useradd file and modifies them. -e (–expiredate) Specifies a date on which a user account is automatically disabled. The format for the date specification is YYYY-MM-DD. -f (–inactive) Denotes maximum days of inactivity between password expiry and permanent account disablement. -g (–gid) Specifies the primary GID. Without this option, a group account matching the username is created with the GID matching the UID. -G (–groups) Specifies the membership to supplementary groups. -k (–skel) location of the skeleton directory (default is /etc/skel) (stores default user startup files) These files are copied to the user’s home directory at the time of account creation. Three hidden bash shell files: (default) .bash_profile, .bashrc, and .bash_logout You can customize these files or add your own to be used for accounts created thereafter. -m (–create-home) Creates a home directory if it does not already exist. -o (–non-unique) Creates a user account sharing the UID of an existing user. When two users share a UID, both get identical rights on each other’s files. Should only be done in specific situations. -r (–system) Creates a service account with a UID below 1000 and a never-expiring password. -s (–shell) Defines the absolute path to the shell file. The default is /bin/bash. -u (–uid) Indicates a unique UID. Without this option, the next available UID from the /etc/passwd file is used. login Specifies a login name to be assigned to the user account. usermod Command modify the attributes of an existing user similar syntax to useradd and most switches identical. Options unique to usermod: -a (–append) Adds a user to one or more supplementary groups -l (–login) Specifies a new login name -m (–move-home) Creates a home directory and moves the content over from the old location -G Add a list of groups a user is a member of. userdel Command to remove a user from the system passwd Command set or modify a user’s password No-Login (Non-Interactive) User Account nologin command /sbin/nologin special purpose program that can be employed for user accounts that do not require login access to the system. located in the /usr/sbin (or /sbin) directory user is refused with the message, “This account is currently not available.” If a custom message is required, you can create a file called nologin.txt in the /etc directory and add the desired text to it. If a no-login user is able to log in with their credentials, there is a problem. Use the grep command against the /etc/passwd file to ensure ‘/sbin/nologin’ is there in the shell field for that user. examples of user accounts that do not require login access are the service accounts such as ftp, apache, and sshd.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
@@ -19,25 +19,25 @@
     <meta itemprop="description" content="User Account Management useradd Command add a new user to the system adds entries to the four user authentication files for each account added to the system creates a home directory for the user and copies the default user startup files from the skeleton directory /etc/skel into the user’s home directory used to update the default settings that are used at the time of new user creation for unspecified settings Options -b (–base-dir) Defines the absolute path to the base directory for placing user home directories. The default is /home. -c (–comment) Describes useful information about the user. -d (–home-dir) Defines the absolute path to the user home directory. -D (–defaults) Displays the default settings from the /etc/default/useradd file and modifies them. -e (–expiredate) Specifies a date on which a user account is automatically disabled. The format for the date specification is YYYY-MM-DD. -f (–inactive) Denotes maximum days of inactivity between password expiry and permanent account disablement. -g (–gid) Specifies the primary GID. Without this option, a group account matching the username is created with the GID matching the UID. -G (–groups) Specifies the membership to supplementary groups. -k (–skel) location of the skeleton directory (default is /etc/skel) (stores default user startup files) These files are copied to the user’s home directory at the time of account creation. Three hidden bash shell files: (default) .bash_profile, .bashrc, and .bash_logout You can customize these files or add your own to be used for accounts created thereafter. -m (–create-home) Creates a home directory if it does not already exist. -o (–non-unique) Creates a user account sharing the UID of an existing user. When two users share a UID, both get identical rights on each other’s files. Should only be done in specific situations. -r (–system) Creates a service account with a UID below 1000 and a never-expiring password. -s (–shell) Defines the absolute path to the shell file. The default is /bin/bash. -u (–uid) Indicates a unique UID. Without this option, the next available UID from the /etc/passwd file is used. login Specifies a login name to be assigned to the user account. usermod Command modify the attributes of an existing user similar syntax to useradd and most switches identical. Options unique to usermod: -a (–append) Adds a user to one or more supplementary groups -l (–login) Specifies a new login name -m (–move-home) Creates a home directory and moves the content over from the old location -G Add a list of groups a user is a member of. userdel Command to remove a user from the system passwd Command set or modify a user’s password No-Login (Non-Interactive) User Account nologin command /sbin/nologin special purpose program that can be employed for user accounts that do not require login access to the system. located in the /usr/sbin (or /sbin) directory user is refused with the message, “This account is currently not available.” If a custom message is required, you can create a file called nologin.txt in the /etc directory and add the desired text to it. If a no-login user is able to log in with their credentials, there is a problem. Use the grep command against the /etc/passwd file to ensure ‘/sbin/nologin’ is there in the shell field for that user. examples of user accounts that do not require login access are the service accounts such as ftp, apache, and sshd.">
     <meta itemprop="wordCount" content="558">
     <title></title>
-    <link href="http://perfectdarkmode.com/linux/rhcsa/user-account-management/" rel="canonical" type="text/html" title="">
+    <link href="http://localhost:1313/linux/rhcsa/user-account-management/" rel="canonical" type="text/html" title="">
     <link href="/linux/rhcsa/user-account-management/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
-    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741554912" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741554912" rel="stylesheet">
-    <script src="/js/variant.js?1741554912"></script>
+    <link href="/images/logo.svg?1741626033" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741626033" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741626033" rel="stylesheet">
+    <link href="/css/fonts.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741626033" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741626033" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741626033" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741626033" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741626033" rel="stylesheet">
+    <script src="/js/variant.js?1741626033"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -53,11 +53,11 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script><style>
 :root {
-    --MENU-WIDTH-S: 14.375rem;
-    --MENU-WIDTH-M: 14.375rem;
-    --MENU-WIDTH-L: 18.75rem;
+    --MENU-WIDTH-S: 12.375rem;
+    --MENU-WIDTH-M: 12.375rem;
+    --MENU-WIDTH-L: 16.75rem;
     --MAIN-WIDTH-MAX: 80rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 </style>
 
@@ -127,8 +127,8 @@
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741554912" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script src="/js/clipboard.min.js?1741626033" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741626033" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -144,20 +144,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
-    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741626033" defer></script>
+    <script src="/js/js-yaml.min.js?1741626033" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741554912" defer></script>
+    <script src="/js/theme.js?1741626033" defer></script>
   </body>
 </html>

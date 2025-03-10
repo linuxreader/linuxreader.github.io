@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="SELinux DIY Labs Lab: Disable and Enable the SELinux Operating Mode Check and make a note of the current SELinux operating mode. [root@server30 ~]# getenforce Enforcing Modify the configuration file and set the mode to disabled. [root@server30 ~]# vim /etc/selinux/config SELINUX=disabled Reboot the system to apply the change. [root@server30 ~]# reboot Run sudo getenforce to confirm the change when the system is up. [root@server30 ~]# getenforce Disabled Restore the directive’s value to enforcing in the configuration file, and reboot to apply the new mode. [root@server30 ~]# vim /etc/selinux/config SELINUX=enforcing [root@server30 ~]# reboot Run sudo getenforce to confirm the mode when the system is up. [root@server30 ~]# getenforce Enforcing Lab: Modify Context on Files Create directory hierarchy /tmp/d1/d2. mkdir -p /tmp/d1/d2 Check the contexts on /tmp/d1 and /tmp/d1/d2. [root@server30 d1]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:user_tmp_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 d1]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:user_tmp_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Change the SELinux type on /tmp/d1 to etc_t recursively with the chcon command and confirm. [root@server30 tmp]# chcon -Rv -t etc_t /tmp/d1 changing security context of &#39;/tmp/d1/d2&#39; changing security context of &#39;/tmp/d1&#39; [root@server30 tmp]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:etc_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 tmp]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:etc_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Add /tmp/d1 to the policy database with the semanage command to ensure the new context is persistent on the directory hierarchy. [root@server30 tmp]# semanage fcontext -a -t etc_t /tmp/d1 [root@server30 tmp]# reboot [root@server30 ~]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:etc_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 ~]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:etc_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Lab: Add Network Port to Policy Database Add network port 9005 to the SELinux policy database for the secure HTTP service using the semanage command. [root@server30 ~]# semanage port -l | grep ^http_port http_port_t tcp 80, 81, 443, 488, 8008, 8009, 8443, 9000 [root@server30 ~]# semanage port -at http_port_t -p tcp 9005 Verify the addition. [root@server30 ~]# semanage port -l | grep ^http_port http_port_t tcp 9005, 80, 81, 443, 488, 8008, 8009, 8443, 9000 Lab: Copy Files with and without Context Create file sef1 under /tmp. [root@server30 ~]# touch /tmp/sef1 Copy the file to the /usr/local directory. [root@server30 ~]# cp /tmp/sef1 /usr/local Check and compare the contexts on both source and destination files. [root@server30 ~]# ls -lZ /tmp/sef1 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:33 /tmp/sef1 [root@server30 ~]# ls -lZ /usr/local/sef1 -rw-r--r--. 1 root root unconfined_u:object_r:usr_t:s0 0 Jul 29 13:33 /usr/local/sef1 Create another file sef2 under /tmp and copy it to the /var/local directory using the --preserve=context option with the cp command. [root@server30 ~]# touch /tmp/sef2 [root@server30 ~]# cp --preserve=context /tmp/sef2 /var/local/ Check and compare the contexts on both source and destination files. [root@server30 ~]# ls -lZ /tmp/sef2 /var/local/sef2 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:35 /tmp/sef2 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:36 /var/local/sef2 Lab: Flip SELinux Booleans Check the current value of Boolean ssh_use_tcpd using the getsebool and sestatus commands. [root@server30 ~]# getsebool -a | grep ssh_use_tcpd ssh_use_tcpd --&gt; off Use the setsebool command and toggle the value of the directive. [root@server30 ~]# setsebool ssh_use_tcpd 1 Confirm the new value with the getsebool, semanage, or sestatus command. [root@server30 ~]# getsebool -a | grep ssh_use_tcpd ssh_use_tcpd --&gt; on [root@server30 ~]# sestatus -b | grep ssh_use_tcpd ssh_use_tcpd on [root@server30 ~]# semanage boolean -l | grep ssh_use_tcpd ssh_use_tcpd (on , off) Allow ssh to use tcpd">
-    <meta name="author" content="David Vargas">
+    <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="SELinux DIY Labs Lab: Disable and Enable the SELinux Operating Mode Check and make a note of the current SELinux operating mode. [root@server30 ~]# getenforce Enforcing Modify the configuration file and set the mode to disabled. [root@server30 ~]# vim /etc/selinux/config SELINUX=disabled Reboot the system to apply the change. [root@server30 ~]# reboot Run sudo getenforce to confirm the change when the system is up. [root@server30 ~]# getenforce Disabled Restore the directive’s value to enforcing in the configuration file, and reboot to apply the new mode. [root@server30 ~]# vim /etc/selinux/config SELINUX=enforcing [root@server30 ~]# reboot Run sudo getenforce to confirm the mode when the system is up. [root@server30 ~]# getenforce Enforcing Lab: Modify Context on Files Create directory hierarchy /tmp/d1/d2. mkdir -p /tmp/d1/d2 Check the contexts on /tmp/d1 and /tmp/d1/d2. [root@server30 d1]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:user_tmp_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 d1]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:user_tmp_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Change the SELinux type on /tmp/d1 to etc_t recursively with the chcon command and confirm. [root@server30 tmp]# chcon -Rv -t etc_t /tmp/d1 changing security context of &#39;/tmp/d1/d2&#39; changing security context of &#39;/tmp/d1&#39; [root@server30 tmp]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:etc_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 tmp]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:etc_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Add /tmp/d1 to the policy database with the semanage command to ensure the new context is persistent on the directory hierarchy. [root@server30 tmp]# semanage fcontext -a -t etc_t /tmp/d1 [root@server30 tmp]# reboot [root@server30 ~]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:etc_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 ~]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:etc_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Lab: Add Network Port to Policy Database Add network port 9005 to the SELinux policy database for the secure HTTP service using the semanage command. [root@server30 ~]# semanage port -l | grep ^http_port http_port_t tcp 80, 81, 443, 488, 8008, 8009, 8443, 9000 [root@server30 ~]# semanage port -at http_port_t -p tcp 9005 Verify the addition. [root@server30 ~]# semanage port -l | grep ^http_port http_port_t tcp 9005, 80, 81, 443, 488, 8008, 8009, 8443, 9000 Lab: Copy Files with and without Context Create file sef1 under /tmp. [root@server30 ~]# touch /tmp/sef1 Copy the file to the /usr/local directory. [root@server30 ~]# cp /tmp/sef1 /usr/local Check and compare the contexts on both source and destination files. [root@server30 ~]# ls -lZ /tmp/sef1 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:33 /tmp/sef1 [root@server30 ~]# ls -lZ /usr/local/sef1 -rw-r--r--. 1 root root unconfined_u:object_r:usr_t:s0 0 Jul 29 13:33 /usr/local/sef1 Create another file sef2 under /tmp and copy it to the /var/local directory using the --preserve=context option with the cp command. [root@server30 ~]# touch /tmp/sef2 [root@server30 ~]# cp --preserve=context /tmp/sef2 /var/local/ Check and compare the contexts on both source and destination files. [root@server30 ~]# ls -lZ /tmp/sef2 /var/local/sef2 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:35 /tmp/sef2 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:36 /var/local/sef2 Lab: Flip SELinux Booleans Check the current value of Boolean ssh_use_tcpd using the getsebool and sestatus commands. [root@server30 ~]# getsebool -a | grep ssh_use_tcpd ssh_use_tcpd --&gt; off Use the setsebool command and toggle the value of the directive. [root@server30 ~]# setsebool ssh_use_tcpd 1 Confirm the new value with the getsebool, semanage, or sestatus command. [root@server30 ~]# getsebool -a | grep ssh_use_tcpd ssh_use_tcpd --&gt; on [root@server30 ~]# sestatus -b | grep ssh_use_tcpd ssh_use_tcpd on [root@server30 ~]# semanage boolean -l | grep ssh_use_tcpd ssh_use_tcpd (on , off) Allow ssh to use tcpd">
-    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/selinux-diy-labs/">
-    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/selinux-diy-labs/">
+    <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="SELinux DIY Labs Lab: Disable and Enable the SELinux Operating Mode Check and make a note of the current SELinux operating mode. [root@server30 ~]# getenforce Enforcing Modify the configuration file and set the mode to disabled. [root@server30 ~]# vim /etc/selinux/config SELINUX=disabled Reboot the system to apply the change. [root@server30 ~]# reboot Run sudo getenforce to confirm the change when the system is up. [root@server30 ~]# getenforce Disabled Restore the directive’s value to enforcing in the configuration file, and reboot to apply the new mode. [root@server30 ~]# vim /etc/selinux/config SELINUX=enforcing [root@server30 ~]# reboot Run sudo getenforce to confirm the mode when the system is up. [root@server30 ~]# getenforce Enforcing Lab: Modify Context on Files Create directory hierarchy /tmp/d1/d2. mkdir -p /tmp/d1/d2 Check the contexts on /tmp/d1 and /tmp/d1/d2. [root@server30 d1]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:user_tmp_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 d1]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:user_tmp_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Change the SELinux type on /tmp/d1 to etc_t recursively with the chcon command and confirm. [root@server30 tmp]# chcon -Rv -t etc_t /tmp/d1 changing security context of &#39;/tmp/d1/d2&#39; changing security context of &#39;/tmp/d1&#39; [root@server30 tmp]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:etc_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 tmp]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:etc_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Add /tmp/d1 to the policy database with the semanage command to ensure the new context is persistent on the directory hierarchy. [root@server30 tmp]# semanage fcontext -a -t etc_t /tmp/d1 [root@server30 tmp]# reboot [root@server30 ~]# ls -ldZ /tmp/d1 drwxr-xr-x. 3 root root unconfined_u:object_r:etc_t:s0 16 Jul 29 13:17 /tmp/d1 [root@server30 ~]# ls -ldZ /tmp/d1/d2 drwxr-xr-x. 2 root root unconfined_u:object_r:etc_t:s0 6 Jul 29 13:17 /tmp/d1/d2 Lab: Add Network Port to Policy Database Add network port 9005 to the SELinux policy database for the secure HTTP service using the semanage command. [root@server30 ~]# semanage port -l | grep ^http_port http_port_t tcp 80, 81, 443, 488, 8008, 8009, 8443, 9000 [root@server30 ~]# semanage port -at http_port_t -p tcp 9005 Verify the addition. [root@server30 ~]# semanage port -l | grep ^http_port http_port_t tcp 9005, 80, 81, 443, 488, 8008, 8009, 8443, 9000 Lab: Copy Files with and without Context Create file sef1 under /tmp. [root@server30 ~]# touch /tmp/sef1 Copy the file to the /usr/local directory. [root@server30 ~]# cp /tmp/sef1 /usr/local Check and compare the contexts on both source and destination files. [root@server30 ~]# ls -lZ /tmp/sef1 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:33 /tmp/sef1 [root@server30 ~]# ls -lZ /usr/local/sef1 -rw-r--r--. 1 root root unconfined_u:object_r:usr_t:s0 0 Jul 29 13:33 /usr/local/sef1 Create another file sef2 under /tmp and copy it to the /var/local directory using the --preserve=context option with the cp command. [root@server30 ~]# touch /tmp/sef2 [root@server30 ~]# cp --preserve=context /tmp/sef2 /var/local/ Check and compare the contexts on both source and destination files. [root@server30 ~]# ls -lZ /tmp/sef2 /var/local/sef2 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:35 /tmp/sef2 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0 0 Jul 29 13:36 /var/local/sef2 Lab: Flip SELinux Booleans Check the current value of Boolean ssh_use_tcpd using the getsebool and sestatus commands. [root@server30 ~]# getsebool -a | grep ssh_use_tcpd ssh_use_tcpd --&gt; off Use the setsebool command and toggle the value of the directive. [root@server30 ~]# setsebool ssh_use_tcpd 1 Confirm the new value with the getsebool, semanage, or sestatus command. [root@server30 ~]# getsebool -a | grep ssh_use_tcpd ssh_use_tcpd --&gt; on [root@server30 ~]# sestatus -b | grep ssh_use_tcpd ssh_use_tcpd on [root@server30 ~]# semanage boolean -l | grep ssh_use_tcpd ssh_use_tcpd (on , off) Allow ssh to use tcpd">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
@@ -21,22 +21,22 @@
     <title></title>
     <link href="/linux/rhcsa/selinux-diy-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/linux/rhcsa/selinux-diy-labs/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
-    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741554912" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741554912"></script>
+    <link href="/images/logo.svg?1741626033" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741626033" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741626033" rel="stylesheet">
+    <link href="/css/fonts.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741626033" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741626033" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741626033" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741626033" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741626033"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -52,11 +52,11 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script><style>
 :root {
-    --MENU-WIDTH-S: 14.375rem;
-    --MENU-WIDTH-M: 14.375rem;
-    --MENU-WIDTH-L: 18.75rem;
+    --MENU-WIDTH-S: 12.375rem;
+    --MENU-WIDTH-M: 12.375rem;
+    --MENU-WIDTH-L: 16.75rem;
     --MAIN-WIDTH-MAX: 80rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 </style>
 
@@ -269,12 +269,13 @@
       <div id="R-header-topbar" class="default-animation"></div>
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
-<a href="https://perfectdarkmode.com">Perfect Dark Mode</a>
-
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741554912";
+          window.index_js_url="/searchindex.en.js?1741626033";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -287,12 +288,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741554912" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741554912" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741554912" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741554912" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741554912" defer></script>
-        <script src="/js/search.js?1741554912" defer></script>
+        <script src="/js/auto-complete.js?1741626033" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741626033" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741626033" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741626033" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741626033" defer></script>
+        <script src="/js/search.js?1741626033" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -300,7 +301,7 @@
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><input type="checkbox" id="R-section-e2509333b88222aa06f1b5fc60b020b2" aria-controls="R-subsections-e2509333b88222aa06f1b5fc60b020b2" checked><label for="R-section-e2509333b88222aa06f1b5fc60b020b2"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Linux</span></label><a class="padding" href="/linux/"><i class="fa-fw fas fa-sailboat"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
             <li class="" data-nav-id="/linux/fedora/"><input type="checkbox" id="R-section-89434e96479d9689b11efd9b3cb12acc" aria-controls="R-subsections-89434e96479d9689b11efd9b3cb12acc"><label for="R-section-89434e96479d9689b11efd9b3cb12acc"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Fedora</span></label><a class="padding" href="/linux/fedora/">Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu">
             <li class="" data-nav-id="/linux/fedora/my-fedora-setup/"><a class="padding" href="/linux/fedora/my-fedora-setup/">My Fedora Setup</a></li>
             <li class="" data-nav-id="/linux/fedora/silverblue/"><a class="padding" href="/linux/fedora/silverblue/">Silverblue</a></li></ul></li>
@@ -365,8 +366,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741554912" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script src="/js/clipboard.min.js?1741626033" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741626033" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -382,20 +383,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
-    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741626033" defer></script>
+    <script src="/js/js-yaml.min.js?1741626033" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741554912" defer></script>
+    <script src="/js/theme.js?1741626033" defer></script>
   </body>
 </html>
