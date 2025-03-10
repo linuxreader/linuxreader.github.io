@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -10,7 +10,7 @@
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
-    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/process-and-task-scheduling-labs/">
+    <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/process-and-task-scheduling-labs/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
     <meta property="og:locale" content="en_us">
@@ -19,25 +19,25 @@
     <meta itemprop="description" content="Process and Task Scheduling Labs Lab: ps ps ps Check manual pages: man ps Run with “every” and “full format” flags: ps -ef Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows: ps -o comm,pid,ppid,user Check how many sshd processes are currently running on the system: ps -C sshd Lab: top top top View manual page: man top Lab: List a specific process list the PID of the rsyslogd daemon pidof rsyslogd or pgrep rsyslogd Lab: Listing Processes by User and Group Ownership List processes owned by user1: ps -U user1 List processes owned by group root: ps -G root Lab: nice View the default nice value: nice List priority and niceness for all processes: ps -efl Lab: Start Processes at Non-Default Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of &#43;2: nice -n 2 top \Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges. sudo nice -n -10 top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top Terminate the top session by pressing the letter q. Lab: Alter Process Priorities (2 terminals) Run the top command at the default priority/niceness in Terminal 1: top Check the priority and niceness for the top command in Terminal 2 using the ps command: ps -efl | grep top While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process. sudo renice -n -5 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process. sudo renice -n 8 $(pidof top) Validate the above change with ps. Focus on columns 7 and 8. ps -efl | grep top Lab: Controlling Processes with Signals Pass the soft termination signal to the crond daemon, use either of the following: sudo pkill crond # or sudo kill $(pidof crond) Confirm: ps -ef | grep crond Forcefully kill crond: sudo pkill -9 crond # or sudo pkill -s SIGKILL crond # or sudo kill -9 $(pgrep crond) Kill all crond processes: sudo killall crond View manual pages: man kill man pkill man killall Lab: cron and atd View log files for cron and atd sudo cat /var/log/cron Lab: at and crond run /home/user1/.bash_profile file for user1 2 hours from now: at -f ~/.bash_profile now &#43; 2 hours Consult crontab manual pages: man crontab Lab: Submit, View, List, and Erase an at Job 1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl&#43;d at the second at&gt; prompt to complete the job submission and return to the shell prompt.">
     <meta itemprop="wordCount" content="1064">
     <title></title>
-    <link href="http://localhost:1313/linux/rhcsa/process-and-task-scheduling-labs/" rel="canonical" type="text/html" title="">
+    <link href="http://linuxreader.com/linux/rhcsa/process-and-task-scheduling-labs/" rel="canonical" type="text/html" title="">
     <link href="/linux/rhcsa/process-and-task-scheduling-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/logo.svg?1741626033" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741626033" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741626033" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741626033" rel="stylesheet">
-    <link href="/css/fonts.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741626033" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741626033" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741626033" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741626033" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741626033" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741626033" rel="stylesheet">
-    <script src="/js/variant.js?1741626033"></script>
+    <link href="/images/logo.svg?1741629298" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741629298" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741629298" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741629298" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741629298" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741629298" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741629298" rel="stylesheet">
+    <link href="/css/fonts.css?1741629298" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741629298" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741629298" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741629298" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741629298" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741629298" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741629298" rel="stylesheet">
+    <script src="/js/variant.js?1741629298"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -136,8 +136,8 @@
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741626033" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741626033" defer></script>
+    <script src="/js/clipboard.min.js?1741629298" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741629298" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -153,20 +153,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741626033" defer></script>
-    <script src="/js/js-yaml.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741629298" defer></script>
+    <script src="/js/js-yaml.min.js?1741629298" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741626033" defer></script>
+    <script src="/js/theme.js?1741629298" defer></script>
   </body>
 </html>

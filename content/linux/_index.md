@@ -1,6 +1,6 @@
 +++ 
 categories = ["Linux"] 
-menuPre = '<i class="fa-fw fas fa-sailboat"></i> '
+menuPre = '<i class="fa-fw fas fa-terminal"></i> '
 title = "Linux" 
 type = "" 
 weight = 1 
@@ -21,7 +21,7 @@ Find out how to configure and customize your site.
 
 ## Fedora
 
-- [index](Fedora/My%20Fedora%20Setup/index.md)
+- [My Fedora Setup](Fedora/My%20Fedora%20Setup.md)
 - [Silverblue](Fedora/Silverblue.md)
 
 ## Misc

@@ -1,6 +1,7 @@
 +++ 
 archetype = "moc" 
 title = "Networking" 
+menuPre = '<i class="fa-fw fas fa-network-wired"></i> '
 weight = 2
 alwaysopen = false
 [_build]

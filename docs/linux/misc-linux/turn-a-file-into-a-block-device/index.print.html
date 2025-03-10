@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -12,7 +12,7 @@ mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/l
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="dd if=/dev/zero of=./mydisk.img bs=1M count=1024 conv=fsync xxd mydisk.img | less hexedit mydisk.img xxd mydisk.img | less hexedit mydisk.img xxd mydisk.img | less ls -la mydisk.img xxd mydisk.img | less losetup –help sudo losetup -f ./mydisk.img ll /dev/l `
 mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/loop0 sudo partprobe sudo fdisk /dev/loop0 sudo partprobe lsblk ll /dev/loop0* sudo losetup --help sudo losetup -d /dev/loop0 sudo losetup -f ./mydisk.img ll /dev/loop0* sudo losetup -d /dev/loop0 sudo losetup -Pf ./mydisk.img ll /dev/loop0* 10014 lsblk man tail sudo mkfs.xfs /dev/loop0p1 sudo mkdir /mnt/loop sudo mount /dev/loop0p1 /mnt/loop ll /mnt/loop df /mnt/loop echo &#39;test&#39; &gt; /mnt/loop/test.txt echo &#39;test&#39; | sudo tee /mnt/loop/test.txt ll /mnt/loop sudo cat /mnt/loop/test.txt grep test mydisk.img xxd mydisk.img | grep test ll /dev/loop0* sudo mkdir /mnt/loop/test echo &#39;test&#39; | sudo tee /mnt/loop/test/test2.txt sync sudo tree /mnt/loop man pvcreate dd if=/dev/zero of=./mydisk2.img bs=1M count=1024 conv=fsync sudo losetup -Pf ./mydisk2.img ll /dev/loop* lsblk sudo pvcreate /dev/loop1 sudo pvdisplay sudo vgcreate --help sudo vgcreate loop /dev/loop1 /dev/loop0p1 sudo vgdisplay ll mydisk* sudo lvdisplay lsblk -o &#43;FSTYPE sudo lvcreate -a y -L 100% -n loop-lv loop sudo lvcreate -a y -l100% -n loop-lv loop sudo lvcreate -a y -l100%FREE -n loop-lv loop sudo partprobe lsblk -o &#43;FSTYPE sudo mkfs.xfs /dev/loop/loop-lv sudo mount /dev/loop/loop-lv /mnt/loop df -h /mnt/loop sudo lvdisplay ll /dev/loop ll /dev/dm-3 other window included, somewhere in there,">
-    <meta property="og:url" content="http://localhost:1313/linux/misc-linux/turn-a-file-into-a-block-device/">
+    <meta property="og:url" content="http://linuxreader.com/linux/misc-linux/turn-a-file-into-a-block-device/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="dd if=/dev/zero of=./mydisk.img bs=1M count=1024 conv=fsync xxd mydisk.img | less hexedit mydisk.img xxd mydisk.img | less hexedit mydisk.img xxd mydisk.img | less ls -la mydisk.img xxd mydisk.img | less losetup –help sudo losetup -f ./mydisk.img ll /dev/l `
 mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/loop0 sudo partprobe sudo fdisk /dev/loop0 sudo partprobe lsblk ll /dev/loop0* sudo losetup --help sudo losetup -d /dev/loop0 sudo losetup -f ./mydisk.img ll /dev/loop0* sudo losetup -d /dev/loop0 sudo losetup -Pf ./mydisk.img ll /dev/loop0* 10014 lsblk man tail sudo mkfs.xfs /dev/loop0p1 sudo mkdir /mnt/loop sudo mount /dev/loop0p1 /mnt/loop ll /mnt/loop df /mnt/loop echo &#39;test&#39; &gt; /mnt/loop/test.txt echo &#39;test&#39; | sudo tee /mnt/loop/test.txt ll /mnt/loop sudo cat /mnt/loop/test.txt grep test mydisk.img xxd mydisk.img | grep test ll /dev/loop0* sudo mkdir /mnt/loop/test echo &#39;test&#39; | sudo tee /mnt/loop/test/test2.txt sync sudo tree /mnt/loop man pvcreate dd if=/dev/zero of=./mydisk2.img bs=1M count=1024 conv=fsync sudo losetup -Pf ./mydisk2.img ll /dev/loop* lsblk sudo pvcreate /dev/loop1 sudo pvdisplay sudo vgcreate --help sudo vgcreate loop /dev/loop1 /dev/loop0p1 sudo vgdisplay ll mydisk* sudo lvdisplay lsblk -o &#43;FSTYPE sudo lvcreate -a y -L 100% -n loop-lv loop sudo lvcreate -a y -l100% -n loop-lv loop sudo lvcreate -a y -l100%FREE -n loop-lv loop sudo partprobe lsblk -o &#43;FSTYPE sudo mkfs.xfs /dev/loop/loop-lv sudo mount /dev/loop/loop-lv /mnt/loop df -h /mnt/loop sudo lvdisplay ll /dev/loop ll /dev/dm-3 other window included, somewhere in there,">
@@ -23,25 +23,25 @@ mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/l
 mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/loop0 sudo partprobe sudo fdisk /dev/loop0 sudo partprobe lsblk ll /dev/loop0* sudo losetup --help sudo losetup -d /dev/loop0 sudo losetup -f ./mydisk.img ll /dev/loop0* sudo losetup -d /dev/loop0 sudo losetup -Pf ./mydisk.img ll /dev/loop0* 10014 lsblk man tail sudo mkfs.xfs /dev/loop0p1 sudo mkdir /mnt/loop sudo mount /dev/loop0p1 /mnt/loop ll /mnt/loop df /mnt/loop echo &#39;test&#39; &gt; /mnt/loop/test.txt echo &#39;test&#39; | sudo tee /mnt/loop/test.txt ll /mnt/loop sudo cat /mnt/loop/test.txt grep test mydisk.img xxd mydisk.img | grep test ll /dev/loop0* sudo mkdir /mnt/loop/test echo &#39;test&#39; | sudo tee /mnt/loop/test/test2.txt sync sudo tree /mnt/loop man pvcreate dd if=/dev/zero of=./mydisk2.img bs=1M count=1024 conv=fsync sudo losetup -Pf ./mydisk2.img ll /dev/loop* lsblk sudo pvcreate /dev/loop1 sudo pvdisplay sudo vgcreate --help sudo vgcreate loop /dev/loop1 /dev/loop0p1 sudo vgdisplay ll mydisk* sudo lvdisplay lsblk -o &#43;FSTYPE sudo lvcreate -a y -L 100% -n loop-lv loop sudo lvcreate -a y -l100% -n loop-lv loop sudo lvcreate -a y -l100%FREE -n loop-lv loop sudo partprobe lsblk -o &#43;FSTYPE sudo mkfs.xfs /dev/loop/loop-lv sudo mount /dev/loop/loop-lv /mnt/loop df -h /mnt/loop sudo lvdisplay ll /dev/loop ll /dev/dm-3 other window included, somewhere in there,">
     <meta itemprop="wordCount" content="329">
     <title></title>
-    <link href="http://localhost:1313/linux/misc-linux/turn-a-file-into-a-block-device/" rel="canonical" type="text/html" title="">
+    <link href="http://linuxreader.com/linux/misc-linux/turn-a-file-into-a-block-device/" rel="canonical" type="text/html" title="">
     <link href="/linux/misc-linux/turn-a-file-into-a-block-device/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/logo.svg?1741626033" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741626033" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741626033" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741626033" rel="stylesheet">
-    <link href="/css/fonts.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741626033" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741626033" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741626033" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741626033" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741626033" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741626033" rel="stylesheet">
-    <script src="/js/variant.js?1741626033"></script>
+    <link href="/images/logo.svg?1741629298" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741629298" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741629298" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741629298" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741629298" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741629298" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741629298" rel="stylesheet">
+    <link href="/css/fonts.css?1741629298" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741629298" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741629298" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741629298" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741629298" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741629298" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741629298" rel="stylesheet">
+    <script src="/js/variant.js?1741629298"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -117,8 +117,8 @@ mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/l
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741626033" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741626033" defer></script>
+    <script src="/js/clipboard.min.js?1741629298" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741629298" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -134,20 +134,20 @@ mount | grep l lsblk ll /dev/loop0 sudo fdisk /dev/loop0 print sudo fdisk /dev/l
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741626033" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741626033" defer></script>
-    <script src="/js/js-yaml.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741629298" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741629298" defer></script>
+    <script src="/js/js-yaml.min.js?1741629298" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741626033" defer></script>
+    <script src="/js/theme.js?1741629298" defer></script>
   </body>
 </html>

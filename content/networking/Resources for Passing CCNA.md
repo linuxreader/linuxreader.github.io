@@ -1,4 +1,6 @@
-
++++
+title = 'Resources for Passing CCNA'
++++
 
 
 ![](/images/resourcesforccna.png)

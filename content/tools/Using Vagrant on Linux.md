@@ -1,3 +1,7 @@
++++
+title = 'Using Vagrant on Linux'
++++
+
 Vagrant is software that lets you set up multiple, pre-configured virtual machines in a flash. I am going to show you how to do this using Linux and Virtual Box. But you can do this on MacOS and Windows as well.
 
 Download Vagrant, VirtualBox and Git.
