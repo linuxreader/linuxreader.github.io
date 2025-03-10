@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -12,7 +12,7 @@ Mounted and accessed the same way as local filesystems. Network protocol that al
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="NFS Basics and Configuration Same tools for mounting and unmounting a filesystem.
 Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling Use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. Lab: Export Share on NFS Server Install nfs-utils sudo dnf -y install nfs-utils Create /common sudo mkdir /common Add full permissions sudo chmod 777 /common Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule: sudo firewall-cmd --permanent --add-service nfs sudo firewall-cmd --reload Start the NFS service and enable it to autostart at system reboots: sudo systemctl --now enable nfs-server Verify Operational Status of the NFS services: sudo systemctl status nfs-server Open /etc/exports and add entry for /common to export it to server10 with read/write: /common server10(rw) Export the entry defined in /etc/exports/. -a option exports all entries in the file. -v is verbose. sudo exportfs -av Unexport the share (-u): sudo exportfs -u server10:/common Re-export the share: sudo exportfs -av LAB: Mount share on NFS client Install nfs-utils sudo dnf -y install nfs-utils Create /local mount point sudo mkdir /local Mount the share manually: sudo mount server20:/common /local Confirm using mount: (shows nfs version) mount | grep local Confirm using df: df -h | grep local Add to /fstab for persistence: server20:/common /local nfs _netdev 0 0 Note:">
-    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/nfs-basics-and-configuration/">
+    <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/nfs-basics-and-configuration/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="NFS Basics and Configuration Same tools for mounting and unmounting a filesystem.
 Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling Use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. Lab: Export Share on NFS Server Install nfs-utils sudo dnf -y install nfs-utils Create /common sudo mkdir /common Add full permissions sudo chmod 777 /common Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule: sudo firewall-cmd --permanent --add-service nfs sudo firewall-cmd --reload Start the NFS service and enable it to autostart at system reboots: sudo systemctl --now enable nfs-server Verify Operational Status of the NFS services: sudo systemctl status nfs-server Open /etc/exports and add entry for /common to export it to server10 with read/write: /common server10(rw) Export the entry defined in /etc/exports/. -a option exports all entries in the file. -v is verbose. sudo exportfs -av Unexport the share (-u): sudo exportfs -u server10:/common Re-export the share: sudo exportfs -av LAB: Mount share on NFS client Install nfs-utils sudo dnf -y install nfs-utils Create /local mount point sudo mkdir /local Mount the share manually: sudo mount server20:/common /local Confirm using mount: (shows nfs version) mount | grep local Confirm using df: df -h | grep local Add to /fstab for persistence: server20:/common /local nfs _netdev 0 0 Note:">
@@ -25,22 +25,22 @@ Mounted and accessed the same way as local filesystems. Network protocol that al
     <title></title>
     <link href="/linux/rhcsa/nfs-basics-and-configuration/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/linux/rhcsa/nfs-basics-and-configuration/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
-    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741639423" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741639423"></script>
+    <link href="/images/logo.svg?1741640065" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741640065" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741640065" rel="stylesheet">
+    <link href="/css/fonts.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741640065" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741640065" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741640065" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741640065" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741640065"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -307,7 +307,7 @@ ls -l /local</code></pre></div>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741639423";
+          window.index_js_url="/searchindex.en.js?1741640065";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -320,12 +320,12 @@ ls -l /local</code></pre></div>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741639423" defer></script>
-        <script src="/js/search.js?1741639423" defer></script>
+        <script src="/js/auto-complete.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741640065" defer></script>
+        <script src="/js/search.js?1741640065" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -351,7 +351,7 @@ ls -l /local</code></pre></div>
             <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
             <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
             <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
-            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Notes</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
           </ul>
         </div>
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
@@ -404,8 +404,8 @@ ls -l /local</code></pre></div>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741639423" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script src="/js/clipboard.min.js?1741640065" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741640065" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -421,20 +421,20 @@ ls -l /local</code></pre></div>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
-    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741640065" defer></script>
+    <script src="/js/js-yaml.min.js?1741640065" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741639423" defer></script>
+    <script src="/js/theme.js?1741640065" defer></script>
   </body>
 </html>
