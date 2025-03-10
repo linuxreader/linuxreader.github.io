@@ -1,7 +1,9 @@
 +++
-archetype = "home"
-title = ""
+linktitle = 'Linux Reader'
+title = 'Linux Reader'
+type = 'home'
 +++
+
 
 I'm David, I spin poi, read books, tinker, and write. Check out what I am doing [Now!](now/_index.md)
 

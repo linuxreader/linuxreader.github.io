@@ -1,6 +1,6 @@
 +++ 
 categories = ["Linux"] 
-menuPre = " " 
+menuPre = '<i class="fa-fw fas fa-sailboat"></i> '
 title = "Linux" 
 type = "" 
 weight = 1 

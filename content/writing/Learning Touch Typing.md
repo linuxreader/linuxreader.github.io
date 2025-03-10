@@ -54,6 +54,10 @@ Day 10 (30 minutes)
 Typing Club
 Lessons  108-119
 
-Day 11
+Day 11 (1 hour)
 Typing Club
 Lessons 120-141
+
+Day 12 (30 minutes)
+Typing CLub
+Lessons 142-

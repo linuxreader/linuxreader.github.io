@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="Password Aging attributes Can be done for an individual user or applied to all users. Can prevent users from logging in to the system by locking their access for a period of time or permanently. Must be performed by a user with elevated privileges of the root user. Normal users may be allowed access to privileged commands by defining them appropriately in a configuration file. Each file that exists on the system regardless of its type has an owning user and an owning group. every file that a user creates is in the ownership of that user. ownership may be changed and given to another user by a super user. Password Aging and management Setting restrictions on password expiry, account disablement, locking and unlocking users, and password change frequency. Can choose to inactivate it completely for an individual user. Stored in the /etc/shadow file (fields 4 to 8) and its default policies in the /etc/login.defs configuration file. aging management tools—chage and passwd— usermod command can be used to implement two aging attributes (user expiry and password expiry) and lock and unlock user accounts. chage command Set or alter password aging parameters on a user account. Changes various fields in the shadow file Switches -d (–lastday) Specifies an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time when the password was last modified. With -d 0, the user is forced to change the password at next login. It corresponds to field 3 in the shadow file. -E (–expiredate) Sets an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time on which the user account is deactivated. This feature can be disabled with -E -1. It corresponds to the eighth field in the shadow file. -I (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. The user may be able to log in during this period with their expired password. This feature can be disabled with -I -1. It corresponds to field 7 in the shadow file. -l Lists password aging attributes set on a user account. -m (–mindays) Indicates the minimum number of days that must elapse before the password can be changed. A value of 0 allows the user to change their password at any time. It corresponds to field 4 in the shadow file. -M (–maxdays) Denotes the maximum number of days of password validity before the user password expires and it must be changed. This feature can be disabled with -M -1. It corresponds to field 5 in the shadow file. -W (–warndays) Designates the number of days for which the user gets alerts to change their password before it expires. It corresponds to field 6 in the shadow file. passwd command set or modify a user’s password modify the password aging attributes and lock or unlock account Switches -d (–delete) Deletes a user password does not expire the user account. -e (–expire) Forces a user to change their password upon next logon. sets date to prior to Unix time -i (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. (field 7 in shadow file) -l (–lock) Locks a user account. -n (–minimum) Specifies the number of days that must elapse before the password can be changed. (field 4 in shadow file) -S (–status) Displays the status information for a user. -u (–unlock) Unlocks a locked user account. -w (–warning) Designates the number of days for which the user gets alerts to change their password before it actually expires. (field 6 in shadow file) -x (–maximum) Denotes the maximum number of days of password validity before the user password expires and it must be changed. (field 5 in shadow file) usermod command Modify a user’s attribute Lock or unlock their account Switches -L (–lock) Locks a user account by placing a single exclamation mark (!) at the beginning of the password field and before the hashed password string. -U (–unlock) Unlocks a user’s account by removing the exclamation mark (!) from the beginning of the password field.">
-    <meta name="author" content="David Vargas">
+    <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="Password Aging attributes Can be done for an individual user or applied to all users. Can prevent users from logging in to the system by locking their access for a period of time or permanently. Must be performed by a user with elevated privileges of the root user. Normal users may be allowed access to privileged commands by defining them appropriately in a configuration file. Each file that exists on the system regardless of its type has an owning user and an owning group. every file that a user creates is in the ownership of that user. ownership may be changed and given to another user by a super user. Password Aging and management Setting restrictions on password expiry, account disablement, locking and unlocking users, and password change frequency. Can choose to inactivate it completely for an individual user. Stored in the /etc/shadow file (fields 4 to 8) and its default policies in the /etc/login.defs configuration file. aging management tools—chage and passwd— usermod command can be used to implement two aging attributes (user expiry and password expiry) and lock and unlock user accounts. chage command Set or alter password aging parameters on a user account. Changes various fields in the shadow file Switches -d (–lastday) Specifies an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time when the password was last modified. With -d 0, the user is forced to change the password at next login. It corresponds to field 3 in the shadow file. -E (–expiredate) Sets an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time on which the user account is deactivated. This feature can be disabled with -E -1. It corresponds to the eighth field in the shadow file. -I (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. The user may be able to log in during this period with their expired password. This feature can be disabled with -I -1. It corresponds to field 7 in the shadow file. -l Lists password aging attributes set on a user account. -m (–mindays) Indicates the minimum number of days that must elapse before the password can be changed. A value of 0 allows the user to change their password at any time. It corresponds to field 4 in the shadow file. -M (–maxdays) Denotes the maximum number of days of password validity before the user password expires and it must be changed. This feature can be disabled with -M -1. It corresponds to field 5 in the shadow file. -W (–warndays) Designates the number of days for which the user gets alerts to change their password before it expires. It corresponds to field 6 in the shadow file. passwd command set or modify a user’s password modify the password aging attributes and lock or unlock account Switches -d (–delete) Deletes a user password does not expire the user account. -e (–expire) Forces a user to change their password upon next logon. sets date to prior to Unix time -i (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. (field 7 in shadow file) -l (–lock) Locks a user account. -n (–minimum) Specifies the number of days that must elapse before the password can be changed. (field 4 in shadow file) -S (–status) Displays the status information for a user. -u (–unlock) Unlocks a locked user account. -w (–warning) Designates the number of days for which the user gets alerts to change their password before it actually expires. (field 6 in shadow file) -x (–maximum) Denotes the maximum number of days of password validity before the user password expires and it must be changed. (field 5 in shadow file) usermod command Modify a user’s attribute Lock or unlock their account Switches -L (–lock) Locks a user account by placing a single exclamation mark (!) at the beginning of the password field and before the hashed password string. -U (–unlock) Unlocks a user’s account by removing the exclamation mark (!) from the beginning of the password field.">
-    <meta property="og:url" content="http://perfectdarkmode.com/linux/rhcsa/password-aging-attributes/">
-    <meta property="og:site_name" content="perfectdarkmode.com">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/password-aging-attributes/">
+    <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Password Aging attributes Can be done for an individual user or applied to all users. Can prevent users from logging in to the system by locking their access for a period of time or permanently. Must be performed by a user with elevated privileges of the root user. Normal users may be allowed access to privileged commands by defining them appropriately in a configuration file. Each file that exists on the system regardless of its type has an owning user and an owning group. every file that a user creates is in the ownership of that user. ownership may be changed and given to another user by a super user. Password Aging and management Setting restrictions on password expiry, account disablement, locking and unlocking users, and password change frequency. Can choose to inactivate it completely for an individual user. Stored in the /etc/shadow file (fields 4 to 8) and its default policies in the /etc/login.defs configuration file. aging management tools—chage and passwd— usermod command can be used to implement two aging attributes (user expiry and password expiry) and lock and unlock user accounts. chage command Set or alter password aging parameters on a user account. Changes various fields in the shadow file Switches -d (–lastday) Specifies an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time when the password was last modified. With -d 0, the user is forced to change the password at next login. It corresponds to field 3 in the shadow file. -E (–expiredate) Sets an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time on which the user account is deactivated. This feature can be disabled with -E -1. It corresponds to the eighth field in the shadow file. -I (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. The user may be able to log in during this period with their expired password. This feature can be disabled with -I -1. It corresponds to field 7 in the shadow file. -l Lists password aging attributes set on a user account. -m (–mindays) Indicates the minimum number of days that must elapse before the password can be changed. A value of 0 allows the user to change their password at any time. It corresponds to field 4 in the shadow file. -M (–maxdays) Denotes the maximum number of days of password validity before the user password expires and it must be changed. This feature can be disabled with -M -1. It corresponds to field 5 in the shadow file. -W (–warndays) Designates the number of days for which the user gets alerts to change their password before it expires. It corresponds to field 6 in the shadow file. passwd command set or modify a user’s password modify the password aging attributes and lock or unlock account Switches -d (–delete) Deletes a user password does not expire the user account. -e (–expire) Forces a user to change their password upon next logon. sets date to prior to Unix time -i (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. (field 7 in shadow file) -l (–lock) Locks a user account. -n (–minimum) Specifies the number of days that must elapse before the password can be changed. (field 4 in shadow file) -S (–status) Displays the status information for a user. -u (–unlock) Unlocks a locked user account. -w (–warning) Designates the number of days for which the user gets alerts to change their password before it actually expires. (field 6 in shadow file) -x (–maximum) Denotes the maximum number of days of password validity before the user password expires and it must be changed. (field 5 in shadow file) usermod command Modify a user’s attribute Lock or unlock their account Switches -L (–lock) Locks a user account by placing a single exclamation mark (!) at the beginning of the password field and before the hashed password string. -U (–unlock) Unlocks a user’s account by removing the exclamation mark (!) from the beginning of the password field.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
@@ -19,25 +19,25 @@
     <meta itemprop="description" content="Password Aging attributes Can be done for an individual user or applied to all users. Can prevent users from logging in to the system by locking their access for a period of time or permanently. Must be performed by a user with elevated privileges of the root user. Normal users may be allowed access to privileged commands by defining them appropriately in a configuration file. Each file that exists on the system regardless of its type has an owning user and an owning group. every file that a user creates is in the ownership of that user. ownership may be changed and given to another user by a super user. Password Aging and management Setting restrictions on password expiry, account disablement, locking and unlocking users, and password change frequency. Can choose to inactivate it completely for an individual user. Stored in the /etc/shadow file (fields 4 to 8) and its default policies in the /etc/login.defs configuration file. aging management tools—chage and passwd— usermod command can be used to implement two aging attributes (user expiry and password expiry) and lock and unlock user accounts. chage command Set or alter password aging parameters on a user account. Changes various fields in the shadow file Switches -d (–lastday) Specifies an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time when the password was last modified. With -d 0, the user is forced to change the password at next login. It corresponds to field 3 in the shadow file. -E (–expiredate) Sets an explicit date in the YYYY-MM-DD format, or the number of days since the UNIX time on which the user account is deactivated. This feature can be disabled with -E -1. It corresponds to the eighth field in the shadow file. -I (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. The user may be able to log in during this period with their expired password. This feature can be disabled with -I -1. It corresponds to field 7 in the shadow file. -l Lists password aging attributes set on a user account. -m (–mindays) Indicates the minimum number of days that must elapse before the password can be changed. A value of 0 allows the user to change their password at any time. It corresponds to field 4 in the shadow file. -M (–maxdays) Denotes the maximum number of days of password validity before the user password expires and it must be changed. This feature can be disabled with -M -1. It corresponds to field 5 in the shadow file. -W (–warndays) Designates the number of days for which the user gets alerts to change their password before it expires. It corresponds to field 6 in the shadow file. passwd command set or modify a user’s password modify the password aging attributes and lock or unlock account Switches -d (–delete) Deletes a user password does not expire the user account. -e (–expire) Forces a user to change their password upon next logon. sets date to prior to Unix time -i (–inactive) Defines the number of days of inactivity after the password expiry and before the account is locked. (field 7 in shadow file) -l (–lock) Locks a user account. -n (–minimum) Specifies the number of days that must elapse before the password can be changed. (field 4 in shadow file) -S (–status) Displays the status information for a user. -u (–unlock) Unlocks a locked user account. -w (–warning) Designates the number of days for which the user gets alerts to change their password before it actually expires. (field 6 in shadow file) -x (–maximum) Denotes the maximum number of days of password validity before the user password expires and it must be changed. (field 5 in shadow file) usermod command Modify a user’s attribute Lock or unlock their account Switches -L (–lock) Locks a user account by placing a single exclamation mark (!) at the beginning of the password field and before the hashed password string. -U (–unlock) Unlocks a user’s account by removing the exclamation mark (!) from the beginning of the password field.">
     <meta itemprop="wordCount" content="689">
     <title></title>
-    <link href="http://perfectdarkmode.com/linux/rhcsa/password-aging-attributes/" rel="canonical" type="text/html" title="">
+    <link href="http://localhost:1313/linux/rhcsa/password-aging-attributes/" rel="canonical" type="text/html" title="">
     <link href="/linux/rhcsa/password-aging-attributes/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/logo.svg?1741554912" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741554912" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741554912" rel="stylesheet">
-    <link href="/css/fonts.css?1741554912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741554912" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741554912" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741554912" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741554912" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741554912" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741554912" rel="stylesheet">
-    <script src="/js/variant.js?1741554912"></script>
+    <link href="/images/logo.svg?1741626033" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741626033" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741626033" rel="stylesheet">
+    <link href="/css/fonts.css?1741626033" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741626033" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741626033" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741626033" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741626033" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741626033" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741626033" rel="stylesheet">
+    <script src="/js/variant.js?1741626033"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/perfectdarkmode.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -53,11 +53,11 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script><style>
 :root {
-    --MENU-WIDTH-S: 14.375rem;
-    --MENU-WIDTH-M: 14.375rem;
-    --MENU-WIDTH-L: 18.75rem;
+    --MENU-WIDTH-S: 12.375rem;
+    --MENU-WIDTH-M: 12.375rem;
+    --MENU-WIDTH-L: 16.75rem;
     --MAIN-WIDTH-MAX: 80rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 </style>
 
@@ -125,8 +125,8 @@
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741554912" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741554912" defer></script>
+    <script src="/js/clipboard.min.js?1741626033" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741626033" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -142,20 +142,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741554912" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741554912" defer></script>
-    <script src="/js/js-yaml.min.js?1741554912" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741626033" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741626033" defer></script>
+    <script src="/js/js-yaml.min.js?1741626033" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741554912" defer></script>
+    <script src="/js/theme.js?1741626033" defer></script>
   </body>
 </html>
