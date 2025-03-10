@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="RPM (Redhat Package Manager) Specially formatted File(s) packaged together with the .rpm extension. Packages included or available for RHEL are in rpm format. Metadata info gets updated whenever a package is updated. rpm command Install, Upgrade, remove, query, freshen, or decompress packages. Validate package authenticity and integrity. Packages Two types of packages binary (or installable) and source. Binary packages
+Installation ready Bundled for distribution. Have .rpm extension. Contain: install scripts (pre and post) Executables Configuration files Library files Dependency information Where to install files Documentation How to install/uninstall Man pages for config files/commands Other install and usage info Metadata Stored in central location Includes: Package version Install location Checksum values List of included files and their attributes Package intelligence Used by package administration toolset for successful completion of the package installation process. May include info on: prerequisites User account setup Needed directories/ soft links Includes reverse process for uninstall Package Naming 5 parts to a package name: 1. Name 2. Version 3. release (revision or build) 4. Linux version 5. Processor Architecture - noarch - platform independant - src - Source code packages">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="RPM (Redhat Package Manager) Specially formatted File(s) packaged together with the .rpm extension. Packages included or available for RHEL are in rpm format. Metadata info gets updated whenever a package is updated. rpm command Install, Upgrade, remove, query, freshen, or decompress packages. Validate package authenticity and integrity. Packages Two types of packages binary (or installable) and source. Binary packages
+Installation ready Bundled for distribution. Have .rpm extension. Contain: install scripts (pre and post) Executables Configuration files Library files Dependency information Where to install files Documentation How to install/uninstall Man pages for config files/commands Other install and usage info Metadata Stored in central location Includes: Package version Install location Checksum values List of included files and their attributes Package intelligence Used by package administration toolset for successful completion of the package installation process. May include info on: prerequisites User account setup Needed directories/ soft links Includes reverse process for uninstall Package Naming 5 parts to a package name: 1. Name 2. Version 3. release (revision or build) 4. Linux version 5. Processor Architecture - noarch - platform independant - src - Source code packages">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="RPM (Redhat Package Manager) Specially formatted File(s) packaged together with the .rpm extension. Packages included or available for RHEL are in rpm format. Metadata info gets updated whenever a package is updated. rpm command Install, Upgrade, remove, query, freshen, or decompress packages. Validate package authenticity and integrity. Packages Two types of packages binary (or installable) and source. Binary packages
+Installation ready Bundled for distribution. Have .rpm extension. Contain: install scripts (pre and post) Executables Configuration files Library files Dependency information Where to install files Documentation How to install/uninstall Man pages for config files/commands Other install and usage info Metadata Stored in central location Includes: Package version Install location Checksum values List of included files and their attributes Package intelligence Used by package administration toolset for successful completion of the package installation process. May include info on: prerequisites User account setup Needed directories/ soft links Includes reverse process for uninstall Package Naming 5 parts to a package name: 1. Name 2. Version 3. release (revision or build) 4. Linux version 5. Processor Architecture - noarch - platform independant - src - Source code packages">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="RPM (Redhat Package Manager) Specially formatted File(s) packaged together with the .rpm extension. Packages included or available for RHEL are in rpm format. Metadata info gets updated whenever a package is updated. rpm command Install, Upgrade, remove, query, freshen, or decompress packages. Validate package authenticity and integrity. Packages Two types of packages binary (or installable) and source. Binary packages
+Installation ready Bundled for distribution. Have .rpm extension. Contain: install scripts (pre and post) Executables Configuration files Library files Dependency information Where to install files Documentation How to install/uninstall Man pages for config files/commands Other install and usage info Metadata Stored in central location Includes: Package version Install location Checksum values List of included files and their attributes Package intelligence Used by package administration toolset for successful completion of the package installation process. May include info on: prerequisites User account setup Needed directories/ soft links Includes reverse process for uninstall Package Naming 5 parts to a package name: 1. Name 2. Version 3. release (revision or build) 4. Linux version 5. Processor Architecture - noarch - platform independant - src - Source code packages">
+    <meta itemprop="wordCount" content="670">
+    <title></title>
+    <link href="/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
+    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741647087" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741647087"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa" title="RHCSA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#rpm-redhat-package-manager">RPM (Redhat Package Manager)</a>
+      <ul>
+        <li><a href="#rpm-command">rpm command</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#package-naming">Package Naming</a></li>
+        <li><a href="#package-dependency">Package Dependency</a></li>
+        <li><a href="#package-database">Package Database</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#package-management-tools">Package Management Tools</a></li>
+        <li><a href="#package-management-with-rpm">Package management with rpm</a></li>
+        <li><a href="#rpm-command-1">rpm command</a></li>
+        <li><a href="#querying-packages">Querying packages</a></li>
+        <li><a href="#installing-a-package">Installing a package</a></li>
+        <li><a href="#upgrading-a-package">Upgrading a package</a></li>
+        <li><a href="#freshening-a-package">Freshening a package</a></li>
+        <li><a href="#overwriting-a-package">Overwriting a Package</a></li>
+        <li><a href="#removing-a-package">Removing a Package</a></li>
+        <li><a href="#extracting-files-from-an-installable-package">Extracting Files from an Installable Package</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes/rpm-%28redhat-package-manager%29?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-exam-environment" title="RHCSA Exam Environment Guide (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="rpm-redhat-package-manager">RPM (Redhat Package Manager)</h2>
+<ul>
+<li>Specially formatted File(s) packaged together with the .rpm extension.</li>
+<li>Packages included or available for RHEL are in rpm format.</li>
+<li>Metadata info gets updated whenever a package is updated.</li>
+</ul>
+<h3 id="rpm-command">rpm command</h3>
+<ul>
+<li>Install, Upgrade, remove, query, freshen, or decompress packages.</li>
+<li>Validate package authenticity and integrity.</li>
+</ul>
+<h3 id="packages">Packages</h3>
+<ul>
+<li>Two types of packages binary (or installable) and source.</li>
+</ul>
+<p><strong>Binary packages</strong></p>
+<ul>
+<li>Installation ready</li>
+<li>Bundled for distribution.</li>
+<li>Have .rpm extension.</li>
+<li>Contain:
+<ul>
+<li>install scripts (pre and post)</li>
+<li>Executables</li>
+<li>Configuration files</li>
+<li>Library files</li>
+<li>Dependency information</li>
+<li>Where to install files</li>
+<li>Documentation
+<ul>
+<li>How to install/uninstall</li>
+<li>Man pages for config files/commands</li>
+<li>Other install and usage info</li>
+</ul>
+</li>
+<li>Metadata
+<ul>
+<li>Stored in central location</li>
+<li>Includes:
+<ul>
+<li>Package version</li>
+<li>Install location</li>
+<li>Checksum values</li>
+<li>List of included files and their attributes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Package intelligence
+<ul>
+<li>Used by package administration toolset for successful completion of the package installation process.</li>
+<li>May include info on:
+<ul>
+<li>prerequisites</li>
+<li>User account setup</li>
+<li>Needed directories/ soft links</li>
+</ul>
+</li>
+<li>Includes reverse process for uninstall</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-naming">Package Naming</h3>
+<p>5 parts to a package name:
+1. Name
+2. Version
+3. release (revision or build)
+4. Linux version 
+5. Processor Architecture
+- noarch
+- platform independant
+- src
+- Source code packages</p>
+<ul>
+<li>Always has .rpm extension</li>
+<li>.rpm is removed after install
+Example:
+openssl-1.1.1-8.el8.x86_64.rpm,</li>
+</ul>
+<h3 id="package-dependency">Package Dependency</h3>
+<ul>
+<li>Dependency info is in the metadata
+<ul>
+<li>Read by package handling utilities</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-database">Package Database</h3>
+<ul>
+<li>Metadata for installed packages and package files is stored in /var/lib/rpm/
+<ul>
+<li>Package database</li>
+<li>Referenced by package manipulation utilities to obtain:
+<ul>
+<li>package name and version data</li>
+<li>Info about owerships, permissions, timestamps, and file sizes that are part of the package.</li>
+<li>Contain info on dependencies.</li>
+<li>Aids management commands in:
+<ul>
+<li>listing and querying packages</li>
+<li>Verifying dependencies and file attributes.</li>
+<li>Installing new packages.</li>
+<li>Upgrading and uninstalling packages.</li>
+</ul>
+</li>
+<li>Removes and replaces metadata when a package is replaced.</li>
+<li>Can maintain multiple version of a single package.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="left-off-here">Left off here</h1>
+<h3 id="package-management-tools">Package Management Tools</h3>
+<ul>
+<li>rpm (redhat package manager)
+<ul>
+<li>Does not automatically resolve dependencies.</li>
+</ul>
+</li>
+<li>yum (yellowdog update, modified)
+<ul>
+<li>Find, get, and install dependencies automatically.</li>
+<li>softlink to dnf now.</li>
+</ul>
+</li>
+<li>dnf (dandified yum)</li>
+</ul>
+<h3 id="package-management-with-rpm">Package management with rpm</h3>
+<p>rpm package management tasks:
+- query
+- install
+- upgrade
+- freshen
+- overwrite
+- remove
+- extract
+- validate
+- verify</p>
+<ul>
+<li>Works with installed and installable packages.</li>
+</ul>
+<h3 id="rpm-command-1">rpm command</h3>
+<h6 id="query-options">Query options</h6>
+<p>Query and display packages<br>
+<code>-q (--query)</code> <br>
+<br>
+List all installed packages<br>
+<code>-qa (--query --all)</code><br>
+<br>
+List config files in a package<br>
+<code>-qc (--query --config-files)</code><br>
+<br>
+List documentation files in a package<br>
+<code>-qd (--query --docfiles)</code> <br>
+<br>
+Exhibit what package a file comes from<br>
+<code>-qf (--query --file)</code> <br>
+<br>
+Show installed package info (Version, Size, Installation status, Date, Signature, Description, etc.)
+<code>-qi (--query --info)</code></p>
+<p>Show installable package info (Version, Size, Installation status, Date, Signature, Description, etc.)
+<code>-qip (--query --info --package)</code></p>
+<p>List all files in a package.<br>
+<code>-ql (--query --list)</code></p>
+<p>List files and packages a package depends on. <br>
+<code>-qR (--query --requires)</code></p>
+<p>List packages that provide the specified package or file.<br>
+<code>-q --whatprovides</code></p>
+<p>List packages that require the specified package or file.<br>
+<code>-q --whatrequires</code></p>
+<h6 id="package-installation-options">Package installation options</h6>
+<p>Remove a package<br>
+<code>-e (--erase)</code></p>
+<p>Upgrades installed package. Or loads if not installed.<br>
+<code>-U (--upgrade)</code></p>
+<p>Display detailed information<br>
+<code>-v (--verbose or -vv)</code></p>
+<p>Verify integrity of a package or package files<br>
+<code>-V (--verify)</code></p>
+<h3 id="querying-packages">Querying packages</h3>
+<p>Query packages in the package database or at a specified location.</p>
+<h3 id="installing-a-package">Installing a package</h3>
+<ul>
+<li>Creates directory structure needed</li>
+<li>Installs files</li>
+<li>Runs needed post installation steps</li>
+<li>Installing package will fail if missing dependencies.</li>
+<li>Error message will show missing dependencies.</li>
+</ul>
+<h3 id="upgrading-a-package">Upgrading a package</h3>
+<ul>
+<li>Installs the package if previous version does not exist. (-U)</li>
+<li>Makes backup of effected configuration files and adds .rpmsave extension.</li>
+</ul>
+<h3 id="freshening-a-package">Freshening a package</h3>
+<ul>
+<li>Older version must exist.</li>
+<li>-F option</li>
+<li>Will only work if a newer version of a package is available.</li>
+</ul>
+<h3 id="overwriting-a-package">Overwriting a Package</h3>
+<ul>
+<li>Replaces existing files of a package with the same version.</li>
+<li>&ndash;replacepkgs option.</li>
+<li>Useful when you suspect corruption.</li>
+</ul>
+<h3 id="removing-a-package">Removing a Package</h3>
+<ul>
+<li>Uninstalls package and associated files/ directories</li>
+<li>-e Option</li>
+<li>Checks to see if this package is a dependency for another program and fails if it is.</li>
+</ul>
+<h3 id="extracting-files-from-an-installable-package">Extracting Files from an Installable Package</h3>
+<ul>
+<li><code>rpm2cpio</code> command</li>
+<li>-i (extract)</li>
+<li>-d create directory structure.
+Useful for:
+<ul>
+<li>Examining package contents.</li>
+<li>Replacing corrupt or lost command.</li>
+<li>Replace critical configuration file to it&rsquo;s original state</li>
+</ul>
+</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741647087";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
+        <script src="/js/search.js?1741647087" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><a class="padding" href="/linux/fedora/"><i class="fa-fw fas fa-angle-down"></i> Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/linux/rhcsa/"><a class="padding" href="/linux/rhcsa/"><i class="fa-fw fas fa-angle-down"></i> RHCSA</a><ul id="R-subsections-2c51772c3489e4d820f23d680b3a1d70" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/"></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-exam-environment/"><a class="padding" href="/linux/rhcsa/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-study-tracker/"><a class="padding" href="/linux/rhcsa/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/using-man-pages/"><a class="padding" href="/linux/rhcsa/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/rhcsa-notes/rpm-redhat-package-manager/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741647087" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
+    <script src="/js/js-yaml.min.js?1741647087" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741647087" defer></script>
+  </body>
+</html>

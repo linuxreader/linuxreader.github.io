@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Permission Classes and Types Permission classes
+user (u) group (g) other (o) (public) all (a) &lt;- all combined Permission types
+r,w,x works differently on files and directories hyphen (-) represents no permissions set ls results permissions groupings rwx rw- r– user (owner), group, and other (public) ls results first character meaning regular file d directory l symbolic link c character device file b block device file p named pipe s socket Modifying Access Permission Bits chmod command Modify permissions using symbolic or octal notation. Used by root or the file owner. Flags chmod -v ::: Verbose.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Permission Classes and Types Permission classes
+user (u) group (g) other (o) (public) all (a) &lt;- all combined Permission types
+r,w,x works differently on files and directories hyphen (-) represents no permissions set ls results permissions groupings rwx rw- r– user (owner), group, and other (public) ls results first character meaning regular file d directory l symbolic link c character device file b block device file p named pipe s socket Modifying Access Permission Bits chmod command Modify permissions using symbolic or octal notation. Used by root or the file owner. Flags chmod -v ::: Verbose.">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/rhcsa-notes/permission-classes-and-types/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Permission Classes and Types Permission classes
+user (u) group (g) other (o) (public) all (a) &lt;- all combined Permission types
+r,w,x works differently on files and directories hyphen (-) represents no permissions set ls results permissions groupings rwx rw- r– user (owner), group, and other (public) ls results first character meaning regular file d directory l symbolic link c character device file b block device file p named pipe s socket Modifying Access Permission Bits chmod command Modify permissions using symbolic or octal notation. Used by root or the file owner. Flags chmod -v ::: Verbose.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Permission Classes and Types Permission classes
+user (u) group (g) other (o) (public) all (a) &lt;- all combined Permission types
+r,w,x works differently on files and directories hyphen (-) represents no permissions set ls results permissions groupings rwx rw- r– user (owner), group, and other (public) ls results first character meaning regular file d directory l symbolic link c character device file b block device file p named pipe s socket Modifying Access Permission Bits chmod command Modify permissions using symbolic or octal notation. Used by root or the file owner. Flags chmod -v ::: Verbose.">
+    <meta itemprop="wordCount" content="545">
+    <title></title>
+    <link href="/linux/rhcsa/rhcsa-notes/permission-classes-and-types/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/rhcsa-notes/permission-classes-and-types/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
+    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741647087" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741647087"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/rhcsa-notes/permission-classes-and-types/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa" title="RHCSA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#permission-classes-and-types">Permission Classes and Types</a>
+      <ul>
+        <li><a href="#ls-results-permissions-groupings">ls results permissions groupings</a></li>
+        <li><a href="#ls-results-first-character-meaning">ls results first character meaning</a></li>
+        <li><a href="#modifying-access-permission-bits">Modifying Access Permission Bits</a></li>
+        <li><a href="#chmod--command"><code>chmod</code>  command</a></li>
+        <li><a href="#symbolic-notation">Symbolic notation</a></li>
+        <li><a href="#octal-notation">Octal Notation</a></li>
+        <li><a href="#default-permissions">Default Permissions</a></li>
+        <li><a href="#umask-command">umask command</a></li>
+        <li><a href="#special-permission-bits">Special Permission Bits</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes/permission-classes-and-types?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-exam-environment" title="RHCSA Exam Environment Guide (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="permission-classes-and-types">Permission Classes and Types</h2>
+<p><strong>Permission classes</strong></p>
+<ul>
+<li>user (u)</li>
+<li>group (g)</li>
+<li>other (o) (public)</li>
+<li>all (a) &lt;- all combined</li>
+</ul>
+<p><strong>Permission types</strong></p>
+<ul>
+<li>r,w,x</li>
+<li>works differently on files and directories</li>
+<li>hyphen (-) represents no permissions set</li>
+</ul>
+<h3 id="ls-results-permissions-groupings">ls results permissions groupings</h3>
+<ul>
+<li>
+<ul>
+<li>rwx rw- r&ndash;
+<ul>
+<li>user (owner), group, and other (public)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ls-results-first-character-meaning">ls results first character meaning</h3>
+<ul>
+<li>regular file
+d directory
+l symbolic link
+c character device file
+b block device file
+p named pipe
+s socket</li>
+</ul>
+<h3 id="modifying-access-permission-bits">Modifying Access Permission Bits</h3>
+<h3 id="chmod--command"><code>chmod</code>  command</h3>
+<ul>
+<li>Modify permissions using symbolic or octal notation.</li>
+<li>Used by root or the file owner.</li>
+</ul>
+<p>Flags
+chmod -v ::: Verbose.</p>
+<h3 id="symbolic-notation">Symbolic notation</h3>
+<ul>
+<li>Letters (ugo/rwx) and symbols (+, -, =) used to add, revoke, or assign permission bits.</li>
+</ul>
+<h3 id="octal-notation">Octal Notation</h3>
+<p>Three-digit numbering system ranging from 0 to 7.
+0 &mdash;
+1 &ndash;x
+2 -w-
+3 -wx
+4 r&ndash;
+5 r-x
+6 rw-
+7 rwx</p>
+<h3 id="default-permissions">Default Permissions</h3>
+<ul>
+<li>Calculated based on the umask (user mask) value subtracted from the initial permissions value.</li>
+</ul>
+<h4 id="umask">umask</h4>
+<ul>
+<li>Three-digit value (octal or symbolic) that refers to read, write, and execute permissions for owner, group, and public.</li>
+<li>Default umask value is 0022 for the root user and 0002 normal users.</li>
+<li>The left-most 0 has no significance.</li>
+<li>If umask is set to 000 files will get max of 666</li>
+<li>If the initial permissions are 666 and the umask is 002 then the default permissions are 664. (666-002)</li>
+<li>Any new files or directories created after changing the umask will have the new default permissions set.</li>
+<li>umask settings are lost when you log off. Add it to the appropriate startup file to make it permanent.</li>
+</ul>
+<p>Defaults</p>
+<ul>
+<li>files 666 rw-rw-rw-</li>
+<li>directories 777 rwxrwxrwx</li>
+</ul>
+<h3 id="umask-command">umask command</h3>
+<p>Options</p>
+<ul>
+<li>-S symbolic form</li>
+</ul>
+<h3 id="special-permission-bits">Special Permission Bits</h3>
+<hr>
+<ul>
+<li>3 types of special permission bits for executable files or directories for non root users
+<ul>
+<li>setuid</li>
+<li>setgid</li>
+<li>sticky</li>
+</ul>
+</li>
+<li>setuid
+<ul>
+<li>set on exe&rsquo;s to provide non-owners the ability to run them with the privileges of the owning user</li>
+<li>may be set on directories and files but will have no effect.</li>
+<li>example: the su command</li>
+<li>shows an &rsquo;s&rsquo; in ls -l listing at the end of owners permissions</li>
+<li>If the file already has the “x” bit set for the user, the long listing will show a lowercase “s”, otherwise it will list it with an uppercase “S”.</li>
+</ul>
+</li>
+<li>setgid
+<ul>
+<li>set on exe&rsquo;s to provide non-group members the ability to run them with the privileges of the owning group.</li>
+<li>May be set on shared directories
+<ul>
+<li>allow files and subdirectories created underneath to automatically inherit the directory’s owning group.</li>
+<li>saves group members who are sharing the directory contents from changing the group ID for every new file and subdirectory that they add.</li>
+</ul>
+</li>
+<li>write command has this set by default so a member of the tty group can run it. If the file already has the “x” bit set for the group, the long listing will show a lowercase “s”, otherwise it will list it with an uppercase “S”.</li>
+</ul>
+</li>
+<li>Sticky bit
+<ul>
+<li>may be set on public directories for inhibiting file deletion by non-owners</li>
+<li>may be set on directories and files but will have no effect.</li>
+<li>Set on /tmp and /var/tmp by default</li>
+<li>Letter &ldquo;t&rdquo; in other permission feild</li>
+<li>If the directory already has the “x” bit set for public, the long listing will show a lowercase “t”, otherwise it will list it with an uppercase “T”.</li>
+</ul>
+</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741647087";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
+        <script src="/js/search.js?1741647087" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><a class="padding" href="/linux/fedora/"><i class="fa-fw fas fa-angle-down"></i> Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/linux/rhcsa/"><a class="padding" href="/linux/rhcsa/"><i class="fa-fw fas fa-angle-down"></i> RHCSA</a><ul id="R-subsections-2c51772c3489e4d820f23d680b3a1d70" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/rhcsa/rhcsa-notes/permission-classes-and-types/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/permission-classes-and-types/"></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-exam-environment/"><a class="padding" href="/linux/rhcsa/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-study-tracker/"><a class="padding" href="/linux/rhcsa/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/using-man-pages/"><a class="padding" href="/linux/rhcsa/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/rhcsa-notes/permission-classes-and-types/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741647087" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
+    <script src="/js/js-yaml.min.js?1741647087" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741647087" defer></script>
+  </body>
+</html>

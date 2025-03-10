@@ -9,8 +9,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader",
-    "content": "Fedora My Fedora Setup Silverblue RHCSA RHCSA Notes RHCSA Study Tracker RHCSA Vagrant Lab Setup You Need to Learn Man Pages RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
-    "description": "Fedora My Fedora Setup Silverblue RHCSA RHCSA Notes RHCSA Study Tracker RHCSA Vagrant Lab Setup You Need to Learn Man Pages RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
+    "content": "Fedora My Fedora Setup Silverblue RHCSA RHCSA Exam Environment Guide RHCSA Notes RHCSA Study Tracker RHCSA Vagrant Lab Setup You Need to Learn Man Pages RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
+    "description": "Fedora My Fedora Setup Silverblue RHCSA RHCSA Exam Environment Guide RHCSA Notes RHCSA Study Tracker RHCSA Vagrant Lab Setup You Need to Learn Man Pages RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
     "tags": [],
     "title": "Linux",
     "uri": "/linux/"
@@ -22,6 +22,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "CCNA",
     "uri": "/networking/ccna/"
+  },
+  {
+    "breadcrumb": "Linux Reader \u003e Tools",
+    "content": "Vim GuideGuide to using Vim",
+    "description": "Vim",
+    "tags": [],
+    "title": "Vim",
+    "uri": "/tools/vim/"
   },
   {
     "breadcrumb": "Linux Reader \u003e Linux",
@@ -49,7 +57,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader \u003e Linux",
-    "content": "RHCSA NotesMy notes from RHCSA\nRHCSA Study TrackerSpaced repitition RHCSA Study Calendar\nRHCSA Vagrant Lab SetupLab setup for RHCSA using Vagrant\nYou Need to Learn Man PagesGuide to using Man Pages",
+    "content": "RHCSA Exam Environment GuideExam environment guide for RHCSA\nRHCSA NotesMy notes from RHCSA\nRHCSA Study TrackerSpaced repitition RHCSA Study Calendar\nRHCSA Vagrant Lab SetupLab setup for RHCSA using Vagrant\nYou Need to Learn Man PagesGuide to using Man Pages",
     "description": "RHCSA",
     "tags": [],
     "title": "RHCSA",
@@ -57,8 +65,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader",
-    "content": "Posts Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Using Vagrant on Linux",
-    "description": "Posts Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Using Vagrant on Linux",
+    "content": "Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Using Vagrant on Linux",
+    "description": "Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Using Vagrant on Linux",
     "tags": [],
     "title": "Tools",
     "uri": "/tools/"
@@ -329,7 +337,15 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader \u003e Linux \u003e RHCSA",
-    "content": "Here are my notes from Asghar Gori’s RHCSA book. Buy the book or read the reviews here.\nTrack my RHCSA progress: RHCSA Study Tracker\nInstallation Interaction File Management Advanced File Management Basic User Management Advanced User Management Bash Process and Task Scheduling Basic Package Management Advanced Package Management Boot Process, Grub2, and Kernel System Initialization, Message Logging, and System Tuning Storage Management Local File Systems and Swap Networking Network Devices and Network Connections Network File System (NFS) DNS and Time Synchronization The Secure Shell Service The Linux Firewall Security Enhanced Linux Shell Scripting Containers Sample Exam 1 Sample exam 2 Sample Exam 3 Sample Exam 4 Extra Resourses Using Man Pages RHCSA Exam Environment Exam course",
+    "content": "https://www.youtube.com/watch?v=Me6Y12-sux8\u0026list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX\u0026index=2\nBe aware of the timer for the exam\nEach task has a revisit and done button for you reference. The exam system does not take these into account.\nClick activities \u003e terminal to bring up a new terminal. You ssh into the lab vms from there.\nFor vm manager activities \u003e vm manager\nIp addresses are located in config information\nCan also open a console from VM manager\nFrom vm manager, you can select “Rebuild node # vm” to erase and reset the vm.\nTry not to use keyboard shortcuts, as it may not behave well in the environment.\nCan open chat icon to take a break. Exam timer is still running during break. May have to perform room scan when you start back up.\nContact proctor if you need help.\nExam setup https://www.youtube.com/watch?v=TmrS7FhaaRA\u0026list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX\u0026index=3\nNeed an 8gb usb and fedora media writer 4gb free space on laptop 4g RAM minimum wired mouse two webcams (laptop builtin and external) High speed internet ID Proof No electronic devices No paper or any helping material You can skip questions if you want and go back.\nYou set up exam environment laptop. You will get an email with the details and the exam image.\nFound a PDF on the setup but it may not be up to date: https://learn.redhat.com/t5/Certification-Resources/Getting-Ready-for-your-Red-Hat-Remote-Exam/ba-p/33528?attachment-id=166\nMax Marks: 300 Passing marks: 70% (210) 1 free exam retake",
+    "description": "Exam environment guide for RHCSA",
+    "tags": [],
+    "title": "RHCSA Exam Environment Guide",
+    "uri": "/linux/rhcsa/rhcsa-exam-environment/"
+  },
+  {
+    "breadcrumb": "Linux Reader \u003e Linux \u003e RHCSA",
+    "content": "Here are my notes from Asghar Gori’s RHCSA book. Buy the book or read the reviews here.\nTrack my RHCSA progress: RHCSA Study Tracker\nInstallation Interaction File Management Advanced File Management Basic User Management Advanced User Management Bash Process and Task Scheduling Basic Package Management Advanced Package Management Boot Process, Grub2, and Kernel System Initialization, Message Logging, and System Tuning Storage Management Local File Systems and Swap Networking Network Devices and Network Connections Network File System (NFS) DNS and Time Synchronization The Secure Shell Service The Linux Firewall Security Enhanced Linux Shell Scripting Containers Sample Exam 1 Sample exam 2 Sample Exam 3 Sample Exam 4 Extra Resourses Using Man Pages RHCSA Exam Environment",
     "description": "My notes from RHCSA",
     "tags": [],
     "title": "RHCSA Notes",
@@ -374,6 +390,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tags",
     "uri": "/tags/"
+  },
+  {
+    "breadcrumb": "Linux Reader \u003e Categories",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Category :: Text Editors",
+    "uri": "/categories/text-editors/"
   },
   {
     "breadcrumb": "Linux Reader \u003e Book Notes",
@@ -438,6 +462,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Using Vagrant on Linux",
     "uri": "/tools/using-vagrant-on-linux/"
+  },
+  {
+    "breadcrumb": "Linux Reader \u003e Tools \u003e Vim",
+    "content": "Vim (Vi Improved)\nVim stands for vi (Improved) just like its name it stands for an improved version of the vi text editor command.\nLightweight\nStart Vim\nvim Vim Search Patterns Moving the Cursor h or left arrow - move left one character k or up arrow - move up one line j or down arrow - move down one line l or right arrow - will move you right one character\nDifferent Vim Modes I - Enter INSERT mode from command mode esc - Go back to command mode v - visual mode\nVim Appending Text In enter while in command mode and will bring you to insert mode.\nI - insert text before the cursor O - insert text on the previous line o - insert text on the next line a - append text after cursor A - append text at the end of the line\nVim editing x - used to cut the selected text also used for deleting characters dd - used to delete the current line y - yank or copy whatever is selected yy - yank or copy the current line p - paste the copied text before the cursor\nVim Saving and exiting :w - writes or saves the file :q - quit out of vim :wq - write and then quit :q! - quit out of vim without saving the file ZZ - equivalent of :wq, but one character faster\nu - undo your last action Ctrl-r - redo your last action :% sort - Sort lines\nVim Splits Add to .vimrc for different key mappings for easy navigation between splits to save a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:\nnnoremap \u003cC-J\u003e \u003cC-W\u003e\u003cC-J\u003e nnoremap \u003cC-K\u003e \u003cC-W\u003e\u003cC-K\u003e nnoremap \u003cC-L\u003e \u003cC-W\u003e\u003cC-L\u003e nnoremap \u003cC-H\u003e \u003cC-W\u003e\u003cC-H\u003e Open file in new split :vsp filename https://github.com/preservim/nerdtree\nFind and Replace https://linuxize.com/post/vim-find-replace/\nFind and Replace Text in File(s) with Vim Find and replace in a single file Open the file in Vim, this command will replace all occurances of the word “foo” with “bar”.\n:%s/foo/bar/g % - apply to whole file s - substitution g - operate on all results\nFind and replace a string in all files in current directory In vim, select all files with args. Use regex to select the files you want. Select all files with *\n:args * You can also select all recursively:\n:args ** Run :args to see which files are selected\"\n:args Perform substitution with argdo This applies the replacement command to all selected args:\n:argdo %s/foo/bar/g | update Nerd Tree Plugin Add to .vimrc\ncall plug#begin() Plug 'preservim/nerdtree' call plug#end() nnoremap \u003cleader\u003en :NERDTreeFocus\u003cCR\u003e nnoremap \u003cC-n\u003e :NERDTree\u003cCR\u003e nnoremap \u003cC-t\u003e :NERDTreeToggle\u003cCR\u003e nnoremap \u003cC-f\u003e :NERDTreeFind\u003cCR\u003e Vim Calendar dhttps://blog.mague.com/?p=602\nAdd to vim.rc\n:auto FileType vim/wiki map d :Vim/wikiMakeDiaryNote function! ToggleCalendar() execute \":Calendar\" if exists(\"g:calendar_open\") if g:calendar_open == 1 execute \"q\" unlet g:calendar_open else g:calendar_open = 1 end else let g:calendar_open = 1 end endfunction :auto FileType vim/wiki map c :call ToggleCalendar()i Vimwiki Cheat sheet http://thedarnedestthing.com/vimwiki%20cheatsheet\nSet up Make sure git is installed? https://github.com/git-guides/install-git\nCheck git version git --version Check git version\ndnf git install sudo dnf install git-all\nhttps://github.com/junegunn/vim-plug\nDownload plug.vim and put it in ~/.vim/autoload\ncurl -fLo ~/.vim/autoload/plug.vim --create-dirs \\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim Create ~/.vimrc touch ~/.vimrc\nAdd to ~/.vimrc Installation using Vim-Plug Install Vim Plug\ncurl -fLo ~/.vim/autoload/plug.vim --create-dirs \\https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim Add the following to the plugin-configuration in your vimrc:\nset nocompatible filetype plugin on syntax on call plug#begin() Plug 'vimwiki/vimwiki' call plug#end() let mapleader=\" \" let wiki_1 = {} let wiki_1.path = '~/Documents/PerfectDarkMode/' let wiki_1.syntax = 'markdown' let wiki_1.ext = '' let wiki_2 = {} let wiki_2.path = '~/Documents/vim/wiki_personal/' let wiki_2.syntax = 'markdown' let wiki_2.ext = '' let g:vimwiki_list = [wiki_1, wiki_2] Then run :PlugInstall.\n(leader)ws select which wiki to use\nBasic Markup = Header1 = == Header2 == === Header3 === *bold* -- bold text _italic_ -- italic text [wiki link](wiki%20link) -- wiki link [description](wiki%20link) -- wiki link with description Lists * bullet list item 1 - bullet list item 2 - bullet list item 3 * bullet list item 4 * bullet list item 5 * bullet list item 6 * bullet list item 7 - bullet list item 8 - bullet list item 9 1. numbered list item 1 2. numbered list item 2 a) numbered list item 3 b) numbered list item 4 For other syntax elements, see :h vimwiki-syntax\nVimwiki Table of Contents :VimwikiTOC Create or update the Table of Contents for the current wiki file. See |vimwiki-toc|.\nTable of Contents vimwiki-toc vimwiki-table-of-contents\nYou can create a “table of contents” at the top of your wiki file. The command |:VimwikiTOC| creates the magic header \u003e = Contents = in the current file and below it a list of all the headers in this file as links, so you can directly jump to specific parts of the file.\nFor the indentation of the list, the value of |vimwiki-option-list_margin| is used.\nIf you don’t want the TOC to sit in the very first line, e.g. because you have a modeline there, put the magic header in the second or third line and run :VimwikiTOC to update the TOC.\nIf English is not your preferred language, set the option |g:vimwiki_toc_header| to your favorite translation.\nIf you want to keep the TOC up to date automatically, use the option |vimwiki-option-auto_toc|.\nvimwiki-option-auto_toc\nKey Default value Values~ auto_toc 0 0, 1\nDescription~ Set this option to 1 to automatically update the table of contents when the current wiki page is saved: \u003e let g:vimwiki_list = [{‘path’: ‘~/my_site/’, ‘auto_toc’: 1}]\nvimwiki-option-list_margin\nKey Default value~ list_margin -1 (0 for markdown)\nDescription~ Width of left-hand margin for lists. When negative, the current ‘shiftwidth’ is used. This affects the appearance of the generated links (see |:VimwikiGenerateLinks|), the Table of contents (|vimwiki-toc|) and the behavior of the list manipulation commands |:VimwikiListChangeLvl| and the local mappings |vimwiki_glstar|, |vimwiki_gl#| |vimwiki_gl-|, |vimwiki_gl-|, |vimwiki_gl1|, |vimwiki_gla|, |vimwiki_glA|, |vimwiki_gli|, |vimwiki_glI| and |vimwiki_i__|.\nNote: if you use Markdown or MediaWiki syntax, you probably would like to set this option to 0, because every indented line is considered verbatim text.\ng:vimwiki_toc_header_level\nThe header level of the Table of Contents (see |vimwiki-toc|). Valid values are from 1 to 6.\nThe default is 1.\ng:vimwiki_toc_link_format\nThe format of the links in the Table of Contents (see |vimwiki-toc|).\nValue Description~ 0 Extended: The link contains the description and URL. URL references all levels. 1 Brief: The link contains only the URL. URL references only the immediate level.\nDefault: 0\nKey bindings Normal mode Note: your terminal may prevent capturing some of the default bindings listed below. See :h vimwiki-local-mappings for suggestions for alternative bindings if you encounter a problem.\nBasic key bindings \u003cLeader\u003eww – Open default /wiki index file. \u003cLeader\u003ewt – Open default /wiki index file in a new tab. \u003cLeader\u003ews – Select and open /wiki index file. \u003cLeader\u003ewd – Delete /wiki file you are in. \u003cLeader\u003ewr – Rename /wiki file you are in. \u003cEnter\u003e – Follow/Create /wiki link. \u003cShift-Enter\u003e – Split and follow/create /wiki link. \u003cCtrl-Enter\u003e – Vertical split and follow/create /wiki link. \u003cBackspace\u003e – Go back to parent(previous) /wiki link. \u003cTab\u003e – Find next /wiki link. \u003cShift-Tab\u003e – Find previous /wiki link. Advanced key bindings Refer to the complete documentation at :h vimwiki-mappings to see many more bindings.\nCommands :Vimwiki2HTML – Convert current wiki link to HTML. :VimwikiAll2HTML – Convert all your wiki links to HTML. :help vimwiki-commands – List all commands. :help vimwiki – General vimwiki help docs. Diary alias alias todo=‘vim -c VimwikiDiaryIndex’\nHotkeys :VimwikiDiaryGenerateLinks ^w^i Generate links ^w^w open today ^wi Open diary index ctrl + up previous day ctrl + down next day\nHow to create Weekly, Monthly, and yearly notes How to do a template for daily set folder location for diary Diary Template https://frostyx.cz/posts/vimwiki-diary-template\nNested folder structure [dev](dev/ndex)\nSay yes to make new directory\nwiki Convert to html live and shows some design stuff https://www.youtube.com/watch?v=A1YgbAp5YRc\nhttps://github.com/Dynalonwiki\nTaskwarrior https://www.youtube.com/watch?v=UuHJloiDErM requires neovim?\ntaskwiki vimwiki integration with task warrior https://github.com/tools-life/taskwiki https://www.youtube.com/watch?v=UuHJloiDErM\nCtrl P Install Plug ‘ctrlpvim/ctrlp.vim’",
+    "description": "Guide to using Vim",
+    "tags": [],
+    "title": "Vim Guide",
+    "uri": "/tools/vim/vimguide/"
   },
   {
     "breadcrumb": "Linux Reader \u003e Networking \u003e CCNA",

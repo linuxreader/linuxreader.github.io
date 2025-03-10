@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="File Systems and File System Types File systems
+Can be optimized, resized, mounted, and unmounted independently. Must be connected to the directory hierarchy in order to be accessed by users and applications. Mounting may be accomplished automatically at system boot or manually as required. Can be mounted or unmounted using their unique identifiers, labels, or device files. Each file system is created in a discrete partition, VDO volume, or logical volume. A typical production RHEL system usually has numerous file systems. During OS installation, only two file systems— / and /boot —are created in the default disk layout, but you can design a custom disk layout and construct separate containers to store dissimilar information. Typical additional file systems that may be created during an installation are /home, /opt, /tmp, /usr, and /var. / and /boot—are required for installation and booting. Storing disparate data in distinct file systems versus storing all data in a single file system offers the following advantages:">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="File Systems and File System Types File systems
+Can be optimized, resized, mounted, and unmounted independently. Must be connected to the directory hierarchy in order to be accessed by users and applications. Mounting may be accomplished automatically at system boot or manually as required. Can be mounted or unmounted using their unique identifiers, labels, or device files. Each file system is created in a discrete partition, VDO volume, or logical volume. A typical production RHEL system usually has numerous file systems. During OS installation, only two file systems— / and /boot —are created in the default disk layout, but you can design a custom disk layout and construct separate containers to store dissimilar information. Typical additional file systems that may be created during an installation are /home, /opt, /tmp, /usr, and /var. / and /boot—are required for installation and booting. Storing disparate data in distinct file systems versus storing all data in a single file system offers the following advantages:">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="File Systems and File System Types File systems
+Can be optimized, resized, mounted, and unmounted independently. Must be connected to the directory hierarchy in order to be accessed by users and applications. Mounting may be accomplished automatically at system boot or manually as required. Can be mounted or unmounted using their unique identifiers, labels, or device files. Each file system is created in a discrete partition, VDO volume, or logical volume. A typical production RHEL system usually has numerous file systems. During OS installation, only two file systems— / and /boot —are created in the default disk layout, but you can design a custom disk layout and construct separate containers to store dissimilar information. Typical additional file systems that may be created during an installation are /home, /opt, /tmp, /usr, and /var. / and /boot—are required for installation and booting. Storing disparate data in distinct file systems versus storing all data in a single file system offers the following advantages:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="File Systems and File System Types File systems
+Can be optimized, resized, mounted, and unmounted independently. Must be connected to the directory hierarchy in order to be accessed by users and applications. Mounting may be accomplished automatically at system boot or manually as required. Can be mounted or unmounted using their unique identifiers, labels, or device files. Each file system is created in a discrete partition, VDO volume, or logical volume. A typical production RHEL system usually has numerous file systems. During OS installation, only two file systems— / and /boot —are created in the default disk layout, but you can design a custom disk layout and construct separate containers to store dissimilar information. Typical additional file systems that may be created during an installation are /home, /opt, /tmp, /usr, and /var. / and /boot—are required for installation and booting. Storing disparate data in distinct file systems versus storing all data in a single file system offers the following advantages:">
+    <meta itemprop="wordCount" content="1003">
+    <title></title>
+    <link href="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
+    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741647087" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741647087"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa" title="RHCSA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#file-systems-and-file-system-types">File Systems and File System Types</a>
+      <ul>
+        <li><a href="#extended-file-systems">Extended File Systems</a></li>
+        <li><a href="#xfs-file-system">XFS File System</a></li>
+        <li><a href="#vfat-file-system">VFAT File System</a></li>
+        <li><a href="#iso9660-file-system">ISO9660 File System</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-exam-environment" title="RHCSA Exam Environment Guide (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="file-systems-and-file-system-types">File Systems and File System Types</h2>
+<p><strong>File systems</strong></p>
+<ul>
+<li>Can be optimized, resized, mounted, and unmounted independently.</li>
+<li>Must be connected to the directory hierarchy in order to be accessed by users and applications.</li>
+<li>Mounting may be accomplished automatically at system boot or manually as required.</li>
+<li>Can be mounted or unmounted using their unique identifiers, labels, or device files.</li>
+<li>Each file system is created in a discrete partition, VDO volume, or logical volume.</li>
+<li>A typical production RHEL system usually has numerous file systems.</li>
+<li>During OS installation, only two file systems&mdash; / and /boot &mdash;are created in the default disk layout, but you can design a custom disk layout and construct separate containers to store dissimilar information.</li>
+<li>Typical additional file systems that may be created during an installation are /home, /opt, /tmp, /usr, and /var.</li>
+<li>/ and /boot&mdash;are required for installation and booting.</li>
+</ul>
+<p>Storing disparate data in distinct file systems versus storing all data in a single file system offers the following advantages:</p>
+<ul>
+<li>Make any file system accessible (mount) or inaccessible (unmount) to users independent of other file systems. This hides or reveals information contained in that file system.</li>
+<li>Perform file system repair activities on individual file systems</li>
+<li>Keep dissimilar data in separate file systems</li>
+<li>Optimize or tune each file system independently</li>
+<li>Grow or shrink a file system independent of other file systems</li>
+</ul>
+<p>3 types of file systems:</p>
+<ul>
+<li>disk-based, network-based, and memory-based.</li>
+</ul>
+<p><strong>Disk-based</strong></p>
+<ul>
+<li>Typically created on physical drives using SATA, USB, Fibre Channel, and other technologies.</li>
+<li>store information persistently</li>
+</ul>
+<p><strong>Network-based</strong></p>
+<ul>
+<li>Essentially disk-based file systems shared over the network for remote access.</li>
+<li>store information persistently</li>
+</ul>
+<p><strong>Memory-based</strong></p>
+<ul>
+<li>Virtual</li>
+<li>Created at system startup and destroyed when the system goes down.</li>
+<li>data saved in virtual file systems does not survive across system reboots.</li>
+</ul>
+<p>Ext3</p>
+<ul>
+<li>Disk based</li>
+<li>The third generation of the extended filesystem.</li>
+<li>Metadata journaling for faster recovery</li>
+<li>Superior reliability</li>
+<li>Creation of up to 32,000 subdirectories</li>
+<li>supports larger file systems and bigger files than its predecessor</li>
+</ul>
+<p>Ext4</p>
+<ul>
+<li>Disk based</li>
+<li>Successor to Ext3.
+<ul>
+<li>Supports all features of Ext3 in addition to:
+<ul>
+<li>Larger file system size</li>
+<li>Bigger file size</li>
+<li>Unlimited number of subdirectories</li>
+<li>Metadata and quota journaling</li>
+<li>Extended user attributes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>XFS</p>
+<ul>
+<li>Disk based</li>
+<li>Highly scalable and high-performing 64-bit file system.</li>
+<li>Supports:
+<ul>
+<li>Metadata journaling for faster crash recovery</li>
+<li>Online defragmentation, expansion, quota journaling, and extended user attributes</li>
+</ul>
+</li>
+<li>default file system type in RHEL 9.</li>
+</ul>
+<p>VFAT</p>
+<ul>
+<li>Disk based</li>
+<li>Used for post-Windows 95 file system formats on hard disks, USB drives, and floppy disks.</li>
+</ul>
+<p>ISO9660</p>
+<ul>
+<li>Disk based</li>
+<li>Used for optical file systems such as CD and DVD.</li>
+</ul>
+<p>NFS - (Network File System.)</p>
+<ul>
+<li>Network based</li>
+<li>Shared directory or file system for remote access by other Linux systems.</li>
+</ul>
+<p>AutoFS  (Auto File System)</p>
+<ul>
+<li>Network based</li>
+<li>NFS file system set to mount and unmount automatically on remote client systems.</li>
+</ul>
+<h3 id="extended-file-systems">Extended File Systems</h3>
+<ul>
+<li>First generation is obsolete and is no longer supported</li>
+<li>Second, third, and fourth generations are currently available and supported.</li>
+<li>Fourth generation is the latest in the series and is superior in features and enhancements to its predecessors.</li>
+<li>Structure is built on a partition or logical volume at the time of file system creation.</li>
+<li>Structure is divided into two sets:
+<ul>
+<li><strong>first set</strong> holds the file system&rsquo;s <strong>metadata</strong> and it is very tiny.
+<ul>
+<li>Superblock
+<ul>
+<li>keeps vital file system structural information:
+<ul>
+<li>type</li>
+<li>size</li>
+<li>status of the file system</li>
+<li>number of data blocks it contains</li>
+<li>automatically replicated and maintained at various known locations throughout the file system.</li>
+<li>primary superblock
+<ul>
+<li>superblock at the beginning of the file system</li>
+</ul>
+</li>
+<li>backup superblocks.
+<ul>
+<li>I used to supplant the corrupted or lost primary superblock to bring the file system back to its normal state.</li>
+<li>Copy of the primary</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Inode table
+<ul>
+<li>maintains a list of index node (inode) numbers.</li>
+<li>Each file is assigned an <strong>inode number</strong> at the time of its creation, and the inode number
+<ul>
+<li>holds the file&rsquo;s attributes such as:
+<ul>
+<li>type</li>
+<li>permissions</li>
+<li>ownership</li>
+<li>owning group</li>
+<li>size</li>
+<li>last access/modification time</li>
+<li>holds and keeps track of the pointers to the actual data blocks where the file contents are located.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>second set</strong> stores the actual data, and it occupies almost the entire partition or the logical volume (VDO and LVM) space.\</li>
+</ul>
+</li>
+</ul>
+<p><strong>journaling</strong></p>
+<ul>
+<li>
+<p>Supported by Ext3 and Ext4</p>
+</li>
+<li>
+<p>Recover swiftly after a system crash.</p>
+</li>
+<li>
+<p>keep track of recent changes in their metadata in a journal (or log).</p>
+</li>
+<li>
+<p>Each metadata update is written in its entirety to the journal after completion.</p>
+</li>
+<li>
+<p>The system peruses the journal of each extended file system following the reboot after a crash to determine if there are any errors</p>
+</li>
+<li>
+<p>Lets the system recover the file system rapidly using the latest metadata information stored in its journal.</p>
+</li>
+<li>
+<p>Ext3 that supports file systems up to 16TiB and files up to 2TiB,</p>
+</li>
+<li>
+<p>Ext4 supports very large file systems up to 1EiB (ExbiByte) and files up to 16TiB (TebiByte).</p>
+<ul>
+<li>Uses a series of contiguous physical blocks on the hard disk called extents, resulting in improved read and write performance with reduced fragmentation.</li>
+<li>Supports extended user attributes, metadata and quota journaling, etc.</li>
+</ul>
+</li>
+</ul>
+<h3 id="xfs-file-system">XFS File System</h3>
+<ul>
+<li>High-performing 64-bit extent-based journaling file system type.</li>
+<li>Allows the creation of file systems and files up to 8EiB (ExbiByte).</li>
+<li>Does not run file system checks at system boot</li>
+<li>Relies on you to use the <code>xfs_repair</code> utility to manually fix any issues.</li>
+<li>Sets the extended user attributes and certain mount options by default on new file systems.</li>
+<li>Enables defragmentation on mounted and active file systems to keep as much data in contiguous blocks as possible for faster access.</li>
+<li>Inability to shrink.</li>
+<li>Uses journaling for metadata operations, guaranteeing the consistency of the file system against abnormal or forced unmounting.</li>
+<li>Journal information is read and any pending metadata transactions are replayed when the XFS file system is remounted.</li>
+<li>Speedy input/output performance.</li>
+<li>Can be snapshot in a mounted, active state.</li>
+</ul>
+<h3 id="vfat-file-system">VFAT File System</h3>
+<ul>
+<li>Extension to the legacy FAT file system (FAT16)</li>
+<li>Supports 255 characters in filenames including spaces and periods</li>
+<li>Does not differentiate between lowercase and uppercase letters.</li>
+<li>Primarily used on removable media, such as floppy and USB flash drives, for exchanging data between Linux and Windows.</li>
+</ul>
+<h3 id="iso9660-file-system">ISO9660 File System</h3>
+<ul>
+<li>For removable optical disc media such as CD/DVD drives</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741647087";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
+        <script src="/js/search.js?1741647087" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><a class="padding" href="/linux/fedora/"><i class="fa-fw fas fa-angle-down"></i> Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/linux/rhcsa/"><a class="padding" href="/linux/rhcsa/"><i class="fa-fw fas fa-angle-down"></i> RHCSA</a><ul id="R-subsections-2c51772c3489e4d820f23d680b3a1d70" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/"></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-exam-environment/"><a class="padding" href="/linux/rhcsa/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-study-tracker/"><a class="padding" href="/linux/rhcsa/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/using-man-pages/"><a class="padding" href="/linux/rhcsa/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/rhcsa-notes/file-systems-and-file-system-types/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741647087" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
+    <script src="/js/js-yaml.min.js?1741647087" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741647087" defer></script>
+  </body>
+</html>

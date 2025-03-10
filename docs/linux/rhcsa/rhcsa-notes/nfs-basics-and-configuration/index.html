@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="NFS Basics and Configuration Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling Use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. Lab: Export Share on NFS Server Install nfs-utils sudo dnf -y install nfs-utils Create /common sudo mkdir /common Add full permissions sudo chmod 777 /common Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule: sudo firewall-cmd --permanent --add-service nfs sudo firewall-cmd --reload Start the NFS service and enable it to autostart at system reboots: sudo systemctl --now enable nfs-server Verify Operational Status of the NFS services: sudo systemctl status nfs-server Open /etc/exports and add entry for /common to export it to server10 with read/write: /common server10(rw) Export the entry defined in /etc/exports/. -a option exports all entries in the file. -v is verbose. sudo exportfs -av Unexport the share (-u): sudo exportfs -u server10:/common Re-export the share: sudo exportfs -av LAB: Mount share on NFS client Install nfs-utils sudo dnf -y install nfs-utils Create /local mount point sudo mkdir /local Mount the share manually: sudo mount server20:/common /local Confirm using mount: (shows nfs version) mount | grep local Confirm using df: df -h | grep local Add to /fstab for persistence: server20:/common /local nfs _netdev 0 0 Note:">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="NFS Basics and Configuration Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling Use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. Lab: Export Share on NFS Server Install nfs-utils sudo dnf -y install nfs-utils Create /common sudo mkdir /common Add full permissions sudo chmod 777 /common Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule: sudo firewall-cmd --permanent --add-service nfs sudo firewall-cmd --reload Start the NFS service and enable it to autostart at system reboots: sudo systemctl --now enable nfs-server Verify Operational Status of the NFS services: sudo systemctl status nfs-server Open /etc/exports and add entry for /common to export it to server10 with read/write: /common server10(rw) Export the entry defined in /etc/exports/. -a option exports all entries in the file. -v is verbose. sudo exportfs -av Unexport the share (-u): sudo exportfs -u server10:/common Re-export the share: sudo exportfs -av LAB: Mount share on NFS client Install nfs-utils sudo dnf -y install nfs-utils Create /local mount point sudo mkdir /local Mount the share manually: sudo mount server20:/common /local Confirm using mount: (shows nfs version) mount | grep local Confirm using df: df -h | grep local Add to /fstab for persistence: server20:/common /local nfs _netdev 0 0 Note:">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="NFS Basics and Configuration Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling Use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. Lab: Export Share on NFS Server Install nfs-utils sudo dnf -y install nfs-utils Create /common sudo mkdir /common Add full permissions sudo chmod 777 /common Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule: sudo firewall-cmd --permanent --add-service nfs sudo firewall-cmd --reload Start the NFS service and enable it to autostart at system reboots: sudo systemctl --now enable nfs-server Verify Operational Status of the NFS services: sudo systemctl status nfs-server Open /etc/exports and add entry for /common to export it to server10 with read/write: /common server10(rw) Export the entry defined in /etc/exports/. -a option exports all entries in the file. -v is verbose. sudo exportfs -av Unexport the share (-u): sudo exportfs -u server10:/common Re-export the share: sudo exportfs -av LAB: Mount share on NFS client Install nfs-utils sudo dnf -y install nfs-utils Create /local mount point sudo mkdir /local Mount the share manually: sudo mount server20:/common /local Confirm using mount: (shows nfs version) mount | grep local Confirm using df: df -h | grep local Add to /fstab for persistence: server20:/common /local nfs _netdev 0 0 Note:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="NFS Basics and Configuration Same tools for mounting and unmounting a filesystem.
+Mounted and accessed the same way as local filesystems. Network protocol that allows file sharing over the network. Multi-platform Multiple clients can access a single share at the same time. Reduced overhead and storage cost. Give users access to uniform data. Consolidate scattered user home directories. May cause client to hang if share is not accessible. Share stays mounted until manually unmounted or the client shuts down. Does not support wildcard characters or environment variables. NFS Supported versions RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default) NFSv3 supports: TCP and UDP. asynchronous writes. 64-bit files sizes. Access files larger than 2GB. NFSv4.x supports: All features of NFSv3. Transit firewalls and work on internet. Enhanced security and support for encrypted transfers and ACLs. Better scalability Better cross-platform Better system crash handling Use usernames and group names rather than UID and GID. Uses TCP by default. Can use UDP for backwards compatibility. Version 4.2 only supports TCP Network File System service Export shares to mount on remote clients Exporting When the NFS server makes shares available. Mounting When a client mounts an exported share locally. Mount point should be empty before trying to mount a share on it. System can be both client and server. Entire directory tree of the share is shared. Cannot re-share a subdirectory of a share. A mounted share cannot be exported from the client. A single exported share is mounted on a directory mount point. Make sure to update the fstab file on the client. NFS Server and Client Configuration How to export a share Add entry of the share to /etc/exports using exportfs command Add firewall rule to allow access Mount a share from the client side Use mount and add the filesystem to the fstab file. Lab: Export Share on NFS Server Install nfs-utils sudo dnf -y install nfs-utils Create /common sudo mkdir /common Add full permissions sudo chmod 777 /common Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule: sudo firewall-cmd --permanent --add-service nfs sudo firewall-cmd --reload Start the NFS service and enable it to autostart at system reboots: sudo systemctl --now enable nfs-server Verify Operational Status of the NFS services: sudo systemctl status nfs-server Open /etc/exports and add entry for /common to export it to server10 with read/write: /common server10(rw) Export the entry defined in /etc/exports/. -a option exports all entries in the file. -v is verbose. sudo exportfs -av Unexport the share (-u): sudo exportfs -u server10:/common Re-export the share: sudo exportfs -av LAB: Mount share on NFS client Install nfs-utils sudo dnf -y install nfs-utils Create /local mount point sudo mkdir /local Mount the share manually: sudo mount server20:/common /local Confirm using mount: (shows nfs version) mount | grep local Confirm using df: df -h | grep local Add to /fstab for persistence: server20:/common /local nfs _netdev 0 0 Note:">
+    <meta itemprop="wordCount" content="552">
+    <title></title>
+    <link href="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
+    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741647087" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741647087"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa" title="RHCSA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#nfs-basics-and-configuration">NFS Basics and Configuration</a>
+      <ul>
+        <li><a href="#nfs-supported-versions">NFS Supported versions</a></li>
+        <li><a href="#network-file-system-service">Network File System service</a></li>
+        <li><a href="#nfs-server-and-client-configuration">NFS Server and Client Configuration</a></li>
+        <li><a href="#how-to-export-a-share">How to export a share</a></li>
+        <li><a href="#mount-a-share-from-the-client-side">Mount a share from the client side</a></li>
+        <li><a href="#lab-export-share-on-nfs-server">Lab: Export Share on NFS Server</a></li>
+        <li><a href="#lab-mount-share-on-nfs-client">LAB: Mount share on NFS client</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-exam-environment" title="RHCSA Exam Environment Guide (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="nfs-basics-and-configuration">NFS Basics and Configuration</h2>
+<p>Same tools for mounting and unmounting a filesystem.</p>
+<ul>
+<li>Mounted and accessed the same way as local filesystems.</li>
+<li>Network protocol that allows file sharing over the network.</li>
+<li>Multi-platform</li>
+<li>Multiple clients can access a single share at the same time.</li>
+<li>Reduced overhead and storage cost.</li>
+<li>Give users access to uniform data.</li>
+<li>Consolidate scattered user home directories.</li>
+<li>May cause client to hang if share is not accessible.</li>
+<li>Share stays mounted until manually unmounted or the client shuts down.</li>
+<li>Does not support wildcard characters or environment variables.</li>
+</ul>
+<h3 id="nfs-supported-versions">NFS Supported versions</h3>
+<ul>
+<li>RHEL 9 Supports versions 3,4.0,4.1, and 4.2 (default)</li>
+<li>NFSv3 supports:
+<ul>
+<li>TCP and UDP.</li>
+<li>asynchronous writes.</li>
+<li>64-bit files sizes.</li>
+<li>Access files larger than 2GB.</li>
+</ul>
+</li>
+<li>NFSv4.x supports:
+<ul>
+<li>All features of NFSv3.</li>
+<li>Transit firewalls and work on internet.</li>
+<li>Enhanced security and support for encrypted transfers and ACLs.</li>
+<li>Better scalability</li>
+<li>Better cross-platform</li>
+<li>Better system crash handling</li>
+<li>Use usernames and group names rather than UID and GID.</li>
+<li>Uses TCP by default.</li>
+<li>Can use UDP for backwards compatibility.</li>
+<li>Version 4.2 only supports TCP</li>
+</ul>
+</li>
+</ul>
+<h3 id="network-file-system-service">Network File System service</h3>
+<ul>
+<li>Export shares to mount on remote clients</li>
+<li>Exporting
+<ul>
+<li>When the NFS server makes shares available.</li>
+</ul>
+</li>
+<li>Mounting
+<ul>
+<li>When a client mounts an exported share locally.</li>
+<li>Mount point should be empty before trying to mount a share on it.</li>
+</ul>
+</li>
+<li>System can be both client and server.</li>
+<li>Entire directory tree of the share is shared.</li>
+<li>Cannot re-share a subdirectory of a share.</li>
+<li>A mounted share cannot be exported from the client.</li>
+<li>A single exported share is mounted on a directory mount point.</li>
+<li>Make sure to update the fstab file on the client.</li>
+</ul>
+<h3 id="nfs-server-and-client-configuration">NFS Server and Client Configuration</h3>
+<h3 id="how-to-export-a-share">How to export a share</h3>
+<ul>
+<li>Add entry of the share to <em>/etc/exports</em> using <code>exportfs</code> command</li>
+<li>Add firewall rule to allow access</li>
+</ul>
+<h3 id="mount-a-share-from-the-client-side">Mount a share from the client side</h3>
+<ul>
+<li>Use <code>mount</code> and add the filesystem to the fstab file.</li>
+</ul>
+<h3 id="lab-export-share-on-nfs-server">Lab: Export Share on NFS Server</h3>
+<ol>
+<li>Install nfs-utils</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code> sudo dnf -y install nfs-utils</code></pre></div>
+<ol>
+<li>Create /common</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code> sudo mkdir /common</code></pre></div>
+<ol>
+<li>Add full permissions</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code> sudo chmod 777 /common</code></pre></div>
+<ol>
+<li>Add NFS service persistently to the firewalld configuration to allow NFS traffic and load the new rule:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo firewall-cmd --permanent --add-service nfs
+sudo firewall-cmd --reload</code></pre></div>
+<ol>
+<li>Start the NFS service and enable it to autostart at system reboots:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo systemctl --now enable nfs-server</code></pre></div>
+<ol>
+<li>Verify Operational Status of the NFS services:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo systemctl status nfs-server</code></pre></div>
+<ol>
+<li>Open <em>/etc/exports</em> and add entry for <em>/common</em> to export it to server10 with read/write:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>/common server10(rw)</code></pre></div>
+<ol>
+<li>Export the entry defined in <em>/etc/exports</em>/. -a option exports all entries in the file. -v is verbose.</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo exportfs -av</code></pre></div>
+<ol>
+<li>Unexport the share (-u):</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo exportfs -u server10:/common</code></pre></div>
+<ol>
+<li>Re-export the share:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo exportfs -av</code></pre></div>
+<h3 id="lab-mount-share-on-nfs-client">LAB: Mount share on NFS client</h3>
+<ol>
+<li>Install nfs-utils</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf -y install nfs-utils</code></pre></div>
+<ol>
+<li>Create /local mount point</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo mkdir /local</code></pre></div>
+<ol>
+<li>Mount the share manually:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo mount server20:/common /local</code></pre></div>
+<ol>
+<li>Confirm using mount: (shows nfs version)</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>mount | grep local</code></pre></div>
+<ol>
+<li>Confirm using df:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>df -h | grep local</code></pre></div>
+<ol>
+<li>Add to /fstab for persistence:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>server20:/common /local nfs _netdev 0 0</code></pre></div>
+<p>Note:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>_netdev option makes system wait for networking to come up before trying to mount the share. </code></pre></div>
+<ol>
+<li>Unmount share manually using umount then remount to validate accuracy of the entry in /fstab:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>sudo umount /local
+sudo mount -a</code></pre></div>
+<ol>
+<li>Verify:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>df -h</code></pre></div>
+<ol>
+<li>Create a file in /local/ and verify:</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>touch /local/nfsfile
+ls -l /local</code></pre></div>
+<ol>
+<li>Confirm the sync on server 2</li>
+</ol>
+<div class="highlight wrap-code"><pre tabindex="0"><code>ls -l /common/</code></pre></div>
+<ol start="5">
+<li>Update fstab</li>
+</ol>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741647087";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
+        <script src="/js/search.js?1741647087" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><a class="padding" href="/linux/fedora/"><i class="fa-fw fas fa-angle-down"></i> Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/linux/rhcsa/"><a class="padding" href="/linux/rhcsa/"><i class="fa-fw fas fa-angle-down"></i> RHCSA</a><ul id="R-subsections-2c51772c3489e4d820f23d680b3a1d70" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/"></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-exam-environment/"><a class="padding" href="/linux/rhcsa/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-study-tracker/"><a class="padding" href="/linux/rhcsa/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/using-man-pages/"><a class="padding" href="/linux/rhcsa/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/rhcsa-notes/nfs-basics-and-configuration/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741647087" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
+    <script src="/js/js-yaml.min.js?1741647087" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741647087" defer></script>
+  </body>
+</html>
