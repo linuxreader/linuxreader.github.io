@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Introduction to Containers Take advantage of the native virtualization features available in the Linux kernel. Each container typically encapsulates one self-contained application that includes all dependencies such as library files, configuration files, software binaries, and services. Traditional server/ application deployment:
+Applications may have conflicting requirements in terms of shared library files, package dependencies, and software versioning. Patching or updating the operating system may result in breaking an application functionality. Developers perform an analysis on their current deployments before they decide whether to collocate a new application with an existing one or to go with a new server without taking the risk of breaking the current operation. Container Model:">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Introduction to Containers Take advantage of the native virtualization features available in the Linux kernel. Each container typically encapsulates one self-contained application that includes all dependencies such as library files, configuration files, software binaries, and services. Traditional server/ application deployment:
+Applications may have conflicting requirements in terms of shared library files, package dependencies, and software versioning. Patching or updating the operating system may result in breaking an application functionality. Developers perform an analysis on their current deployments before they decide whether to collocate a new application with an existing one or to go with a new server without taking the risk of breaking the current operation. Container Model:">
+    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/rhcsa-notes/introduction-to-containers/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Introduction to Containers Take advantage of the native virtualization features available in the Linux kernel. Each container typically encapsulates one self-contained application that includes all dependencies such as library files, configuration files, software binaries, and services. Traditional server/ application deployment:
+Applications may have conflicting requirements in terms of shared library files, package dependencies, and software versioning. Patching or updating the operating system may result in breaking an application functionality. Developers perform an analysis on their current deployments before they decide whether to collocate a new application with an existing one or to go with a new server without taking the risk of breaking the current operation. Container Model:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Linux">
+    <meta itemprop="description" content="Introduction to Containers Take advantage of the native virtualization features available in the Linux kernel. Each container typically encapsulates one self-contained application that includes all dependencies such as library files, configuration files, software binaries, and services. Traditional server/ application deployment:
+Applications may have conflicting requirements in terms of shared library files, package dependencies, and software versioning. Patching or updating the operating system may result in breaking an application functionality. Developers perform an analysis on their current deployments before they decide whether to collocate a new application with an existing one or to go with a new server without taking the risk of breaking the current operation. Container Model:">
+    <meta itemprop="wordCount" content="1131">
+    <title></title>
+    <link href="/linux/rhcsa/rhcsa-notes/introduction-to-containers/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/linux/rhcsa/rhcsa-notes/introduction-to-containers/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
+    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741647087" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741647087"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/linux/rhcsa/rhcsa-notes/introduction-to-containers/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa" title="RHCSA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#containers-and-the-linux-features">Containers and the Linux Features</a></li>
+      </ul>
+    </li>
+    <li><a href="#benefits-of-using-containers">Benefits of Using Containers</a>
+      <ul>
+        <li><a href="#isolation">Isolation</a></li>
+        <li><a href="#loose-coupling">Loose Coupling</a></li>
+        <li><a href="#maintenance-independence">Maintenance Independence</a></li>
+        <li><a href="#less-overhead">Less Overhead</a></li>
+        <li><a href="#transition-time">Transition Time</a></li>
+        <li><a href="#transition-independence">Transition Independence</a></li>
+        <li><a href="#portability">Portability</a></li>
+        <li><a href="#reusability">Reusability</a></li>
+        <li><a href="#rapidity">Rapidity</a></li>
+        <li><a href="#version-control">Version Control</a></li>
+        <li><a href="#container-home-bare-metal-or-virtual-machine">Container Home: Bare Metal or Virtual Machine</a></li>
+        <li><a href="#container-images-and-container-registries">Container Images and Container Registries</a></li>
+        <li><a href="#rootful-vs-rootless-containers">Rootful vs. Rootless Containers</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes/introduction-to-containers?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-exam-environment" title="RHCSA Exam Environment Guide (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable linux" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="introduction-to-containers">Introduction to Containers</h1>
+<ul>
+<li>Take advantage of the native virtualization features available in the Linux kernel.</li>
+<li>Each container typically encapsulates one self-contained application that includes all dependencies such as library files, configuration files, software binaries, and services.</li>
+</ul>
+<p>Traditional server/ application deployment:</p>
+<ul>
+<li>Applications may have conflicting requirements in terms of shared library files, package dependencies, and software versioning.</li>
+<li>Patching or updating the operating system may result in breaking an application functionality.</li>
+<li>Developers perform an analysis on their current deployments before they decide whether to collocate a new application with an existing one or to go with a new server without taking the risk of breaking the current operation.</li>
+</ul>
+<p>Container Model:</p>
+<ul>
+<li>
+<p>Developers can now package their application alongside dependencies, shared library files, environment variables, and other specifics in a single image file and use that file to run the application in a unique, isolated &ldquo;environment&rdquo; called container.</p>
+</li>
+<li>
+<p>A container is essentially a set of processes that runs in complete seclusion on a Linux system.</p>
+</li>
+<li>
+<p>A single Linux system running on bare metal hardware or in a virtual machine may have tens or hundreds of containers running at a time.</p>
+</li>
+<li>
+<p>The underlying hardware may be located either on the ground or in the cloud.</p>
+</li>
+<li>
+<p>Each container is treated as a complete whole, which can be tagged, started, stopped, restarted, or even transported to another server without impacting other running containers.</p>
+</li>
+<li>
+<p>Any conflicts that may exist among applications, within application components, or with the operating system can be evaded.</p>
+</li>
+<li>
+<p>Applications encapsulated to run inside containers are called containerized applications.</p>
+</li>
+<li>
+<p>Containerization is a growing trend for architecting and deploying applications, application components, and databases in real world environments.</p>
+</li>
+</ul>
+<h3 id="containers-and-the-linux-features">Containers and the Linux Features</h3>
+<ul>
+<li>Container technology employs some of the core features available in the Linux kernel.</li>
+<li>These features include:
+<ul>
+<li><strong>control groups</strong></li>
+<li><strong>namespaces</strong></li>
+<li><strong>seccomp</strong> (secure computing mode)</li>
+<li><strong>SELinux</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>Control Groups</strong> (cgroups)</p>
+<ul>
+<li>Split processes into groups to set limits on their consumption of compute resources&mdash;CPU, memory, disk, and network I/O.</li>
+<li>These restrictions result in controlling individual processes from over utilizing available resources.</li>
+</ul>
+<p><strong>Namespaces</strong></p>
+<ul>
+<li>Restrict the ability of process groups from seeing or accessing system resources&mdash;PIDs, network interfaces, mount points, hostname, etc.</li>
+<li>Creates a layer of isolation between process groups and the rest of the system.</li>
+<li>Guarantees a secure, performant, and stable environment for containerized applications as well as the host operating system.</li>
+</ul>
+<p><strong>Secure Computing Mode (seccomp) and SELinux</strong></p>
+<ul>
+<li>Impose security constraints thereby protecting processes from one another and the host operating system from running processes.</li>
+<li>Container technology employs these characteristics to run processes isolated in a highly secure environment with full control over what they can or cannot do.</li>
+</ul>
+<h2 id="benefits-of-using-containers">Benefits of Using Containers</h2>
+<h3 id="isolation">Isolation</h3>
+<ul>
+<li>Containers are not affected due to changes in the host operating system or in other hosted or containerized applications, as they run fully isolated from the rest of the environment.</li>
+</ul>
+<h3 id="loose-coupling">Loose Coupling</h3>
+<ul>
+<li>Containerized applications are loosely coupled with the underlying operating system due to their self-containment and minimal level of dependency.</li>
+</ul>
+<h3 id="maintenance-independence">Maintenance Independence</h3>
+<ul>
+<li>Maintenance is performed independently on individual containers.</li>
+</ul>
+<h3 id="less-overhead">Less Overhead</h3>
+<ul>
+<li>Containers require fewer system resources than do bare metal and virtual servers.</li>
+</ul>
+<h3 id="transition-time">Transition Time</h3>
+<ul>
+<li>Containers require a few seconds to start and stop.</li>
+</ul>
+<h3 id="transition-independence">Transition Independence</h3>
+<ul>
+<li>Transitioning from one state to another (start or stop) is independent of other containers, and it does not affect or require a restart of any underlying host operating system service.</li>
+</ul>
+<h3 id="portability">Portability</h3>
+<ul>
+<li>Containers can be migrated to other servers without modifications to the contained applications.</li>
+<li>Target servers may be bare metal or virtual and located on-premises or in the cloud.</li>
+</ul>
+<h3 id="reusability">Reusability</h3>
+<ul>
+<li>The same container image can be used to run identical containers in development, test, preproduction, and production environments.</li>
+<li>There is no need to rebuild the image.</li>
+</ul>
+<h3 id="rapidity">Rapidity</h3>
+<ul>
+<li>The container technology allows for accelerated application development, testing, deployment, patching, and scaling.</li>
+<li>There is no need for an exhaustive testing.</li>
+</ul>
+<h3 id="version-control">Version Control</h3>
+<ul>
+<li>Container images can be version-controlled, which gives users the flexibility in choosing the right version to run a container.</li>
+</ul>
+<h3 id="container-home-bare-metal-or-virtual-machine">Container Home: Bare Metal or Virtual Machine</h3>
+<p>Containers</p>
+<ul>
+<li>run directly on the underlying operating system whether it be running on a bare metal server or in a virtual machine.</li>
+<li>Share hardware and operating system resources securely among themselves.</li>
+<li>Containerized applications stay lightweight and isolated, and run in parallel.</li>
+<li>Share the same Linux kernel and require far fewer hardware resources than do virtual machines, which contributes to their speedy start and stop.</li>
+<li>Given the presence of an extra layer of hypervisor services, it may be more beneficial and economical to run containers directly on non-virtualized physical servers.</li>
+</ul>
+<p><a href="#R-image-8ca9d4465e1ad95355530fb5b2bef4f3" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-3RXCU9W7%201.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8ca9d4465e1ad95355530fb5b2bef4f3"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-3RXCU9W7%201.jpg"></a></p>
+<h3 id="container-images-and-container-registries">Container Images and Container Registries</h3>
+<ul>
+<li>Launching a container requires a pre-packaged image to be available.</li>
+</ul>
+<p><strong>container image</strong></p>
+<ul>
+<li>
+<p>Essentially a static file that is built with all necessary components (application binaries, library files, configuration settings, environment variables, static data files, etc.)</p>
+</li>
+<li>
+<p>Required by an application to run smoothly, securely, and independently.</p>
+</li>
+<li>
+<p>RHEL follows the <strong>open container initiative</strong> (<strong>OCI</strong>) to allow users to build images based on industry standard specifications that define the image format, host operating system metadata, and supported hardware architectures.</p>
+</li>
+<li>
+<p>An OCI-compliant image can be executed and managed with OCI-compliant tools such as podman (pod manager) and Docker.</p>
+</li>
+<li>
+<p>Images can be version-controlled giving users the suppleness to use the latest or any of the previous versions to launch their containers.</p>
+</li>
+<li>
+<p>A single image can be used to run several containers at once.</p>
+</li>
+<li>
+<p>Container images adhere to a standard naming convention for identification.</p>
+</li>
+<li>
+<p>This is referred to as <strong>fully qualified image name</strong> (<strong>FQIN</strong>).</p>
+<ul>
+<li>Comprised of four components:
+<ul>
+<li>(1) the storage location (registry_name)</li>
+<li>(2) the owner or organization name (user_name)</li>
+<li>(3) a unique repository name (repo_name)</li>
+<li>(4) an optional version (tag).</li>
+</ul>
+</li>
+<li>The syntax of an FQIN is:
+<em>registry_hostname/user_name/repo_name:tag</em>.</li>
+</ul>
+</li>
+<li>
+<p>Images are stored and maintained in public or private registries;</p>
+</li>
+<li>
+<p>They need to be downloaded and made locally available for consumption.</p>
+</li>
+<li>
+<p>There are several registries available on the Internet.</p>
+<ul>
+<li><em>registry.redhat.io</em> (/images/images based on official Red Hat products; requires authentication),</li>
+<li><em>registry.access.redhat.com</em> (requires no authentication)</li>
+<li><em>registry.connect.redhat.com</em> (/images/images based on third-party products)</li>
+<li><em>hub.docker.com</em> (Docker Hub).</li>
+</ul>
+</li>
+<li>
+<p>The three Red Hat registries may be searched using the Red Hat Container Catalog at catalog.redhat.com/software/containers/search.</p>
+</li>
+<li>
+<p>Additional registries may be added as required.</p>
+</li>
+<li>
+<p>Private registries may also require authentication for access.</p>
+</li>
+</ul>
+<h3 id="rootful-vs-rootless-containers">Rootful vs. Rootless Containers</h3>
+<ul>
+<li>
+<p>Containers can be launched with the root user privileges (sudo or directly as the root user).</p>
+</li>
+<li>
+<p>This gives containers full access to perform administrative functions including the ability to map privileged network ports (1024 and below).</p>
+</li>
+<li>
+<p>Launching containers with superuser rights opens a gate to potential unauthorized access to the container host if a container is compromised due to a vulnerability or misconfiguration.</p>
+</li>
+<li>
+<p>To secure containers and the underlying operating system, containers should be launched and interacted with as normal Linux users.</p>
+</li>
+<li>
+<p>Such containers are referred to as <strong>rootless containers</strong>.</p>
+</li>
+<li>
+<p>Rootless containers allow regular, unprivileged users to run containers without the ability to perform tasks that require privileged access.</p>
+</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741647087";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
+        <script src="/js/search.js?1741647087" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
+            <li class="" data-nav-id="/linux/fedora/"><a class="padding" href="/linux/fedora/"><i class="fa-fw fas fa-angle-down"></i> Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/linux/rhcsa/"><a class="padding" href="/linux/rhcsa/"><i class="fa-fw fas fa-angle-down"></i> RHCSA</a><ul id="R-subsections-2c51772c3489e4d820f23d680b3a1d70" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/linux/rhcsa/rhcsa-notes/introduction-to-containers/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/introduction-to-containers/"></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-exam-environment/"><a class="padding" href="/linux/rhcsa/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-study-tracker/"><a class="padding" href="/linux/rhcsa/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/using-man-pages/"><a class="padding" href="/linux/rhcsa/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/linux/rhcsa/rhcsa-notes/introduction-to-containers/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741647087" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
+    <script src="/js/js-yaml.min.js?1741647087" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741647087" defer></script>
+  </body>
+</html>

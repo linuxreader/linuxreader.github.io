@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -28,7 +28,7 @@ How Switches Use the Priority and System ID Extension
 Cisco Catalyst switches configure the priority value using a number that represents a 16system ID extension exists as the low-order 12 bits of that same number. -bit value; however, the
 When the switch builds its BID to use for RSTP in a VLAN, it must combine the configured priority with the VLAN ID of that VLAN.
 the configured priority results in a 16-bit priority that always ends with 12 binary 0s.">
-    <meta property="og:url" content="http://linuxreader.com/networking/ccna/newccnanotes/10rstpandetherchannel/">
+    <meta property="og:url" content="http://localhost:1313/networking/ccna/newccnanotes/10rstpandetherchannel/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="10 RSTP and Etherchannel 2.0 Network Access2.4 Configure and verify (Layer 2/Layer 3) EtherChannel (LACP) 2.5 Describe the need for and basic operations of Rapid PVST&#43; Spanning Tree Protocol and identify basic operations2.5.a Root port, root bridge (primary/secondary), and other port names 2.5.b Port states (forwarding/blocking)2.5.c PortFast benefits Most network engineers make the distribution layer switches be the root. STP Modes and Standards Three options to configure on the spanninguse -tree mode command, which tells the switch which type of STP to and STPtheswitches do not support STP or RSTP with the single tree (CST)-based PVST&#43;, Cisco-proprietary and RSTP-based RPVST&#43;, or the IEEE standard MSTP.. They can use either the Cisco-proprietary MSTP allows the definition of as many instances (multiple spanning tree instances, or MSTIs) as chosen by the network designer but does not require one per VLAN. STP and MSTP now exist as part of the 802.1Q standard, which defines VLANs and VLAN trunking. The revised rules divide the original priority field into two separate fields, as shown in Figure 10priority field and a 12-bit subfield called the system ID extension (which represents the VLAN ID-4: a 4-bit Cisco switches let you configure the BID, but only the priority part. The switch fills in its universal (burnedin the 12-bit system ID extension field; you cannot change that behavior either. -in) MAC address as the system ID. It also plugs in the VLAN ID of a VLAN The only part configurable by the network engineer is the 4-bit priority field. the configuration command (65,535. But not just any number in that range will suffice; it must be a multiple of 4096spanning-tree vlan vlan-id priority x) requires a decimal number between 0 and ,as emphasized in the help text shown in Example 10-2. Command Guide RSTP #spanning#spanning--tree vlan vlantree vlan x root primary-id priority x #spanning#show spanning-tree vlan x root secondary-tree vlan 9 EtherChannel (int)#channel#show etherchannel 1 summary-group 1 mode on #show etherchannel summary#show etherchannel 1 port-channel #show etherchannel load#channel-group 1 mode desirable/auto (PAgP)-balance #channel#port-channel load-group 1 mode active/passive (LACP)-balance src-dst-mac 10. RSTP and EtherChannelTuesday, July 27, 2021 12:04 PM help text shown in Example 10-2. #spanning-tree vlan x root primary(on the switch that should be primary)
 #spanning-tree vlan x root secondary(on the switch that should be secondary)
@@ -57,22 +57,22 @@ the configured priority results in a 16-bit priority that always ends with 12 bi
     <title></title>
     <link href="/networking/ccna/newccnanotes/10rstpandetherchannel/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/networking/ccna/newccnanotes/10rstpandetherchannel/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741646127" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741646127" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741646127" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741646127" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741646127" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741646127" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741646127" rel="stylesheet">
-    <link href="/css/fonts.css?1741646127" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741646127" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741646127" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741646127" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741646127" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741646127" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741646127"></script>
+    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
+    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741647087" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741647087"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -278,7 +278,7 @@ does not consider the destination MAC address.</code></pre></div>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741646127";
+          window.index_js_url="/searchindex.en.js?1741647087";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -291,12 +291,12 @@ does not consider the destination MAC address.</code></pre></div>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741646127" defer></script>
-        <script src="/js/search.js?1741646127" defer></script>
+        <script src="/js/auto-complete.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
+        <script src="/js/search.js?1741647087" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -376,8 +376,8 @@ does not consider the destination MAC address.</code></pre></div>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741646127" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741646127" defer></script>
+    <script src="/js/clipboard.min.js?1741647087" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -393,20 +393,20 @@ does not consider the destination MAC address.</code></pre></div>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741646127" defer></script>
-    <script src="/js/js-yaml.min.js?1741646127" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
+    <script src="/js/js-yaml.min.js?1741647087" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741646127" defer></script>
+    <script src="/js/theme.js?1741647087" defer></script>
   </body>
 </html>

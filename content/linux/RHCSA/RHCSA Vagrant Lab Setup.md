@@ -3,8 +3,6 @@ title = 'RHCSA Vagrant Lab Setup'
 description = 'Lab setup for RHCSA using Vagrant'
 +++
 
-![RHCSA Vagrant Lab](/images/vagrantmultivmdeployment.jpg)
-
 We are going to use Vagrant to set up two RHEL 8 servers with some custom configuration options. I will include some helpful Vagrant commands at the end if you get stuck.
 
 In this guide, I will be using Fedora 38 as my main operating system. I use Fedora because it is similar in features to Red Hat Linux Distributions. This will give me even more practice for the RHCSA exam as I use it in day-to-day operations.

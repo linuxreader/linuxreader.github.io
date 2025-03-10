@@ -1,3 +1,8 @@
++++
+title = 'RHCSA Exam Environment Guide'
+description = 'Exam environment guide for RHCSA'
++++
+
 https://www.youtube.com/watch?v=Me6Y12-sux8&list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX&index=2
 
 Be aware of the timer for the exam
