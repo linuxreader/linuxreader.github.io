@@ -1,5 +1,6 @@
 +++
 title = "Silverblue"
+description = "Fedora Silverblue" 
 +++
 
 Automated setup https://universal-blue.org/
