@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -10,7 +10,7 @@
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="Time Synchronization Network Time Protocol (NTP) Networking protocol for synchronizing the system clock with remote time servers for accuracy and reliability. Having steady and exact time on networked systems allows time-sensitive applications, such as authentication and email applications, backup and scheduling tools, financial and billing systems, logging and monitoring software, and file and storage sharing protocols, to function with precision. Sends a stream of messages to configured time servers and binds itself to the one with least amount of delay in its responses, the most accurate, and may or may not be the closest distance-wise. Client system maintains a drift in time in a file and references this file for gradual drop in inaccuracy. Chrony RHEL 9 implementation of NTP Uses the UDP port 123. If enabled, it starts at system boot and continuously operates to keep the system clock in sync with a more accurate source of time. Performs well on computers that are occasionally connected to the network, attached to busy networks, do not run all the time, or have variations in temperature. Chrony is the RHEL implementation of NTP. And it operates on UDP port 123. If you enable it, it starts at system boot and continuously monitors system time and keeps in in sync.">
-    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/time-synchronization/">
+    <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/time-synchronization/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Time Synchronization Network Time Protocol (NTP) Networking protocol for synchronizing the system clock with remote time servers for accuracy and reliability. Having steady and exact time on networked systems allows time-sensitive applications, such as authentication and email applications, backup and scheduling tools, financial and billing systems, logging and monitoring software, and file and storage sharing protocols, to function with precision. Sends a stream of messages to configured time servers and binds itself to the one with least amount of delay in its responses, the most accurate, and may or may not be the closest distance-wise. Client system maintains a drift in time in a file and references this file for gradual drop in inaccuracy. Chrony RHEL 9 implementation of NTP Uses the UDP port 123. If enabled, it starts at system boot and continuously operates to keep the system clock in sync with a more accurate source of time. Performs well on computers that are occasionally connected to the network, attached to busy networks, do not run all the time, or have variations in temperature. Chrony is the RHEL implementation of NTP. And it operates on UDP port 123. If you enable it, it starts at system boot and continuously monitors system time and keeps in in sync.">
     <meta property="og:locale" content="en_us">
@@ -21,22 +21,22 @@
     <title></title>
     <link href="/linux/rhcsa/time-synchronization/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/linux/rhcsa/time-synchronization/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
-    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741639423" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741639423"></script>
+    <link href="/images/logo.svg?1741640065" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741640065" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741640065" rel="stylesheet">
+    <link href="/css/fonts.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741640065" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741640065" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741640065" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741640065" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741640065"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -237,8 +237,8 @@ Examples:</p>
 <p>Servers sharing the same stratum can be configured as peers to exchange time updates with one another.</p>
 </li>
 </ul>
-<p><a href="#R-image-4e8f5ed813f1455ce4e374a0c0ae9827" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="image-OOGYXDFA%201.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4e8f5ed813f1455ce4e374a0c0ae9827"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="image-OOGYXDFA%201.jpg"></a></p>
+<p><a href="#R-image-4589b4decc072aa07d5f81edcd058e21" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="image-OOGYXDFA%201.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4589b4decc072aa07d5f81edcd058e21"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="image-OOGYXDFA%201.jpg"></a></p>
 <p>There are numerous public NTP servers available for free that synchronize time.
 They normally operate at higher stratum levels such as 2 and 3.</p>
 <h3 id="chrony-configuration-file">Chrony Configuration File</h3>
@@ -427,7 +427,7 @@ Last sample</li>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741639423";
+          window.index_js_url="/searchindex.en.js?1741640065";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -440,12 +440,12 @@ Last sample</li>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741639423" defer></script>
-        <script src="/js/search.js?1741639423" defer></script>
+        <script src="/js/auto-complete.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741640065" defer></script>
+        <script src="/js/search.js?1741640065" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -471,7 +471,7 @@ Last sample</li>
             <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
             <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
             <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
-            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Notes</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
           </ul>
         </div>
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
@@ -524,8 +524,8 @@ Last sample</li>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741639423" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script src="/js/clipboard.min.js?1741640065" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741640065" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -541,20 +541,20 @@ Last sample</li>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
-    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741640065" defer></script>
+    <script src="/js/js-yaml.min.js?1741640065" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741639423" defer></script>
+    <script src="/js/theme.js?1741640065" defer></script>
   </body>
 </html>

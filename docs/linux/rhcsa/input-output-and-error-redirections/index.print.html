@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -10,7 +10,7 @@
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="Input, Output, and Error Redirections Input, output, and error character streams: standard input (or stdin) Input redirection &lt; standard output (or stdout) Append instead of overwrite &amp;&gt; Redirect standard error and output standard error (or stderr) 2&gt; File descriptors: 0, 1, and 2 1 Represents standard output location Can use these to represent character streams instead of &lt;, and &gt; noclobber feature prevent overwriting of the output file set -o noclobber activates the feature set &#43;o noclobber deactivate the feature [root@localhost ~]# vim test.txt [root@localhost ~]# set -o noclobber [root@localhost ~]# echo &#34;Hello&#34; &gt; test.txt -bash: test.txt: cannot overwrite existing file [root@localhost ~]# set &#43;o noclobber [root@localhost ~]# echo &#34;Hello&#34; &gt; test.txt [root@localhost ~]# cat test.txt Hello">
-    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/input-output-and-error-redirections/">
+    <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/input-output-and-error-redirections/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Input, Output, and Error Redirections Input, output, and error character streams: standard input (or stdin) Input redirection &lt; standard output (or stdout) Append instead of overwrite &amp;&gt; Redirect standard error and output standard error (or stderr) 2&gt; File descriptors: 0, 1, and 2 1 Represents standard output location Can use these to represent character streams instead of &lt;, and &gt; noclobber feature prevent overwriting of the output file set -o noclobber activates the feature set &#43;o noclobber deactivate the feature [root@localhost ~]# vim test.txt [root@localhost ~]# set -o noclobber [root@localhost ~]# echo &#34;Hello&#34; &gt; test.txt -bash: test.txt: cannot overwrite existing file [root@localhost ~]# set &#43;o noclobber [root@localhost ~]# echo &#34;Hello&#34; &gt; test.txt [root@localhost ~]# cat test.txt Hello">
     <meta property="og:locale" content="en_us">
@@ -19,25 +19,25 @@
     <meta itemprop="description" content="Input, Output, and Error Redirections Input, output, and error character streams: standard input (or stdin) Input redirection &lt; standard output (or stdout) Append instead of overwrite &amp;&gt; Redirect standard error and output standard error (or stderr) 2&gt; File descriptors: 0, 1, and 2 1 Represents standard output location Can use these to represent character streams instead of &lt;, and &gt; noclobber feature prevent overwriting of the output file set -o noclobber activates the feature set &#43;o noclobber deactivate the feature [root@localhost ~]# vim test.txt [root@localhost ~]# set -o noclobber [root@localhost ~]# echo &#34;Hello&#34; &gt; test.txt -bash: test.txt: cannot overwrite existing file [root@localhost ~]# set &#43;o noclobber [root@localhost ~]# echo &#34;Hello&#34; &gt; test.txt [root@localhost ~]# cat test.txt Hello">
     <meta itemprop="wordCount" content="117">
     <title></title>
-    <link href="http://localhost:1313/linux/rhcsa/input-output-and-error-redirections/" rel="canonical" type="text/html" title="">
+    <link href="http://linuxreader.com/linux/rhcsa/input-output-and-error-redirections/" rel="canonical" type="text/html" title="">
     <link href="/linux/rhcsa/input-output-and-error-redirections/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
-    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741639423" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741639423" rel="stylesheet">
-    <script src="/js/variant.js?1741639423"></script>
+    <link href="/images/logo.svg?1741640065" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741640065" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741640065" rel="stylesheet">
+    <link href="/css/fonts.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741640065" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741640065" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741640065" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741640065" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741640065" rel="stylesheet">
+    <script src="/js/variant.js?1741640065"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -113,8 +113,8 @@
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741639423" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script src="/js/clipboard.min.js?1741640065" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741640065" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -130,20 +130,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
-    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741640065" defer></script>
+    <script src="/js/js-yaml.min.js?1741640065" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741639423" defer></script>
+    <script src="/js/theme.js?1741640065" defer></script>
   </body>
 </html>

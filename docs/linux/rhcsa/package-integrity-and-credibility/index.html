@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -10,7 +10,7 @@
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="Package Integrity and Credibility MD5 Checksum for verifying package integrity GNU Privacy Guard Public Key (GNU Privacy Guard or GPG) for ensuring credibility of publisher. PGP (Pretty Good Privacy) - commercial version of GPG. --nosignature Don’t verify package or header signatures when reading. -K keep package files after installation rpmkeys command check credibility, import GPG key, and verify packages Redhat signs their products and updates with a GPG key. Files in installation media include public keys in the products for verification. Copied to /etc/pki/rpm-gpg during OS installation. RPM-GPG-KEY-redhat-release Used for packages shipped after November 2009 and their updates. RPM-GPG-KEY-redhat-beta For Beta products shipped after November 2009. Import the relevant GPG key and the verify the package to check the credibility of a package. Viewing GPG Keys view with rpm command rpm -q gpg-pubkey -i option show info about a key. Verifying Package Attributes Compare package file attributes with originals stored in package database at the time of installation. -V option compare owner, group, permission mode, size, modification time, digest, type, etc. Returns to prompt if no changes are detected -v or vv for verbose -Vf run the check directly on the file Three columns of output: Column 1 9 fields S = Different file size. M = Mode or permission or file type change. 5 = MD5 Checksum does not match. D = Device file and its major and minor number have changed. L = File is a symlink and it’s path has been altered. U = Ownership has changed. G = Group membership has been modified. T = Timestamp changed. P = Capabilities are altered. . = No modifications detected. Column 2 File type c = Configuration file d = Documentation File g = Ghost FIle l = License file r = Readme file Column 3 Full path of file">
-    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/package-integrity-and-credibility/">
+    <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/package-integrity-and-credibility/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Package Integrity and Credibility MD5 Checksum for verifying package integrity GNU Privacy Guard Public Key (GNU Privacy Guard or GPG) for ensuring credibility of publisher. PGP (Pretty Good Privacy) - commercial version of GPG. --nosignature Don’t verify package or header signatures when reading. -K keep package files after installation rpmkeys command check credibility, import GPG key, and verify packages Redhat signs their products and updates with a GPG key. Files in installation media include public keys in the products for verification. Copied to /etc/pki/rpm-gpg during OS installation. RPM-GPG-KEY-redhat-release Used for packages shipped after November 2009 and their updates. RPM-GPG-KEY-redhat-beta For Beta products shipped after November 2009. Import the relevant GPG key and the verify the package to check the credibility of a package. Viewing GPG Keys view with rpm command rpm -q gpg-pubkey -i option show info about a key. Verifying Package Attributes Compare package file attributes with originals stored in package database at the time of installation. -V option compare owner, group, permission mode, size, modification time, digest, type, etc. Returns to prompt if no changes are detected -v or vv for verbose -Vf run the check directly on the file Three columns of output: Column 1 9 fields S = Different file size. M = Mode or permission or file type change. 5 = MD5 Checksum does not match. D = Device file and its major and minor number have changed. L = File is a symlink and it’s path has been altered. U = Ownership has changed. G = Group membership has been modified. T = Timestamp changed. P = Capabilities are altered. . = No modifications detected. Column 2 File type c = Configuration file d = Documentation File g = Ghost FIle l = License file r = Readme file Column 3 Full path of file">
     <meta property="og:locale" content="en_us">
@@ -21,22 +21,22 @@
     <title></title>
     <link href="/linux/rhcsa/package-integrity-and-credibility/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/linux/rhcsa/package-integrity-and-credibility/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
-    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741639423" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741639423"></script>
+    <link href="/images/logo.svg?1741640065" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741640065" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741640065" rel="stylesheet">
+    <link href="/css/fonts.css?1741640065" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741640065" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741640065" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741640065" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741640065" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741640065" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741640065"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -235,7 +235,7 @@
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741639423";
+          window.index_js_url="/searchindex.en.js?1741640065";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -248,12 +248,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741639423" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741639423" defer></script>
-        <script src="/js/search.js?1741639423" defer></script>
+        <script src="/js/auto-complete.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741640065" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741640065" defer></script>
+        <script src="/js/search.js?1741640065" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -279,7 +279,7 @@
             <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
             <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
             <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
-            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Notes</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
           </ul>
         </div>
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
@@ -332,8 +332,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741639423" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script src="/js/clipboard.min.js?1741640065" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741640065" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -349,20 +349,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
-    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741640065" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741640065" defer></script>
+    <script src="/js/js-yaml.min.js?1741640065" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741639423" defer></script>
+    <script src="/js/theme.js?1741640065" defer></script>
   </body>
 </html>
