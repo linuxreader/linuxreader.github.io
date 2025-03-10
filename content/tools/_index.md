@@ -1,6 +1,7 @@
 +++ 
 archetype = "moc" 
 title = "Tools" 
+menuPre = '<i class="fa-fw fas fa-screwdriver-wrench"></i> '
 weight = 3
 alwaysopen = false
 [_build]

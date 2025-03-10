@@ -1,4 +1,6 @@
-
++++
+title = 'RHCSA Vagrant Lab Setup'
++++
 
 ![RHCSA Vagrant Lab](/images/vagrantmultivmdeployment.jpg)
 

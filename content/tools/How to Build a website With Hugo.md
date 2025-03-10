@@ -1,3 +1,6 @@
++++
+title = 'How to Build a website With Hugo'
++++
 
 Word Press is great, but it is probably a lot more bloated then you need for a personal website. Enter Hugo, it has less server capacity and storage needs than Word Press. Hugo is a static site generator than takes markdown files and converts them to html. 
 

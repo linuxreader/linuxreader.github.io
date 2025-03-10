@@ -1,5 +1,7 @@
++++
+title = 'What to Learn After CCNA'
++++
 
-# What to Learn After CCNA
 
 It's easy to get overwhelmed with options after [completing](Resources%20for%20Passing%20CCNA.md) your CCNA. What do you learn next? If you are trying to get a job as a Network Engineer, you will want to check this out. 
 

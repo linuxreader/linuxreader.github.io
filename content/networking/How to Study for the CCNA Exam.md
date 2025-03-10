@@ -1,4 +1,6 @@
-
++++
+title = 'How to Study for the CCNA Exam'
++++
 
 ![CCNA Study Calendar](/images/CCNA.png)
 

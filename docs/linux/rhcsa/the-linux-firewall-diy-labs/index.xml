@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title></title>
-    <link>http://localhost:1313/linux/rhcsa/the-linux-firewall-diy-labs/</link>
+    <link>http://linuxreader.com/linux/rhcsa/the-linux-firewall-diy-labs/</link>
     <description>The Linux Firewall DIY Labs Lab: Add Service to Firewall Add and activate a permanent rule for HTTPs traffic to the default zone. [root@server20 ~]# firewall-cmd --add-service https --permanent success [root@server20 ~]# firewall-cmd --reload success Confirm the change by viewing the zone’s XML file and running the firewall-cmd command. [root@server20 ~]# cat /etc/firewalld/zones/public.xml &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;zone&gt; &lt;short&gt;Public&lt;/short&gt; &lt;description&gt;For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.&lt;/description&gt; &lt;service name=&#34;ssh&#34;/&gt; &lt;service name=&#34;dhcpv6-client&#34;/&gt; &lt;service name=&#34;cockpit&#34;/&gt; &lt;service name=&#34;nfs&#34;/&gt; &lt;service name=&#34;https&#34;/&gt; &lt;forward/&gt; &lt;/zone&gt; [root@server20 ~]# firewall-cmd --list-services cockpit dhcpv6-client https nfs ssh Lab: Add Port Range to Firewall Add and activate a permanent rule for the UDP port range 8000 to 8005 to the trusted zone. [root@server20 ~]# firewall-cmd --add-port 8000- 8005/udp --zone trusted --permanent success [root@server20 ~]# firewall-cmd --reload success Confirm the change by viewing the zone’s XML file and running the firewall-cmd command. [root@server20 ~]# firewall-cmd --list-ports -- zone trusted 8000-8005/udp [root@server20 ~]# cat /etc/firewalld/zones/trusted.xml &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;zone target=&#34;ACCEPT&#34;&gt; &lt;short&gt;Trusted&lt;/short&gt; &lt;description&gt;All network connections are accepted.&lt;/description&gt; &lt;port port=&#34;8000-8005&#34; protocol=&#34;udp&#34;/&gt; &lt;forward/&gt; &lt;/zone&gt;</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/linux/rhcsa/the-linux-firewall-diy-labs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://linuxreader.com/linux/rhcsa/the-linux-firewall-diy-labs/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

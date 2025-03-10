@@ -1,3 +1,6 @@
++++
+title = 'How to Process Bookfusion Highlights with Vim'
++++
 Here are my highlights pulled up in Vim:
 
 ![](/images/Pasted%20image%2020240414034031.png)
