@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="25 IPv6 Routing Tuesday, August 31, 2021 2:58 PM
+they re-add these routes when the interface is again in a working (up/up) state Examples of Local IPv6 Routes
+show ipv6 route local command
+Static IPv6 Routes
+static routes require direct configuration with the ipv6 route command
+the ipv6 route command begins with the prefix and prefix length. Then the respective commands
+the list the directions of how this router should forward packets toward that destination subnet or ipv6 route command begins with the prefix and prefix length. Then the respective commands
+prefix by listing the outgoing interface or the address of the next-hop router.
+A static route on R1, for this subnet, will begin witheither the outgoing interface (S0/0/0) or the next-hop IPv6 address, or both. ipv6 route 2001:DB8:1111:2::/64, followed by">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="25 IPv6 Routing Tuesday, August 31, 2021 2:58 PM
+they re-add these routes when the interface is again in a working (up/up) state Examples of Local IPv6 Routes
+show ipv6 route local command
+Static IPv6 Routes
+static routes require direct configuration with the ipv6 route command
+the ipv6 route command begins with the prefix and prefix length. Then the respective commands
+the list the directions of how this router should forward packets toward that destination subnet or ipv6 route command begins with the prefix and prefix length. Then the respective commands
+prefix by listing the outgoing interface or the address of the next-hop router.
+A static route on R1, for this subnet, will begin witheither the outgoing interface (S0/0/0) or the next-hop IPv6 address, or both. ipv6 route 2001:DB8:1111:2::/64, followed by">
+    <meta property="og:url" content="http://localhost:1313/networking/ccna/newccnanotes/25-ipv6-routing/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="25 IPv6 Routing Tuesday, August 31, 2021 2:58 PM
+they re-add these routes when the interface is again in a working (up/up) state Examples of Local IPv6 Routes
+show ipv6 route local command
+Static IPv6 Routes
+static routes require direct configuration with the ipv6 route command
+the ipv6 route command begins with the prefix and prefix length. Then the respective commands
+the list the directions of how this router should forward packets toward that destination subnet or ipv6 route command begins with the prefix and prefix length. Then the respective commands
+prefix by listing the outgoing interface or the address of the next-hop router.
+A static route on R1, for this subnet, will begin witheither the outgoing interface (S0/0/0) or the next-hop IPv6 address, or both. ipv6 route 2001:DB8:1111:2::/64, followed by">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Networking">
+    <meta itemprop="description" content="25 IPv6 Routing Tuesday, August 31, 2021 2:58 PM
+they re-add these routes when the interface is again in a working (up/up) state Examples of Local IPv6 Routes
+show ipv6 route local command
+Static IPv6 Routes
+static routes require direct configuration with the ipv6 route command
+the ipv6 route command begins with the prefix and prefix length. Then the respective commands
+the list the directions of how this router should forward packets toward that destination subnet or ipv6 route command begins with the prefix and prefix length. Then the respective commands
+prefix by listing the outgoing interface or the address of the next-hop router.
+A static route on R1, for this subnet, will begin witheither the outgoing interface (S0/0/0) or the next-hop IPv6 address, or both. ipv6 route 2001:DB8:1111:2::/64, followed by">
+    <meta itemprop="wordCount" content="1957">
+    <title></title>
+    <link href="/networking/ccna/newccnanotes/25-ipv6-routing/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/networking/ccna/newccnanotes/25-ipv6-routing/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
+    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741639423" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741639423"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/networking/ccna/newccnanotes/25-ipv6-routing/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna" title="CCNA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/newccnanotes/25-ipv6-routing?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/cisco_to_junos_cheat_sheet" title="Cisco to Juniper Cheat Sheet (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable networking" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="25-ipv6-routing">25 IPv6 Routing</h1>
+<p>Tuesday, August 31, 2021 2:58 PM</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>they re-add these routes when the interface is again in a working (up/up) state</code></pre></div>
+<p>Examples of Local IPv6 Routes<br>
+<strong>show ipv6 route local</strong> command</p>
+<p>Static IPv6 Routes<br>
+static routes require direct configuration with the <strong>ipv6 route</strong> command<br>
+the <strong>ipv6 route</strong> command begins with the prefix and prefix length. Then the respective commands</p>
+<p>the list the directions of how this router should forward packets toward that destination subnet or <strong>ipv6 route</strong> command begins with the prefix and prefix length. Then the respective commands<br>
+prefix by listing the outgoing interface or the address of the next-hop router.<br>
+A static route on R1, for this subnet, will begin witheither the outgoing interface (S0/0/0) or the next-hop IPv6 address, or both. <strong>ipv6 route 2001:DB8:1111:2::/64,</strong> followed by</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>when the command references an interface, the interface is a local interface</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>show ipv6 route command will list all the IPv6 routes.
+show ipv6 route static command, whichlists only static routes</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>directly connected” might mislead you to think this is a connected route; trust the “S” code.
+show ipv6 route 2001:DB8:1111:2::22 route that the router would use when forwarding packets to that particular address.command. This command asks the router to list the
+Example 25-7 shows an example.</code></pre></div>
+<p>Static Routes Using the Outgoing Interface</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Static IPv6 routes that refer to a next-hop address have two options: the unicast address on
+the neighboring router (global unicast or unique local) or the linkneighboring router -local address of that same</code></pre></div>
+<p>Static Routes Using Next-Hop IPv6 Address</p>
+<p>Example Static Route with a Link-Local Next-Hop Address<br>
+<strong>ipv6 route</strong> the link-local address does not, by itself, tell the local router which outgoing interface to command cannot simply refer to a link-local next-hop address by itself because<br>
+use.<br>
+With a linkoutgoing interface must also be configured.-local next-hop address, a router cannot work through this same logic, so the</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>show commands also list both the next-hop (link-local) address and the outgoing interface</code></pre></div>
+<p>Static Routes over Ethernet Links<br>
+To configure a static route that uses an Ethernet interface, the parameters should always include a next-hop IPv6 address. IOS allows you to configure the ipv6 <strong>ipv6 route</strong> command’s forwarding<br>
+route command using only the outgoingThe router will accept the command; however, -interface parameter, without listing a nextif that outgoing interface happens to be an -hop address.<br>
+Ethernet interface, the router cannot successfully forward IPv6 packets using the route.<br>
+To configure the ipv6 route correctly when directing packets out an Ethernet interface, the configuration should use one of these styles:<br>
+Refer to the next-hop global unicast address (or unique local address) only<br>
+Refer to both the outgoing interface and nextaddress) -hop global unicast address (or unique local<br>
+Refer to both the outgoing interface and next-hop link-local address</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Branch routers could use default routes instead of a routing protocol.</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>use a specific value to note the route as a default route: ::/0</code></pre></div>
+<p>Static Default Routes</p>
+<p>Static IPv6 Host Routes<br>
+a route to a single host IP address. With IPv4, those routes use a /32 mask, which identifies a<br>
+single IPv4 address in thethe ipv6 route command. <strong>ip route</strong> command; with IPv6, a /128 mask identifies that single host in</p>
+<p>Floating Static IPv6 Routes</p>
+<p>IOS considers static routes better than OSPFdistance. IOS uses the same administrative distance concept and default values for IPv6 as it does -learned routes by default due to administrative<br>
+for IPv4<br>
+IPv6 floating static route floats or moves into and out of the IPv6 routing table depending on<br>
+whether the better (lower) administrative distance route learned by the routing protocol happens to exist currently.</p>
+<p>To implement an IPv6 floating static route, just override the default administrative distance on the static route, making the value larger than the default administrative distance of the routing<br>
+protocol.<br>
+<strong>ipv6 route 2001:db8:1111:7::/64 2001:db8:1111:9::3 130</strong> that, setting the static route’s administrative distance to 130. command on R1 would do exactly</p>
+<p>Troubleshooting Incorrect Static Routes That Appear in the IPv6 Routing Table<br>
+IOS cannot tell if you choose the incorrect outgoing interface, incorrect nextincorrect prefix/prefix-length in a static route. -hop address, or<br>
+IOS puts the route into the IP routing tablepoorly chosen parameters. —even though the route may not work because of the<br>
+R1 cannot use its own IPv6 address as a next-hop address.<br>
+routes may have incorrect parameters. Check for these types of mistakes:<br>
+Step 1. Prefix/Length: Does the ipv6 route command reference the correct subnet ID (prefix) and mask (prefix length)?<br>
+Step 2. If using a next-hop IPv6 address that is a link-local address:<br>
+A. Is the link-local address an address on the correct neighboring router? (It should be<br>
+an address on another router on a shared link.)<br>
+B. Does the ipv6 route command also refer to the correct outgoing interface on the<br>
+local router?<br>
+Step 3. If using a nextaddress the correct unicast address of the neighboring router?-hop IPv6 address that is a global unicast or unique local address, is the<br>
+Step 4. If referencing an outgoing interface, does the ipv6 route command reference the interface on the local router (that is, the same router where the static route is configured)?</p>
+<p>The Static Route Does Not Appear in the IPv6 Routing Table<br>
+IOS makes the following checks before adding the route;<br>
+For ipv6 route commands that list an outgoing interface, that interface must be in an up/up state.<br>
+For ipv6 route commands that list a global unicast or unique local next-hop IP address (that</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>For ipv6 route commands that list a global unicast or unique local nextis, not a link-local address), the local router must have a route to reach that next-hop IP address (that -hop
+address.
+If another IPv6 route exists for that exact same prefix/prefixhave a better (lower) administrative distance. -length, the static route must</code></pre></div>
+<p>The Neighbor Discovery Protocol<br>
+with 1pv4 ARP works as a separate protocol; with IPv6, thepart of ICMPv6,performs the same functions. Neighbor Discovery Protocol (NDP), a<br>
+few of the functions of the NDP protocol (RFC 4861). Some of those NDP functions are<br>
+Neighbor MAC Discovery:of other hosts in the same subnet. NDP replaces IPv4’s ARP, providing messages that An IPv6 LAN-based host will need to learn the MAC address<br>
+replace the ARP Request and Reply messages.<br>
+Router Discoverysame subnet. : Hosts learn the IPv6 addresses of the available IPv6 routers in the<br>
+SLAACmessages to learn the subnet (prefix) used on the link plus the prefix length.: When using Stateless Address Auto Configuration (SLAAC), the host uses NDP<br>
+DAD: Before using an IPv6 address, hosts use NDP to perform a Duplicate Address<br>
+Detection (DAD) process, to ensure no other host uses the same IPv6 address before attempting to use it.<br>
+Discovering Neighbor Link Addresses with NDP NS and NA<br>
+using a pair of matched solicitation and advertisement messages:(NS)and Neighbor Advertisement (NA)messages. the Neighbor Solicitation<br>
+the send back a replyNS acts like an IPv4 ARP request. The NA message acts like an IPv4 ARP Reply, listing that host’s MAC , asking the host with a particular unicast IPv6 address to<br>
+address.<br>
+Neighbor Solicitation (NS)(the target address) to reply with an NA message that lists its MAC address. : This message asks the host with a particular IPv6 address The NS<br>
+message is sent to the solicitedaddress, so the message is processed only by hosts whose last six hex digits match the -node multicast address associated with the target<br>
+address that is being queried.<br>
+Neighbor Advertisement (NA): This message lists the sender’s IPv6 and MAC<br>
+addresses. IPv6 unicast address of the host that sent the original NS messageIt can be sent in reply to an NS message, and if so, the packet is sent to the .A host can also<br>
+send an unsolicited NA, announcing its IPv6 and MAC addresses, in which case the message is sent to the all-IPv6-hosts local-scope multicast address FF02::1.</p>
+<p>To view a host’s NDP neighbor table, use these commands: (Windows) netsh interface ipv6<br>
+show neighbors; (Linux) ip -6 neighbor show; (Mac OS) ndp -an.<br>
+Discovering Routers with NDP RS and RA<br>
+NDP defines two messages that allow any host to discover all routers in the subnet:<br>
+Router Solicitation (RS):This message is sent to the “all-IPv6-routers” local-scope multicast<br>
+address of FF02::2 so that the message asks all routers, on the local link only, to identify themselves.<br>
+Router Advertisement (RA): link-local IPv6 address of the router. When sent in response to an RS message, it flows back This message, sent by the router, lists many facts, including the<br>
+to either the unicast address of the host that sent the RS or to the allFF02::1. Routers also send RA messages without being asked, sent to the all-IPv6-hosts address -IPv6-hosts local-<br>
+scope multicast address of FF02::1.</p>
+<p>IPv6 allows multiple prefixes and multiple default routers to be listed in the RA message; Figure 25-9 just shows one of each for simplicity’s sake.<br>
+also periodically send unsolicited RA messages<br>
+the RA messages flow to the FF02::1 all-nodes IPv6 multicast address.<br>
+Using SLAAC with NDP RS and RA</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>IPv6 supports an alternative method for IPv6 hosts to dynamically choose an unused IPv6 address
+to use
+The process goes by the nameStateless Address Autoconfiguration (SLAAC).
+Learn the IPv6 prefix used on the link, from any router, using NDP RS/RA messages.
+Build an address from the prefix plus an interface ID, chosen either by using EUI-64 rules or
+as a random value.
+Before using the address, first use DAD to make sure that no other host is already using the same address.</code></pre></div>
+<p>Discovering Duplicate Addresses Using NDP NS and NA<br>
+IPv6 uses the Duplicate Address Detection (DAD) process before using a unicast address to make sure that no other node on that link is already using the address. Hosts use DAD not only at the<br>
+end of the SLAAC process, but also any time that a host interface initializes, no matter whether using SLAAC, DHCP, or static address configuration. When performing DAD, if another host already<br>
+uses that address, the first host simply does not use the address until the problem is resolved.<br>
+a host sends an NS message for its own IPv6 address. No other host should be using that address,<br>
+so no other host should send an NDP NA in reply. However, if another host already uses that address, that host will reply with an NA, identifying a duplicate use of the address.<br>
+Hosts do the DAD check for each of their unicast addresses, link-local addresses included, both<br>
+when the address is first used and each time the host’s interface comes up.<br>
+NDP Summary<br>
+NDP does more than what is listed in this chapter, and the protocol allows for addition of other<br>
+functions, so NDP might continue to grow over time. For now, use Table 25for the four NDP features discussed here. -3 as a study reference</p>
+<p>This chapter covers the following exam topics:<br>
+1.0 Network Fundamentals<br>
+1.1 Explain the role and function of network components<br>
+1.1.d Access Points<br>
+1.11 Describe wireless principles<br>
+1.11.a Nonoverlapping Wi-Fi channels<br>
+1.11.b SSID<br>
+1.11.c RF</p>
+<p>Comparing Wired and Wireless Networks</p>
+<p>Wireless devices must adhere to a common standard (IEEE 802.11).<br>
+Wireless coverage must exist in the area where devices are expected to use it.<br>
+Wireless LAN Topologies<br>
+IEEE 802.11 WLANs are always half duplex because transmissions between stations use the same frequency or channel.</p>
+<p>Basic Service Set<br>
+before a device can participate, it must advertise its capabilities and then be granted permission to join. The 802.11 standard calls this a basic service set (BSS). At the heart of every BSS is a<br>
+wireless access point (AP),<br>
+The AP operates ininfrastructure mode,which meansit offers the services that are necessary to<br>
+form the infrastructure of a wireless networkchannel. The AP and the members of the BSS must all use the same channel to communicate. The AP also establishes its BSS over a single wireless<br>
+properly.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741639423";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741639423" defer></script>
+        <script src="/js/search.js?1741639423" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="parent " data-nav-id="/networking/ccna/"><a class="padding" href="/networking/ccna/"><i class="fa-fw fas fa-angle-down"></i> CCNA</a><ul id="R-subsections-44410761baa8607e03676f2c59feb152" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/networking/ccna/newccnanotes/25-ipv6-routing/"><a class="padding" href="/networking/ccna/newccnanotes/25-ipv6-routing/"></a></li>
+            <li class="" data-nav-id="/networking/ccna/cisco_to_junos_cheat_sheet/"><a class="padding" href="/networking/ccna/cisco_to_junos_cheat_sheet/">Cisco to Juniper Cheat Sheet</a></li>
+            <li class="" data-nav-id="/networking/ccna/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/ccna/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-id="/networking/ccna/my-ccna-notes/"><a class="padding" href="/networking/ccna/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-id="/networking/ccna/resources-for-passing-ccna/"><a class="padding" href="/networking/ccna/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/ccna/what-to-learn-after-ccna/"><a class="padding" href="/networking/ccna/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-id="/networking/juniper/"><a class="padding" href="/networking/juniper/"><i class="fa-fw fas fa-angle-down"></i> Juniper</a><ul id="R-subsections-31cdffb7c07e47db8ec008672034f363" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/networking/ccna/newccnanotes/25-ipv6-routing/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741639423" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
+    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741639423" defer></script>
+  </body>
+</html>

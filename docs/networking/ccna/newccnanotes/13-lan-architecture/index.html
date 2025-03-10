@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="13 LAN Architecture Monday, October 25, 2021 11:51 AM
+Star: A design in which one central device connects to several others, so that if you drew the links out in all directions, the design would look like a star with light shining in all directions. Topology Terminology Seen Within a Two-Tier Design Full mesh: For any set of network nodes, a design that connects a link between each pair of nodes. Partial mesh: For any set of network nodes, a design that connects a link between some pairs of nodes, but not all. In other words, a mesh that is not a full mesh. Hybrid: A design that combines topology design concepts into a larger (typically more complex) design. twoand a partial mesh at the distribution layer.-tier design is indeed a hybrid design that uses both a star topology at the access layer The distribution layer creates a partial mesh. none of the access layer switches connect to each other. Three-Tier Campus Design (Core)">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="13 LAN Architecture Monday, October 25, 2021 11:51 AM
+Star: A design in which one central device connects to several others, so that if you drew the links out in all directions, the design would look like a star with light shining in all directions. Topology Terminology Seen Within a Two-Tier Design Full mesh: For any set of network nodes, a design that connects a link between each pair of nodes. Partial mesh: For any set of network nodes, a design that connects a link between some pairs of nodes, but not all. In other words, a mesh that is not a full mesh. Hybrid: A design that combines topology design concepts into a larger (typically more complex) design. twoand a partial mesh at the distribution layer.-tier design is indeed a hybrid design that uses both a star topology at the access layer The distribution layer creates a partial mesh. none of the access layer switches connect to each other. Three-Tier Campus Design (Core)">
+    <meta property="og:url" content="http://localhost:1313/networking/ccna/newccnanotes/13-lan-architecture/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="13 LAN Architecture Monday, October 25, 2021 11:51 AM
+Star: A design in which one central device connects to several others, so that if you drew the links out in all directions, the design would look like a star with light shining in all directions. Topology Terminology Seen Within a Two-Tier Design Full mesh: For any set of network nodes, a design that connects a link between each pair of nodes. Partial mesh: For any set of network nodes, a design that connects a link between some pairs of nodes, but not all. In other words, a mesh that is not a full mesh. Hybrid: A design that combines topology design concepts into a larger (typically more complex) design. twoand a partial mesh at the distribution layer.-tier design is indeed a hybrid design that uses both a star topology at the access layer The distribution layer creates a partial mesh. none of the access layer switches connect to each other. Three-Tier Campus Design (Core)">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Networking">
+    <meta itemprop="description" content="13 LAN Architecture Monday, October 25, 2021 11:51 AM
+Star: A design in which one central device connects to several others, so that if you drew the links out in all directions, the design would look like a star with light shining in all directions. Topology Terminology Seen Within a Two-Tier Design Full mesh: For any set of network nodes, a design that connects a link between each pair of nodes. Partial mesh: For any set of network nodes, a design that connects a link between some pairs of nodes, but not all. In other words, a mesh that is not a full mesh. Hybrid: A design that combines topology design concepts into a larger (typically more complex) design. twoand a partial mesh at the distribution layer.-tier design is indeed a hybrid design that uses both a star topology at the access layer The distribution layer creates a partial mesh. none of the access layer switches connect to each other. Three-Tier Campus Design (Core)">
+    <meta itemprop="wordCount" content="986">
+    <title></title>
+    <link href="/networking/ccna/newccnanotes/13-lan-architecture/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/networking/ccna/newccnanotes/13-lan-architecture/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
+    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741639423" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741639423"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/networking/ccna/newccnanotes/13-lan-architecture/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna" title="CCNA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/newccnanotes/13-lan-architecture?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/cisco_to_junos_cheat_sheet" title="Cisco to Juniper Cheat Sheet (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable networking" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="13-lan-architecture">13 LAN Architecture</h1>
+<p>Monday, October 25, 2021 11:51 AM</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Star: A design in which one central device connects to several others, so that if you
+drew the links out in all directions, the design would look like a star with light shining in all directions.</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Topology Terminology Seen Within a Two-Tier Design</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Full mesh: For any set of network nodes, a design that connects a link between each pair of nodes.
+Partial mesh: For any set of network nodes, a design that connects a link between
+some pairs of nodes, but not all. In other words, a mesh that is not a full mesh.
+Hybrid: A design that combines topology design concepts into a larger (typically more
+complex) design.
+twoand a partial mesh at the distribution layer.-tier design is indeed a hybrid design that uses both a star topology at the access layer</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>The distribution layer creates a partial mesh.
+none of the access layer switches connect to each other.</code></pre></div>
+<p>Three-Tier Campus Design (Core)</p>
+<p>Three-Tier Campus Design (Core)<br>
+collapsed core refers to the fact that the two-tier design does not have a third tier, the core tier</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Sometimes the center of the network uses a full mesh, sometimes a partial mesh, depending on
+the availability of cables between the buildings.
+provide one function: to connect the distribution switches.</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>Access: Provides a connection point (access) for endbetween two other access switches under normal circumstances.-user devices. Does not forward frames
+Distribution: Provides an aggregation point for access switches, providing connectivity to the rest
+of the devices in the LAN, forwarding frames between switches, but not connecting directly to end-user devices.</code></pre></div>
+<p>Core: Aggregates distribution switches in very large campus LANs, providing very high forwarding<br>
+rates for the larger volume of traffic due to the size of the network.<br>
+Topology Design Terminology</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>the right side of Figure 13-6 combines the star topology of the access layer with the partial mesh
+of the distribution layer. So you might hear these designs that combine concepts called a hybrid design.</code></pre></div>
+<h6 id="small-officehome-office">Small Office/Home Office</h6>
+<div class="highlight wrap-code"><pre tabindex="0"><code>that one wireless router acts like separate devices you would find in an enterprise campus:
+Key Topic.
+An Ethernet switch, for the wired Ethernet connections
+A wireless access point (AP), to communicate with the wireless devices and forward the frames to/from the wired network
+A router, to route IP packets to/from the LAN and WAN (Internet) interfaces
+A firewallbut not vice versa, which often defaults to allow only clients to connect to servers in the Internet,</code></pre></div>
+<h4 id="power-over-ethernet-poe">Power over Ethernet (PoE)</h4>
+<div class="highlight wrap-code"><pre tabindex="0"><code>a LAN switch, acts as the Power Sourcing Equipment (PSE
+supplies DC power so the device does not need an AC/DC converter.
+A device that has the capability to be powered over the Ethernet cable
+is called the Powered Device (PD)</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>PoE Operation
+PoE must (and does) have processes in place to determine if PoE is needed, and for how much power, before applying any potentially harmful power levels to the circuit.
+autonegotiation mechanisms need to work before the PD has booted,
+By using these IEEE autonegotiation messages and watching for the return signal levels, PoE
+can determine whether the device on the end of the cable requires power (that is, it is a PD) and how much power to supply
+Step 1. the device needs power.Do not supply power on a PoE-capable port unless negotiation identifies that
+Step 2. Use Ethernet autonegotiation techniques, sending low power signals and
+monitoring the return signal, to determine the PoE power class, which determines how much power to supply to the device.
+Step 3allows the device to boot.. If the device is identified as a PD, supply the power per the power class, which
+Step 4. Monitor for changes to the power class, both with autonegotiation and
+listening for CDP and LLDP messages from the PD.</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>listening for CDP and LLDP messages from the PD.
+Step 5.If a new power class is identified, adjust the power level per that class.
+PDs signaling how many watts of power they would like to receive from the PSon the specific PoE standard, the PSE will then supply the power, either over two pairs or E. Depending
+four pairs, as noted in Table 13-2.</code></pre></div>
+<p>PoE and LAN Design<br>
+some of the key points to consider when planning a LAN design that includes PoE:<br>
+<strong>Powered Devices:</strong> power requirements.Determine the types of devices and specific models, along with their<br>
+<strong>Power Requirements</strong> : Plan the numbers of different types of PDs to connect into each<br>
+wiring closet to build a power budget. That power budget can then be processed to determine the amount of PoE power to make available through each switch.<br>
+Sa subset of ports. Research the various switch models so that you purchase enough PoE <strong>witch Ports</strong> : Some switches support PoE standards on all ports, some on no ports, some on -<br>
+capable ports for the switches planned for each wiring closet.<br>
+<strong>Switch Power Supplies</strong> so that it delivers enough power to power the switch itself. With PoE, the switch acts as a : Without PoE, when purchasing a switch, you choose a power supply<br>
+distributor of electrical power, so the switch power supply must deliver many more watts than it needs to run the switch itself. You will need to create a power budget per switch,<br>
+based on the number of connected PDs, and purchase power supplies to match those<br>
+requirements.<br>
+<strong>PoE Standards versus Actual</strong> standards they support, the standards supported by the PDs, and how much power they : Consider the number of PoE switch ports needed, the<br>
+consume. For instance, a PD and a switch port may both support PoE+, which supports up to 30 watts supplied by the PSE. However, that powered device may need at most 9 watts</p>
+<p>to 30 watts supplied by the PSE. However, that powered device may need at most 9 watts to operate, so your power budget needs to reserve less power than the maximum for those<br>
+devices.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741639423";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741639423" defer></script>
+        <script src="/js/search.js?1741639423" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="parent " data-nav-id="/networking/ccna/"><a class="padding" href="/networking/ccna/"><i class="fa-fw fas fa-angle-down"></i> CCNA</a><ul id="R-subsections-44410761baa8607e03676f2c59feb152" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/networking/ccna/newccnanotes/13-lan-architecture/"><a class="padding" href="/networking/ccna/newccnanotes/13-lan-architecture/"></a></li>
+            <li class="" data-nav-id="/networking/ccna/cisco_to_junos_cheat_sheet/"><a class="padding" href="/networking/ccna/cisco_to_junos_cheat_sheet/">Cisco to Juniper Cheat Sheet</a></li>
+            <li class="" data-nav-id="/networking/ccna/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/ccna/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-id="/networking/ccna/my-ccna-notes/"><a class="padding" href="/networking/ccna/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-id="/networking/ccna/resources-for-passing-ccna/"><a class="padding" href="/networking/ccna/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/ccna/what-to-learn-after-ccna/"><a class="padding" href="/networking/ccna/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-id="/networking/juniper/"><a class="padding" href="/networking/juniper/"><i class="fa-fw fas fa-angle-down"></i> Juniper</a><ul id="R-subsections-31cdffb7c07e47db8ec008672034f363" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/networking/ccna/newccnanotes/13-lan-architecture/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741639423" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
+    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741639423" defer></script>
+  </body>
+</html>

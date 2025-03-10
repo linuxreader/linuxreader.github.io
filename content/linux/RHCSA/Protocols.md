@@ -5,7 +5,7 @@
 `cat /etc/protocols`
 ### TCP and UDP Protocols
 
-See [tcp_ip_transport_and_applications](tcp_ip_transport_and_applications.md) and [tcp_ip_basic](tcp_ip_basic.md)
+See [IP Transport and Applications](../../networking/CCNA/CCNA%20Notes/IP%20Transport%20and%20Applications.md) and [tcp_ip_basic](../../networking/CCNA/CCNA%20Notes/tcp_ip_basic.md)
 
 ### ICMP
 

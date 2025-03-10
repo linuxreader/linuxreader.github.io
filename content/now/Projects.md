@@ -123,3 +123,32 @@ open source analytics
 https://plausible.io/
 https://analytics.bookstackapp.com/bookstackapp.com
 [[Add Plausible to Hugo Site]]
+
+### Searx 
+
+[[Searx Setup Guide]]
+
+Create my own searx search engine
+
+go to https://searx.space/
+
+### RSS
+
+Create and RSS feed of my site and subscribe to other feeds.
+
+Follow these sites:
+
+https://denshi.org/
+https://drewdevault.com/
+https://opensourcemusings.com/support
+https://www.mrmoneymustache.com/
+
+### DWM Tile Manager
+
+http://thedarnedestthing.com/vim/wiki%20cheatsheet
+
+### Browser Sync
+https://www.xbrowsersync.org/
+
+### Privacy tools
+https://www.privacytools.io/

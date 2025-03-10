@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="21 OSPF Network Types and Neighbors Friday, August 27, 2021 9:44 AM
+To see the setting, use the show ip ospf interface command,as shown in Example 21-4. The first highlighted item identifies the network type ip ospf network broadcast interface subcommand would configure the setting.
+Configuring to Influence the DR/BDR Election
+If the DR fails, the BDR becomes the DR, and a new BDR is elected.
+Preemption:If a new router is configured to be the DR, it will not become the DR until the
+OSPF process is reset.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="21 OSPF Network Types and Neighbors Friday, August 27, 2021 9:44 AM
+To see the setting, use the show ip ospf interface command,as shown in Example 21-4. The first highlighted item identifies the network type ip ospf network broadcast interface subcommand would configure the setting.
+Configuring to Influence the DR/BDR Election
+If the DR fails, the BDR becomes the DR, and a new BDR is elected.
+Preemption:If a new router is configured to be the DR, it will not become the DR until the
+OSPF process is reset.">
+    <meta property="og:url" content="http://localhost:1313/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="21 OSPF Network Types and Neighbors Friday, August 27, 2021 9:44 AM
+To see the setting, use the show ip ospf interface command,as shown in Example 21-4. The first highlighted item identifies the network type ip ospf network broadcast interface subcommand would configure the setting.
+Configuring to Influence the DR/BDR Election
+If the DR fails, the BDR becomes the DR, and a new BDR is elected.
+Preemption:If a new router is configured to be the DR, it will not become the DR until the
+OSPF process is reset.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Networking">
+    <meta itemprop="description" content="21 OSPF Network Types and Neighbors Friday, August 27, 2021 9:44 AM
+To see the setting, use the show ip ospf interface command,as shown in Example 21-4. The first highlighted item identifies the network type ip ospf network broadcast interface subcommand would configure the setting.
+Configuring to Influence the DR/BDR Election
+If the DR fails, the BDR becomes the DR, and a new BDR is elected.
+Preemption:If a new router is configured to be the DR, it will not become the DR until the
+OSPF process is reset.">
+    <meta itemprop="wordCount" content="917">
+    <title></title>
+    <link href="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/logo.svg?1741639423" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741639423" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741639423" rel="stylesheet">
+    <link href="/css/fonts.css?1741639423" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741639423" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741639423" rel="stylesheet">
+    <link href="/css/theme-amoled.css?1741639423" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741639423" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741639423" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741639423"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'amoled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna" title="CCNA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/cisco_to_junos_cheat_sheet" title="Cisco to Juniper Cheat Sheet (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable networking" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h1 id="21-ospf-network-types-and-neighbors">21 OSPF Network Types and Neighbors</h1>
+<p>Friday, August 27, 2021 9:44 AM</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>To see the setting, use the show ip ospf interface command,as shown in Example 21-4. The first
+highlighted item identifies the network type</code></pre></div>
+<p><strong>ip ospf network broadcast</strong> interface subcommand would configure the setting.<br>
+Configuring to Influence the DR/BDR Election<br>
+If the DR fails, the BDR becomes the DR, and a new BDR is elected.<br>
+Preemption:If a new router is configured to be the DR, it will not become the DR until the<br>
+OSPF process is reset.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>When a better router enters the subnet, no preemption of the existing DR or BDR occurs.-</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>As a result of these rules, while you can configure a router to be the best (to become the DR in an election, doing so only increases that router’s statistical chances of being highest priority) router
+the DR at a given point in time. If the router fails, other routers will become DR and BDR, and the</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>the DR at a given point in time. If the router fails, other routers will become DR and BDR, and best router will not be DR again until the current DR and BDR fail. the</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>The highest OSPF interface priority: The highest value wins during an election, with values ranging from 0 to 255.
+The highest OSPF Router ID: If the priority ties, the election chooses the router with the highest OSPF RID.</code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0"><code>If an engineer preferred that R1 be the DR, the engineer could add the configuration in Example 21 - 5 to set R1’s interface priority to 99. (default of 1)</code></pre></div>
+<p>show that the DR and BDR have not changed at all<br>
+The OSPF Point-to-Point Network Type<br>
+(HDLC and PPP) do not support data-link broadcasts.<br>
+to use OSPF network type pointsame configuration command on its matching interface. -to-point. R2, on the other end of the WAN link, would need the</p>
+<p>OSPF Neighbor Relationships<br>
+They must have compatible values for several settings as listed in the Hellos exchanged between the two routers</p>
+<p>For items listing a “yes” in this column, if that item is configured incorrectly, the neighbor will not appear in lists of OSPF neighbors—for instance, with the <strong>show ip ospf neighbor</strong> command.</p>
+<p>the last section (shaded) lists a couple of OSPF settings that give a different symptom when incorrect</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>for these two items, when incorrect, a router can list the other router as a neighbor, but the
+neighbor relationship does not work properly in that the routers do not exchange LSAs as they should</code></pre></div>
+<p>10/40 is the default hello/dead timer<br>
+Finding Area Mismatches<br>
+Check the output of <strong>show running-config</strong> to look for<br>
+<strong>ip ospf process-id area area-number</strong> interface subcommands<br>
+network commands in OSPF configuration mode<br>
+Use the <strong>show ip ospf interface [brief]</strong> command to list the area number</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>both routers automatically generate a log message for the duplicate OSPF RID problem between
+R1 and R3;
+show ip ospf commands on both R3 and R1 to easily list the RID on each router,
+use the router-id 3.3.3.3 OSPF subcommand and use the EXEC mode command clear ip ospf
+process or reload.). (OSPF will not begin using a new RID value until the process restarts, either via command</code></pre></div>
+<p>Finding Duplicate OSPF Router IDs</p>
+<p>Finding OSPF Hello and Dead Timer Mismatches</p>
+<p>Hello interval/timer: The per-interface timer that tells a router how often to send OSPF Hello<br>
+messages on an interface.<br>
+Dead interval/timer: The perreceived a Hello from a neighbor before believing that neighbor has failed. (Defaults to four times -interface timer that tells the router how long to wait without having<br>
+the Hello timer.)</p>
+<p>Shutting Down the OSPF Process<br>
+When a routing protocol process is shut down, IOS does the following:<br>
+Brings down all neighbor relationships and clears the OSPF neighbor table<br>
+Clears the LSDB<br>
+Clears the IP routing table of any OSPF-learned routes<br>
+IOS retains all OSPF configuration.<br>
+IOS still lists all OSPF-enabled interfaces in the OSPF interface list( <strong>show ip ospf interface</strong> )<br>
+but in a DOWN state.</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>defining the largest network layer packet that the router will forward out each interface.
+default MTU size of 1500 bytes,
+The command sets the equivalent for IPv6 packets. ip mtu size interface subcommand defines the IPv4 MTU setting, and the ipv6 mtu size
+Symptom: they fail to exchange their LSDBs. Eventually, after trying and failing to exchange their
+LSDBs, the neighbor relationship also fails.
+show interfaces command (which lists the IP MTU).</code></pre></div>
+<p>Mismatched MTU Settings</p>
+<p>Mismatched OSPF Network Types</p>
+<p>one router uses broadcast, and the other uses point-to-point, the following occurs:<br>
+The two routers become fully adjacent neighbors (that is, they reach a full state).<br>
+They exchange their LSDBs.<br>
+They do not add IP routes to the IP routing table.</p>
+<p>This chapter covers the following exam topics:<br>
+1.0 Network Fundamentals<br>
+1.8 Configure and verify IPv6 addressing and prefix</p>
+<p>Introduction to IPv6<br>
+IPv6 increases the address to 128 bits in length.<br>
+Older OSPF Version 2 Upgraded to OSPF Version 3:<br>
+a newer version, OSPF version 3, was created to support IPv6. (Note: OSPFv3 was later<br>
+upgraded to support advertising both IPv4 and IPv6 routes.)<br>
+ICMP Upgraded to ICMP Version 6:<br>
+ARP Replaced by Neighbor Discovery Protocol:<br>
+32 hexadecimal digits (one hex digit per 4 bits)<br>
+Figure 22-3 shows the required 40-byte part of the IPv6 header.</p>
+<p>IPv6 Routing<br>
+To be able to build and send IPv6 packets out an interface, endon that interface. -user devices need an IPv6 address<br>
+End-user hosts need to know the IPv6 address of a default router, to which the host sends IPv6</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <script>
+          window.index_js_url="/searchindex.en.js?1741639423";
+        </script>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741639423" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741639423" defer></script>
+        <script src="/js/search.js?1741639423" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="parent " data-nav-id="/networking/ccna/"><a class="padding" href="/networking/ccna/"><i class="fa-fw fas fa-angle-down"></i> CCNA</a><ul id="R-subsections-44410761baa8607e03676f2c59feb152" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/"><a class="padding" href="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/"></a></li>
+            <li class="" data-nav-id="/networking/ccna/cisco_to_junos_cheat_sheet/"><a class="padding" href="/networking/ccna/cisco_to_junos_cheat_sheet/">Cisco to Juniper Cheat Sheet</a></li>
+            <li class="" data-nav-id="/networking/ccna/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/ccna/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-id="/networking/ccna/my-ccna-notes/"><a class="padding" href="/networking/ccna/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-id="/networking/ccna/resources-for-passing-ccna/"><a class="padding" href="/networking/ccna/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/ccna/what-to-learn-after-ccna/"><a class="padding" href="/networking/ccna/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-id="/networking/juniper/"><a class="padding" href="/networking/juniper/"><i class="fa-fw fas fa-angle-down"></i> Juniper</a><ul id="R-subsections-31cdffb7c07e47db8ec008672034f363" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://github.com/tdavetech"><a class="padding" href="https://github.com/tdavetech" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Notes</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/networking/ccna/newccnanotes/21-ospf-network-types-and-neighbors/" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1741639423" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741639423" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741639423" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741639423" defer></script>
+    <script src="/js/js-yaml.min.js?1741639423" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741639423" defer></script>
+  </body>
+</html>

@@ -6,9 +6,7 @@ type = ""
 weight = 1 
 +++
 
-Find out how to configure and customize your site.
-
-{{% children containerstyle="div" style="h2" description=true %}}
+{{% children depth="999" %}}
 
 ## RHCSA Stuff
 

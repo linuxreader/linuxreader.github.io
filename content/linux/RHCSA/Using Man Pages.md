@@ -1,5 +1,6 @@
 +++
 title = 'You Need to Learn Man Pages'
+description = 'Guide to using Man Pages'
 +++
 https://www.youtube.com/watch?v=RzAkjX_9B7E&t=295s
 

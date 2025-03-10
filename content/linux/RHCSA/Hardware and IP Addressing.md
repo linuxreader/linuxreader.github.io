@@ -30,11 +30,11 @@ ip addr
 
 ### Classful Network Addressing
 
-See [Classful ipv4](Classful%20ipv4.md)
+See [Classful ipv4](../../networking/CCNA/CCNA%20Notes/Classful%20ipv4.md)
 
 ### IPv6 Address
 
-See [ipv6](ipv6.md)
+See [ipv6](../../networking/CCNA/CCNA%20Notes/ipv6.md)
 
 The `ip addr` command also shows IPv6 addresses for the interfaces:
 ```bash
