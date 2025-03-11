@@ -59,5 +59,9 @@ Typing Club
 Lessons 120-141
 
 Day 12 (30 minutes)
-Typing CLub
-Lessons 142-
+Typing Club
+Lessons 142-151
+
+Day 13 (30 minutes)
+Typing Club
+Lessons 151-164
