@@ -12,10 +12,12 @@ title = "About"
 ![CCNA Logo](/images/ccnabadge.png?height=100px&classes=inline)
 ![RHCSALogo](/images/rhcsabadge.png?height=100px&classes=inline)
 
-### Hey, I'm David. 
+### Welcome to Linux Reader!
 
-I am a tech enthusiast interested in Linux, open source projects, Networking, scripting, programming, and cybersecurity. This is my hub where I will be teaching as I learn. This will help me pick up skills better and hopefully help others along the way.
+Read about random Linux topics and improve your Linux skills!
 
-The site name "Perfect Dark Mode" is a throwback to the game "Perfect Dark" and the best visual theme for any technology, dark mode. Just thought it was a clever play on words and matches some aspiration in me that wants to be a cool stealthy hacker. 
+I'm David,
 
-Check out what I am doing [Now](now)
+I am a tech enthusiast interested in Linux, open source projects, networking, scripting, programming, and cyber security. This is my hub where I will be teaching as I learn. This will help me pick up skills better and hopefully help others along the way.
+
+Check out what I am doing [Now](now) or see what I've been [reading](../booknotes/_index.md).

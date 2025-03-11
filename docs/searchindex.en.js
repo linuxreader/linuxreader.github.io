@@ -89,8 +89,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "",
-    "content": "I’m David, I spin poi, read books, tinker, and write. Check out what I am doing Now!\nI started keeping summaries, notes, and reviews of books that I am reading.\nLet’s Chat! I reply to every email.\nHere are the current areas of content you can find here:\nLinux Stuff\nTools\nNetworking\nWriting\n\u003c— You can also click the links in the side bar.",
-    "description": "I’m David, I spin poi, read books, tinker, and write. Check out what I am doing Now!\nI started keeping summaries, notes, and reviews of books that I am reading.\nLet’s Chat! I reply to every email.\nHere are the current areas of content you can find here:\nLinux Stuff\nTools\nNetworking\nWriting\n\u003c— You can also click the links in the side bar.",
+    "content": "Welcome! Check out super awesome Linux stuff: Bash Scripting Containers Cyber Security Desktop Keyboard Networking RedHat Storage Tools Virtualization Also check out what I am doing now, read my book notes, contact me, or see what this site is all about",
+    "description": "Welcome! Check out super awesome Linux stuff: Bash Scripting Containers Cyber Security Desktop Keyboard Networking RedHat Storage Tools Virtualization Also check out what I am doing now, read my book notes, contact me, or see what this site is all about",
     "tags": [],
     "title": "Linux Reader",
     "uri": "/"
