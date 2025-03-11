@@ -24,9 +24,9 @@ weight = 1
 
 ## Misc
 - [Using Man Pages](../tools/Using%20Man%20Pages.md)
-- [wsl2](../Misc%20Linux/wsl2.md)
+- [wsl2](../Archive/Misc%20Linux/wsl2.md)
 - [Bare Metal to Proxmox VM](../virtualization/Bare%20Metal%20to%20Proxmox%20VM.md)
 
 ## Labs
 
-- [Turn a file into a block device](../Misc%20Linux/Turn%20a%20file%20into%20a%20block%20device.md)
+- [Turn a file into a block device](../Archive/Misc%20Linux/Turn%20a%20file%20into%20a%20block%20device.md)
