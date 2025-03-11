@@ -2,7 +2,7 @@
 categories = ["Linux"] 
 menuPre = '<i class="fa-fw fas fa-terminal"></i> '
 title = "Linux" 
-type = "" 
+type = '<i class="fa-fw fas fa-terminal"></i> '
 weight = 1 
 +++
 
@@ -19,7 +19,7 @@ weight = 1
 
 ## Fedora
 
-- [My Fedora Setup](Fedora/My%20Fedora%20Setup.md)
+- [My Fedora SetupMy Fedora Setup](Fedora/My%20Fedora%20Setup.md)
 - [Silverblue](Fedora/Silverblue.md)
 
 ## Misc

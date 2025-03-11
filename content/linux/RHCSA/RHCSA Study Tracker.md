@@ -3,6 +3,10 @@ title = 'RHCSA Study Tracker'
 description = 'Spaced repitition RHCSA Study Calendar'
 +++
 
++++
+title = 'RHCSA Study Tracker'
++++
+
 
 | Chapter                                                                                                                               | Read/ Highlight | Outline/labs | Review/Labs | 3 Review/Labs | 4 Review/Labs | Chapter |
 | ------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------------ | ----------- | ------------- | ------------- | ------- |

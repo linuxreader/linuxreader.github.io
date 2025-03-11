@@ -37,17 +37,17 @@ In order to fully manage SELinux, you need to ensure that all these packages are
     <title></title>
     <link href="/linux/rhcsa/rhcsa-notes/selinux-administration/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/linux/rhcsa/rhcsa-notes/selinux-administration/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741647087" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741647087" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741647087" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741647087" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741647087" rel="stylesheet">
-    <link href="/css/fonts.css?1741647087" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741647087" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741647087" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741647087" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741647087" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741647087" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741647087"></script>
+    <link href="/images/logo.svg?1741716547" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741716547" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741716547" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741716547" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741716547" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741716547" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741716547" rel="stylesheet">
+    <link href="/css/fonts.css?1741716547" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741716547" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741716547" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741716547" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741716547" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741716547" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741716547"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..\/..';
@@ -56,7 +56,7 @@ In order to fully manage SELinux, you need to ensure that all these packages are
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
-      window.variants && variants.init( [ 'amoled' ] );
+      window.variants && variants.init( [ 'oled' ] );
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -616,8 +616,8 @@ when the issue is resolved.</p>
 </span></span><span style="display:flex;"><span> Current password: 
 </span></span><span style="display:flex;"><span> roopasswd: Authentication token manipulation error</span></span></code></pre></div>
 <p>The following is a sample denial record from the same file in raw format:</p>
-<p><a href="#R-image-94af2cd31f3d75e5df7198648fed36c0" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-94af2cd31f3d75e5df7198648fed36c0"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg"></a></p>
+<p><a href="#R-image-8bd21385a91fb3c70557cefacb25a0e5" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8bd21385a91fb3c70557cefacb25a0e5"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg"></a></p>
 <ul>
 <li>AVC type</li>
 <li>Related to the <code>passwd</code> command (comm)</li>
@@ -628,8 +628,8 @@ when the issue is resolved.</p>
 <li>This message indicates that the <em>/etc/shadow</em> file does not have the correct context set on it, and that&rsquo;s why SELinux prevented the <code>passwd</code> command from updating the user&rsquo;s password.</li>
 </ul>
 <p>Use <code>sealert</code> to analyze (<code>-a</code>) all <strong>AVC</strong> records in the <em>audit.log</em> file. This command produces a formatted report with all relevant details:</p>
-<p><a href="#R-image-831aa57dc4c4ec4306973e9ca21db391" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-831aa57dc4c4ec4306973e9ca21db391"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg"></a></p>
+<p><a href="#R-image-245d5c0820bfeca731db80cb2e89febf" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-245d5c0820bfeca731db80cb2e89febf"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg"></a></p>
 
   <footer class="footline">
   </footer>
@@ -647,7 +647,7 @@ when the issue is resolved.</p>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741647087";
+          window.index_js_url="/searchindex.en.js?1741716547";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -660,12 +660,12 @@ when the issue is resolved.</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741647087" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741647087" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741647087" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741647087" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741647087" defer></script>
-        <script src="/js/search.js?1741647087" defer></script>
+        <script src="/js/auto-complete.js?1741716547" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741716547" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741716547" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741716547" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741716547" defer></script>
+        <script src="/js/search.js?1741716547" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -720,7 +720,7 @@ when the issue is resolved.</p>
                   <div class="control-style">
                     <label class="a11y-only" for="R-select-variant">Theme</label>
                     <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                      <option id="R-select-variant-oled" value="oled" selected>Oled</option>
                     </select>
                   </div>
                   <div class="clear"></div>
@@ -745,8 +745,8 @@ when the issue is resolved.</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741647087" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741647087" defer></script>
+    <script src="/js/clipboard.min.js?1741716547" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741716547" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -762,20 +762,20 @@ when the issue is resolved.</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741647087" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741647087" defer></script>
-    <script src="/js/js-yaml.min.js?1741647087" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741716547" defer></script>
+    <script src="/js/js-yaml.min.js?1741716547" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741647087" defer></script>
+    <script src="/js/theme.js?1741716547" defer></script>
   </body>
 </html>

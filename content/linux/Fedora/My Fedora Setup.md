@@ -8,7 +8,7 @@ When you first download Fedora Workstation, it's going to be a little hard to fi
 
 This is because Fedora with Gnome desktop is a blank canvas. The point is to let you customize it to your needs. When I first install Fedora, I pull my justfile to install most of the programs I use:
 
-	`curl -O https://raw.githubusercontent.com/davidvargasxyz/dotfiles/main/dot_justfile >> ~/.justfile`
+	`curl -O https://raw.githubusercontent.com/linuxreader/dotfiles/main/dot_justfile >> ~/.justfile`
 
 ## Install just and run the justfile
 
@@ -25,7 +25,6 @@ first-install:
 	flatpak install --noninteractive \
       flathub com.bitwarden.desktop \
       flathub com.brave.Browser \
-      flathub com.discordapp.Discord \
       flathub org.gimp.GIMP \
       flathub org.gnome.Snapshot \
       flathub org.libreoffice.LibreOffice \
@@ -83,6 +82,19 @@ first-install:
     gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 ```
 
+## Install Homebrew Stuff:
+
+then run `just homebrew` after a reboot to install packages with brew
+
+```bash
+homebrew:
+    brew install \
+      chezmoi \
+      onedrive \
+      hugo \
+      virt-manager
+```
+
 ## Virt Manager
 ```bash
 sudo dnf install @virtualization
@@ -92,55 +104,43 @@ sudo dnf install @virtualization
 sudo vi /etc/libvirt/libvirtd.conf
 ```
 
-uncomment: `unix_sock_group = "libvirt"`
+Uncomment the line: `unix_sock_group = "libvirt"`
 
-Adjust the UNIX socket permissions for the R/W socket
-
+Adjust the UNIX socket permissions for the R/W socket:
 `unix_sock_rw_perms = "0770"`
 
-Start the service `systemctl enable --now libvirtd`
+Start the service:
+`systemctl enable --now libvirtd`
 
 Add user to group:
 ```bash
 sudo usermod -a -G libvirt $(whoami) && sudo usermod -a -G kvm $(whoami)
 ```
 
-
-# Configure Howdy 
-
+## Configure Howdy 
+Howdy is a tool for using an IR webcam for authentication:
 ```bash
 sudo dnf copr enable principis/howdy
 sudo dnf --refresh install -y howdy
 ```
+
 https://copr.fedorainfracloud.org/coprs/principis/howdy/
 https://github.com/boltgolt/howdy
 
-
-# Seahorse
-To fix Login Keyring error
-https://itsfoss.com/seahorse/
+## Seahorse
+I was using this to fix the Login Keyring error that is common with Fedora, but it no longer works.
 `sudo dnf -y install seahorse && seahorse`
 
-Applications > Passwords and Keys > Passwords > Right-click Login > Change Password to blank
+Applications > Passwords and Keys > Passwords > Right-click Login > Change Password to blank.
 
-# then run `just homebrew` after a reboot to install packages with brew
-homebrew:
-    brew install \
-      chezmoi \
-      onedrive \
-      hugo \
-      virt-manager
+https://itsfoss.com/seahorse/
 
 ## Initialize Chezmoi
-
-Chezmoi let's you easy sync your dotfiles with github and your other computers. Just init chezmoi and add your github ussername. This assumes your dotfiles in github are saved in the proper format. 
-
-`chezmoi init --apply davidvargasxyz`
+Chezmoi let's you easy sync your dotfiles with Github and your other computers. Just init Chezmoi and add your Github username. This assumes your dotfiles in Github are saved in the proper format. 
+`chezmoi init --apply linuxreader
 
 ## Add badname user (if needed)
-
-This is just here
-
+If you need to use username with the format `firstname.lastname`, use the `badname` flag with the `adduser` command. You will have to create a normal user first, because you can't do this during the initial install:
 `$ adduser --badname firstname.lastname`
 `$ sudo usermod -aG wheel username`
 
@@ -150,172 +150,140 @@ $ sudo visudo
 %wheel ALL=(ALL) ALL
 ```
 
-Delete other user:
-
+Delete the other user:
 `$ userdel username`
 
-## DNF Config (for speed)
-
-DNF is one of the package managers that comes with Fedora. You use it to install most software and applications.
-
-The official doc is [Here](https://dnf.readthedocs.io/en/latest/conf_ref.html#description](https://dnf.readthedocs.io/en/latest/conf_ref.html#description "https://dnf.readthedocs.io/en/latest/conf_ref.html#description")
-Just open up your DNF config file with your favorite text editor.
-
-```
-sudo vim /etc/dnf/dnf.conf
-```
-
-Then add the following:
-
-```
-fastestmirror=True  
-max_parallel_downloads=10  
-defaultyes=True  
-keepcache=True
-```
-
-## Clear cache (do this occasionally)
-
+## Additional DNF stuff:
+Clear cache (do this occasionally):
 `sudo dnf clean dbcache`
-or `sudo dnf cleanall`
+or `sudo dnf clean all`
 
-## Update DNF
-
+Update DNF:
 `sudo dnf -y update`
 
-## DNF commands
-
+Additional DNF commands:
 [https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/package-management/DNF/](https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/package-management/DNF/ "https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/package-management/DNF/")
 
-## RPM Fusion
+## Set up RPM Fusion
+RPM Fusion give you more accessibility to various software packages.
 
-More accessibility to various software packages.
-
-[https://rpmfusion.org/](https://rpmfusion.org/ "https://rpmfusion.org/")
-
-Fedora with dnf:
-
+Install:
 ```
 sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
 
+[https://rpmfusion.org/](https://rpmfusion.org/ "https://rpmfusion.org/")
 ## AppStream metadata
-
-to enable users to install packages using Gnome Software/KDE Discover
-
+Use AppStream to enable users to install packages using Gnome Software/KDE Discover:
 ```
 sudo dnf -y groupupdate core
 ```
 
-flatpak
-
-lhttps://flatpak.org/setup/Fedora
-
+## Flatpaks
+To enable Flatpaks (this may no longer be needed:
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-## set a hostname
-
+https://flatpak.org/setup/Fedora
+## Set a hostname
+Set a hostname for the system. This will show after next reboot:
 `sudo hostnamectl set-hostname "New_Custom_Name"`
-this will show after next reboot
 
-## Make it yours
 
-in the software center
+## Other Stuff
+Here is some other stuff I install from the software center.
 
-## gnome tweaks
+### Input Leap
+Input Leap let's you share a mouse and keyboard between two workstations.
 
-add minimize and maximize
+![](/images/Pasted%20image%2020240905105932.png)
 
-## Flatseal
-
-![](Pasted%20image%2020240905105809.png)
-
-## Input Leap
-
-![](Pasted%20image%2020240905105932.png)
-
+I don't know what this is or why it is here:
+installing Git and a bunch of other stuff?
+```bash
 sudo dnf install git cmake make gcc-c++ xorg-x11-server-devel \
                  libcurl-devel avahi-compat-libdns_sd-devel \
                  libXtst-devel qt5-qtbase qt5-qtbase-devel  \
                  qt5-qttools-devel libICE-devel libSM-devel \
                  openssl-devel libXrandr-devel libXinerama-devel
+```
 
 ## Virtual machine Manager
+The best way to manage VMs on desktop.
 
-![](Pasted%20image%2020240905110024.png)
+![](/images/Pasted%20image%2020240905110024.png)
 
 ## Box Buddy
+For managing containers.
 
-![](Pasted%20image%2020240905110223.png)
+![](/images/Pasted%20image%2020240905110223.png)
 ## Warehouse
+Managing installed applications.
 
 ![](Pasted%20image%2020240905110143.png)
 
 ## Mission Center 
+Task Manager like application.
 
-![](Pasted%20image%2020240905110500.png)
+![](/images/Pasted%20image%2020240905110500.png)
 
 ## Pika Backup
-
-![](Pasted%20image%2020240905110555.png)
+For backing up your desktop.
+![](/images/Pasted%20image%2020240905110555.png)
 ## Clapper
+Video player.
 
-![](Pasted%20image%2020240905110319.png)
+![](/images/Pasted%20image%2020240905110319.png)
 
-## Extentions Manager (blue puzzle piece)
+And some extensions installed through Extension Manager:
+![](/images/Pasted%20image%2020240905105517.png)
 
-![](Pasted%20image%2020240905105624.png)
+Install Gnome Screenshot tool:
 
-![](Pasted%20image%2020240905105517.png)
+Install the extention:
+https://extensions.gnome.org/extension/1112/screenshot-tool/
 
-
-s.gnome.org/extension/1112/screenshot-tool/](https://extensions.gnome.org/extension/1112/screenshot-tool/ "https://extensions.gnome.org/extension/1112/screenshot-tool/")
-
-ran gnome-screenshot tool in command prompt and it asked to install
+You also need to install from DNF for some reason:
+`dnf install -y gnome-screenshot`
 
 ## Airpods not pairing Issue
+If you ever have the issue where Airpods won't pair. Remove them from the pairing list, force them in pairing mode, and pair them back. This can be made easy with bluetoothctl:
 
-remove from the pairing list, force them in pairing mode and pair them back.
-
-This can be made easy with bluetoothctl.
-
-1/ Just in case, restart the bluetooth service:
-
-```
-$ sudo systemctl restart bluetooth
-$ systemctl status bluetooth 
+Just in case, restart the bluetooth service:
+```bash
+sudo systemctl restart bluetooth
+systemctl status bluetooth 
 ```
 
-2/ bluetoothctl is easier than the UI imo
-
+Show devices:
 ```
-$ bluetoothctl
+# bluetoothctl
+
 [bluetooth] $ devices
 Device 42:42:42:42:42:42 My AirPods <-- grab the name here
 [bluetooth] $ remove 42:42:42:42:42:42 
 ```
 
-Now, make sure your airpods are in the charging case, close the lid, wait 15 seconds, then open the lid. Press and hold the setup button on the case for up to 10 seconds. The status light should flash white, which means that your AirPods are ready to connect
+Now, make sure your Airpods are in the charging case, close the lid, wait 15 seconds, then open the lid. Press and hold the setup button on the case for up to 10 seconds. The status light should flash white, which means that your Airpods are ready to connect.
 
-3/ Pair them back
-
+Pair them back:
 ```
-[bluetooth] $ pair 42:42:42:42:42:42 <--- add the same device from earlier 
+[bluetooth] $ pair 42:42:42:42:42:42
 ```
 
 ## Enable Fractional Scaling
+This lets you change display scaling in smaller increments. You'll need to make sure Wayland is turned on.
 
-This lets you change display scaling in smaller increments.
-Make sure Wayland is turned on >
-
-run:
+Turn on the feature then reboot:
 `gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"`
 
-then Reboot
+`reboot`
 
 ## Remove pasted characters ^[](200~')
+Kept having pasted format characters ^[](200~') mess up my groove. Here's the fix.
+
+Open your inputrc file and add the line below:
 `vim ~/.inputrc`
 
 ```bash
@@ -323,8 +291,7 @@ then Reboot
 ```
 
 ## Install gimp
-
-$ sudo dnf install gimp
+`sudo dnf install gimp`
 enable in screenshot tool after install for gimp {f}
 
 Install Arrows
