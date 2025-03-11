@@ -96,14 +96,6 @@ var relearn_searchindex = [
     "uri": "/bash-scripting/"
   },
   {
-    "breadcrumb": "Linux Reader",
-    "content": "Hey, I’m David. I am a tech enthusiast interested in Linux, open source projects, Networking, scripting, programming, and cybersecurity. This is my hub where I will be teaching as I learn. This will help me pick up skills better and hopefully help others along the way.\nThe site name “Perfect Dark Mode” is a throwback to the game “Perfect Dark” and the best visual theme for any technology, dark mode. Just thought it was a clever play on words and matches some aspiration in me that wants to be a cool stealthy hacker.\nCheck out what I am doing Now",
-    "description": "Hey, I’m David. I am a tech enthusiast interested in Linux, open source projects, Networking, scripting, programming, and cybersecurity. This is my hub where I will be teaching as I learn. This will help me pick up skills better and hopefully help others along the way.",
-    "tags": [],
-    "title": "About",
-    "uri": "/about/"
-  },
-  {
     "breadcrumb": "",
     "content": "I’m David, I spin poi, read books, tinker, and write. Check out what I am doing Now!\nI started keeping summaries, notes, and reviews of books that I am reading.\nLet’s Chat! I reply to every email.\nHere are the current areas of content you can find here:\nLinux Stuff\nTools\nNetworking\nWriting\n\u003c— You can also click the links in the side bar.",
     "description": "I’m David, I spin poi, read books, tinker, and write. Check out what I am doing Now!\nI started keeping summaries, notes, and reviews of books that I am reading.\nLet’s Chat! I reply to every email.\nHere are the current areas of content you can find here:\nLinux Stuff\nTools\nNetworking\nWriting\n\u003c— You can also click the links in the side bar.",
