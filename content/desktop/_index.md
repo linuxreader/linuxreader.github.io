@@ -10,12 +10,12 @@ weight = 1
 
 ## RHCSA Stuff
 
-- [RHCSA Notes](../RHCSA/RHCSA%20Notes.md)
-- [RHCSA Study Tracker](../RHCSA/RHCSA%20Study%20Tracker.md)
+- [RHCSA Notes](../redhat/RHCSA%20Notes.md)
+- [RHCSA Study Tracker](../redhat/RHCSA%20Study%20Tracker.md)
 - [Redhat Exam Environment](/RHCSA/Redhat%20Exam%20Environment.md)
 - [How to Study for RHCSA](RHCSA/How%20to%20Study%20for%20RHCSA.md)
-- [RHCSA Study Points](../RHCSA/RHCSA%20Study%20Points.md)
-- [RHCSA Vagrant Lab Setup](../RHCSA/RHCSA%20Vagrant%20Lab%20Setup.md)
+- [RHCSA Study Points](../redhat/RHCSA%20Study%20Points.md)
+- [RHCSA Vagrant Lab Setup](../redhat/RHCSA%20Vagrant%20Lab%20Setup.md)
 
 ## Fedora
 
