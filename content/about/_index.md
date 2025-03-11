@@ -1,9 +1,11 @@
 +++ 
 categories = ["About"] 
-menuPre = '<i class="fa-fw fas fa-info-circle"></i> '
 title = "About" 
-type = '<i class="fa-fw fas fa-terminal"></i> '
-weight = 9
+[_build]
+  render = "always"
+  list = "never"
+  publishResources = true
+
 +++
 
 ![David Thomas](/images/circleportrait.PNG?height=220px&classes=inline) 
