@@ -1,5 +1,6 @@
 +++
 title = 'How to Set Up Hugo Relearn Theme'
+description = 'Hugo Relearn setup guide'
 +++
 # Hugo Setup
 

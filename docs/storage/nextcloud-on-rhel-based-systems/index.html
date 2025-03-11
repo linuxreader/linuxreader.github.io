@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
-    <meta name="description" content="I’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
-What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
-Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
+    <meta name="description" content="Nextcloud setup guide on a RHEL based server">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Nextcloud on RHEL Based Systems :: Linux Reader">
-    <meta name="twitter:description" content="I’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
-What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
-Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
-    <meta property="og:url" content="http://localhost:1313/storage/nextcloud-on-rhel-based-systems/">
+    <meta name="twitter:description" content="Nextcloud setup guide on a RHEL based server">
+    <meta property="og:url" content="http://linuxreader.com/storage/nextcloud-on-rhel-based-systems/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Nextcloud on RHEL Based Systems :: Linux Reader">
-    <meta property="og:description" content="I’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
-What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
-Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
+    <meta property="og:description" content="Nextcloud setup guide on a RHEL based server">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Storage">
     <meta itemprop="name" content="Nextcloud on RHEL Based Systems :: Linux Reader">
-    <meta itemprop="description" content="I’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
-What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
-Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
+    <meta itemprop="description" content="Nextcloud setup guide on a RHEL based server">
     <meta itemprop="wordCount" content="993">
     <title>Nextcloud on RHEL Based Systems :: Linux Reader</title>
     <link href="/storage/nextcloud-on-rhel-based-systems/index.xml" rel="alternate" type="application/rss+xml" title="Nextcloud on RHEL Based Systems :: Linux Reader">
     <link href="/storage/nextcloud-on-rhel-based-systems/index.print.html" rel="alternate" type="text/html" title="Nextcloud on RHEL Based Systems :: Linux Reader">
-    <link href="/images/logo.svg?1741728659" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741728659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741728659" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741728659" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741728659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741728659" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741728659" rel="stylesheet">
-    <link href="/css/fonts.css?1741728659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741728659" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741728659" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741728659" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741728659" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741728659" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741728659"></script>
+    <link href="/images/logo.svg?1741729386" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741729386" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741729386" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741729386" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741729386" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741729386" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741729386" rel="stylesheet">
+    <link href="/css/fonts.css?1741729386" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741729386" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741729386" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741729386" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741729386" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741729386" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741729386"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -288,8 +280,8 @@ EXIT;</code></pre></div>
 <p>Before you go any further, you will need to have a domain name set up for your server. I use Cloudflare to manage my DNS records. You will want to make a CNAME record for your nextcloud subdomain.</p>
 <p>Just add &ldquo;nextcloud&rdquo; as the name and &ldquo;yourwebsite.com&rdquo; as the content. This will make it so &ldquo;nextcloud.yourwebsite.com&rdquo; is the site for your nextcloud dashboard. Also, make sure to select &ldquo;DNS Only&rdquo; under proxy status.</p>
 <p>Here&rsquo;s what my CloudFlare domain setup looks with this blog as the main site, and cloud.perfectdarkmode.com as the nextcloud site:</p>
-<p><a href="#R-image-fb944cc96225a28a36fdbaca7858463e" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fb944cc96225a28a36fdbaca7858463e"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
+<p><a href="#R-image-96a17302b0496ab718942cdfc86edb21" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-96a17302b0496ab718942cdfc86edb21"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
 <p>Then you need to update trusted domains in /var/www/nextcloud/config/config.php:</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#39;trusted_domains&#39;</span> <span style="color:#ff6ac1">=</span>&gt;
 </span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">[</span>
@@ -302,11 +294,11 @@ EXIT;</code></pre></div>
 <p>Obtain an SSL certificate. (See my <a href="Obsidian%20site%20setup.md">Obsidian site setup</a> post for information about Certbot and Apache setup.)</p>
 <div class="highlight wrap-code"><pre tabindex="0"><code>sudo certbot -d {subdomain}.{domain}.com</code></pre></div>
 <p>Now log into nextcloud with your admin account using the DNS name you set earlier:</p>
-<p><a href="#R-image-1d3905a3f36207c7c19f80f8a1479efd" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1d3905a3f36207c7c19f80f8a1479efd"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
+<p><a href="#R-image-f2c0de20be235aaa352d4a8e2d09cdb5" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f2c0de20be235aaa352d4a8e2d09cdb5"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
 <p>I recommend setting up a normal user account instead of doing everything as &ldquo;admin&rdquo;. Just hit the &ldquo;A&rdquo; icon at the top right and go to &ldquo;Accounts&rdquo;. Then just select &ldquo;New Account&rdquo; and create a user account with whatever privileges you want.</p>
-<p><a href="#R-image-cb14deb9fa82a7b9217e61a73d1a0dba" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cb14deb9fa82a7b9217e61a73d1a0dba"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
+<p><a href="#R-image-cd4a4c8b66a05b14826f5d3347e76426" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cd4a4c8b66a05b14826f5d3347e76426"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
 <p>I may make a post about which Nextcloud apps I recommend and customize the setup a bit. Let me know if that&rsquo;s something you&rsquo;d like to see. That&rsquo;s all for now.</p>
 
   <footer class="footline">
@@ -325,7 +317,7 @@ EXIT;</code></pre></div>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741728659";
+          window.index_js_url="/searchindex.en.js?1741729386";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -338,12 +330,12 @@ EXIT;</code></pre></div>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741728659" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741728659" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741728659" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741728659" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741728659" defer></script>
-        <script src="/js/search.js?1741728659" defer></script>
+        <script src="/js/auto-complete.js?1741729386" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741729386" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741729386" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741729386" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741729386" defer></script>
+        <script src="/js/search.js?1741729386" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -354,7 +346,7 @@ EXIT;</code></pre></div>
             <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
@@ -426,8 +418,8 @@ EXIT;</code></pre></div>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741728659" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741728659" defer></script>
+    <script src="/js/clipboard.min.js?1741729386" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741729386" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -443,20 +435,20 @@ EXIT;</code></pre></div>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741728659" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741728659" defer></script>
-    <script src="/js/js-yaml.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741729386" defer></script>
+    <script src="/js/js-yaml.min.js?1741729386" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741728659" defer></script>
+    <script src="/js/theme.js?1741729386" defer></script>
   </body>
 </html>

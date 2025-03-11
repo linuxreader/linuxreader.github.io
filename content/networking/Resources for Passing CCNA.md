@@ -1,5 +1,6 @@
 +++
 title = 'Resources for Passing CCNA'
+description = 'Resources for passing the CCNA exam'
 +++
 
 

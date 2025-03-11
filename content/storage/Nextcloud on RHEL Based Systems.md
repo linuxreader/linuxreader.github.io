@@ -1,5 +1,6 @@
 +++
 title = 'Nextcloud on RHEL Based Systems'
+description = 'Nextcloud setup guide on a RHEL based server'
 +++
 
 I'm going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache. 

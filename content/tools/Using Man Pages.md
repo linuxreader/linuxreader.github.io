@@ -2,9 +2,7 @@
 title = 'You Need to Learn Man Pages'
 description = 'Guide to using Man Pages'
 +++
-+++
-title = 'You Need to Learn Man Pages'
-+++
+
 https://www.youtube.com/watch?v=RzAkjX_9B7E&t=295s
 
 Man (manual) pages are the built in help system for Linux. They contain documentation for most commands. 

@@ -1,5 +1,6 @@
 +++
 title = 'Calibre Web with Docker and NGINX'
+description = 'Seting up your own Calibre Web server'
 +++
 
 I couldn’t find a guide on how to set up Calibre web step-by-step as a Docker container. Especially not one that used Nginx as a reverse proxy.
