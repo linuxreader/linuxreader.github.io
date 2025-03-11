@@ -5,35 +5,43 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
-    <meta name="description" content="Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management">
+    <meta name="description" content="Nextcloud on RHEL Based SystemsI’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
+What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
+Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Storage :: Linux Reader">
-    <meta name="twitter:description" content="Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management">
+    <meta name="twitter:description" content="Nextcloud on RHEL Based SystemsI’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
+What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
+Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
     <meta property="og:url" content="http://localhost:1313/storage/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Storage :: Linux Reader">
-    <meta property="og:description" content="Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management">
+    <meta property="og:description" content="Nextcloud on RHEL Based SystemsI’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
+What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
+Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="Storage :: Linux Reader">
-    <meta itemprop="description" content="Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management">
-    <meta itemprop="wordCount" content="12">
+    <meta itemprop="description" content="Nextcloud on RHEL Based SystemsI’m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.
+What is Nextcloud? Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:
+Free and open source Cloud storage and syncing Email client Custom browser dashboard with widgets Office suite RSS newsfeed Project organization (deck) Notebook Calender Task manager Connect to decentralized social media (like Mastodon) Replacement for all of google’s services Create web forms or surveys It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn’t being shared.">
+    <meta itemprop="wordCount" content="256">
     <meta itemprop="keywords" content="Storage">
     <title>Storage :: Linux Reader</title>
     <link href="/storage/index.xml" rel="alternate" type="application/rss+xml" title="Storage :: Linux Reader">
     <link href="/storage/index.print.html" rel="alternate" type="text/html" title="Storage :: Linux Reader">
-    <link href="/images/logo.svg?1741727999" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741727999" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741727999" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741727999" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741727999" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741727999" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741727999" rel="stylesheet">
-    <link href="/css/fonts.css?1741727999" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741727999" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741727999" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741727999" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741727999" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741727999" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741727999"></script>
+    <link href="/images/logo.svg?1741728659" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741728659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741728659" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741728659" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741728659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741728659" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741728659" rel="stylesheet">
+    <link href="/css/fonts.css?1741728659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741728659" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741728659" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741728659" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741728659" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741728659" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741728659"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -112,11 +120,47 @@
 
 <h1 id="storage">Storage</h1>
 
-<ul class="children children-li children-sort-">
-  <li><a href="/storage/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a><ul></ul></li>
-  <li><a href="/storage/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a><ul></ul></li>
-  <li><a href="/storage/storage-management/">Storage Management</a><ul></ul></li>
+<div class="children children-h6 children-sort-">
+  <h6><a href="/storage/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></h6><p><p>I&rsquo;m going to show you how to set up your own, self-hosted Nextcloud server using Alma Linux 9 and Apache.</p>
+<h3 id="what-is-nextcloud">What is Nextcloud?</h3>
+<p>Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:</p>
+<ul>
+<li>Free and open source</li>
+<li>Cloud storage and syncing</li>
+<li>Email client</li>
+<li>Custom browser dashboard with widgets</li>
+<li>Office suite</li>
+<li>RSS newsfeed</li>
+<li>Project organization (deck)</li>
+<li>Notebook</li>
+<li>Calender</li>
+<li>Task manager</li>
+<li>Connect to decentralized social media (like Mastodon)</li>
+<li>Replacement for all of google&rsquo;s services</li>
+<li>Create web forms or surveys</li>
 </ul>
+<p>It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn&rsquo;t being shared.</p></p>
+  <h6><a href="/storage/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></h6><p><p>This is a step-by-step guide to setting up Nextcloud on a Debian server. You will need a server hosted by a VPS like Vultr. And a Domain hosted by a DNS provider such as Cloudflare</p>
+<h3 id="what-is-nextcloud">What is Nextcloud?</h3>
+<p>Nextcloud is so many things. It offers so many features and options, it deserves a bulleted list:</p>
+<ul>
+<li>Free and open source</li>
+<li>Cloud storage and syncing</li>
+<li>Email client</li>
+<li>Custom browser dashboard with widgets</li>
+<li>Office suite</li>
+<li>RSS newsfeed</li>
+<li>Project organization (deck)</li>
+<li>Notebook</li>
+<li>Calender</li>
+<li>Task manager</li>
+<li>Connect to decentralized social media (like Mastodon)</li>
+<li>Replacement for all of google&rsquo;s services</li>
+<li>Create web forms or surveys</li>
+</ul>
+<p>It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn&rsquo;t being shared.</p></p>
+  <h6><a href="/storage/storage-management/">Storage Management</a></h6><p>Partitions, Thin provisioning, LVM, and VDO</p>
+</div>
 
   <footer class="footline">
   </footer>
@@ -134,7 +178,7 @@
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741727999";
+          window.index_js_url="/searchindex.en.js?1741728659";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -147,12 +191,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741727999" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741727999" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741727999" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741727999" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741727999" defer></script>
-        <script src="/js/search.js?1741727999" defer></script>
+        <script src="/js/auto-complete.js?1741728659" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741728659" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741728659" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741728659" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741728659" defer></script>
+        <script src="/js/search.js?1741728659" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -235,8 +279,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741727999" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741727999" defer></script>
+    <script src="/js/clipboard.min.js?1741728659" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741728659" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -252,20 +296,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741727999" defer></script>
-    <script src="/js/js-yaml.min.js?1741727999" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741728659" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741728659" defer></script>
+    <script src="/js/js-yaml.min.js?1741728659" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741727999" defer></script>
+    <script src="/js/theme.js?1741728659" defer></script>
   </body>
 </html>

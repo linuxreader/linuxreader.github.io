@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
-    <meta name="description" content="Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages">
+    <meta name="description" content="Posts Calibre Web with Docker and NGINXI couldn’t find a guide on how to set up Calibre web step-by-step as a Docker container. Especially not one that used Nginx as a reverse proxy.
+The good news is that it is really fast and simple. You’ll need a few tools to get this done:
+A server with a public IP address A DNS Provider (I use CloudFlare) Docker Nginx A Calibre Library Certbot Rsync First, sync your local Calibre library to a folder on your server:">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Tools :: Linux Reader">
-    <meta name="twitter:description" content="Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages">
-    <meta property="og:url" content="http://localhost:1313/tools/">
+    <meta name="twitter:description" content="Posts Calibre Web with Docker and NGINXI couldn’t find a guide on how to set up Calibre web step-by-step as a Docker container. Especially not one that used Nginx as a reverse proxy.
+The good news is that it is really fast and simple. You’ll need a few tools to get this done:
+A server with a public IP address A DNS Provider (I use CloudFlare) Docker Nginx A Calibre Library Certbot Rsync First, sync your local Calibre library to a folder on your server:">
+    <meta property="og:url" content="http://linuxreader.com/tools/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Tools :: Linux Reader">
-    <meta property="og:description" content="Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages">
+    <meta property="og:description" content="Posts Calibre Web with Docker and NGINXI couldn’t find a guide on how to set up Calibre web step-by-step as a Docker container. Especially not one that used Nginx as a reverse proxy.
+The good news is that it is really fast and simple. You’ll need a few tools to get this done:
+A server with a public IP address A DNS Provider (I use CloudFlare) Docker Nginx A Calibre Library Certbot Rsync First, sync your local Calibre library to a folder on your server:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="Tools :: Linux Reader">
-    <meta itemprop="description" content="Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages">
-    <meta itemprop="wordCount" content="37">
+    <meta itemprop="description" content="Posts Calibre Web with Docker and NGINXI couldn’t find a guide on how to set up Calibre web step-by-step as a Docker container. Especially not one that used Nginx as a reverse proxy.
+The good news is that it is really fast and simple. You’ll need a few tools to get this done:
+A server with a public IP address A DNS Provider (I use CloudFlare) Docker Nginx A Calibre Library Certbot Rsync First, sync your local Calibre library to a folder on your server:">
+    <meta itemprop="wordCount" content="317">
     <title>Tools :: Linux Reader</title>
-    <link href="http://localhost:1313/tools/" rel="canonical" type="text/html" title="Tools :: Linux Reader">
+    <link href="http://linuxreader.com/tools/" rel="canonical" type="text/html" title="Tools :: Linux Reader">
     <link href="/tools/index.xml" rel="alternate" type="application/rss+xml" title="Tools :: Linux Reader">
-    <link href="/images/logo.svg?1741727999" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741727999" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741727999" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741727999" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741727999" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741727999" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741727999" rel="stylesheet">
-    <link href="/css/fonts.css?1741727999" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741727999" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741727999" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741727999" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741727999" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741727999" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741727999" rel="stylesheet">
-    <script src="/js/variant.js?1741727999"></script>
+    <link href="/images/logo.svg?1741728657" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741728657" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741728657" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741728657" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741728657" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741728657" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741728657" rel="stylesheet">
+    <link href="/css/fonts.css?1741728657" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741728657" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741728657" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741728657" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741728657" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741728657" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741728657" rel="stylesheet">
+    <script src="/js/variant.js?1741728657"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
       window.relearn.relBaseUri='..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -96,7 +104,7 @@
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/tools?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/tools/vim" title="Vim (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/tools/calibre-web-with-docker-and-nginx" title="Calibre Web with Docker and NGINX (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -118,324 +126,56 @@
 <h1 id="tools">Tools</h1>
 
 <h2 id="posts">Posts</h2>
-<ul class="children children-li children-sort-">
-  <li><a href="/tools/vim/">Vim</a><ul>
-  <li><a href="/tools/vim/vimguide/">Vim Guide</a><ul></ul></li></ul></li>
-  <li><a href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX</a><ul></ul></li>
-  <li><a href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo</a><ul></ul></li>
-  <li><a href="/tools/process-bookfusion-highlights/">How to Process Bookfusion Highlights with Vim</a><ul></ul></li>
-  <li><a href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme</a><ul></ul></li>
-  <li><a href="/tools/using-man-pages/">You Need to Learn Man Pages</a><ul></ul></li>
-</ul>
-
-  <footer class="footline">
-  </footer>
-</article>
-          <section>
-            <h1 class="a11y-only">Subsections of Tools</h1>
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="vim">Vim</h1>
-
 <div class="children children-h6 children-sort-">
-  <h6><a href="/tools/vim/vimguide/">Vim Guide</a></h6><p>Guide to using Vim</p>
+  <h6><a href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX</a></h6><p><p>I couldn’t find a guide on how to set up Calibre web step-by-step as a Docker container. Especially not one that used Nginx as a reverse proxy.</p>
+<p>The good news is that it is really fast and simple. You’ll need a few tools to get this done:</p>
+<ul>
+<li>A server with a public IP address</li>
+<li>A DNS Provider (I use CloudFlare)</li>
+<li>Docker</li>
+<li>Nginx</li>
+<li>A Calibre Library</li>
+<li>Certbot</li>
+<li>Rsync</li>
+</ul>
+<p>First, sync your local Calibre library to a folder on your server:</p></p>
+  <h6><a href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo</a></h6><p><p>Word Press is great, but it is probably a lot more bloated then you need for a personal website. Enter Hugo, it has less server capacity and storage needs than Word Press. Hugo is a static site generator than takes markdown files and converts them to html.</p>
+<p>Hosting your own website is also a lot cheaper than having a provider like Bluehost do it for you. Instead of $15 per month, I am currently paying $10 per year.</p></p>
+  <h6><a href="/tools/process-bookfusion-highlights/">How to Process Bookfusion Highlights with Vim</a></h6><p><p>Here are my highlights pulled up in Vim:</p>
+<p><a href="#R-image-8fce98c920a7ff3390ba540d532fd027" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8fce98c920a7ff3390ba540d532fd027"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png"></a></p>
+<p>As you can see, Bookfusion gives you a lot of extra information when you export highlights. First, let&rsquo;s get rid of the lines that begin with <code>##</code></p>
+<p>Enter command mode in Vim by pressing <code>esc</code>. Then type <code>:g/^##/d</code> and press enter.</p>
+<p>Much better.</p>
+<p><a href="#R-image-70733c85629d652a026929022c742191" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-70733c85629d652a026929022c742191"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png"></a></p></p>
+  <h6><a href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme</a></h6><p><h1 id="hugo-setup">Hugo Setup</h1>
+<h2 id="adding-a-module-as-a-theme">Adding a module as a theme</h2>
+<p>Make sure Go is installed</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>go version</code></pre></div>
+<p>Create a new site</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>hugo new site sitename
+cd sitename</code></pre></div>
+<p>Initialize your site as a module</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>hugo mod init sitename</code></pre></div>
+<p>Confirm</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>cat go.mod</code></pre></div>
+<p>Add the module as a dependency using it&rsquo;s git link</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>hugo mod get github.com/McShelby/hugo-theme-relearn</code></pre></div>
+<p>Confirm</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>cat go.mod</code></pre></div>
+<p>add the theme to config.toml</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code># add this line to config.toml and save
+theme = [&#34;github.com/McShelby/hugo-theme-relearn&#34;]</code></pre></div>
+<p>Confirm by viewing site</p></p>
+  <h6><a href="/tools/using-man-pages/">You Need to Learn Man Pages</a></h6><p>Guide to using Man Pages</p>
 </div>
 
   <footer class="footline">
   </footer>
 </article>
           <section>
-            <h1 class="a11y-only">Subsections of Vim</h1>
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="vim-guide">Vim Guide</h1>
-
-<p>Vim (Vi Improved)</p>
-<p><code>Vim</code> stands for vi (Improved) just like its name it stands for an improved version of the <code>vi</code> text editor command.</p>
-<p>Lightweight</p>
-<p>Start Vim</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim</span></span></code></pre></div>
-<h2 id="vim-search-patterns">Vim Search Patterns</h2>
-<h3 id="moving-the-cursor">Moving the Cursor</h3>
-<p>h or left arrow - move left one character
-k or up arrow - move up one line
-j or down arrow - move down one line
-l or right arrow - will move you right one character</p>
-<h3 id="different-vim-modes">Different Vim Modes</h3>
-<p>I -  Enter INSERT mode from command mode
-esc - Go back to command mode
-v - visual mode</p>
-<h2 id="vim-appending-text">Vim Appending Text</h2>
-<p>In enter while in command mode and will bring you to insert mode.</p>
-<p>I - insert text before the cursor
-O - insert text on the previous line
-o - insert text on the next line
-a - append text after cursor
-A - append text at the end of the line</p>
-<h2 id="vim-editing">Vim editing</h2>
-<p>x - used to cut the selected text also used for deleting characters
-dd - used to delete the current line
-y - yank or copy whatever is selected
-yy - yank or copy the current line
-p - paste the copied text before the cursor</p>
-<h2 id="vim-saving-and-exiting">Vim Saving and exiting</h2>
-<p>:w - writes or saves the file
-:q - quit out of vim
-:wq - write and then quit
-:q! - quit out of vim without saving the file
-ZZ - equivalent of :wq, but one character faster</p>
-<p>u - undo your last action
-Ctrl-r - redo your last action
-:% sort - Sort lines</p>
-<h1 id="vim-splits">Vim Splits</h1>
-<p>Add to .vimrc for different key mappings for easy navigation between splits to save a keystroke. So instead of <code>ctrl-w</code> then <code>j</code>, it’s just <code>ctrl-j</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>nnoremap &lt;C-J&gt; &lt;C-W&gt;&lt;C-J&gt; 
-nnoremap &lt;C-K&gt; &lt;C-W&gt;&lt;C-K&gt; 
-nnoremap &lt;C-L&gt; &lt;C-W&gt;&lt;C-L&gt; 
-nnoremap &lt;C-H&gt; &lt;C-W&gt;&lt;C-H&gt;</code></pre></div>
-<h1 id="open-file-in-new-split">Open file in new split</h1>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:vsp filename</code></pre></div>
-<p><a href="https://github.com/preservim/nerdtree" rel="external" target="_blank">https://github.com/preservim/nerdtree</a></p>
-<h2 id="find-and-replace">Find and Replace</h2>
-<p><a href="https://linuxize.com/post/vim-find-replace/" rel="external" target="_blank">https://linuxize.com/post/vim-find-replace/</a></p>
-<h1 id="find-and-replace-text-in-files-with-vim">Find and Replace Text in File(s) with Vim</h1>
-<h2 id="find-and-replace-in-a-single-file">Find and replace in a single file</h2>
-<p>Open the file in Vim, this command will replace all occurances of the word &ldquo;foo&rdquo; with &ldquo;bar&rdquo;.</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:%s/foo/bar/g</code></pre></div>
-<p>% - apply to whole file
-s  - substitution
-g - operate on all results</p>
-<h2 id="find-and-replace-a-string-in-all-files-in-current-directory">Find and replace a string in all files in current directory</h2>
-<p>In vim, select all files with args. Use regex to select the files you want. Select all files with *</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:args *</code></pre></div>
-<p>You can also select all recursively:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:args **</code></pre></div>
-<p>Run :args to see which files are selected&quot;</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:args</code></pre></div>
-<h3 id="perform-substitution-with-argdo">Perform substitution with argdo</h3>
-<p>This applies the replacement command to all selected args:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:argdo %s/foo/bar/g | update</code></pre></div>
-<h1 id="nerd-tree-plugin">Nerd Tree Plugin</h1>
-<p>Add to .vimrc</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>call plug#begin()
-Plug &#39;preservim/nerdtree&#39;
-
-call plug#end()
-
-nnoremap &lt;leader&gt;n :NERDTreeFocus&lt;CR&gt;
-nnoremap &lt;C-n&gt; :NERDTree&lt;CR&gt;
-nnoremap &lt;C-t&gt; :NERDTreeToggle&lt;CR&gt;
-nnoremap &lt;C-f&gt; :NERDTreeFind&lt;CR&gt;</code></pre></div>
-<h2 id="vim-calendar">Vim Calendar</h2>
-<p>dhttps://blog.mague.com/?p=602</p>
-<p>Add to vim.rc</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:auto FileType vim/wiki map d :Vim/wikiMakeDiaryNote
-function! ToggleCalendar()
-  execute &#34;:Calendar&#34;
-  if exists(&#34;g:calendar_open&#34;)
-    if g:calendar_open == 1
-      execute &#34;q&#34;
-      unlet g:calendar_open
-    else
-      g:calendar_open = 1
-    end
-  else
-    let g:calendar_open = 1
-  end
-endfunction
-:auto FileType vim/wiki map c :call ToggleCalendar()i</code></pre></div>
-<h2 id="vimwiki">Vimwiki</h2>
-<h2 id="cheat-sheet">Cheat sheet</h2>
-<p><a href="http://thedarnedestthing.com/vimwiki%20cheatsheet" rel="external" target="_blank">http://thedarnedestthing.com/vimwiki%20cheatsheet</a></p>
-<h3 id="set-up">Set up</h3>
-<p>Make sure git is installed? <a href="https://github.com/git-guides/install-git" rel="external" target="_blank" title="https://github.com/git-guides/install-git">https://github.com/git-guides/install-git</a></p>
-<h3 id="check-git-version">Check git version</h3>
-<p><code>git --version</code> Check git version</p>
-<h3 id="dnf-git-install">dnf git install</h3>
-<p>sudo dnf install git-all</p>
-<p><a href="https://github.com/junegunn/vim-plug" rel="external" target="_blank" title="https://github.com/junegunn/vim-plug">https://github.com/junegunn/vim-plug</a></p>
-<p>Download plug.vim and put it in ~/.vim/autoload</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre></div>
-<h3 id="create-vimrc">Create ~/.vimrc</h3>
-<p><code>touch ~/.vimrc</code></p>
-<h3 id="add-to-vimrc">Add to ~/.vimrc</h3>
-<h4 id="installation-using-vim-plug">Installation using <a href="https://github.com/junegunn/vim-plug" rel="external" target="_blank" title="https://github.com/junegunn/vim-plug">Vim-Plug</a></h4>
-<p>Install Vim Plug</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre></div>
-<p>Add the following to the plugin-configuration in your vimrc:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>set nocompatible  
-filetype plugin on  
-syntax on
-
-call plug#begin()  
-Plug &#39;vimwiki/vimwiki&#39;
-
-call plug#end()
-
-let mapleader=&#34; &#34;  
-let wiki_1 = {}  
-let wiki_1.path = &#39;~/Documents/PerfectDarkMode/&#39;  
-let wiki_1.syntax = &#39;markdown&#39;  
-let wiki_1.ext = &#39;&#39;  
-let wiki_2 = {}  
-let wiki_2.path = &#39;~/Documents/vim/wiki_personal/&#39;  
-let wiki_2.syntax = &#39;markdown&#39;  
-let wiki_2.ext = &#39;&#39;  
-let g:vimwiki_list = [wiki_1, wiki_2]  </code></pre></div>
-<p>Then run <code>:PlugInstall</code>.</p>
-<p>(leader)ws
-select which wiki to use</p>
-<h2 id="basic-markup">Basic Markup</h2>
-<div class="highlight wrap-code"><pre tabindex="0"><code>= Header1 =
-== Header2 ==
-=== Header3 ===
-
-
-*bold* -- bold text
-_italic_ -- italic text
-
-[wiki link](wiki%20link) -- wiki link
-[description](wiki%20link) -- wiki link with description </code></pre></div>
-<h3 id="lists"><a href="https://github.com/vim/wiki/vim/wiki#lists" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#lists"></a>Lists</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>* bullet list item 1
-    - bullet list item 2
-    - bullet list item 3
-        * bullet list item 4
-        * bullet list item 5
-* bullet list item 6
-* bullet list item 7
-    - bullet list item 8
-    - bullet list item 9
-
-1. numbered list item 1
-2. numbered list item 2
-    a) numbered list item 3
-    b) numbered list item 4 </code></pre></div>
-<p>For other syntax elements, see <code>:h vimwiki-syntax</code></p>
-<h3 id="vimwiki-table-of-contents">Vimwiki Table of Contents</h3>
-<p><em>:VimwikiTOC</em>
-Create or update the Table of Contents for the current wiki file.
-See |vimwiki-toc|.</p>
-<p>Table of Contents                    <em>vimwiki-toc</em> <em>vimwiki-table-of-contents</em></p>
-<p>You can create a &ldquo;table of contents&rdquo; at the top of your wiki file.
-The command |:VimwikiTOC| creates the magic header &gt;
-= Contents =
-in the current file and below it a list of all the headers in this file as
-links, so you can directly jump to specific parts of the file.</p>
-<p>For the indentation of the list, the value of |vimwiki-option-list_margin| is
-used.</p>
-<p>If you don&rsquo;t want the TOC to sit in the very first line, e.g. because you have
-a modeline there, put the magic header in the second or third line and run
-:VimwikiTOC to update the TOC.</p>
-<p>If English is not your preferred language, set the option
-|g:vimwiki_toc_header| to your favorite translation.</p>
-<p>If you want to keep the TOC up to date automatically, use the option
-|vimwiki-option-auto_toc|.</p>
-<p>vimwiki-option-auto_toc</p>
-<p>Key             Default value     Values~
-auto_toc        0                 0, 1</p>
-<p>Description~
-Set this option to 1 to automatically update the table of contents when the
-current wiki page is saved: &gt;
-let g:vimwiki_list = [{&lsquo;path&rsquo;: &lsquo;~/my_site/&rsquo;, &lsquo;auto_toc&rsquo;: 1}]</p>
-<p><em>vimwiki-option-list_margin</em></p>
-<p>Key               Default value~
-list_margin       -1 (0 for markdown)</p>
-<p>Description~
-Width of left-hand margin for lists.  When negative, the current &lsquo;shiftwidth&rsquo;
-is used.  This affects the appearance of the generated links (see
-|:VimwikiGenerateLinks|), the Table of contents (|vimwiki-toc|) and the
-behavior of the list manipulation commands |:VimwikiListChangeLvl| and the
-local mappings |vimwiki_glstar|, |vimwiki_gl#| |vimwiki_gl-|, |vimwiki_gl-|,
-|vimwiki_gl1|, |vimwiki_gla|, |vimwiki_glA|, |vimwiki_gli|, |vimwiki_glI| and
-|vimwiki_i_<!-- raw HTML omitted -->_<!-- raw HTML omitted -->|.</p>
-<p>Note: if you use Markdown or MediaWiki syntax, you probably would like to set
-this option to 0, because every indented line is considered verbatim text.</p>
-<p><em>g:vimwiki_toc_header_level</em></p>
-<p>The header level of the Table of Contents (see |vimwiki-toc|). Valid values
-are from 1 to 6.</p>
-<p>The default is 1.</p>
-<p><em>g:vimwiki_toc_link_format</em></p>
-<p>The format of the links in the Table of Contents (see |vimwiki-toc|).</p>
-<p>Value           Description~
-0               Extended: The link contains the description and URL. URL
-references all levels.
-1               Brief: The link contains only the URL. URL references only
-the immediate level.</p>
-<p>Default: 0</p>
-<h2 id="key-bindings">Key bindings</h2>
-<h3 id="normal-mode"><a href="https://github.com/vim/wiki/vim/wiki#normal-mode" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#normal-mode"></a>Normal mode</h3>
-<p><strong>Note:</strong> your terminal may prevent capturing some of the default bindings listed below. See <code>:h vimwiki-local-mappings</code> for suggestions for alternative bindings if you encounter a problem.</p>
-<h4 id="basic-key-bindings"><a href="https://github.com/vim/wiki/vim/wiki#basic-key-bindings" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#basic-key-bindings"></a>Basic key bindings</h4>
-<ul>
-<li><code>&lt;Leader&gt;ww</code> &ndash; Open default /wiki index file.</li>
-<li><code>&lt;Leader&gt;wt</code> &ndash; Open default /wiki index file in a new tab.</li>
-<li><code>&lt;Leader&gt;ws</code> &ndash; Select and open /wiki index file.</li>
-<li><code>&lt;Leader&gt;wd</code> &ndash; Delete /wiki file you are in.</li>
-<li><code>&lt;Leader&gt;wr</code> &ndash; Rename /wiki file you are in.</li>
-<li><code>&lt;Enter&gt;</code> &ndash; Follow/Create /wiki link.</li>
-<li><code>&lt;Shift-Enter&gt;</code> &ndash; Split and follow/create /wiki link.</li>
-<li><code>&lt;Ctrl-Enter&gt;</code> &ndash; Vertical split and follow/create /wiki link.</li>
-<li><code>&lt;Backspace&gt;</code> &ndash; Go back to parent(previous) /wiki link.</li>
-<li><code>&lt;Tab&gt;</code> &ndash; Find next /wiki link.</li>
-<li><code>&lt;Shift-Tab&gt;</code> &ndash; Find previous /wiki link.</li>
-</ul>
-<h4 id="advanced-key-bindings"><a href="https://github.com/vim/wiki/vim/wiki#advanced-key-bindings" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#advanced-key-bindings"></a>Advanced key bindings</h4>
-<p>Refer to the complete documentation at <code>:h vimwiki-mappings</code> to see many more bindings.</p>
-<h2 id="commands"><a href="https://github.com/vim/wiki/vim/wiki#commands" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#commands"></a>Commands</h2>
-<ul>
-<li><code>:Vimwiki2HTML</code> &ndash; Convert current wiki link to HTML.</li>
-<li><code>:VimwikiAll2HTML</code> &ndash; Convert all your wiki links to HTML.</li>
-<li><code>:help vimwiki-commands</code> &ndash; List all commands.</li>
-<li><code>:help vimwiki</code> &ndash; General vimwiki help docs.</li>
-</ul>
-<h1 id="diary">Diary</h1>
-<h3 id="alias">alias</h3>
-<p>alias todo=&lsquo;vim -c VimwikiDiaryIndex&rsquo;</p>
-<h3 id="hotkeys">Hotkeys</h3>
-<p>:VimwikiDiaryGenerateLinks
-^w^i
-Generate links
-^w^w
-open today
-^wi
-Open diary index
-ctrl + up previous day
-ctrl + down next day</p>
-<ul>
-<li>How to create Weekly, Monthly, and yearly notes</li>
-<li>How to do a template for daily</li>
-<li>set folder location for diary</li>
-</ul>
-<h3 id="diary-template">Diary Template</h3>
-<p><a href="https://frostyx.cz/posts/vimwiki-diary-template" rel="external" target="_blank">https://frostyx.cz/posts/vimwiki-diary-template</a></p>
-<h1 id="nested-folder-structure">Nested folder structure</h1>
-<p>[dev](dev/ndex)</p>
-<p>Say yes to make new directory</p>
-<h1 id="wiki">wiki</h1>
-<p>Convert to html live and shows some design stuff
-<a href="https://www.youtube.com/watch?v=A1YgbAp5YRc" rel="external" target="_blank">https://www.youtube.com/watch?v=A1YgbAp5YRc</a></p>
-<p><a href="https://github.com/Dynalonwiki" rel="external" target="_blank">https://github.com/Dynalonwiki</a></p>
-<h1 id="taskwarrior">Taskwarrior</h1>
-<p><a href="https://www.youtube.com/watch?v=UuHJloiDErM" rel="external" target="_blank">https://www.youtube.com/watch?v=UuHJloiDErM</a>
-requires neovim?</p>
-<h2 id="taskwiki">taskwiki</h2>
-<p>vimwiki integration with task warrior
-<a href="https://github.com/tools-life/taskwiki" rel="external" target="_blank">https://github.com/tools-life/taskwiki</a>
-<a href="https://www.youtube.com/watch?v=UuHJloiDErM" rel="external" target="_blank">https://www.youtube.com/watch?v=UuHJloiDErM</a></p>
-<h1 id="ctrl-p">Ctrl P</h1>
-<h2 id="install">Install</h2>
-<p>Plug &lsquo;ctrlpvim/ctrlp.vim&rsquo;</p>
-
-  <footer class="footline">
-  </footer>
-</article>
-          </section>
+            <h1 class="a11y-only">Subsections of Tools</h1>
 <article class="default">
   <header class="headline">
   </header>
@@ -717,38 +457,38 @@ ufw allow 443</code></pre></div>
 <h1 id="how-to-process-bookfusion-highlights-with-vim">How to Process Bookfusion Highlights with Vim</h1>
 
 <p>Here are my highlights pulled up in Vim:</p>
-<p><a href="#R-image-56f9817ea5a25f5a9997d76815c62e61" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-56f9817ea5a25f5a9997d76815c62e61"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png"></a></p>
+<p><a href="#R-image-8fce98c920a7ff3390ba540d532fd027" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8fce98c920a7ff3390ba540d532fd027"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png"></a></p>
 <p>As you can see, Bookfusion gives you a lot of extra information when you export highlights. First, let&rsquo;s get rid of the lines that begin with <code>##</code></p>
 <p>Enter command mode in Vim by pressing <code>esc</code>. Then type <code>:g/^##/d</code> and press enter.</p>
 <p>Much better.</p>
-<p><a href="#R-image-ce0d679caa56324d147cac07670a8f4d" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ce0d679caa56324d147cac07670a8f4d"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png"></a></p>
+<p><a href="#R-image-70733c85629d652a026929022c742191" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-70733c85629d652a026929022c742191"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png"></a></p>
 <p>Now let&rsquo;s get rid of the color references:`</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:g/^Color/d</span></span></code></pre></div>
-<p><a href="#R-image-0feb58aeec34a7154f81649a8c5c6426" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0feb58aeec34a7154f81649a8c5c6426"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png"></a></p>
+<p><a href="#R-image-cdbac8aefacd03f14ec583debfea08c2" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cdbac8aefacd03f14ec583debfea08c2"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png"></a></p>
 <p>To get rid of the timestamps, we must find a different commonality between the lines. In this case, each line ends with &ldquo;UTC&rdquo;. Let&rsquo;s match that:</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:g/UTC$/d</span></span></code></pre></div>
 <p>Where <code>$</code> matches the end of the line.</p>
-<p><a href="#R-image-65ee3e35e725239e8c94054b109a64c3" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-65ee3e35e725239e8c94054b109a64c3"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png"></a></p>
+<p><a href="#R-image-b2429711dbba43389deb39120dcc98fa" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b2429711dbba43389deb39120dcc98fa"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png"></a></p>
 <p>Now, I want to get rid of the <code>&gt; </code> on each line:
 <code>%s/&gt; //g</code></p>
-<p><a href="#R-image-66faab7fd15099a85f964a4b83851f48" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-66faab7fd15099a85f964a4b83851f48"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png"></a></p>
+<p><a href="#R-image-a63f65c23eb155990d57a905d099f51e" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a63f65c23eb155990d57a905d099f51e"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png"></a></p>
 <p>Almost there, you&rsquo;ll notice there are 6 empty lines in between each highlight. Let&rsquo;s shrink those down into one:</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:%s/<span style="color:#5af78e">\(\n\)\{</span>3,<span style="color:#ff6ac1">}</span>/<span style="color:#5af78e">\r\r</span>/g</span></span></code></pre></div>
-<p><a href="#R-image-848e73de61d0d97270bac32847c39fde" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-848e73de61d0d97270bac32847c39fde"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png"></a></p>
+<p><a href="#R-image-30f317b95883cc912a55e7077c6db2b0" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-30f317b95883cc912a55e7077c6db2b0"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png"></a></p>
 <p>The command above matches newline character <code>n</code> 3 or more times and replaces them with two newline characters <code>/r/r</code>.</p>
 <p>As we scroll down, I see a few weird artifacts from the book conversion to markdown.</p>
-<p><a href="#R-image-c8580a1668a165c8f2d118a6b134b5a3" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c8580a1668a165c8f2d118a6b134b5a3"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png"></a></p>
+<p><a href="#R-image-01540ee0398a0c733c95093d865398c3" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-01540ee0398a0c733c95093d865398c3"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png"></a></p>
 <p>Now, I want to get rid of any carrot brackets in the file. Let&rsquo;s use the substitute command again here:</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>%s/&lt;//g</span></span></code></pre></div>
-<p><a href="#R-image-178793d5fd0f29440ce92c64ddb8aac7" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-178793d5fd0f29440ce92c64ddb8aac7"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png"></a></p>
+<p><a href="#R-image-a95d303112ebca96f26f4972b2aecbc9" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a95d303112ebca96f26f4972b2aecbc9"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png"></a></p>
 <p>Depending on your book and formatting. You may have some other stuff to edit.</p>
 
   <footer class="footline">
@@ -1041,8 +781,8 @@ title = &lsquo;You Need to Learn Man Pages&rsquo;
 <p>When you see file in a man page, think file and or directory</p>
 <p><strong>Description</strong>
 short and long options do the same thing
-<a href="#R-image-2a1c081180fddbb73f31c28d0b57f2e4" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2a1c081180fddbb73f31c28d0b57f2e4"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png"></a></p>
+<a href="#R-image-2ba405294cc66c88493d04f0202393a0" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2ba405294cc66c88493d04f0202393a0"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png"></a></p>
 <p>Current section number is printed at the top left of the man page.</p>
 <p>-k to search sections using apropos</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># man -k unlink</span>
@@ -1101,11 +841,11 @@ short and long options do the same thing
 <code>man bash</code></p>
 <p>Search for the Shell Builtins section:
 <code>/SHELL BUILTIN COMMANDS</code></p>
-<p><a href="#R-image-98589426593c21eeea0d0eec4ddda175" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-98589426593c21eeea0d0eec4ddda175"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png"></a></p>
+<p><a href="#R-image-12cb8abccdf95a16d1daf015c4b2ba8e" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-12cb8abccdf95a16d1daf015c4b2ba8e"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png"></a></p>
 <p>You can find help on builtins with the help command:
-<a href="#R-image-4820493d845b377b86976bb45bf15771" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4820493d845b377b86976bb45bf15771"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png"></a></p>
+<a href="#R-image-62162a12a5c10c245148d340ba0f2f8d" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62162a12a5c10c245148d340ba0f2f8d"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png"></a></p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>david@fedora:~$ <span style="color:#ff5c57">help</span> <span style="color:#ff5c57">hash</span>
 </span></span><span style="display:flex;"><span>hash: <span style="color:#ff5c57">hash</span> <span style="color:#ff6ac1">[</span>-lr<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">[</span>-p pathname<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">[</span>-dt<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">[</span>name ...<span style="color:#ff6ac1">]</span>
 </span></span><span style="display:flex;"><span>    Remember or display program locations.
@@ -1158,8 +898,8 @@ short and long options do the same thing
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741727999" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741727999" defer></script>
+    <script src="/js/clipboard.min.js?1741728657" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741728657" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -1175,20 +915,20 @@ short and long options do the same thing
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741727999" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741727999" defer></script>
-    <script src="/js/js-yaml.min.js?1741727999" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741728657" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741728657" defer></script>
+    <script src="/js/js-yaml.min.js?1741728657" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741727999" defer></script>
+    <script src="/js/theme.js?1741728657" defer></script>
   </body>
 </html>
