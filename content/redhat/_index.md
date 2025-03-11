@@ -1,7 +1,7 @@
 +++ 
 categories = ["linux"] 
 description = "redhat" 
-menuPre = '<i class="fa-fw fas fa-user-tie"></i> '
+menuPre = '<i class="fa-brands fab fa-redhat"></i> '
 title = "RedHat" 
 weight = 3
 +++
