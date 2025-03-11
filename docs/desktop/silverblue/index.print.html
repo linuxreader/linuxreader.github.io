@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="description" content="Fedora Silverblue">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Silverblue :: Linux Reader">
+    <meta name="twitter:description" content="Fedora Silverblue">
+    <meta property="og:url" content="http://linuxreader.com/desktop/silverblue/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Silverblue :: Linux Reader">
+    <meta property="og:description" content="Fedora Silverblue">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="desktop">
+    <meta itemprop="name" content="Silverblue :: Linux Reader">
+    <meta itemprop="description" content="Fedora Silverblue">
+    <meta itemprop="wordCount" content="435">
+    <title>Silverblue :: Linux Reader</title>
+    <link href="http://linuxreader.com/desktop/silverblue/" rel="canonical" type="text/html" title="Silverblue :: Linux Reader">
+    <link href="/desktop/silverblue/index.xml" rel="alternate" type="application/rss+xml" title="Silverblue :: Linux Reader">
+    <link href="/images/logo.svg?1741724713" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741724713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741724713" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741724713" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741724713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741724713" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741724713" rel="stylesheet">
+    <link href="/css/fonts.css?1741724713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741724713" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741724713" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741724713" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741724713" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741724713" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741724713" rel="stylesheet">
+    <script src="/js/variant.js?1741724713"></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.variants && variants.init( [ 'oled' ] );
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/desktop/silverblue/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/desktop/my-fedora-setup" title="My Fedora Setup (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#layered-package-examples">Layered package examples</a></li>
+    <li><a href="#rebase-into-universal-blue">Rebase into Universal Blue</a></li>
+    <li><a href="#just">just</a>
+      <ul>
+        <li><a href="#from-a-second-machine">From a second machine:</a></li>
+      </ul>
+    </li>
+    <li><a href="#install-connect-tunnel">Install Connect Tunnel</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Silverblue
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/desktop/silverblue?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking" title="Networking (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable desktop" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="silverblue">Silverblue</h1>
+
+<p>Automated setup <a href="https://universal-blue.org/" rel="external" target="_blank">https://universal-blue.org/</a></p>
+<p>You get all the benefits of using containers
+Separates system level packages from applications.</p>
+<p>System Level</p>
+<ul>
+<li>Desktop, kernel?</li>
+<li>Layering
+<ul>
+<li>Apps at system level because containers aren&rsquo;t as developed yet</li>
+<li>Locks to the fedora version you are on</li>
+</ul>
+</li>
+</ul>
+<h2 id="layered-package-examples">Layered package examples</h2>
+<pre><code>- gnome shell extensions
+- distrobox
+</code></pre>
+<p>Uses rpm-ostree? <a href="https://coreos.github.io/rpm-ostree/administrator-handbook/" rel="external" target="_blank">https://coreos.github.io/rpm-ostree/administrator-handbook/</a></p>
+<p>Flatpacks</p>
+<p>Remove fedora flatpack stuff and use flathub repos instead <a href="https://flatpak.org/setup/Fedora" rel="external" target="_blank">https://flatpak.org/setup/Fedora</a></p>
+<p>Systemd unit for automatic flatpack updates</p>
+<p>Update every 4 hours to mirror ubuntu</p>
+<p>flatseal
+adjust permissions of flatpacks</p>
+<p>check out apps.gnome.org</p>
+<h2 id="rebase-into-universal-blue">Rebase into Universal Blue</h2>
+<p>Rebase onto the &ldquo;unsigned&rdquo; image then reboot:
+<code>rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/silverblue-main:39</code> and</p>
+<p>Then the signed image and reboot:
+<code>rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/silverblue-main:39</code></p>
+<p>Then do we you do after install, open the app store and install stuff via GUI or we</p>
+<h2 id="just">just</h2>
+<p>have a .justfile to install all flatpak/ homebrew packages
+<a href="https://universal-blue.discourse.group/t/introduction-to-just/42" rel="external" target="_blank">https://universal-blue.discourse.group/t/introduction-to-just/42</a>
+<a href="https://just.systems/man/en/chapter_1.html" rel="external" target="_blank">https://just.systems/man/en/chapter_1.html</a></p>
+<p>My justfile</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>import <span style="color:#5af78e">&#34;/usr/share/ublue-os/justfile&#34;</span>  
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># You can add your own commands here! For documentation, see: [https://ublue.it/guide/just/](https://ublue.it/guide/just/)  </span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>first-install:  
+</span></span><span style="display:flex;"><span>    flatpak install <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.bitwarden.desktop <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.brave.Browser <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.discordapp.Discord <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub net.cozic.joplin_desktop <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.gimp.GIMP <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.gnome.Snapshot <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.libreoffice.LibreOffice <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.remmina.Remmina <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.termius.Termius <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub net.devolutions.RDM <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.slack.Slack <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.keepassxc.KeePassXC <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub md.obsidian.Obsidian <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.calibre_ebook.calibre <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.logseq.Logseq <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.mozilla.Thunderbird <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub us.zoom.Zoom <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub org.wireshark.Wireshark <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.nextcloud.desktopclient.nextcloud <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      flathub com.google.Chrome  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    brew install <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      ansible <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      chezmoi <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      neovim  <span style="color:#5af78e">\ </span>     
+</span></span><span style="display:flex;"><span>      onedrive <span style="color:#5af78e">\ </span> 
+</span></span><span style="display:flex;"><span>      wireguard-tools</span></span></code></pre></div>
+<p>Set up github dotfiles repo</p>
+<p>Install chezmoi and initialize:
+<code>chezmoi init</code></p>
+<p>Sync with Chezmoi: <a href="https://www.chezmoi.io/quick-start/" rel="external" target="_blank">https://www.chezmoi.io/quick-start/</a></p>
+<p>Add dotfiles
+<code>chezmoi add ~/.bashrc</code></p>
+<p>Edit a dotfile
+<code>chezmoi edit ~/.bashrc</code></p>
+<p>See changes
+<code>chezmoi diff</code></p>
+<p>Apply changes
+<code>chezmoi -v apply</code></p>
+<p>to sync chezmoi with git:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chezmoi <span style="color:#ff5c57">cd</span>
+</span></span><span style="display:flex;"><span>git remote add origin https://github.com/<span style="color:#ff5c57">$GITHUB_USERNAME</span>/dotfiles.git 
+</span></span><span style="display:flex;"><span>$ git push -u origin main 
+</span></span><span style="display:flex;"><span>$ exit</span></span></code></pre></div>
+<p>For subsequent git pushes:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git commit -a -m <span style="color:#5af78e">&#34;commit&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> git push</span></span></code></pre></div>
+<p><a href="#R-image-c6a92e3244e53d7e77eb3d83cab18e83" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="davidvargasxyz.github.io/docs/images/Pasted%20image%2020240904141011.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c6a92e3244e53d7e77eb3d83cab18e83"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="davidvargasxyz.github.io/docs/images/Pasted%20image%2020240904141011.png"></a></p>
+<h3 id="from-a-second-machine">From a second machine:</h3>
+<p>Install all dotfiles with a single command:
+<code>chezmoi init --apply https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
+<p>If you use GitHub and your dotfiles repo is called <code>dotfiles</code> then this can be shortened to:
+<code>$ chezmoi init --apply $GITHUB_USERNAME</code></p>
+<p><a href="#R-image-b5723a8ed14c3c63df5f5af574d8c29e" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240904142110%201.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b5723a8ed14c3c63df5f5af574d8c29e"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240904142110%201.png"></a></p>
+<p>See a list of full commands:
+<code>chezmoi help</code></p>
+<p>Or you can initialize and choose what you want:
+<code>chezmoi init https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
+<p>See what changes are awaiting:
+<code>chezmoi diff</code></p>
+<p>Apply changes:
+<code>chezmoi apply -v</code></p>
+<p>can also edit a file before applying:
+<code>chezmoi edit $FILE</code></p>
+<p>Or merge the current file with new file:
+<code>chezmoi merge $FILE</code></p>
+<p>From any machine, you can pull and apply changes from your repo:
+<code>chezmoi update -v</code></p>
+<p><a href="#R-image-da07654d18c05ce2833f8dfbfe95a11e" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240904141728.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-da07654d18c05ce2833f8dfbfe95a11e"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240904141728.png"></a></p>
+<p>Add the justfile:
+<code>chezmoi add .justfile</code></p>
+<h2 id="install-connect-tunnel">Install Connect Tunnel</h2>
+<p>Download from website
+Install java
+<code>rpm-ostree install java</code></p>
+<p>Runn the connect tunnel install script</p>
+<p>Commands located in /var/usrlocal/Aventail must be ran as root
+`sudo ./startctui.sh</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/clipboard.min.js?1741724713" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741724713" defer></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          tex: {
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741724713" defer></script>
+    <script src="/js/js-yaml.min.js?1741724713" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.js?1741724713" defer></script>
+  </body>
+</html>

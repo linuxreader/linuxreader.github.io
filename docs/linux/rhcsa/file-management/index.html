@@ -5,37 +5,35 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
-    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="Chapter 3 RHCSA Notes - File Management 7 File types regular directory block special device character special device symbolic link named pipe socket Commands
-ls stat file Regular files Text or binary data. Represented by hyphen (-). Directory Files Identified by the letter “d” in the beginning of ls output. Block and Character (raw) Special Device Files All hardware has device file in /dev/. Used by system to communicate with device. Identified by “c” or “b” in ls listing. Each device driver is assigned a unique number called the major number Character device Reads and writes 8 bits at a time. Serial Block device Receives data in fixed block size determined by drivers 512 or 4096 bytes Major Number Used by kernel to recognize device driver type. Column 5 of ls listing. ls -l /dev/sda Minor Number Each device controlled by the same device driver gets a Minor Number Applies to disk partitions as well. The same driver can control multiple devices of the same type. Column 6 of ls listing ls -l /dev/sda Symbolic Links Shortcut to another file or directory. Begins with “l” in ls listing. ls -l /usr/sbin/vigr lrwxrwxrwx. 1 root root 4 Jul 21 14:36 /usr/sbin/vigr -&gt; vipw Compression and Archiving Archiving Preserves file attributes such as ownership, owning group, and timestamp. Preserves extended file attributes such as ACLs and SELinux contexts. Syntax of tar and star are identical. star command tar (tape archive) command Create, append, update, list, and extract files/directory tree to/from a file called a tarball(tarfile) Can compress a tarball after it’s been created. Automatically removes “/” so you do not have to specify the full pathname when restoring files at any location. flags tar -c :: Create tarball. tar -f :: Specify tarball name. tar -p :: Preserve file permissions. Default for the root user. Specify this if you create an archive as a normal user. tar -r :: Append files to the end of an existing uncompressed tarball. tar -t :: List contents of a tarball. tar -u :: Append files to the end of an existing uncompressed tarball provided the specified files being added are newer. -z -j -C">
+    <meta name="description" content="File types, linking, viewing, and archiving files.">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:description" content="Chapter 3 RHCSA Notes - File Management 7 File types regular directory block special device character special device symbolic link named pipe socket Commands
-ls stat file Regular files Text or binary data. Represented by hyphen (-). Directory Files Identified by the letter “d” in the beginning of ls output. Block and Character (raw) Special Device Files All hardware has device file in /dev/. Used by system to communicate with device. Identified by “c” or “b” in ls listing. Each device driver is assigned a unique number called the major number Character device Reads and writes 8 bits at a time. Serial Block device Receives data in fixed block size determined by drivers 512 or 4096 bytes Major Number Used by kernel to recognize device driver type. Column 5 of ls listing. ls -l /dev/sda Minor Number Each device controlled by the same device driver gets a Minor Number Applies to disk partitions as well. The same driver can control multiple devices of the same type. Column 6 of ls listing ls -l /dev/sda Symbolic Links Shortcut to another file or directory. Begins with “l” in ls listing. ls -l /usr/sbin/vigr lrwxrwxrwx. 1 root root 4 Jul 21 14:36 /usr/sbin/vigr -&gt; vipw Compression and Archiving Archiving Preserves file attributes such as ownership, owning group, and timestamp. Preserves extended file attributes such as ACLs and SELinux contexts. Syntax of tar and star are identical. star command tar (tape archive) command Create, append, update, list, and extract files/directory tree to/from a file called a tarball(tarfile) Can compress a tarball after it’s been created. Automatically removes “/” so you do not have to specify the full pathname when restoring files at any location. flags tar -c :: Create tarball. tar -f :: Specify tarball name. tar -p :: Preserve file permissions. Default for the root user. Specify this if you create an archive as a normal user. tar -r :: Append files to the end of an existing uncompressed tarball. tar -t :: List contents of a tarball. tar -u :: Append files to the end of an existing uncompressed tarball provided the specified files being added are newer. -z -j -C">
+    <meta name="twitter:title" content="Basic File Managment :: Linux Reader">
+    <meta name="twitter:description" content="File types, linking, viewing, and archiving files.">
     <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/file-management/">
     <meta property="og:site_name" content="Linux Reader">
-    <meta property="og:description" content="Chapter 3 RHCSA Notes - File Management 7 File types regular directory block special device character special device symbolic link named pipe socket Commands
-ls stat file Regular files Text or binary data. Represented by hyphen (-). Directory Files Identified by the letter “d” in the beginning of ls output. Block and Character (raw) Special Device Files All hardware has device file in /dev/. Used by system to communicate with device. Identified by “c” or “b” in ls listing. Each device driver is assigned a unique number called the major number Character device Reads and writes 8 bits at a time. Serial Block device Receives data in fixed block size determined by drivers 512 or 4096 bytes Major Number Used by kernel to recognize device driver type. Column 5 of ls listing. ls -l /dev/sda Minor Number Each device controlled by the same device driver gets a Minor Number Applies to disk partitions as well. The same driver can control multiple devices of the same type. Column 6 of ls listing ls -l /dev/sda Symbolic Links Shortcut to another file or directory. Begins with “l” in ls listing. ls -l /usr/sbin/vigr lrwxrwxrwx. 1 root root 4 Jul 21 14:36 /usr/sbin/vigr -&gt; vipw Compression and Archiving Archiving Preserves file attributes such as ownership, owning group, and timestamp. Preserves extended file attributes such as ACLs and SELinux contexts. Syntax of tar and star are identical. star command tar (tape archive) command Create, append, update, list, and extract files/directory tree to/from a file called a tarball(tarfile) Can compress a tarball after it’s been created. Automatically removes “/” so you do not have to specify the full pathname when restoring files at any location. flags tar -c :: Create tarball. tar -f :: Specify tarball name. tar -p :: Preserve file permissions. Default for the root user. Specify this if you create an archive as a normal user. tar -r :: Append files to the end of an existing uncompressed tarball. tar -t :: List contents of a tarball. tar -u :: Append files to the end of an existing uncompressed tarball provided the specified files being added are newer. -z -j -C">
+    <meta property="og:title" content="Basic File Managment :: Linux Reader">
+    <meta property="og:description" content="File types, linking, viewing, and archiving files.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Linux">
-    <meta itemprop="description" content="Chapter 3 RHCSA Notes - File Management 7 File types regular directory block special device character special device symbolic link named pipe socket Commands
-ls stat file Regular files Text or binary data. Represented by hyphen (-). Directory Files Identified by the letter “d” in the beginning of ls output. Block and Character (raw) Special Device Files All hardware has device file in /dev/. Used by system to communicate with device. Identified by “c” or “b” in ls listing. Each device driver is assigned a unique number called the major number Character device Reads and writes 8 bits at a time. Serial Block device Receives data in fixed block size determined by drivers 512 or 4096 bytes Major Number Used by kernel to recognize device driver type. Column 5 of ls listing. ls -l /dev/sda Minor Number Each device controlled by the same device driver gets a Minor Number Applies to disk partitions as well. The same driver can control multiple devices of the same type. Column 6 of ls listing ls -l /dev/sda Symbolic Links Shortcut to another file or directory. Begins with “l” in ls listing. ls -l /usr/sbin/vigr lrwxrwxrwx. 1 root root 4 Jul 21 14:36 /usr/sbin/vigr -&gt; vipw Compression and Archiving Archiving Preserves file attributes such as ownership, owning group, and timestamp. Preserves extended file attributes such as ACLs and SELinux contexts. Syntax of tar and star are identical. star command tar (tape archive) command Create, append, update, list, and extract files/directory tree to/from a file called a tarball(tarfile) Can compress a tarball after it’s been created. Automatically removes “/” so you do not have to specify the full pathname when restoring files at any location. flags tar -c :: Create tarball. tar -f :: Specify tarball name. tar -p :: Preserve file permissions. Default for the root user. Specify this if you create an archive as a normal user. tar -r :: Append files to the end of an existing uncompressed tarball. tar -t :: List contents of a tarball. tar -u :: Append files to the end of an existing uncompressed tarball provided the specified files being added are newer. -z -j -C">
+    <meta itemprop="name" content="Basic File Managment :: Linux Reader">
+    <meta itemprop="description" content="File types, linking, viewing, and archiving files.">
     <meta itemprop="wordCount" content="2026">
-    <title></title>
-    <link href="/linux/rhcsa/file-management/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/linux/rhcsa/file-management/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/logo.svg?1741646127" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741646127" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741646127" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741646127" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741646127" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741646127" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741646127" rel="stylesheet">
-    <link href="/css/fonts.css?1741646127" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741646127" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741646127" rel="stylesheet">
-    <link href="/css/theme-amoled.css?1741646127" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741646127" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741646127" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741646127"></script>
+    <title>Basic File Managment :: Linux Reader</title>
+    <link href="/linux/rhcsa/file-management/index.xml" rel="alternate" type="application/rss+xml" title="Basic File Managment :: Linux Reader">
+    <link href="/linux/rhcsa/file-management/index.print.html" rel="alternate" type="text/html" title="Basic File Managment :: Linux Reader">
+    <link href="/images/logo.svg?1741724713" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741724713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741724713" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741724713" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741724713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741724713" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741724713" rel="stylesheet">
+    <link href="/css/fonts.css?1741724713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741724713" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741724713" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741724713" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741724713" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741724713" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741724713"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
@@ -44,7 +42,7 @@ ls stat file Regular files Text or binary data. Represented by hyphen (-). Direc
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
-      window.variants && variants.init( [ 'amoled' ] );
+      window.variants && variants.init( [ 'oled' ] );
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -74,7 +72,7 @@ ls stat file Regular files Text or binary data. Represented by hyphen (-). Direc
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa" title="RHCSA (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/bash" title="Bash (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -173,13 +171,13 @@ ls stat file Regular files Text or binary data. Represented by hyphen (-). Direc
 
           </div>
           <span class="topbar-breadcrumbs highlightable">
-            
+            Basic File Managment
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/file-management?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes" title="RHCSA Notes (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/basic-package-management" title="Basic Package Management (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -198,7 +196,7 @@ ls stat file Regular files Text or binary data. Represented by hyphen (-). Direc
   <header class="headline">
   </header>
 
-<h1 id=""></h1>
+<h1 id="basic-file-managment">Basic File Managment</h1>
 
 <h1 id="chapter-3-rhcsa-notes---file-management">Chapter 3 RHCSA Notes - File Management</h1>
 <h2 id="7-file-types">7 File types</h2>
@@ -347,7 +345,7 @@ ls -l fstab.bz2</code></pre></div>
 ls -l fstab</code></pre></div>
 <h2 id="file-editing">File Editing</h2>
 <h3 id="vim">Vim</h3>
-<p><a href="vimguide.md">vimguide</a></p>
+<p><a href="/tools/vim/vimguide/">vimguide</a></p>
 <h3 id="file-and-directory-operations">File and Directory Operations</h3>
 <h3 id="touch-command">touch command</h3>
 <ul>
@@ -672,7 +670,7 @@ ls</code></pre></div>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741646127";
+          window.index_js_url="/searchindex.en.js?1741724713";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -685,12 +683,12 @@ ls</code></pre></div>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741646127" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741646127" defer></script>
-        <script src="/js/search.js?1741646127" defer></script>
+        <script src="/js/auto-complete.js?1741724713" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741724713" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741724713" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741724713" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741724713" defer></script>
+        <script src="/js/search.js?1741724713" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -701,13 +699,40 @@ ls</code></pre></div>
             <li class="parent " data-nav-id="/linux/"><a class="padding" href="/linux/"><i class="fa-fw fas fa-terminal"></i> Linux</a><ul id="R-subsections-e2509333b88222aa06f1b5fc60b020b2" class="collapsible-menu">
             <li class="" data-nav-id="/linux/fedora/"><a class="padding" href="/linux/fedora/"><i class="fa-fw fas fa-angle-down"></i> Fedora</a><ul id="R-subsections-89434e96479d9689b11efd9b3cb12acc" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/linux/rhcsa/"><a class="padding" href="/linux/rhcsa/"><i class="fa-fw fas fa-angle-down"></i> RHCSA</a><ul id="R-subsections-2c51772c3489e4d820f23d680b3a1d70" class="collapsible-menu">
-            <li class="active hidden " data-nav-id="/linux/rhcsa/file-management/"><a class="padding" href="/linux/rhcsa/file-management/"></a></li>
+            <li class="" data-nav-id="/linux/rhcsa/advanced-file-management/"><a class="padding" href="/linux/rhcsa/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/advanced-package-management/"><a class="padding" href="/linux/rhcsa/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/advanced-user-management/"><a class="padding" href="/linux/rhcsa/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/bash/"><a class="padding" href="/linux/rhcsa/bash/">Bash</a></li>
+            <li class="active " data-nav-id="/linux/rhcsa/file-management/"><a class="padding" href="/linux/rhcsa/file-management/">Basic File Managment</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/basic-package-management/"><a class="padding" href="/linux/rhcsa/basic-package-management/">Basic Package Management</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/basic-user-management/"><a class="padding" href="/linux/rhcsa/basic-user-management/">Basic User Management</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/boot-process-grub2-and-kernel/"><a class="padding" href="/linux/rhcsa/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/installation/"><a class="padding" href="/linux/rhcsa/installation/">Installation</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/interaction/"><a class="padding" href="/linux/rhcsa/interaction/">Interaction</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/local-file-systems-and-swap/"><a class="padding" href="/linux/rhcsa/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/network-file-system-nfs/"><a class="padding" href="/linux/rhcsa/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/process-and-task-scheduling/"><a class="padding" href="/linux/rhcsa/process-and-task-scheduling/">Process and Task Scheduling</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/rhcsa-exam-environment/"><a class="padding" href="/linux/rhcsa/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
             <li class="" data-nav-id="/linux/rhcsa/rhcsa-notes/"><a class="padding" href="/linux/rhcsa/rhcsa-notes/">RHCSA Notes</a></li>
             <li class="" data-nav-id="/linux/rhcsa/rhcsa-study-tracker/"><a class="padding" href="/linux/rhcsa/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
             <li class="" data-nav-id="/linux/rhcsa/rhcsa-vagrant-lab-setup/"><a class="padding" href="/linux/rhcsa/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/sample-exams/"><a class="padding" href="/linux/rhcsa/sample-exams/">Sample Exams</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/security-enhanced-linux/"><a class="padding" href="/linux/rhcsa/security-enhanced-linux/">Security Enhanced Linux</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/shell-scripting/"><a class="padding" href="/linux/rhcsa/shell-scripting/">Shell Scripting</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/storage-management/"><a class="padding" href="/linux/rhcsa/storage-management/">Storage Management</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/linux/rhcsa/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/the-linux-firewall/"><a class="padding" href="/linux/rhcsa/the-linux-firewall/">The Linux Firewall</a></li>
+            <li class="" data-nav-id="/linux/rhcsa/the-secure-shell-service/"><a class="padding" href="/linux/rhcsa/the-secure-shell-service/">The Secure Shell Service</a></li>
             <li class="" data-nav-id="/linux/rhcsa/using-man-pages/"><a class="padding" href="/linux/rhcsa/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class="fa-fw fas fa-info-circle"></i> About</a></li>
           </ul>
         </div>
         <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
@@ -744,7 +769,7 @@ ls</code></pre></div>
                   <div class="control-style">
                     <label class="a11y-only" for="R-select-variant">Theme</label>
                     <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-amoled" value="amoled" selected>Amoled</option>
+                      <option id="R-select-variant-oled" value="oled" selected>Oled</option>
                     </select>
                   </div>
                   <div class="clear"></div>
@@ -769,8 +794,8 @@ ls</code></pre></div>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741646127" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741646127" defer></script>
+    <script src="/js/clipboard.min.js?1741724713" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741724713" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -786,20 +811,20 @@ ls</code></pre></div>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741646127" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741646127" defer></script>
-    <script src="/js/js-yaml.min.js?1741646127" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741724713" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741724713" defer></script>
+    <script src="/js/js-yaml.min.js?1741724713" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741646127" defer></script>
+    <script src="/js/theme.js?1741724713" defer></script>
   </body>
 </html>

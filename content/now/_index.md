@@ -11,7 +11,7 @@ This is a page to help me stay focused and keep track of what I am doing. It is 
 Updated: 02-20-2025
 ## Career
 
-I am currently a Linux System Administrator. I just passed the RHCSA exam today! Check out my [RHCSA Notes](../linux/RHCSA/RHCSA%20Notes.md). Not sure what I'm going to learn next. May just play around in Linux for a while. 
+I am currently a Linux System Administrator. I just passed the RHCSA exam today! Check out my [RHCSA Notes](../RHCSA/RHCSA%20Notes.md). Not sure what I'm going to learn next. May just play around in Linux for a while. 
 
 ## Personal
 

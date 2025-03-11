@@ -13,7 +13,7 @@ I started keeping [summaries, notes, and reviews](https://davidvargas.xyz/bookno
 
 Here are the current areas of content you can find here:
 
-- [Linux Stuff](linux/_index.md)
+- [Linux Stuff](desktop/_index.md)
 
 - [Tools](tools/_index.md)
 
