@@ -4,22 +4,8 @@ title = 'Linux Reader'
 type = 'home'
 +++
 
+## Welcome!
+Check out super awesome Linux stuff:
+{{% children depth="1"%}}
 
-I'm David, I spin poi, read books, tinker, and write. Check out what I am doing [Now!](now/_index.md)
-
-I started keeping [summaries, notes, and reviews](https://davidvargas.xyz/booknotes/) of books that I am reading. 
-
-[Let's Chat!](https://davidvargas.xyz/contact/) I reply to every email. 
-
-Here are the current areas of content you can find here:
-
-- [Linux Stuff](desktop/_index.md)
-
-- [Tools](tools/_index.md)
-
-- [Networking](networking/_index.md)
-
-- [Writing](writing/_index.md)
-
-<---  You can also click the links in the side bar. 
-
+Also check out what I am doing [now](now/_index.md), read my [book notes](booknotes/_index.md), [contact me](https://www.linuxreader.com/contact/), or see what this site is all [about](about/_index.md)

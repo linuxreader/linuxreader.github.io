@@ -31,18 +31,18 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
     <title>Storage :: Linux Reader</title>
     <link href="http://linuxreader.com/storage/" rel="canonical" type="text/html" title="Storage :: Linux Reader">
     <link href="/storage/index.xml" rel="alternate" type="application/rss+xml" title="Storage :: Linux Reader">
-    <link href="/images/logo.svg?1741729386" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741729386" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741729386" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741729386" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741729386" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741729386" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741729386" rel="stylesheet">
-    <link href="/css/fonts.css?1741729386" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741729386" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741729386" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741729386" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741729386" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741729386" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741729386" rel="stylesheet">
-    <script src="/js/variant.js?1741729386"></script>
+    <link href="/images/logo.svg?1741730133" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741730133" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741730133" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741730133" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741730133" rel="stylesheet">
+    <link href="/css/fonts.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741730133" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741730133" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741730133" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741730133" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741730133" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741730133" rel="stylesheet">
+    <script src="/js/variant.js?1741730133"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -278,8 +278,8 @@ EXIT;</code></pre></div>
 <p>Before you go any further, you will need to have a domain name set up for your server. I use Cloudflare to manage my DNS records. You will want to make a CNAME record for your nextcloud subdomain.</p>
 <p>Just add &ldquo;nextcloud&rdquo; as the name and &ldquo;yourwebsite.com&rdquo; as the content. This will make it so &ldquo;nextcloud.yourwebsite.com&rdquo; is the site for your nextcloud dashboard. Also, make sure to select &ldquo;DNS Only&rdquo; under proxy status.</p>
 <p>Here&rsquo;s what my CloudFlare domain setup looks with this blog as the main site, and cloud.perfectdarkmode.com as the nextcloud site:</p>
-<p><a href="#R-image-96a17302b0496ab718942cdfc86edb21" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-96a17302b0496ab718942cdfc86edb21"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
+<p><a href="#R-image-ea0cc51d361532a7b6bb743cfbc61d2a" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ea0cc51d361532a7b6bb743cfbc61d2a"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
 <p>Then you need to update trusted domains in /var/www/nextcloud/config/config.php:</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#39;trusted_domains&#39;</span> <span style="color:#ff6ac1">=</span>&gt;
 </span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">[</span>
@@ -292,11 +292,11 @@ EXIT;</code></pre></div>
 <p>Obtain an SSL certificate. (See my <a href="Obsidian%20site%20setup.md">Obsidian site setup</a> post for information about Certbot and Apache setup.)</p>
 <div class="highlight wrap-code"><pre tabindex="0"><code>sudo certbot -d {subdomain}.{domain}.com</code></pre></div>
 <p>Now log into nextcloud with your admin account using the DNS name you set earlier:</p>
-<p><a href="#R-image-f2c0de20be235aaa352d4a8e2d09cdb5" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f2c0de20be235aaa352d4a8e2d09cdb5"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
+<p><a href="#R-image-87b3abae0d552241113d25b775735fe3" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-87b3abae0d552241113d25b775735fe3"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
 <p>I recommend setting up a normal user account instead of doing everything as &ldquo;admin&rdquo;. Just hit the &ldquo;A&rdquo; icon at the top right and go to &ldquo;Accounts&rdquo;. Then just select &ldquo;New Account&rdquo; and create a user account with whatever privileges you want.</p>
-<p><a href="#R-image-cd4a4c8b66a05b14826f5d3347e76426" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cd4a4c8b66a05b14826f5d3347e76426"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
+<p><a href="#R-image-6251a1af0db4307793c3d71bd0c911b8" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6251a1af0db4307793c3d71bd0c911b8"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
 <p>I may make a post about which Nextcloud apps I recommend and customize the setup a bit. Let me know if that&rsquo;s something you&rsquo;d like to see. That&rsquo;s all for now.</p>
 
   <footer class="footline">
@@ -566,23 +566,23 @@ MariaDB [nextcloud]&gt; DELETE FROM oc_file_locks WHERE 1;
 <li>start VirtualBox and add 4x250MB and 1x5GB disks to server2</li>
 </ul>
 <p>1. Start VirtualBox on your Windows/Mac computer and highlight the RHEL9-VM2 virtual machine that you created in Lab 1-1. See Figure 13-1.</p>
-<p><a href="#R-image-f373bac146256b623029dc71d1173acb" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706043737.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f373bac146256b623029dc71d1173acb"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706043737.png"></a></p>
+<p><a href="#R-image-077c1d0bfe766914657d2373048b91ee" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706043737.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-077c1d0bfe766914657d2373048b91ee"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706043737.png"></a></p>
 <p>2. Click Settings at the top and then Storage on the window that pops
 up. Click on &ldquo;Controller: SATA&rdquo; to select it. Figure 13-2.</p>
-<p><a href="#R-image-10858ad1bfcfcb852a2fe7d0f1e80a6b" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706043837.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-10858ad1bfcfcb852a2fe7d0f1e80a6b"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706043837.png"></a></p>
+<p><a href="#R-image-71d6c3e41a813e480bc97185680cf53f" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706043837.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-71d6c3e41a813e480bc97185680cf53f"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706043837.png"></a></p>
 <p>3. Click on the right-side icon next to &ldquo;Controller: SATA&rdquo; to add a hard disk and then click Create (on the Medium Selector screen)
-<a href="#R-image-1d4ef9461874c43d84b0a7fb60a1f5d2" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706043958.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1d4ef9461874c43d84b0a7fb60a1f5d2"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706043958.png"></a></p>
+<a href="#R-image-8e3e904a315bd47ff16e0e25fcc5d127" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706043958.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8e3e904a315bd47ff16e0e25fcc5d127"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706043958.png"></a></p>
 <p>4. Follow this sequence to add a 250MB disk: Click Next on the next two screens to select the two defaults for the &ldquo;VDI (Virtualization Disk Image)&rdquo; and &ldquo;Dynamically allocated&rdquo; options. Adjust the size on the third screen to 250MB.</p>
 <p>5. Repeat step 4 three more times to create additional disks of the
 same size.</p>
 <p>6. Repeat step 4 one time to create a disk of size 5GB.</p>
 <p>7. On the Medium Selector screen, the five new disks will appear under the Not Attached list of disks. Double-click on each one of them to add to RHEL9-VM2.</p>
 <p>8. The final list of disks should look similar to what is shown in Figure 13-6 after the addition of all five disks (RHEL9-VM2_1 to RHEL9-VM2_5). Disk names may vary.</p>
-<p><a href="#R-image-ddd5b2f5961390fd9137e9b41d602cf3" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706044207.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ddd5b2f5961390fd9137e9b41d602cf3"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706044207.png"></a></p>
+<p><a href="#R-image-ddb771a36728e8ea6cd55f12881137f8" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="Pasted%20image%2020240706044207.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ddb771a36728e8ea6cd55f12881137f8"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="Pasted%20image%2020240706044207.png"></a></p>
 <p>9. Click OK to return to the main VirtualBox interface.</p>
 <p>10. Power on RHEL9-VM2.</p>
 <p>11. When the server is booted up, log on as user1 and run the lsblk command to verify the new storage:</p>
@@ -1012,8 +1012,8 @@ understands both MBR and GPT formats.</p>
 <li>mirroring and striping across multiple disks</li>
 <li>snapshotting of logical volumes.</li>
 </ul>
-<p><a href="#R-image-7a9dd0131e231345398a7070c9a7c401" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="image-0A8W8M1U.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7a9dd0131e231345398a7070c9a7c401"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="image-0A8W8M1U.jpg"></a></p>
+<p><a href="#R-image-da1f811085df9b13f47912dc888a3b2a" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="image-0A8W8M1U.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-da1f811085df9b13f47912dc888a3b2a"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="image-0A8W8M1U.jpg"></a></p>
 <ul>
 <li>Made up of three key objects called physical volume, volume group, and logical volume.</li>
 <li>These objects are further virtually broken down into Physical Extents (PEs) and Logical Extents (LEs).</li>
@@ -1712,8 +1712,8 @@ active logical volume&rdquo; message.</p>
 <li>Makes use of thin provisioning to identify and eliminate empty (zero-byte) data blocks. (zero-block elimination)</li>
 <li>Removes randomization of data blocks by moving in-use data blocks to contiguous locations on the storage device.</li>
 </ul>
-<p><a href="#R-image-eec3d5f4d64e5e1d5e7444e7cd1f1155" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-eec3d5f4d64e5e1d5e7444e7cd1f1155"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="image-XYSCLXMC.jpg"></a></p>
+<p><a href="#R-image-e131f3da40c4a2e2090d92df89a144d8" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e131f3da40c4a2e2090d92df89a144d8"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="image-XYSCLXMC.jpg"></a></p>
 <p><strong>Stage 2</strong></p>
 <ul>
 <li>If it detects that new data is an identical copy of some existing data, it makes an internal note of it but does not actually write the redundant data to the disk. (de-duplication)</li>
@@ -2306,8 +2306,8 @@ Not installed by default?</li>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741729386" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741729386" defer></script>
+    <script src="/js/clipboard.min.js?1741730133" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741730133" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -2323,20 +2323,20 @@ Not installed by default?</li>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741729386" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741729386" defer></script>
-    <script src="/js/js-yaml.min.js?1741729386" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741730133" defer></script>
+    <script src="/js/js-yaml.min.js?1741730133" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741729386" defer></script>
+    <script src="/js/theme.js?1741730133" defer></script>
   </body>
 </html>
