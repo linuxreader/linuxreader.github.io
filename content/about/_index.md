@@ -1,4 +1,12 @@
-![David Vargas](/images/circleportrait.PNG?height=220px&classes=inline) 
++++ 
+categories = ["About"] 
+menuPre = '<i class="fa-fw fas fa-info-circle"></i> '
+title = "About" 
+type = '<i class="fa-fw fas fa-terminal"></i> '
+weight = 9
++++
+
+![David Thomas](/images/circleportrait.PNG?height=220px&classes=inline) 
 ![CCNA Logo](/images/ccnabadge.png?height=100px&classes=inline)
 ![RHCSALogo](/images/rhcsabadge.png?height=100px&classes=inline)
 

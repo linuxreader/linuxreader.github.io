@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -10,7 +10,7 @@
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="Advanced Package Management DIY Labs Configure Access to RHEL 8 Repositories (Make sure the RHEL 8 ISO image is attached to the VM and mounted.) Create a definition file under /etc/yum.repos.d/, and define two blocks (one for BaseOS and another for AppStream). vim /etc/yum.repos.d/local.repo [BaseOS] name=BaseOS baseurl=file:///mnt/BaseOS gpgcheck=0 [AppStrean] name=AppStream baseurl=file:///mnt/AppStream gpgcheck=0 Verify the configuration with dnf repolist. You should see numbers in thousands under the Status column for both repositories. dnf repolist -v Lab: Install and Manage Individual Packages List all installed and available packages separately. dnf list --available &amp;&amp; dnf list --installed Show which package contains the /etc/group file. dnf provides /etc/group Install the package httpd. dnf -y install httpd Review /var/log/yum.log/ for confirmation. (/var/lib/dnf/history) dnf history Perform the following on the httpd package: Show information dnf info httpd List dependencies dnf repoquery --requires httpd Remove it dnf remove httpd Lab Install and Manage Package Groups List all installed and available package groups separately. dnf group list available &amp;&amp; dnf group list installed Install package groups Security Tools and Scientific Support. dnf group install &#39;Security Tools&#39; Review /var/log/yum.log for confirmation. dnf history Show the packages included in the Scientific Support package group, and delete this group. dnf group info &#39;Scientific Support&#39; &amp;&amp; dnf group remove &#39;Scientific Support&#39; Lab: Install and Manage Modules List all modules. Identify which modules, streams and profiles are installed, default, disabled, and enabled from the output. dnf module list Install the default stream of the development profile for module php, and verify. dnf module install php &amp;&amp; dnf module list Remove the module. dnf module remove php Lab Switch Module Streams and Install Software List postgresql module. This will display the streams and profiles, and their status. dnf module list postgresql Reset both streams dnf module reset postgresql enable the stream for the older version, and install its client profile. dnf module install postgresql:15">
-    <meta property="og:url" content="http://localhost:1313/linux/rhcsa/rhcsa-notes/advanced-package-management-diy-labs/">
+    <meta property="og:url" content="http://linuxreader.com/linux/rhcsa/rhcsa-notes/advanced-package-management-diy-labs/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Advanced Package Management DIY Labs Configure Access to RHEL 8 Repositories (Make sure the RHEL 8 ISO image is attached to the VM and mounted.) Create a definition file under /etc/yum.repos.d/, and define two blocks (one for BaseOS and another for AppStream). vim /etc/yum.repos.d/local.repo [BaseOS] name=BaseOS baseurl=file:///mnt/BaseOS gpgcheck=0 [AppStrean] name=AppStream baseurl=file:///mnt/AppStream gpgcheck=0 Verify the configuration with dnf repolist. You should see numbers in thousands under the Status column for both repositories. dnf repolist -v Lab: Install and Manage Individual Packages List all installed and available packages separately. dnf list --available &amp;&amp; dnf list --installed Show which package contains the /etc/group file. dnf provides /etc/group Install the package httpd. dnf -y install httpd Review /var/log/yum.log/ for confirmation. (/var/lib/dnf/history) dnf history Perform the following on the httpd package: Show information dnf info httpd List dependencies dnf repoquery --requires httpd Remove it dnf remove httpd Lab Install and Manage Package Groups List all installed and available package groups separately. dnf group list available &amp;&amp; dnf group list installed Install package groups Security Tools and Scientific Support. dnf group install &#39;Security Tools&#39; Review /var/log/yum.log for confirmation. dnf history Show the packages included in the Scientific Support package group, and delete this group. dnf group info &#39;Scientific Support&#39; &amp;&amp; dnf group remove &#39;Scientific Support&#39; Lab: Install and Manage Modules List all modules. Identify which modules, streams and profiles are installed, default, disabled, and enabled from the output. dnf module list Install the default stream of the development profile for module php, and verify. dnf module install php &amp;&amp; dnf module list Remove the module. dnf module remove php Lab Switch Module Streams and Install Software List postgresql module. This will display the streams and profiles, and their status. dnf module list postgresql Reset both streams dnf module reset postgresql enable the stream for the older version, and install its client profile. dnf module install postgresql:15">
     <meta property="og:locale" content="en_us">
@@ -19,25 +19,25 @@
     <meta itemprop="description" content="Advanced Package Management DIY Labs Configure Access to RHEL 8 Repositories (Make sure the RHEL 8 ISO image is attached to the VM and mounted.) Create a definition file under /etc/yum.repos.d/, and define two blocks (one for BaseOS and another for AppStream). vim /etc/yum.repos.d/local.repo [BaseOS] name=BaseOS baseurl=file:///mnt/BaseOS gpgcheck=0 [AppStrean] name=AppStream baseurl=file:///mnt/AppStream gpgcheck=0 Verify the configuration with dnf repolist. You should see numbers in thousands under the Status column for both repositories. dnf repolist -v Lab: Install and Manage Individual Packages List all installed and available packages separately. dnf list --available &amp;&amp; dnf list --installed Show which package contains the /etc/group file. dnf provides /etc/group Install the package httpd. dnf -y install httpd Review /var/log/yum.log/ for confirmation. (/var/lib/dnf/history) dnf history Perform the following on the httpd package: Show information dnf info httpd List dependencies dnf repoquery --requires httpd Remove it dnf remove httpd Lab Install and Manage Package Groups List all installed and available package groups separately. dnf group list available &amp;&amp; dnf group list installed Install package groups Security Tools and Scientific Support. dnf group install &#39;Security Tools&#39; Review /var/log/yum.log for confirmation. dnf history Show the packages included in the Scientific Support package group, and delete this group. dnf group info &#39;Scientific Support&#39; &amp;&amp; dnf group remove &#39;Scientific Support&#39; Lab: Install and Manage Modules List all modules. Identify which modules, streams and profiles are installed, default, disabled, and enabled from the output. dnf module list Install the default stream of the development profile for module php, and verify. dnf module install php &amp;&amp; dnf module list Remove the module. dnf module remove php Lab Switch Module Streams and Install Software List postgresql module. This will display the streams and profiles, and their status. dnf module list postgresql Reset both streams dnf module reset postgresql enable the stream for the older version, and install its client profile. dnf module install postgresql:15">
     <meta itemprop="wordCount" content="310">
     <title></title>
-    <link href="http://localhost:1313/linux/rhcsa/rhcsa-notes/advanced-package-management-diy-labs/" rel="canonical" type="text/html" title="">
+    <link href="http://linuxreader.com/linux/rhcsa/rhcsa-notes/advanced-package-management-diy-labs/" rel="canonical" type="text/html" title="">
     <link href="/linux/rhcsa/rhcsa-notes/advanced-package-management-diy-labs/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/logo.svg?1741716547" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741716547" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741716547" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741716547" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741716547" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741716547" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741716547" rel="stylesheet">
-    <link href="/css/fonts.css?1741716547" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741716547" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741716547" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741716547" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741716547" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741716547" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1741716547" rel="stylesheet">
-    <script src="/js/variant.js?1741716547"></script>
+    <link href="/images/logo.svg?1741717752" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741717752" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741717752" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741717752" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741717752" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741717752" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741717752" rel="stylesheet">
+    <link href="/css/fonts.css?1741717752" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741717752" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741717752" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741717752" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741717752" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741717752" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1741717752" rel="stylesheet">
+    <script src="/js/variant.js?1741717752"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -102,7 +102,7 @@
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-notes/advanced-package-management-diy-labs?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/rhcsa-exam-environment" title="RHCSA Exam Environment Guide (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/linux/rhcsa/installation" title="Installation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -120,8 +120,8 @@
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1741716547" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741716547" defer></script>
+    <script src="/js/clipboard.min.js?1741717752" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741717752" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -137,20 +137,20 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741716547" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741716547" defer></script>
-    <script src="/js/js-yaml.min.js?1741716547" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741717752" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741717752" defer></script>
+    <script src="/js/js-yaml.min.js?1741717752" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741716547" defer></script>
+    <script src="/js/theme.js?1741717752" defer></script>
   </body>
 </html>
