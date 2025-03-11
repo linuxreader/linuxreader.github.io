@@ -10,6 +10,6 @@ alwaysopen = false
 
 ## Posts
 
-{{% children depth="999" %}}
+{{% children containerstyle="div" style="h6" description=true %}}
 
 

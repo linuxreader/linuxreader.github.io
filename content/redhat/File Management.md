@@ -196,7 +196,7 @@ ls -l fstab
 ## File Editing
 
 ### Vim
-[vimguide](../../../tools/Vim/vimguide.md)
+[vimguide](../keyboard/vimguide.md)
 
 ### File and Directory Operations
 ### touch command
