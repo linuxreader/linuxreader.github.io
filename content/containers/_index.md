@@ -2,8 +2,13 @@
 categories = ["Containers"] 
 menuPre = '<i class="fa-fw fas fa-box-open"></i> '
 title = "Containers" 
-type = '<i class="fa-fw fas fa-terminal"></i> '
 weight = 2
+archetype = "moc" 
+alwaysopen = false
+[_build]
+  render = "always"
+  list = "always"
+  publishResources = true
 +++
 
 {{% children depth="999" %}}

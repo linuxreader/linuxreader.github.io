@@ -2,8 +2,13 @@
 categories = ["keyboard"] 
 menuPre = '<i class="fa-fw fas fa-keyboard"></i> '
 title = "Keyboard" 
-type = '<i class="fa-fw fas fa-terminal"></i> '
 weight = 5
+archetype = "moc" 
+alwaysopen = false
+[_build]
+  render = "always"
+  list = "always"
+  publishResources = true
 +++
 
 {{% children depth="999" %}}

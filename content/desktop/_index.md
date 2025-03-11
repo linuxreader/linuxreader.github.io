@@ -2,8 +2,13 @@
 categories = ["desktop"] 
 menuPre = '<i class="fa-fw fas fa-computer"></i> '
 title = "desktop" 
-type = '<i class="fa-fw fas fa-terminal"></i> '
 weight = 4
+archetype = "moc" 
+alwaysopen = false
+[_build]
+  render = "always"
+  list = "always"
+  publishResources = true
 +++
 
 {{% children depth="999" %}}
