@@ -1,5 +1,6 @@
 +++
 title = 'How to Process Bookfusion Highlights with Vim'
+description = 'Removing extra stuff from Bookfusion exported highlights'
 +++
 Here are my highlights pulled up in Vim:
 

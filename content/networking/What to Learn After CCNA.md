@@ -1,5 +1,6 @@
 +++
 title = 'What to Learn After CCNA'
+description = 'What you should learn after taking the CCNA exam'
 +++
 
 

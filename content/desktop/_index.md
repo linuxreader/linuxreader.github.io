@@ -1,7 +1,7 @@
 +++ 
 categories = ["desktop"] 
 menuPre = '<i class="fa-fw fas fa-computer"></i> '
-title = "desktop" 
+title = "Desktop" 
 weight = 4
 archetype = "moc" 
 alwaysopen = false
