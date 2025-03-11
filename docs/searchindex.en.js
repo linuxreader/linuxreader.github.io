@@ -9,11 +9,11 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader",
-    "content": "My Fedora Setup Silverblue RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora SetupMy Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
-    "description": "My Fedora Setup Silverblue RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora SetupMy Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
+    "content": "Shell Scripting",
+    "description": "Shell Scripting",
     "tags": [],
-    "title": "desktop",
-    "uri": "/desktop/"
+    "title": "Bash Scripting",
+    "uri": "/bash-scripting/"
   },
   {
     "breadcrumb": "Linux Reader \u003e Tools",
@@ -25,11 +25,11 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader",
-    "content": "Cisco to Juniper Cheat Sheet consoling_in_to_mx80_from_linux DNS and Time Synchronization How to Study for the CCNA Exam Juniper CLI Basics Junos Fundementals Networking Network Devices and Network Connections Paste Config on a Juniper Switch Resources for Passing CCNA Toggle PoE on a Juniper Switch What to Learn After CCNA The formatting and images of all of my networking notes go destroyed when migrating away from OneNote. But they still come in handy all of the time.\nSee my networking notes:\nCisco ccnp_devnet_sandbox_setup cisco_vlan_lab cli cml_setup_in_vmware device_management_protocols dhcp_config dhcp_snooping_and_arp_inspection ethernet_lans extended_acls ip_services ipv6 ipv6_addressing_and_subnetting ipv6_config ipv6_routing l2-etherchannel lan_architecture management nat ospf_concepts ospf_config ospf_lab ospf_network_types_and_neighbors qos router_operation routing_in_the_lan rstp securing_network_devices security_architectures spanning_tree spanning_tree_protocol_concepts standard_acls static_routes switch_interfaces switchport_security_config t-shoot_routing tcp_ip_basic IP Transport and Applications vlans wan_architecture wans_and_ip_routing what_is_a_vlan_ wireless wireless_architectures wireless_lan wireless_security Juniper cisco_to_junos_cheat_sheet consoling_in_to_mx80_from_linux juniper_cli_basics junos_fundementals junos_paste_config toggle_poe",
-    "description": "Cisco to Juniper Cheat Sheet consoling_in_to_mx80_from_linux DNS and Time Synchronization How to Study for the CCNA Exam Juniper CLI Basics Junos Fundementals Networking Network Devices and Network Connections Paste Config on a Juniper Switch Resources for Passing CCNA Toggle PoE on a Juniper Switch What to Learn After CCNA The formatting and images of all of my networking notes go destroyed when migrating away from OneNote. But they still come in handy all of the time.",
+    "content": "Containers",
+    "description": "Containers",
     "tags": [],
-    "title": "Networking",
-    "uri": "/networking/"
+    "title": "Containers",
+    "uri": "/containers/"
   },
   {
     "breadcrumb": "Linux Reader",
@@ -41,27 +41,11 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader",
-    "content": "Advanced File ManagementFile permissions, ACLs, and finding things\nAdvanced Package ManagementManaging package groups, application streams, modules, and DNF\nAdvanced User ManagementPassword aging, group and user manament\nBashBash variables, redirections, history substitution, metacharacters, startup files, etc. Basic File ManagmentFile types, linking, viewing, and archiving files.\nBasic Package ManagementRPM and package integrity and credibility\nBasic User ManagementManage users and groups\nBoot Process, Grub2, and KernelLinux kernel, boot process, and password recovery\nInstallationInstallation Logs and Cockpit\nInteractionBasic Commands and Directory Structure\nLocal File Systems and SwapLocal file systems and swap\nNetwork File System (NFS)Managing NFS and AutoFS\nProcess and Task SchedulingProcesses, priorities, and scheduling jobs.\nRHCSA Exam Environment GuideExam environment guide for RHCSA\nRHCSA NotesMy notes from RHCSA\nRHCSA Study TrackerSpaced repitition RHCSA Study Calendar\nRHCSA Vagrant Lab SetupLab setup for RHCSA using Vagrant\nSample ExamsSample Exams 1-4 in the book\nSystem Initialization, Message Logging, and System TuningSystem initialization, service management, tuning, and logging\nThe Secure Shell ServiceOpenSSH, system access, file transfer",
-    "description": "redhat",
+    "content": "My Fedora Setup Silverblue RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora SetupMy Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
+    "description": "My Fedora Setup Silverblue RHCSA Stuff RHCSA Notes RHCSA Study Tracker Redhat Exam Environment How to Study for RHCSA RHCSA Study Points RHCSA Vagrant Lab Setup Fedora My Fedora SetupMy Fedora Setup Silverblue Misc Using Man Pages wsl2 Bare Metal to Proxmox VM Labs Turn a file into a block device",
     "tags": [],
-    "title": "RedHat",
-    "uri": "/redhat/"
-  },
-  {
-    "breadcrumb": "Linux Reader",
-    "content": "Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages",
-    "description": "Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages",
-    "tags": [],
-    "title": "Tools",
-    "uri": "/tools/"
-  },
-  {
-    "breadcrumb": "Linux Reader",
-    "content": "Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management",
-    "description": "Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management",
-    "tags": [],
-    "title": "Storage",
-    "uri": "/storage/"
+    "title": "desktop",
+    "uri": "/desktop/"
   },
   {
     "breadcrumb": "Linux Reader",
@@ -73,27 +57,43 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Linux Reader",
+    "content": "Cisco to Juniper Cheat Sheet consoling_in_to_mx80_from_linux DNS and Time Synchronization How to Study for the CCNA Exam Juniper CLI Basics Junos Fundementals Networking Network Devices and Network Connections Paste Config on a Juniper Switch Resources for Passing CCNA Toggle PoE on a Juniper Switch What to Learn After CCNA The formatting and images of all of my networking notes go destroyed when migrating away from OneNote. But they still come in handy all of the time.\nSee my networking notes:\nCisco ccnp_devnet_sandbox_setup cisco_vlan_lab cli cml_setup_in_vmware device_management_protocols dhcp_config dhcp_snooping_and_arp_inspection ethernet_lans extended_acls ip_services ipv6 ipv6_addressing_and_subnetting ipv6_config ipv6_routing l2-etherchannel lan_architecture management nat ospf_concepts ospf_config ospf_lab ospf_network_types_and_neighbors qos router_operation routing_in_the_lan rstp securing_network_devices security_architectures spanning_tree spanning_tree_protocol_concepts standard_acls static_routes switch_interfaces switchport_security_config t-shoot_routing tcp_ip_basic IP Transport and Applications vlans wan_architecture wans_and_ip_routing what_is_a_vlan_ wireless wireless_architectures wireless_lan wireless_security Juniper cisco_to_junos_cheat_sheet consoling_in_to_mx80_from_linux juniper_cli_basics junos_fundementals junos_paste_config toggle_poe",
+    "description": "Cisco to Juniper Cheat Sheet consoling_in_to_mx80_from_linux DNS and Time Synchronization How to Study for the CCNA Exam Juniper CLI Basics Junos Fundementals Networking Network Devices and Network Connections Paste Config on a Juniper Switch Resources for Passing CCNA Toggle PoE on a Juniper Switch What to Learn After CCNA The formatting and images of all of my networking notes go destroyed when migrating away from OneNote. But they still come in handy all of the time.",
+    "tags": [],
+    "title": "Networking",
+    "uri": "/networking/"
+  },
+  {
+    "breadcrumb": "Linux Reader",
+    "content": "Advanced File ManagementFile permissions, ACLs, and finding things\nAdvanced Package ManagementManaging package groups, application streams, modules, and DNF\nAdvanced User ManagementPassword aging, group and user manament\nBashBash variables, redirections, history substitution, metacharacters, startup files, etc. Basic File ManagmentFile types, linking, viewing, and archiving files.\nBasic Package ManagementRPM and package integrity and credibility\nBasic User ManagementManage users and groups\nBoot Process, Grub2, and KernelLinux kernel, boot process, and password recovery\nInstallationInstallation Logs and Cockpit\nInteractionBasic Commands and Directory Structure\nLocal File Systems and SwapLocal file systems and swap\nNetwork File System (NFS)Managing NFS and AutoFS\nProcess and Task SchedulingProcesses, priorities, and scheduling jobs.\nRHCSA Exam Environment GuideExam environment guide for RHCSA\nRHCSA NotesMy notes from RHCSA\nRHCSA Study TrackerSpaced repitition RHCSA Study Calendar\nRHCSA Vagrant Lab SetupLab setup for RHCSA using Vagrant\nSample ExamsSample Exams 1-4 in the book\nSystem Initialization, Message Logging, and System TuningSystem initialization, service management, tuning, and logging\nThe Secure Shell ServiceOpenSSH, system access, file transfer",
+    "description": "redhat",
+    "tags": [],
+    "title": "RedHat",
+    "uri": "/redhat/"
+  },
+  {
+    "breadcrumb": "Linux Reader",
+    "content": "Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management",
+    "description": "Nextcloud on RHEL Based Systems Self hosting a Nextcloud Server Storage Management",
+    "tags": [],
+    "title": "Storage",
+    "uri": "/storage/"
+  },
+  {
+    "breadcrumb": "Linux Reader",
+    "content": "Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages",
+    "description": "Posts Vim Vim Guide Calibre Web with Docker and NGINX How to Build a website With Hugo How to Process Bookfusion Highlights with Vim How to Set Up Hugo Relearn Theme You Need to Learn Man Pages",
+    "tags": [],
+    "title": "Tools",
+    "uri": "/tools/"
+  },
+  {
+    "breadcrumb": "Linux Reader",
     "content": "Using Vagrant on Linux",
     "description": "Using Vagrant on Linux",
     "tags": [],
     "title": "Virtualization",
     "uri": "/virtualization/"
-  },
-  {
-    "breadcrumb": "Linux Reader",
-    "content": "Containers",
-    "description": "Containers",
-    "tags": [],
-    "title": "Containers",
-    "uri": "/containers/"
-  },
-  {
-    "breadcrumb": "Linux Reader",
-    "content": "Shell Scripting",
-    "description": "Shell Scripting",
-    "tags": [],
-    "title": "Bash Scripting",
-    "uri": "/bash-scripting/"
   },
   {
     "breadcrumb": "",

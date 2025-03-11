@@ -3,7 +3,7 @@ categories = ["desktop"]
 menuPre = '<i class="fa-fw fas fa-computer"></i> '
 title = "desktop" 
 type = '<i class="fa-fw fas fa-terminal"></i> '
-weight = 1 
+weight = 4
 +++
 
 {{% children depth="999" %}}
