@@ -628,7 +628,7 @@ find / -name core -print 2> /dev/null
 ls /usr /cdr &> outerr.out
 or
 ls /usr /cdr 1> outerr.out 2>&1
-# means to redirect file descriptor 1 to file outerr.out as well as to file descriptor 2.
+\# means to redirect file descriptor 1 to file outerr.out as well as to file descriptor 2.
 ```
 
 3. Same as above but append to file:

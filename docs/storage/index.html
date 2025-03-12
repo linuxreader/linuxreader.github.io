@@ -6,42 +6,50 @@
     <meta name="generator" content="Hugo 0.145.0">
     <meta name="generator" content="Relearn 7.1.1">
     <meta name="description" content="Nextcloud on RHEL Based SystemsNextcloud setup guide on a RHEL based server
+Partitioning, MBR, and GPTPartitions and their management.
 Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
-Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Storage :: Linux Reader">
     <meta name="twitter:description" content="Nextcloud on RHEL Based SystemsNextcloud setup guide on a RHEL based server
+Partitioning, MBR, and GPTPartitions and their management.
 Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
-Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
     <meta property="og:url" content="http://linuxreader.com/storage/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Storage :: Linux Reader">
     <meta property="og:description" content="Nextcloud on RHEL Based SystemsNextcloud setup guide on a RHEL based server
+Partitioning, MBR, and GPTPartitions and their management.
 Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
-Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="Storage :: Linux Reader">
     <meta itemprop="description" content="Nextcloud on RHEL Based SystemsNextcloud setup guide on a RHEL based server
+Partitioning, MBR, and GPTPartitions and their management.
 Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
-Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
-    <meta itemprop="wordCount" content="28">
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
+    <meta itemprop="wordCount" content="39">
     <meta itemprop="keywords" content="Storage">
     <title>Storage :: Linux Reader</title>
     <link href="/storage/index.xml" rel="alternate" type="application/rss+xml" title="Storage :: Linux Reader">
     <link href="/storage/index.print.html" rel="alternate" type="text/html" title="Storage :: Linux Reader">
-    <link href="/images/logo.svg?1741730133" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741730133" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741730133" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741730133" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741730133" rel="stylesheet">
-    <link href="/css/fonts.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741730133" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741730133" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741730133" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741730133" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741730133" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741730133"></script>
+    <link href="/images/logo.svg?1741791965" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741791965" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741791965" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741791965" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741791965" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741791965" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741791965" rel="stylesheet">
+    <link href="/css/fonts.css?1741791965" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741791965" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741791965" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741791965" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741791965" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741791965" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741791965"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -122,8 +130,10 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
 
 <div class="children children-h6 children-sort-">
   <h6><a href="/storage/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></h6><p>Nextcloud setup guide on a RHEL based server</p>
+  <h6><a href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></h6><p>Partitions and their management.</p>
   <h6><a href="/storage/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></h6><p>Self hosting a Nextcloud server</p>
-  <h6><a href="/storage/storage-management/">Storage Management</a></h6><p>Partitions, Thin provisioning, LVM, and VDO</p>
+  <h6><a href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></h6><p>Thin provisioning and LVM</p>
+  <h6><a href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></h6><p>VDO</p>
 </div>
 
   <footer class="footline">
@@ -142,7 +152,7 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741730133";
+          window.index_js_url="/searchindex.en.js?1741791965";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -155,12 +165,12 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741730133" defer></script>
-        <script src="/js/search.js?1741730133" defer></script>
+        <script src="/js/auto-complete.js?1741791965" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741791965" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741791965" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741791965" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741791965" defer></script>
+        <script src="/js/search.js?1741791965" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -177,8 +187,10 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
             <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
             <li class="active parent " data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu">
             <li class="" data-nav-id="/storage/nextcloud-on-rhel-based-systems/"><a class="padding" href="/storage/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></li>
+            <li class="" data-nav-id="/storage/partitioning-mbr-and-gpt/"><a class="padding" href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></li>
             <li class="" data-nav-id="/storage/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/storage/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></li>
-            <li class="" data-nav-id="/storage/storage-management/"><a class="padding" href="/storage/storage-management/">Storage Management</a></li></ul></li>
+            <li class="" data-nav-id="/storage/thin-provisioning/"><a class="padding" href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></li>
+            <li class="" data-nav-id="/storage/virtual-data-optimizer-vdo/"><a class="padding" href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></li></ul></li>
             <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
           </ul>
@@ -243,8 +255,8 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741730133" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741730133" defer></script>
+    <script src="/js/clipboard.min.js?1741791965" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741791965" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -260,20 +272,20 @@ Storage ManagementPartitions, Thin provisioning, LVM, and VDO">
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741730133" defer></script>
-    <script src="/js/js-yaml.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741791965" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741791965" defer></script>
+    <script src="/js/js-yaml.min.js?1741791965" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741730133" defer></script>
+    <script src="/js/theme.js?1741791965" defer></script>
   </body>
 </html>

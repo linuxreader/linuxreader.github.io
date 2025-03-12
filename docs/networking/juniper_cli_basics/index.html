@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
@@ -10,7 +10,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Juniper CLI Basics :: Linux Reader">
     <meta name="twitter:description" content="Juniper Basics">
-    <meta property="og:url" content="http://linuxreader.com/networking/juniper_cli_basics/">
+    <meta property="og:url" content="http://localhost:1313/networking/juniper_cli_basics/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Juniper CLI Basics :: Linux Reader">
     <meta property="og:description" content="Juniper Basics">
@@ -19,26 +19,26 @@
     <meta property="article:section" content="Networking">
     <meta itemprop="name" content="Juniper CLI Basics :: Linux Reader">
     <meta itemprop="description" content="Juniper Basics">
-    <meta itemprop="wordCount" content="741">
+    <meta itemprop="wordCount" content="944">
     <title>Juniper CLI Basics :: Linux Reader</title>
     <link href="/networking/juniper_cli_basics/index.xml" rel="alternate" type="application/rss+xml" title="Juniper CLI Basics :: Linux Reader">
     <link href="/networking/juniper_cli_basics/index.print.html" rel="alternate" type="text/html" title="Juniper CLI Basics :: Linux Reader">
-    <link href="/images/logo.svg?1741730133" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741730133" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1741730133" rel="stylesheet">
-    <link href="/css/auto-complete.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741730133" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1741730133" rel="stylesheet">
-    <link href="/css/fonts.css?1741730133" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741730133" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1741730133" rel="stylesheet">
-    <link href="/css/theme-oled.css?1741730133" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1741730133" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1741730133" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1741730133"></script>
+    <link href="/images/logo.svg?1741791967" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1741791967" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1741791967" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1741791967" rel="stylesheet">
+    <link href="/css/auto-complete.css?1741791967" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1741791967" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1741791967" rel="stylesheet">
+    <link href="/css/fonts.css?1741791967" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1741791967" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1741791967" rel="stylesheet">
+    <link href="/css/theme-oled.css?1741791967" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1741791967" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1741791967" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1741791967"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -77,7 +77,63 @@
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#connection-methods">Connection Methods</a>
+      <ul>
+        <li></li>
+        <li><a href="#initial-login">Initial Login</a></li>
+      </ul>
+    </li>
+    <li><a href="#cli-modes">CLI Modes</a>
+      <ul>
+        <li><a href="#configure-private-best-practice">configure private (best practice)</a></li>
+        <li><a href="#configure-exclusive">configure exclusive</a></li>
+        <li><a href="#edit-top">(edit) top</a></li>
+        <li><a href="#commit">commit</a></li>
+        <li><a href="#rollback-1">rollback 1</a></li>
+        <li><a href="#set-system-host-name-hostname">set system host-name hostname</a></li>
+        <li><a href="#delete-system-host-name">delete system host-name</a></li>
+        <li><a href="#edit-routing-options-static">edit routing-options static</a></li>
+        <li><a href="#exit">exit</a></li>
+        <li><a href="#rollback-0">rollback 0</a></li>
+        <li><a href="#show">show</a></li>
+        <li><a href="#edit">edit</a></li>
+        <li><a href="#edit-protocols-ospf">edit protocols ospf</a></li>
+        <li><a href="#top">top</a></li>
+        <li><a href="#show-protocols-ospf">show protocols ospf</a></li>
+        <li><a href="#top-show-routing-options-static">top show routing-options static</a></li>
+        <li><a href="#top-edit-routing-options">top edit routing-options</a></li>
+        <li><a href="#up">up</a></li>
+        <li><a href="#up-2">up 2</a></li>
+        <li><a href="#rollback-">rollback ?</a></li>
+        <li><a href="#run-show-system-uptime">run show system uptime</a></li>
+        <li><a href="#rollback-1-1">rollback 1</a></li>
+        <li><a href="#show--compare">show | compare</a></li>
+        <li><a href="#exit-1">exit</a></li>
+        <li><a href="#copy-ge-001-to-ge-002">copy ge-0/0/1 to ge-0/0/2</a></li>
+        <li><a href="#show-ge-000">show ge-0/0/0</a></li>
+        <li><a href="#edit-ge-000">edit ge-0/0/0</a></li>
+        <li><a href="#top-edit-protocols-ospf">top edit protocols ospf</a></li>
+        <li><a href="#deactivate-interface-ge-0000">deactivate interface ge-0/0/0.0</a></li>
+        <li><a href="#annotate-interface-ge-000-took-down-due-to-flapping">annotate interface ge-0/0/0 &ldquo;took down due to flapping&rdquo;</a></li>
+        <li><a href="#run-file-list">run file list</a></li>
+        <li><a href="#run-file-show-top-int-config">run file show top-int-config</a></li>
+        <li><a href="#paste-config-on-a-juniper-switch">Paste Config on a Juniper Switch</a></li>
+      </ul>
+    </li>
+    <li><a href="#juniper-command-equivalent-to-cisco-commands">Juniper command equivalent to Cisco commands</a>
+      <ul>
+        <li><a href="#basic-cli-and-systems-management">Basic CLI and Systems Management</a></li>
+        <li><a href="#switching-commands">Switching Commands</a></li>
+        <li><a href="#ospf-commands">OSPF Commands</a></li>
+        <li><a href="#routing-protocol-independent-commands">Routing Protocol-Independent Commands</a></li>
+        <li><a href="#interface-commands">Interface Commands</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
@@ -91,7 +147,7 @@
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/juniper_cli_basics?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/junos_fundementals" title="Junos Fundementals (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/networking-network-devices-and-network-connections" title="Networking Network Devices and Network Connections (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -112,15 +168,15 @@
 
 <h1 id="juniper-cli-basics">Juniper CLI Basics</h1>
 
-<p>Connection Methods</p>
-<p>Factory default:</p>
-<p>User: root</p>
-<p>No password</p>
-<p>Fxpo = ethernet management interface</p>
-<p>SSH, FTP. Telnet, http(s)</p>
-<p>Cannot route traffic</p>
-<p>Management purposes only</p>
-<p>Initial Login</p>
+<h2 id="connection-methods">Connection Methods</h2>
+<h4 id="factory-default-login">Factory default login:</h4>
+<p>User: root<br>
+No password</p>
+<h4 id="fxpo">Fxpo</h4>
+<p>Ethernet management interface</p>
+<h4 id="ssh-ftp-telnet-https">SSH, FTP. Telnet, http(s)</h4>
+<p>Cannot route traffic and is used for management purposes only.</p>
+<h3 id="initial-login">Initial Login</h3>
 <p>Logging for the First Time<br>
 • Nonroot users are placed into the CLI automatically<br>
 • Root user SSH login requires explicit config<br>
@@ -145,30 +201,30 @@ cli<br>
 Shell Prompt<br>
 CLI Prompt &ldquo;&gt;</li>
 </ul>
-<p>CLI Modes</p>
+<h2 id="cli-modes">CLI Modes</h2>
 <p>configure</p>
 <p>Configure mode . New candidate config file</p>
-<h1 id="configure-private-best-practice">configure private (best practice)</h1>
+<h3 id="configure-private-best-practice">configure private (best practice)</h3>
 <p>Configure mode with a private candidate file</p>
 <p>Other users logged in will not make changes to this file</p>
 <p>Private Files comitted are merged into active config</p>
 <p>Whoever commits last wins if there are matching commands</p>
 <p>Can&rsquo;t commit until you are at the top of the configuration (in private mode)</p>
-<h1 id="configure-exclusive">configure exclusive</h1>
+<h3 id="configure-exclusive">configure exclusive</h3>
 <p>Locks config database</p>
 <p>Can be killed by admin</p>
 <p>No other user can edit config while you are in this mode</p>
-<h1 id="edit-top">(edit) top</h1>
+<h3 id="edit-top">(edit) top</h3>
 <p>Goes back to the top of the configuration tree</p>
 <p>Candidate Config Files</p>
-<h1 id="commit">commit</h1>
+<h3 id="commit">commit</h3>
 <p>Turns candidate config file into active</p>
 <p>Warning will show if candidate config is already being edited</p>
 <p>Commiting Configurations</p>
 <p>Rollback files are last three Active configurations and stored in /config/(the current active are stored here as well)</p>
 <p>4-49 are stores in /var/config/</p>
 <p>Shows timestamp for the last time the file was active</p>
-<h1 id="rollback-1">rollback 1</h1>
+<h3 id="rollback-1">rollback 1</h3>
 <p>Places rollback file one into the candidate config, must commit to make it active</p>
 <p>CLI Help, Auto complete</p>
 <p>Can type ? To show available commands</p>
@@ -176,16 +232,16 @@ CLI Prompt &ldquo;&gt;</li>
 <p>Show version info, hostname, and model</p>
 <p>#&gt;Configure</p>
 <p>goes into configure mode</p>
-<h1 id="set-system-host-name-hostname">set system host-name hostname</h1>
+<h3 id="set-system-host-name-hostname">set system host-name hostname</h3>
 <p>set&rsquo;s hostname</p>
-<h1 id="delete-system-host-name">delete system host-name</h1>
+<h3 id="delete-system-host-name">delete system host-name</h3>
 <p>deletes set hostname</p>
-<h1 id="edit-routing-options-static">edit routing-options static</h1>
+<h3 id="edit-routing-options-static">edit routing-options static</h3>
 <p>edit routing options mode</p>
-<h1 id="exit">exit</h1>
+<h3 id="exit">exit</h3>
 <p>exit</p>
 <p>Junos will let you know that config hasn&rsquo;t been committed and ask if you want to commit</p>
-<h1 id="rollback-0">rollback 0</h1>
+<h3 id="rollback-0">rollback 0</h3>
 <p>throwaway all changes to active candidate</p>
 <p>#&gt; help topic routing-options static</p>
 <p>shows info page for topic specified</p>
@@ -201,62 +257,103 @@ CLI Prompt &ldquo;&gt;</li>
 <p>will show user defined options for autocomplete as well</p>
 <p>Navigating Configuration Mode</p>
 <p>When you go into config mode the running config is copied into a candidate file that you will be working on</p>
-<h1 id="show">show</h1>
+<h3 id="show">show</h3>
 <p>if in configure mode, displays the entire candidate configuration</p>
-<h1 id="edit">edit</h1>
+<h3 id="edit">edit</h3>
 <p>similar to cd</p>
-<h1 id="edit-protocols-ospf">edit protocols ospf</h1>
+<h3 id="edit-protocols-ospf">edit protocols ospf</h3>
 <p>goes to the protocols/ospf heirarchy config mode</p>
 <p>if you run show commend it will show the contents of hierarchy from wherever you are.</p>
-<h1 id="top">top</h1>
+<h3 id="top">top</h3>
 <p>goes to the top of the hierarchy. Like cd to / in Linux</p>
 <p>must be at the top to commit changes</p>
-<h1 id="show-protocols-ospf">show protocols ospf</h1>
+<h3 id="show-protocols-ospf">show protocols ospf</h3>
 <p>selects which part of the hierarchy to show</p>
 <p>will only see this if you are above the option you want to show in the hierarchy</p>
 <p>can bypass this with:</p>
-<h1 id="top-show-routing-options-static">top show routing-options static</h1>
+<h3 id="top-show-routing-options-static">top show routing-options static</h3>
 <p>same thing happens with the edit command</p>
-<h1 id="top-edit-routing-options">top edit routing-options</h1>
+<h3 id="top-edit-routing-options">top edit routing-options</h3>
 <p>same fix</p>
 <p>Editing, Renaming, and Comparing Configuration</p>
-<h1 id="up">up</h1>
+<h3 id="up">up</h3>
 <p>moves up one level in the hierarchy</p>
 <p>there is a protion in this video wioth vlan and interface configuration, come back if this isn&rsquo;t covered elsewhere</p>
-<h1 id="up-2">up 2</h1>
+<h3 id="up-2">up 2</h3>
 <p>jump up 2 levels</p>
-<h1 id="rollback-">rollback ?</h1>
+<h3 id="rollback-">rollback ?</h3>
 <p>shows all the rollback files on the system</p>
-<h1 id="run-show-system-uptime">run show system uptime</h1>
+<h3 id="run-show-system-uptime">run show system uptime</h3>
 <p>run is like &ldquo;do&rdquo; in cisco, can run command from anywhere</p>
-<h1 id="rollback-1-1">rollback 1</h1>
+<h3 id="rollback-1-1">rollback 1</h3>
 <p>rolls config back to rollback 1 file</p>
-<h1 id="show--compare">show | compare</h1>
+<h3 id="show--compare">show | compare</h3>
 <p>show things to be removed added with - or +</p>
-<h1 id="exit-1">exit</h1>
+<h3 id="exit-1">exit</h3>
 <p>Also brings you to the top of config file</p>
 <p>Replace, Copy, or annotate Configuration</p>
-<h1 id="copy-ge-001-to-ge-002">copy ge-0/0/1 to ge-0/0/2</h1>
+<h3 id="copy-ge-001-to-ge-002">copy ge-0/0/1 to ge-0/0/2</h3>
 <p>makes a copy of the config</p>
-<h1 id="show-ge-000">show ge-0/0/0</h1>
-<h1 id="edit-ge-000">edit ge-0/0/0</h1>
+<h3 id="show-ge-000">show ge-0/0/0</h3>
+<h3 id="edit-ge-000">edit ge-0/0/0</h3>
 <p>Edit interfaces mode</p>
 <p>#(int) replace pattern 0.101 with 200.102</p>
 <p>Replaces the pattern of the ip address</p>
 <p>#(int) replace pattern /24 with /25</p>
 <p>Replace mask</p>
 <p>If using replace commands don&rsquo;t commit the config without running the #top show | compare command to verify. You may have run the compare command from one place.</p>
-<h1 id="top-edit-protocols-ospf">top edit protocols ospf</h1>
+<h3 id="top-edit-protocols-ospf">top edit protocols ospf</h3>
 <p>Go into ospf edit</p>
-<h1 id="deactivate-interface-ge-0000">deactivate interface ge-0/0/0.0</h1>
+<h3 id="deactivate-interface-ge-0000">deactivate interface ge-0/0/0.0</h3>
 <p>Remove interface from ospf</p>
-<h1 id="annotate-interface-ge-000-took-down-due-to-flapping">annotate interface ge-0/0/0 &ldquo;took down due to flapping&rdquo;</h1>
+<h3 id="annotate-interface-ge-000-took-down-due-to-flapping">annotate interface ge-0/0/0 &ldquo;took down due to flapping&rdquo;</h3>
 <p>C style programming comment</p>
 <p>Load merge Configuration</p>
-<h1 id="run-file-list">run file list</h1>
+<h3 id="run-file-list">run file list</h3>
 <p>ls -l basically</p>
-<h1 id="run-file-show-top-int-config">run file show top-int-config</h1>
+<h3 id="run-file-show-top-int-config">run file show top-int-config</h3>
 <p>Display contents of top-int-config</p>
+<h3 id="paste-config-on-a-juniper-switch">Paste Config on a Juniper Switch</h3>
+<div class="highlight wrap-code"><pre tabindex="0"><code>cli
+top
+delete
+configure
+load set terminal 
+ctrl+shift +D to exit
+commit check
+commit and-quit</code></pre></div>
+<h2 id="juniper-command-equivalent-to-cisco-commands">Juniper command equivalent to Cisco commands</h2>
+<h3 id="basic-cli-and-systems-management">Basic CLI and Systems Management</h3>
+<p>Commands</p>
+<p>clock set  &gt; set date<br>
+reload  &gt; request system reboot<br>
+show history  &gt; show cli history<br>
+show logging  &gt;  show log messages | last
+show processes  &gt; show system processes<br>
+show running config  &gt; show configuration<br>
+show users  &gt; show system users<br>
+show version  &gt; show version | show chassis hardware <br>
+trace  &gt; traceroute</p>
+<h3 id="switching-commands">Switching Commands</h3>
+<p>show ethernet-switching interfaces<br>
+show spanning-tree  &gt; show spanning-tree bridge<br>
+show mac address-table  &gt; show ethernet-switching table</p>
+<h3 id="ospf-commands">OSPF Commands</h3>
+<p>show ip ospf database  &gt; show ospf database<br>
+show ip ospf interface  &gt; show ospf interface<br>
+show ip ospf neighbor  &gt; show ospf neighbor</p>
+<h3 id="routing-protocol-independent-commands">Routing Protocol-Independent Commands</h3>
+<p>clear arp-cache  &gt; clear arp<br>
+show arp  &gt; show arp<br>
+show ip route  &gt; show route<br>
+show ip route summary  &gt; show route summary<br>
+show route-map  &gt; show policy | policy-name<br>
+show tcp  &gt; show system connections</p>
+<h3 id="interface-commands">Interface Commands</h3>
+<p>clear counters  &gt; clear interface statistics<br>
+show interfaces  &gt; show interfaces<br>
+show interfaces detail  &gt; show interfaces extensive<br>
+show ip interface brief  &gt; show interfaces terse</p>
 
   <footer class="footline">
   </footer>
@@ -274,7 +371,7 @@ CLI Prompt &ldquo;&gt;</li>
 
         </div>
         <script>
-          window.index_js_url="/searchindex.en.js?1741730133";
+          window.index_js_url="/searchindex.en.js?1741791967";
         </script>
         <search><form action="/search/" method="get">
           <div class="searchbox default-animation">
@@ -287,12 +384,12 @@ CLI Prompt &ldquo;&gt;</li>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.min.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1741730133" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1741730133" defer></script>
-        <script src="/js/search.js?1741730133" defer></script>
+        <script src="/js/auto-complete.js?1741791967" defer></script>
+        <script src="/js/lunr/lunr.min.js?1741791967" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1741791967" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1741791967" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1741791967" defer></script>
+        <script src="/js/search.js?1741791967" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -306,15 +403,13 @@ CLI Prompt &ldquo;&gt;</li>
             <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
-            <li class="" data-nav-id="/networking/cisco_to_junos_cheat_sheet/"><a class="padding" href="/networking/cisco_to_junos_cheat_sheet/">Cisco to Juniper Cheat Sheet</a></li>
-            <li class="" data-nav-id="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">consoling_in_to_mx80_from_linux</a></li>
-            <li class="" data-nav-id="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS and Time Synchronization</a></li>
+            <li class="" data-nav-id="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
+            <li class="" data-nav-id="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
             <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
             <li class="active " data-nav-id="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
-            <li class="" data-nav-id="/networking/junos_fundementals/"><a class="padding" href="/networking/junos_fundementals/">Junos Fundementals</a></li>
             <li class="" data-nav-id="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
-            <li class="" data-nav-id="/networking/junos_paste_config/"><a class="padding" href="/networking/junos_paste_config/">Paste Config on a Juniper Switch</a></li>
             <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
             <li class="" data-nav-id="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
             <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
             <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
@@ -383,8 +478,8 @@ CLI Prompt &ldquo;&gt;</li>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1741730133" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1741730133" defer></script>
+    <script src="/js/clipboard.min.js?1741791967" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1741791967" defer></script>
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
@@ -400,20 +495,20 @@ CLI Prompt &ldquo;&gt;</li>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1741730133" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1741730133" defer></script>
-    <script src="/js/js-yaml.min.js?1741730133" defer></script>
+    <script src="/js/d3/d3-color.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1741791967" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1741791967" defer></script>
+    <script src="/js/js-yaml.min.js?1741791967" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1741730133" defer></script>
+    <script src="/js/theme.js?1741791967" defer></script>
   </body>
 </html>

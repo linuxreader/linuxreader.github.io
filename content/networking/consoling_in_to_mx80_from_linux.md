@@ -1,5 +1,5 @@
 +++
-title = 'consoling_in_to_mx80_from_linux'
+title = 'Consoling in to MX80 from linux'
 description = 'How to console into an MX80 router from linux'
 +++
 
