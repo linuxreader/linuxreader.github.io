@@ -3,7 +3,7 @@ title: Bliss of the Celibate (4/10)
 draft: false
 date: 2023-12-03
 ---
-![Bliss of the Celibate](blissofthecelibate.png)
+![Bliss of the Celibate](/images/blissofthecelibate.png)
 
 Sex drive is a powerful force. And misusing it brings you down to the level of an animal. You must conserve and transmute this force to reveal your true gifts. Feeding lust makes you never satisfied, and spills over into all other areas in life. Giving a low rating because it's overly religious for my tastes. And says that if you have sex, then you won't have guy friends because you are afraid of being gay. Other than those two things, it's a decent intro on the benefits you can experience from controlling your sexual side. 
 

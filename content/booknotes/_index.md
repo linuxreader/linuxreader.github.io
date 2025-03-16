@@ -10,10 +10,9 @@ title = "Book Notes"
 These are the summaries and notes of books I have read. These notes are the result of wanting to further process books and retain information. After years of reading books one time and then forgetting most of them. 
 
 ## My current reading process
-1. Give the book a quick read through.
-2. Read the book a second time, highlighting anything I want to remember along the way. 
-3. Read through highlights and try to distill key points in my own words, or just writing down words straight from the book that I want to remember. 
-4. Share.
+1. Read the book and marking with tabs anything that is insightful.  
+2. Read through highlights and try to distill key points in my own words, or just writing down words straight from the book that I want to remember. 
+3. Share.
 
 - [Why I Read Physical Books](Why%20I%20Read%20Physical%20Books.md)
 - [Book Graveyard](Book%20Graveyard.md)
@@ -70,6 +69,7 @@ Excellent primer on how addiction wires your brain. Explains the negatives of po
 ![Good Inside](https://m.media-amazon.com/images/I/71hzYnnWXBL._SL1500_.jpg?classes=inline&height=175px)
 
 [Good Inside](Good%20Inside.md) (9/10)
+
 We must separate the child from the behavior. Often, when a child's behavior appears as "bad", it's really the child having a big emotion that they can't regulate in a controlled way. Offers helpful tips on every day parenting struggles. Another parenting book that will give you a good frame of mind when thinking about your kids, but as I put this to practice, there are still challenging times where I have no idea what I am doing as a parent. 
 
 ---

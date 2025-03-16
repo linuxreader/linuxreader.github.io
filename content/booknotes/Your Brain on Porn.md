@@ -20,8 +20,7 @@ Psychiatrist Norman Doidge explains in his bestseller "The Brain That
 Changes Itself":
 
 This is how chronic overconsumption can have unexpected effects. It can make us hyper-aroused by our favourite enticements, such that immediate wants weigh heavier than they should relative to longer term desires. It can also sour our enjoyment of – and responsiveness to – everyday pleasures. It can drive us to seek more extreme stimulation.
-Or cause withdrawal symptoms so severe that they send even the most strong-minded of us
-bolting for relief.
+Or cause withdrawal symptoms so severe that they send even the most strong-minded of us bolting for relief.
 
 It can also alter our mood, perception and priorities – all without our conscious awareness.
 
@@ -60,7 +59,7 @@ Improvements since quitting:
 - Desire to interact with women.
 - Boners are back!!
 
-justified it in my head by saying it was ‘healthy for me’ and ‘at least it isn't a drug.‘
+Justified it in my head by saying it was ‘healthy for me’ and ‘at least it isn't a drug.‘
 
 Any of the following may precede or accompany delayed ejaculation and erectile dysfunction:
 
@@ -145,7 +144,7 @@ Higher hours per week/more years of porn viewing correlated with a reduction in 
 
 Reduced grey matter in this reward-related region means fewer nerve connections.
 
-Fewer nerve connections here translates into sluggish reward activity, or a numbed pleasure response, often called desensitisation.
+Fewer nerve connections here translates into sluggish reward activity, or a numbed pleasure response, often called desensitization.
 
 Impaired impulse control.
 
