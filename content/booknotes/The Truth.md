@@ -627,9 +627,7 @@ rebuild it over a stronger foundation
 
                3.  Block all social networks on my computer
 
-               4.  Don’t give my new information to
-
-anyone with tits
+               4.  Don’t give my new information to anyone with tits
 
 You can’t hold onto the vine behind you and the vine in front of you
 forever. At some point, you have to let go of the past to move

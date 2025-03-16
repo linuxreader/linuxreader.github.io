@@ -2,20 +2,33 @@
 title = 'Bash'
 description = 'Bash variables, redirections, history substitution, metacharacters, startup files, etc. '
 +++
-## Shell and Environment Variables
+## My name is Marcel and I'm partially a shell..
+
+![](/images/Pasted%20image%2020250316051144.png)
+
+A shell is a program that takes commands and passes them to the operating system.<sup>1</sup> This is done via **terminal emulator** with keyboard commands or by using scripts ran on the system. There are many shell programs that you can use on Linux. Almost all Linux distributions come with a shell called **Bash**. Some others include **zsh**, **fsh**, **ksh**, and **Tcsh**. (But not limited to)
+
+Shells have different features such as built in commands, job control, alias definitions, history substitution, PATH searching, command completion, and more. Each shell has it's own syntax, hotkeys, way of doing things. Most of them follow a standard called "POSIX" that help with script portability between shells. 
+
+You can see a list of more shells and a comparison of their features on this [Wikipedia page](https://en.wikipedia.org/wiki/Comparison_of_command_shells).
  
- **Current shell** 
+## Terminator emulators..
+
+![](/images/Pasted%20image%2020250316051955.png)
+
+I meant Terminal Emulators! Silly me.. 
+
+
+
+ The **Current shell** 
 - Where a program is executed.
 
 **Sub-shell (child shell)**
 - created within a shell to run a program.
 
-- two types of variables: local (or shell) and environment. 
-	**local variable** 
-	- Private to the shell in which it is created.
-	- Only used by programs that are started in that shell. 
-	**environment variable**
-	- Inherited from the current shell to the sub-shell during the execution of a program
+There are two types of variables. **Local variables** are private variables to the shell that creates it. And they are only used by programs started in the shell that created them. **Environment variables** are passed to any sub-shells created by the current shell. As well as any programs ran in the current and sub shells. 
+
+	
 	- Value stored in an environment variable is accessible to the program, as well as any sub-programs that it spawns during its lifecycle. 
 	- Any environment variable set in a sub-shell is lost when the sub-shell terminates.
 	- `env` or the `printenv` command to view predefined environment variables.
@@ -960,3 +973,7 @@ ls /etc /dvd /var 2> /tmp/ioerror
 ```bash
 cat /tmp/ioerror
 ```
+
+## Notes
+
+1. It is NOT, a hard, protective outer layer usually created by an animal or organism that lives in the sea.
