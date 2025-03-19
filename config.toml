@@ -139,17 +139,25 @@ highlightWrap = true
     # choose a color theme or create your own
     style = "base16-snazzy"
 
+defaultMarkdownHandler = "goldmark"
+
+  [markup.goldmark]
+  # Enable specific extensions if needed
+    [markup.goldmark.extensions]
+    # Examples of common extensions to enable
+      extras = true
+
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-solid fa-circle-info'></i> About"
 url = "about/"
 weight = 9
 
-[[menu.shortcuts]]
-name = "<i class='fab fa-fw fa-github'></i> GitHub"
-identifier = "ds"
-url = "https://github.com/linuxreader"
-weight = 10
+#[[menu.shortcuts]]
+#name = "<i class='fab fa-fw fa-github'></i> GitHub"
+#identifier = "ds"
+#url = "https://github.com/linuxreader"
+#weight = 10
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-play'></i> Now"
@@ -175,7 +183,7 @@ weight = 14
 [[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-linkedin'></i> LinkedIn"
 identifier = "LinkedIn"
-url = "https://linkedin.com/linuxreader/"
+url = "https://linkedin.com/in/linuxreader/"
 weight = 15
 
 
@@ -191,5 +199,4 @@ weight = 15
 
 #[markup.goldmark.renderer]
 #unsafe = true
-
 
