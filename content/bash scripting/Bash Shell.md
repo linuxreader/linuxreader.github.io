@@ -6,7 +6,7 @@ description = 'Bash variables, redirections, history substitution, metacharacter
 
 ![](/images/Pasted%20image%2020250316051144.png)
 
-A shell is a program that takes commands and passes them to the operating system.<sup>1</sup> This is done via **terminal emulator** with keyboard commands or by using scripts ran on the system. There are many shell programs that you can use on Linux. Almost all Linux distributions come with a shell called **Bash**. Some others include **zsh**, **fsh**, **ksh**, and **Tcsh**. (But not limited to)
+A shell is a program that takes commands and passes them to the operating system.^1^ This is done via **terminal emulator** with keyboard commands or by using scripts ran on the system. There are many shell programs that you can use on Linux. Almost all Linux distributions come with a shell called **Bash**. Some others include **zsh**, **fsh**, **ksh**, and **Tcsh**. (But not limited to)
 
 Shells have different features such as built in commands, job control, alias definitions, history substitution, PATH searching, command completion, and more. Each shell has it's own syntax, hotkeys, way of doing things. Most of them follow a standard called "POSIX" that help with script portability between shells. 
 
