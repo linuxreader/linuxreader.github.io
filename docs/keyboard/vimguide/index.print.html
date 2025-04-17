@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Guide to using Vim">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Vim Guide :: Linux Reader">
     <meta name="twitter:description" content="Guide to using Vim">
-    <meta property="og:url" content="http://localhost:1313/keyboard/vimguide/">
+    <meta property="og:url" content="http://linuxreader.com/keyboard/vimguide/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Vim Guide :: Linux Reader">
     <meta property="og:description" content="Guide to using Vim">
@@ -21,29 +21,65 @@
     <meta itemprop="description" content="Guide to using Vim">
     <meta itemprop="wordCount" content="1324">
     <title>Vim Guide :: Linux Reader</title>
-    <link href="http://localhost:1313/keyboard/vimguide/" rel="canonical" type="text/html" title="Vim Guide :: Linux Reader">
+    <link href="http://linuxreader.com/keyboard/vimguide/" rel="canonical" type="text/html" title="Vim Guide :: Linux Reader">
     <link href="/keyboard/vimguide/index.xml" rel="alternate" type="application/rss+xml" title="Vim Guide :: Linux Reader">
-    <link href="/images/favicon.svg?1742214765" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1742214765" rel="stylesheet">
-    <link href="/css/auto-complete.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1742214765" rel="stylesheet">
-    <link href="/css/fonts.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1742214765" rel="stylesheet">
-    <link href="/css/theme-oled.css?1742214765" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1742214765" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1742214765" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1742214765" rel="stylesheet">
-    <script src="/js/variant.js?1742214765"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-print.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/keyboard\/vimguide\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -64,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/keyboard/vimguide/">
+  <body class="mobile-support print" data-url="/keyboard/vimguide/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -73,7 +109,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/keyboard/learning-touch-typing" title="Learning Touch Typing (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/keyboard/learning-touch-typing/" title="Learning Touch Typing (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -119,16 +155,16 @@
     </li>
     <li><a href="#basic-markup">Basic Markup</a>
       <ul>
-        <li><a href="#lists"><a href="https://github.com/vim/wiki/vim/wiki#lists" title="https://github.com/vim/wiki/vim/wiki#lists"></a>Lists</a></li>
+        <li><a href="#httpsgithubcomvimwikivimwikilists-httpsgithubcomvimwikivimwikilistslists"><a href="https://github.com/vim/wiki/vim/wiki#lists" title="https://github.com/vim/wiki/vim/wiki#lists"></a>Lists</a></li>
         <li><a href="#vimwiki-table-of-contents">Vimwiki Table of Contents</a></li>
       </ul>
     </li>
     <li><a href="#key-bindings">Key bindings</a>
       <ul>
-        <li><a href="#normal-mode"><a href="https://github.com/vim/wiki/vim/wiki#normal-mode" title="https://github.com/vim/wiki/vim/wiki#normal-mode"></a>Normal mode</a></li>
+        <li><a href="#httpsgithubcomvimwikivimwikinormal-mode-httpsgithubcomvimwikivimwikinormal-modenormal-mode"><a href="https://github.com/vim/wiki/vim/wiki#normal-mode" title="https://github.com/vim/wiki/vim/wiki#normal-mode"></a>Normal mode</a></li>
       </ul>
     </li>
-    <li><a href="#commands"><a href="https://github.com/vim/wiki/vim/wiki#commands" title="https://github.com/vim/wiki/vim/wiki#commands"></a>Commands</a></li>
+    <li><a href="#httpsgithubcomvimwikivimwikicommands-httpsgithubcomvimwikivimwikicommandscommands"><a href="https://github.com/vim/wiki/vim/wiki#commands" title="https://github.com/vim/wiki/vim/wiki#commands"></a>Commands</a></li>
   </ul>
 
   <ul>
@@ -159,10 +195,10 @@
             Vim Guide
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/keyboard/vimguide?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/keyboard/vimguide/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking" title="Networking (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/" title="Networking (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -187,7 +223,7 @@
 <p><code>Vim</code> stands for vi (Improved) just like its name it stands for an improved version of the <code>vi</code> text editor command.</p>
 <p>Lightweight</p>
 <p>Start Vim</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim</span></span></code></pre></div>
 <h2 id="vim-search-patterns">Vim Search Patterns</h2>
 <h3 id="moving-the-cursor">Moving the Cursor</h3>
 <p>h or left arrow - move left one character
@@ -222,35 +258,35 @@ Ctrl-r - redo your last action
 :% sort - Sort lines</p>
 <h1 id="vim-splits">Vim Splits</h1>
 <p>Add to .vimrc for different key mappings for easy navigation between splits to save a keystroke. So instead of <code>ctrl-w</code> then <code>j</code>, it’s just <code>ctrl-j</code>:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>nnoremap &lt;C-J&gt; &lt;C-W&gt;&lt;C-J&gt; 
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>nnoremap &lt;C-J&gt; &lt;C-W&gt;&lt;C-J&gt; 
 nnoremap &lt;C-K&gt; &lt;C-W&gt;&lt;C-K&gt; 
 nnoremap &lt;C-L&gt; &lt;C-W&gt;&lt;C-L&gt; 
 nnoremap &lt;C-H&gt; &lt;C-W&gt;&lt;C-H&gt;</code></pre></div>
 <h1 id="open-file-in-new-split">Open file in new split</h1>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:vsp filename</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:vsp filename</code></pre></div>
 <p><a href="https://github.com/preservim/nerdtree" rel="external" target="_blank">https://github.com/preservim/nerdtree</a></p>
 <h2 id="find-and-replace">Find and Replace</h2>
 <p><a href="https://linuxize.com/post/vim-find-replace/" rel="external" target="_blank">https://linuxize.com/post/vim-find-replace/</a></p>
 <h1 id="find-and-replace-text-in-files-with-vim">Find and Replace Text in File(s) with Vim</h1>
 <h2 id="find-and-replace-in-a-single-file">Find and replace in a single file</h2>
 <p>Open the file in Vim, this command will replace all occurances of the word &ldquo;foo&rdquo; with &ldquo;bar&rdquo;.</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:%s/foo/bar/g</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:%s/foo/bar/g</code></pre></div>
 <p>% - apply to whole file
 s  - substitution
 g - operate on all results</p>
 <h2 id="find-and-replace-a-string-in-all-files-in-current-directory">Find and replace a string in all files in current directory</h2>
 <p>In vim, select all files with args. Use regex to select the files you want. Select all files with *</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:args *</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:args *</code></pre></div>
 <p>You can also select all recursively:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:args **</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:args **</code></pre></div>
 <p>Run :args to see which files are selected&quot;</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:args</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:args</code></pre></div>
 <h3 id="perform-substitution-with-argdo">Perform substitution with argdo</h3>
 <p>This applies the replacement command to all selected args:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:argdo %s/foo/bar/g | update</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:argdo %s/foo/bar/g | update</code></pre></div>
 <h1 id="nerd-tree-plugin">Nerd Tree Plugin</h1>
 <p>Add to .vimrc</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>call plug#begin()
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>call plug#begin()
 Plug &#39;preservim/nerdtree&#39;
 
 call plug#end()
@@ -262,7 +298,7 @@ nnoremap &lt;C-f&gt; :NERDTreeFind&lt;CR&gt;</code></pre></div>
 <h2 id="vim-calendar">Vim Calendar</h2>
 <p>dhttps://blog.mague.com/?p=602</p>
 <p>Add to vim.rc</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>:auto FileType vim/wiki map d :Vim/wikiMakeDiaryNote
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:auto FileType vim/wiki map d :Vim/wikiMakeDiaryNote
 function! ToggleCalendar()
   execute &#34;:Calendar&#34;
   if exists(&#34;g:calendar_open&#34;)
@@ -288,16 +324,16 @@ endfunction
 <p>sudo dnf install git-all</p>
 <p><a href="https://github.com/junegunn/vim-plug" rel="external" target="_blank" title="https://github.com/junegunn/vim-plug">https://github.com/junegunn/vim-plug</a></p>
 <p>Download plug.vim and put it in ~/.vim/autoload</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre></div>
 <h3 id="create-vimrc">Create ~/.vimrc</h3>
 <p><code>touch ~/.vimrc</code></p>
 <h3 id="add-to-vimrc">Add to ~/.vimrc</h3>
-<h4 id="installation-using-vim-plug">Installation using <a href="https://github.com/junegunn/vim-plug" rel="external" target="_blank" title="https://github.com/junegunn/vim-plug">Vim-Plug</a></h4>
+<h4 id="installation-using-vim-plughttpsgithubcomjunegunnvim-plug-httpsgithubcomjunegunnvim-plug">Installation using <a href="https://github.com/junegunn/vim-plug" rel="external" target="_blank" title="https://github.com/junegunn/vim-plug">Vim-Plug</a></h4>
 <p>Install Vim Plug</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre></div>
 <p>Add the following to the plugin-configuration in your vimrc:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>set nocompatible  
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>set nocompatible  
 filetype plugin on  
 syntax on
 
@@ -320,7 +356,7 @@ let g:vimwiki_list = [wiki_1, wiki_2]  </code></pre></div>
 <p>(leader)ws
 select which wiki to use</p>
 <h2 id="basic-markup">Basic Markup</h2>
-<div class="highlight wrap-code"><pre tabindex="0"><code>= Header1 =
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>= Header1 =
 == Header2 ==
 === Header3 ===
 
@@ -330,8 +366,8 @@ _italic_ -- italic text
 
 [wiki link](wiki%20link) -- wiki link
 [description](wiki%20link) -- wiki link with description </code></pre></div>
-<h3 id="lists"><a href="https://github.com/vim/wiki/vim/wiki#lists" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#lists"></a>Lists</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>* bullet list item 1
+<h3 id="httpsgithubcomvimwikivimwikilists-httpsgithubcomvimwikivimwikilistslists"><a href="https://github.com/vim/wiki/vim/wiki#lists" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#lists"></a>Lists</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>* bullet list item 1
     - bullet list item 2
     - bullet list item 3
         * bullet list item 4
@@ -398,9 +434,9 @@ references all levels.
 the immediate level.</p>
 <p>Default: 0</p>
 <h2 id="key-bindings">Key bindings</h2>
-<h3 id="normal-mode"><a href="https://github.com/vim/wiki/vim/wiki#normal-mode" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#normal-mode"></a>Normal mode</h3>
+<h3 id="httpsgithubcomvimwikivimwikinormal-mode-httpsgithubcomvimwikivimwikinormal-modenormal-mode"><a href="https://github.com/vim/wiki/vim/wiki#normal-mode" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#normal-mode"></a>Normal mode</h3>
 <p><strong>Note:</strong> your terminal may prevent capturing some of the default bindings listed below. See <code>:h vimwiki-local-mappings</code> for suggestions for alternative bindings if you encounter a problem.</p>
-<h4 id="basic-key-bindings"><a href="https://github.com/vim/wiki/vim/wiki#basic-key-bindings" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#basic-key-bindings"></a>Basic key bindings</h4>
+<h4 id="httpsgithubcomvimwikivimwikibasic-key-bindings-httpsgithubcomvimwikivimwikibasic-key-bindingsbasic-key-bindings"><a href="https://github.com/vim/wiki/vim/wiki#basic-key-bindings" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#basic-key-bindings"></a>Basic key bindings</h4>
 <ul>
 <li><code>&lt;Leader&gt;ww</code> &ndash; Open default /wiki index file.</li>
 <li><code>&lt;Leader&gt;wt</code> &ndash; Open default /wiki index file in a new tab.</li>
@@ -414,9 +450,9 @@ the immediate level.</p>
 <li><code>&lt;Tab&gt;</code> &ndash; Find next /wiki link.</li>
 <li><code>&lt;Shift-Tab&gt;</code> &ndash; Find previous /wiki link.</li>
 </ul>
-<h4 id="advanced-key-bindings"><a href="https://github.com/vim/wiki/vim/wiki#advanced-key-bindings" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#advanced-key-bindings"></a>Advanced key bindings</h4>
+<h4 id="httpsgithubcomvimwikivimwikiadvanced-key-bindings-httpsgithubcomvimwikivimwikiadvanced-key-bindingsadvanced-key-bindings"><a href="https://github.com/vim/wiki/vim/wiki#advanced-key-bindings" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#advanced-key-bindings"></a>Advanced key bindings</h4>
 <p>Refer to the complete documentation at <code>:h vimwiki-mappings</code> to see many more bindings.</p>
-<h2 id="commands"><a href="https://github.com/vim/wiki/vim/wiki#commands" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#commands"></a>Commands</h2>
+<h2 id="httpsgithubcomvimwikivimwikicommands-httpsgithubcomvimwikivimwikicommandscommands"><a href="https://github.com/vim/wiki/vim/wiki#commands" rel="external" target="_blank" title="https://github.com/vim/wiki/vim/wiki#commands"></a>Commands</h2>
 <ul>
 <li><code>:Vimwiki2HTML</code> &ndash; Convert current wiki link to HTML.</li>
 <li><code>:VimwikiAll2HTML</code> &ndash; Convert all your wiki links to HTML.</li>
@@ -467,37 +503,34 @@ requires neovim?</p>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1742214765" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1742214765" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1742214765" defer></script>
-    <script src="/js/js-yaml.min.js?1742214765" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1742214765" defer></script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.146.5">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Getting started with some simple Ansible commands">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
@@ -23,26 +23,63 @@
     <title>Ad Hoc Ansible Commands :: Linux Reader</title>
     <link href="/ansible/4-ad-hoc-ansible-commands/index.xml" rel="alternate" type="application/rss+xml" title="Ad Hoc Ansible Commands :: Linux Reader">
     <link href="/ansible/4-ad-hoc-ansible-commands/index.print.html" rel="alternate" type="text/html" title="Ad Hoc Ansible Commands :: Linux Reader">
-    <link href="/images/favicon.svg?1744890669" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1744890669" rel="stylesheet">
-    <link href="/css/auto-complete.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1744890669" rel="stylesheet">
-    <link href="/css/fonts.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1744890669" rel="stylesheet">
-    <link href="/css/theme-oled.css?1744890669" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1744890669" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1744890669" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1744890669"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-html.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/4-ad-hoc-ansible-commands\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -63,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/ansible/4-ad-hoc-ansible-commands/">
+  <body class="mobile-support html" data-url="/ansible/4-ad-hoc-ansible-commands/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -72,7 +109,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -100,10 +137,10 @@
             Ad Hoc Ansible Commands
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/4-ad-hoc-ansible-commands?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/4-ad-hoc-ansible-commands/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ansible-documentation" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -118,40 +155,460 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ad-hoc-ansible-commands">Ad Hoc Ansible Commands</h1>
+
+<p>Building off our lab, we need a playbook that give instructions for getting managed nodes to their desired states. Playbooks are scripts written in YAML. There are some things you need to know when working with playbooks:</p>
+<ul>
+<li>Ad Hoc Commands</li>
+<li>Modules</li>
+<li>Module Documentation</li>
+<li>Ad Hoc commands from bash scripts</li>
+</ul>
+<h2 id="ad-hoc-commands">Ad Hoc Commands</h2>
+<p>Ad hoc commands are ansible tasks you can run against managed hosts without the need of a playbook or script. These are used for bringing nodes to their desired states, verifying playbook results, and verifying nodes meet any needed criteria/pre-requisites. These must be ran as the ansible user (whatever your remote_user directive is set to under [defaults] in ansible.cfg)</p>
+<p>Run the user module with the argument name=lisa on all hosts to make sure the user &ldquo;lisa&rdquo; exists. If the user doesn&rsquo;t exist, it will be created on the remote system:
+<code>ansible all -m user -a &quot;name=lisa&quot;</code></p>
+<p><code>{command} {host} -m {module} -a {&quot;argument1 argument2 argument3&quot;}</code></p>
+<p>In our lab:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m user -a <span style="color:#5af78e">&#34;name=lisa&#34;</span>
+</span></span><span style="display:flex;"><span>web1 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>web2 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible1 | <span style="color:#ff5c57">CHANGED</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;comment&#34;</span>: <span style="color:#5af78e">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;create_home&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;group&#34;</span>: 1001,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;home&#34;</span>: <span style="color:#5af78e">&#34;/home/lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;name&#34;</span>: <span style="color:#5af78e">&#34;lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;shell&#34;</span>: <span style="color:#5af78e">&#34;/bin/bash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;state&#34;</span>: <span style="color:#5af78e">&#34;present&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;system&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;uid&#34;</span>: <span style="color:#ff9f43">1001</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible2 | <span style="color:#ff5c57">CHANGED</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;comment&#34;</span>: <span style="color:#5af78e">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;create_home&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;group&#34;</span>: 1001,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;home&#34;</span>: <span style="color:#5af78e">&#34;/home/lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;name&#34;</span>: <span style="color:#5af78e">&#34;lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;shell&#34;</span>: <span style="color:#5af78e">&#34;/bin/bash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;state&#34;</span>: <span style="color:#5af78e">&#34;present&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;system&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;uid&#34;</span>: <span style="color:#ff9f43">1001</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span></span></span></code></pre></div>
+<p>This Ad Hoc command created user &ldquo;Lisa&rdquo; on ansible1 and ansible2. If we run the command again, we get &ldquo;SUCCESS&rdquo; on the first line instead of &ldquo;CHANGED&rdquo;. Which means the hosts already meet the requirements:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m user -a <span style="color:#5af78e">&#34;name=lisa&#34;</span>
+</span></span><span style="display:flex;"><span>web2 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>web1 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible2 | <span style="color:#ff5c57">SUCCESS</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;append&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;comment&#34;</span>: <span style="color:#5af78e">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;group&#34;</span>: 1001,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;home&#34;</span>: <span style="color:#5af78e">&#34;/home/lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;move_home&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;name&#34;</span>: <span style="color:#5af78e">&#34;lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;shell&#34;</span>: <span style="color:#5af78e">&#34;/bin/bash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;state&#34;</span>: <span style="color:#5af78e">&#34;present&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;uid&#34;</span>: <span style="color:#ff9f43">1001</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible1 | <span style="color:#ff5c57">SUCCESS</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;append&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;comment&#34;</span>: <span style="color:#5af78e">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;group&#34;</span>: 1001,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;home&#34;</span>: <span style="color:#5af78e">&#34;/home/lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;move_home&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;name&#34;</span>: <span style="color:#5af78e">&#34;lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;shell&#34;</span>: <span style="color:#5af78e">&#34;/bin/bash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;state&#34;</span>: <span style="color:#5af78e">&#34;present&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;uid&#34;</span>: <span style="color:#ff9f43">1001</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span></span></span></code></pre></div>
+<p><em>indempotent</em>
+Regardless of current condition, the host is brought to the desired state. Even if you run the command multiple times.</p>
+<p>Run the command <code>id lisa</code> on all managed hosts:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m <span style="color:#ff5c57">command</span> -a <span style="color:#5af78e">&#34;id lisa&#34;</span>
+</span></span><span style="display:flex;"><span>web1 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>web2 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false, module should you use to run the rpm -qa | grep httpd command?
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible1 | CHANGED | <span style="color:#ff5c57">rc</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span> &gt;&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">uid</span><span style="color:#ff6ac1">=</span>1001<span style="color:#ff6ac1">(</span>lisa<span style="color:#ff6ac1">)</span> <span style="color:#ff5c57">gid</span><span style="color:#ff6ac1">=</span>1001<span style="color:#ff6ac1">(</span>lisa<span style="color:#ff6ac1">)</span> <span style="color:#ff5c57">groups</span><span style="color:#ff6ac1">=</span>1001<span style="color:#ff6ac1">(</span>lisa<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>ansible2 | CHANGED | <span style="color:#ff5c57">rc</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span> &gt;&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">uid</span><span style="color:#ff6ac1">=</span>1001<span style="color:#ff6ac1">(</span>lisa<span style="color:#ff6ac1">)</span> <span style="color:#ff5c57">gid</span><span style="color:#ff6ac1">=</span>1001<span style="color:#ff6ac1">(</span>lisa<span style="color:#ff6ac1">)</span> <span style="color:#ff5c57">groups</span><span style="color:#ff6ac1">=</span>1001<span style="color:#ff6ac1">(</span>lisa<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<p>Here, the command module is used to run a command on the specified hosts. And the output is displayed on screen. TO note, this does not show up in our ansible user&rsquo;s command history on the host:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@ansible1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">history</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff9f43">1</span>  history</span></span></code></pre></div>
+<p>Remove the userLlisa from all managed hosts:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m user -a <span style="color:#5af78e">&#34;name=lisa state=absent&#34;</span>
+</span></span><span style="display:flex;"><span>web2 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>web1 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible1 | <span style="color:#ff5c57">CHANGED</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;force&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;name&#34;</span>: <span style="color:#5af78e">&#34;lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;remove&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;state&#34;</span>: <span style="color:#5af78e">&#34;absent&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible2 | <span style="color:#ff5c57">CHANGED</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;force&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;name&#34;</span>: <span style="color:#5af78e">&#34;lisa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;remove&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;state&#34;</span>: <span style="color:#5af78e">&#34;absent&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m <span style="color:#ff5c57">command</span> -a <span style="color:#5af78e">&#34;id lisa&#34;</span>
+</span></span><span style="display:flex;"><span>web1 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>web2 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible1 | FAILED | <span style="color:#ff5c57">rc</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span> &gt;&gt;
+</span></span><span style="display:flex;"><span>id: ‘lisa’: no such usernon-zero <span style="color:#ff6ac1">return</span> code
+</span></span><span style="display:flex;"><span>ansible2 | FAILED | <span style="color:#ff5c57">rc</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span> &gt;&gt;
+</span></span><span style="display:flex;"><span>id: ‘lisa’: no such usernon-zero <span style="color:#ff6ac1">return</span> code</span></span></code></pre></div>
+<p>You can also use the <code>-u</code> option to specify the user that Ansible will use to run the command. Remember, with no modules specified, ansible uses the <code>command</code> module:
+<code>ansible all -a &quot;free -m&quot; -u david</code></p>
+<h2 id="modules">Modules</h2>
+<p>There are more than 3000 Ansible modules available for a variety of different tasks and servers. The more modules you know, the better you will be at Ansible. They are essentially plug ins written in Python that can be used in playbooks or Ad Hoc commands. Make sure to use modules that are the most specific to the task you are trying to accomplish.</p>
+<h3 id="important-modules">Important modules</h3>
+<h4 id="arbitrary-modules">Arbitrary Modules</h4>
+<p>Limit your use of these, it&rsquo;s hard to track what has been changed using these modules. Use the more specific indempotent module for the task instead, if you can.</p>
+<p><em>command</em>
+Runs arbitrary commands (not using the shell). Shell stuff such as pipes and redirects will not work with this module. This is the default module if no modules are specified. You can set different default module in ansible.crf by using &ldquo;module_name = module&rdquo;. A python script is generated on the manage host and executed.
+<code>ansible all -m command -a &quot;rpm -qa | grep httpd&quot;</code> (the pipe gets ignored)</p>
+<p>Check status of httpd:
+<code>ansible all -m command -a &quot;systemctl status httpd&quot;</code></p>
+<p><em>shell</em>
+Same as above but with the shell. So pipes and redirects will work. A python script is generated on the manage host and executed.
+<code>ansible all -m shell -a &quot;rpm -qa | grep httpd&quot;</code> (the pipe is not ignored)</p>
+<p><em>raw</em>
+Runs arbitrary command on top of SSH without using Python. Good for managed hosts that don&rsquo;t have Python. Or install Python during setup:
+<code>ansible -u root -i inventory ansible3 --ask-pass -m raw -a &quot;yum install python3</code></p>
+<h4 id="indempotent-modules">Indempotent modules</h4>
+<p>These are easier to track and guarantee indempotency.</p>
+<p><em>copy</em>
+Copy files or lines of text to files
+`ansible all -m copy -a &lsquo;content=&ldquo;hello world&rdquo; dest=/etc/motd&rsquo;</p>
+<p><em>yum</em>
+Manage packages on RHEL hosts. Can use the package module to install packages on any Linux distro. Use the <code>yum</code> module if you need specific yum features. And <code>package</code> module if you need to manage software on different distros.</p>
+<p>Install latest version of nmap:
+`ansible all -m yum -a &ldquo;name=nmap state=latest&rdquo;</p>
+<p>List httpd details:
+<code>ansible all -m yum -a &quot;list=httpd&quot;</code></p>
+<p><em>service</em>
+Manage state of systemd and system-V services. Make sure to use enabled=yes and state=started to make sure services are enabled at startup.
+<code>ansible -m service -a &quot;name=httpd state=started enabled=yes&quot;</code></p>
+<p><em>ping</em>
+Checks if managed hosts are in a manageable state.
+<code>ansible all -m ping</code></p>
+<h3 id="viewing-available-modules-with-ansible-doc">Viewing available modules with <code>ansible-doc</code></h3>
+<p>As noted before, there are over 3,000 modules that come with Ansible. These are installed on your system when you install Ansible. View all the modules available like so:
+<code>ansible-doc -l</code></p>
+<p>Filter to get more specific results:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control ~<span style="color:#ff6ac1">]</span>$ ansible-doc -l | grep package
+</span></span><span style="display:flex;"><span>ansible.builtin.apt                    Manages apt-packages                
+</span></span><span style="display:flex;"><span>ansible.builtin.debconf                Configure a .deb package            
+</span></span><span style="display:flex;"><span>ansible.builtin.dnf                    Manages packages with the <span style="color:#5af78e">`</span>dnf<span style="color:#5af78e">&#39; pack...
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">ansible.builtin.dpkg_selections        Dpkg package selection selections   
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">ansible.builtin.package                Generic OS package manager          
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">ansible.builtin.package_facts          Package information as facts        
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">ansible.builtin.yum                    Manages packages with the `yum&#39;</span> pack...</span></span></code></pre></div>
+<p>Finding details on a specific module:
+<code>ansible-doc ping</code></p>
+<p>Output shows the module name, maintainter information, options available, related modules, module author, examples, and return values.</p>
+<p>Each module is a Python script on your system that you can view if you want to see what is going on under the hood:
+<code>&gt; ANSIBLE.BUILTIN.PING    (/usr/lib/python3.9/site-packages/ansible/modules/ping.py)</code></p>
+<p>Make sure you read the modules description for details!</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>A trivial test module, this module always returns `pong&#39; on successful contact. It does not make sense in playbooks,
+        but it is useful from `/usr/bin/ansible&#39; to verify the ability to login and that a usable Python is configured. This
+        is NOT ICMP ping, this is just a trivial test module that requires Python on the remote-node. For Windows targets, use
+        the [ansible.windows.win_ping] module instead. For Network targets, use the [ansible.netcommon.net_ping] module
+        instead.</code></pre></div>
+<p>Note that mandatory option are listed as =option instead of -option.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>OPTIONS (= is mandatory):
+
+- data
+        Data to return for the `ping&#39; return value.
+        If this parameter is set to `crash&#39;, the module will cause an exception.
+        default: pong
+        type: str</code></pre></div>
+<p>And don&rsquo;t forget to check the &ldquo;SEE ALSO&rdquo; section to see if there could be a module that better suits your needs:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>SEE ALSO:
+      * Module ansible.netcommon.net_ping
+      * Module ansible.windows.win_ping</code></pre></div>
+<p>Here are some examples from the raw module doc:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>EXAMPLES:
+
+- name: Bootstrap a host without python2 installed
+  ansible.builtin.raw: dnf install -y python2 python2-dnf libselinux-python
+
+- name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn&#39;t handle redirection and wildcards together but bash does)
+  ansible.builtin.raw: cat &lt; /tmp/*txt
+  args:
+    executable: /bin/bash
+
+- name: Safely use templated variables. Always use quote filter to avoid injection issues.
+  ansible.builtin.raw: &#34;{{ package_mgr|quote }} {{ pkg_flags|quote }} install {{ python|quote }}&#34;
+
+- name: List user accounts on a Windows system
+  ansible.builtin.raw: Get-WmiObject -Class Win32_UserAccount</code></pre></div>
+<p>The examples show the playbook code for common use cases for running the module. Use the -s flag to show the playbook snippet only:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control ~<span style="color:#ff6ac1">]</span>$ ansible-doc -s service
+</span></span><span style="display:flex;"><span>- name: Manage services
+</span></span><span style="display:flex;"><span>  service:
+</span></span><span style="display:flex;"><span>      arguments:             <span style="color:#78787e"># Additional arguments provided on the command line. While using remote hosts with systemd this setting will be ignored.</span>
+</span></span><span style="display:flex;"><span>      enabled:               <span style="color:#78787e"># Whether the service should start on boot. *At least one of state and enabled are required.*</span>
+</span></span><span style="display:flex;"><span>      name:                  <span style="color:#78787e"># (required) Name of the service.</span>
+</span></span><span style="display:flex;"><span>      pattern:               <span style="color:#78787e"># If the service does not respond to the status command, name a substring to look for as would be found in the output of the `ps&#39;</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># command as a stand-in for a status result. If the string is found, the service will be assumed to</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># be started. While using remote hosts with systemd this setting will be ignored.</span>
+</span></span><span style="display:flex;"><span>      runlevel:              <span style="color:#78787e"># For OpenRC init scripts (e.g. Gentoo) only. The runlevel that this service belongs to. While using remote hosts with systemd</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># this setting will be ignored.</span>
+</span></span><span style="display:flex;"><span>      sleep:                 <span style="color:#78787e"># If the service is being `restarted&#39; then sleep this many seconds between the stop and start command. This helps to work around</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># badly-behaving init scripts that exit immediately after signaling a process to stop. Not all</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># service managers support sleep, i.e when using systemd this setting will be ignored.</span>
+</span></span><span style="display:flex;"><span>      state:                 <span style="color:#78787e"># `started&#39;/`stopped&#39; are idempotent actions that will not run commands unless necessary. `restarted&#39; will always bounce the</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># service. `reloaded&#39; will always reload. *At least one of state and enabled are required.* Note</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># that reloaded will start the service if it is not already started, even if your chosen init</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># system wouldn&#39;t normally.</span>
+</span></span><span style="display:flex;"><span>      use:                   <span style="color:#78787e"># The service module actually uses system specific modules, normally through auto detection, this setting can force a specific</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># module. Normally it uses the value of the &#39;ansible_service_mgr&#39; fact and falls back to the old</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#78787e"># &#39;service&#39; module when none matching is found.</span></span></span></code></pre></div>
+<p>The official Ansible documentation will also be available during the RHCE exam:
+<a href="https://docs.ansible.com/" rel="external" target="_blank">https://docs.ansible.com/</a></p>
+<p>The docs will also show you how to install additional module collections. To install the posix collection:
+<code>[ansible@control base]$ ansible-galaxy collection install ansible.posix</code></p>
+<h2 id="ad-hoc-commands-in-scripts">Ad hoc commands in Scripts</h2>
+<p>Follow normal bash scripting guidelines to run ansible commands in a script:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ vim httpd-ansible.sh</span></span></code></pre></div>
+<p>Let&rsquo;s set up a script that installs and starts/enables httpd, creates a user called &ldquo;anna&rdquo;, and copies the ansible control node&rsquo;s /etc/hosts file to /tmp/ on the managed nodes:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>#!/bin/bash
+
+ansible all -m yum -a &#34;name=httpd state=latest&#34;
+ansible all -m service -a &#34;name=httpd state=started enabled=yes&#34;
+ansible all -m user -a &#34;name=anna&#34;
+ansible all -m copy -a &#34;src=/etc/hosts dest=/tmp/hosts&#34;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ chmod +x httpd-ansible.sh
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ./httpd-ansible.sh 
+</span></span><span style="display:flex;"><span>web2 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>web1 | UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;unreachable&#34;</span>: <span style="color:#ff5c57">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible1 | <span style="color:#ff5c57">SUCCESS</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Nothing to do&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;rc&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;results&#34;</span>: <span style="color:#ff6ac1">[]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ansible2 | <span style="color:#ff5c57">SUCCESS</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;ansible_facts&#34;</span>: <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#5af78e">&#34;/usr/bin/python3&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;changed&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Nothing to do&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;rc&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#34;results&#34;</span>: <span style="color:#ff6ac1">[]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>... &lt;-- Results truncated</span></span></code></pre></div>
+<p>And from the ansible1 node we can verify:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@ansible1 ~<span style="color:#ff6ac1">]</span>$ cat /etc/passwd | grep anna
+</span></span><span style="display:flex;"><span>anna:x:1001:1001::/home/anna:/bin/bash</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@ansible1 ~<span style="color:#ff6ac1">]</span>$ cat /tmp/hosts
+</span></span><span style="display:flex;"><span>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+</span></span><span style="display:flex;"><span>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+</span></span><span style="display:flex;"><span>192.168.124.201 ansible1
+</span></span><span style="display:flex;"><span>192.168.124.202 ansible2</span></span></code></pre></div>
+<p>View a file from a managed node:
+<code>ansible ansible1 -a &quot;cat /somfile.txt&quot;</code></p>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1744890669" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1744890669" defer></script>
-    &lt;script&gt;
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [[&#39;\\(&#39;, &#39;\\)&#39;], [&#39;$&#39;,  &#39;$&#39;]],  
-            displayMath: [[&#39;\\[&#39;, &#39;\\]&#39;], [&#39;$$&#39;, &#39;$$&#39;]], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse(&#34;{}&#34;) );
-    &lt;/script&gt;
-    &lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-color.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-dispatch.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-drag.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-ease.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-interpolate.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-selection.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-timer.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-transition.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-zoom.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/js-yaml.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;https://unpkg.com/mermaid/dist/mermaid.min.js&#34; defer&gt;&lt;/script&gt;
-    &lt;script&gt;
-      window.themeUseMermaid = JSON.parse(&#34;{ \&#34;theme\&#34;: \&#34;default\&#34; }&#34;);
-    &lt;/script&gt;
-    <script src="/js/theme.js?1744890669" defer></script>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="active " data-nav-id="/ansible/4-ad-hoc-ansible-commands/"><a class="padding" href="/ansible/4-ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-id="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/3-ansible-inventory-and-ansible.cfg/"><a class="padding" href="/ansible/3-ansible-inventory-and-ansible.cfg/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/5-ansible-playbooks/"><a class="padding" href="/ansible/5-ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/1-setting-up-an-ansible-lab/"><a class="padding" href="/ansible/1-setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/6-variables-and-facts/"><a class="padding" href="/ansible/6-variables-and-facts/">Variables and Facts</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>

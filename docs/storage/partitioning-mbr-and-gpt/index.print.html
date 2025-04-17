@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Partitions and their management.">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Partitioning, MBR, and GPT :: Linux Reader">
     <meta name="twitter:description" content="Partitions and their management.">
-    <meta property="og:url" content="http://localhost:1313/storage/partitioning-mbr-and-gpt/">
+    <meta property="og:url" content="http://linuxreader.com/storage/partitioning-mbr-and-gpt/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Partitioning, MBR, and GPT :: Linux Reader">
     <meta property="og:description" content="Partitions and their management.">
@@ -21,29 +21,65 @@
     <meta itemprop="description" content="Partitions and their management.">
     <meta itemprop="wordCount" content="2361">
     <title>Partitioning, MBR, and GPT :: Linux Reader</title>
-    <link href="http://localhost:1313/storage/partitioning-mbr-and-gpt/" rel="canonical" type="text/html" title="Partitioning, MBR, and GPT :: Linux Reader">
+    <link href="http://linuxreader.com/storage/partitioning-mbr-and-gpt/" rel="canonical" type="text/html" title="Partitioning, MBR, and GPT :: Linux Reader">
     <link href="/storage/partitioning-mbr-and-gpt/index.xml" rel="alternate" type="application/rss+xml" title="Partitioning, MBR, and GPT :: Linux Reader">
-    <link href="/images/favicon.svg?1742214765" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1742214765" rel="stylesheet">
-    <link href="/css/auto-complete.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1742214765" rel="stylesheet">
-    <link href="/css/fonts.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1742214765" rel="stylesheet">
-    <link href="/css/theme-oled.css?1742214765" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1742214765" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1742214765" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1742214765" rel="stylesheet">
-    <script src="/js/variant.js?1742214765"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-print.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/storage\/partitioning-mbr-and-gpt\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -64,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/storage/partitioning-mbr-and-gpt/">
+  <body class="mobile-support print" data-url="/storage/partitioning-mbr-and-gpt/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -73,7 +109,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/nextcloud-on-rhel-based-systems" title="Nextcloud on RHEL Based Systems (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/nextcloud-on-rhel-based-systems/" title="Nextcloud on RHEL Based Systems (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -111,10 +147,10 @@
             Partitioning, MBR, and GPT
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/partitioning,-mbr,-and-gpt?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/partitioning-mbr-and-gpt/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/setting-up-a-self-hosted-nextcloud-server" title="Self hosting a Nextcloud Server (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/setting-up-a-self-hosted-nextcloud-server/" title="Self hosting a Nextcloud Server (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -239,7 +275,7 @@ Removes the specified partition</p>
 <li>create and confirm a 100MB primary partition on the disk.</li>
 </ul>
 <p>1. Execute parted on /dev/sdb to view the current partition information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print</span>
 </span></span><span style="display:flex;"><span>Error: /dev/sdb: unrecognised disk label
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>                                           
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
@@ -250,9 +286,9 @@ Removes the specified partition</p>
 disk must be labeled before it can be partitioned.</p>
 <p>2. Assign disk label &ldquo;msdos&rdquo; to the disk with mklabel. This operation
 is performed only once on a disk.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -262,10 +298,10 @@ is performed only once on a disk.</p>
 </span></span><span style="display:flex;"><span>Number  Start  End  Size  Type  File system  Flags</span></span></code></pre></div>
 <p>To use the GPT partition table type, run &ldquo;sudo parted /dev/sdb mklabel gpt&rdquo; instead.</p>
 <p>3. Create a 100MB primary partition starting at 1MB (beginning of the disk) using mkpart:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 1 101m</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 1 101m</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
 <p>4. Verify the new partition with print:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -276,7 +312,7 @@ is performed only once on a disk.</p>
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  101MB  99.6MB  primary</span></span></code></pre></div>
 <p>Partition numbering begins at 1 by default.</p>
 <p>5. Confirm the new partition with the <code>lsblk</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk /dev/sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk /dev/sdb</span>
 </span></span><span style="display:flex;"><span>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sdb      8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>└─sdb1   8:17   <span style="color:#ff9f43">0</span>   95M  <span style="color:#ff9f43">0</span> part </span></span></code></pre></div>
@@ -284,17 +320,17 @@ is performed only once on a disk.</p>
 The partition size is 95MB.</p>
 <p>Different tools will have variance in reporting partition sizes.  ignore minor differences.</p>
 <p>6. Check the /proc/partitions file also:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">16</span>     <span style="color:#ff9f43">256000</span> sdb
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">17</span>      <span style="color:#ff9f43">97280</span> sdb1</span></span></code></pre></div>
 <h3 id="exercise-13-3-delete-an-mbr-partition-server2">Exercise 13-3: Delete an MBR Partition (server2)</h3>
 <p>delete the sdb1 partition that was created in Exercise 13-2
 confirm the deletion.</p>
 <p>1. Execute parted on /dev/sdb with the rm subcommand to remove partition number 1:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
 <p>2. Confirm the partition deletion with print:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -303,7 +339,7 @@ confirm the deletion.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Number  Start  End  Size  Type  File system  Flags</span></span></code></pre></div>
 <p>3. Check the /proc/partitions file:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">16</span>     <span style="color:#ff9f43">256000</span> sdb</span></span></code></pre></div>
 <p>can also run the <code>lsblk</code> command for further verification. T</p>
 <p>EXAM TIP: Knowing either parted or gdisk for the exam is enough.</p>
@@ -327,7 +363,7 @@ confirm the deletion.</p>
 Type help or ? (question mark) at the prompt to view available subcommands.</p>
 </li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>GPT fdisk <span style="color:#ff6ac1">(</span>gdisk<span style="color:#ff6ac1">)</span> version 1.0.7
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Partition table scan:
@@ -363,7 +399,7 @@ Type help or ? (question mark) at the prompt to view available subcommands.</p>
 <li>create and confirm a 200MB partition on the disk.</li>
 </ul>
 <p>1. Execute gdisk on /dev/sdc to view the current partition information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>GPT fdisk <span style="color:#ff6ac1">(</span>gdisk<span style="color:#ff6ac1">)</span> version 1.0.7
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Partition table scan:
@@ -378,12 +414,12 @@ Type help or ? (question mark) at the prompt to view available subcommands.</p>
 <p>The disk currently does not have any partition table on it.</p>
 <p>2. Assign &ldquo;gpt&rdquo; as the partition table type to the disk using the o subcommand. Enter &ldquo;y&rdquo; for confirmation to proceed. This operation is
 performed only once on a disk.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
 </span></span><span style="display:flex;"><span>This option deletes all partitions and creates a new protective MBR.
 </span></span><span style="display:flex;"><span>Proceed? <span style="color:#ff6ac1">(</span>Y/N<span style="color:#ff6ac1">)</span>: y</span></span></code></pre></div>
 <p>3. Run the p subcommand to view disk information and confirm the GUID
 partition table creation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdc: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -397,7 +433,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name</span></span></code></pre></div>
 <p>The output returns the assigned GUID and states that the partition table can hold up to 128 partition entries.</p>
 <p>4. Create the first partition of size 200MB starting at the default sector with default type &ldquo;Linux filesystem&rdquo; using the n subcommand:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: n
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: n
 </span></span><span style="display:flex;"><span>Partition number <span style="color:#ff6ac1">(</span>1-128, default 1<span style="color:#ff6ac1">)</span>: 
 </span></span><span style="display:flex;"><span>First sector <span style="color:#ff6ac1">(</span>34-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 2048<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: 
 </span></span><span style="display:flex;"><span>Last sector <span style="color:#ff6ac1">(</span>2048-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 511966<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: +200M
@@ -405,7 +441,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Hex code or GUID <span style="color:#ff6ac1">(</span>L to show codes, <span style="color:#ff5c57">Enter</span> <span style="color:#ff6ac1">=</span> 8300<span style="color:#ff6ac1">)</span>: 
 </span></span><span style="display:flex;"><span>Changed <span style="color:#ff5c57">type</span> of partition to <span style="color:#5af78e">&#39;Linux filesystem&#39;</span></span></span></code></pre></div>
 <p>5. Verify the new partition with p:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdc: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -419,7 +455,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">1</span>            <span style="color:#ff9f43">2048</span>          <span style="color:#ff9f43">411647</span>   200.0 MiB   <span style="color:#ff9f43">8300</span>  Linux filesystem</span></span></code></pre></div>
 <p>6. Run w to write the partition information to the partition table and exit out of the interface. Enter &ldquo;y&rdquo; to confirm when prompted.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
 </span></span><span style="display:flex;"><span>PARTITIONS!!
@@ -429,7 +465,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
 <p>You may need to run the <code>partprobe</code> command after exiting the gdisk utility to inform the kernel of partition table changes.</p>
 <p>7. Verify the new partition by issuing either of the following at the command prompt:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">32</span>     <span style="color:#ff9f43">256000</span> sdc
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">33</span>     <span style="color:#ff9f43">204800</span> sdc1
 </span></span><span style="display:flex;"><span>   
@@ -442,7 +478,7 @@ partition table creation:</p>
 <li>Delete the sdc1 partition that was created in Exercise 13-4 and confirm the removal.</li>
 </ul>
 <p>1. Execute gdisk on /dev/sdc and run d1 at the utility&rsquo;s prompt to delete partition number 1:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># gdisk /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># gdisk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>GPT fdisk <span style="color:#ff6ac1">(</span>gdisk<span style="color:#ff6ac1">)</span> version 1.0.7
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Partition table scan:
@@ -456,7 +492,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d1
 </span></span><span style="display:flex;"><span>Using <span style="color:#ff9f43">1</span></span></span></code></pre></div>
 <p>2. Confirm the partition deletion with p:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdc: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -469,7 +505,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name</span></span></code></pre></div>
 <p>3. Write the updated partition information to the disk with w and quit gdisk:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
 </span></span><span style="display:flex;"><span>PARTITIONS!!
@@ -479,7 +515,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
 <p>4. Verify the partition deletion by issuing either of the following at
 the command prompt:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">32</span>     <span style="color:#ff9f43">256000</span> sdc
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>NAME MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
@@ -491,7 +527,7 @@ the command prompt:</p>
 <li>Any subsequent disks added to the system will be known as sdb, sdc, sdd, and so on, and will use 1, 2, 3, etc. for partition numbering.</li>
 </ul>
 <p>Use <code>lsblk</code> to list disk and partition information.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
 </span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   10G  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
@@ -500,7 +536,7 @@ the command prompt:</p>
 </span></span><span style="display:flex;"><span>  └─rhel-swap 253:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
 </span></span><span style="display:flex;"><span>sr0            11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  /mnt</span></span></code></pre></div>
 <p>sr0 represents the ISO image mounted as an optical medium:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo fdisk -l</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo fdisk -l</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sda: <span style="color:#ff9f43">10</span> GiB, <span style="color:#ff9f43">10737418240</span> bytes, <span style="color:#ff9f43">20971520</span> sectors
 </span></span><span style="display:flex;"><span>Disk model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Units: sectors of <span style="color:#ff9f43">1</span> * <span style="color:#ff5c57">512</span> <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">512</span> bytes
@@ -546,37 +582,34 @@ understands both MBR and GPT formats.</p>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1742214765" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1742214765" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1742214765" defer></script>
-    <script src="/js/js-yaml.min.js?1742214765" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1742214765" defer></script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>

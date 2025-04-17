@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.146.5">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="RPM and package integrity and credibility">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
@@ -23,26 +23,63 @@
     <title>Basic Package Management :: Linux Reader</title>
     <link href="/redhat/basic-package-management/index.xml" rel="alternate" type="application/rss+xml" title="Basic Package Management :: Linux Reader">
     <link href="/redhat/basic-package-management/index.print.html" rel="alternate" type="text/html" title="Basic Package Management :: Linux Reader">
-    <link href="/images/favicon.svg?1744890669" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1744890669" rel="stylesheet">
-    <link href="/css/auto-complete.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1744890669" rel="stylesheet">
-    <link href="/css/fonts.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1744890669" rel="stylesheet">
-    <link href="/css/theme-oled.css?1744890669" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1744890669" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1744890669" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1744890669"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-html.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/redhat\/basic-package-management\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -63,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/redhat/basic-package-management/">
+  <body class="mobile-support html" data-url="/redhat/basic-package-management/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -72,7 +109,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/file-management" title="Basic File Managment (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/file-management/" title="Basic File Managment (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -135,10 +172,10 @@
             Basic Package Management
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-package-management?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-package-management/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-user-management" title="Basic User Management (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-user-management/" title="Basic User Management (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -153,40 +190,843 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable redhat" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="basic-package-management">Basic Package Management</h1>
+
+<h2 id="rpm-redhat-package-manager">RPM (Redhat Package Manager)</h2>
+<ul>
+<li>Specially formatted File(s) packaged together with the .rpm extension.</li>
+<li>Packages included or available for RHEL are in rpm format.</li>
+<li>Metadata info gets updated whenever a package is updated.</li>
+</ul>
+<h3 id="rpm-command">rpm command</h3>
+<ul>
+<li>Install, Upgrade, remove, query, freshen, or decompress packages.</li>
+<li>Validate package authenticity and integrity.</li>
+</ul>
+<h3 id="packages">Packages</h3>
+<ul>
+<li>Two types of packages binary (or installable) and source.</li>
+</ul>
+<p><strong>Binary packages</strong></p>
+<ul>
+<li>Installation ready</li>
+<li>Bundled for distribution.</li>
+<li>Have .rpm extension.</li>
+<li>Contain:
+<ul>
+<li>install scripts (pre and post)</li>
+<li>Executables</li>
+<li>Configuration files</li>
+<li>Library files</li>
+<li>Dependency information</li>
+<li>Where to install files</li>
+<li>Documentation
+<ul>
+<li>How to install/uninstall</li>
+<li>Man pages for config files/commands</li>
+<li>Other install and usage info</li>
+</ul>
+</li>
+<li>Metadata
+<ul>
+<li>Stored in central location</li>
+<li>Includes:
+<ul>
+<li>Package version</li>
+<li>Install location</li>
+<li>Checksum values</li>
+<li>List of included files and their attributes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Package intelligence
+<ul>
+<li>Used by package administration toolset for successful completion of the package installation process.</li>
+<li>May include info on:
+<ul>
+<li>prerequisites</li>
+<li>User account setup</li>
+<li>Needed directories/ soft links</li>
+</ul>
+</li>
+<li>Includes reverse process for uninstall</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-naming">Package Naming</h3>
+<p>5 parts to a package name:
+1. Name
+2. Version
+3. release (revision or build)
+4. Linux version 
+5. Processor Architecture
+- noarch
+- platform independant
+- src
+- Source code packages</p>
+<ul>
+<li>Always has .rpm extension</li>
+<li>.rpm is removed after install
+Example:
+openssl-1.1.1-8.el8.x86_64.rpm,</li>
+</ul>
+<h3 id="package-dependency">Package Dependency</h3>
+<ul>
+<li>Dependency info is in the metadata
+<ul>
+<li>Read by package handling utilities</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-database">Package Database</h3>
+<ul>
+<li>Metadata for installed packages and package files is stored in /var/lib/rpm/
+<ul>
+<li>Package database</li>
+<li>Referenced by package manipulation utilities to obtain:
+<ul>
+<li>package name and version data</li>
+<li>Info about owerships, permissions, timestamps, and file sizes that are part of the package.</li>
+<li>Contain info on dependencies.</li>
+<li>Aids management commands in:
+<ul>
+<li>listing and querying packages</li>
+<li>Verifying dependencies and file attributes.</li>
+<li>Installing new packages.</li>
+<li>Upgrading and uninstalling packages.</li>
+</ul>
+</li>
+<li>Removes and replaces metadata when a package is replaced.</li>
+<li>Can maintain multiple version of a single package.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="package-management-tools">Package Management Tools</h3>
+<ul>
+<li>rpm (redhat package manager)
+<ul>
+<li>Does not automatically resolve dependencies.</li>
+</ul>
+</li>
+<li>yum (yellowdog update, modified)
+<ul>
+<li>Find, get, and install dependencies automatically.</li>
+<li>softlink to dnf now.</li>
+</ul>
+</li>
+<li>dnf (dandified yum)</li>
+</ul>
+<h3 id="package-management-with-rpm">Package management with rpm</h3>
+<p>rpm package management tasks:
+- query
+- install
+- upgrade
+- freshen
+- overwrite
+- remove
+- extract
+- validate
+- verify</p>
+<ul>
+<li>Works with installed and installable packages.</li>
+</ul>
+<h3 id="rpm-command-1">rpm command</h3>
+<h6 id="query-options">Query options</h6>
+<p>Query and display packages<br>
+<code>-q (--query)</code> <br>
+<br>
+List all installed packages<br>
+<code>-qa (--query --all)</code><br>
+<br>
+List config files in a package<br>
+<code>-qc (--query --config-files)</code><br>
+<br>
+List documentation files in a package<br>
+<code>-qd (--query --docfiles)</code> <br>
+<br>
+Exhibit what package a file comes from<br>
+<code>-qf (--query --file)</code> <br>
+<br>
+Show installed package info (Version, Size, Installation status, Date, Signature, Description, etc.)
+<code>-qi (--query --info)</code></p>
+<p>Show installable package info (Version, Size, Installation status, Date, Signature, Description, etc.)
+<code>-qip (--query --info --package)</code></p>
+<p>List all files in a package.<br>
+<code>-ql (--query --list)</code></p>
+<p>List files and packages a package depends on. <br>
+<code>-qR (--query --requires)</code></p>
+<p>List packages that provide the specified package or file.<br>
+<code>-q --whatprovides</code></p>
+<p>List packages that require the specified package or file.<br>
+<code>-q --whatrequires</code></p>
+<h6 id="package-installation-options">Package installation options</h6>
+<p>Remove a package<br>
+<code>-e (--erase)</code></p>
+<p>Upgrades installed package. Or loads if not installed.<br>
+<code>-U (--upgrade)</code></p>
+<p>Display detailed information<br>
+<code>-v (--verbose or -vv)</code></p>
+<p>Verify integrity of a package or package files<br>
+<code>-V (--verify)</code></p>
+<h3 id="querying-packages">Querying packages</h3>
+<p>Query packages in the package database or at a specified location.</p>
+<h3 id="installing-a-package">Installing a package</h3>
+<ul>
+<li>Creates directory structure needed</li>
+<li>Installs files</li>
+<li>Runs needed post installation steps</li>
+<li>Installing package will fail if missing dependencies.</li>
+<li>Error message will show missing dependencies.</li>
+</ul>
+<h3 id="upgrading-a-package">Upgrading a package</h3>
+<ul>
+<li>Installs the package if previous version does not exist. (-U)</li>
+<li>Makes backup of effected configuration files and adds .rpmsave extension.</li>
+</ul>
+<h3 id="freshening-a-package">Freshening a package</h3>
+<ul>
+<li>Older version must exist.</li>
+<li>-F option</li>
+<li>Will only work if a newer version of a package is available.</li>
+</ul>
+<h3 id="overwriting-a-package">Overwriting a Package</h3>
+<ul>
+<li>Replaces existing files of a package with the same version.</li>
+<li>&ndash;replacepkgs option.</li>
+<li>Useful when you suspect corruption.</li>
+</ul>
+<h3 id="removing-a-package">Removing a Package</h3>
+<ul>
+<li>Uninstalls package and associated files/ directories</li>
+<li>-e Option</li>
+<li>Checks to see if this package is a dependency for another program and fails if it is.</li>
+</ul>
+<h3 id="extracting-files-from-an-installable-package">Extracting Files from an Installable Package</h3>
+<ul>
+<li><code>rpm2cpio</code> command</li>
+<li>-i (extract)</li>
+<li>-d create directory structure.
+Useful for:
+<ul>
+<li>Examining package contents.</li>
+<li>Replacing corrupt or lost command.</li>
+<li>Replace critical configuration file to it&rsquo;s original state</li>
+</ul>
+</li>
+</ul>
+<h2 id="package-integrity-and-credibility">Package Integrity and Credibility</h2>
+<ul>
+<li>MD5 Checksum for verifying package integrity</li>
+<li>GNU Privacy Guard Public Key (GNU Privacy Guard or GPG) for ensuring credibility of publisher.</li>
+<li>PGP (Pretty Good Privacy) - commercial version of GPG.</li>
+<li><code>--nosignature</code>
+<ul>
+<li>Don&rsquo;t verify package or header signatures when reading.</li>
+</ul>
+</li>
+<li><code>-K</code>
+<ul>
+<li>keep package files after installation
+<code>rpmkeys</code> command</li>
+<li>check credibility, import GPG key, and verify packages</li>
+</ul>
+</li>
+<li>Redhat signs their products and updates with a GPG key.
+<ul>
+<li>Files in installation media include public keys in the products for verification.</li>
+<li>Copied to /etc/pki/rpm-gpg during OS installation.
+<strong>RPM-GPG-KEY-redhat-release</strong>
+<ul>
+<li>Used for packages shipped after November 2009 and their updates.
+<strong>RPM-GPG-KEY-redhat-beta</strong></li>
+<li>For Beta products shipped after November 2009.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Import the relevant GPG key and the verify the package to check the credibility of a package.</li>
+</ul>
+<h3 id="viewing-gpg-keys">Viewing GPG Keys</h3>
+<ul>
+<li>view with rpm command <code>rpm -q gpg-pubkey</code></li>
+<li><code>-i</code> option
+<ul>
+<li>show info about a key.</li>
+</ul>
+</li>
+</ul>
+<h3 id="verifying-package-attributes">Verifying Package Attributes</h3>
+<ul>
+<li>Compare package file attributes with originals stored in package database at the time of installation.</li>
+<li><code>-V</code> option
+<ul>
+<li>compare owner, group, permission mode, size, modification time, digest, type, etc.</li>
+<li>Returns to prompt if no changes are detected</li>
+<li>-v or vv for verbose</li>
+</ul>
+</li>
+<li><code>-Vf</code>
+<ul>
+<li>run the check directly on the file</li>
+</ul>
+</li>
+<li>Three columns of output:
+<ul>
+<li>Column 1
+<ul>
+<li>9 fields
+<ul>
+<li>S = Different file size.</li>
+<li>M = Mode or permission or file type change.</li>
+<li>5 = MD5 Checksum does not match.</li>
+<li>D = Device file and its major and minor number have changed.</li>
+<li>L = File is a symlink and it&rsquo;s path has been altered.</li>
+<li>U = Ownership has changed.</li>
+<li>G = Group membership has been modified.</li>
+<li>T = Timestamp changed.</li>
+<li>P = Capabilities are altered.</li>
+<li>. = No modifications detected.</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+<li>Column 2
+<ul>
+<li>File type
+<ul>
+<li>c = Configuration file</li>
+<li>d = Documentation File</li>
+<li>g = Ghost FIle</li>
+<li>l = License file</li>
+<li>r = Readme file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Column 3
+<ul>
+<li>Full path of file</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-package-management-labs">Basic Package Management Labs</h2>
+<h3 id="lab-mount-rhel-9-iso-persistently">Lab: Mount RHEL 9 ISO Persistently</h3>
+<ol>
+<li>
+<p>Go to the VirtualBox VM Manager and make sure that the RHEL 8 image is attached to RHEL9-VM1 as depicted below:
+<a href="#R-image-2844994dbe1d6b19990ce950d8bba844" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2844994dbe1d6b19990ce950d8bba844"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png"></a></p>
+</li>
+<li>
+<p>Open the /etc/fstab file in the vim editor (or another editor of your choice) and add the following line entry at the end of the file to mount the DVD image (/dev/sr0) in read-only (ro) mode on the /mnt directory.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>/dev/sr0 /mnt iso9660 ro 0 0</code></pre></div>
+</li>
+</ol>
+<p>Note: sr0 represents the first instance of the optical device and iso9660 is the standard format for optical file systems.</p>
+<ol start="3">
+<li>
+<p>Mount the file system as per the configuration defined in the /etc/fstab file using the mount command with the -a (all) option:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo mount -a</code></pre></div>
+</li>
+<li>
+<p>Verify the mount using the df command:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>df -h | grep mnt</code></pre></div>
+</li>
+</ol>
+<p>Note: The image and the packages therein can now be accessed via the /mnt directory just like any other local directory on the system.</p>
+<ol start="5">
+<li>
+<p>List the two directories—/mnt/BaseOS/Packages and /mnt/AppStream/Packages—that contain all the software packages (directory names are case sensitive):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l /mnt/BaseOS/Packages | more</code></pre></div>
+</li>
+</ol>
+<h3 id="lab-query-packages-rpm">Lab: Query Packages (RPM)</h3>
+<ol>
+<li>
+<p>query all installed packages:
+<code>rpm -qa</code></p>
+</li>
+<li>
+<p>query whether the perl package is installed:
+<code>rpm -q perl</code></p>
+</li>
+<li>
+<p>list all files in a package:
+<code>rpm -ql iproute</code></p>
+</li>
+<li>
+<p>list only the documentation files in a package:
+<code>rpm -qd audit</code></p>
+</li>
+<li>
+<p>list only the configuration files in a package:
+<code>rpm -qc cups</code></p>
+</li>
+<li>
+<p>identify which package owns the specified file:
+<code>rpm -qf /etc/passwd</code></p>
+</li>
+<li>
+<p>display information about an installed package including version, release, installation status, installation date, size, signatures, description, and so on:
+<code>rpm -qi setup</code></p>
+</li>
+<li>
+<p>list all file and package dependencies for a given package:
+<code>rpm -qR chrony</code></p>
+</li>
+<li>
+<p>query an installable package for metadata information (version, release, architecture, description, size, signatures, etc.):
+<code>rpm -qip /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></p>
+</li>
+<li>
+<p>determine what packages require the specified package in order to operate properly:
+<code>rpm -q --whatrequires lvm2</code></p>
+</li>
+</ol>
+<h3 id="lab-installing-a-package-rpm">Lab: Installing a Package (RPM)</h3>
+<ol>
+<li>Install zsh-5.5.1-6.el8.x86_64.rpm
+<code>sudo rpm -ivh /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></li>
+</ol>
+<h3 id="lab-upgrading-a-package-rpm">Lab: Upgrading a Package (RPM)</h3>
+<ol>
+<li>Upgrade sushi with the -U option:
+<code>sudo rpm -Uvh /mnt/AppStream/Packages/sushi-3.28.3-1.el8.x86_64.rpm</code></li>
+</ol>
+<h3 id="lab-freshening-a-package">Lab: Freshening a Package</h3>
+<ol>
+<li>Freshen the sushi package:
+<code>sudo rpm -Fvh /mnt/AppStream/Packages/sushi-3.28.3-1.el8.x86_64.rpm</code></li>
+</ol>
+<h3 id="lab-overwriting-a-package">Lab: Overwriting a Package</h3>
+<ol>
+<li>Overwrite zsh-5.5.1-6.el8.x86_64
+<code>sudo rpm -ivh --replacepkgs /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64</code></li>
+</ol>
+<h3 id="lab-removing-a-package">Lab: Removing a Package</h3>
+<ol>
+<li>Remove sushi
+<code>sudo rpm sushi -ve</code></li>
+</ol>
+<h3 id="lab-extracting-files-from-an-installable-package">Lab: Extracting Files from an Installable Package</h3>
+<ol>
+<li>
+<p>You have lost /etc/crony.conf. Determine what package this file comes from:
+<code>rpm -qf /etc/chrony.conf</code></p>
+</li>
+<li>
+<p>Extract all files from the crony package to /tmp and create the directory structure:</p>
+</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 mnt<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cd /tmp</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>sudo rpm2cpio /mnt/BaseOS/Packages/chrony-3.3-3.el8.x86_64.rpm | cpio -imd
+</span></span><span style="display:flex;"><span><span style="color:#ff9f43">1066</span> blocks<span style="color:#ff6ac1">](</span>&lt;<span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm2cpio /mnt/BaseOS/Packages/chrony-4.3-1.el9.x86_64.rpm | cpio -imd</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff9f43">1253</span> blocks&gt;<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="3">
+<li>
+<p>Use find to locate the crony.conf file:
+<code>sudo find . -name chrony.conf</code></p>
+</li>
+<li>
+<p>Copy the file to /etc:</p>
+</li>
+</ol>
+<h3 id="lab-validating-package-integrity-and-credibility">Lab: Validating Package Integrity and Credibility</h3>
+<ol>
+<li>Check the integrity of zsh-5.5.1-6.el8.x86_64.rpm located in /mnt/BaseOS/Packages:
+<code>rpm -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm --nosignature</code></li>
+<li>Import the GPG key from the proper file and verify the signature for the zsh-5.5.1-6.el8.x86_64.rpm package.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></div>
+<h3 id="lab-viewing-gpg-keys">Lab: Viewing GPG Keys</h3>
+<ol>
+<li>List the imported key:
+<code>rpm -q gpg-pubkey</code></li>
+<li>View details for the first key:
+<code>rpm -qi gpg-pubkey-fd431d51-4ae0493b</code></li>
+</ol>
+<h3 id="lab-verifying-package-attributes">Lab: Verifying Package Attributes</h3>
+<ol>
+<li>
+<p>Run a check on the at program:
+<code>sudo rpm -V at</code></p>
+</li>
+<li>
+<p>Change permissions of one of the files and run the check again:</p>
+</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -l /etc/sysconfig/atd
+</span></span><span style="display:flex;"><span>sudo chmod -v <span style="color:#ff9f43">770</span> /etc/sysconfig/atd
+</span></span><span style="display:flex;"><span>sudo rpm -V at</span></span></code></pre></div>
+<ol start="3">
+<li>
+<p>Run the check directly on the file:
+<code>sudo rpm -Vf /etc/sysconfig/atd</code></p>
+</li>
+<li>
+<p>Reset the value and check the file again:</p>
+</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod -v <span style="color:#ff9f43">644</span> /etc/sysconfig/atd
+</span></span><span style="display:flex;"><span>sudo rpm -V at</span></span></code></pre></div>
+<h3 id="lab-perform-package-management-using-rpm">Lab: Perform Package Management Using rpm</h3>
+<ol>
+<li>Run the <code>ls</code> command on the /mnt/AppStream/Packages directory to confirm that the rmt package is available:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /mnt/BaseOS/Packages/rmt*</span>
+</span></span><span style="display:flex;"><span>-r--r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">49582</span> Nov <span style="color:#ff9f43">20</span>  <span style="color:#ff9f43">2021</span> /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span></span></code></pre></div>
+<ol start="2">
+<li>Run the rpm command and verify the integrity and credibility of the package:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpmkeys -K /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>/mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm: digests signatures OK</span></span></code></pre></div>
+<ol start="3">
+<li>Install the Package:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpmkeys -K /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>/mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm: digests signatures OK
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ivh /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Updating / installing...
+</span></span><span style="display:flex;"><span>   1:rmt-2:1.6-6.el9                 <span style="color:#78787e">################################# [100%])</span></span></span></code></pre></div>
+<ol start="4">
+<li>Show basic information about the package:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi rmt</span>
+</span></span><span style="display:flex;"><span>Name        : rmt
+</span></span><span style="display:flex;"><span>Epoch       : <span style="color:#ff9f43">2</span>
+</span></span><span style="display:flex;"><span>Version     : 1.6
+</span></span><span style="display:flex;"><span>Release     : 6.el9
+</span></span><span style="display:flex;"><span>Architecture: x86_64
+</span></span><span style="display:flex;"><span>Install Date: Sat <span style="color:#ff9f43">13</span> Jul <span style="color:#ff9f43">2024</span> 09:02:08 PM MST
+</span></span><span style="display:flex;"><span>Group       : Unspecified
+</span></span><span style="display:flex;"><span>Size        : <span style="color:#ff9f43">88810</span>
+</span></span><span style="display:flex;"><span>License     : CDDL
+</span></span><span style="display:flex;"><span>Signature   : RSA/SHA256, Sat <span style="color:#ff9f43">20</span> Nov <span style="color:#ff9f43">2021</span> 08:46:44 AM MST, Key ID 199e2f91fd431d51
+</span></span><span style="display:flex;"><span>Source RPM  : star-1.6-6.el9.src.rpm
+</span></span><span style="display:flex;"><span>Build Date  : Tue <span style="color:#ff9f43">10</span> Aug <span style="color:#ff9f43">2021</span> 03:13:47 PM MST
+</span></span><span style="display:flex;"><span>Build Host  : x86-vm-55.build.eng.bos.redhat.com
+</span></span><span style="display:flex;"><span>Packager    : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt;
+</span></span><span style="display:flex;"><span>Vendor      : Red Hat, Inc.
+</span></span><span style="display:flex;"><span>URL         : http://freecode.com/projects/star
+</span></span><span style="display:flex;"><span>Summary     : Provides certain programs with access to remote tape devices
+</span></span><span style="display:flex;"><span>Description :
+</span></span><span style="display:flex;"><span>The rmt utility provides remote access to tape devices <span style="color:#ff6ac1">for</span> programs
+</span></span><span style="display:flex;"><span>like dump <span style="color:#ff6ac1">(</span>a filesystem backup program<span style="color:#ff6ac1">)</span>, restore <span style="color:#ff6ac1">(</span>a program <span style="color:#ff6ac1">for</span>
+</span></span><span style="display:flex;"><span>restoring files from a backup<span style="color:#ff6ac1">)</span>, and tar <span style="color:#ff6ac1">(</span>an archiving program<span style="color:#ff6ac1">)</span>.</span></span></code></pre></div>
+<ol start="5">
+<li>Show all the files the package contains:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ql rmt</span>
+</span></span><span style="display:flex;"><span>/etc/default/rmt
+</span></span><span style="display:flex;"><span>/etc/rmt
+</span></span><span style="display:flex;"><span>/usr/lib/.build-id
+</span></span><span style="display:flex;"><span>/usr/lib/.build-id/c2
+</span></span><span style="display:flex;"><span>/usr/lib/.build-id/c2/6a51ea96fc4b4367afe7d44d16f1405c3c7ec9
+</span></span><span style="display:flex;"><span>/usr/sbin/rmt
+</span></span><span style="display:flex;"><span>/usr/share/doc/star
+</span></span><span style="display:flex;"><span>/usr/share/doc/star/CDDL.Schily.txt
+</span></span><span style="display:flex;"><span>/usr/share/doc/star/COPYING
+</span></span><span style="display:flex;"><span>/usr/share/man/man1/rmt.1.gz</span></span></code></pre></div>
+<ol start="6">
+<li>List the documentation files the package has:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qd rmt</span>
+</span></span><span style="display:flex;"><span>/usr/share/doc/star/CDDL.Schily.txt
+</span></span><span style="display:flex;"><span>/usr/share/doc/star/COPYING
+</span></span><span style="display:flex;"><span>/usr/share/man/man1/rmt.1.gz</span></span></code></pre></div>
+<ol start="7">
+<li>Verify the attributes of each file in the package. Use verbose mode.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -vV rmt</span>
+</span></span><span style="display:flex;"><span>.........  c /etc/default/rmt
+</span></span><span style="display:flex;"><span>.........    /etc/rmt
+</span></span><span style="display:flex;"><span>.........  a /usr/lib/.build-id
+</span></span><span style="display:flex;"><span>.........  a /usr/lib/.build-id/c2
+</span></span><span style="display:flex;"><span>.........  a /usr/lib/.build-id/c2/6a51ea96fc4b4367afe7d44d16f1405c3c7ec9
+</span></span><span style="display:flex;"><span>.........    /usr/sbin/rmt
+</span></span><span style="display:flex;"><span>.........    /usr/share/doc/star
+</span></span><span style="display:flex;"><span>.........  d /usr/share/doc/star/CDDL.Schily.txt
+</span></span><span style="display:flex;"><span>.........  d /usr/share/doc/star/COPYING
+</span></span><span style="display:flex;"><span>.........  d /usr/share/man/man1/rmt.1.gz</span></span></code></pre></div>
+<ol start="8">
+<li>Remove the package:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ve rmt</span>
+</span></span><span style="display:flex;"><span>Preparing packages...
+</span></span><span style="display:flex;"><span>rmt-2:1.6-6.el9.x86_64</span></span></code></pre></div>
+<h2 id="lab-9-1-install-and-verify-packages">Lab 9-1: Install and Verify Packages</h2>
+<p>As user1 with sudo on server3,</p>
+<ul>
+<li>make sure the RHEL 9 ISO image is attached to the VM and mounted.</li>
+<li>Use the rpm command and install the zsh package by specifying its full path.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm </span>
+</span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>	package zsh-5.8-9.el9.x86_64 is already installed</span></span></code></pre></div>
+<ul>
+<li>Run the rpm command again and perform the following on the zsh package:</li>
+<li>(1) show information</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi zsh</span>
+</span></span><span style="display:flex;"><span>Name        : zsh
+</span></span><span style="display:flex;"><span>Version     : 5.8
+</span></span><span style="display:flex;"><span>Release     : 9.el9
+</span></span><span style="display:flex;"><span>Architecture: x86_64
+</span></span><span style="display:flex;"><span>Install Date: Sat <span style="color:#ff9f43">13</span> Jul <span style="color:#ff9f43">2024</span> 06:49:40 PM MST
+</span></span><span style="display:flex;"><span>Group       : Unspecified
+</span></span><span style="display:flex;"><span>Size        : <span style="color:#ff9f43">8018363</span>
+</span></span><span style="display:flex;"><span>License     : MIT
+</span></span><span style="display:flex;"><span>Signature   : RSA/SHA256, Thu <span style="color:#ff9f43">24</span> Feb <span style="color:#ff9f43">2022</span> 08:59:15 AM MST, Key ID 199e2f91fd431d51
+</span></span><span style="display:flex;"><span>Source RPM  : zsh-5.8-9.el9.src.rpm
+</span></span><span style="display:flex;"><span>Build Date  : Wed <span style="color:#ff9f43">23</span> Feb <span style="color:#ff9f43">2022</span> 07:10:14 AM MST
+</span></span><span style="display:flex;"><span>Build Host  : x86-vm-56.build.eng.bos.redhat.com
+</span></span><span style="display:flex;"><span>Packager    : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt;
+</span></span><span style="display:flex;"><span>Vendor      : Red Hat, Inc.
+</span></span><span style="display:flex;"><span>URL         : http://zsh.sourceforge.net/
+</span></span><span style="display:flex;"><span>Summary     : Powerful interactive shell
+</span></span><span style="display:flex;"><span>Description :
+</span></span><span style="display:flex;"><span>The zsh shell is a <span style="color:#ff5c57">command</span> interpreter usable as an interactive login
+</span></span><span style="display:flex;"><span>shell and as a shell script <span style="color:#ff5c57">command</span> processor.  Zsh resembles the ksh
+</span></span><span style="display:flex;"><span>shell <span style="color:#ff6ac1">(</span>the Korn shell<span style="color:#ff6ac1">)</span>, but includes many enhancements.  Zsh supports
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">command</span> line editing, built-in spelling correction, programmable
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">command</span> completion, shell functions <span style="color:#ff6ac1">(</span>with autoloading<span style="color:#ff6ac1">)</span>, a <span style="color:#ff5c57">history</span>
+</span></span><span style="display:flex;"><span>mechanism, and more.</span></span></code></pre></div>
+<ul>
+<li>(2) validate integrity</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -K zsh-5.8-9.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>zsh-5.8-9.el9.x86_64.rpm: digests signatures OK</span></span></code></pre></div>
+<ul>
+<li>(3) display attributes
+<code>[root@server30 Packages]# rpm -V zsh</code></li>
+</ul>
+<h2 id="lab-9-2-query-and-erase-packages">Lab 9-2: Query and Erase Packages</h2>
+<p>As user1 with sudo on server3,</p>
+<ul>
+<li>make sure the RHEL 9 ISO image is attached to the VM and mounted.</li>
+<li>Use the rpm command to perform the following:</li>
+<li>(1) check whether the setup package is installed</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -q setup</span>
+</span></span><span style="display:flex;"><span>setup-2.13.7-10.el9.noarch</span></span></code></pre></div>
+<ul>
+<li>(2) display the list of configuration files in the setup package</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qc setup</span>
+</span></span><span style="display:flex;"><span>/etc/aliases
+</span></span><span style="display:flex;"><span>/etc/bashrc
+</span></span><span style="display:flex;"><span>/etc/csh.cshrc
+</span></span><span style="display:flex;"><span>/etc/csh.login
+</span></span><span style="display:flex;"><span>/etc/environment
+</span></span><span style="display:flex;"><span>/etc/ethertypes
+</span></span><span style="display:flex;"><span>/etc/exports
+</span></span><span style="display:flex;"><span>/etc/filesystems
+</span></span><span style="display:flex;"><span>/etc/fstab
+</span></span><span style="display:flex;"><span>/etc/group
+</span></span><span style="display:flex;"><span>/etc/gshadow
+</span></span><span style="display:flex;"><span>/etc/host.conf
+</span></span><span style="display:flex;"><span>/etc/hosts
+</span></span><span style="display:flex;"><span>/etc/inputrc
+</span></span><span style="display:flex;"><span>/etc/motd
+</span></span><span style="display:flex;"><span>/etc/networks
+</span></span><span style="display:flex;"><span>/etc/passwd
+</span></span><span style="display:flex;"><span>/etc/printcap
+</span></span><span style="display:flex;"><span>/etc/profile
+</span></span><span style="display:flex;"><span>/etc/profile.d/csh.local
+</span></span><span style="display:flex;"><span>/etc/profile.d/sh.local
+</span></span><span style="display:flex;"><span>/etc/protocols
+</span></span><span style="display:flex;"><span>/etc/services
+</span></span><span style="display:flex;"><span>/etc/shadow
+</span></span><span style="display:flex;"><span>/etc/shells
+</span></span><span style="display:flex;"><span>/etc/subgid
+</span></span><span style="display:flex;"><span>/etc/subuid
+</span></span><span style="display:flex;"><span>/run/motd
+</span></span><span style="display:flex;"><span>/usr/lib/motd</span></span></code></pre></div>
+<ul>
+<li>(3) show information for the zlib-devel package on the ISO image</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi ./zlib-devel-1.2.11-40.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>Name        : zlib-devel
+</span></span><span style="display:flex;"><span>Version     : 1.2.11
+</span></span><span style="display:flex;"><span>Release     : 40.el9
+</span></span><span style="display:flex;"><span>Architecture: x86_64
+</span></span><span style="display:flex;"><span>Install Date: <span style="color:#ff6ac1">(</span>not installed<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>Group       : Unspecified
+</span></span><span style="display:flex;"><span>Size        : <span style="color:#ff9f43">141092</span>
+</span></span><span style="display:flex;"><span>License     : zlib and Boost
+</span></span><span style="display:flex;"><span>Signature   : RSA/SHA256, Tue <span style="color:#ff9f43">09</span> May <span style="color:#ff9f43">2023</span> 05:31:02 AM MST, Key ID 199e2f91fd431d51
+</span></span><span style="display:flex;"><span>Source RPM  : zlib-1.2.11-40.el9.src.rpm
+</span></span><span style="display:flex;"><span>Build Date  : Tue <span style="color:#ff9f43">09</span> May <span style="color:#ff9f43">2023</span> 03:51:20 AM MST
+</span></span><span style="display:flex;"><span>Build Host  : x86-64-03.build.eng.rdu2.redhat.com
+</span></span><span style="display:flex;"><span>Packager    : Red Hat, Inc. &lt;http://bugzilla.redhat.com/bugzilla&gt;
+</span></span><span style="display:flex;"><span>Vendor      : Red Hat, Inc.
+</span></span><span style="display:flex;"><span>URL         : https://www.zlib.net/
+</span></span><span style="display:flex;"><span>Summary     : Header files and libraries <span style="color:#ff6ac1">for</span> Zlib development
+</span></span><span style="display:flex;"><span>Description :
+</span></span><span style="display:flex;"><span>The zlib-devel package contains the header files and libraries needed
+</span></span><span style="display:flex;"><span>to develop programs that use the zlib compression and decompression
+</span></span><span style="display:flex;"><span>library.</span></span></code></pre></div>
+<ul>
+<li>(4) reinstall the zsh package (&ndash;reinstall -vh),</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -hv --reinstall ./zsh-5.8-9.el9.x86_64.rpm</span>
+</span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
+</span></span><span style="display:flex;"><span>Updating / installing...
+</span></span><span style="display:flex;"><span>   1:zsh-5.8-9.el9                   <span style="color:#78787e">################################# [ 50%])</span>
+</span></span><span style="display:flex;"><span>Cleaning up / removing...
+</span></span><span style="display:flex;"><span>   2:zsh-5.8-9.el9                   <span style="color:#78787e">################################# [100%])</span></span></span></code></pre></div>
+<ul>
+<li>(5) remove the zsh package.
+<code>[root@server30 Packages]# rpm -e zsh</code></li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1744890669" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1744890669" defer></script>
-    &lt;script&gt;
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [[&#39;\\(&#39;, &#39;\\)&#39;], [&#39;$&#39;,  &#39;$&#39;]],  
-            displayMath: [[&#39;\\[&#39;, &#39;\\]&#39;], [&#39;$$&#39;, &#39;$$&#39;]], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse(&#34;{}&#34;) );
-    &lt;/script&gt;
-    &lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-color.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-dispatch.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-drag.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-ease.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-interpolate.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-selection.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-timer.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-transition.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-zoom.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/js-yaml.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;https://unpkg.com/mermaid/dist/mermaid.min.js&#34; defer&gt;&lt;/script&gt;
-    &lt;script&gt;
-      window.themeUseMermaid = JSON.parse(&#34;{ \&#34;theme\&#34;: \&#34;default\&#34; }&#34;);
-    &lt;/script&gt;
-    <script src="/js/theme.js?1744890669" defer></script>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu">
+            <li class="" data-nav-id="/redhat/advanced-file-management/"><a class="padding" href="/redhat/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-id="/redhat/advanced-package-management/"><a class="padding" href="/redhat/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-id="/redhat/advanced-user-management/"><a class="padding" href="/redhat/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-id="/redhat/file-management/"><a class="padding" href="/redhat/file-management/">Basic File Managment</a></li>
+            <li class="active " data-nav-id="/redhat/basic-package-management/"><a class="padding" href="/redhat/basic-package-management/">Basic Package Management</a></li>
+            <li class="" data-nav-id="/redhat/basic-user-management/"><a class="padding" href="/redhat/basic-user-management/">Basic User Management</a></li>
+            <li class="" data-nav-id="/redhat/boot-process-grub2-and-kernel/"><a class="padding" href="/redhat/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="" data-nav-id="/redhat/installation/"><a class="padding" href="/redhat/installation/">Installation</a></li>
+            <li class="" data-nav-id="/redhat/interaction/"><a class="padding" href="/redhat/interaction/">Interaction</a></li>
+            <li class="" data-nav-id="/redhat/local-file-systems-and-swap/"><a class="padding" href="/redhat/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-id="/redhat/network-file-system-nfs/"><a class="padding" href="/redhat/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-id="/redhat/process-and-task-scheduling/"><a class="padding" href="/redhat/process-and-task-scheduling/">Process and Task Scheduling</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-exam-environment/"><a class="padding" href="/redhat/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-notes/"><a class="padding" href="/redhat/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-study-tracker/"><a class="padding" href="/redhat/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-vagrant-lab-setup/"><a class="padding" href="/redhat/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/redhat/sample-exams/"><a class="padding" href="/redhat/sample-exams/">Sample Exams</a></li>
+            <li class="" data-nav-id="/redhat/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/redhat/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li>
+            <li class="" data-nav-id="/redhat/the-secure-shell-service/"><a class="padding" href="/redhat/the-secure-shell-service/">The Secure Shell Service</a></li></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>

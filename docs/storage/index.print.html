@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Nextcloud on RHEL Based SystemsNextcloud setup guide on a RHEL based server
 Partitioning, MBR, and GPTPartitions and their management.
 Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
@@ -18,7 +18,7 @@ Partitioning, MBR, and GPTPartitions and their management.
 Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
 Thin Provisioning and LVMThin provisioning and LVM
 Virtual Data Optimizer (VDO)VDO">
-    <meta property="og:url" content="http://localhost:1313/storage/">
+    <meta property="og:url" content="http://linuxreader.com/storage/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Storage :: Linux Reader">
     <meta property="og:description" content="Nextcloud on RHEL Based SystemsNextcloud setup guide on a RHEL based server
@@ -35,31 +35,66 @@ Self hosting a Nextcloud ServerSelf hosting a Nextcloud server
 Thin Provisioning and LVMThin provisioning and LVM
 Virtual Data Optimizer (VDO)VDO">
     <meta itemprop="wordCount" content="39">
-    <meta itemprop="keywords" content="Storage">
     <title>Storage :: Linux Reader</title>
-    <link href="http://localhost:1313/storage/" rel="canonical" type="text/html" title="Storage :: Linux Reader">
+    <link href="http://linuxreader.com/storage/" rel="canonical" type="text/html" title="Storage :: Linux Reader">
     <link href="/storage/index.xml" rel="alternate" type="application/rss+xml" title="Storage :: Linux Reader">
-    <link href="/images/favicon.svg?1742214765" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1742214765" rel="stylesheet">
-    <link href="/css/auto-complete.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1742214765" rel="stylesheet">
-    <link href="/css/fonts.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1742214765" rel="stylesheet">
-    <link href="/css/theme-oled.css?1742214765" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1742214765" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1742214765" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1742214765" rel="stylesheet">
-    <script src="/js/variant.js?1742214765"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-print.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/storage\/';
       window.relearn.relBasePath='..';
       window.relearn.relBaseUri='..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -80,7 +115,7 @@ Virtual Data Optimizer (VDO)VDO">
 </style>
 
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/storage/">
+  <body class="mobile-support print" data-url="/storage/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -89,7 +124,7 @@ Virtual Data Optimizer (VDO)VDO">
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/the-secure-shell-service" title="The Secure Shell Service (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/the-secure-shell-service/" title="The Secure Shell Service (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -105,10 +140,10 @@ Virtual Data Optimizer (VDO)VDO">
             Storage
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/nextcloud-on-rhel-based-systems" title="Nextcloud on RHEL Based Systems (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/nextcloud-on-rhel-based-systems/" title="Nextcloud on RHEL Based Systems (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -130,11 +165,11 @@ Virtual Data Optimizer (VDO)VDO">
 <h1 id="storage">Storage</h1>
 
 <div class="children children-h6 children-sort-">
-  <h6><a href="/storage/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></h6><p>Nextcloud setup guide on a RHEL based server</p>
-  <h6><a href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></h6><p>Partitions and their management.</p>
-  <h6><a href="/storage/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></h6><p>Self hosting a Nextcloud server</p>
-  <h6><a href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></h6><p>Thin provisioning and LVM</p>
-  <h6><a href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></h6><p>VDO</p>
+  <h6 class="children-title" id="nextcloud-on-rhel-based-systems"><a href="/storage/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></h6><p>Nextcloud setup guide on a RHEL based server</p>
+  <h6 class="children-title" id="partitioning-mbr-and-gpt"><a href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></h6><p>Partitions and their management.</p>
+  <h6 class="children-title" id="self-hosting-a-nextcloud-server"><a href="/storage/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></h6><p>Self hosting a Nextcloud server</p>
+  <h6 class="children-title" id="thin-provisioning-and-lvm"><a href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></h6><p>Thin provisioning and LVM</p>
+  <h6 class="children-title" id="virtual-data-optimizer-vdo"><a href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></h6><p>VDO</p>
 </div>
 
   <footer class="footline">
@@ -185,17 +220,17 @@ Virtual Data Optimizer (VDO)VDO">
 <p>I used this guide to help get a supported php version. As php 2 installed from dnf repos by default:
 <a href="https://orcacore.com/php83-installation-almalinux9-rockylinux9/" rel="external" target="_blank">https://orcacore.com/php83-installation-almalinux9-rockylinux9/</a></p>
 <p>Make sure dnf is up to date:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf update -y
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf update -y
 </span></span><span style="display:flex;"><span>sudo dnf upgrade -y</span></span></code></pre></div>
 <p>Set up the epel repository:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf install epel-release -y</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf install epel-release -y</code></pre></div>
 <p>Set up remi to manage php modules:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm
 sudo dnf update -y</code></pre></div>
 <p>Remove old versions of php:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf remove php* -y</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf remove php* -y</code></pre></div>
 <p>List available php streams:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf module list reset php -y
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf module list reset php -y
 
 Last metadata expiration check: 1:03:46 ago on Sun 29 Dec 2024 03:34:52 AM MST.
 AlmaLinux 9 - AppStream
@@ -212,24 +247,24 @@ php                 remi-8.2                    common [d], devel, minimal      
 php                 remi-8.3 [e]                common [d], devel, minimal                PHP scripting language              
 php                 remi-8.4                    common [d], devel, minimal                PHP scripting language       </code></pre></div>
 <p>Enable the correct stream:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf module enable php:remi-8.3</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf module enable php:remi-8.3</code></pre></div>
 <p>Now the default to install is version 8.3, install it like this:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo dnf install php -y
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf install php -y
 php -v</code></pre></div>
 <p>Let&rsquo;s install git, as it&rsquo;s also needed in this setup:
 <code>sudo dnf -y install git</code></p>
 <p>Install Composer for managing php modules:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> <span style="color:#ff6ac1">&amp;&amp;</span> curl -sS https://getcomposer.org/installer | php
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> <span style="color:#ff6ac1">&amp;&amp;</span> curl -sS https://getcomposer.org/installer | php
 </span></span><span style="display:flex;"><span>sudo mv composer.phar /usr/local/bin/composer</span></span></code></pre></div>
 <p>Install needed PHP modules:
 <code>sudo dnf install php-process  php-zip php-gd php-mysqlnd</code></p>
 <p>Upgrade php memory limit:
 <code>sudo vim /etc/php.ini</code></p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">memory_limit</span> <span style="color:#ff6ac1">=</span> 512M</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">memory_limit</span> <span style="color:#ff6ac1">=</span> 512M</span></span></code></pre></div>
 <h2 id="apache-setup">Apache setup</h2>
 <p>Add Apache config for vhost:
 <code>sudo vim /etc/httpd/conf.d/nextcloud.conf</code></p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;VirtualHost *:80&gt;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;VirtualHost *:80&gt;
 </span></span><span style="display:flex;"><span>  DocumentRoot /var/www/nextcloud/
 </span></span><span style="display:flex;"><span>  ServerName  <span style="color:#ff6ac1">{</span>subdomain<span style="color:#ff6ac1">}</span>.<span style="color:#ff6ac1">{</span>example<span style="color:#ff6ac1">}</span>.com
 </span></span><span style="display:flex;"><span>
@@ -249,19 +284,19 @@ php -v</code></pre></div>
 <p>Enable the service:
 <code>sudo systemctl enable --now mariadb</code></p>
 <p>Nextcloud needs some tables setup in order to store information in a database. First set up a secure sql database:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo mysql_secure_installation</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo mysql_secure_installation</code></pre></div>
 <p>Say “Yes” to the prompts and enter root password:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>Switch to unix_socket authentication [Y/n]: Y
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Switch to unix_socket authentication [Y/n]: Y
 Change the root password? [Y/n]: Y	# enter password.
 Remove anonymous users? [Y/n]: Y
 Disallow root login remotely? [Y/n]: Y
 Remove test database and access to it? [Y/n]: Y
 Reload privilege tables now? [Y/n]: Y</code></pre></div>
 <p>Sign in to your SQL database with the password you just chose:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>mysql -u root -p</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mysql -u root -p</code></pre></div>
 <h3 id="create-the-database">Create the database:</h3>
 <p>While signed in with the mysql command, enter the commands below one at a time. Make sure to replace the username and password. But leave localhost as is:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>CREATE DATABASE nextcloud;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>CREATE DATABASE nextcloud;
 GRANT ALL ON nextcloud.* TO &#39;{username}&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;{password}&#39;;
 FLUSH PRIVILEGES;
 EXIT;</code></pre></div>
@@ -269,18 +304,18 @@ EXIT;</code></pre></div>
 <p>Clone the git repo into /var/www/nextcloud:
 <code>git clone https://github.com/nextcloud/server.git /var/www/nextcloud &amp;&amp; cd /var/www/nextcloud</code></p>
 <p>Add an exception for git to access the directory:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>git config --global --add safe.directory /var/www/nextcloud</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>git config --global --add safe.directory /var/www/nextcloud</code></pre></div>
 <p>Initialize the git submodule that handles the subfolder &ldquo;3rdpartysudo&rdquo;:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> /var/www/nextcloud <span style="color:#ff6ac1">&amp;&amp;</span> sudo git submodule update --init</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> /var/www/nextcloud <span style="color:#ff6ac1">&amp;&amp;</span> sudo git submodule update --init</span></span></code></pre></div>
 <p>Change the nextcloud folder ownership to apache and add permissions:
 <code>sudo chmod -R 755 /var/www/nextcloud</code>
 <code>sudo chown -R apache:apache /var/www/nextcloud</code></p>
 <p>Selinux:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo semanage fcontext -a -t httpd_sys_content_t <span style="color:#5af78e">&#34;/var/www/nextcloud(/.*)?&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#5af78e">\
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo semanage fcontext -a -t httpd_sys_content_t <span style="color:#5af78e">&#34;/var/www/nextcloud(/.*)?&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#5af78e">\
 </span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>sudo semanage fcontext -a -t httpd_sys_rw_content_t <span style="color:#5af78e">&#34;/var/www/nextcloud/(config|data|apps)(/.*)?&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> <span style="color:#5af78e">\
 </span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>sudo restorecon -Rv /var/www/nextcloud/</span></span></code></pre></div>
 <p>Now we can actually install Nextcloud. <code>cd</code> to the /var/www/nextcloud directory and run occ with these settings to install:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u apache php occ  maintenance:install <span style="color:#5af78e">\
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u apache php occ  maintenance:install <span style="color:#5af78e">\
 </span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>--database<span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#39;mysql&#39;</span> --database-name<span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#39;nextcloud&#39;</span> <span style="color:#5af78e">\
 </span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>--database-user<span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#39;root&#39;</span> --database-pass<span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#39;{password}&#39;</span> <span style="color:#5af78e">\
 </span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>--admin-user<span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#39;admin&#39;</span> --admin-pass<span style="color:#ff6ac1">=</span><span style="color:#5af78e">&#39;{password}&#39;</span></span></span></code></pre></div>
@@ -288,10 +323,10 @@ EXIT;</code></pre></div>
 <p>Before you go any further, you will need to have a domain name set up for your server. I use Cloudflare to manage my DNS records. You will want to make a CNAME record for your nextcloud subdomain.</p>
 <p>Just add &ldquo;nextcloud&rdquo; as the name and &ldquo;yourwebsite.com&rdquo; as the content. This will make it so &ldquo;nextcloud.yourwebsite.com&rdquo; is the site for your nextcloud dashboard. Also, make sure to select &ldquo;DNS Only&rdquo; under proxy status.</p>
 <p>Here&rsquo;s what my CloudFlare domain setup looks with this blog as the main site, and cloud.perfectdarkmode.com as the nextcloud site:</p>
-<p><a href="#R-image-a89eb864c988d3adcba17be1dc846195" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a89eb864c988d3adcba17be1dc846195"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
+<p><a href="#R-image-d3c48a2b62724bf2a0727fbd46728841" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d3c48a2b62724bf2a0727fbd46728841"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
 <p>Then you need to update trusted domains in /var/www/nextcloud/config/config.php:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#39;trusted_domains&#39;</span> <span style="color:#ff6ac1">=</span>&gt;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#39;trusted_domains&#39;</span> <span style="color:#ff6ac1">=</span>&gt;
 </span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">[</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#39;{subdomain}.{domain}.com&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#5af78e">&#39;localhost&#39;</span>
@@ -299,14 +334,14 @@ EXIT;</code></pre></div>
 <p>Restart httpd
 <code>systemctl restart httpd</code></p>
 <h3 id="install-ssl-with-certbot">Install SSL with Certbot</h3>
-<p>Obtain an SSL certificate. (See my <a href="Obsidian%20site%20setup.md">Obsidian site setup</a> post for information about Certbot and Apache setup.)</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo certbot -d {subdomain}.{domain}.com</code></pre></div>
+<p>Obtain an SSL certificate. (See my <a href="/tools/obsidian-site-setup/">Obsidian site setup</a> post for information about Certbot and Apache setup.)</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo certbot -d {subdomain}.{domain}.com</code></pre></div>
 <p>Now log into nextcloud with your admin account using the DNS name you set earlier:</p>
-<p><a href="#R-image-7afc67f1839c0d6fe5df4e51b3130e27" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7afc67f1839c0d6fe5df4e51b3130e27"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
+<p><a href="#R-image-402178ba3c5d110e796eb3aa004882fa" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-402178ba3c5d110e796eb3aa004882fa"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
 <p>I recommend setting up a normal user account instead of doing everything as &ldquo;admin&rdquo;. Just hit the &ldquo;A&rdquo; icon at the top right and go to &ldquo;Accounts&rdquo;. Then just select &ldquo;New Account&rdquo; and create a user account with whatever privileges you want.</p>
-<p><a href="#R-image-8c4ff2457dfa1303556dc82ec603a40c" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8c4ff2457dfa1303556dc82ec603a40c"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
+<p><a href="#R-image-959d872aa3ecf3fba7d3306c77ef1996" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-959d872aa3ecf3fba7d3306c77ef1996"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
 <p>I may make a post about which Nextcloud apps I recommend and customize the setup a bit. Let me know if that&rsquo;s something you&rsquo;d like to see. That&rsquo;s all for now.</p>
 
   <footer class="footline">
@@ -422,7 +457,7 @@ Removes the specified partition</p>
 <li>create and confirm a 100MB primary partition on the disk.</li>
 </ul>
 <p>1. Execute parted on /dev/sdb to view the current partition information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print</span>
 </span></span><span style="display:flex;"><span>Error: /dev/sdb: unrecognised disk label
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>                                           
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
@@ -433,9 +468,9 @@ Removes the specified partition</p>
 disk must be labeled before it can be partitioned.</p>
 <p>2. Assign disk label &ldquo;msdos&rdquo; to the disk with mklabel. This operation
 is performed only once on a disk.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -445,10 +480,10 @@ is performed only once on a disk.</p>
 </span></span><span style="display:flex;"><span>Number  Start  End  Size  Type  File system  Flags</span></span></code></pre></div>
 <p>To use the GPT partition table type, run &ldquo;sudo parted /dev/sdb mklabel gpt&rdquo; instead.</p>
 <p>3. Create a 100MB primary partition starting at 1MB (beginning of the disk) using mkpart:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 1 101m</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 1 101m</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
 <p>4. Verify the new partition with print:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -459,7 +494,7 @@ is performed only once on a disk.</p>
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  101MB  99.6MB  primary</span></span></code></pre></div>
 <p>Partition numbering begins at 1 by default.</p>
 <p>5. Confirm the new partition with the <code>lsblk</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk /dev/sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk /dev/sdb</span>
 </span></span><span style="display:flex;"><span>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sdb      8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>└─sdb1   8:17   <span style="color:#ff9f43">0</span>   95M  <span style="color:#ff9f43">0</span> part </span></span></code></pre></div>
@@ -467,17 +502,17 @@ is performed only once on a disk.</p>
 The partition size is 95MB.</p>
 <p>Different tools will have variance in reporting partition sizes.  ignore minor differences.</p>
 <p>6. Check the /proc/partitions file also:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">16</span>     <span style="color:#ff9f43">256000</span> sdb
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">17</span>      <span style="color:#ff9f43">97280</span> sdb1</span></span></code></pre></div>
 <h3 id="exercise-13-3-delete-an-mbr-partition-server2">Exercise 13-3: Delete an MBR Partition (server2)</h3>
 <p>delete the sdb1 partition that was created in Exercise 13-2
 confirm the deletion.</p>
 <p>1. Execute parted on /dev/sdb with the rm subcommand to remove partition number 1:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
 <p>2. Confirm the partition deletion with print:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -486,7 +521,7 @@ confirm the deletion.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Number  Start  End  Size  Type  File system  Flags</span></span></code></pre></div>
 <p>3. Check the /proc/partitions file:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /proc/partitions | grep sdb</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">16</span>     <span style="color:#ff9f43">256000</span> sdb</span></span></code></pre></div>
 <p>can also run the <code>lsblk</code> command for further verification. T</p>
 <p>EXAM TIP: Knowing either parted or gdisk for the exam is enough.</p>
@@ -510,7 +545,7 @@ confirm the deletion.</p>
 Type help or ? (question mark) at the prompt to view available subcommands.</p>
 </li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>GPT fdisk <span style="color:#ff6ac1">(</span>gdisk<span style="color:#ff6ac1">)</span> version 1.0.7
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Partition table scan:
@@ -546,7 +581,7 @@ Type help or ? (question mark) at the prompt to view available subcommands.</p>
 <li>create and confirm a 200MB partition on the disk.</li>
 </ul>
 <p>1. Execute gdisk on /dev/sdc to view the current partition information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo gdisk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>GPT fdisk <span style="color:#ff6ac1">(</span>gdisk<span style="color:#ff6ac1">)</span> version 1.0.7
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Partition table scan:
@@ -561,12 +596,12 @@ Type help or ? (question mark) at the prompt to view available subcommands.</p>
 <p>The disk currently does not have any partition table on it.</p>
 <p>2. Assign &ldquo;gpt&rdquo; as the partition table type to the disk using the o subcommand. Enter &ldquo;y&rdquo; for confirmation to proceed. This operation is
 performed only once on a disk.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
 </span></span><span style="display:flex;"><span>This option deletes all partitions and creates a new protective MBR.
 </span></span><span style="display:flex;"><span>Proceed? <span style="color:#ff6ac1">(</span>Y/N<span style="color:#ff6ac1">)</span>: y</span></span></code></pre></div>
 <p>3. Run the p subcommand to view disk information and confirm the GUID
 partition table creation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdc: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -580,7 +615,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name</span></span></code></pre></div>
 <p>The output returns the assigned GUID and states that the partition table can hold up to 128 partition entries.</p>
 <p>4. Create the first partition of size 200MB starting at the default sector with default type &ldquo;Linux filesystem&rdquo; using the n subcommand:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: n
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: n
 </span></span><span style="display:flex;"><span>Partition number <span style="color:#ff6ac1">(</span>1-128, default 1<span style="color:#ff6ac1">)</span>: 
 </span></span><span style="display:flex;"><span>First sector <span style="color:#ff6ac1">(</span>34-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 2048<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: 
 </span></span><span style="display:flex;"><span>Last sector <span style="color:#ff6ac1">(</span>2048-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 511966<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: +200M
@@ -588,7 +623,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Hex code or GUID <span style="color:#ff6ac1">(</span>L to show codes, <span style="color:#ff5c57">Enter</span> <span style="color:#ff6ac1">=</span> 8300<span style="color:#ff6ac1">)</span>: 
 </span></span><span style="display:flex;"><span>Changed <span style="color:#ff5c57">type</span> of partition to <span style="color:#5af78e">&#39;Linux filesystem&#39;</span></span></span></code></pre></div>
 <p>5. Verify the new partition with p:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdc: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -602,7 +637,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">1</span>            <span style="color:#ff9f43">2048</span>          <span style="color:#ff9f43">411647</span>   200.0 MiB   <span style="color:#ff9f43">8300</span>  Linux filesystem</span></span></code></pre></div>
 <p>6. Run w to write the partition information to the partition table and exit out of the interface. Enter &ldquo;y&rdquo; to confirm when prompted.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
 </span></span><span style="display:flex;"><span>PARTITIONS!!
@@ -612,7 +647,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
 <p>You may need to run the <code>partprobe</code> command after exiting the gdisk utility to inform the kernel of partition table changes.</p>
 <p>7. Verify the new partition by issuing either of the following at the command prompt:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">32</span>     <span style="color:#ff9f43">256000</span> sdc
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">33</span>     <span style="color:#ff9f43">204800</span> sdc1
 </span></span><span style="display:flex;"><span>   
@@ -625,7 +660,7 @@ partition table creation:</p>
 <li>Delete the sdc1 partition that was created in Exercise 13-4 and confirm the removal.</li>
 </ul>
 <p>1. Execute gdisk on /dev/sdc and run d1 at the utility&rsquo;s prompt to delete partition number 1:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># gdisk /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># gdisk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>GPT fdisk <span style="color:#ff6ac1">(</span>gdisk<span style="color:#ff6ac1">)</span> version 1.0.7
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Partition table scan:
@@ -639,7 +674,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d1
 </span></span><span style="display:flex;"><span>Using <span style="color:#ff9f43">1</span></span></span></code></pre></div>
 <p>2. Confirm the partition deletion with p:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdc: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -652,7 +687,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name</span></span></code></pre></div>
 <p>3. Write the updated partition information to the disk with w and quit gdisk:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
 </span></span><span style="display:flex;"><span>PARTITIONS!!
@@ -662,7 +697,7 @@ partition table creation:</p>
 </span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
 <p>4. Verify the partition deletion by issuing either of the following at
 the command prompt:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># grep sdc /proc/partitions</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">8</span>       <span style="color:#ff9f43">32</span>     <span style="color:#ff9f43">256000</span> sdc
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk /dev/sdc</span>
 </span></span><span style="display:flex;"><span>NAME MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
@@ -674,7 +709,7 @@ the command prompt:</p>
 <li>Any subsequent disks added to the system will be known as sdb, sdc, sdd, and so on, and will use 1, 2, 3, etc. for partition numbering.</li>
 </ul>
 <p>Use <code>lsblk</code> to list disk and partition information.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
 </span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   10G  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
@@ -683,7 +718,7 @@ the command prompt:</p>
 </span></span><span style="display:flex;"><span>  └─rhel-swap 253:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
 </span></span><span style="display:flex;"><span>sr0            11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  /mnt</span></span></code></pre></div>
 <p>sr0 represents the ISO image mounted as an optical medium:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo fdisk -l</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo fdisk -l</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sda: <span style="color:#ff9f43">10</span> GiB, <span style="color:#ff9f43">10737418240</span> bytes, <span style="color:#ff9f43">20971520</span> sectors
 </span></span><span style="display:flex;"><span>Disk model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Units: sectors of <span style="color:#ff9f43">1</span> * <span style="color:#ff5c57">512</span> <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">512</span> bytes
@@ -753,22 +788,22 @@ understands both MBR and GPT formats.</p>
 <p>It is also free and open source. This mean the source code is available to all. And hosting yourself means you can guarantee that your data isn&rsquo;t being shared.</p>
 <p>As you can see. Nextcloud is feature packed and offers an all in one solution for many needs. The set up is fairly simple!</p>
 <h3 id="install-dependencies">Install Dependencies</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo apt update </code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo apt update </code></pre></div>
 <h4 id="sury-dependencies">Sury Dependencies</h4>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo apt install software-properties-common ca-certificates lsb-release apt-transport-https </code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo apt install software-properties-common ca-certificates lsb-release apt-transport-https </code></pre></div>
 <h4 id="enable-sury-repository">Enable Sury Repository</h4>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo sh -c &#39;echo &#34;deb https://packages.sury.org/php/ $(lsb_release -sc) main&#34; &gt; /etc/apt/sources.list.d/php.list&#39; </code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo sh -c &#39;echo &#34;deb https://packages.sury.org/php/ $(lsb_release -sc) main&#34; &gt; /etc/apt/sources.list.d/php.list&#39; </code></pre></div>
 <h4 id="import-the-gpg-key-for-the-repository">Import the GPG key for the repository</h4>
-<div class="highlight wrap-code"><pre tabindex="0"><code>wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add - </code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add - </code></pre></div>
 <h4 id="install-php-82">Install PHP 8.2</h4>
 <p><a href="https://computingforgeeks.com/how-to-install-php-8-2-on-debian/?expand_article=1" rel="external" target="_blank">https://computingforgeeks.com/how-to-install-php-8-2-on-debian/?expand_article=1</a>
 (This is also part of the other dependencies install command below)</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo apt install php8.2 </code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo apt install php8.2 </code></pre></div>
 <h4 id="install-other-dependencies">Install other dependencies:</h4>
-<div class="highlight wrap-code"><pre tabindex="0"><code>apt install -y nginx python3-certbot-nginx mariadb-server php8.2 php8.2-{fpm,bcmath,bz2,intl,gd,mbstring,mysql,zip,xml,curl}</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>apt install -y nginx python3-certbot-nginx mariadb-server php8.2 php8.2-{fpm,bcmath,bz2,intl,gd,mbstring,mysql,zip,xml,curl}</code></pre></div>
 <h3 id="improving-nextcloud-server-performance">Improving Nextcloud server performance</h3>
 <p>Adding more child processes for PHP to use:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>vim /etc/php/8.2/fpm/pool.d/www.conf
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>vim /etc/php/8.2/fpm/pool.d/www.conf
 
 # update the following parameters in the file
 pm = dynamic
@@ -777,34 +812,34 @@ pm.start_servers = 12
 pm.min_spare_servers = 6
 pm.max_spare_servers = 18</code></pre></div>
 <h3 id="start-your-mariadb-server">Start your MariaDB server:</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>systemctl enable mariadb --now</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>systemctl enable mariadb --now</code></pre></div>
 <h3 id="set-up-a-sql-database">Set up a SQL Database</h3>
 <p>Nextcloud needs some tables setup in order to store information in a database. First set up a secure sql database:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo mysql_secure_installation</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo mysql_secure_installation</code></pre></div>
 <p>Say “Yes” to the prompts and enter root password:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>Switch to unix_socket authentication [Y/n]: Y
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Switch to unix_socket authentication [Y/n]: Y
 Change the root password? [Y/n]: Y	# enter password.
 Remove anonymous users? [Y/n]: Y
 Disallow root login remotely? [Y/n]: Y
 Remove test database and access to it? [Y/n]: Y
 Reload privilege tables now? [Y/n]: Y</code></pre></div>
 <p>Sign in to your SQL database with the password you just chose:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>mysql -u root -p</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mysql -u root -p</code></pre></div>
 <h3 id="creating-a-database-for-nextcloud">Creating a database for NextCloud</h3>
 <p>While signed in with the mysql command, enter the commands below one at a time. Make sure to replace the username and password. But leave localhost as is:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>CREATE DATABASE nextcloud;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>CREATE DATABASE nextcloud;
 GRANT ALL ON nextcloud.* TO &#39;david&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;@Rfanext12!&#39;;
 FLUSH PRIVILEGES;
 EXIT;</code></pre></div>
 <h3 id="install-ssl-with-certbot">Install SSL with Certbot</h3>
 <p>Obtain an SSL certificate. See my <a href="https://perfectdarkmode.com/posts/2023/03/building-a-minimalist-website-with-hugo/" rel="external" target="_blank">website setup</a> post for information about Certbot and nginx setup.</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>certbot certonly --nginx -d nextcloud.example.com</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>certbot certonly --nginx -d nextcloud.example.com</code></pre></div>
 <h3 id="create-a-cname-record-for-dns">Create a CNAME record for DNS.</h3>
 <p>You will need to have a domain name set up for your server. I use Cloudflare to manage my DNS records. You will want to make a CNAME record for your nextcloud subdomain.</p>
 <p>Just add &ldquo;nextcloud&rdquo; as the name and &ldquo;yourwebsite.com&rdquo; as the content. This will make it so &ldquo;nextcloud.yourwebsite.com&rdquo;. Make sure to select &ldquo;DNS Only&rdquo; under proxy status.</p>
 <h3 id="nginx-setup">Nginx Setup</h3>
 <p>Edit your sites-available config at /etc/nginx/sites-available/nextcloud. See comments in the following text box:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>vim /etc/nginx/sites-available/nextcloud
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>vim /etc/nginx/sites-available/nextcloud
 
 # Add this to the file:
 # replace example.org with your domain name
@@ -910,22 +945,22 @@ server {
 }</code></pre></div>
 <h3 id="enable-the-site">Enable the site</h3>
 <p>Create a link between the file you just made and /etc/nginx/sites-enabled</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>ln -s /etc/nginx/sites-available/nextcloud /etc/nginx/sites-enabled/</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ln -s /etc/nginx/sites-available/nextcloud /etc/nginx/sites-enabled/</code></pre></div>
 <h3 id="install-nextcloud">Install Nextcloud</h3>
 <p>Download the latest Nextcloud version. Then extract into /var/www/. Also, update the file&rsquo;s permissions to give nginx access:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>wget https://download.nextcloud.com/server/releases/latest.tar.bz2
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget https://download.nextcloud.com/server/releases/latest.tar.bz2
 tar -xjf latest.tar.bz2 -C /var/www
 chown -R www-data:www-data /var/www/nextcloud
 chmod -R 755 /var/www/nextcloud</code></pre></div>
 <h3 id="start-and-enable-php-fpm-on-startup">Start and enable php-fpm on startup</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>&lt;systemctl enable php8.2fpm --now](&gt;&lt;--may not need this.
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&lt;systemctl enable php8.2fpm --now](&gt;&lt;--may not need this.
 # Do need this-&gt;
 sudo systemctl enable php8.2-fpm.service --now</code></pre></div>
 <h3 id="reload-nginx">Reload nginx</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>systemctl reload nginx</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>systemctl reload nginx</code></pre></div>
 <h3 id="nextcloud-occ-tool">Nextcloud occ tool</h3>
 <p>Here is a built in Nextcloud tool just in case things break. Here is a <a href="https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/occ_command.html" rel="external" target="_blank">guide</a> on troubleshooting with occ. The basic command is as follows:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo -u www-data php /var/www/nextcloud/occ</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo -u www-data php /var/www/nextcloud/occ</code></pre></div>
 <p>Add this as an alias in ~/.bashrc for ease of use.</p>
 <h3 id="you-are-ready-to-log-in-to-nextcloud">You are ready to log in to Nextcloud!</h3>
 <p>Go to your nextcloud domain in a browser. In my case, I head to nextcloud.perfectdarkmode.com. Fill out the form to create your first Nextcloud user:</p>
@@ -947,7 +982,7 @@ sudo systemctl enable php8.2-fpm.service --now</code></pre></div>
 </ul>
 <h3 id="nextcloud-desktop-synchronization">NextCloud desktop synchronization</h3>
 <p>Install the desktop client (Fedora)</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>Sudo dnf install nextcloudclient</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Sudo dnf install nextcloudclient</code></pre></div>
 <p>Install on other distros: <a href="https://help.nextcloud.com/t/install-nextcloud-client-for-opensuse-arch-linux-fedora-ubuntu-based-android-ios/13657" rel="external" target="_blank">https://help.nextcloud.com/t/install-nextcloud-client-for-opensuse-arch-linux-fedora-ubuntu-based-android-ios/13657</a></p>
 <ol>
 <li>Run the nextcloud desktop app and sign in.</li>
@@ -969,7 +1004,7 @@ php_value post_max_size = 16G</p>
 <li>disable maintenance mode (undo first step).</li>
 <li>Make sure your cron-jobs run properly (you admin page tells you when cron ran the last time): <a href="https://docs.nextcloud.org/server/13/admin_manual/configuration_server/background_jobs_configuration.html" rel="external" target="_blank">https://docs.nextcloud.org/server/13/admin_manual/configuration_server/background_jobs_configuration.html 2.7k</a></li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0"><code>mysql -u root -p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mysql -u root -p
 MariaDB [(none)]&gt; use nextcloud;
 MariaDB [nextcloud]&gt; DELETE FROM oc_file_locks WHERE 1;
 
@@ -1005,8 +1040,8 @@ MariaDB [nextcloud]&gt; DELETE FROM oc_file_locks WHERE 1;
 <li>mirroring and striping across multiple disks</li>
 <li>snapshotting of logical volumes.</li>
 </ul>
-<p><a href="#R-image-cc3f47fa5fb8c79ef506467794568fc1" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-0A8W8M1U.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cc3f47fa5fb8c79ef506467794568fc1"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-0A8W8M1U.jpg"></a></p>
+<p><a href="#R-image-60c2bcfbf8572dfeaf226d8b69037e19" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-0A8W8M1U.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-60c2bcfbf8572dfeaf226d8b69037e19"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-0A8W8M1U.jpg"></a></p>
 <ul>
 <li>Made up of three key objects called physical volume, volume group, and logical volume.</li>
 <li>These objects are further virtually broken down into Physical Extents (PEs) and Logical Extents (LEs).</li>
@@ -1020,7 +1055,7 @@ MariaDB [nextcloud]&gt; DELETE FROM oc_file_locks WHERE 1;
 <li>The rest of the device space is available for use.</li>
 </ul>
 <p>You can use an LVM command called <code>pvs</code> (physical volume scan or summary) to scan and list available physical volumes on server2:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
 </span></span><span style="display:flex;"><span>  PV         VG   Fmt  Attr PSize   PFree
 </span></span><span style="display:flex;"><span>  /dev/sda2  rhel lvm2 a--  &lt;19.00g    <span style="color:#ff9f43">0</span></span></span></code></pre></div>
 <ul>
@@ -1039,7 +1074,7 @@ about the physical volume.</p>
 <li>A copy of the volume group metadata is stored and maintained at two distinct locations on each physical volume within the volume group.</li>
 </ul>
 <p>Use <code>vgs</code> (volume group scan or summary) to scan and list available volume groups on server2:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
 </span></span><span style="display:flex;"><span>  VG   <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree</span>
 </span></span><span style="display:flex;"><span>  rhel   <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g    <span style="color:#ff9f43">0</span></span></span></code></pre></div>
 <ul>
@@ -1057,7 +1092,7 @@ about the volume group.</p>
 <li>Any physical volumes added to this volume group thereafter will use the same PE size.</li>
 </ul>
 <p>Use <code>vgdisplay</code> (volume group display) on server2 and grep for &lsquo;PE Size&rsquo; to view the PE size used in the rhel volume group:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay rhel | grep &#39;PE Size&#39;</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay rhel | grep &#39;PE Size&#39;</span>
 </span></span><span style="display:flex;"><span>  PE Size               4.00 MiB</span></span></code></pre></div>
 <h3 id="logical-volume">Logical Volume</h3>
 <ul>
@@ -1068,7 +1103,7 @@ about the volume group.</p>
 <p>The default naming convention used for logical volumes is lvol0, lvol1,
 lvol2, and so on you may assign custom names to them.</p>
 <p>Use <code>lvs</code> (logical volume scan or summary) to scan and list available logical volumes on server2:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
 </span></span><span style="display:flex;"><span>  LV   VG   Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
 </span></span><span style="display:flex;"><span>  root rhel -wi-ao---- &lt;17.00g                                                    
 </span></span><span style="display:flex;"><span>  swap rhel -wi-ao----   2.00g</span></span></code></pre></div>
@@ -1086,7 +1121,7 @@ lvol2, and so on you may assign custom names to them.</p>
 <li>The default LE size is 4MB, which corresponds to the default PE size of 4MB.</li>
 </ul>
 <p>Use <code>lvdisplay</code> (logical volume display) on server2 to view information about the root logical volume in the rhel volume group.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvdisplay /dev/rhel/root</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvdisplay /dev/rhel/root</span>
 </span></span><span style="display:flex;"><span>  --- Logical volume ---
 </span></span><span style="display:flex;"><span>  LV Path                /dev/rhel/root
 </span></span><span style="display:flex;"><span>  LV Name                root
@@ -1169,7 +1204,7 @@ lvol2, and so on you may assign custom names to them.</p>
 <li>list and display the volume group and the physical volumes.</li>
 </ul>
 <p>1. Create a partition of size 90MB on sdd using the parted command and confirm. You need to label the disk first, as it is a new disk.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mklabel msdos</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mklabel msdos</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mkpart primary 1 91m               </span>
@@ -1185,7 +1220,7 @@ lvol2, and so on you may assign custom names to them.</p>
 </span></span><span style="display:flex;"><span>Number  Start   End     Size    Type     File system  Flags
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  91.2MB  90.2MB  primary</span></span></code></pre></div>
 <p>2. Initialize the sdd1 partition and the sde disk using the <code>pvcreate</code> command. Note that there is no need to apply a disk label on sde with parted as LVM does not require it.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdd1 /dev/sde -v</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdd1 /dev/sde -v</span>
 </span></span><span style="display:flex;"><span>  Wiping signatures on new PV /dev/sdd1.
 </span></span><span style="display:flex;"><span>  Wiping signatures on new PV /dev/sde.
 </span></span><span style="display:flex;"><span>  Set up physical volume <span style="color:#ff6ac1">for</span> <span style="color:#5af78e">&#34;/dev/sdd1&#34;</span> with <span style="color:#ff9f43">176128</span> available sectors.
@@ -1198,7 +1233,7 @@ lvol2, and so on you may assign custom names to them.</p>
 </span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sde&#34;</span> successfully created.</span></span></code></pre></div>
 <p>3. Create vgbook volume group using the <code>vgcreate</code> command and add the two physical volumes to it. Use the -s option to specify the PE size in
 MBs.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate -vs 16 vgbook /dev/sdd1 /dev/sde</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate -vs 16 vgbook /dev/sdd1 /dev/sde</span>
 </span></span><span style="display:flex;"><span>  Wiping signatures on new PV /dev/sdd1.
 </span></span><span style="display:flex;"><span>  Wiping signatures on new PV /dev/sde.
 </span></span><span style="display:flex;"><span>  Adding physical volume <span style="color:#5af78e">&#39;/dev/sdd1&#39;</span> to volume group <span style="color:#5af78e">&#39;vgbook&#39;</span>
@@ -1206,11 +1241,11 @@ MBs.</p>
 </span></span><span style="display:flex;"><span>  Creating volume group backup <span style="color:#5af78e">&#34;/etc/lvm/backup/vgbook&#34;</span> <span style="color:#ff6ac1">(</span>seqno 1<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgbook&#34;</span> successfully created</span></span></code></pre></div>
 <p>4. List the volume group information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs vgbook</span>
 </span></span><span style="display:flex;"><span>  VG     <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree  </span>
 </span></span><span style="display:flex;"><span>  vgbook   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span>   <span style="color:#ff9f43">0</span> wz--n- 320.00m 320.00m</span></span></code></pre></div>
 <p>5. Display detailed information about the volume group and the physical volumes it contains:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgbook</span>
 </span></span><span style="display:flex;"><span>  --- Volume group ---
 </span></span><span style="display:flex;"><span>  VG Name               vgbook
 </span></span><span style="display:flex;"><span>  System ID             
@@ -1243,13 +1278,13 @@ MBs.</p>
 </span></span><span style="display:flex;"><span>  PV Status             allocatable
 </span></span><span style="display:flex;"><span>  Total PE / Free PE    <span style="color:#ff9f43">15</span> / <span style="color:#ff9f43">15</span></span></span></code></pre></div>
 <p>6. List the physical volume information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
 </span></span><span style="display:flex;"><span>  PV         VG     Fmt  Attr PSize   PFree  
 </span></span><span style="display:flex;"><span>  /dev/sda2  rhel   lvm2 a--  &lt;19.00g      <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span>  /dev/sdd1  vgbook lvm2 a--   80.00m  80.00m
 </span></span><span style="display:flex;"><span>  /dev/sde   vgbook lvm2 a--  240.00m 240.00m</span></span></code></pre></div>
 <p>7. Display detailed information about the physical volumes:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvdisplay /dev/sdd1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvdisplay /dev/sdd1</span>
 </span></span><span style="display:flex;"><span>  --- Physical volume ---
 </span></span><span style="display:flex;"><span>  PV Name               /dev/sdd1
 </span></span><span style="display:flex;"><span>  VG Name               vgbook
@@ -1270,7 +1305,7 @@ MBs.</p>
 <li>Display the details of the volume group and the logical volumes.</li>
 </ul>
 <p>1. Create a logical volume with the default name lvol0 using the <code>lvcreate</code> command. Use the -L option to specify the logical volume size, 120MB. You may use the -v, -vv, or -vvv option with the command for verbosity.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -vL 120 vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -vL 120 vgbook</span>
 </span></span><span style="display:flex;"><span>  Rounding up size to full physical extent 128.00 MiB
 </span></span><span style="display:flex;"><span>  Creating logical volume lvol0
 </span></span><span style="display:flex;"><span>  Archiving volume group <span style="color:#5af78e">&#34;vgbook&#34;</span> metadata <span style="color:#ff6ac1">(</span>seqno 1<span style="color:#ff6ac1">)</span>.
@@ -1295,17 +1330,17 @@ MBs.</p>
 </li>
 </ul>
 <p>2. Create lvbook1 of size 192MB (16x12) using the <code>lvcreate</code> command. Use the -l switch to specify the size in logical extents and -n for the custom name.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -l 12 -n lvbook1 vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -l 12 -n lvbook1 vgbook</span>
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvbook1&#34;</span> created.</span></span></code></pre></div>
 <p>3. List the logical volume information:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
 </span></span><span style="display:flex;"><span>  LV      VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
 </span></span><span style="display:flex;"><span>  root    rhel   -wi-ao---- &lt;17.00g                                                    
 </span></span><span style="display:flex;"><span>  swap    rhel   -wi-ao----   2.00g                                                    
 </span></span><span style="display:flex;"><span>  lvbook1 vgbook -wi-a----- 192.00m                                                    
 </span></span><span style="display:flex;"><span>  lvol0   vgbook -wi-a----- 128.00m </span></span></code></pre></div>
 <p>4. Display detailed information about the volume group including the logical volumes and the physical volumes:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgbook</span>
 </span></span><span style="display:flex;"><span>  --- Volume group ---
 </span></span><span style="display:flex;"><span>  VG Name               vgbook
 </span></span><span style="display:flex;"><span>  System ID             
@@ -1373,7 +1408,7 @@ MBs.</p>
 </span></span><span style="display:flex;"><span>  Total PE / Free PE    <span style="color:#ff9f43">15</span> / <span style="color:#ff9f43">0</span></span></span></code></pre></div>
 <p>Alternatively, you can run the following to view only the logical volume
 details:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvdisplay /dev/vgbook/lvol0</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvdisplay /dev/vgbook/lvol0</span>
 </span></span><span style="display:flex;"><span>  --- Logical volume ---
 </span></span><span style="display:flex;"><span>  LV Path                /dev/vgbook/lvol0
 </span></span><span style="display:flex;"><span>  LV Name                lvol0
@@ -1390,7 +1425,7 @@ details:</p>
 </span></span><span style="display:flex;"><span>  Read ahead sectors     auto
 </span></span><span style="display:flex;"><span>  - currently <span style="color:#ff5c57">set</span> to     <span style="color:#ff9f43">8192</span>
 </span></span><span style="display:flex;"><span>  Block device           253:2</span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvdisplay /dev/vgbook/lvbook1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvdisplay /dev/vgbook/lvbook1</span>
 </span></span><span style="display:flex;"><span>  --- Logical volume ---
 </span></span><span style="display:flex;"><span>  LV Path                /dev/vgbook/lvbook1
 </span></span><span style="display:flex;"><span>  LV Name                lvbook1
@@ -1415,7 +1450,7 @@ details:</p>
 <li>Display basic information for the physical volumes, volume group, and logical volume.</li>
 </ul>
 <p>1. Create a partition of size 158MB on sdd using the parted command. Display the new partition to confirm the partition number and size.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdd mkpart primary 91 250</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdd mkpart primary 91 250</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd print                              </span>
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
@@ -1428,24 +1463,24 @@ details:</p>
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  91.2MB  90.2MB  primary
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">2</span>      92.3MB  250MB   157MB   primary               lvm</span></span></code></pre></div>
 <p>2. Initialize sdd2 using the pvcreate command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdd2</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdd2</span>
 </span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdd2&#34;</span> successfully created.</span></span></code></pre></div>
 <p>3. Extend vgbook by adding the new physical volume to it:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vgbook /dev/sdd2</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vgbook /dev/sdd2</span>
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgbook&#34;</span> successfully extended</span></span></code></pre></div>
 <p>4. List the volume group:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
 </span></span><span style="display:flex;"><span>  VG     <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree  </span>
 </span></span><span style="display:flex;"><span>  rhel     <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g      <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span>  vgbook   <span style="color:#ff9f43">3</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- 464.00m 144.00m</span></span></code></pre></div>
 <p>5. Extend the size of lvbook1 to 340MB by adding 144MB using the <code>lvextend</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvextend -L +144 /dev/vgbook/lvbook1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvextend -L +144 /dev/vgbook/lvbook1</span>
 </span></span><span style="display:flex;"><span>  Size of logical volume vgbook/lvbook1 changed from 192.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">12</span> extents<span style="color:#ff6ac1">)</span> to 336.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">21</span> extents<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Logical volume vgbook/lvbook1 successfully resized.</span></span></code></pre></div>
 <p>EXAM TIP: Make sure the expansion of a logical volume does not affect the file system and the data it contains.</p>
 <p>6. Issue vgdisplay on vgbook with the -v switch for the updated
 details:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgbook</span>
 </span></span><span style="display:flex;"><span>  --- Volume group ---
 </span></span><span style="display:flex;"><span>  VG Name               vgbook
 </span></span><span style="display:flex;"><span>  System ID             
@@ -1517,14 +1552,14 @@ details:</p>
 </span></span><span style="display:flex;"><span>  PV Status             allocatable
 </span></span><span style="display:flex;"><span>  Total PE / Free PE    <span style="color:#ff9f43">9</span> / <span style="color:#ff9f43">0</span></span></span></code></pre></div>
 <p>7. View a summary of the physical volumes:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
 </span></span><span style="display:flex;"><span>  PV         VG     Fmt  Attr PSize   PFree
 </span></span><span style="display:flex;"><span>  /dev/sda2  rhel   lvm2 a--  &lt;19.00g    <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span>  /dev/sdd1  vgbook lvm2 a--   80.00m    <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span>  /dev/sdd2  vgbook lvm2 a--  144.00m    <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span>  /dev/sde   vgbook lvm2 a--  240.00m    <span style="color:#ff9f43">0</span></span></span></code></pre></div>
 <p>8. View a summary of the logical volumes:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
 </span></span><span style="display:flex;"><span>  LV      VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
 </span></span><span style="display:flex;"><span>  root    rhel   -wi-ao---- &lt;17.00g                                                    
 </span></span><span style="display:flex;"><span>  swap    rhel   -wi-ao----   2.00g                                                    
@@ -1540,21 +1575,21 @@ details:</p>
 </ul>
 <p>1. Rename lvol0 to lvbook2 using the <code>lvrename</code> command and confirm with
 lvs:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvrename vgbook lvol0 lvbook2</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvrename vgbook lvol0 lvbook2</span>
 </span></span><span style="display:flex;"><span>  Renamed <span style="color:#5af78e">&#34;lvol0&#34;</span> to <span style="color:#5af78e">&#34;lvbook2&#34;</span> in volume group <span style="color:#5af78e">&#34;vgbook&#34;</span></span></span></code></pre></div>
 <p>2. Reduce the size of lvbook2 to 50MB with the <code>lvreduce</code> command. Specify the absolute desired size for the logical volume. Answer &ldquo;Do you really want to reduce vgbook/lvbook2?&rdquo; in the affirmative.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvreduce -L 50 /dev/vgbook/lvbook2</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvreduce -L 50 /dev/vgbook/lvbook2</span>
 </span></span><span style="display:flex;"><span>  Rounding size to boundary between physical extents: 64.00 MiB.
 </span></span><span style="display:flex;"><span>  No file system found on /dev/vgbook/lvbook2.
 </span></span><span style="display:flex;"><span>  Size of logical volume vgbook/lvbook2 changed from 128.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">8</span> extents<span style="color:#ff6ac1">)</span> to 64.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">4</span> extents<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Logical volume vgbook/lvbook2 successfully resized.</span></span></code></pre></div>
 <p>3. Add 32MB to lvbook2 with the lvresize command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvresize -L +32 /dev/vgbook/lvbook2</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvresize -L +32 /dev/vgbook/lvbook2</span>
 </span></span><span style="display:flex;"><span>  Size of logical volume vgbook/lvbook2 changed from 64.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">4</span> extents<span style="color:#ff6ac1">)</span> to 96.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">6</span> extents<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Logical volume vgbook/lvbook2 successfully resized.</span></span></code></pre></div>
 <p>4. Use the pvs, lvs, vgs, and vgdisplay commands to view the updated
 allocation.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvs</span>
 </span></span><span style="display:flex;"><span>  PV         VG     Fmt  Attr PSize   PFree 
 </span></span><span style="display:flex;"><span>  /dev/sda2  rhel   lvm2 a--  &lt;19.00g     <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span>  /dev/sdd1  vgbook lvm2 a--   80.00m     <span style="color:#ff9f43">0</span> 
@@ -1618,7 +1653,7 @@ allocation.</p>
 <p>5. Remove both lvbook1 and lvbook2 logical volumes using the <code>lvremove</code>
 command. Use the <code>-f</code> option to suppress the &ldquo;Do you really want to remove
 active logical volume&rdquo; message.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvremove /dev/vgbook/lvbook1 -f</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvremove /dev/vgbook/lvbook1 -f</span>
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvbook1&#34;</span> successfully removed.
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvremove /dev/vgbook/lvbook2 -f</span>
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvbook2&#34;</span> successfully removed.</span></span></code></pre></div>
@@ -1629,7 +1664,7 @@ active logical volume&rdquo; message.</p>
 <br>
 6. Execute the <code>vgdisplay</code> command and grep for &ldquo;Cur LV&rdquo; to see the number of logical volumes currently available in vgbook. It should show 0, as you have removed both logical volumes.</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay vgbook | grep &#39;Cur LV&#39;</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay vgbook | grep &#39;Cur LV&#39;</span>
 </span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">0</span></span></span></code></pre></div>
 <h3 id="exercise-13-10-reduce-and-remove-a-volume-groupserver2">Exercise 13-10: Reduce and Remove a Volume Group(server2)</h3>
 <p>\</p>
@@ -1639,17 +1674,17 @@ active logical volume&rdquo; message.</p>
 <li>Confirm the deletion of the volume group and the logical volumes at the end.</li>
 </ul>
 <p>1. Remove sdd1 and sde physical volumes from vgbook by issuing the <code>vgreduce</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgreduce vgbook /dev/sdd1 /dev/sde</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgreduce vgbook /dev/sdd1 /dev/sde</span>
 </span></span><span style="display:flex;"><span>  Removed <span style="color:#5af78e">&#34;/dev/sdd1&#34;</span> from volume group <span style="color:#5af78e">&#34;vgbook&#34;</span>
 </span></span><span style="display:flex;"><span>  Removed <span style="color:#5af78e">&#34;/dev/sde&#34;</span> from volume group <span style="color:#5af78e">&#34;vgbook&#34;</span></span></span></code></pre></div>
 <p>2. Remove the volume group using the <code>vgremove</code> command. This will also remove the last physical volume, sdd2, from it.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgremove vgbook</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgremove vgbook</span>
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgbook&#34;</span> successfully removed</span></span></code></pre></div>
 <ul>
 <li>Use the <code>-f</code> option with the <code>vgremove</code> command to force the volume group removal even if it contains any number of logical and physical volumes in it.</li>
 </ul>
 <p>3. Execute the <code>vgs</code> and <code>lvs</code> commands for confirmation:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
 </span></span><span style="display:flex;"><span>  VG   <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree</span>
 </span></span><span style="display:flex;"><span>  rhel   <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g    <span style="color:#ff9f43">0</span> 
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
@@ -1664,22 +1699,22 @@ active logical volume&rdquo; message.</p>
 <li>Verify that all disks used in Exercises 13-6 to 13-10 are now in their original raw state.</li>
 </ul>
 <p>1. Remove the LVM structures from sdd1, sdd2, and sde using the <code>pvremove</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvremove /dev/sdd1 /dev/sdd2 /dev/sde</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvremove /dev/sdd1 /dev/sdd2 /dev/sde</span>
 </span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdd1&#34;</span> successfully wiped.
 </span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdd2&#34;</span> successfully wiped.
 </span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sde&#34;</span> successfully wiped.</span></span></code></pre></div>
 <p>2. Confirm the removal using the <code>pvs</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
 </span></span><span style="display:flex;"><span>  PV         VG   Fmt  Attr PSize   PFree
 </span></span><span style="display:flex;"><span>  /dev/sda2  rhel lvm2 a--  &lt;19.00g    <span style="color:#ff9f43">0</span> </span></span></code></pre></div>
 <p>The partitions and the disk are now back to their raw state and can be repurposed.</p>
 <p>3. Remove the partitions from sdd using the <code>parted</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd rm 1 ; sudo parted /dev/sdd rm 2</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd rm 1 ; sudo parted /dev/sdd rm 2</span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.  </span></span></code></pre></div>
 <p>4. Verify that all disks used in previous exercises have returned to their original raw state using the lsblk command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk                                                   </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk                                                   </span>
 </span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
@@ -1714,8 +1749,8 @@ active logical volume&rdquo; message.</p>
 <li>Makes use of thin provisioning to identify and eliminate empty (zero-byte) data blocks. (zero-block elimination)</li>
 <li>Removes randomization of data blocks by moving in-use data blocks to contiguous locations on the storage device.</li>
 </ul>
-<p><a href="#R-image-46209edc786b6cefcafa2948952aea5a" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-46209edc786b6cefcafa2948952aea5a"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
+<p><a href="#R-image-894a8aa3f28144a53fce9bbee6276d46" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-894a8aa3f28144a53fce9bbee6276d46"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
 <p><strong>Stage 2</strong></p>
 <ul>
 <li>If it detects that new data is an identical copy of some existing data, it makes an internal note of it but does not actually write the redundant data to the disk. (de-duplication)</li>
@@ -1763,13 +1798,13 @@ Not installed by default?</li>
 <li>Create a VDO volume called lvvdo with a virtual size of 20GB.</li>
 </ul>
 <p>1. Initialize the sdf disk using the pvcreate command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdf</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdf</span>
 </span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdf&#34;</span> successfully created.</span></span></code></pre></div>
 <p>2. Create vgvdo volume group using the vgcreate command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate vgvdo /dev/sdf</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate vgvdo /dev/sdf</span>
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo&#34;</span> successfully created</span></span></code></pre></div>
 <p>3. Display basic information about the volume group:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay vgvdo</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay vgvdo</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  --- Volume group ---
@@ -1793,14 +1828,14 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">1279</span> / &lt;5.00 GiB
 </span></span><span style="display:flex;"><span>  VG UUID               tED1vC-Ylec-fpeR-KM8F-8FzP-eaQ4-AsFrgc</span></span></code></pre></div>
 <p>4. Create a VDO volume called lvvdo using the <code>lvcreate</code> command. Use the -l option to specify the number of logical extents (1279) to be allocated and the -V option for the amount of virtual space.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo dnf install kmod-kvdo</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo dnf install kmod-kvdo</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate --type vdo -l 1279 -n lvvdo -V 20G vgvdo</span>
 </span></span><span style="display:flex;"><span>    The VDO volume can address <span style="color:#ff9f43">2</span> GB in <span style="color:#ff9f43">1</span> data slab.
 </span></span><span style="display:flex;"><span>    It can grow to address at most <span style="color:#ff9f43">16</span> TB of physical storage in <span style="color:#ff9f43">8192</span> slabs.
 </span></span><span style="display:flex;"><span>    If a larger maximum size might be needed, use bigger slabs.
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvvdo&#34;</span> created.</span></span></code></pre></div>
 <p>5. Display detailed information about the volume group including the logical volume and the physical volume:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgvdo</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgvdo</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  --- Volume group ---
@@ -1876,12 +1911,12 @@ Not installed by default?</li>
 <li>confirm the deletion.</li>
 </ul>
 <p>1. Remove the volume group along with the VDO volumes using the vgremove command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgremove vgvdo -f</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgremove vgvdo -f</span>
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvvdo&#34;</span> successfully removed.
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo&#34;</span> successfully removed</span></span></code></pre></div>
 <p>Remember to proceed with caution whenever you perform erase operations.</p>
 <p>2. Execute <code>sudo vgs</code> and <code>sudo lvs</code> commands for confirmation.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  VG   <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree</span>
@@ -1894,17 +1929,17 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>  root rhel -wi-ao---- &lt;17.00g                                                    
 </span></span><span style="display:flex;"><span>  swap rhel -wi-ao----   2.00g  </span></span></code></pre></div>
 <p>3. Remove the LVM structures from sdf using the <code>pvremove</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvremove /dev/sdf</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvremove /dev/sdf</span>
 </span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdf&#34;</span> successfully wiped.</span></span></code></pre></div>
 <p>4. Confirm the removal by running <code>sudo pvs</code>.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  PV         VG   Fmt  Attr PSize   PFree
 </span></span><span style="display:flex;"><span>  /dev/sda2  rhel lvm2 a--  &lt;19.00g    <span style="color:#ff9f43">0</span> </span></span></code></pre></div>
 <p>The disk is now back to its raw state and can be repurposed.</p>
 <p>5. Verify that the sdf disk used in the previous exercises has returned to its original raw state using the <code>lsblk</code> command:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
 </span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
@@ -1921,7 +1956,7 @@ Not installed by default?</li>
 <h2 id="storage-dyi-labs">Storage DYI Labs</h2>
 <h3 id="lab-13-1-create-and-remove-partitions-with-parted">Lab 13-1: Create and Remove Partitions with parted</h3>
 <p>Create a 100MB primary partition on one of the available 250MB disks (lsblk) by invoking the parted utility directly at the command prompt. Apply label &ldquo;msdos&rdquo; if the disk is new.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
 </span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">continue</span>?
 </span></span><span style="display:flex;"><span>Yes/No? yes                                                               
@@ -1930,13 +1965,13 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 1 101m             </span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
 <p>Create another 100MB partition by running parted interactively while ensuring that the second partition won&rsquo;t overlap the first.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb</span>
 </span></span><span style="display:flex;"><span>GNU Parted 3.5
 </span></span><span style="display:flex;"><span>Using /dev/sdb
 </span></span><span style="display:flex;"><span>Welcome to GNU Parted! Type <span style="color:#5af78e">&#39;help&#39;</span> to view a list of commands.
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">(</span>parted<span style="color:#ff6ac1">)</span> mkpart primary <span style="color:#ff9f43">101</span> 201m                                         </span></span></code></pre></div>
 <p>Verify the label and the partitions.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">(</span>parted<span style="color:#ff6ac1">)</span> print                                                            
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">(</span>parted<span style="color:#ff6ac1">)</span> print                                                            
 </span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
@@ -1947,10 +1982,10 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  101MB  99.6MB  primary
 </span></span><span style="display:flex;"><span> <span style="color:#ff9f43">2</span>      101MB   201MB  101MB   primary</span></span></code></pre></div>
 <p>Remove both partitions at the command prompt.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1 rm 2</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1 rm 2</span></span></span></code></pre></div>
 <h3 id="lab-13-2-create-and-remove-partitions-with-gdisk">Lab 13-2: Create and Remove Partitions with gdisk</h3>
 <p>Create two 80MB partitions on one of the 250MB disks (lsblk) using the gdisk utility. Make sure the partitions won&rsquo;t overlap.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
 </span></span><span style="display:flex;"><span>This option deletes all partitions and creates a new protective MBR.
 </span></span><span style="display:flex;"><span>Proceed? <span style="color:#ff6ac1">(</span>Y/N<span style="color:#ff6ac1">)</span>: y
 </span></span><span style="display:flex;"><span>
@@ -1983,7 +2018,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>Hex code or GUID <span style="color:#ff6ac1">(</span>L to show codes, <span style="color:#ff5c57">Enter</span> <span style="color:#ff6ac1">=</span> 8300<span style="color:#ff6ac1">)</span>: 
 </span></span><span style="display:flex;"><span>Changed <span style="color:#ff5c57">type</span> of partition to <span style="color:#5af78e">&#39;Linux filesystem&#39;</span></span></span></code></pre></div>
 <p>Verify the partitions.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
 </span></span><span style="display:flex;"><span>Disk /dev/sdb: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
 </span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
 </span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
@@ -1998,7 +2033,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">1</span>            <span style="color:#ff9f43">2048</span>          <span style="color:#ff9f43">165887</span>   80.0 MiB    <span style="color:#ff9f43">8300</span>  Linux filesystem
 </span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">2</span>          <span style="color:#ff9f43">165888</span>          <span style="color:#ff9f43">329727</span>   80.0 MiB    <span style="color:#ff9f43">8300</span>  Linux filesystem</span></span></code></pre></div>
 <p>Save</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
 </span></span><span style="display:flex;"><span>PARTITIONS!!
@@ -2007,7 +2042,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>OK; writing new GUID partition table <span style="color:#ff6ac1">(</span>GPT<span style="color:#ff6ac1">)</span> to /dev/sdb.
 </span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
 <p>Delete the partitions</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d  
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d  
 </span></span><span style="display:flex;"><span>Partition number <span style="color:#ff6ac1">(</span>1-2<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">1</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d
@@ -2023,7 +2058,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
 <h3 id="lab-13-3-create-volume-group-and-logical-volumes">Lab 13-3: Create Volume Group and Logical Volumes</h3>
 <p>initialize 1x250MB disk for use in LVM (use lsblk to identify available disks).</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mklabel msdos</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mklabel msdos</span>
 </span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/sdd will be destroyed and all data
 </span></span><span style="display:flex;"><span>on this disk will be lost. Do you want to <span style="color:#ff6ac1">continue</span>?
 </span></span><span style="display:flex;"><span>Yes/No? yes                                                               
@@ -2046,13 +2081,13 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdd1&#34;</span> successfully created.</span></span></code></pre></div>
 <p>(Can also just use the full disk without making it into a partition first.)</p>
 <p>Create volume group vg100 with PE size 16MB and add the physical volume.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate -vs 16 vg100 /dev/sdd1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate -vs 16 vg100 /dev/sdd1</span>
 </span></span><span style="display:flex;"><span>  Wiping signatures on new PV /dev/sdd1.
 </span></span><span style="display:flex;"><span>  Adding physical volume <span style="color:#5af78e">&#39;/dev/sdd1&#39;</span> to volume group <span style="color:#5af78e">&#39;vg100&#39;</span>
 </span></span><span style="display:flex;"><span>  Creating volume group backup <span style="color:#5af78e">&#34;/etc/lvm/backup/vg100&#34;</span> <span style="color:#ff6ac1">(</span>seqno 1<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vg100&#34;</span> successfully created</span></span></code></pre></div>
 <p>Create two logical volumes lvol0 and swapvol of sizes 90MB and 120MB.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -vL 90 vg100</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -vL 90 vg100</span>
 </span></span><span style="display:flex;"><span>  Creating logical volume lvol0
 </span></span><span style="display:flex;"><span>  Archiving volume group <span style="color:#5af78e">&#34;vg100&#34;</span> metadata <span style="color:#ff6ac1">(</span>seqno 1<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Activating logical volume vg100/lvol0.
@@ -2068,7 +2103,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -l 8 -n swapvol vg100</span>
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;swapvol&#34;</span> created.</span></span></code></pre></div>
 <p>Use the vgs, pvs, lvs, and vgdisplay commands for verification.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  LV      VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
@@ -2136,7 +2171,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>  VG UUID               UiK3fy-FGOc-2fnP-C1Y6-JS0l-irEe-Sq3c4h</span></span></code></pre></div>
 <h3 id="lab-13-4-expand-volume-group-and-logical-volume">Lab 13-4: Expand Volume Group and Logical Volume</h3>
 <p>Create a partition on an available 250MB disk and initialize it for use in LVM (use lsblk to identify available disks).</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb mklabel msdos</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb mklabel msdos</span>
 </span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to <span style="color:#ff6ac1">continue</span>?
 </span></span><span style="display:flex;"><span>Yes/No? yes                                                               
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
@@ -2144,16 +2179,16 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb mkpart primary 1 250m                   </span>
 </span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
 <p>Add the new physical volume to vg100.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vg100 /dev/sdb1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vg100 /dev/sdb1</span>
 </span></span><span style="display:flex;"><span>  Device /dev/sdb1 has updated name <span style="color:#ff6ac1">(</span>devices file /dev/sdd1<span style="color:#ff6ac1">)</span>
 </span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdb1&#34;</span> successfully created.
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vg100&#34;</span> successfully extended</span></span></code></pre></div>
 <p>Expand the lvol0 logical volume to size 300MB.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvextend -L +210 /dev/vg100/lvol0</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvextend -L +210 /dev/vg100/lvol0</span>
 </span></span><span style="display:flex;"><span>  Size of logical volume vg100/lvol0 changed from 90.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">6</span> extents<span style="color:#ff6ac1">)</span> to 300.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">20</span> extents<span style="color:#ff6ac1">)</span>.
 </span></span><span style="display:flex;"><span>  Logical volume vg100/lvol0 successfully resized.</span></span></code></pre></div>
 <p>Use the vgs, pvs, lvs, and vgdisplay commands for verification.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  LV      VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
 </span></span><span style="display:flex;"><span>  root    rhel  -wi-ao---- &lt;17.00g                                                    
@@ -2231,13 +2266,13 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>   </span></span></code></pre></div>
 <h3 id="lab-13-5-add-a-vdo-logical-volume">Lab 13-5: Add a VDO Logical Volume</h3>
 <p>initialize the sdf disk for use in LVM and add it to vgvdo1.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvcreate /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvcreate /dev/sdc</span>
 </span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdc&#34;</span> successfully created.
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vgvdo1 /dev/sdc</span>
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo1&#34;</span> successfully extended</span></span></code></pre></div>
 <p>Create a VDO logical volume named vdovol using the entire disk capacity.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvcreate --type vdo -n vdovol -l 100%FREE vgvdo1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvcreate --type vdo -n vdovol -l 100%FREE vgvdo1</span>
 </span></span><span style="display:flex;"><span>WARNING: LVM2_member signature detected on /dev/vgvdo1/vpool0 at offset 536. Wipe it? <span style="color:#ff6ac1">[</span>y/n<span style="color:#ff6ac1">]</span>: y
 </span></span><span style="display:flex;"><span>  Wiping LVM2_member signature on /dev/vgvdo1/vpool0.
 </span></span><span style="display:flex;"><span>    Logical blocks defaulted to <span style="color:#ff9f43">523108</span> blocks.
@@ -2246,7 +2281,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>    If a larger maximum size might be needed, use bigger slabs.
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;vdovol&#34;</span> created.</span></span></code></pre></div>
 <p>Use the vgs, pvs, lvs, and vgdisplay commands for verification.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgs</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgs</span>
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB123ecea1-63467dee PVID RjcGRyHDIWY0OqAgfIHC93WT03Na1WoO last seen on /dev/sdd1 not found.
 </span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VBa5e3cbf7-10921e08 PVID qeP9dCevNnTy422I8p18NxDKQ2WyDodU last seen on /dev/sdf1 not found.
@@ -2256,7 +2291,7 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>  vgvdo1   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n-  &lt;5.24g 248.00m</span></span></code></pre></div>
 <h3 id="lab-13-6-reduce-and-remove-logical-volumes">Lab 13-6: Reduce and Remove Logical Volumes</h3>
 <p>reduce the size of vdovol logical volume to 80MB.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvreduce -L 80 /dev/vgvdo1/vdovol</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvreduce -L 80 /dev/vgvdo1/vdovol</span>
 </span></span><span style="display:flex;"><span>  No file system found on /dev/vgvdo1/vdovol.
 </span></span><span style="display:flex;"><span>  WARNING: /dev/vgvdo1/vdovol: Discarding 1.91 GiB at offset 83886080, please wait...
 </span></span><span style="display:flex;"><span>  Size of logical volume vgvdo1/vdovol changed from 1.99 GiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">510</span> extents<span style="color:#ff6ac1">)</span> to 80.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">20</span> extents<span style="color:#ff6ac1">)</span>.
@@ -2273,21 +2308,21 @@ Not installed by default?</li>
 </span></span><span style="display:flex;"><span>  vpool0 vgvdo1 dwi-------  &lt;5.00g               60.00                                  
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># </span></span></span></code></pre></div>
 <p>erase logical volume vdovol.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvremove /dev/vgvdo1/vdovol</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvremove /dev/vgvdo1/vdovol</span>
 </span></span><span style="display:flex;"><span>Do you really want to remove active logical volume vgvdo1/vdovol? <span style="color:#ff6ac1">[</span>y/n<span style="color:#ff6ac1">]</span>: y
 </span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;vdovol&#34;</span> successfully removed.</span></span></code></pre></div>
 <p>Confirm the deletion with vgs, pvs, lvs, and vgdisplay commands.</p>
 <h3 id="lab-13-7-remove-volume-group-and-physical-volumes">Lab 13-7: Remove Volume Group and Physical Volumes</h3>
 <p>\remove the volume group and uninitialized the physical volumes.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgremove vgvdo1</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgremove vgvdo1</span>
 </span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo1&#34;</span> successfully removed</span></span></code></pre></div>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvremove /dev/sdc</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvremove /dev/sdc</span>
 </span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdc&#34;</span> successfully wiped.
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvremove /dev/sdf</span>
 </span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdf&#34;</span> successfully wiped.</span></span></code></pre></div>
 <p>Confirm the deletion with vgs, pvs, lvs, and vgdisplay commands.</p>
 <p>Use the lsblk command and verify that the disks used for the LVM labs no longer show LVM information.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
 </span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 </span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
 </span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
@@ -2308,37 +2343,34 @@ Not installed by default?</li>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1742214765" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1742214765" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1742214765" defer></script>
-    <script src="/js/js-yaml.min.js?1742214765" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1742214765" defer></script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>
