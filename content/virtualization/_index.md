@@ -2,7 +2,7 @@
 archetype = "moc" 
 menuPre = '<i class="fa-fw fas fa-server"></i> '
 title = "Virtualization" 
-weight = 10
+weight = 11
 alwaysopen = false
 [_build]
   render = "always"

@@ -2,7 +2,7 @@
 categories = ["keyboard"] 
 menuPre = '<i class="fa-fw fas fa-keyboard"></i> '
 title = "Keyboard" 
-weight = 5
+weight = 6
 archetype = "moc" 
 alwaysopen = false
 [_build]

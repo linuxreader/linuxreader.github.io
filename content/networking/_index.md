@@ -2,7 +2,7 @@
 archetype = "moc" 
 title = "Networking" 
 menuPre = '<i class="fa-fw fas fa-network-wired"></i> '
-weight = 6
+weight = 7
 alwaysopen = false
 [_build]
   render = "always"

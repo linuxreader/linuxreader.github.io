@@ -8,7 +8,7 @@ When you first download Fedora Workstation, it's going to be a little hard to fi
 
 This is because Fedora with Gnome desktop is a blank canvas. The point is to let you customize it to your needs. When I first install Fedora, I pull my justfile to install most of the programs I use:
 
-	`curl -O https://raw.githubusercontent.com/linuxreader/dotfiles/main/dot_justfile >> ~/.justfile`
+	`curl -sL https://raw.githubusercontent.com/linuxreader/dotfiles/main/dot_justfile -o ~/.justfile`
 
 ## Install just and run the justfile
 
@@ -16,7 +16,7 @@ To run the just file, I then install the just program and run it on the justfile
 
 `dnf install just`
 
-`just ~/.justfile`
+`just first-install`
 
 This is my current .justfile:
 ```bash
@@ -30,7 +30,6 @@ first-install:
       flathub org.libreoffice.LibreOffice \
       flathub org.remmina.Remmina \
       flathub com.termius.Termius \
-      flathub net.devolutions.RDM \
       flathub com.slack.Slack \
       flathub org.keepassxc.KeePassXC \
       flathub md.obsidian.Obsidian \
@@ -48,7 +47,17 @@ first-install:
       flathub org.gnome.World.PikaBackup \
       flathub com.github.rafostar.Clapper \
       flathub com.mattjakeman.ExtensionManager \
-      flathub com.jgraph.drawio.desktop
+      flathub com.jgraph.drawio.desktop \
+      flathub org.adishatz.Screenshot \
+      flatpak com.github.finefindus.eyedropper \
+      flatpak com.github.johnfactotum.Foliate \
+      flatpak com.usebottles.bottles \
+      flatpak com.obsproject.Studio \
+      flatpak net.lutris.Lutris \
+      flatpak com.vivaldi.Vivaldi \
+      flatpak com.vscodium.codium \
+      flatpak io.podman_desktop.PodmanDesktop \
+      flatpak org.kde.kdenlive
 
 # Install Homebrew
     sudo dnf -y groupinstall \
@@ -80,20 +89,25 @@ first-install:
     echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
     source ~/.bashrc
     gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+
+homebrew:
+    brew install \
+      chezmoi \
+      hugo \
+      virt-manager
 ```
 
 ## Install Homebrew Stuff:
 
 then run `just homebrew` after a reboot to install packages with brew
 
-```bash
-homebrew:
-    brew install \
-      chezmoi \
-      onedrive \
-      hugo \
-      virt-manager
-```
+
+### visudo config
+Add to /etc/sudoers to make Vim default for `visudo`
+
+`Defaults editor=/usr/bin/vim` 
+
+
 
 ## Virt Manager
 ```bash
@@ -117,6 +131,7 @@ Add user to group:
 sudo usermod -a -G libvirt $(whoami) && sudo usermod -a -G kvm $(whoami)
 ```
 
+use the Tweaks app to set the appearance of Legacy Applications to 'adwaita-dark'.
 ## Configure Howdy 
 Howdy is a tool for using an IR webcam for authentication:
 ```bash
@@ -420,3 +435,6 @@ Exec=/usr/bin/slack --enable-features=WebRTCPipeWireCapturer %U
 ## Actual Budget
 
 https://github.com/actualbudget/actual
+
+### Set Vim to default editor for visudo
+add `Defaults editor=/usr/bin/vim` to top of visudo file.su
