@@ -18,6 +18,8 @@ sudo sed -i 's/^%wheel\s\+ALL=(ALL)\s\+ALL/# %wheel  ALL=(ALL) ALL/' /etc/sudoer
 sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+sudo dnf5 install 'dnf5-command(groupinstall)'
+
 sudo dnf -y groupinstall \
       "Development Tools"
 
@@ -27,7 +29,7 @@ sudo dnf -y groupinstall \
 
 sudo dnf install @virtualization
 
-sudo dnf -y install Ansible
+sudo dnf -y install ansible
 ```
 
 ansible setup
@@ -80,6 +82,7 @@ ansible setup
         - io.podman_desktop.PodmanDesktop
         - org.kde.kdenlive
         - org.virt_manager.virt-manager
+        - io.github.input_leap.input-leap
 
     # Install Development Tools group using dnf
     - name: Install Development Tools group
@@ -151,11 +154,17 @@ ansible setup
     
 ```
 
+run the playbook:
+`ansible-playbook setup.yml`
+
 Then reboot...
+
+Then sign into nextcloud and begin sync.
 
  # Install Homebrew packages:
  `brew install hugo`
 
+Install gnome extentions:
 ```bash
 pip install --user gnome-extensions-cli
 gext install "appindicatorsupport@rgcjonas.gmail.com"
@@ -171,14 +180,8 @@ gext install "search-light@icedman.github.com"
 Backup gnome settings
 dconf dump / > ~/Nextcloud/Documents/dconfsettings.bak
 
-installed apps backup
-`cp -r ~/.local/share/gnome-shell/extensions/ ~/Nextcloud/Documents`
-
-Restore settings:
+Restore settings: This does not work
 `dconf load / < ~/Nextcloud/Documents/dconfsettings.bak`
-
-Restore extentions:
-`cp -r ~/Nextcloud/Documents/extensions/* ~/.local/share/gnome-shell/extensions/`
 
 Restore remmina connections
 `cp ~/Nextcloud/remmina/* ~/.var/app/org.remmina.Remmina/data/remmina/`
@@ -191,10 +194,10 @@ Restore ~/.bashrc: (if username is the same)
 
 Git config
 ```bash
-git config --global user.email "email@gmail.com"
+git config --global user.email "tdavetech@gmail.com"
 git config --global user.name "linuxreader"
 
-# Store git credentials:
+# Store git credentials (from inside a git directory):
 git config credential.helper store
 ```
 
