@@ -1,5 +1,4 @@
 +++ 
-categories = ["Storage"] 
 menuPre = '<i class="fa-fw fas fa-hard-drive"></i> '
 title = "Storage" 
 weight = 9

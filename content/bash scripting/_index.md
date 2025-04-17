@@ -1,5 +1,4 @@
 +++ 
-categories = ["Bash Scripting"] 
 menuPre = '<i class="fa-fw fas fa-code"></i> '
 title = "Bash Scripting" 
 weight = 2

@@ -1,5 +1,4 @@
 +++ 
-categories = ["Cyber Security"] 
 menuPre = '<i class="fa-fw fas fa-ghost"></i> '
 title = "Cyber Security" 
 weight = 4

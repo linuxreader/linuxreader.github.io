@@ -1,5 +1,4 @@
 +++ 
-categories = ["desktop"] 
 menuPre = '<i class="fa-fw fas fa-computer"></i> '
 title = "Desktop" 
 weight = 5
