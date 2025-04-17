@@ -1,8 +1,8 @@
 +++ 
-categories = ["Storage"] 
-menuPre = '<i class="fa-fw fas fa-hard-drive"></i> '
-title = "Storage" 
-weight = 9
+categories = ["Ansible"] 
+menuPre = '<i class="fa-fw fas fa-file-lines"></i> '
+title = "Ansible" 
+weight = 1
 archetype = "moc" 
 alwaysopen = false
 [_build]

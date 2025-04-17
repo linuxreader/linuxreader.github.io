@@ -19,7 +19,7 @@ Installing git will install ssh on windows. Which you will use to access your la
 
 Make a Vagrant project folder.
 
-Note: All of these commands are going to be in a Windows command prompt.
+Note: All of these commands are going to be in a Bash command prompt.
 ```bash
 mkdir vagranttest
 ```
@@ -361,3 +361,5 @@ Plugin to change the disk size:
 ```bash
 vagrant plugin install vagrant-disksize
 ```
+
+

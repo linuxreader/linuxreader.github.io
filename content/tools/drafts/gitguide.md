@@ -187,3 +187,5 @@ Detaching head
 	- checks out the commit and attaches the head
 
 
+Store git credentials:
+`git config credential.helper store`

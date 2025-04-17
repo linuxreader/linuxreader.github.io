@@ -2,7 +2,7 @@
 categories = ["Containers"] 
 menuPre = '<i class="fa-fw fas fa-box-open"></i> '
 title = "Containers" 
-weight = 2
+weight = 3
 archetype = "moc" 
 alwaysopen = false
 [_build]

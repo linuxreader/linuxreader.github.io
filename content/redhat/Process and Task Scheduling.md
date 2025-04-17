@@ -438,17 +438,17 @@ man ps
 
 3. Run with "every" and "full format" flags:
 ```
-ps -ef
+ ps -ef
 ```
 
 4. Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows:
 ```
-ps -o comm,pid,ppid,user
+ ps -o comm,pid,ppid,user
 ```
 
 5. Check how many sshd processes are currently running on the system:
 ```
-ps -C sshd
+ ps -C sshd
 ```
 
 ### Lab: top

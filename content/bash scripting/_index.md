@@ -2,7 +2,7 @@
 categories = ["Bash Scripting"] 
 menuPre = '<i class="fa-fw fas fa-code"></i> '
 title = "Bash Scripting" 
-weight = 1
+weight = 2
 archetype = "moc" 
 alwaysopen = false
 [_build]

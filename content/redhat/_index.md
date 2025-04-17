@@ -3,7 +3,7 @@ categories = ["linux"]
 description = "redhat" 
 menuPre = '<i class="fa-brands fab fa-redhat"></i> '
 title = "RedHat" 
-weight = 7
+weight = 8
 archetype = "moc" 
 alwaysopen = false
 [_build]
