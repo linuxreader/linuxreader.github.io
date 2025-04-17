@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Hugo 0.146.5">
     <meta name="generator" content="Relearn 7.1.1">
     <meta name="description" content="Juniper Basics">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Juniper CLI Basics :: Linux Reader">
     <meta name="twitter:description" content="Juniper Basics">
-    <meta property="og:url" content="http://localhost:1313/networking/juniper_cli_basics/">
+    <meta property="og:url" content="http://linuxreader.com/networking/juniper_cli_basics/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Juniper CLI Basics :: Linux Reader">
     <meta property="og:description" content="Juniper Basics">
@@ -23,22 +23,22 @@
     <title>Juniper CLI Basics :: Linux Reader</title>
     <link href="/networking/juniper_cli_basics/index.xml" rel="alternate" type="application/rss+xml" title="Juniper CLI Basics :: Linux Reader">
     <link href="/networking/juniper_cli_basics/index.print.html" rel="alternate" type="text/html" title="Juniper CLI Basics :: Linux Reader">
-    <link href="/images/favicon.svg?1742214765" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1742214765" rel="stylesheet">
-    <link href="/css/auto-complete.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1742214765" rel="stylesheet">
-    <link href="/css/fonts.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1742214765" rel="stylesheet">
-    <link href="/css/theme-oled.css?1742214765" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1742214765" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1742214765" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1742214765"></script>
+    <link href="/images/favicon.svg?1744850881" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1744850881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1744850881" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1744850881" rel="stylesheet">
+    <link href="/css/auto-complete.css?1744850881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1744850881" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1744850881" rel="stylesheet">
+    <link href="/css/fonts.css?1744850881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1744850881" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1744850881" rel="stylesheet">
+    <link href="/css/theme-oled.css?1744850881" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1744850881" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1744850881" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1744850881"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -162,354 +162,40 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable networking" tabindex="-1">
         <div class="flex-block-wrapper">
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="juniper-cli-basics">Juniper CLI Basics</h1>
-
-<h2 id="connection-methods">Connection Methods</h2>
-<h4 id="factory-default-login">Factory default login:</h4>
-<p>User: root<br>
-No password</p>
-<h4 id="fxpo">Fxpo</h4>
-<p>Ethernet management interface</p>
-<h4 id="ssh-ftp-telnet-https">SSH, FTP. Telnet, http(s)</h4>
-<p>Cannot route traffic and is used for management purposes only.</p>
-<h3 id="initial-login">Initial Login</h3>
-<p>Logging for the First Time<br>
-• Nonroot users are placed into the CLI automatically<br>
-• Root user SSH login requires explicit config<br>
-router (ttyu0)<br>
-Serial console<br>
-login :<br>
-user<br>
-Password:</p>
-<ul>
-<li>JUNOS 15.1X49-DIOO.6 built 2017-06-28 07:33:31 UTC<br>
-• The root user must start the CLI from the shell<br>
-• Remember to exit the root shell after logging out of the CLI!<br>
-router (ttyuO)</li>
-<li>JUNOS 15.1X49-DIOO<br>
-2017-06-28<br>
-UTC<br>
-login:<br>
-Password:<br>
-root@router&gt;<br>
-.6 built<br>
-cli<br>
-Shell Prompt<br>
-CLI Prompt &ldquo;&gt;</li>
-</ul>
-<h2 id="cli-modes">CLI Modes</h2>
-<p>configure</p>
-<p>Configure mode . New candidate config file</p>
-<h3 id="configure-private-best-practice">configure private (best practice)</h3>
-<p>Configure mode with a private candidate file</p>
-<p>Other users logged in will not make changes to this file</p>
-<p>Private Files comitted are merged into active config</p>
-<p>Whoever commits last wins if there are matching commands</p>
-<p>Can&rsquo;t commit until you are at the top of the configuration (in private mode)</p>
-<h3 id="configure-exclusive">configure exclusive</h3>
-<p>Locks config database</p>
-<p>Can be killed by admin</p>
-<p>No other user can edit config while you are in this mode</p>
-<h3 id="edit-top">(edit) top</h3>
-<p>Goes back to the top of the configuration tree</p>
-<p>Candidate Config Files</p>
-<h3 id="commit">commit</h3>
-<p>Turns candidate config file into active</p>
-<p>Warning will show if candidate config is already being edited</p>
-<p>Commiting Configurations</p>
-<p>Rollback files are last three Active configurations and stored in /config/(the current active are stored here as well)</p>
-<p>4-49 are stores in /var/config/</p>
-<p>Shows timestamp for the last time the file was active</p>
-<h3 id="rollback-1">rollback 1</h3>
-<p>Places rollback file one into the candidate config, must commit to make it active</p>
-<p>CLI Help, Auto complete</p>
-<p>Can type ? To show available commands</p>
-<p>#&gt; Show version brief</p>
-<p>Show version info, hostname, and model</p>
-<p>#&gt;Configure</p>
-<p>goes into configure mode</p>
-<h3 id="set-system-host-name-hostname">set system host-name hostname</h3>
-<p>set&rsquo;s hostname</p>
-<h3 id="delete-system-host-name">delete system host-name</h3>
-<p>deletes set hostname</p>
-<h3 id="edit-routing-options-static">edit routing-options static</h3>
-<p>edit routing options mode</p>
-<h3 id="exit">exit</h3>
-<p>exit</p>
-<p>Junos will let you know that config hasn&rsquo;t been committed and ask if you want to commit</p>
-<h3 id="rollback-0">rollback 0</h3>
-<p>throwaway all changes to active candidate</p>
-<p>#&gt; help topic routing-options static</p>
-<p>shows info page for topic specified</p>
-<p>#&gt; help references routing-options static</p>
-<p>syntax and hierarchy of commands</p>
-<p>Keyboard Shortcuts</p>
-<p>Command completion</p>
-<p>Space</p>
-<p>auto complete commands built into system, Does not autocomplete things you named</p>
-<p>tab</p>
-<p>autocomplete user defined commands in the system</p>
-<p>?</p>
-<p>will show user defined options for autocomplete as well</p>
-<p>Navigating Configuration Mode</p>
-<p>When you go into config mode the running config is copied into a candidate file that you will be working on</p>
-<h3 id="show">show</h3>
-<p>if in configure mode, displays the entire candidate configuration</p>
-<h3 id="edit">edit</h3>
-<p>similar to cd</p>
-<h3 id="edit-protocols-ospf">edit protocols ospf</h3>
-<p>goes to the protocols/ospf heirarchy config mode</p>
-<p>if you run show commend it will show the contents of hierarchy from wherever you are.</p>
-<h3 id="top">top</h3>
-<p>goes to the top of the hierarchy. Like cd to / in Linux</p>
-<p>must be at the top to commit changes</p>
-<h3 id="show-protocols-ospf">show protocols ospf</h3>
-<p>selects which part of the hierarchy to show</p>
-<p>will only see this if you are above the option you want to show in the hierarchy</p>
-<p>can bypass this with:</p>
-<h3 id="top-show-routing-options-static">top show routing-options static</h3>
-<p>same thing happens with the edit command</p>
-<h3 id="top-edit-routing-options">top edit routing-options</h3>
-<p>same fix</p>
-<p>Editing, Renaming, and Comparing Configuration</p>
-<h3 id="up">up</h3>
-<p>moves up one level in the hierarchy</p>
-<p>there is a protion in this video wioth vlan and interface configuration, come back if this isn&rsquo;t covered elsewhere</p>
-<h3 id="up-2">up 2</h3>
-<p>jump up 2 levels</p>
-<h3 id="rollback-">rollback ?</h3>
-<p>shows all the rollback files on the system</p>
-<h3 id="run-show-system-uptime">run show system uptime</h3>
-<p>run is like &ldquo;do&rdquo; in cisco, can run command from anywhere</p>
-<h3 id="rollback-1-1">rollback 1</h3>
-<p>rolls config back to rollback 1 file</p>
-<h3 id="show--compare">show | compare</h3>
-<p>show things to be removed added with - or +</p>
-<h3 id="exit-1">exit</h3>
-<p>Also brings you to the top of config file</p>
-<p>Replace, Copy, or annotate Configuration</p>
-<h3 id="copy-ge-001-to-ge-002">copy ge-0/0/1 to ge-0/0/2</h3>
-<p>makes a copy of the config</p>
-<h3 id="show-ge-000">show ge-0/0/0</h3>
-<h3 id="edit-ge-000">edit ge-0/0/0</h3>
-<p>Edit interfaces mode</p>
-<p>#(int) replace pattern 0.101 with 200.102</p>
-<p>Replaces the pattern of the ip address</p>
-<p>#(int) replace pattern /24 with /25</p>
-<p>Replace mask</p>
-<p>If using replace commands don&rsquo;t commit the config without running the #top show | compare command to verify. You may have run the compare command from one place.</p>
-<h3 id="top-edit-protocols-ospf">top edit protocols ospf</h3>
-<p>Go into ospf edit</p>
-<h3 id="deactivate-interface-ge-0000">deactivate interface ge-0/0/0.0</h3>
-<p>Remove interface from ospf</p>
-<h3 id="annotate-interface-ge-000-took-down-due-to-flapping">annotate interface ge-0/0/0 &ldquo;took down due to flapping&rdquo;</h3>
-<p>C style programming comment</p>
-<p>Load merge Configuration</p>
-<h3 id="run-file-list">run file list</h3>
-<p>ls -l basically</p>
-<h3 id="run-file-show-top-int-config">run file show top-int-config</h3>
-<p>Display contents of top-int-config</p>
-<h3 id="paste-config-on-a-juniper-switch">Paste Config on a Juniper Switch</h3>
-<div class="highlight wrap-code"><pre tabindex="0"><code>cli
-top
-delete
-configure
-load set terminal 
-ctrl+shift +D to exit
-commit check
-commit and-quit</code></pre></div>
-<h2 id="juniper-command-equivalent-to-cisco-commands">Juniper command equivalent to Cisco commands</h2>
-<h3 id="basic-cli-and-systems-management">Basic CLI and Systems Management</h3>
-<p>Commands</p>
-<p>clock set  &gt; set date<br>
-reload  &gt; request system reboot<br>
-show history  &gt; show cli history<br>
-show logging  &gt;  show log messages | last
-show processes  &gt; show system processes<br>
-show running config  &gt; show configuration<br>
-show users  &gt; show system users<br>
-show version  &gt; show version | show chassis hardware <br>
-trace  &gt; traceroute</p>
-<h3 id="switching-commands">Switching Commands</h3>
-<p>show ethernet-switching interfaces<br>
-show spanning-tree  &gt; show spanning-tree bridge<br>
-show mac address-table  &gt; show ethernet-switching table</p>
-<h3 id="ospf-commands">OSPF Commands</h3>
-<p>show ip ospf database  &gt; show ospf database<br>
-show ip ospf interface  &gt; show ospf interface<br>
-show ip ospf neighbor  &gt; show ospf neighbor</p>
-<h3 id="routing-protocol-independent-commands">Routing Protocol-Independent Commands</h3>
-<p>clear arp-cache  &gt; clear arp<br>
-show arp  &gt; show arp<br>
-show ip route  &gt; show route<br>
-show ip route summary  &gt; show route summary<br>
-show route-map  &gt; show policy | policy-name<br>
-show tcp  &gt; show system connections</p>
-<h3 id="interface-commands">Interface Commands</h3>
-<p>clear counters  &gt; clear interface statistics<br>
-show interfaces  &gt; show interfaces<br>
-show interfaces detail  &gt; show interfaces extensive<br>
-show ip interface brief  &gt; show interfaces terse</p>
-
-  <footer class="footline">
-  </footer>
-</article>
         </div>
       </main>
     </div>
-    <aside id="R-sidebar" class="default-animation">
-      <div id="R-header-topbar" class="default-animation"></div>
-      <div id="R-header-wrapper" class="default-animation">
-        <div id="R-header" class="default-animation">
-<a href="https://linuxreader.com">
-  <img src="/images/linuxreader.svg" alt="Linux Reader" >
-</a>
-
-        </div>
-        <script>
-          window.index_js_url="/searchindex.en.js?1742214765";
-        </script>
-        <search><form action="/search/" method="get">
-          <div class="searchbox default-animation">
-            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
-            <label class="a11y-only" for="R-search-by">Search</label>
-            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
-          </div>
-        </form></search>
-        <script>
-          var contentLangs=['en'];
-        </script>
-        <script src="/js/auto-complete.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.min.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1742214765" defer></script>
-        <script src="/js/search.js?1742214765" defer></script>
-      </div>
-      <div id="R-homelinks" class="default-animation">
-        <hr class="padding">
-      </div>
-      <div id="R-content-wrapper" class="highlightable">
-        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
-          <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
-            <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
-            <li class="" data-nav-id="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
-            <li class="" data-nav-id="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
-            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
-            <li class="active " data-nav-id="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
-            <li class="" data-nav-id="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
-            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
-            <li class="" data-nav-id="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
-            <li class="" data-nav-id="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
-            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
-            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
-          </ul>
-        </div>
-        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
-          <div class="nav-title padding">More</div>
-          <ul class="space collapsible-menu">
-            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
-            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
-            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
-            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
-            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
-            <li class="" data-nav-id="https://linkedin.com/linuxreader/"><a class="padding" href="https://linkedin.com/linuxreader/" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
-          </ul>
-        </div>
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">Language</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/networking/juniper_cli_basics/" lang="en-us" selected></option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">Theme</label>
-                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-oled" value="oled" selected>Oled</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.variants && variants.markSelectedVariant();</script>
-              </li>
-              <li class="footerVisitedLinks">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">Clear History</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="R-footer" class="footerFooter showFooter">
-        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          </div>
-        </div>
-      </div>
-    </aside>
-    <script src="/js/clipboard.min.js?1742214765" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1742214765" defer></script>
-    <script>
+    <script src="/js/clipboard.min.js?1744850881" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1744850881" defer></script>
+    &lt;script&gt;
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
           tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+            inlineMath:  [[&#39;\\(&#39;, &#39;\\)&#39;], [&#39;$&#39;,  &#39;$&#39;]],  
+            displayMath: [[&#39;\\[&#39;, &#39;\\]&#39;], [&#39;$$&#39;, &#39;$$&#39;]], 
           },
           options: {
             enableMenu: false 
           }
         }, config );
       }
-      useMathJax( JSON.parse("{}") );
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1742214765" defer></script>
-    <script src="/js/js-yaml.min.js?1742214765" defer></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
-    <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
-    </script>
-    <script src="/js/theme.js?1742214765" defer></script>
+      useMathJax( JSON.parse(&#34;{}&#34;) );
+    &lt;/script&gt;
+    &lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-color.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-dispatch.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-drag.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-ease.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-interpolate.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-selection.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-timer.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-transition.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-zoom.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/js-yaml.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://unpkg.com/mermaid/dist/mermaid.min.js&#34; defer&gt;&lt;/script&gt;
+    &lt;script&gt;
+      window.themeUseMermaid = JSON.parse(&#34;{ \&#34;theme\&#34;: \&#34;default\&#34; }&#34;);
+    &lt;/script&gt;
+    <script src="/js/theme.js?1744850881" defer></script>
   </body>
 </html>

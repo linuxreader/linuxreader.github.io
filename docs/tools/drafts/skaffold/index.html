@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Hugo 0.146.5">
     <meta name="generator" content="Relearn 7.1.1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="Skaffold watches for code changes in a repo and builds, tests, and deployes and application in Kubernetes
@@ -16,7 +16,7 @@ Set up an automation that watches source code for changes. If there are changes,
 What questions are they asking? Headline melding. How can I validate the structure of a container image?
 How do you run tests on a new version of your application and automate the creation of a new container?
 Set up an automation that watches source code for changes. If there are changes, then you will have a set of step ready to go that deploy to a K8s cluster, VMs, or your chosen Cloud provider.">
-    <meta property="og:url" content="http://localhost:1313/tools/drafts/skaffold/">
+    <meta property="og:url" content="http://linuxreader.com/tools/drafts/skaffold/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="Skaffold watches for code changes in a repo and builds, tests, and deployes and application in Kubernetes
 What questions are they asking? Headline melding. How can I validate the structure of a container image?
@@ -33,22 +33,22 @@ Set up an automation that watches source code for changes. If there are changes,
     <title></title>
     <link href="/tools/drafts/skaffold/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/tools/drafts/skaffold/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1742214765" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1742214765" rel="stylesheet">
-    <link href="/css/auto-complete.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1742214765" rel="stylesheet">
-    <link href="/css/fonts.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1742214765" rel="stylesheet">
-    <link href="/css/theme-oled.css?1742214765" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1742214765" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1742214765" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1742214765"></script>
+    <link href="/images/favicon.svg?1744850881" rel="icon" type="image/svg+xml">
+    <link href="/css/fontawesome-all.min.css?1744850881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1744850881" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1744850881" rel="stylesheet">
+    <link href="/css/auto-complete.css?1744850881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1744850881" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1744850881" rel="stylesheet">
+    <link href="/css/fonts.css?1744850881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1744850881" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1744850881" rel="stylesheet">
+    <link href="/css/theme-oled.css?1744850881" rel="stylesheet" id="R-variant-style">
+    <link href="/css/chroma-relearn-dark.css?1744850881" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/css/print.css?1744850881" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1744850881"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -125,344 +125,40 @@ Set up an automation that watches source code for changes. If there are changes,
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable tools" tabindex="-1">
         <div class="flex-block-wrapper">
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id=""></h1>
-
-<p>Skaffold watches for code changes in a repo and builds, tests, and deployes and application in Kubernetes</p>
-<h3 id="what-questions-are-they-asking-headline-melding">What questions are they asking? Headline melding.</h3>
-<p>How can I validate the structure of a container image?</p>
-<p>How do you run tests on a new version of your application and automate the creation of a new container?</p>
-<p>Set up an automation that watches source code for changes. If there are changes, then you will have a set of step ready to go that deploy to a K8s cluster, VMs, or your chosen Cloud provider.</p>
-<p>Build &gt; test &gt; deploy</p>
-<p>Skaffold is a CD tool for kubernetes-native applications.
-Container-structure test will check and verify the structure of and image after it is built.</p>
-<ul>
-<li>can verify specific files exist</li>
-<li>Can run commands and verify output.</li>
-<li>Can verify container metadata set in a dockerfile such and environment variables, ports</li>
-</ul>
-<p>Skaffold will give you a template to build and test your code in the same way. This helps produce a consistent product and makes automatic deployment easier.</p>
-<p>During the testing phase,</p>
-<ul>
-<li>Unit tests</li>
-<li>Integration Tests
-<ul>
-<li>Does the application integrate within the rest of you environment?</li>
-</ul>
-</li>
-<li>Security Scans
-<ul>
-<li>Check for known security vulnerabilities in software or imported container images.</li>
-</ul>
-</li>
-</ul>
-<p>Artifact is then built and sent to a repo that the CD phase has access to.</p>
-<p>The CD Takes the artifact and deploys it using one of three strategies:</p>
-<ul>
-<li>Canary
-<ul>
-<li>Like sending a canary into a cole mine. If a select group of users survive, then the code is pushed out to everyone.</li>
-</ul>
-</li>
-<li>Rolling
-<ul>
-<li>Deploys new code slowly along side of current code until all the new code is fully deployed.</li>
-</ul>
-</li>
-<li>blue-green
-<ul>
-<li>Green (new) code is tested along side of blue (current)  code. If the green code is good, then it is deployed.</li>
-</ul>
-</li>
-</ul>
-<p>Monitoring is deployed to watch for errors, latency, etc. If a problem is detected then the code can be rolled back.</p>
-<p>skaffold.yaml</p>
-<ul>
-<li>Provides instructions on building, testing, and deploying an application.</li>
-<li>Located in root of project</li>
-<li>Keep this file under version control</li>
-<li>Three main sections:
-<ul>
-<li>build
-<ul>
-<li>how to build the image</li>
-</ul>
-</li>
-<li>test
-<ul>
-<li>tests to perform on the image</li>
-</ul>
-</li>
-<li>deploy
-<ul>
-<li>How to deploy to kubernetes</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">kind</span>: Config
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">build</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">artifacts</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">image</span>: project/code
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">local</span>: {}
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">test</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">image</span>: project/code
-</span></span><span style="display:flex;"><span>	<span style="color:#ff6ac1">custom</span>:
-</span></span><span style="display:flex;"><span>     - <span style="color:#ff6ac1">command</span>: <span style="color:#5af78e">&#34;npm --prefix ./src test&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">structureTests</span>:
-</span></span><span style="display:flex;"><span>      - ./container-structure-tool/structure-tool.yaml
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">deploy</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">kubectl</span>:
-</span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">manifests</span>:
-</span></span><span style="display:flex;"><span>   - kubernetes/*</span></span></code></pre></div>
-<p><strong>Build section</strong> uses the Docker build command to create the container image. The image name is set to project/code with the image tag. This will match the image name in deployment.yaml</p>
-<p>Skaffold uses the current Git commit hash to calculate the image tag. The tag is added to the container image name automatically and set as an environment variable called $IMAGE.</p>
-<p><strong>test section</strong>
-Run any tests on the container image or application. The example file above runs a container structure test that checks the container for defects then a custom Node.js test to</p>
-<p><strong>deploy section</strong>
-Uses kubernetes manifest files in /kubernetes directory to release the deployment. A patch is placed on the current deployment and the container tag and image are replaced.</p>
-<p><strong>container-structure-test</strong>
-Run on the container after it is built and after the application has been tested.</p>
-<p>In this case, the test is located in the application&rsquo;s subdirectory /container-structure-tool/ in a file called structure-tool.yaml</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">commandTests</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;telnet-server&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff6ac1">command</span>: <span style="color:#5af78e">&#34;./telnet-server&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">args</span>: [<span style="color:#5af78e">&#34;-i&#34;</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">expectedOutput</span>: [<span style="color:#5af78e">&#34;telnet port :2323\nMetrics Port: :9000&#34;</span>]
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">metadataTest</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">env</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">key</span>: TELNET_PORT
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">value</span>: <span style="color:#ff9f43">2323</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">key</span>: METRIC_PORT
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">value</span>: <span style="color:#ff9f43">9000</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">cmd</span>: [<span style="color:#5af78e">&#34;./telnet-server&#34;</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">workdir</span>: &#34;/app</span></span></code></pre></div>
-<p><strong>commandTests</strong>
-command that runs the binary and args adds the -i option to output info to STDOUT. The output must match the &ldquo;expectedOutput&rdquo; value in order to pass the test.</p>
-<p><strong>metadataTest</strong>
-Checks the Docker file to make sure variables, commands, and working directory data matches.</p>
-<p><strong>skaffold run subcommand</strong>
-Build&rsquo;s, tests, and deploys the application. Does not watch for new code changes.</p>
-<p><strong>skaffold dev subcommand</strong>
-Same as run but watches for changes in source code and automatically runs the tests on new changes.</p>
-<p>Pods will quit running after you press ^C so add the &ndash;cleanup=false argument if you want it to keep running.</p>
-<p>Ran while in the code directory you are running the test on.</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ skaffold dev --cleanup<span style="color:#ff6ac1">=</span><span style="color:#ff5c57">false</span> 
-</span></span><span style="display:flex;"><span>Listing files to watch... 
-</span></span><span style="display:flex;"><span>- dftd/telnet-server Generating tags... 
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Sets the container tag number, based on current git commit hash.</span>
-</span></span><span style="display:flex;"><span>- dftd/telnet-server -&gt; dftd/telnet-server:4622725 
-</span></span><span style="display:flex;"><span>- Checking cache... 
-</span></span><span style="display:flex;"><span>- dftd/telnet-server: Not found. Building 
-</span></span><span style="display:flex;"><span>- Found <span style="color:#ff6ac1">[</span>minikube<span style="color:#ff6ac1">]</span> context, using <span style="color:#ff5c57">local</span> docker daemon. Building <span style="color:#ff6ac1">[</span>dftd/telnet-server<span style="color:#ff6ac1">]</span>
-</span></span><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span>Successfully tagged dftd/telnet-server:4622725
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># skaffold starts the test section</span>
-</span></span><span style="display:flex;"><span>Starting test...
-</span></span><span style="display:flex;"><span>Testing images...
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">=======================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">======</span> Test file: command-and-metadata-test.yaml <span style="color:#ff6ac1">======</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">=======================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">===</span> RUN: Command Test: telnet-server --- PASS duration: 571.602755ms stdout: telnet port :2323 Metrics Port: :9000 <span style="color:#ff6ac1">===</span> RUN: Metadata Test --- PASS duration: <span style="color:#ff5c57">0s</span> <span style="color:#ff6ac1">=======================================================</span> <span style="color:#ff6ac1">=======================</span> <span style="color:#ff5c57">RESULTS</span> <span style="color:#ff6ac1">=======================</span> <span style="color:#ff6ac1">=======================================================</span> Passes: <span style="color:#ff9f43">2</span> Failures: <span style="color:#ff9f43">0</span> Duration: 571.602755ms
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Total tests: <span style="color:#ff9f43">2</span> PASS Running custom <span style="color:#ff5c57">test</span> command: <span style="color:#5af78e">&#34;go test ./... -v&#34;</span> ? telnet-server <span style="color:#ff6ac1">[</span>no <span style="color:#ff5c57">test</span> files<span style="color:#ff6ac1">]</span> ? telnet-server/metrics <span style="color:#ff6ac1">[</span>no <span style="color:#ff5c57">test</span> files<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">===</span> RUN TestServerRun Mocked charge notification <span style="color:#ff6ac1">function</span> TestServerRun: server_test.go:23: PASS: Run<span style="color:#ff6ac1">()</span> --- PASS: TestServerRun <span style="color:#ff6ac1">(</span>0.00s<span style="color:#ff6ac1">)</span> PASS ok telnet-server/telnet <span style="color:#ff6ac1">(</span>cached<span style="color:#ff6ac1">)</span> Command finished successfully.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Starts deploy</span>
-</span></span><span style="display:flex;"><span>Starting deploy... - deployment.apps/telnet-server created - service/telnet-server created - service/telnet-server-metrics created Waiting <span style="color:#ff6ac1">for</span> deployments to stabilize... - deployment/telnet-server: waiting <span style="color:#ff6ac1">for</span> rollout to finish: <span style="color:#ff9f43">0</span> of <span style="color:#ff9f43">2</span> updated replicas are available... - pod/telnet-server-6497d64d7f-j8jq5: creating container telnet-server - pod/telnet-server-6497d64d7f-sx5ll: creating container telnet-server - deployment/telnet-server: waiting <span style="color:#ff6ac1">for</span> rollout to finish: <span style="color:#ff9f43">1</span> of <span style="color:#ff9f43">2</span> updated replicas are available... - deployment/telnet-server is ready.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Deployments stabilized in 2.140948622s **Press Ctrl+C to exit** Watching <span style="color:#ff6ac1">for</span> changes...</span></span></code></pre></div>
-<p>Can use the debug flag if you have any errors for troubleshooting.</p>
-<p>skaffold will skip the build and test phase if there are no changes detected. -dirty is added to the end of the tag if the repo has uncommited changes.</p>
-<p>Once you make a code change, the process will be re-run automatically if the dev option is used.</p>
-<p>You can use the minicube tunnel command to jump to the server to test.</p>
-<p>Grab the ip of the server:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ minikube kubectl -- get services telnet-server
-</span></span><span style="display:flex;"><span>NAME TYPE CLUSTER-IP EXTERNAL-IP PORT<span style="color:#ff6ac1">(</span>S<span style="color:#ff6ac1">)</span> AGE 
-</span></span><span style="display:flex;"><span>telnet-server LoadBalancer 10.105.161.160 **10.105.161.160** 2323:30488/TCP 6m40s</span></span></code></pre></div>
-<p>Verify that new pods are running:
-<code>minikube kubectl</code></p>
-<p>Rolling back</p>
-<p>If there is no immediate disruption in service then you can deploy a hot fix and run it through the CI/CD pipeline again. If your service is down and you just need to bring it up, then just use Kubernetes to roll back.</p>
-<ol>
-<li>Check the rollout history:</li>
-</ol>
-<ul>
-<li>Kubernetes tracks deployments and saves states of previous versions.</li>
-</ul>
-<p>To check deployment history:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>minikube kubectl -- rollout <span style="color:#ff5c57">history</span> deployment telnet-server
-</span></span><span style="display:flex;"><span>deployment.apps/telnet-server
-</span></span><span style="display:flex;"><span>REVISION CHANGE-CAUSE
-</span></span><span style="display:flex;"><span><span style="color:#ff9f43">1</span>           &lt;none&gt;
-</span></span><span style="display:flex;"><span><span style="color:#ff9f43">2</span>           &lt;none&gt;</span></span></code></pre></div>
-<p>Revision 2 is the current active.</p>
-<p>To rollback to revision 1:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>minikube kubectl -- rollout undo deployment telnet-server --to-revision<span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>deployment.apps/telnet-server rolled back</span></span></code></pre></div>
-<p>Or leave off the <code>--to-revision</code> option to just roll back to the previous version.</p>
-<p>Verify:</p>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>minikube kubectl -- get pods
-</span></span><span style="display:flex;"><span>NAME READY STATUS RESTARTS AGE telnet-server-7fb57bd65f-qc8rg 1/1 Running <span style="color:#ff9f43">0</span> 28s telnet-server-7fb57bd65f-wv4t9 1/1 Running <span style="color:#ff9f43">0</span> 29s</span></span></code></pre></div>
-<p>Enter the app to verify the change</p>
-<p>The new revision is version 3 as listed with the <code>rollout history</code> command.</p>
-<p>If your company focuses on Mean Time to Recovery (MTTR), this technique helps the service go back up as fast as possible from a customer&rsquo;s point of view.</p>
-
-  <footer class="footline">
-  </footer>
-</article>
         </div>
       </main>
     </div>
-    <aside id="R-sidebar" class="default-animation">
-      <div id="R-header-topbar" class="default-animation"></div>
-      <div id="R-header-wrapper" class="default-animation">
-        <div id="R-header" class="default-animation">
-<a href="https://linuxreader.com">
-  <img src="/images/linuxreader.svg" alt="Linux Reader" >
-</a>
-
-        </div>
-        <script>
-          window.index_js_url="/searchindex.en.js?1742214765";
-        </script>
-        <search><form action="/search/" method="get">
-          <div class="searchbox default-animation">
-            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
-            <label class="a11y-only" for="R-search-by">Search</label>
-            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
-          </div>
-        </form></search>
-        <script>
-          var contentLangs=['en'];
-        </script>
-        <script src="/js/auto-complete.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.min.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1742214765" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1742214765" defer></script>
-        <script src="/js/search.js?1742214765" defer></script>
-      </div>
-      <div id="R-homelinks" class="default-animation">
-        <hr class="padding">
-      </div>
-      <div id="R-content-wrapper" class="highlightable">
-        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
-          <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
-            <li class="parent " data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
-            <li class="active hidden " data-nav-id="/tools/drafts/skaffold/"><a class="padding" href="/tools/drafts/skaffold/"></a></li>
-            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX</a></li>
-            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo</a></li>
-            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/">How to Process Bookfusion Highlights with Vim</a></li>
-            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme</a></li>
-            <li class="" data-nav-id="/tools/using-man-pages/"><a class="padding" href="/tools/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li>
-            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
-          </ul>
-        </div>
-        <div id="R-shortcutmenu-shortcuts" class="R-sidebarmenu">
-          <div class="nav-title padding">More</div>
-          <ul class="space collapsible-menu">
-            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
-            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
-            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
-            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
-            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
-            <li class="" data-nav-id="https://linkedin.com/linuxreader/"><a class="padding" href="https://linkedin.com/linuxreader/" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
-          </ul>
-        </div>
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">Language</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/tools/drafts/skaffold/" lang="en-us" selected></option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">Theme</label>
-                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                      <option id="R-select-variant-oled" value="oled" selected>Oled</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.variants && variants.markSelectedVariant();</script>
-              </li>
-              <li class="footerVisitedLinks">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">Clear History</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="R-footer" class="footerFooter showFooter">
-        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          </div>
-        </div>
-      </div>
-    </aside>
-    <script src="/js/clipboard.min.js?1742214765" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1742214765" defer></script>
-    <script>
+    <script src="/js/clipboard.min.js?1744850881" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1744850881" defer></script>
+    &lt;script&gt;
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
           tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+            inlineMath:  [[&#39;\\(&#39;, &#39;\\)&#39;], [&#39;$&#39;,  &#39;$&#39;]],  
+            displayMath: [[&#39;\\[&#39;, &#39;\\]&#39;], [&#39;$$&#39;, &#39;$$&#39;]], 
           },
           options: {
             enableMenu: false 
           }
         }, config );
       }
-      useMathJax( JSON.parse("{}") );
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1742214765" defer></script>
-    <script src="/js/js-yaml.min.js?1742214765" defer></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
-    <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
-    </script>
-    <script src="/js/theme.js?1742214765" defer></script>
+      useMathJax( JSON.parse(&#34;{}&#34;) );
+    &lt;/script&gt;
+    &lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-color.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-dispatch.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-drag.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-ease.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-interpolate.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-selection.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-timer.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-transition.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/d3/d3-zoom.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;/js/js-yaml.min.js?1744850881&#34; defer&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://unpkg.com/mermaid/dist/mermaid.min.js&#34; defer&gt;&lt;/script&gt;
+    &lt;script&gt;
+      window.themeUseMermaid = JSON.parse(&#34;{ \&#34;theme\&#34;: \&#34;default\&#34; }&#34;);
+    &lt;/script&gt;
+    <script src="/js/theme.js?1744850881" defer></script>
   </body>
 </html>

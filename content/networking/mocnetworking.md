@@ -2,7 +2,7 @@
 -  [[networking/_index|_index]]
 -  [[networking/consoling_in_to_mx80_from_linux|consoling_in_to_mx80_from_linux]]
 -  [[networking/DNS and Time Synchronization|DNS and Time Synchronization]]
--  [[networking/drafts/_Index_drafts|_Index_drafts]]
+-  [[networking/drafts/mocdrafts|mocdrafts]]
 -  [[networking/How to Study for the CCNA Exam|How to Study for the CCNA Exam]]
 -  [[networking/juniper_cli_basics|juniper_cli_basics]]
 -  [[networking/Networking Network Devices and Network Connections|Networking Network Devices and Network Connections]]
