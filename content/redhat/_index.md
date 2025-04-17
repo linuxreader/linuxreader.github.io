@@ -1,5 +1,4 @@
 +++ 
-categories = ["linux"] 
 description = "redhat" 
 menuPre = '<i class="fa-brands fab fa-redhat"></i> '
 title = "RedHat" 

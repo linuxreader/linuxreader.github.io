@@ -1,5 +1,4 @@
 +++ 
-categories = ["keyboard"] 
 menuPre = '<i class="fa-fw fas fa-keyboard"></i> '
 title = "Keyboard" 
 weight = 6

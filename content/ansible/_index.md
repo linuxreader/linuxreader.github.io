@@ -1,5 +1,4 @@
 +++ 
-categories = ["Ansible"] 
 menuPre = '<i class="fa-fw fas fa-file-lines"></i> '
 title = "Ansible" 
 weight = 1

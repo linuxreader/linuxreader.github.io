@@ -1,5 +1,4 @@
 +++ 
-categories = ["Containers"] 
 menuPre = '<i class="fa-fw fas fa-box-open"></i> '
 title = "Containers" 
 weight = 3
