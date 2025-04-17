@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.146.5">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Installation Logs and Cockpit">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
@@ -23,26 +23,63 @@
     <title>Installation :: Linux Reader</title>
     <link href="/redhat/installation/index.xml" rel="alternate" type="application/rss+xml" title="Installation :: Linux Reader">
     <link href="/redhat/installation/index.print.html" rel="alternate" type="text/html" title="Installation :: Linux Reader">
-    <link href="/images/favicon.svg?1744890669" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1744890669" rel="stylesheet">
-    <link href="/css/auto-complete.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1744890669" rel="stylesheet">
-    <link href="/css/fonts.css?1744890669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1744890669" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1744890669" rel="stylesheet">
-    <link href="/css/theme-oled.css?1744890669" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1744890669" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1744890669" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1744890669"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-html.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/redhat\/installation\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -63,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="/redhat/installation/">
+  <body class="mobile-support html" data-url="/redhat/installation/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -72,7 +109,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/boot-process,-grub2,-and-kernel" title="Boot Process, Grub2, and Kernel (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/boot-process-grub2-and-kernel/" title="Boot Process, Grub2, and Kernel (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -102,10 +139,10 @@
             Installation
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/installation?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/installation/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/interaction" title="Interaction (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/interaction/" title="Interaction (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -120,40 +157,262 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable redhat" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="installation">Installation</h1>
+
+<h1 id="chapter-1-rhcsa-notes---installation">Chapter 1 RHCSA Notes - Installation</h1>
+<h2 id="about-rhel9">About RHEL9</h2>
+<ul>
+<li>Kernel 5.14</li>
+<li>Released May 2019</li>
+<li>Built along side of Fedora 34</li>
+<li>Installer program = Anaconda</li>
+<li>Default Bootloader = GRUB2</li>
+<li>Default automatic partitioning = /boot, /, swap</li>
+<li>Default desktop environment = GNOME</li>
+</ul>
+<h2 id="installation-logs">Installation Logs</h2>
+<p><strong>/root/anaconda-ks.cfg</strong> Configuration entered</p>
+<p><strong>/var/log/anaconda/anaconda.log</strong> Contains informational, debug, and other general messages</p>
+<p><strong>/var/log/anaconda/journal.log</strong> Stores messages generated by many services and components during system installation</p>
+<p><strong>/var/log/anaconda/packaging.log</strong> Records messages generated by the dnf and rpm commands during software installation</p>
+<p><strong>/var/log/anaconda/program.log</strong> Captures messages generated by external programs</p>
+<p><strong>/var/log/anaconda/storage.log</strong> Records messages generated by storage modules</p>
+<p><strong>/var/log/anaconda/syslog</strong> Records messages related to the kernel</p>
+<p><strong>/var/log/anaconda/X.log</strong> Stores X Window System information</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Note: Logs are created in /tmp then transferred over to /var/log/anaconda once the install is finished.</code></pre></div>
+<h2 id="6-virtual-consoles">6 Virtual Consoles</h2>
+<ul>
+<li>Monitor the installation process.</li>
+<li>View diagnostic messages.</li>
+<li>Discover and fix any issues encountered.</li>
+<li>Information displayed on the console screens is captured in installation log files.</li>
+</ul>
+<p>Console 1 (Ctrl+Alt+F1)</p>
+<ul>
+<li>Main screen</li>
+<li>Select language</li>
+<li>Then switches default console to 6</li>
+</ul>
+<p>Console 2 (Ctrl_Alt+F2)</p>
+<ul>
+<li>Shell interface for root user</li>
+</ul>
+<p>Console 3 (Ctrl_Alt+F3)</p>
+<ul>
+<li>Displays install messages</li>
+<li>Stores them in /tmp/anaconda.log</li>
+<li>Info on detected hardware, etc.</li>
+</ul>
+<p>Console 4 (Ctrl_Alt+F4)</p>
+<ul>
+<li>Shows storage messages</li>
+<li>Stores them in /tmp/storage.log</li>
+</ul>
+<p>Console 5 (Ctrl_Alt+F5)</p>
+<ul>
+<li>Program messages</li>
+<li>Stores them in /tmp/program.log</li>
+</ul>
+<p>Console 6 (Ctrl_Alt+F6)</p>
+<ul>
+<li>Default Graphical configuration and installation console screen</li>
+</ul>
+<p>Console 1 Brings you to the log in screen. Console 2 does nothing. Console 3-6 all bring you to this log in screen</p>
+<p>Lab Setup</p>
+<p>VM1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>server1.example.om 
+192.168.0.110 
+Memory: 2GB 
+Storage: 1x20GB 
+2 vCPUs</code></pre></div>
+<p>VM2</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>server2.exmple.om 
+192.168.0.120 
+Memory: 2048 
+Storage: 1x20GB 
+	4x250 MB data disk 
+	1x5GB data disk 
+2 vCPUs</code></pre></div>
+<h2 id="setting-up-vm1">Setting up VM1</h2>
+<p>Download the disc iso on Redhat&rsquo;s website: <a href="https://access.redhat.com/downloads/content/rhel" rel="external" target="_blank">https://access.redhat.com/downloads/content/rhel</a></p>
+<p>Name RHEL9-VM1 Accept defaults.</p>
+<p>Set drive to 20 gigs</p>
+<p>press &ldquo;spe&rdquo; to hlt utooot</p>
+<p>Selet instll</p>
+<p>selet lnguge</p>
+<p>onfigure timezone under time &amp; dte</p>
+<p>go into instlltion destintion nd li &ldquo;done&rdquo;</p>
+<p>Networ nd hostnme settings</p>
+<ol>
+<li>hnge the hostnme to <a href="http://server1.exmple.om/" rel="external" target="_blank">server1.exmple.om</a></li>
+<li>go to IPv4 settings in networ nd host nd set to mnul ddress: 192.168.0.110 netms 24 gtewy 192.168.0.1 then sve</li>
+<li>slide the on/off swith in the min menu to on</li>
+</ol>
+<p>Set root pssword</p>
+<p>Chnge the oot order</p>
+<ol>
+<li>power off the vm</li>
+<li>Set oot sequene to hrd dis first then optil, remove floppy</li>
+</ol>
+<p>Accept license terms and rete user</p>
+<p>ssh from host os with putty</p>
+<p>Issue these Commnds after set up</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>whoami 
+hostname 
+pwd 
+logout or ctrl+d</code></pre></div>
+<h2 id="using-cockpit">Using cockpit</h2>
+<ul>
+<li>Web gui for managing RHEL system</li>
+<li>Comes pre-installed
+<ul>
+<li>if not then install with:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf install cockpit</code></pre></div>
+</li>
+<li>must enable cockpit socket
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo systemctl enable --now cockpit.socket</code></pre></div>
+</li>
+<li>https://yourip:9090</li>
+</ul>
+<h2 id="labs">Labs</h2>
+<h3 id="lab">Lab:</h3>
+<p>Enable cockpit.socket:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo systemctl enable --now cockpit.socket</code></pre></div>
+<p>In a web browser, go to https://&lt;your-ip&gt;:9090</p>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1744890669" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1744890669" defer></script>
-    &lt;script&gt;
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [[&#39;\\(&#39;, &#39;\\)&#39;], [&#39;$&#39;,  &#39;$&#39;]],  
-            displayMath: [[&#39;\\[&#39;, &#39;\\]&#39;], [&#39;$$&#39;, &#39;$$&#39;]], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse(&#34;{}&#34;) );
-    &lt;/script&gt;
-    &lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-color.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-dispatch.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-drag.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-ease.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-interpolate.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-selection.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-timer.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-transition.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/d3/d3-zoom.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;/js/js-yaml.min.js?1744890669&#34; defer&gt;&lt;/script&gt;
-    &lt;script src=&#34;https://unpkg.com/mermaid/dist/mermaid.min.js&#34; defer&gt;&lt;/script&gt;
-    &lt;script&gt;
-      window.themeUseMermaid = JSON.parse(&#34;{ \&#34;theme\&#34;: \&#34;default\&#34; }&#34;);
-    &lt;/script&gt;
-    <script src="/js/theme.js?1744890669" defer></script>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu">
+            <li class="" data-nav-id="/redhat/advanced-file-management/"><a class="padding" href="/redhat/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-id="/redhat/advanced-package-management/"><a class="padding" href="/redhat/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-id="/redhat/advanced-user-management/"><a class="padding" href="/redhat/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-id="/redhat/file-management/"><a class="padding" href="/redhat/file-management/">Basic File Managment</a></li>
+            <li class="" data-nav-id="/redhat/basic-package-management/"><a class="padding" href="/redhat/basic-package-management/">Basic Package Management</a></li>
+            <li class="" data-nav-id="/redhat/basic-user-management/"><a class="padding" href="/redhat/basic-user-management/">Basic User Management</a></li>
+            <li class="" data-nav-id="/redhat/boot-process-grub2-and-kernel/"><a class="padding" href="/redhat/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="active " data-nav-id="/redhat/installation/"><a class="padding" href="/redhat/installation/">Installation</a></li>
+            <li class="" data-nav-id="/redhat/interaction/"><a class="padding" href="/redhat/interaction/">Interaction</a></li>
+            <li class="" data-nav-id="/redhat/local-file-systems-and-swap/"><a class="padding" href="/redhat/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-id="/redhat/network-file-system-nfs/"><a class="padding" href="/redhat/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-id="/redhat/process-and-task-scheduling/"><a class="padding" href="/redhat/process-and-task-scheduling/">Process and Task Scheduling</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-exam-environment/"><a class="padding" href="/redhat/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-notes/"><a class="padding" href="/redhat/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-study-tracker/"><a class="padding" href="/redhat/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-vagrant-lab-setup/"><a class="padding" href="/redhat/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/redhat/sample-exams/"><a class="padding" href="/redhat/sample-exams/">Sample Exams</a></li>
+            <li class="" data-nav-id="/redhat/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/redhat/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li>
+            <li class="" data-nav-id="/redhat/the-secure-shell-service/"><a class="padding" href="/redhat/the-secure-shell-service/">The Secure Shell Service</a></li></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>

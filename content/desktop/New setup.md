@@ -1,6 +1,5 @@
 +++ 
 type = " "
-categories = ["explanation"] 
 description = "New Fedora Build Using Ansible" 
 title = "Configure Fedora Desktop using Ansible" 
 +++
@@ -26,8 +25,6 @@ sudo dnf -y groupinstall \
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bash_profile
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-sudo dnf install @virtualization
 
 sudo dnf -y install ansible
 ```
@@ -176,12 +173,6 @@ gext install "gsconnect@andyholmes.github.io"
 gext install "logomenu@aryan_k"
 gext install "search-light@icedman.github.com"
 ```
-
-Backup gnome settings
-dconf dump / > ~/Nextcloud/Documents/dconfsettings.bak
-
-Restore settings: This does not work
-`dconf load / < ~/Nextcloud/Documents/dconfsettings.bak`
 
 Restore remmina connections
 `cp ~/Nextcloud/remmina/* ~/.var/app/org.remmina.Remmina/data/remmina/`

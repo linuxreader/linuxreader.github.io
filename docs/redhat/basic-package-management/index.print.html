@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.1.1">
+    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="RPM and package integrity and credibility">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Basic Package Management :: Linux Reader">
     <meta name="twitter:description" content="RPM and package integrity and credibility">
-    <meta property="og:url" content="http://localhost:1313/redhat/basic-package-management/">
+    <meta property="og:url" content="http://linuxreader.com/redhat/basic-package-management/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Basic Package Management :: Linux Reader">
     <meta property="og:description" content="RPM and package integrity and credibility">
@@ -21,29 +21,65 @@
     <meta itemprop="description" content="RPM and package integrity and credibility">
     <meta itemprop="wordCount" content="2332">
     <title>Basic Package Management :: Linux Reader</title>
-    <link href="http://localhost:1313/redhat/basic-package-management/" rel="canonical" type="text/html" title="Basic Package Management :: Linux Reader">
+    <link href="http://linuxreader.com/redhat/basic-package-management/" rel="canonical" type="text/html" title="Basic Package Management :: Linux Reader">
     <link href="/redhat/basic-package-management/index.xml" rel="alternate" type="application/rss+xml" title="Basic Package Management :: Linux Reader">
-    <link href="/images/favicon.svg?1742214765" rel="icon" type="image/svg+xml">
-    <link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1742214765" rel="stylesheet">
-    <link href="/css/auto-complete.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1742214765" rel="stylesheet">
-    <link href="/css/fonts.css?1742214765" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1742214765" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1742214765" rel="stylesheet">
-    <link href="/css/theme-oled.css?1742214765" rel="stylesheet" id="R-variant-style">
-    <link href="/css/chroma-relearn-dark.css?1742214765" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/css/print.css?1742214765" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1742214765" rel="stylesheet">
-    <script src="/js/variant.js?1742214765"></script>
+    <link href="/images/favicon.svg?1744900034" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744900034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744900034" rel="stylesheet">
+    <link href="/css/theme.min.css?1744900034" rel="stylesheet">
+    <link href="/css/format-print.min.css?1744900034" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1744900034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1744900034" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1744900034" defer></script>
+    <script src="/js/search.min.js?1744900034" defer></script>
     <script>
       window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/redhat\/basic-package-management\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.contentLangs=['en'];
+      window.relearn.index_js_url="/searchindex.en.js?1744900034";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
-      window.variants && variants.init( [ 'oled' ] );
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
       // translations
       window.T_Copy_to_clipboard = `Copy to clipboard`;
       window.T_Copied_to_clipboard = `Copied to clipboard!`;
@@ -64,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/redhat/basic-package-management/">
+  <body class="mobile-support print" data-url="/redhat/basic-package-management/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -73,7 +109,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/file-management" title="Basic File Managment (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/file-management/" title="Basic File Managment (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -136,10 +172,10 @@
             Basic Package Management
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-package-management?format=print" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-package-management/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-user-management" title="Basic User Management (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/basic-user-management/" title="Basic User Management (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -491,30 +527,30 @@ Useful for:
 <ol>
 <li>
 <p>Go to the VirtualBox VM Manager and make sure that the RHEL 8 image is attached to RHEL9-VM1 as depicted below:
-<a href="#R-image-73bbca8ae5ca26bcd5b14b57ea418b54" class="lightbox-link"><img class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-73bbca8ae5ca26bcd5b14b57ea418b54"><img class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png"></a></p>
+<a href="#R-image-2844994dbe1d6b19990ce950d8bba844" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2844994dbe1d6b19990ce950d8bba844"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png"></a></p>
 </li>
 <li>
 <p>Open the /etc/fstab file in the vim editor (or another editor of your choice) and add the following line entry at the end of the file to mount the DVD image (/dev/sr0) in read-only (ro) mode on the /mnt directory.</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>/dev/sr0 /mnt iso9660 ro 0 0</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>/dev/sr0 /mnt iso9660 ro 0 0</code></pre></div>
 </li>
 </ol>
 <p>Note: sr0 represents the first instance of the optical device and iso9660 is the standard format for optical file systems.</p>
 <ol start="3">
 <li>
 <p>Mount the file system as per the configuration defined in the /etc/fstab file using the mount command with the -a (all) option:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo mount -a</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo mount -a</code></pre></div>
 </li>
 <li>
 <p>Verify the mount using the df command:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>df -h | grep mnt</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>df -h | grep mnt</code></pre></div>
 </li>
 </ol>
 <p>Note: The image and the packages therein can now be accessed via the /mnt directory just like any other local directory on the system.</p>
 <ol start="5">
 <li>
 <p>List the two directories—/mnt/BaseOS/Packages and /mnt/AppStream/Packages—that contain all the software packages (directory names are case sensitive):</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>ls -l /mnt/BaseOS/Packages | more</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l /mnt/BaseOS/Packages | more</code></pre></div>
 </li>
 </ol>
 <h3 id="lab-query-packages-rpm">Lab: Query Packages (RPM)</h3>
@@ -595,7 +631,7 @@ Useful for:
 <p>Extract all files from the crony package to /tmp and create the directory structure:</p>
 </li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 mnt<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cd /tmp</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 mnt<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cd /tmp</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>sudo rpm2cpio /mnt/BaseOS/Packages/chrony-3.3-3.el8.x86_64.rpm | cpio -imd
 </span></span><span style="display:flex;"><span><span style="color:#ff9f43">1066</span> blocks<span style="color:#ff6ac1">](</span>&lt;<span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm2cpio /mnt/BaseOS/Packages/chrony-4.3-1.el9.x86_64.rpm | cpio -imd</span>
@@ -615,7 +651,7 @@ Useful for:
 <code>rpm -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm --nosignature</code></li>
 <li>Import the GPG key from the proper file and verify the signature for the zsh-5.5.1-6.el8.x86_64.rpm package.</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0"><code>sudo rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></div>
 <h3 id="lab-viewing-gpg-keys">Lab: Viewing GPG Keys</h3>
 <ol>
@@ -634,7 +670,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <p>Change permissions of one of the files and run the check again:</p>
 </li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -l /etc/sysconfig/atd
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -l /etc/sysconfig/atd
 </span></span><span style="display:flex;"><span>sudo chmod -v <span style="color:#ff9f43">770</span> /etc/sysconfig/atd
 </span></span><span style="display:flex;"><span>sudo rpm -V at</span></span></code></pre></div>
 <ol start="3">
@@ -646,23 +682,23 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <p>Reset the value and check the file again:</p>
 </li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod -v <span style="color:#ff9f43">644</span> /etc/sysconfig/atd
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod -v <span style="color:#ff9f43">644</span> /etc/sysconfig/atd
 </span></span><span style="display:flex;"><span>sudo rpm -V at</span></span></code></pre></div>
 <h3 id="lab-perform-package-management-using-rpm">Lab: Perform Package Management Using rpm</h3>
 <ol>
 <li>Run the <code>ls</code> command on the /mnt/AppStream/Packages directory to confirm that the rmt package is available:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /mnt/BaseOS/Packages/rmt*</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -l /mnt/BaseOS/Packages/rmt*</span>
 </span></span><span style="display:flex;"><span>-r--r--r--. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">49582</span> Nov <span style="color:#ff9f43">20</span>  <span style="color:#ff9f43">2021</span> /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span></span></code></pre></div>
 <ol start="2">
 <li>Run the rpm command and verify the integrity and credibility of the package:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpmkeys -K /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpmkeys -K /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
 </span></span><span style="display:flex;"><span>/mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm: digests signatures OK</span></span></code></pre></div>
 <ol start="3">
 <li>Install the Package:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpmkeys -K /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpmkeys -K /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
 </span></span><span style="display:flex;"><span>/mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm: digests signatures OK
 </span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ivh /mnt/BaseOS/Packages/rmt-1.6-6.el9.x86_64.rpm</span>
 </span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
@@ -672,7 +708,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ol start="4">
 <li>Show basic information about the package:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi rmt</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi rmt</span>
 </span></span><span style="display:flex;"><span>Name        : rmt
 </span></span><span style="display:flex;"><span>Epoch       : <span style="color:#ff9f43">2</span>
 </span></span><span style="display:flex;"><span>Version     : 1.6
@@ -697,7 +733,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ol start="5">
 <li>Show all the files the package contains:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ql rmt</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ql rmt</span>
 </span></span><span style="display:flex;"><span>/etc/default/rmt
 </span></span><span style="display:flex;"><span>/etc/rmt
 </span></span><span style="display:flex;"><span>/usr/lib/.build-id
@@ -711,14 +747,14 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ol start="6">
 <li>List the documentation files the package has:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qd rmt</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qd rmt</span>
 </span></span><span style="display:flex;"><span>/usr/share/doc/star/CDDL.Schily.txt
 </span></span><span style="display:flex;"><span>/usr/share/doc/star/COPYING
 </span></span><span style="display:flex;"><span>/usr/share/man/man1/rmt.1.gz</span></span></code></pre></div>
 <ol start="7">
 <li>Verify the attributes of each file in the package. Use verbose mode.</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -vV rmt</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -vV rmt</span>
 </span></span><span style="display:flex;"><span>.........  c /etc/default/rmt
 </span></span><span style="display:flex;"><span>.........    /etc/rmt
 </span></span><span style="display:flex;"><span>.........  a /usr/lib/.build-id
@@ -732,7 +768,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ol start="8">
 <li>Remove the package:</li>
 </ol>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ve rmt</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ve rmt</span>
 </span></span><span style="display:flex;"><span>Preparing packages...
 </span></span><span style="display:flex;"><span>rmt-2:1.6-6.el9.x86_64</span></span></code></pre></div>
 <h2 id="lab-9-1-install-and-verify-packages">Lab 9-1: Install and Verify Packages</h2>
@@ -741,7 +777,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <li>make sure the RHEL 9 ISO image is attached to the VM and mounted.</li>
 <li>Use the rpm command and install the zsh package by specifying its full path.</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm </span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -ivh /mnt/BaseOS/Packages/zsh-5.8-9.el9.x86_64.rpm </span>
 </span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
 </span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
 </span></span><span style="display:flex;"><span>	package zsh-5.8-9.el9.x86_64 is already installed</span></span></code></pre></div>
@@ -749,7 +785,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <li>Run the rpm command again and perform the following on the zsh package:</li>
 <li>(1) show information</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi zsh</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi zsh</span>
 </span></span><span style="display:flex;"><span>Name        : zsh
 </span></span><span style="display:flex;"><span>Version     : 5.8
 </span></span><span style="display:flex;"><span>Release     : 9.el9
@@ -776,7 +812,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ul>
 <li>(2) validate integrity</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -K zsh-5.8-9.el9.x86_64.rpm</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -K zsh-5.8-9.el9.x86_64.rpm</span>
 </span></span><span style="display:flex;"><span>zsh-5.8-9.el9.x86_64.rpm: digests signatures OK</span></span></code></pre></div>
 <ul>
 <li>(3) display attributes
@@ -789,12 +825,12 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <li>Use the rpm command to perform the following:</li>
 <li>(1) check whether the setup package is installed</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -q setup</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -q setup</span>
 </span></span><span style="display:flex;"><span>setup-2.13.7-10.el9.noarch</span></span></code></pre></div>
 <ul>
 <li>(2) display the list of configuration files in the setup package</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qc setup</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qc setup</span>
 </span></span><span style="display:flex;"><span>/etc/aliases
 </span></span><span style="display:flex;"><span>/etc/bashrc
 </span></span><span style="display:flex;"><span>/etc/csh.cshrc
@@ -827,7 +863,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ul>
 <li>(3) show information for the zlib-devel package on the ISO image</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi ./zlib-devel-1.2.11-40.el9.x86_64.rpm</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -qi ./zlib-devel-1.2.11-40.el9.x86_64.rpm</span>
 </span></span><span style="display:flex;"><span>Name        : zlib-devel
 </span></span><span style="display:flex;"><span>Version     : 1.2.11
 </span></span><span style="display:flex;"><span>Release     : 40.el9
@@ -851,7 +887,7 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
 <ul>
 <li>(4) reinstall the zsh package (&ndash;reinstall -vh),</li>
 </ul>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -hv --reinstall ./zsh-5.8-9.el9.x86_64.rpm</span>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 Packages<span style="color:#ff6ac1">]</span><span style="color:#78787e"># rpm -hv --reinstall ./zsh-5.8-9.el9.x86_64.rpm</span>
 </span></span><span style="display:flex;"><span>Verifying...                         <span style="color:#78787e">################################# [100%])</span>
 </span></span><span style="display:flex;"><span>Preparing...                         <span style="color:#78787e">################################# [100%])</span>
 </span></span><span style="display:flex;"><span>Updating / installing...
@@ -869,37 +905,34 @@ sudo rpmkeys -K /mnt/BaseOS/Packages/zsh-5.5.1-6.el8.x86_64.rpm</code></pre></di
         </div>
       </main>
     </div>
-    <script src="/js/clipboard.min.js?1742214765" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1742214765" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1744900034" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744900034" defer></script>
     <script>
-      function useMathJax( config ){
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          tex: {
-            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
-            displayMath: [['\\[', '\\]'], ['$$', '$$']], 
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1742214765" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1742214765" defer></script>
-    <script src="/js/js-yaml.min.js?1742214765" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-color.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1744900034" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1744900034" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.js?1742214765" defer></script>
+    <script src="/js/theme.min.js?1744900034" defer></script>
   </body>
 </html>
