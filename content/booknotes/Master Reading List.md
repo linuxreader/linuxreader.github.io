@@ -124,8 +124,8 @@ Emergency: This Book Will Save Your Life
 - [x] Flow: The Psychology of Optimal Experience
 - [ ] Influence: The Psychology of Persuasion
 - [x] 10% Happier: How I Tamed the Voice in My Head, Reduced Stress Without Losing My Edge, and Found Self-Help That Actually Works 
-- [ ] Think and Grow Rich: The Landmark Bestseller Now Revised and Updated for the 21st Century
-Outliers: The Story of Success
+- [x] Think and Grow Rich: The Landmark Bestseller Now Revised and Updated for the 21st Century
+- [x] Outliers: The Story of Success
 The Prophet
 DMT: The Spirit Molecule: A Doctor's Revolutionary Research into the Biology of Near Death and Mystical Experiences
 - [ ] The 12 week Year
@@ -145,7 +145,7 @@ CCNA Certification Study Guide, Volume 2: Exam 200-301
 Understanding Cisco Networking Technologies, Volume 1: Exam 200-301 (CCNA Certification)
 CCNA OCG
 - [x] RHCSA 9 Training and Exam Preparation Guide
-
+- [x] Red Hat RHCE 8 Cert Guide
 ### History
 - [ ] Unit 731: Testimony
 - [x] Night
