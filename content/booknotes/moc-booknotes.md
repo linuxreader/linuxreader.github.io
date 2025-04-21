@@ -10,6 +10,7 @@
 -  [[booknotes/Dopamine Nation|Dopamine Nation]]
 -  [[booknotes/Good Inside|Good Inside]]
 -  [[booknotes/I Will Teach You to Be Rich|I Will Teach You to Be Rich]]
+-  [[booknotes/Master Reading List (conflicted copy 2025-04-18 040335)|Master Reading List (conflicted copy 2025-04-18 040335)]]
 -  [[booknotes/Master Reading List|Master Reading List]]
 -  [[booknotes/Meditations|Meditations]]
 -  [[booknotes/Million Dollar Weekend|Million Dollar Weekend]]

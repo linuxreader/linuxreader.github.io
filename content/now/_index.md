@@ -8,17 +8,19 @@ title = "What I am Doing Now"
 
 This is a page to help me stay focused and keep track of what I am doing. It is also to show others what I am currently working on and thinking about. Credit goes to Derek Sivers for starting a "Now" page movement. Read about "Now" pages [here](https://nownownow.com/about).
 
-Updated: 02-20-2025
+Updated: 04-21-2025
 ## Career
 
-I am currently a Linux System Administrator. I just passed the RHCSA exam today! Check out my [RHCSA Notes](../redhat/RHCSA%20Notes.md). Not sure what I'm going to learn next. May just play around in Linux for a while. 
+Working on learning Ansible to automate my job. RHCE inc.
 
 ## Personal
 
-Now that I have finished my RHCSA goal.  I am focusing more on heath. Primary goal is to quit caffeine by the end of Q1.
+Weaning off of alcohol. 3.5oz Whiskey today.
+Weaning off of caffeine. 400mg today.
 
 ## What I am Reading
 
+Page 930/983
 
 ![Infinite Jest](/images/ij.jpg?classes=inline&height=175px)
 
