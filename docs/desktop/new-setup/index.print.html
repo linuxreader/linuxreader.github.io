@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
-    <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="New Fedora Build Using Ansible">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
@@ -23,18 +23,27 @@
     <title>Configure Fedora Desktop using Ansible :: Linux Reader</title>
     <link href="http://linuxreader.com/desktop/new-setup/" rel="canonical" type="text/html" title="Configure Fedora Desktop using Ansible :: Linux Reader">
     <link href="/desktop/new-setup/index.xml" rel="alternate" type="application/rss+xml" title="Configure Fedora Desktop using Ansible :: Linux Reader">
-    <link href="/images/favicon.svg?1754309132" rel="icon" type="image/svg+xml">
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754309132" rel="stylesheet">
-    <link href="/css/theme.min.css?1754309132" rel="stylesheet">
-    <link href="/css/format-html.min.css?1754309132" rel="stylesheet" id="R-format-style">
-    <link href="/css/auto-complete/auto-complete.min.css?1754309132" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754309132" defer></script>
-    <script src="/js/lunr/lunr.min.js?1754309132" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754309132" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754309132" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754309132" defer></script>
-    <script src="/js/search.min.js?1754309132" defer></script>
+    <link href="/images/favicon.svg?1754310060" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1754310060" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754310060" defer></script>
+    <script src="/js/search-lunr.min.js?1754310060" defer></script>
+    <script src="/js/search.min.js?1754310060" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754310060";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754310060" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754310060" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754310060" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754310060" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754310060" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754310060" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754310060" rel="stylesheet">
+    <link href="/css/theme.min.css?1754310060" rel="stylesheet">
+    <link href="/css/format-print.min.css?1754310060" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -43,8 +52,6 @@
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
-      window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/searchindex.en.js?1754309132";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -53,6 +60,15 @@
       window.relearn.getItem = (s,n) => {return s.getItem(n)};
       window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
       window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
       // variant stuff
       window.relearn.themevariants = [ 'oled' ];
       window.relearn.customvariantname = "my-custom-variant";
@@ -80,15 +96,6 @@
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
-      // translations
-      window.T_Copy_to_clipboard = `Copy to clipboard`;
-      window.T_Copied_to_clipboard = `Copied to clipboard!`;
-      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
-      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
-      window.T_Reset_view = `Reset view`;
-      window.T_View_reset = `View reset!`;
-      window.T_No_results_found = `No results found for "{0}"`;
-      window.T_N_results_found = `{1} results found for "{0}"`;
     </script><style>
 :root {
     --MENU-WIDTH-S: 14.375rem;
@@ -100,7 +107,7 @@
 </style>
 
   </head>
-  <body class="mobile-support html" data-url="/desktop/new-setup/">
+  <body class="mobile-support print" data-url="/desktop/new-setup/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -143,11 +150,187 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable  " tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="configure-fedora-desktop-using-ansible">Configure Fedora Desktop using Ansible</h1>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf -y install vim
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">### Make vim default sudoer editor</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#34;Defaults editor=/usr/bin/vim&#34;</span> | sudo tee /etc/sudoers.d/99_custom_editor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">### remove password prompts when using sudo</span>
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#5af78e">&#39;s/^#\s*%wheel\s\+ALL=(ALL)\s\+NOPASSWD: ALL/%wheel  ALL=(ALL) NOPASSWD: ALL/&#39;</span> /etc/sudoers
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#5af78e">&#39;s/^%wheel\s\+ALL=(ALL)\s\+ALL/# %wheel  ALL=(ALL) ALL/&#39;</span> /etc/sudoers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-<span style="color:#ff6ac1">$(</span>rpm -E %fedora<span style="color:#ff6ac1">)</span>.noarch.rpm <span style="color:#5af78e">\
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-<span style="color:#ff6ac1">$(</span>rpm -E %fedora<span style="color:#ff6ac1">)</span>.noarch.rpm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo dnf5 install <span style="color:#5af78e">&#39;dnf5-command(groupinstall)&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo dnf -y groupinstall <span style="color:#5af78e">\
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      <span style="color:#5af78e">&#34;Development Tools&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/bin/bash -c <span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#39;eval &#34;$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)&#34;&#39;</span> &gt;&gt; ~/.bash_profile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">eval</span> <span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>/home/linuxbrew/.linuxbrew/bin/brew shellenv<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo dnf -y install ansible</span></span></code></pre></div>
+<p>ansible setup
+<code>vim setup.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Setup Development Environment
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Install Flatpak applications</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install Flatpak applications
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">flatpak</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">loop</span>:
+</span></span><span style="display:flex;"><span>        - com.bitwarden.desktop
+</span></span><span style="display:flex;"><span>        - com.brave.Browser
+</span></span><span style="display:flex;"><span>        - org.gimp.GIMP
+</span></span><span style="display:flex;"><span>        - org.gnome.Snapshot
+</span></span><span style="display:flex;"><span>        - org.libreoffice.LibreOffice
+</span></span><span style="display:flex;"><span>        - org.remmina.Remmina
+</span></span><span style="display:flex;"><span>        - com.termius.Termius
+</span></span><span style="display:flex;"><span>        - com.slack.Slack
+</span></span><span style="display:flex;"><span>        - org.keepassxc.KeePassXC
+</span></span><span style="display:flex;"><span>        - md.obsidian.Obsidian
+</span></span><span style="display:flex;"><span>        - com.calibre_ebook.calibre
+</span></span><span style="display:flex;"><span>        - org.mozilla.Thunderbird
+</span></span><span style="display:flex;"><span>        - us.zoom.Zoom
+</span></span><span style="display:flex;"><span>        - org.wireshark.Wireshark
+</span></span><span style="display:flex;"><span>        - com.nextcloud.desktopclient.nextcloud
+</span></span><span style="display:flex;"><span>        - com.google.Chrome
+</span></span><span style="display:flex;"><span>        - io.github.shiftey.Desktop
+</span></span><span style="display:flex;"><span>        - io.github.dvlv.boxbuddyrs
+</span></span><span style="display:flex;"><span>        - com.github.tchx84.Flatseal
+</span></span><span style="display:flex;"><span>        - io.github.flattool.Warehouse
+</span></span><span style="display:flex;"><span>        - io.missioncenter.MissionCenter
+</span></span><span style="display:flex;"><span>        - org.gnome.World.PikaBackup
+</span></span><span style="display:flex;"><span>        - com.github.rafostar.Clapper
+</span></span><span style="display:flex;"><span>        - com.mattjakeman.ExtensionManager
+</span></span><span style="display:flex;"><span>        - com.jgraph.drawio.desktop
+</span></span><span style="display:flex;"><span>        - org.adishatz.Screenshot
+</span></span><span style="display:flex;"><span>        - com.github.finefindus.eyedropper
+</span></span><span style="display:flex;"><span>        - com.github.johnfactotum.Foliate
+</span></span><span style="display:flex;"><span>        - com.obsproject.Studio
+</span></span><span style="display:flex;"><span>        - com.vivaldi.Vivaldi
+</span></span><span style="display:flex;"><span>        - com.vscodium.codium
+</span></span><span style="display:flex;"><span>        - io.podman_desktop.PodmanDesktop
+</span></span><span style="display:flex;"><span>        - org.kde.kdenlive
+</span></span><span style="display:flex;"><span>        - org.virt_manager.virt-manager
+</span></span><span style="display:flex;"><span>        - io.github.input_leap.input-leap
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Install Development Tools group using dnf</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install Development Tools group
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;@Development Tools&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install @virtualization group package
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#39;@virtualization&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Update dnf configuration</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Update dnf configuration for fastestmirror and parallel downloads
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;fastestmirror=True&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;max_parallel_downloads=10&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;defaultyes=True&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;keepcache=True&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Perform DNF update and install required packages</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Update DNF and install required packages
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>          - gnome-screenshot
+</span></span><span style="display:flex;"><span>          - wireguard-tools
+</span></span><span style="display:flex;"><span>          - gnome-tweaks
+</span></span><span style="display:flex;"><span>          - gnome-themes-extra
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Set GNOME theme (using gsettings directly)</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Set GNOME theme to Adwaita-dark
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>: gsettings set org.gnome.desktop.interface gtk-theme &#34;Adwaita-dark&#34;
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Enable experimental Mutter features
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>: gsettings set org.gnome.mutter experimental-features &#34;[&#39;scale-monitor-framebuffer&#39;]&#34;
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Install Go programming language</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install Go
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: go
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Add Go to the PATH in .bashrc
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">path</span>: <span style="color:#5af78e">&#34;/home/davidt/.bashrc&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#39;export PATH=$PATH:/usr/local/go/bin&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Source .bashrc
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>: source /home/davidt/.bashrc
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install pip using yum
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: python-pip
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    </span></span></code></pre></div>
+<p>run the playbook:
+<code>ansible-playbook setup.yml</code></p>
+<p>Then reboot&hellip;</p>
+<p>Then sign into nextcloud and begin sync.</p>
+<h1 id="install-homebrew-packages">Install Homebrew packages:</h1>
+<p><code>brew install hugo</code></p>
+<p>Install gnome extentions:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install --user gnome-extensions-cli
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;appindicatorsupport@rgcjonas.gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>gext <span style="color:#ff5c57">enable</span> <span style="color:#5af78e">&#34;appindicatorsupport@rgcjonas.gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;legacyschemeautoswitcher@joshimukul29.gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;blur-my-shell@aunetx&#34;</span>
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;dash-to-dock@micxgx.gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;gsconnect@andyholmes.github.io&#34;</span>
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;logomenu@aryan_k&#34;</span>
+</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;search-light@icedman.github.com&#34;</span></span></span></code></pre></div>
+<p>Restore remmina connections
+<code>cp ~/Nextcloud/remmina/* ~/.var/app/org.remmina.Remmina/data/remmina/</code></p>
+<p>Restore vimrc
+<code>cat ~/Nextcloud/Documents/dotfiles/vimrc.bak &gt; ~/.vimrc</code></p>
+<p>Restore ~/.bashrc: (if username is the same)
+<code>cat ~/Nextcloud/Documents/dotfiles/bashrc.bak &gt; ~/.bashrc</code></p>
+<p>Git config</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global user.email <span style="color:#5af78e">&#34;tdavetech@gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global user.name <span style="color:#5af78e">&#34;linuxreader&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Store git credentials (from inside a git directory):</span>
+</span></span><span style="display:flex;"><span>git config credential.helper store</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard/clipboard.min.js?1754309132" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754309132" defer></script>
     <script>
       window.MathJax = Object.assign( window.MathJax || {}, {
         tex: {
@@ -160,20 +343,22 @@
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-color.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1754309132" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1754309132" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-color.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1754310060" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1754310060" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.min.js?1754309132" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754310060" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754310060" defer></script>
+    <script src="/js/theme.min.js?1754310060" defer></script>
   </body>
 </html>
