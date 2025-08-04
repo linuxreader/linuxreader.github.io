@@ -8,21 +8,33 @@ title = "What I am Doing Now"
 
 This is a page to help me stay focused and keep track of what I am doing. It is also to show others what I am currently working on and thinking about. Credit goes to Derek Sivers for starting a "Now" page movement. Read about "Now" pages [here](https://nownownow.com/about).
 
-Updated: 02-20-2025
-## Career
+Updated: 06-2-2025
 
-I am currently a Linux System Administrator. I just passed the RHCSA exam today! Check out my [RHCSA Notes](../redhat/RHCSA%20Notes.md). Not sure what I'm going to learn next. May just play around in Linux for a while. 
+- Tapering caffeine by 5mg per day. 
+- Weaning off whiskey by .5 oz per day. 
+- Building up to running 2 miles per day. 
+- 10 minutes of mobility per day.
+- Lose 2 lbs per week.
+	- 3-6 servings of fruits and veggies per day
+	- Fat as a condiment only. 
 
-## Personal
-
-Now that I have finished my RHCSA goal.  I am focusing more on heath. Primary goal is to quit caffeine by the end of Q1.
 
 ## What I am Reading
 
+The Art of Discarding
 
-![Infinite Jest](/images/ij.jpg?classes=inline&height=175px)
+![The Art of Discarding](https://m.media-amazon.com/images/I/71pSZh8OYEL._SL1500_.jpg?classes=inline&height=175px)
 
 ## Things to Learn
 
 I keep a page of projects that I want to do and tech that I want to learn [here.](Projects.md) Then, instead of trying to learn every new shiny thing as it pops up. I continue to focus on my current goal. 
 
+## Notes
+
+Stay away from un-essential supplements. Only use the big 3:
+- B12
+- Kelp (for Iodine)
+- D3
+
+Things that make joints worst:
+- If you introduce more than one new movement at a time you have no clue what triggered your pain. 

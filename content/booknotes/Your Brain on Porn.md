@@ -28,8 +28,7 @@ Harry Fisch book "The New Naked" correlates with reduced grey matter and decreas
 
 Most users regard internet porn as a solution – to boredom, sexual frustration, loneliness or stress.
 
-Besides normal libido they started reporting other positive changes
-too:
+Besides normal libido they started reporting other positive changes too:
 
 - Depression and social anxiety going away.
 - Increased confidence.
@@ -187,7 +186,6 @@ symptoms, but some do.
 The brain's reward centre doesn't know what porn is. It only registers levels of stimulation through dopamine spikes.
 
 Dopamine is odd. It shoots up when something is better than expected (violates expectations), but drops when expectations are not met.
-
 
 With sex, it's nearly impossible to match internet porn\'s level of surprise variety and novelty.
 

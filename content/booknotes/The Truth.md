@@ -42,7 +42,7 @@ If you ever want to be truly happy in this lifetime, you have to recognize that 
 
 Nothing’s going to change until you take deliberate and committed action to change it.
 
-The Addiction Cycle,” with four terms—*preoccupation, ritualization, acting out,* and *shame &amp; despair*
+The Addiction Cycle, with four terms—*preoccupation, ritualization, acting out,* and *shame &amp; despair*
 
 CELIBACY/ABSTINENCE CONTRACT
 

@@ -122,7 +122,7 @@ https://gitlab.com/askyourself/dotfiles
 open source analytics
 https://plausible.io/
 https://analytics.bookstackapp.com/bookstackapp.com
-[[Add Plausible to Hugo Site]]
+[[../tools/Add Plausible to Hugo Site]]
 
 ### Searx 
 

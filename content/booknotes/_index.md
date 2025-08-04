@@ -22,6 +22,13 @@ You can use these notes to remember key points. Or to help decide if a book is g
 
 ---
 
+
+![Caffeine Blues](https://m.media-amazon.com/images/I/81esD9K1FcL._SL1500_.jpg?classes=inline&height=175px)
+
+Everyone should read this book. Caffeine does more than just block adenosine receptors so you don't feel tired. Caffeine = Stress. Would have given it a 10/10 but there is some stuff about supplements that I do not agree with. I tried all of the supplements and they had their own side effects. I am also not able to look at the studies listed so a more modern approach with links would be nice. Read this 4 times.
+
+---
+
 ![Dopamine Nation](https://m.media-amazon.com/images/I/91lcJzqYNtL._SL1500_.jpg?classes=inline&height=175px)
 
 [Dopamine Nation](Dopamine%20Nation.md) (9/10)
