@@ -921,7 +921,7 @@ Now inactive windows are cyan, and the active window is easily
 identifiable:
 
 ::: ss
-![images/config/statusline3.png](images/image00125.jpeg){#d24e2701}
+![/images/config/statusline3.png](images/image00125.jpeg){#d24e2701}
 :::
 
 This takes care of the window list. Let's look at how we can customize
@@ -1111,7 +1111,7 @@ languages.^[\[7\]](#part0029.xhtml#FOOTNOTE-7){#part0027.xhtml#FNPTR-7
 .footnote}^ Your status line should now look like this:
 
 ::: ss
-![images/config/statusline4.png](images/image00127.jpeg){#d24e2944}
+![images/config/statusline4.png](image00127.jpeg){#d24e2944}
 :::
 
 You can take things a step further by incorporating shell commands into

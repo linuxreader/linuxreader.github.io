@@ -53,8 +53,6 @@ In this two-story-house analogy, the parent is, basically, a staircase. Their pr
 
 Boundaries are not what we tell kids not to do; boundaries are what we tell kids we will do. Boundaries embody your authority.
 
-Boundaries are not what we tell kids not to do; boundaries are what we tell kids we will do.
-
 Validation is the process of seeing someone else’s emotional experience as real and true, rather than seeing someone else’s emotional experience as something we want to convince them out of or logic them away from.
 
 Two psychological models that address the relationship between parent and child: attachment theory and internal family systems.

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Configure Fedora Desktop using AnsibleNew Fedora Build Using Ansible
 My Fedora SetupMy Fedora Setup
@@ -30,18 +30,18 @@ SilverblueFedora Silverblue">
     <title>Desktop :: Linux Reader</title>
     <link href="http://linuxreader.com/desktop/" rel="canonical" type="text/html" title="Desktop :: Linux Reader">
     <link href="/desktop/index.xml" rel="alternate" type="application/rss+xml" title="Desktop :: Linux Reader">
-    <link href="/images/favicon.svg?1744979713" rel="icon" type="image/svg+xml">
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744979713" rel="stylesheet">
-    <link href="/css/theme.min.css?1744979713" rel="stylesheet">
-    <link href="/css/format-print.min.css?1744979713" rel="stylesheet" id="R-format-style">
-    <link href="/css/auto-complete/auto-complete.min.css?1744979713" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1744979713" defer></script>
-    <script src="/js/search.min.js?1744979713" defer></script>
+    <link href="/images/favicon.svg?1754309132" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754309132" rel="stylesheet">
+    <link href="/css/theme.min.css?1754309132" rel="stylesheet">
+    <link href="/css/format-html.min.css?1754309132" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1754309132" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754309132" defer></script>
+    <script src="/js/search.min.js?1754309132" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -51,7 +51,7 @@ SilverblueFedora Silverblue">
       window.relearn.relBaseUri='..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/searchindex.en.js?1744979713";
+      window.relearn.index_js_url="/searchindex.en.js?1754309132";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -107,7 +107,7 @@ SilverblueFedora Silverblue">
 </style>
 
   </head>
-  <body class="mobile-support print" data-url="/desktop/">
+  <body class="mobile-support html" data-url="/desktop/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -150,643 +150,11 @@ SilverblueFedora Silverblue">
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable desktop" tabindex="-1">
         <div class="flex-block-wrapper">
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="desktop">Desktop</h1>
-
-<div class="children children-h6 children-sort-">
-  <h6 class="children-title" id="configure-fedora-desktop-using-ansible"><a href="/desktop/new-setup/">Configure Fedora Desktop using Ansible</a></h6><p>New Fedora Build Using Ansible</p>
-  <h6 class="children-title" id="my-fedora-setup"><a href="/desktop/my-fedora-setup/">My Fedora Setup</a></h6><p>My Fedora Setup</p>
-  <h6 class="children-title" id="silverblue"><a href="/desktop/silverblue/">Silverblue</a></h6><p>Fedora Silverblue</p>
-</div>
-
-  <footer class="footline">
-  </footer>
-</article>
-          <section>
-            <h1 class="a11y-only">Subsections of Desktop</h1>
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="configure-fedora-desktop-using-ansible">Configure Fedora Desktop using Ansible</h1>
-
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf -y install vim
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e">### Make vim default sudoer editor</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#34;Defaults editor=/usr/bin/vim&#34;</span> | sudo tee /etc/sudoers.d/99_custom_editor
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e">### remove password prompts when using sudo</span>
-</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#5af78e">&#39;s/^#\s*%wheel\s\+ALL=(ALL)\s\+NOPASSWD: ALL/%wheel  ALL=(ALL) NOPASSWD: ALL/&#39;</span> /etc/sudoers
-</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#5af78e">&#39;s/^%wheel\s\+ALL=(ALL)\s\+ALL/# %wheel  ALL=(ALL) ALL/&#39;</span> /etc/sudoers
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-<span style="color:#ff6ac1">$(</span>rpm -E %fedora<span style="color:#ff6ac1">)</span>.noarch.rpm <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-<span style="color:#ff6ac1">$(</span>rpm -E %fedora<span style="color:#ff6ac1">)</span>.noarch.rpm
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo dnf5 install <span style="color:#5af78e">&#39;dnf5-command(groupinstall)&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo dnf -y groupinstall <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      <span style="color:#5af78e">&#34;Development Tools&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>/bin/bash -c <span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#39;eval &#34;$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)&#34;&#39;</span> &gt;&gt; ~/.bash_profile
-</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">eval</span> <span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>/home/linuxbrew/.linuxbrew/bin/brew shellenv<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo dnf -y install ansible</span></span></code></pre></div>
-<p>ansible setup
-<code>vim setup.yml</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Setup Development Environment
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">yes</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Install Flatpak applications</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install Flatpak applications
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">flatpak</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">loop</span>:
-</span></span><span style="display:flex;"><span>        - com.bitwarden.desktop
-</span></span><span style="display:flex;"><span>        - com.brave.Browser
-</span></span><span style="display:flex;"><span>        - org.gimp.GIMP
-</span></span><span style="display:flex;"><span>        - org.gnome.Snapshot
-</span></span><span style="display:flex;"><span>        - org.libreoffice.LibreOffice
-</span></span><span style="display:flex;"><span>        - org.remmina.Remmina
-</span></span><span style="display:flex;"><span>        - com.termius.Termius
-</span></span><span style="display:flex;"><span>        - com.slack.Slack
-</span></span><span style="display:flex;"><span>        - org.keepassxc.KeePassXC
-</span></span><span style="display:flex;"><span>        - md.obsidian.Obsidian
-</span></span><span style="display:flex;"><span>        - com.calibre_ebook.calibre
-</span></span><span style="display:flex;"><span>        - org.mozilla.Thunderbird
-</span></span><span style="display:flex;"><span>        - us.zoom.Zoom
-</span></span><span style="display:flex;"><span>        - org.wireshark.Wireshark
-</span></span><span style="display:flex;"><span>        - com.nextcloud.desktopclient.nextcloud
-</span></span><span style="display:flex;"><span>        - com.google.Chrome
-</span></span><span style="display:flex;"><span>        - io.github.shiftey.Desktop
-</span></span><span style="display:flex;"><span>        - io.github.dvlv.boxbuddyrs
-</span></span><span style="display:flex;"><span>        - com.github.tchx84.Flatseal
-</span></span><span style="display:flex;"><span>        - io.github.flattool.Warehouse
-</span></span><span style="display:flex;"><span>        - io.missioncenter.MissionCenter
-</span></span><span style="display:flex;"><span>        - org.gnome.World.PikaBackup
-</span></span><span style="display:flex;"><span>        - com.github.rafostar.Clapper
-</span></span><span style="display:flex;"><span>        - com.mattjakeman.ExtensionManager
-</span></span><span style="display:flex;"><span>        - com.jgraph.drawio.desktop
-</span></span><span style="display:flex;"><span>        - org.adishatz.Screenshot
-</span></span><span style="display:flex;"><span>        - com.github.finefindus.eyedropper
-</span></span><span style="display:flex;"><span>        - com.github.johnfactotum.Foliate
-</span></span><span style="display:flex;"><span>        - com.obsproject.Studio
-</span></span><span style="display:flex;"><span>        - com.vivaldi.Vivaldi
-</span></span><span style="display:flex;"><span>        - com.vscodium.codium
-</span></span><span style="display:flex;"><span>        - io.podman_desktop.PodmanDesktop
-</span></span><span style="display:flex;"><span>        - org.kde.kdenlive
-</span></span><span style="display:flex;"><span>        - org.virt_manager.virt-manager
-</span></span><span style="display:flex;"><span>        - io.github.input_leap.input-leap
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Install Development Tools group using dnf</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install Development Tools group
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;@Development Tools&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install @virtualization group package
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#39;@virtualization&#39;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Update dnf configuration</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Update dnf configuration for fastestmirror and parallel downloads
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">block</span>:
-</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;fastestmirror=True&#34;</span>
-</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;max_parallel_downloads=10&#34;</span>
-</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;defaultyes=True&#34;</span>
-</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">lineinfile</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">path</span>: /etc/dnf/dnf.conf
-</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;keepcache=True&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Perform DNF update and install required packages</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Update DNF and install required packages
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>:
-</span></span><span style="display:flex;"><span>          - gnome-screenshot
-</span></span><span style="display:flex;"><span>          - wireguard-tools
-</span></span><span style="display:flex;"><span>          - gnome-tweaks
-</span></span><span style="display:flex;"><span>          - gnome-themes-extra
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Set GNOME theme (using gsettings directly)</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Set GNOME theme to Adwaita-dark
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>: gsettings set org.gnome.desktop.interface gtk-theme &#34;Adwaita-dark&#34;
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Enable experimental Mutter features
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>: gsettings set org.gnome.mutter experimental-features &#34;[&#39;scale-monitor-framebuffer&#39;]&#34;
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#78787e"># Install Go programming language</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install Go
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: go
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Add Go to the PATH in .bashrc
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">lineinfile</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">path</span>: <span style="color:#5af78e">&#34;/home/davidt/.bashrc&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#39;export PATH=$PATH:/usr/local/go/bin&#39;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Source .bashrc
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>: source /home/davidt/.bashrc
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: <span style="color:#5af78e">&#34;davidt&#34;</span>
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Install pip using yum
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">yum</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: python-pip
-</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>    </span></span></code></pre></div>
-<p>run the playbook:
-<code>ansible-playbook setup.yml</code></p>
-<p>Then reboot&hellip;</p>
-<p>Then sign into nextcloud and begin sync.</p>
-<h1 id="install-homebrew-packages">Install Homebrew packages:</h1>
-<p><code>brew install hugo</code></p>
-<p>Install gnome extentions:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install --user gnome-extensions-cli
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;appindicatorsupport@rgcjonas.gmail.com&#34;</span>
-</span></span><span style="display:flex;"><span>gext <span style="color:#ff5c57">enable</span> <span style="color:#5af78e">&#34;appindicatorsupport@rgcjonas.gmail.com&#34;</span>
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;legacyschemeautoswitcher@joshimukul29.gmail.com&#34;</span>
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;blur-my-shell@aunetx&#34;</span>
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;dash-to-dock@micxgx.gmail.com&#34;</span>
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;gsconnect@andyholmes.github.io&#34;</span>
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;logomenu@aryan_k&#34;</span>
-</span></span><span style="display:flex;"><span>gext install <span style="color:#5af78e">&#34;search-light@icedman.github.com&#34;</span></span></span></code></pre></div>
-<p>Restore remmina connections
-<code>cp ~/Nextcloud/remmina/* ~/.var/app/org.remmina.Remmina/data/remmina/</code></p>
-<p>Restore vimrc
-<code>cat ~/Nextcloud/Documents/dotfiles/vimrc.bak &gt; ~/.vimrc</code></p>
-<p>Restore ~/.bashrc: (if username is the same)
-<code>cat ~/Nextcloud/Documents/dotfiles/bashrc.bak &gt; ~/.bashrc</code></p>
-<p>Git config</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global user.email <span style="color:#5af78e">&#34;tdavetech@gmail.com&#34;</span>
-</span></span><span style="display:flex;"><span>git config --global user.name <span style="color:#5af78e">&#34;linuxreader&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Store git credentials (from inside a git directory):</span>
-</span></span><span style="display:flex;"><span>git config credential.helper store</span></span></code></pre></div>
-
-  <footer class="footline">
-  </footer>
-</article>
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="my-fedora-setup">My Fedora Setup</h1>
-
-<p>When you first download Fedora Workstation, it&rsquo;s going to be a little hard to figure out how to make it usable. Especially if you&rsquo;ve never tinkered with Linux before.</p>
-<p>This is because Fedora with Gnome desktop is a blank canvas. The point is to let you customize it to your needs. When I first install Fedora, I pull my justfile to install most of the programs I use:</p>
-<pre><code>`curl -sL https://raw.githubusercontent.com/linuxreader/dotfiles/main/dot_justfile -o ~/.justfile`
-</code></pre>
-<h2 id="install-just-and-run-the-justfile">Install just and run the justfile</h2>
-<p>To run the just file, I then install the just program and run it on the justfile:</p>
-<p><code>dnf install just</code></p>
-<p><code>just first-install</code></p>
-<p>This is my current .justfile:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>first-install:
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Install flatpacks</span>
-</span></span><span style="display:flex;"><span>	flatpak install --noninteractive <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.bitwarden.desktop <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.brave.Browser <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.gimp.GIMP <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.gnome.Snapshot <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.libreoffice.LibreOffice <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.remmina.Remmina <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.termius.Termius <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.slack.Slack <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.keepassxc.KeePassXC <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub md.obsidian.Obsidian <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.calibre_ebook.calibre <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.mozilla.Thunderbird <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub us.zoom.Zoom <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.wireshark.Wireshark <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.nextcloud.desktopclient.nextcloud <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.google.Chrome <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub io.github.shiftey.Desktop <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub io.github.dvlv.boxbuddyrs <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.github.tchx84.Flatseal <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub io.github.flattool.Warehouse <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub io.missioncenter.MissionCenter <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.gnome.World.PikaBackup <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.github.rafostar.Clapper <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.mattjakeman.ExtensionManager <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub com.jgraph.drawio.desktop <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flathub org.adishatz.Screenshot <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak com.github.finefindus.eyedropper <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak com.github.johnfactotum.Foliate <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak com.usebottles.bottles <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak com.obsproject.Studio <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak net.lutris.Lutris <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak com.vivaldi.Vivaldi <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak com.vscodium.codium <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak io.podman_desktop.PodmanDesktop <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      flatpak org.kde.kdenlive
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Install Homebrew</span>
-</span></span><span style="display:flex;"><span>    sudo dnf -y groupinstall <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      <span style="color:#5af78e">&#34;Development Tools&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    /bin/bash -c <span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#39;eval &#34;$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)&#34;&#39;</span> &gt;&gt; ~/.bash_profile
-</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">eval</span> <span style="color:#5af78e">&#34;</span><span style="color:#ff6ac1">$(</span>/home/linuxbrew/.linuxbrew/bin/brew shellenv<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Configure dnf for faster speeds</span>
-</span></span><span style="display:flex;"><span>    sudo bash -c <span style="color:#5af78e">&#39;echo &#34;fastestmirror=True&#34; &gt;&gt; /etc/dnf/dnf.conf&#39;</span>
-</span></span><span style="display:flex;"><span>    sudo bash -c <span style="color:#5af78e">&#39;echo &#34;max_parallel_downloads=10&#34; &gt;&gt; /etc/dnf/dnf.conf&#39;</span>
-</span></span><span style="display:flex;"><span>    sudo bash -c <span style="color:#5af78e">&#39;echo &#34;defaultyes=True&#34; &gt;&gt; /etc/dnf/dnf.conf&#39;</span>
-</span></span><span style="display:flex;"><span>    sudo bash -c <span style="color:#5af78e">&#39;echo &#34;keepcache=True&#34; &gt;&gt; /etc/dnf/dnf.conf&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Other software, updates, etc. </span>
-</span></span><span style="display:flex;"><span>    sudo dnf -y update
-</span></span><span style="display:flex;"><span>    sudo dnf install -y gnome-screenshot
-</span></span><span style="display:flex;"><span>    sudo dnf -y groupupdate core
-</span></span><span style="display:flex;"><span>    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-</span></span><span style="display:flex;"><span>    sudo dnf install -y wireguard-tools
-</span></span><span style="display:flex;"><span>    sudo dnf install gnome-tweaks
-</span></span><span style="display:flex;"><span>    sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-<span style="color:#ff6ac1">$(</span>rpm -E %fedora<span style="color:#ff6ac1">)</span>.noarch.rpm <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-<span style="color:#ff6ac1">$(</span>rpm -E %fedora<span style="color:#ff6ac1">)</span>.noarch.rpm
-</span></span><span style="display:flex;"><span>    sudo dnf -y update
-</span></span><span style="display:flex;"><span>    sudo dnf install gnome-themes-extra
-</span></span><span style="display:flex;"><span>    gsettings <span style="color:#ff5c57">set</span> org.gnome.desktop.interface gtk-theme <span style="color:#5af78e">&#34;Adwaita-dark&#34;</span>
-</span></span><span style="display:flex;"><span>    sudo dnf install -y go
-</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#39;export PATH=$PATH:/usr/local/go/bin&#39;</span> &gt;&gt; ~/.bashrc
-</span></span><span style="display:flex;"><span>    <span style="color:#ff5c57">source</span> ~/.bashrc
-</span></span><span style="display:flex;"><span>    gsettings <span style="color:#ff5c57">set</span> org.gnome.mutter experimental-features <span style="color:#5af78e">&#34;[&#39;scale-monitor-framebuffer&#39;]&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>homebrew:
-</span></span><span style="display:flex;"><span>    brew install <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      chezmoi <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      hugo <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>      virt-manager</span></span></code></pre></div>
-<h2 id="install-homebrew-stuff">Install Homebrew Stuff:</h2>
-<p>then run <code>just homebrew</code> after a reboot to install packages with brew</p>
-<h3 id="visudo-config">visudo config</h3>
-<p>Add to /etc/sudoers to make Vim default for <code>visudo</code></p>
-<p><code>Defaults editor=/usr/bin/vim</code></p>
-<h2 id="virt-manager">Virt Manager</h2>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf install @virtualization</span></span></code></pre></div>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vi /etc/libvirt/libvirtd.conf</span></span></code></pre></div>
-<p>Uncomment the line: <code>unix_sock_group = &quot;libvirt&quot;</code></p>
-<p>Adjust the UNIX socket permissions for the R/W socket:
-<code>unix_sock_rw_perms = &quot;0770&quot;</code></p>
-<p>Start the service:
-<code>systemctl enable --now libvirtd</code></p>
-<p>Add user to group:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo usermod -a -G libvirt <span style="color:#ff6ac1">$(</span>whoami<span style="color:#ff6ac1">)</span> <span style="color:#ff6ac1">&amp;&amp;</span> sudo usermod -a -G kvm <span style="color:#ff6ac1">$(</span>whoami<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
-<p>use the Tweaks app to set the appearance of Legacy Applications to &lsquo;adwaita-dark&rsquo;.</p>
-<h2 id="configure-howdy">Configure Howdy</h2>
-<p>Howdy is a tool for using an IR webcam for authentication:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf copr <span style="color:#ff5c57">enable</span> principis/howdy
-</span></span><span style="display:flex;"><span>sudo dnf --refresh install -y howdy</span></span></code></pre></div>
-<p><a href="https://copr.fedorainfracloud.org/coprs/principis/howdy/" rel="external" target="_blank">https://copr.fedorainfracloud.org/coprs/principis/howdy/</a>
-<a href="https://github.com/boltgolt/howdy" rel="external" target="_blank">https://github.com/boltgolt/howdy</a></p>
-<h2 id="seahorse">Seahorse</h2>
-<p>I was using this to fix the Login Keyring error that is common with Fedora, but it no longer works.
-<code>sudo dnf -y install seahorse &amp;&amp; seahorse</code></p>
-<p>Applications &gt; Passwords and Keys &gt; Passwords &gt; Right-click Login &gt; Change Password to blank.</p>
-<p><a href="https://itsfoss.com/seahorse/" rel="external" target="_blank">https://itsfoss.com/seahorse/</a></p>
-<h2 id="initialize-chezmoi">Initialize Chezmoi</h2>
-<p>Chezmoi let&rsquo;s you easy sync your dotfiles with Github and your other computers. Just init Chezmoi and add your Github username. This assumes your dotfiles in Github are saved in the proper format.
-`chezmoi init &ndash;apply linuxreader</p>
-<h2 id="add-badname-user-if-needed">Add badname user (if needed)</h2>
-<p>If you need to use username with the format <code>firstname.lastname</code>, use the <code>badname</code> flag with the <code>adduser</code> command. You will have to create a normal user first, because you can&rsquo;t do this during the initial install:
-<code>$ adduser --badname firstname.lastname</code>
-<code>$ sudo usermod -aG wheel username</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># uncomment this line in the visudo file 
-$ sudo visudo
-%wheel ALL=(ALL) ALL</code></pre></div>
-<p>Delete the other user:
-<code>$ userdel username</code></p>
-<h2 id="additional-dnf-stuff">Additional DNF stuff:</h2>
-<p>Clear cache (do this occasionally):
-<code>sudo dnf clean dbcache</code>
-or <code>sudo dnf clean all</code></p>
-<p>Update DNF:
-<code>sudo dnf -y update</code></p>
-<p>Additional DNF commands:
-<a href="https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/package-management/DNF/" rel="external" target="_blank" title="https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/package-management/DNF/">https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/package-management/DNF/</a></p>
-<h2 id="set-up-rpm-fusion">Set up RPM Fusion</h2>
-<p>RPM Fusion give you more accessibility to various software packages.</p>
-<p>Install:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm</code></pre></div>
-<p><a href="https://rpmfusion.org/" rel="external" target="_blank" title="https://rpmfusion.org/">https://rpmfusion.org/</a></p>
-<h2 id="appstream-metadata">AppStream metadata</h2>
-<p>Use AppStream to enable users to install packages using Gnome Software/KDE Discover:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf -y groupupdate core</code></pre></div>
-<h2 id="flatpaks">Flatpaks</h2>
-<p>To enable Flatpaks (this may no longer be needed:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo</code></pre></div>
-<p><a href="https://flatpak.org/setup/Fedora" rel="external" target="_blank">https://flatpak.org/setup/Fedora</a></p>
-<h2 id="set-a-hostname">Set a hostname</h2>
-<p>Set a hostname for the system. This will show after next reboot:
-<code>sudo hostnamectl set-hostname &quot;New_Custom_Name&quot;</code></p>
-<h2 id="other-stuff">Other Stuff</h2>
-<p>Here is some other stuff I install from the software center.</p>
-<h3 id="input-leap">Input Leap</h3>
-<p>Input Leap let&rsquo;s you share a mouse and keyboard between two workstations.</p>
-<p><a href="#R-image-5cceb6ee1bb633a932c7a98dac9b22db" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905105932.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5cceb6ee1bb633a932c7a98dac9b22db"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905105932.png"></a></p>
-<p>I don&rsquo;t know what this is or why it is here:
-installing Git and a bunch of other stuff?</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf install git cmake make gcc-c++ xorg-x11-server-devel <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>                 libcurl-devel avahi-compat-libdns_sd-devel <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>                 libXtst-devel qt5-qtbase qt5-qtbase-devel  <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>                 qt5-qttools-devel libICE-devel libSM-devel <span style="color:#5af78e">\
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>                 openssl-devel libXrandr-devel libXinerama-devel</span></span></code></pre></div>
-<h2 id="virtual-machine-manager">Virtual machine Manager</h2>
-<p>The best way to manage VMs on desktop.</p>
-<p><a href="#R-image-a7bb7874a77470dd7549d60515c23794" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110024.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a7bb7874a77470dd7549d60515c23794"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110024.png"></a></p>
-<h2 id="box-buddy">Box Buddy</h2>
-<p>For managing containers.</p>
-<p><a href="#R-image-2230b003590a93f4d66a9c943f089e9e" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110223.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2230b003590a93f4d66a9c943f089e9e"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110223.png"></a></p>
-<h2 id="warehouse">Warehouse</h2>
-<p>Managing installed applications.</p>
-<p><a href="#R-image-b6682ee884a799ebf89780a07ce37ec5" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="Pasted%20image%2020240905110143.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b6682ee884a799ebf89780a07ce37ec5"><img class="lazy lightbox lightbox-image" loading="lazy" src="Pasted%20image%2020240905110143.png"></a></p>
-<h2 id="mission-center">Mission Center</h2>
-<p>Task Manager like application.</p>
-<p><a href="#R-image-7c4b1db5049ee5a2f51d7a0c3adde206" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110500.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7c4b1db5049ee5a2f51d7a0c3adde206"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110500.png"></a></p>
-<h2 id="pika-backup">Pika Backup</h2>
-<p>For backing up your desktop.
-<a href="#R-image-27ba991bd9eb9560076a8a30ae05d9e6" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110555.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-27ba991bd9eb9560076a8a30ae05d9e6"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110555.png"></a></p>
-<h2 id="clapper">Clapper</h2>
-<p>Video player.</p>
-<p><a href="#R-image-7ee14214a351147e7c59c3f1a5f15683" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110319.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ee14214a351147e7c59c3f1a5f15683"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110319.png"></a></p>
-<p>And some extensions installed through Extension Manager:
-<a href="#R-image-0f0eb6f02b1438886faced2542112747" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905105517.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0f0eb6f02b1438886faced2542112747"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905105517.png"></a></p>
-<p>Install Gnome Screenshot tool:</p>
-<p>Install the extention:
-<a href="https://extensions.gnome.org/extension/1112/screenshot-tool/" rel="external" target="_blank">https://extensions.gnome.org/extension/1112/screenshot-tool/</a></p>
-<p>You also need to install from DNF for some reason:
-<code>dnf install -y gnome-screenshot</code></p>
-<h2 id="airpods-not-pairing-issue">Airpods not pairing Issue</h2>
-<p>If you ever have the issue where Airpods won&rsquo;t pair. Remove them from the pairing list, force them in pairing mode, and pair them back. This can be made easy with bluetoothctl:</p>
-<p>Just in case, restart the bluetooth service:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart bluetooth
-</span></span><span style="display:flex;"><span>systemctl status bluetooth </span></span></code></pre></div>
-<p>Show devices:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># bluetoothctl
-
-[bluetooth] $ devices
-Device 42:42:42:42:42:42 My AirPods &lt;-- grab the name here
-[bluetooth] $ remove 42:42:42:42:42:42 </code></pre></div>
-<p>Now, make sure your Airpods are in the charging case, close the lid, wait 15 seconds, then open the lid. Press and hold the setup button on the case for up to 10 seconds. The status light should flash white, which means that your Airpods are ready to connect.</p>
-<p>Pair them back:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>[bluetooth] $ pair 42:42:42:42:42:42</code></pre></div>
-<h2 id="enable-fractional-scaling">Enable Fractional Scaling</h2>
-<p>This lets you change display scaling in smaller increments. You&rsquo;ll need to make sure Wayland is turned on.</p>
-<p>Turn on the feature then reboot:
-<code>gsettings set org.gnome.mutter experimental-features &quot;['scale-monitor-framebuffer']&quot;</code></p>
-<p><code>reboot</code></p>
-<h2 id="remove-pasted-characters-200">Remove pasted characters ^<a href="200~'"></a></h2>
-<p>Kept having pasted format characters ^<a href="200~'"></a> mess up my groove. Here&rsquo;s the fix.</p>
-<p>Open your inputrc file and add the line below:
-<code>vim ~/.inputrc</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#34;\C-v&#34;</span>: <span style="color:#5af78e">&#34;&#34;</span></span></span></code></pre></div>
-<h2 id="install-gimp">Install gimp</h2>
-<p><code>sudo dnf install gimp</code>
-enable in screenshot tool after install for gimp {f}</p>
-<p>Install Arrows
-<a href="https://graphicdesign.stackexchange.com/questions/44797/how-do-i-insert-arrows-into-a-picture-in-gimp" rel="external" target="_blank">https://graphicdesign.stackexchange.com/questions/44797/how-do-i-insert-arrows-into-a-picture-in-gimp</a></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Go to your home folder
-Go to .config/GIMP
-Go to the folder with a version number (2.10 for me)
-Go to scripts
-Download the arrow.scm file and place it here. Don&#39;t forget to unzip.
-Open GIMP and draw a path</code></pre></div>
-<p>From Tools menu, select Arrow</p>
-<p>= h.265 main 10 profile media codec error =</p>
-<h2 id="distrobox">Distrobox</h2>
-<p>See <a href="/tools/drafts/distrobox/">distrobox</a></p>
-<h2 id="zsh-for-humans">ZSH For Humans</h2>
-<p><a href="https://github.com/romkatv/zsh4humans" rel="external" target="_blank">GitHub - romkatv/zsh4humans: A turnkey configuration for Zsh</a></p>
-<h2 id="install-starcraft-on-fedora">Install Starcraft on Fedora</h2>
-<p><a href="https://www.youtube.com/watch?v=eefsL9K2w4k" rel="external" target="_blank">https://www.youtube.com/watch?v=eefsL9K2w4k</a></p>
-<ol>
-<li>Install your latest gpu driver <a href="https://github.com/lutris/docs/blob/master/InstallingDrivers.md" rel="external" target="_blank">https://github.com/lutris/docs/blob/master/InstallingDrivers.md</a></li>
-</ol>
-<p>I am just running off of built in AMD graphics. So we just need to install support for Vulkan API
-<code>sudo dnf install vulkan-loader vulkan-loader.i686</code></p>
-<p>Install Wine
-<code>$ sudo dnf -y install wine</code></p>
-<p>Install Lutris
-Install the Flatpak version in software center.</p>
-<h2 id="fedora-hotkeys">Fedora Hotkeys</h2>
-<h2 id="terminal">Terminal</h2>
-<p>Close Terminal
-shift + c + q</p>
-<p>Previous Tab
-c + Page Up</p>
-<p>Next Tab
-c + Page Down</p>
-<p>Move to Specific Tab
-Alt + #</p>
-<p>Full Screen
-F11</p>
-<p>New Window
-Shift + Ctrl + t</p>
-<p>Close Tab
-Shift + Ctrl + w</p>
-<h2 id="desktop">Desktop</h2>
-<p>Run a command
-super + F2</p>
-<p>Switch Between Applications
-Alt + Esc</p>
-<p>Move Window to Left Monitor
-Shift + Super + &lt;-</p>
-<p>Move Window to Right Monitor
-Shift + Super + -&gt;</p>
-<p>Minimize Current Window
-Super + H</p>
-<p>Close Current Appllication
-Ctrl + Q</p>
-<h2 id="browser">Browser</h2>
-<h3 id="firefox">Firefox</h3>
-<p>Switch Between Tabs
-Ctrl + Tab</p>
-<p>Switch Between Tabs in Reverse
-Ctrl + Shift + Tab</p>
-<h4 id="detach-tab-extension">Detach Tab Extension</h4>
-<p><a href="https://addons.mozilla.org/en-US/firefox/addon/detach-tab/" rel="external" target="_blank">https://addons.mozilla.org/en-US/firefox/addon/detach-tab/</a></p>
-<p>Detach Tab
-Ctrl _ Shift _ Space</p>
-<p>Reattach Tab
-Ctrl + Shift + v</p>
-<h2 id="slack">Slack</h2>
-<p>Installing via package manager because of screen sharing issue.</p>
-<p>Upgrade dnf and download the slack rpm from the website.</p>
-<p><strong>Screen Sharing in Slack:</strong></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /usr/share/applications/slack.desktop</span></span></code></pre></div>
-<p>Update the exec line to:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">Exec</span><span style="color:#ff6ac1">=</span>/usr/bin/slack --enable-features<span style="color:#ff6ac1">=</span>WebRTCPipeWireCapturer %U</span></span></code></pre></div>
-<h2 id="actual-budget">Actual Budget</h2>
-<p><a href="https://github.com/actualbudget/actual" rel="external" target="_blank">https://github.com/actualbudget/actual</a></p>
-<h3 id="set-vim-to-default-editor-for-visudo">Set Vim to default editor for visudo</h3>
-<p>add <code>Defaults editor=/usr/bin/vim</code> to top of visudo file.su</p>
-
-  <footer class="footline">
-  </footer>
-</article>
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="silverblue">Silverblue</h1>
-
-<p>Automated setup <a href="https://universal-blue.org/" rel="external" target="_blank">https://universal-blue.org/</a></p>
-<p>You get all the benefits of using containers
-Separates system level packages from applications.</p>
-<p>System Level</p>
-<ul>
-<li>Desktop, kernel?</li>
-<li>Layering
-<ul>
-<li>Apps at system level because containers aren&rsquo;t as developed yet</li>
-<li>Locks to the fedora version you are on</li>
-</ul>
-</li>
-</ul>
-<h2 id="layered-package-examples">Layered package examples</h2>
-<pre><code>- gnome shell extensions
-- distrobox
-</code></pre>
-<p>Uses rpm-ostree? <a href="https://coreos.github.io/rpm-ostree/administrator-handbook/" rel="external" target="_blank">https://coreos.github.io/rpm-ostree/administrator-handbook/</a></p>
-<p>Flatpacks</p>
-<p>Remove fedora flatpack stuff and use flathub repos instead <a href="https://flatpak.org/setup/Fedora" rel="external" target="_blank">https://flatpak.org/setup/Fedora</a></p>
-<p>Systemd unit for automatic flatpack updates</p>
-<p>Update every 4 hours to mirror ubuntu</p>
-<p>flatseal
-adjust permissions of flatpacks</p>
-<p>check out apps.gnome.org</p>
-<h2 id="rebase-into-universal-blue">Rebase into Universal Blue</h2>
-<p>Rebase onto the &ldquo;unsigned&rdquo; image then reboot:
-<code>rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/silverblue-main:39</code> and</p>
-<p>Then the signed image and reboot:
-<code>rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/silverblue-main:39</code></p>
-<p>Then do we you do after install, open the app store and install stuff via GUI or we</p>
-<h2 id="just">just</h2>
-<p>have a .justfile to install all flatpak/ homebrew packages
-<a href="https://universal-blue.discourse.group/t/introduction-to-just/42" rel="external" target="_blank">https://universal-blue.discourse.group/t/introduction-to-just/42</a>
-<a href="https://just.systems/man/en/chapter_1.html" rel="external" target="_blank">https://just.systems/man/en/chapter_1.html</a></p>
-<p>My justfile</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>import <span style="color:#5af78e">&#34;/usr/share/ublue-os/justfile&#34;</span>  
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># You can add your own commands here! For documentation, see: [https://ublue.it/guide/just/](https://ublue.it/guide/just/)  </span>
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>first-install:  
-</span></span><span style="display:flex;"><span>    flatpak install <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.bitwarden.desktop <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.brave.Browser <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.discordapp.Discord <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub net.cozic.joplin_desktop <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.gimp.GIMP <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.gnome.Snapshot <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.libreoffice.LibreOffice <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.remmina.Remmina <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.termius.Termius <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub net.devolutions.RDM <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.slack.Slack <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.keepassxc.KeePassXC <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub md.obsidian.Obsidian <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.calibre_ebook.calibre <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.logseq.Logseq <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.mozilla.Thunderbird <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub us.zoom.Zoom <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.wireshark.Wireshark <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.nextcloud.desktopclient.nextcloud <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.google.Chrome  
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    brew install <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      ansible <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      chezmoi <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      neovim  <span style="color:#5af78e">\ </span>     
-</span></span><span style="display:flex;"><span>      onedrive <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      wireguard-tools</span></span></code></pre></div>
-<p>Set up github dotfiles repo</p>
-<p>Install chezmoi and initialize:
-<code>chezmoi init</code></p>
-<p>Sync with Chezmoi: <a href="https://www.chezmoi.io/quick-start/" rel="external" target="_blank">https://www.chezmoi.io/quick-start/</a></p>
-<p>Add dotfiles
-<code>chezmoi add ~/.bashrc</code></p>
-<p>Edit a dotfile
-<code>chezmoi edit ~/.bashrc</code></p>
-<p>See changes
-<code>chezmoi diff</code></p>
-<p>Apply changes
-<code>chezmoi -v apply</code></p>
-<p>to sync chezmoi with git:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chezmoi <span style="color:#ff5c57">cd</span>
-</span></span><span style="display:flex;"><span>git remote add origin https://github.com/<span style="color:#ff5c57">$GITHUB_USERNAME</span>/dotfiles.git 
-</span></span><span style="display:flex;"><span>$ git push -u origin main 
-</span></span><span style="display:flex;"><span>$ exit</span></span></code></pre></div>
-<p>For subsequent git pushes:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git commit -a -m <span style="color:#5af78e">&#34;commit&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> git push</span></span></code></pre></div>
-<p><a href="#R-image-a46e28139de1d5c96e496e18968d95b6" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="davidvargasxyz.github.io/docs/images/Pasted%20image%2020240904141011.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a46e28139de1d5c96e496e18968d95b6"><img class="lazy lightbox lightbox-image" loading="lazy" src="davidvargasxyz.github.io/docs/images/Pasted%20image%2020240904141011.png"></a></p>
-<h3 id="from-a-second-machine">From a second machine:</h3>
-<p>Install all dotfiles with a single command:
-<code>chezmoi init --apply https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
-<p>If you use GitHub and your dotfiles repo is called <code>dotfiles</code> then this can be shortened to:
-<code>$ chezmoi init --apply $GITHUB_USERNAME</code></p>
-<p><a href="#R-image-89b06f4765294b89830bd19f5dd35e9c" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="Pasted%20image%2020240904142110%201.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-89b06f4765294b89830bd19f5dd35e9c"><img class="lazy lightbox lightbox-image" loading="lazy" src="Pasted%20image%2020240904142110%201.png"></a></p>
-<p>See a list of full commands:
-<code>chezmoi help</code></p>
-<p>Or you can initialize and choose what you want:
-<code>chezmoi init https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
-<p>See what changes are awaiting:
-<code>chezmoi diff</code></p>
-<p>Apply changes:
-<code>chezmoi apply -v</code></p>
-<p>can also edit a file before applying:
-<code>chezmoi edit $FILE</code></p>
-<p>Or merge the current file with new file:
-<code>chezmoi merge $FILE</code></p>
-<p>From any machine, you can pull and apply changes from your repo:
-<code>chezmoi update -v</code></p>
-<p><a href="#R-image-c15a8fae1be5407409dbfa30eb4589c9" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="Pasted%20image%2020240904141728.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c15a8fae1be5407409dbfa30eb4589c9"><img class="lazy lightbox lightbox-image" loading="lazy" src="Pasted%20image%2020240904141728.png"></a></p>
-<p>Add the justfile:
-<code>chezmoi add .justfile</code></p>
-<h2 id="install-connect-tunnel">Install Connect Tunnel</h2>
-<p>Download from website
-Install java
-<code>rpm-ostree install java</code></p>
-<p>Runn the connect tunnel install script</p>
-<p>Commands located in /var/usrlocal/Aventail must be ran as root
-`sudo ./startctui.sh</p>
-
-  <footer class="footline">
-  </footer>
-</article>
-          </section>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard/clipboard.min.js?1744979713" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744979713" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754309132" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754309132" defer></script>
     <script>
       window.MathJax = Object.assign( window.MathJax || {}, {
         tex: {
@@ -799,20 +167,20 @@ Install java
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-color.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1744979713" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-color.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1754309132" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.min.js?1744979713" defer></script>
+    <script src="/js/theme.min.js?1754309132" defer></script>
   </body>
 </html>

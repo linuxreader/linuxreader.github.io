@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Building an Ansible lab with Ansible using Ansible and Libvirt">
     <meta name="author" content="David Thomas">
@@ -23,18 +23,18 @@
     <title>Building an Ansible lab with Ansible :: Linux Reader</title>
     <link href="http://linuxreader.com/ansible/building-an-ansible-lab-with-ansible/" rel="canonical" type="text/html" title="Building an Ansible lab with Ansible :: Linux Reader">
     <link href="/ansible/building-an-ansible-lab-with-ansible/index.xml" rel="alternate" type="application/rss+xml" title="Building an Ansible lab with Ansible :: Linux Reader">
-    <link href="/images/favicon.svg?1744979713" rel="icon" type="image/svg+xml">
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744979713" rel="stylesheet">
-    <link href="/css/theme.min.css?1744979713" rel="stylesheet">
-    <link href="/css/format-print.min.css?1744979713" rel="stylesheet" id="R-format-style">
-    <link href="/css/auto-complete/auto-complete.min.css?1744979713" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1744979713" defer></script>
-    <script src="/js/search.min.js?1744979713" defer></script>
+    <link href="/images/favicon.svg?1754309132" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754309132" rel="stylesheet">
+    <link href="/css/theme.min.css?1754309132" rel="stylesheet">
+    <link href="/css/format-html.min.css?1754309132" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1754309132" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754309132" defer></script>
+    <script src="/js/search.min.js?1754309132" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -44,7 +44,7 @@
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/searchindex.en.js?1744979713";
+      window.relearn.index_js_url="/searchindex.en.js?1754309132";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -100,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support print" data-url="/ansible/building-an-ansible-lab-with-ansible/">
+  <body class="mobile-support html" data-url="/ansible/building-an-ansible-lab-with-ansible/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -155,244 +155,11 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
         <div class="flex-block-wrapper">
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="building-an-ansible-lab-with-ansible">Building an Ansible lab with Ansible</h1>
-
-<p>When I started studying for RHCE, the study guide had me manually set up virtual machines for the Ansible lab environment. I thought.. Why not start my automation journey right, and automate them using Vagrant.</p>
-<p>I use Libvirt to manage KVM/QEMU Virtual Machines and the Virt-Manager app to set them up. I figured I could use Vagrant to automatically build this lab from a file. And I got part of the way. I ended up with this Vagrant file:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Vagrant.configure<span style="color:#ff6ac1">(</span><span style="color:#5af78e">&#34;2&#34;</span><span style="color:#ff6ac1">)</span> <span style="color:#ff6ac1">do</span> |config|
-</span></span><span style="display:flex;"><span>  config.vm.box <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;almalinux/9&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  config.vm.provider :libvirt <span style="color:#ff6ac1">do</span> |libvirt|
-</span></span><span style="display:flex;"><span>    libvirt.uri <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;qemu:///system&#34;</span>
-</span></span><span style="display:flex;"><span>    libvirt.cpus <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>    libvirt.memory <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">2048</span>
-</span></span><span style="display:flex;"><span>  end
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   config.vm.define <span style="color:#5af78e">&#34;control&#34;</span> <span style="color:#ff6ac1">do</span> |control|
-</span></span><span style="display:flex;"><span>    control.vm.network <span style="color:#5af78e">&#34;private_network&#34;</span>, ip: <span style="color:#5af78e">&#34;192.168.124.200&#34;</span>
-</span></span><span style="display:flex;"><span>    control.vm.hostname <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;control.example.com&#34;</span>
-</span></span><span style="display:flex;"><span>  end
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  config.vm.define <span style="color:#5af78e">&#34;ansible1&#34;</span> <span style="color:#ff6ac1">do</span> |ansible1|
-</span></span><span style="display:flex;"><span>    ansible1.vm.network <span style="color:#5af78e">&#34;private_network&#34;</span>, ip: <span style="color:#5af78e">&#34;192.168.124.201&#34;</span>
-</span></span><span style="display:flex;"><span>    ansible1.vm.hostname <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;ansible1.example.com&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  end
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  config.vm.define <span style="color:#5af78e">&#34;ansible2&#34;</span> <span style="color:#ff6ac1">do</span> |ansible2|
-</span></span><span style="display:flex;"><span>    ansible2.vm.network <span style="color:#5af78e">&#34;private_network&#34;</span>, ip: <span style="color:#5af78e">&#34;192.168.124.202&#34;</span>
-</span></span><span style="display:flex;"><span>    ansible2.vm.hostname <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;ansible2.example.com&#34;</span>
-</span></span><span style="display:flex;"><span>  end
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>end</span></span></code></pre></div>
-<p>I could run this Vagrant file and Build and destroy the lab in seconds. But there was a problem. The Libvirt plugin, or Vagrant itself, I&rsquo;m not sure which, kept me from doing a couple important things.</p>
-<p>First, I could not specify the initial disk creation size. I could add additional disks of varying sizes but, if I wanted to change the size of the first disk, I would have to go back in after the fact and expand it manually&hellip;</p>
-<p>Second, the Libvirt plugin networking settings were a bit confusing. When you add the private network option as seen in the Vagrant file, it would add this as a secondary connection, and route everything through a different public connection.</p>
-<p>Now I couldn&rsquo;t get the VMs to run using the public connection for whatever reason, and it seems the only workaround was to make DHCP reservations for the guests Mac addresses which gave me even more problems to solve. But I won&rsquo;t go there..</p>
-<p>So why not get my feet wet and learn how to deploy VMs with Ansible? This way, I would get the granularity and control that Ansible gives me, some extra practice with Ansible, and not having to use software that has just enough abstraction to get in the way.</p>
-<p>The guide I followed to set this up can be found on Redhat&rsquo;s blog <a href="https://www.redhat.com/en/blog/build-VM-fast-ansible" rel="external" target="_blank">here.</a> And it was pretty easy to set up all things considered.</p>
-<p>I&rsquo;ll rehash the steps here:</p>
-<ol>
-<li>Download a cloud image</li>
-<li>Customize the image</li>
-<li>Install and start a VM</li>
-<li>Access the VM</li>
-</ol>
-<h3 id="creating-the-role">Creating the role</h3>
-<p>Create the project directory
-<code>mkdir -p kvmlab/roles &amp;&amp; cd kvmlab/roles</code></p>
-<p>Initialize the role
-<code>ansible-galaxy role init kvm_provision</code></p>
-<p>Switch into the role directory
-<code>cd kvm_provision/</code></p>
-<p>Remove unused directories
-<code>rm -r files handlers vars</code></p>
-<h3 id="define-variables">Define variables</h3>
-<p>Add default variables to main.yml
-<code>cd defaults/ &amp;&amp; vim main.yml</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># defaults file for kvm_provision</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">base_image_name</span>: AlmaLinux-9-GenericCloud-9.5-20241120.x86_64.qcow2
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">base_image_url</span>: https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/{{ base_image_name }}
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">base_image_sha</span>: abddf01589d46c841f718cec239392924a03b34c4fe84929af5d543c50e37e37
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">libvirt_pool_dir</span>: <span style="color:#5af78e">&#34;/var/lib/libvirt/images&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_name</span>: f34-dev
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_vcpus</span>: <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_ram_mb</span>: <span style="color:#ff9f43">2048</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_net</span>: default
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_root_pass</span>: test123
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">cleanup_tmp</span>: <span style="color:#ff6ac1">no</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">ssh_key</span>: /root/.ssh/id_rsa.pub
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Added option to configure ip address</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">ip_addr</span>: <span style="color:#ff9f43">192.168.124.250</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">gw_addr</span>: <span style="color:#ff9f43">192.168.124.1</span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Added option to configure disk size</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_disksize</span>: <span style="color:#ff9f43">20</span></span></span></code></pre></div>
-<h3 id="defining-a-vm-template">Defining a VM template</h3>
-<p>The community.libvirt.virt module is used to provision a KVM VM. This module uses a VM definition in XML format with libvirt syntax. You can dump a VM definition of a current VM and then convert it to a template from there. Or you can just use this:</p>
-<p><code>cd templates/ &amp;&amp; vim vm-template.xml.j2</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff6ac1">&lt;domain</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;kvm&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;name&gt;</span>{{ vm_name }}<span style="color:#ff6ac1">&lt;/name&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;memory</span> <span style="color:#57c7ff">unit=</span><span style="color:#5af78e">&#39;MiB&#39;</span><span style="color:#ff6ac1">&gt;</span>{{ vm_ram_mb }}<span style="color:#ff6ac1">&lt;/memory&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;vcpu</span> <span style="color:#57c7ff">placement=</span><span style="color:#5af78e">&#39;static&#39;</span><span style="color:#ff6ac1">&gt;</span>{{ vm_vcpus }}<span style="color:#ff6ac1">&lt;/vcpu&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;os&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;type</span> <span style="color:#57c7ff">arch=</span><span style="color:#5af78e">&#39;x86_64&#39;</span> <span style="color:#57c7ff">machine=</span><span style="color:#5af78e">&#39;pc-q35-5.2&#39;</span><span style="color:#ff6ac1">&gt;</span>hvm<span style="color:#ff6ac1">&lt;/type&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;boot</span> <span style="color:#57c7ff">dev=</span><span style="color:#5af78e">&#39;hd&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;/os&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;cpu</span> <span style="color:#57c7ff">mode=</span><span style="color:#5af78e">&#39;host-model&#39;</span> <span style="color:#57c7ff">check=</span><span style="color:#5af78e">&#39;none&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;devices&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;emulator&gt;</span>/usr/bin/qemu-system-x86_64<span style="color:#ff6ac1">&lt;/emulator&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;disk</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;file&#39;</span> <span style="color:#57c7ff">device=</span><span style="color:#5af78e">&#39;disk&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;driver</span> <span style="color:#57c7ff">name=</span><span style="color:#5af78e">&#39;qemu&#39;</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;qcow2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;source</span> <span style="color:#57c7ff">file=</span><span style="color:#5af78e">&#39;{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;target</span> <span style="color:#57c7ff">dev=</span><span style="color:#5af78e">&#39;vda&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x05&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#78787e">&lt;!-- Added: Specify the disk size using a variable --&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;size</span> <span style="color:#57c7ff">unit=</span><span style="color:#5af78e">&#39;GiB&#39;</span><span style="color:#ff6ac1">&gt;</span>{{ disk_size }}<span style="color:#ff6ac1">&lt;/size&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/disk&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;interface</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;network&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;source</span> <span style="color:#57c7ff">network=</span><span style="color:#5af78e">&#39;{{ vm_net }}&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;model</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x01&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/interface&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;channel</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;unix&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;target</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio&#39;</span> <span style="color:#57c7ff">name=</span><span style="color:#5af78e">&#39;org.qemu.guest_agent.0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio-serial&#39;</span> <span style="color:#57c7ff">controller=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">port=</span><span style="color:#5af78e">&#39;1&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/channel&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;channel</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;spicevmc&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;target</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio&#39;</span> <span style="color:#57c7ff">name=</span><span style="color:#5af78e">&#39;com.redhat.spice.0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio-serial&#39;</span> <span style="color:#57c7ff">controller=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">port=</span><span style="color:#5af78e">&#39;2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/channel&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;input</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;tablet&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;usb&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;usb&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">port=</span><span style="color:#5af78e">&#39;1&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/input&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;input</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;mouse&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;ps2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;input</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;keyboard&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;ps2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;graphics</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;spice&#39;</span> <span style="color:#57c7ff">autoport=</span><span style="color:#5af78e">&#39;yes&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;listen</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;address&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;image</span> <span style="color:#57c7ff">compression=</span><span style="color:#5af78e">&#39;off&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/graphics&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;video&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;model</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;qxl&#39;</span> <span style="color:#57c7ff">ram=</span><span style="color:#5af78e">&#39;65536&#39;</span> <span style="color:#57c7ff">vram=</span><span style="color:#5af78e">&#39;65536&#39;</span> <span style="color:#57c7ff">vgamem=</span><span style="color:#5af78e">&#39;16384&#39;</span> <span style="color:#57c7ff">heads=</span><span style="color:#5af78e">&#39;1&#39;</span> <span style="color:#57c7ff">primary=</span><span style="color:#5af78e">&#39;yes&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x01&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/video&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;memballoon</span> <span style="color:#57c7ff">model=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x06&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/memballoon&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;rng</span> <span style="color:#57c7ff">model=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;backend</span> <span style="color:#57c7ff">model=</span><span style="color:#5af78e">&#39;random&#39;</span><span style="color:#ff6ac1">&gt;</span>/dev/urandom<span style="color:#ff6ac1">&lt;/backend&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x07&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/rng&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;/devices&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">&lt;/domain&gt;</span></span></span></code></pre></div>
-<p>The template uses some of the variables from earlier. This allows flexibility to changes things by just changing the variables.</p>
-<h2 id="define-tasks-for-the-role-to-perform">Define tasks for the role to perform</h2>
-<p><code>cd ../tasks/ &amp;&amp; vim main.yml</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># tasks file for kvm_provision</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># ensure the required package dependencies `guestfs-tools` and `python3-libvirt` are installed. This role requires these packages to connect to `libvirt` and to customize the virtual image in a later step. These package names work on Fedora Linux. If you&#39;re using RHEL 8 or CentOS, use `libguestfs-tools` instead of `guestfs-tools`. For other distributions, adjust accordingly.</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Ensure requirements in place
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">package</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">name</span>:
-</span></span><span style="display:flex;"><span>      - guestfs-tools
-</span></span><span style="display:flex;"><span>      - python3-libvirt
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: present
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">yes</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># obtain a list of existing VMs so that you don&#39;t overwrite an existing VM on accident. uses the `virt` module from the collection `community.libvirt`, which interacts with a running instance of KVM with `libvirt`. It obtains the list of VMs by specifying the parameter `command: list_vms` and saves the results in a variable `existing_vms`. `changed_when: no` for this task to ensure that it&#39;s not marked as changed in the playbook results. This task doesn&#39;t make any change in the machine; it only checks the existing VMs. This is a good practice when developing Ansible automation to prevent false reports of changes.</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Get VMs list
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">community.libvirt.virt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: list_vms
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">register</span>: existing_vms
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">changed_when</span>: <span style="color:#ff6ac1">no</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e">#execute only when the VM name the user provides doesn&#39;t exist. And uses the module `get_url` to download the base cloud image into the `/tmp` directory</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Create VM if not exists
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">block</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Download base image
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">get_url</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">url</span>: <span style="color:#5af78e">&#34;{{ base_image_url }}&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: <span style="color:#5af78e">&#34;/tmp/{{ base_image_name }}&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">checksum</span>: <span style="color:#5af78e">&#34;sha256:{{ base_image_sha }}&#34;</span>
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># copy the file to libvirt&#39;s pool directory so we don&#39;t edit the original, which can be used to provision other VMS later</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Copy base image to libvirt directory
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: <span style="color:#5af78e">&#34;{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: <span style="color:#5af78e">&#34;/tmp/{{ base_image_name }}&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">force</span>: <span style="color:#ff6ac1">no</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">remote_src</span>: <span style="color:#ff6ac1">yes</span> 
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0660</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: copy_results
-</span></span><span style="display:flex;"><span>  - 
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Resize the VM disk</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Resize VM disk
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: qemu-img resize &#34;{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2&#34; &#34;{{ disk_size }}G&#34;
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: copy_results is changed
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># uses command module to run virt-customize to customize the image</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Configure the image
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: |<span style="color:#5af78e">
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      virt-customize -a {{ libvirt_pool_dir }}/{{ vm_name }}.qcow2 \
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --hostname {{ vm_name }} \
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --root-password password:{{ vm_root_pass }} \
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --ssh-inject &#39;root:file:{{ ssh_key }}&#39; \
-</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --uninstall cloud-init --selinux-relabel</span>      
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># Added option to configure an IP address</span>
-</span></span><span style="display:flex;"><span>      --firstboot-command &#34;nmcli c m eth0 con-name eth0 ip4 {{ ip_addr }}/24 gw4 {{ gw_addr }} ipv4.method manual &amp;&amp; nmcli c d eth0 &amp;&amp; nmcli c u eth0&#34;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: copy_results is changed
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Define vm
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">community.libvirt.virt</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">command</span>: define
-</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">xml</span>: <span style="color:#5af78e">&#34;{{ lookup(&#39;template&#39;, &#39;vm-template.xml.j2&#39;) }}&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: <span style="color:#5af78e">&#34;vm_name not in existing_vms.list_vms&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Ensure VM is started
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">community.libvirt.virt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ vm_name }}&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: running
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">register</span>: vm_start_results
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">until</span>: <span style="color:#5af78e">&#34;vm_start_results is success&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">retries</span>: <span style="color:#ff9f43">15</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">delay</span>: <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Ensure temporary file is deleted
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">file</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">path</span>: <span style="color:#5af78e">&#34;/tmp/{{ base_image_name }}&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: absent
-</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">when</span>: cleanup_tmp | bool</span></span></code></pre></div>
-<p>Changed my user to own the libvirt directory:
-<code>chown -R david:david /var/lib/libvirt/images</code></p>
-<p>Create a VM with a new name
-<code>ansible-playbook -K kvm_provision.yaml -e vm=ansible1</code></p>
-<p>&ndash;run-command &rsquo;nmcli c a type Ethernet ifname eth0 con-name eth0 ip4 192.168.124.200 gw4 192.168.124.1'</p>
-<p>parted /dev/vda resizepart 4 100%
-Warning: Partition /dev/vda4 is being used. Are you sure you want to continue?
-Yes/No? y                                                              <br>
-Information: You may need to update /etc/fstab.</p>
-<p>lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
-vda    252:0    0   20G  0 disk
-├─vda2 252:2    0  200M  0 part /boot/efi
-├─vda3 252:3    0    1G  0 part /boot
-└─vda4 252:4    0  8.8G  0 part /</p>
-
-  <footer class="footline">
-  </footer>
-</article>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard/clipboard.min.js?1744979713" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744979713" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754309132" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754309132" defer></script>
     <script>
       window.MathJax = Object.assign( window.MathJax || {}, {
         tex: {
@@ -405,20 +172,20 @@ vda    252:0    0   20G  0 disk
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-color.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1744979713" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-color.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1754309132" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.min.js?1744979713" defer></script>
+    <script src="/js/theme.min.js?1754309132" defer></script>
   </body>
 </html>

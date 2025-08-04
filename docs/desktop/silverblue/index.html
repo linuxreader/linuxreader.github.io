@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="Fedora Silverblue">
     <meta name="author" content="David Thomas">
@@ -23,18 +23,18 @@
     <title>Silverblue :: Linux Reader</title>
     <link href="/desktop/silverblue/index.xml" rel="alternate" type="application/rss+xml" title="Silverblue :: Linux Reader">
     <link href="/desktop/silverblue/index.print.html" rel="alternate" type="text/html" title="Silverblue :: Linux Reader">
-    <link href="/images/favicon.svg?1744979713" rel="icon" type="image/svg+xml">
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744979713" rel="stylesheet">
-    <link href="/css/theme.min.css?1744979713" rel="stylesheet">
-    <link href="/css/format-html.min.css?1744979713" rel="stylesheet" id="R-format-style">
-    <link href="/css/auto-complete/auto-complete.min.css?1744979713" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1744979713" defer></script>
-    <script src="/js/search.min.js?1744979713" defer></script>
+    <link href="/images/favicon.svg?1754309132" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754309132" rel="stylesheet">
+    <link href="/css/theme.min.css?1754309132" rel="stylesheet">
+    <link href="/css/format-html.min.css?1754309132" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1754309132" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754309132" defer></script>
+    <script src="/js/search.min.js?1754309132" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -44,7 +44,7 @@
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/searchindex.en.js?1744979713";
+      window.relearn.index_js_url="/searchindex.en.js?1754309132";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -155,220 +155,11 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable desktop" tabindex="-1">
         <div class="flex-block-wrapper">
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="silverblue">Silverblue</h1>
-
-<p>Automated setup <a href="https://universal-blue.org/" rel="external" target="_blank">https://universal-blue.org/</a></p>
-<p>You get all the benefits of using containers
-Separates system level packages from applications.</p>
-<p>System Level</p>
-<ul>
-<li>Desktop, kernel?</li>
-<li>Layering
-<ul>
-<li>Apps at system level because containers aren&rsquo;t as developed yet</li>
-<li>Locks to the fedora version you are on</li>
-</ul>
-</li>
-</ul>
-<h2 id="layered-package-examples">Layered package examples</h2>
-<pre><code>- gnome shell extensions
-- distrobox
-</code></pre>
-<p>Uses rpm-ostree? <a href="https://coreos.github.io/rpm-ostree/administrator-handbook/" rel="external" target="_blank">https://coreos.github.io/rpm-ostree/administrator-handbook/</a></p>
-<p>Flatpacks</p>
-<p>Remove fedora flatpack stuff and use flathub repos instead <a href="https://flatpak.org/setup/Fedora" rel="external" target="_blank">https://flatpak.org/setup/Fedora</a></p>
-<p>Systemd unit for automatic flatpack updates</p>
-<p>Update every 4 hours to mirror ubuntu</p>
-<p>flatseal
-adjust permissions of flatpacks</p>
-<p>check out apps.gnome.org</p>
-<h2 id="rebase-into-universal-blue">Rebase into Universal Blue</h2>
-<p>Rebase onto the &ldquo;unsigned&rdquo; image then reboot:
-<code>rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/silverblue-main:39</code> and</p>
-<p>Then the signed image and reboot:
-<code>rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/silverblue-main:39</code></p>
-<p>Then do we you do after install, open the app store and install stuff via GUI or we</p>
-<h2 id="just">just</h2>
-<p>have a .justfile to install all flatpak/ homebrew packages
-<a href="https://universal-blue.discourse.group/t/introduction-to-just/42" rel="external" target="_blank">https://universal-blue.discourse.group/t/introduction-to-just/42</a>
-<a href="https://just.systems/man/en/chapter_1.html" rel="external" target="_blank">https://just.systems/man/en/chapter_1.html</a></p>
-<p>My justfile</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>import <span style="color:#5af78e">&#34;/usr/share/ublue-os/justfile&#34;</span>  
-</span></span><span style="display:flex;"><span><span style="color:#78787e"># You can add your own commands here! For documentation, see: [https://ublue.it/guide/just/](https://ublue.it/guide/just/)  </span>
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>first-install:  
-</span></span><span style="display:flex;"><span>    flatpak install <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.bitwarden.desktop <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.brave.Browser <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.discordapp.Discord <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub net.cozic.joplin_desktop <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.gimp.GIMP <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.gnome.Snapshot <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.libreoffice.LibreOffice <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.remmina.Remmina <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.termius.Termius <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub net.devolutions.RDM <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.slack.Slack <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.keepassxc.KeePassXC <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub md.obsidian.Obsidian <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.calibre_ebook.calibre <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.logseq.Logseq <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.mozilla.Thunderbird <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub us.zoom.Zoom <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub org.wireshark.Wireshark <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.nextcloud.desktopclient.nextcloud <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      flathub com.google.Chrome  
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    brew install <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      ansible <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      chezmoi <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      neovim  <span style="color:#5af78e">\ </span>     
-</span></span><span style="display:flex;"><span>      onedrive <span style="color:#5af78e">\ </span> 
-</span></span><span style="display:flex;"><span>      wireguard-tools</span></span></code></pre></div>
-<p>Set up github dotfiles repo</p>
-<p>Install chezmoi and initialize:
-<code>chezmoi init</code></p>
-<p>Sync with Chezmoi: <a href="https://www.chezmoi.io/quick-start/" rel="external" target="_blank">https://www.chezmoi.io/quick-start/</a></p>
-<p>Add dotfiles
-<code>chezmoi add ~/.bashrc</code></p>
-<p>Edit a dotfile
-<code>chezmoi edit ~/.bashrc</code></p>
-<p>See changes
-<code>chezmoi diff</code></p>
-<p>Apply changes
-<code>chezmoi -v apply</code></p>
-<p>to sync chezmoi with git:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chezmoi <span style="color:#ff5c57">cd</span>
-</span></span><span style="display:flex;"><span>git remote add origin https://github.com/<span style="color:#ff5c57">$GITHUB_USERNAME</span>/dotfiles.git 
-</span></span><span style="display:flex;"><span>$ git push -u origin main 
-</span></span><span style="display:flex;"><span>$ exit</span></span></code></pre></div>
-<p>For subsequent git pushes:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git commit -a -m <span style="color:#5af78e">&#34;commit&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> git push</span></span></code></pre></div>
-<p><a href="#R-image-a46e28139de1d5c96e496e18968d95b6" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="davidvargasxyz.github.io/docs/images/Pasted%20image%2020240904141011.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a46e28139de1d5c96e496e18968d95b6"><img class="lazy lightbox lightbox-image" loading="lazy" src="davidvargasxyz.github.io/docs/images/Pasted%20image%2020240904141011.png"></a></p>
-<h3 id="from-a-second-machine">From a second machine:</h3>
-<p>Install all dotfiles with a single command:
-<code>chezmoi init --apply https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
-<p>If you use GitHub and your dotfiles repo is called <code>dotfiles</code> then this can be shortened to:
-<code>$ chezmoi init --apply $GITHUB_USERNAME</code></p>
-<p><a href="#R-image-89b06f4765294b89830bd19f5dd35e9c" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="Pasted%20image%2020240904142110%201.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-89b06f4765294b89830bd19f5dd35e9c"><img class="lazy lightbox lightbox-image" loading="lazy" src="Pasted%20image%2020240904142110%201.png"></a></p>
-<p>See a list of full commands:
-<code>chezmoi help</code></p>
-<p>Or you can initialize and choose what you want:
-<code>chezmoi init https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
-<p>See what changes are awaiting:
-<code>chezmoi diff</code></p>
-<p>Apply changes:
-<code>chezmoi apply -v</code></p>
-<p>can also edit a file before applying:
-<code>chezmoi edit $FILE</code></p>
-<p>Or merge the current file with new file:
-<code>chezmoi merge $FILE</code></p>
-<p>From any machine, you can pull and apply changes from your repo:
-<code>chezmoi update -v</code></p>
-<p><a href="#R-image-c15a8fae1be5407409dbfa30eb4589c9" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="Pasted%20image%2020240904141728.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c15a8fae1be5407409dbfa30eb4589c9"><img class="lazy lightbox lightbox-image" loading="lazy" src="Pasted%20image%2020240904141728.png"></a></p>
-<p>Add the justfile:
-<code>chezmoi add .justfile</code></p>
-<h2 id="install-connect-tunnel">Install Connect Tunnel</h2>
-<p>Download from website
-Install java
-<code>rpm-ostree install java</code></p>
-<p>Runn the connect tunnel install script</p>
-<p>Commands located in /var/usrlocal/Aventail must be ran as root
-`sudo ./startctui.sh</p>
-
-  <footer class="footline">
-  </footer>
-</article>
         </div>
       </main>
     </div>
-    <aside id="R-sidebar" class="default-animation">
-      <div id="R-header-topbar" class="default-animation"></div>
-      <div id="R-header-wrapper" class="default-animation">
-        <div id="R-header" class="default-animation">
-<a href="https://linuxreader.com">
-  <img src="/images/linuxreader.svg" alt="Linux Reader" >
-</a>
-
-        </div>
-        <search><form action="/search/" method="get">
-          <div class="searchbox default-animation">
-            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
-            <label class="a11y-only" for="R-search-by">Search</label>
-            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
-          </div>
-        </form></search>
-      </div>
-      <div id="R-homelinks" class="default-animation">
-        <div class="R-menu-divider default-animation">
-          <hr class="padding">
-        </div>
-        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
-          <ul class="space collapsible-menu">
-          </ul>
-        </div>
-        <div class="R-menu-divider default-animation">
-          <hr class="padding">
-        </div>
-        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
-          <ul class="">
-          </ul>
-        </div>
-        <div class="R-menu-divider default-animation">
-          <hr class="padding">
-        </div>
-      </div>
-      <div id="R-content-wrapper" class="highlightable">
-        <div class="R-sidebarmenu R-shortcutmenu-main">
-          <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/"><i class="fa-fw fas fa-ghost"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
-            <li class="parent " data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu">
-            <li class="" data-nav-id="/desktop/new-setup/"><a class="padding" href="/desktop/new-setup/">Configure Fedora Desktop using Ansible</a></li>
-            <li class="" data-nav-id="/desktop/my-fedora-setup/"><a class="padding" href="/desktop/my-fedora-setup/">My Fedora Setup</a></li>
-            <li class="active " data-nav-id="/desktop/silverblue/"><a class="padding" href="/desktop/silverblue/">Silverblue</a></li></ul></li>
-            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/"><i class="fa-fw fas fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/"><i class="fa-fw fas fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/"><i class="fa-fw fas fa-server"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
-          </ul>
-        </div>
-        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
-          <div class="nav-title padding">More</div>
-          <ul class="space collapsible-menu">
-            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
-            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
-            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
-            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
-            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
-            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
-          </ul>
-        </div>
-        <div id="R-footer-margin"></div>
-        <div class="R-menu-divider default-animation">
-          <hr class="padding">
-        </div>
-        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
-          <ul class="">
-          </ul>
-        </div>
-<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
-      </div>
-    </aside>
-    <script src="/js/clipboard/clipboard.min.js?1744979713" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744979713" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754309132" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754309132" defer></script>
     <script>
       window.MathJax = Object.assign( window.MathJax || {}, {
         tex: {
@@ -381,20 +172,20 @@ Install java
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-color.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1744979713" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-color.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1754309132" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.min.js?1744979713" defer></script>
+    <script src="/js/theme.min.js?1754309132" defer></script>
   </body>
 </html>

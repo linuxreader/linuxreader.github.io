@@ -5,7 +5,6 @@ title: Master Reading List
 ## In Progress
 
 I am reading way too many books at once. Goal is to cut this list down and read only 1 book at a time.
-- [x] Infinite Jest
 
 ## Books I have Read
 
@@ -15,27 +14,26 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - [x] The Obesity Code: Unlocking the Secrets of Weight Loss (Why Intermittent Fasting Is the Key to Controlling Your Weight
 - [ ] The Little Book of Quitting Caffeine: Freedom From Addiction
 - [ ] Meat Is for Pussies: A How-To Guide for Dudes Who Want to Get Fit, Kick Ass, and Take Names
-- [ ] Caffeine Blues: Wake Up to the Hidden Dangers of America's #1 Drug
+- [x] Caffeine Blues: Wake Up to the Hidden Dangers of America's #1 Drug
 - [ ] Why We Sleep: Unlocking the Power of Sleep and Dreams and Building a Strong Foundation for Enhancing Performance
 - [ ] Deskbound: Standing Up to a Sitting World
-Mega Brain Power: Transform Your Life With Mind Machines and Brain Nutrients
 - [ ] Ready to Run: Unlocking Your Potential to Run Naturally
 - [ ] 5/3/1: The Simplest and Most Effective Training System for Raw Strength
 - [ ] Skinny Bitch: A No-Nonsense, Tough-Love Guide for Savvy Girls Who Want to Stop Eating Crap and Start Looking Fabulous!
 - [x] The Starch Solution: Eat the Foods You Love, Regain Your Health, and Lose the Weight for Good!
 - [ ] The Trigger Point Therapy Workbook: Your Self-Treatment Guide for Pain Relief]
-Becoming a Supple Leopard: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance
+- [ ] Becoming a Supple Leopard: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance
 - [x] How Not to Die: Discover the Foods Scientifically Proven to Prevent and Reverse Disease
 - [ ] Becoming a Supple Leopard 2nd Edition: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance
 - [ ] Improve the Quality of Your Life - Why Live in Pain?
 ### Money
 - [ ] Who Owns the Ice House? : Eight Life Lessons From an Unlikely Entrepreneur
-How To Make More Money Serving: Your Step by Step Guide for Increasing Tips
-How to Become an Excellent Server: Earn a Tip Above 20% Every Time
-Service That Sells!: The Art of Profitable Hospitality
-The Renegade Server: Uncommon Strategies for Making more Money in 21st Century Food Service
-Earn More Tips On Your Very Next Shift...Even If You're a Bad Waiter
-Server Sales Training: Grow your restaurant's profits with minimal effort. Restaurants; Secrets to Success Book 1
+- [ ] How To Make More Money Serving: Your Step by Step Guide for Increasing Tips
+- [ ] How to Become an Excellent Server: Earn a Tip Above 20% Every Time
+- [ ] Service That Sells!: The Art of Profitable Hospitality
+- [ ] The Renegade Server: Uncommon Strategies for Making more Money in 21st Century Food Service
+- [ ] Earn More Tips On Your Very Next Shift...Even If You're a Bad Waiter
+- [ ] Server Sales Training: Grow your restaurant's profits with minimal effort. Restaurants; Secrets to Success Book 1
 - [ ] What Rich People Know & Desperately Want to Keep Secret
 - [ ] The Millionaire Fastlane: Crack the Code to Wealth and Live Rich for a Lifetime!
 - [ ] The Richest Man in Babylon
@@ -48,74 +46,78 @@ Server Sales Training: Grow your restaurant's profits with minimal effort. Resta
 - [x] I Will Teach You to Be Rich
 - [x] The Four Hour Workweek
 ### Dating and Relationships
-Online dating for guys
-Saving a Low Sex Marriage: A Man's Guide to Dread, Seduction and the Long Game
-What Women Want When They Test Men: How to Decode Female Behavior, Pass a Woman’s Tests, and Attract Women Through Authenticity
+- [ ] Online dating for guys
+- [ ] Saving a Low Sex Marriage: A Man's Guide to Dread, Seduction and the Long Game
+- [ ] What Women Want When They Test Men: How to Decode Female Behavior, Pass a Woman’s Tests, and Attract Women Through Authenticity
 - [ ] The Married Man Sex Life Primer 2011
 - [ ] Cupid's Poisoned Arrow: From Habit to Harmony in Sexual Relationships
 - [x] The Red Queen: Sex and the Evolution of Human Nature
-She Comes First: The Thinking Man's Guide to Pleasuring a Woman
-The Game: Penetrating the Secret Society of Pickup Artists
-Discovering Sexuality That Will Satisfy You Both: When Couples Want Differing Amounts and Different Kinds of Sex
-Mystery Method
-Rules of the Game
-The Natural: How to Effortlessly Attract the Women You Want
-The Sex God Method
-The Truth
+- [ ] She Comes First: The Thinking Man's Guide to Pleasuring a Woman
+- [ ] The Game: Penetrating the Secret Society of Pickup Artists
+- [ ] Discovering Sexuality That Will Satisfy You Both: When Couples Want Differing Amounts and Different Kinds of Sex
+- [ ] Mystery Method
+- [ ] Rules of the Game
+- [ ] The Natural: How to Effortlessly Attract the Women You Want
+- [ ] The Sex God Method
+- [ ] The Truth
 - [ ] The Relationship Handbook
 - [ ] Models Attract Women Through Honesty
 ### Fiction
 - [ ] Infinity War
 - [ ] Infinity Gauntlet
-Harry Potter 1
-Harry Potter 2
-Harry Potter 3
-Harry Potter 4
+- [x] Harry Potter 1
+- [x] Harry Potter 2
+- [ ] Harry Potter 3
+- [ ] Harry Potter 4
 - [x] Harry Potter 5
-Harry Potter 6
-Harry Potter 7
-Wabi
-Where the Red Fern Grows
+- [ ] Harry Potter 6
+- [ ] Harry Potter 7
+- [ ] Wabi
+- [x] Where the Red Fern Grows
 - [ ] MAUS
 - [ ] The Hobbit
+- [x] All Quiet on the Western Front
+- [x] Infinite Jest
+- [ ] The Death of Ivan Illych
+- [ ] Siddhartha
 ### Martial Arts
-Jiu-Jitsu on the Brain
+- [ ] Jiu-Jitsu on the Brain
 - [ ] Mastering the Rubber Guard: Jiu Jitsu for Mixed Martial Arts Competition
 - [ ] The Professor in the Cage: Why Men Fight and Why We Like to Watch
 - [ ] Rousey
 ### Writing
 - [x] The War of Art
-Why You Should Write for Medium.com: The Best Way to Get Readers and Make Money Blogging
+- [ ] Why You Should Write for Medium.com: The Best Way to Get Readers and Make Money Blogging
 - [ ] Steal Like an Artist: 10 Things Nobody Told You About Being Creative (Austin Kleon)
 - [ ] Keep Going: 10 Ways to Stay Creative in Good Times and Bad (Austin Kleon)
 - [ ] Show Your Work!: 10 Ways to Share Your Creativity and Get Discovered (Austin Kleon)
 - [ ] Everybody Writes: Your Go-To Guide to Creating Ridiculously Good Content
 - [ ] So You Think You Can Write? The Definitive Guide to Successful Online Writing
-Content Writing 101: Win High Paying Online Content Writing Jobs And Build Financial Freedom With SEO Marketing
-How to Launch a Freelance Copywriting Business: Creative Writing for a Living (Method Writing)
+- [ ] Content Writing 101: Win High Paying Online Content Writing Jobs And Build Financial Freedom With SEO Marketing
+- [ ] How to Launch a Freelance Copywriting Business: Creative Writing for a Living (Method Writing)
 - [ ] Cashvertising: How to Use More Than 100 Secrets of Ad-Agency Psychology to Make Big Money Selling Anything to Anyone
-The Boron Letters
-Scientific Advertising
+- [ ] The Boron Letters
+- [ ] Scientific Advertising
 ### Personal Development
 - [ ] Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones
 - [ ] The 5AM Club: Own Your Morning. Elevate Your Life.
 - [x] The Magic of Thinking Big
 - [ ] The Way of the Superior Man: A Spiritual Guide to Mastering the Challenges of Women, Work, and Sexual Desire (20th Anniversary Edition)
-The Power of Habit: Why We Do What We Do in Life and Business
-The Mindful Attraction Plan: Your Practical Roadmap to Creating the Life, Love and Success You Want
+- [ ] The Power of Habit: Why We Do What We Do in Life and Business
+- [ ] The Mindful Attraction Plan: Your Practical Roadmap to Creating the Life, Love and Success You Want
 - [ ] Your Brain on Porn: Internet Pornography and the Emerging Science of Addiction
-Allen Carr's Easy Way To Stop Smoking
-Smash Your Comfort Zone with Cold Showers: How to Boost Your Energy, Defeat Your Anxiety, and Overcome Unwanted Habits
+- [ ] Allen Carr's Easy Way To Stop Smoking
+- [ ] Smash Your Comfort Zone with Cold Showers: How to Boost Your Energy, Defeat Your Anxiety, and Overcome Unwanted Habits
 - [ ] No More Mr. Nice Guy
 - [ ] The Fine Art of Small Talk: How to Start a Conversation, Keep It Going, Build Networking Skills and Leave a Positive Impression!
 - [ ] The Experience of Insight: A Simple & Direct Guide to Buddhist Meditation
-Goal!: Your 30-Day Game Plan for Business and Career Success
+- [ ] Goal!: Your 30-Day Game Plan for Business and Career Success
 - [x] Way of the Peaceful Warrior: A Book That Changes Lives
-The Monk and the Riddle: The Education of a Silicon Valley Entrepreneur
-Bold: How to Go Big, Create Wealth and Impact the World
-The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life
-Blink: The Power of Thinking Without Thinking
-Emergency: This Book Will Save Your Life
+- [ ] The Monk and the Riddle: The Education of a Silicon Valley Entrepreneur
+- [ ] Bold: How to Go Big, Create Wealth and Impact the World
+- [x] The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life
+- [x] Blink: The Power of Thinking Without Thinking
+- [ ] Emergency: This Book Will Save Your Life
 - [x] The Power of Now: A Guide to Spiritual Enlightenment
 - [ ] Six Pillars of Self-Esteem
 - [ ] Wherever You Go, There You Are: Mindfulness Meditation in Everyday Life
@@ -126,10 +128,10 @@ Emergency: This Book Will Save Your Life
 - [x] 10% Happier: How I Tamed the Voice in My Head, Reduced Stress Without Losing My Edge, and Found Self-Help That Actually Works 
 - [x] Think and Grow Rich: The Landmark Bestseller Now Revised and Updated for the 21st Century
 - [x] Outliers: The Story of Success
-The Prophet
-DMT: The Spirit Molecule: A Doctor's Revolutionary Research into the Biology of Near Death and Mystical Experiences
+- [ ] The Prophet
+- [ ] DMT: The Spirit Molecule: A Doctor's Revolutionary Research into the Biology of Near Death and Mystical Experiences
 - [ ] The 12 week Year
-Bliss of the Celibate
+- [ ] Bliss of the Celibate
 - [x] Dopamine Nation
 - [x] Nonviolent Communication
 - [x] How to Win Friends and Influence People
@@ -140,10 +142,10 @@ Bliss of the Celibate
 - [ ] The Power of Positive Dog Training
 - [x] Chase
 ### Tech
-CompTIA A+ Certification All-in-One Exam Guide, Tenth Edition (Exams 220-1001 & 220-1002)
-CCNA Certification Study Guide, Volume 2: Exam 200-301
-Understanding Cisco Networking Technologies, Volume 1: Exam 200-301 (CCNA Certification)
-CCNA OCG
+- [ ] CompTIA A+ Certification All-in-One Exam Guide, Tenth Edition (Exams 220-1001 & 220-1002)
+- [ ] CNA Certification Study Guide, Volume 2: Exam 200-301
+- [ ] Understanding Cisco Networking Technologies, Volume 1: Exam 200-301 (CCNA Certification)
+- [ ] CCNA OCG
 - [x] RHCSA 9 Training and Exam Preparation Guide
 - [x] Red Hat RHCE 8 Cert Guide
 ### History
@@ -152,18 +154,18 @@ CCNA OCG
 - [x] American Sniper
 
 ### Parenting
-It's Never Too Late to Sleep Train: The Low-Stress Way to High-Quality Sleep for Babies, Kids, and Parents
-1-2-3 Magic: Gentle 3-Step Child & Toddler Discipline for Calm, Effective, and Happy Parenting (Positive Parenting Guide for Raising Happy Kids)
-Mikey and the Dragons
-First Time Dad: The Stuff You Really Need to Know
-The Expectant Father: The Ultimate Guide for Dads-to-Be
-I Wonder
-She's Having a Baby - and I'm Having a Breakdown
-150 Tips and Tricks for New Dads: From the First Feeding to Diaper-Changing Disasters - Everything You Need to Know to Be a Great Father
-Be Prepared
-Dude, You're Gonna Be a Dad!: How to Get (Both of You) Through the Next 9 Months
+- [ ] It's Never Too Late to Sleep Train: The Low-Stress Way to High-Quality Sleep for Babies, Kids, and Parents
+- [x] 1-2-3 Magic: Gentle 3-Step Child & Toddler Discipline for Calm, Effective, and Happy Parenting (Positive Parenting Guide for Raising Happy Kids)
+- [ ] Mikey and the Dragons
+- [ ] First Time Dad: The Stuff You Really Need to Know
+- [ ] The Expectant Father: The Ultimate Guide for Dads-to-Be
+- [ ] I Wonder
+- [ ] She's Having a Baby - and I'm Having a Breakdown
+- [ ] 150 Tips and Tricks for New Dads: From the First Feeding to Diaper-Changing Disasters - Everything You Need to Know to Be a Great Father
+- [ ] Be Prepared
+- [ ] Dude, You're Gonna Be a Dad!: How to Get (Both of You) Through the Next 9 Months
 - [x] Playful Parenting
-- [ ] Good Inside
+- [x] Good Inside
 
 ### Philosophy & Religion
 - [x] Letter to a Christian Nation
@@ -180,7 +182,7 @@ Dude, You're Gonna Be a Dad!: How to Get (Both of You) Through the Next 9 Months
 ## Audio Books
 - [ ] Breath: The New Science of a Lost Art
 - [ ] Marc's Mission: Way of the Warrior Kid, Book 2
-You Are a Badass at Making Money: Master the Mindset of Wealth
+- [ ] You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] Animal Liberation: The Definitive Classic of the Animal Movement
 - [ ] Way of the Warrior Kid: From Wimpy to Warrior the Navy SEAL Way
 - [ ] Our Final Invention: Artificial Intelligence and the End of the Human Era
@@ -198,7 +200,7 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] 1984
 - [ ] This is How They Tell Me the World Ends
 - [ ] Die With Zero
-- [x] Your Money or Your Life
+- [ ] Your Money or Your Life
 - [ ] The Practice of Shipping Creative Work
 - [ ] Make Time
 - [ ] Sapiens
@@ -208,11 +210,11 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] Finite and Infinite Games
 - [ ] Blood Meridian
 - [ ] 1Q84
-- [x] Gravity's Rainbow
+- [ ] Gravity's Rainbow
 - [ ] Kafka on the Shore
 - [ ] The Self Driven Child
 - [ ] Hold on to Your Kids
-- [x] Siblings Without Rivalry
+- [ ] Siblings Without Rivalry
 - [ ] Raising Good Humans
 - [ ] No-Drama Discipline
 - [ ] Unconditional Parenting
@@ -223,7 +225,7 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] Deep Work
 - [ ] Scarcity Brain
 - [ ] Why Privacy Matters
-- [x] The Slight Edge 
+- [ ] The Slight Edge 
 - [ ] HyperFocus
 - [ ] The 48 Laws of Power
 - [ ] Free Software Free Society
@@ -253,7 +255,7 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] The Linux Command Line
 - [ ] Simulacra and Simulation
 - [ ] The Complete Works_ Handbook, Discourses, and Fragments by Epictetus
-- [x] When I Say No, I Feel Guilty
+- [ ] When I Say No, I Feel Guilty
 - [ ] Dying Every Day by James Romm
 - [ ] A Man in Full by Tom Wolfe
 - [ ] This Is Marketing by Seth Godin
@@ -280,7 +282,7 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] Pure, White, and Deadly_ How Sugar Is Killing Us and What We Can Do to Stop It by John Yudkin
 - [ ] Glucose Revolution by Jessie Inchauspe
 - [ ] The Case Against Sugar by Gary Taubes
-- [x] The Courage to Be Disliked
+- [ ] The Courage to Be Disliked
 - [x] Alice in Wonderland
 - [ ] Tiny Habits
 - [ ] Children and Play in the Holocaust
@@ -300,7 +302,7 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] Misdiagnosis and Dual Diagnoses of Gifted Children and Adults: Adhd, Bipolar, Ocd, Asperger's, Depression, and Other Disorders (2nd Edition) by James T. Webb, Edward R. Amend
 - [ ] Nothing to Hide: The False Tradeoff between Privacy and Security by Daniel J. Solove
 - [ ] The Anxious Generation by Haidt Jonathan
-- [x] A New Earth by Eckhart Tolle
+- [ ] A New Earth by Eckhart Tolle
 - [ ] Ready, Fire, Aim by Michael Masterson
 - [ ] Good Work: Reclaiming Your Inner Ambition by Paul Millerd
 - [ ] The Opposite of Spoiled: Raising Kids Who Are Grounded, Generous, and Smart About Money by Ron Lieber
@@ -370,9 +372,98 @@ You Are a Badass at Making Money: Master the Mindset of Wealth
 - [ ] The Oxygen Advantage
 - [ ] The Other End of the Leash
 - [x] Tribes by Seth Godin
-- [x] On Writing Well by William Zinsser
+- [ ] On Writing Well by William Zinsser
 - [ ] The Paradox of Choice
 - [ ] The Brain that Changes Itself
 - [ ] The New Naked by Harry Fisch
 - [ ] The Sailor Who Fell from Grace with the Sea - Yukio Mishima
 - [ ] Confessions of a Mask - Yukio Mishima
+- [ ] ## [The Tibetan Book of Living and Dying: The Spiritual Classic & International Bestseller―30th Anniversary Edition―The Ultimate Guide to Tibetan Buddhism](https://www.amazon.com/dp/0062508342/?coliid=IJQCZ4973IPPB&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Tibetan Book of Living and Dying: The Spiritual Classic & International Bestseller―30th Anniversary Edition―The Ultimate Guide to Tibetan Buddhism")
+- [ ] ## [The Road Less Traveled, Timeless Edition: A New Psychology of Love, Traditional Values and Spiritual Growth](https://www.amazon.com/dp/0743243153/?coliid=I3FE9KRFM9A8B2&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Road Less Traveled, Timeless Edition: A New Psychology of Love, Traditional Values and Spiritual Growth")
+- [ ] ## [Free Software, Free Society: Selected Essays of Richard M. Stallman](https://www.amazon.com/dp/1882114981/?coliid=I11IHHT1D46ZXO&colid=QZHN4BQA6ACK&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it "Free Software, Free Society: Selected Essays of Richard M. Stallman")
+- [ ] ## [The Cathedral & the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary](https://www.amazon.com/dp/0596001088/?coliid=I1HET17JB5ST7T&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Cathedral & the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary")
+- [ ] ## [In the Realm of Hungry Ghosts: Close Encounters with Addiction](https://www.amazon.com/dp/155643880X/?coliid=I1AV56OAR734Y7&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "In the Realm of Hungry Ghosts: Close Encounters with Addiction")
+- [ ] ## [Scattered Minds: The Origins and Healing of Attention Deficit Disorder](https://www.amazon.com/dp/0593714377/?coliid=IZVF955HX2NRY&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Scattered Minds: The Origins and Healing of Attention Deficit Disorder")
+- [ ] ## [Lean on Me: The Power of Positive Dependency in Intimate Relationships](https://www.amazon.com/dp/1575660199/?coliid=INXP00J6S09QR&colid=QZHN4BQA6ACK&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it "Lean on Me: The Power of Positive Dependency in Intimate Relationships")
+- [ ] ## [Raising Good Humans: A Mindful Guide to Breaking the Cycle of Reactive Parenting and Raising Kind, Confident Kids](https://www.amazon.com/dp/1684033888/?coliid=I2FJ1UH3OJZ4BB&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Raising Good Humans: A Mindful Guide to Breaking the Cycle of Reactive Parenting and Raising Kind, Confident Kids")
+- [ ] ## [Mindsight: The New Science of Personal Transformation](https://www.amazon.com/dp/0553386395/?coliid=IJG135RMNLYXY&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Mindsight: The New Science of Personal Transformation")
+- [ ] ## [You Can Heal Your Life](https://www.amazon.com/dp/0937611018/?coliid=IWIWMVNS8I2OO&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "You Can Heal Your Life")
+- [ ] ## [The Six Pillars of Self-Esteem: The Definitive Work on Self-Esteem by the Leading Pioneer in the Field](https://www.amazon.com/dp/0553374397/?coliid=I4P0RVJIESAQ3&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Six Pillars of Self-Esteem: The Definitive Work on Self-Esteem by the Leading Pioneer in the Field")
+- [ ] ## [Coaching Questions: A Coach's Guide to Powerful Asking Skills](https://www.amazon.com/dp/0979416361/?coliid=I2OEMNWRWKGGPE&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Coaching Questions: A Coach's Guide to Powerful Asking Skills")
+- [ ] ## [Taming Your Gremlin: A Surprisingly Simple Method for Getting Out of Your Own Way](https://www.amazon.com/dp/0060520221/?coliid=I3NLHYO0QZLYNJ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Taming Your Gremlin: A Surprisingly Simple Method for Getting Out of Your Own Way")
+- [ ] ## [How You Do Anything Is How You Do Everything](https://www.amazon.com/dp/0991596358/?coliid=I17T4MENYWY0P2&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "How You Do Anything Is How You Do Everything")
+- [ ] ## [The Drama of the Gifted Child: The Search for the True Self](https://www.amazon.com/dp/0465012612/?coliid=I2KI956SD6S1MV&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Drama of the Gifted Child: The Search for the True Self")
+- [ ] ## [Waking the Tiger: Healing Trauma](https://www.amazon.com/dp/155643233X/?coliid=I17AF2ML2SZ1QH&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Waking the Tiger: Healing Trauma")
+- [ ] ## [Healing the Shame that Binds You (Recovery Classics)](https://www.amazon.com/dp/0757303234/?coliid=I1YYS570MU1Q4A&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Healing the Shame that Binds You (Recovery Classics)")
+- [ ] ## [Bradshaw On: The Family: A New Way of Creating Solid Self-Esteem](https://www.amazon.com/dp/1558744274/?coliid=I2IJXO15DXJ4D3&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Bradshaw On: The Family: A New Way of Creating Solid Self-Esteem")
+- [ ] ## [Don't Believe Everything You Think: Why Your Thinking Is The Beginning & End Of Suffering (Beyond Suffering)](https://www.amazon.com/dp/B09WPP7R6S/?coliid=I2P728ZSZ8WP6K&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Don't Believe Everything You Think: Why Your Thinking Is The Beginning & End Of Suffering (Beyond Suffering)")
+- [ ] ## [The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma](https://www.amazon.com/dp/0143127748/?coliid=I39CVBLWAHY69U&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma")
+- [ ] ## [Under Saturn's Shadow (STUDIES IN JUNGIAN PSYCHOLOGY BY JUNGIAN ANALYSTS)](https://www.amazon.com/dp/0919123643/?coliid=I84Y8TS09KJF4&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Under Saturn's Shadow (STUDIES IN JUNGIAN PSYCHOLOGY BY JUNGIAN ANALYSTS)")
+- [ ] ## [The New Peoplemaking](https://www.amazon.com/dp/0831400706/?coliid=I1890BRFUAQN7V&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The New Peoplemaking")
+- [ ] ## [The Comfort Crisis: Embrace Discomfort To Reclaim Your Wild, Happy, Healthy Self](https://www.amazon.com/dp/0593138767/?coliid=I27RGPBB51IUJV&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Comfort Crisis: Embrace Discomfort To Reclaim Your Wild, Happy, Healthy Self")
+- [ ] ## [Scarcity Brain: Fix Your Craving Mindset and Rewire Your Habits to Thrive with Enough](https://www.amazon.com/dp/1035411172/?coliid=I2PHSXLZGBOX81&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Scarcity Brain: Fix Your Craving Mindset and Rewire Your Habits to Thrive with Enough")
+- [ ] ## [Supercommunicators: How to Unlock the Secret Language of Connection](https://www.amazon.com/dp/0593862066/?coliid=I39FH7BMI4Z2J8&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Supercommunicators: How to Unlock the Secret Language of Connection")
+- [ ] ## [The Almanack of Naval Ravikant: A Guide to Wealth and Happiness](https://www.amazon.com/dp/1544514212/?coliid=I1CB5U7HANACLJ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Almanack of Naval Ravikant: A Guide to Wealth and Happiness")
+- [ ] ## [Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger](https://www.amazon.com/dp/1953953239/?coliid=IW4JK9G85LKLY&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger")
+- [ ] ## [Linchpin: Are You Indispensable?](https://www.amazon.com/dp/1591844096/?coliid=IS6X0A249CTHI&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Linchpin: Are You Indispensable?")
+- [ ] ## [Purple Cow: Transform Your Business by Being Remarkable](https://www.amazon.com/dp/014101640X/?coliid=I298US9N92ZKMR&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Purple Cow: Transform Your Business by Being Remarkable")
+- [ ] ## [Psycho-Cybernetics: Updated and Expanded (The Psycho-Cybernetics Series)](https://www.amazon.com/dp/0399176136/?coliid=I3GP01P0QS3SJY&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Psycho-Cybernetics: Updated and Expanded (The Psycho-Cybernetics Series)")
+- [ ] ## [The 48 Laws of Power](https://www.amazon.com/dp/0140280197/?coliid=I2KXTSCRVWOXYV&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The 48 Laws of Power")
+- [ ] ## [The Rational Male](https://www.amazon.com/dp/1492777862/?coliid=I34KO0U1GKSQ78&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Rational Male")
+- [ ] ## [The Simple Path to Wealth: Your road map to financial independence and a rich, free life](https://www.amazon.com/dp/1533667926/?coliid=I1ZYCC3I65EUYV&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Simple Path to Wealth: Your road map to financial independence and a rich, free life")
+- [ ] ## [The Daily Dad: 366 Meditations on Parenting, Love, and Raising Great Kids](https://www.amazon.com/dp/0593539052/?coliid=I21TA3AF68C4SQ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Daily Dad: 366 Meditations on Parenting, Love, and Raising Great Kids")
+- [ ] ## [Siblings Without Rivalry: How to Help Your Children Live Together So You Can Live Too](https://www.amazon.com/dp/0393342212/?coliid=I36R7RTNGQODV4&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Siblings Without Rivalry: How to Help Your Children Live Together So You Can Live Too")
+- [ ] ## [Teach Your Own](https://www.amazon.com/dp/0306926210/?coliid=I2HU2ZF5THARIS&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Teach Your Own")
+- [ ] ## [How to Talk So Kids Will Listen & Listen So Kids Will Talk (The How To Talk Series)](https://www.amazon.com/dp/1451663889/?coliid=I1OOBQDF59F3J&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "How to Talk So Kids Will Listen & Listen So Kids Will Talk (The How To Talk Series)")
+- [ ] ## [The Yes Brain: How to Cultivate Courage, Curiosity, and Resilience in Your Child](https://www.amazon.com/dp/039959468X/?coliid=I3KXCXWX5G4TAS&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Yes Brain: How to Cultivate Courage, Curiosity, and Resilience in Your Child")
+- [ ] ## [The Anxious Generation](https://www.amazon.com/dp/1802063277/?coliid=I2YWHNG7VRYWW2&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Anxious Generation")
+- [ ] ## [Practice of Brahmacharya](https://www.amazon.com/dp/8170520673/?coliid=I2CIUCZNSQ71K6&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Practice of Brahmacharya")
+- [ ] ## [No-Drama Discipline: The Whole-Brain Way to Calm the Chaos and Nurture Your Child's Developing Mind](https://www.amazon.com/dp/034554806X/?coliid=I3OMRQBKKM5P2N&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "No-Drama Discipline: The Whole-Brain Way to Calm the Chaos and Nurture Your Child's Developing Mind")
+- [ ] ## [Raising Securely Attached Kids: Using Connection-Focused Parenting to Create Confidence, Empathy, and Resilience (Attachment Nerd)](https://www.amazon.com/dp/B0CPDP7DT5/?coliid=IJ3EAK8P6P8VV&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Raising Securely Attached Kids: Using Connection-Focused Parenting to Create Confidence, Empathy, and Resilience (Attachment Nerd)")
+- [ ] ## [Fight!: A Practical Guide to the Treatment of Dog-Dog Aggression](https://www.amazon.com/dp/0970562969/?coliid=IV4DIHR79LEL1&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Fight!: A Practical Guide to the Treatment of Dog-Dog Aggression")
+- [ ] ## [The DOSE Effect: An Inspiring Self-Healing Guide About the Mind-Body-Hormonal Connection, Achieve Wellness and Happiness with Practical Techniques!](https://www.amazon.com/dp/0063421879/?coliid=IGNYGLQZ0EIVH&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The DOSE Effect: An Inspiring Self-Healing Guide About the Mind-Body-Hormonal Connection, Achieve Wellness and Happiness with Practical Techniques!")
+- [ ] ## [Mine! A Practical Guide to Resource Guarding in Dogs](https://www.amazon.com/dp/0970562942/?coliid=I1ETTYQ9FZNS3O&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Mine! A Practical Guide to Resource Guarding in Dogs")
+- [ ] ## [Now It Can Be Told](https://www.amazon.com/dp/150313511X/?coliid=I1MDXMN7M61S3C&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Now It Can Be Told")
+- [ ] ## [Mastering Your Hidden Self: A Guide to the Huna Way (Quest Book)](https://www.amazon.com/dp/0835605914/?coliid=I1JH8EPM2CG1AX&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Mastering Your Hidden Self: A Guide to the Huna Way (Quest Book)")
+- [ ] ## [The Bhagavad Gita, 2nd Edition (Easwaran's Classics of Indian Spirituality Book 1)](https://www.amazon.com/dp/1586380192/?coliid=I2IJB6373KSZWZ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Bhagavad Gita, 2nd Edition (Easwaran's Classics of Indian Spirituality Book 1)")
+- [ ] ## [As a Man Thinketh: A book that will help you to help yourself](https://www.amazon.com/dp/B09DJ8TT61/?coliid=I3EPRRT1YR1NBQ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "As a Man Thinketh: A book that will help you to help yourself")
+- [ ] ## [Maus I & II Paperback Box Set](https://www.amazon.com/dp/0679748407/?coliid=IHQ8YA14MT8G5&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Maus I & II Paperback Box Set")
+- [ ] ## [Ultimate Back Fitness and Performance-Sixth Edition](https://www.amazon.com/dp/0973501839/?coliid=I33ID0OCRE2WRU&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Ultimate Back Fitness and Performance-Sixth Edition")
+- [ ] ## [Gödel, Escher, Bach: An Eternal Golden Braid](https://www.amazon.com/dp/0465026567/?coliid=I6C1P0IE9HT6K&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Gödel, Escher, Bach: An Eternal Golden Braid")
+- [ ] ## [The Untethered Soul: The Journey Beyond Yourself](https://www.amazon.com/dp/1572245379/?coliid=I2LQ0LKCDOCOEM&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Untethered Soul: The Journey Beyond Yourself")
+- [ ] ## [The Self-Driven Child: The Science and Sense of Giving Your Kids More Control Over Their Lives](https://www.amazon.com/dp/0735222525/?coliid=I3SWXGAZ2LU2YX&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Self-Driven Child: The Science and Sense of Giving Your Kids More Control Over Their Lives")
+- [ ] ## [The Sensory-Sensitive Child: Practical Solutions for Out-of-Bounds Behavior](https://www.amazon.com/dp/0060527188/?coliid=I2ZBR7OWBIPYAR&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Sensory-Sensitive Child: Practical Solutions for Out-of-Bounds Behavior")
+- [ ] ## [The Field Guide to Understanding 'Human Error'](https://www.amazon.com/dp/1472439058/?coliid=IMBN8HOBYM8FJ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Field Guide to Understanding 'Human Error'")
+- [ ] ## [The 5 Types of Wealth: A Transformative Guide to Design Your Dream Life](https://www.amazon.com/dp/059372318X/?coliid=I1KW09X8U2U4F3&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The 5 Types of Wealth: A Transformative Guide to Design Your Dream Life")
+- [ ] ## [Handbook of Resilience in Children](https://www.amazon.com/dp/0387303332/?coliid=IHLSRCMB2I0SP&colid=QZHN4BQA6ACK&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it "Handbook of Resilience in Children")
+- [ ] ## [The Opposite of Spoiled: Raising Kids Who Are Grounded, Generous, and Smart About Money](https://www.amazon.com/dp/0062247026/?coliid=I8WV2BT1CVJ6B&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Opposite of Spoiled: Raising Kids Who Are Grounded, Generous, and Smart About Money")
+- [ ] ## [Total Recall: Perfect Response Training for Puppies and Adult Dogs](https://www.amazon.com/dp/1846891493/?coliid=ID7HNDUKB7930&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Total Recall: Perfect Response Training for Puppies and Adult Dogs")
+- [ ] ## [Hunt, Gather, Parent: What Ancient Cultures Can Teach Us About the Lost Art of Raising Happy, Helpful Little Humans](https://www.amazon.com/dp/198214968X/?coliid=I2RHG95YK0FBBF&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Hunt, Gather, Parent: What Ancient Cultures Can Teach Us About the Lost Art of Raising Happy, Helpful Little Humans")
+- [ ] ## [Of Boys and Men: Why the Modern Male Is Struggling, Why It Matters, and What to Do about It](https://www.amazon.com/dp/0815740662/?coliid=I17885L2JIM0T3&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Of Boys and Men: Why the Modern Male Is Struggling, Why It Matters, and What to Do about It")
+- [ ] ## [The Intellectual Life: Its Spirit, Conditions, Methods (Not In A Series)](https://www.amazon.com/dp/0813206464/?coliid=I3O42NDDC1IBMZ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Intellectual Life: Its Spirit, Conditions, Methods (Not In A Series)")
+- [ ] ## [Montaigne (Pushkin Collection)](https://www.amazon.com/dp/1782271031/?coliid=I2Q332KBZAM6OO&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Montaigne (Pushkin Collection)")
+- [ ] ## [Die With Zero: Getting All You Can from Your Money and Your Life](https://www.amazon.com/dp/0358567092/?coliid=IDXES2CQMRCAI&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Die With Zero: Getting All You Can from Your Money and Your Life")
+- [ ] ## [The Lost Art of Dying: Reviving Forgotten Wisdom](https://www.amazon.com/dp/0062932640/?coliid=I3RLKBHPQH0F96&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Lost Art of Dying: Reviving Forgotten Wisdom")
+- [ ] ## [How to Change Your Mind: What the New Science of Psychedelics Teaches Us About Consciousness, Dying, Addiction, Depression, and Transcendence](https://www.amazon.com/dp/0735224153/?coliid=I2OK8XNS683X8N&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "How to Change Your Mind: What the New Science of Psychedelics Teaches Us About Consciousness, Dying, Addiction, Depression, and Transcendence")
+- [ ] ## [The Creative Act: A Way of Being](https://www.amazon.com/dp/0593652886/?coliid=I1QMLMF8AHFXQF&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Creative Act: A Way of Being")]
+- [ ] ## [Rape of Nanking](https://www.amazon.com/dp/0465068367/?coliid=I28W1XWXI2X3PO&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Rape of Nanking")
+- [ ] ## [Japan's Infamous Unit 731: First-hand Accounts of Japan's Wartime Human Experimentation Program (Tuttle Classics)](https://www.amazon.com/dp/0804852197/?coliid=I2TH035LIMB0RD&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Japan's Infamous Unit 731: First-hand Accounts of Japan's Wartime Human Experimentation Program (Tuttle Classics)")
+- [ ] ## [The 5AM Club: Own Your Morning. Elevate Your Life.](https://www.amazon.com/dp/1443460710/?coliid=I21THCNP5B37AU&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The 5AM Club: Own Your Morning. Elevate Your Life.")
+- [ ] ## [How to Be a Stoic: Using Ancient Philosophy to Live a Modern Life](https://www.amazon.com/dp/1541644530/?coliid=I1Y93KZXNKM6E2&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "How to Be a Stoic: Using Ancient Philosophy to Live a Modern Life")
+- [ ] ## [Discourses, Fragments, Handbook (Oxford Worlds Classics)](https://www.amazon.com/dp/0199595186/?coliid=IA4T4X1690B4&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Discourses, Fragments, Handbook (Oxford Worlds Classics)")
+- [ ] ## [by Frederick Douglassand - Narrative of The Life of Frederick Douglass, an American Slave (Penguin Classics) (Paperback) Penguin Classics; Updated Edition (January 28, 2014) - [Bargain Books]](https://www.amazon.com/dp/B07VG9BJ2C/?coliid=I2NCS62LVL72IH&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "by Frederick Douglassand - Narrative of The Life of Frederick Douglass, an American Slave (Penguin Classics) (Paperback) Penguin Classics; Updated Edition (January 28, 2014) - [Bargain Books]")
+- [ ] ## [The Art Of War](https://www.amazon.com/dp/1599869772/?coliid=I2F0XFW236URD6&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Art Of War")
+- [ ] ## [King, Warrior, Magician, Lover: Rediscovering Masculinity Through the Lens of Archetypal Psychology - A Journey into the Male Psyche and Its Four Essential Aspects](https://www.amazon.com/dp/0062506064/?coliid=I1ATD4U91BNQP0&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "King, Warrior, Magician, Lover: Rediscovering Masculinity Through the Lens of Archetypal Psychology - A Journey into the Male Psyche and Its Four Essential Aspects")
+- [ ] ## [Deskbound: Standing Up to a Sitting World](https://www.amazon.com/dp/1628600586/?coliid=I3LKR58AZR2T8D&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Deskbound: Standing Up to a Sitting World")
+- [ ] ## [The Listening Book: Discovering Your Own Music](https://www.amazon.com/dp/159030831X/?coliid=I3MG0Z3KQOKT11&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Listening Book: Discovering Your Own Music")
+- [ ] ## [Cashvertising: How to Use More Than 100 Secrets of Ad-Agency Psychology to Make BIG MONEY Selling Anything to Anyone](https://www.amazon.com/dp/1601630328/?coliid=IH0JUDKFV2SJM&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Cashvertising: How to Use More Than 100 Secrets of Ad-Agency Psychology to Make BIG MONEY Selling Anything to Anyone")
+- [ ] ## [So You Think You Can Write?: The Definitive Guide to Successful Online Writing](https://www.amazon.com/dp/1519383223/?coliid=I2MVDOAHOWG91G&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "So You Think You Can Write?: The Definitive Guide to Successful Online Writing")
+- [ ] ## [Show Your Work!: 10 Ways to Share Your Creativity and Get Discovered (Austin Kleon)](https://www.amazon.com/dp/076117897X/?coliid=I1AY2NLIFEIQF6&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Show Your Work!: 10 Ways to Share Your Creativity and Get Discovered (Austin Kleon)")
+- [ ] ## [Keep Going: 10 Ways to Stay Creative in Good Times and Bad (Austin Kleon)](https://www.amazon.com/dp/1523506644/?coliid=I15J8TY1VL3VVK&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Keep Going: 10 Ways to Stay Creative in Good Times and Bad (Austin Kleon)")
+- [ ] ## [Steal Like an Artist: 10 Things Nobody Told You About Being Creative (Austin Kleon)](https://www.amazon.com/dp/0761169253/?coliid=I2RMSC9P5JUD9K&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Steal Like an Artist: 10 Things Nobody Told You About Being Creative (Austin Kleon)")
+- [ ] ## [Becoming a Supple Leopard 2nd Edition: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance](https://www.amazon.com/dp/1628600837/?coliid=I19C6614HU2AB0&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Becoming a Supple Leopard 2nd Edition: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance")
+- [ ] ## [Ready to Run: Unlocking Your Potential to Run Naturally](https://www.amazon.com/dp/1628600098/?coliid=I34JHH4FP9S50B&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Ready to Run: Unlocking Your Potential to Run Naturally")
+- [ ] ## [Built to Move: The Ten Essential Habits to Help You Move Freely and Live Fully](https://www.amazon.com/dp/0593534808/?coliid=I12FR80KA6LPZJ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Built to Move: The Ten Essential Habits to Help You Move Freely and Live Fully")
+- [ ] ## [The Book of Changes and the Unchanging Truth](https://www.amazon.com/dp/0937064297/?coliid=I21H7MQPJ1GIMT&colid=QZHN4BQA6ACK&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it "The Book of Changes and the Unchanging Truth")
+- [ ] ## [UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship](https://www.amazon.com/dp/0984358161/?coliid=I3FPEPO8WDCRM5&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship")
+- [ ] 

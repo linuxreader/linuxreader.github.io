@@ -189,3 +189,5 @@ Detaching head
 
 Store git credentials:
 `git config credential.helper store`
+
+Update current folder in one command `git add . && git commit -m "Message goes here" && git push`

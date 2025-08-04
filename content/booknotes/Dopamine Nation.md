@@ -40,7 +40,7 @@ Go 30 minutes a day with nothing but your thoughts. This will help you become fa
 
 Boredom can be terrifying. It makes you think about big issues, meaning, and purpose. Boredom is an opportunity. You may discover something new. It gives your mind space to think. 
 
-You may attribute fatigue and the inability to focus to mental illness. But it could also be from sleep deprivation, over consumption,  and over stimulation. 
+You may attribute fatigue and the inability to focus to mental illness. But it could also be from sleep deprivation, over consumption, and over stimulation. 
 
 The reason we are so miserable is because we are trying so hard not to be miserable. 
 

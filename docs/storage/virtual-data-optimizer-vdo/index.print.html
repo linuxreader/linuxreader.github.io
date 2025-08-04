@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.142.0">
+    <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 7.6.1+b0c6bb558d7728ac4535a2ac677c5f47297203cc">
     <meta name="description" content="VDO">
     <meta name="author" content="David Thomas">
@@ -23,18 +23,18 @@
     <title>Virtual Data Optimizer (VDO) :: Linux Reader</title>
     <link href="http://linuxreader.com/storage/virtual-data-optimizer-vdo/" rel="canonical" type="text/html" title="Virtual Data Optimizer (VDO) :: Linux Reader">
     <link href="/storage/virtual-data-optimizer-vdo/index.xml" rel="alternate" type="application/rss+xml" title="Virtual Data Optimizer (VDO) :: Linux Reader">
-    <link href="/images/favicon.svg?1744979713" rel="icon" type="image/svg+xml">
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1744979713" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1744979713" rel="stylesheet">
-    <link href="/css/theme.min.css?1744979713" rel="stylesheet">
-    <link href="/css/format-print.min.css?1744979713" rel="stylesheet" id="R-format-style">
-    <link href="/css/auto-complete/auto-complete.min.css?1744979713" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1744979713" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1744979713" defer></script>
-    <script src="/js/search.min.js?1744979713" defer></script>
+    <link href="/images/favicon.svg?1754309132" rel="icon" type="image/svg+xml">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754309132" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754309132" rel="stylesheet">
+    <link href="/css/theme.min.css?1754309132" rel="stylesheet">
+    <link href="/css/format-html.min.css?1754309132" rel="stylesheet" id="R-format-style">
+    <link href="/css/auto-complete/auto-complete.min.css?1754309132" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754309132" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754309132" defer></script>
+    <script src="/js/search.min.js?1754309132" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -44,7 +44,7 @@
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/linuxreader.com';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/searchindex.en.js?1744979713";
+      window.relearn.index_js_url="/searchindex.en.js?1754309132";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -100,7 +100,7 @@
 </style>
 
   </head>
-  <body class="mobile-support print" data-url="/storage/virtual-data-optimizer-vdo/">
+  <body class="mobile-support html" data-url="/storage/virtual-data-optimizer-vdo/">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -168,619 +168,11 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable storage" tabindex="-1">
         <div class="flex-block-wrapper">
-<article class="default">
-  <header class="headline">
-  </header>
-
-<h1 id="virtual-data-optimizer-vdo">Virtual Data Optimizer (VDO)</h1>
-
-<ul>
-<li>Used for storage optimization</li>
-<li>Device driver layer that sits between the Linux kernel and the physical storage devices.</li>
-<li>Conserve disk space, improve data throughput, and save on storage cost.</li>
-<li>Employs <strong>thin provisioning</strong>, <strong>de-duplication</strong>, and <strong>compression</strong> technologies to help realize the goals.</li>
-</ul>
-<h3 id="how-vdo-conserves-storage">How VDO Conserves Storage</h3>
-<p><strong>Stage 1</strong></p>
-<ul>
-<li>Makes use of thin provisioning to identify and eliminate empty (zero-byte) data blocks. (zero-block elimination)</li>
-<li>Removes randomization of data blocks by moving in-use data blocks to contiguous locations on the storage device.</li>
-</ul>
-<p><a href="#R-image-b8b895b2b049bf93cec9d560e74be245" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b8b895b2b049bf93cec9d560e74be245"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
-<p><strong>Stage 2</strong></p>
-<ul>
-<li>If it detects that new data is an identical copy of some existing data, it makes an internal note of it but does not actually write the redundant data to the disk. (de-duplication)</li>
-<li>Implemented with the inclusion of a kernel module called <strong>UDS</strong> (Universal De-duplication Service).</li>
-</ul>
-<p><strong>Stage 3</strong></p>
-<ul>
-<li>Calls upon another kernel module called <strong>kvdo</strong>, which compresses the residual data blocks and consolidates them on a lower number of blocks.</li>
-<li>Results in a further drop in storage space utilization.</li>
-<li>Runs in the background and processes inbound data through the three stages on VDO-enabled volumes.</li>
-<li>Not a CPU or memory-intensive process</li>
-</ul>
-<h3 id="vdo-integration-with-lvm">VDO Integration with LVM</h3>
-<ul>
-<li>LVM utilities have been enhanced to include options to support VDO volumes.</li>
-</ul>
-<h3 id="vdo-components">VDO Components</h3>
-<ul>
-<li>Utilizes the concepts of pool and volume.
-<strong>pool</strong></li>
-<li>logical volume that is created inside an LVM volume group using a deduplicated storage space.
-<strong>volume</strong></li>
-<li>Just like a regular LVM logical volume, but it is provisioned in a pool.</li>
-<li>Needs to be formatted with file system structures before it can be used.</li>
-</ul>
-<h3 id="vdo-and-kmod-kvdo-commands"><code>vdo</code> and <code>kmod-kvdo</code> Commands</h3>
-<ul>
-<li>Create, mount, and manage LVM VDO volumes</li>
-<li>Installed on the system by default.</li>
-</ul>
-<p><code>vdo</code></p>
-<ul>
-<li>Installs the tools necessary to support the creation and management of VDO volumes</li>
-</ul>
-<p><code>kmod-kvdo</code></p>
-<ul>
-<li>Implements fine-grained storage virtualization, thin provisioning, and compression.
-Not installed by default?</li>
-</ul>
-<h3 id="exercise-13-12-create-an-lvm-vdo-volume">Exercise 13-12: Create an LVM VDO Volume</h3>
-<ul>
-<li>Initialize the 5GB disk (sdf) for use in LVM VDO.</li>
-<li>Create a volume group called vgvdo and add the physical volume to it.</li>
-<li>List and display the volume group and the physical volume.</li>
-<li>Create a VDO volume called lvvdo with a virtual size of 20GB.</li>
-</ul>
-<p>1. Initialize the sdf disk using the pvcreate command:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdf</span>
-</span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdf&#34;</span> successfully created.</span></span></code></pre></div>
-<p>2. Create vgvdo volume group using the vgcreate command:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate vgvdo /dev/sdf</span>
-</span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo&#34;</span> successfully created</span></span></code></pre></div>
-<p>3. Display basic information about the volume group:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay vgvdo</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  --- Volume group ---
-</span></span><span style="display:flex;"><span>  VG Name               vgvdo
-</span></span><span style="display:flex;"><span>  System ID             
-</span></span><span style="display:flex;"><span>  Format                lvm2
-</span></span><span style="display:flex;"><span>  Metadata Areas        <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Metadata Sequence No  <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  VG Access             read/write
-</span></span><span style="display:flex;"><span>  VG Status             resizable
-</span></span><span style="display:flex;"><span>  MAX LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Open LV               <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Max PV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Act PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  VG Size               &lt;5.00 GiB
-</span></span><span style="display:flex;"><span>  PE Size               4.00 MiB
-</span></span><span style="display:flex;"><span>  Total PE              <span style="color:#ff9f43">1279</span>
-</span></span><span style="display:flex;"><span>  Alloc PE / Size       <span style="color:#ff9f43">0</span> / <span style="color:#ff9f43">0</span>   
-</span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">1279</span> / &lt;5.00 GiB
-</span></span><span style="display:flex;"><span>  VG UUID               tED1vC-Ylec-fpeR-KM8F-8FzP-eaQ4-AsFrgc</span></span></code></pre></div>
-<p>4. Create a VDO volume called lvvdo using the <code>lvcreate</code> command. Use the -l option to specify the number of logical extents (1279) to be allocated and the -V option for the amount of virtual space.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo dnf install kmod-kvdo</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate --type vdo -l 1279 -n lvvdo -V 20G vgvdo</span>
-</span></span><span style="display:flex;"><span>    The VDO volume can address <span style="color:#ff9f43">2</span> GB in <span style="color:#ff9f43">1</span> data slab.
-</span></span><span style="display:flex;"><span>    It can grow to address at most <span style="color:#ff9f43">16</span> TB of physical storage in <span style="color:#ff9f43">8192</span> slabs.
-</span></span><span style="display:flex;"><span>    If a larger maximum size might be needed, use bigger slabs.
-</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvvdo&#34;</span> created.</span></span></code></pre></div>
-<p>5. Display detailed information about the volume group including the logical volume and the physical volume:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgdisplay -v vgvdo</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  --- Volume group ---
-</span></span><span style="display:flex;"><span>  VG Name               vgvdo
-</span></span><span style="display:flex;"><span>  System ID             
-</span></span><span style="display:flex;"><span>  Format                lvm2
-</span></span><span style="display:flex;"><span>  Metadata Areas        <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Metadata Sequence No  <span style="color:#ff9f43">3</span>
-</span></span><span style="display:flex;"><span>  VG Access             read/write
-</span></span><span style="display:flex;"><span>  VG Status             resizable
-</span></span><span style="display:flex;"><span>  MAX LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Open LV               <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Max PV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Act PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  VG Size               &lt;5.00 GiB
-</span></span><span style="display:flex;"><span>  PE Size               4.00 MiB
-</span></span><span style="display:flex;"><span>  Total PE              <span style="color:#ff9f43">1279</span>
-</span></span><span style="display:flex;"><span>  Alloc PE / Size       <span style="color:#ff9f43">1279</span> / &lt;5.00 GiB
-</span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">0</span> / <span style="color:#ff9f43">0</span>   
-</span></span><span style="display:flex;"><span>  VG UUID               tED1vC-Ylec-fpeR-KM8F-8FzP-eaQ4-AsFrgc
-</span></span><span style="display:flex;"><span>   
-</span></span><span style="display:flex;"><span>  --- Logical volume ---
-</span></span><span style="display:flex;"><span>  LV Path                /dev/vgvdo/vpool0
-</span></span><span style="display:flex;"><span>  LV Name                vpool0
-</span></span><span style="display:flex;"><span>  VG Name                vgvdo
-</span></span><span style="display:flex;"><span>  LV UUID                yGAsK2-MruI-QGy2-Q1IF-CDDC-XPNT-qkjJ9t
-</span></span><span style="display:flex;"><span>  LV Write Access        read/write
-</span></span><span style="display:flex;"><span>  LV Creation host, <span style="color:#ff5c57">time</span> server2, 2024-06-16 09:35:46 -0700
-</span></span><span style="display:flex;"><span>  LV VDO Pool data       vpool0_vdata
-</span></span><span style="display:flex;"><span>  LV VDO Pool usage      60.00%
-</span></span><span style="display:flex;"><span>  LV VDO Pool saving     100.00%
-</span></span><span style="display:flex;"><span>  LV VDO Operating mode  normal
-</span></span><span style="display:flex;"><span>  LV VDO Index state     online
-</span></span><span style="display:flex;"><span>  LV VDO Compression st  online
-</span></span><span style="display:flex;"><span>  LV VDO Used size       &lt;3.00 GiB
-</span></span><span style="display:flex;"><span>  LV Status              NOT available
-</span></span><span style="display:flex;"><span>  LV Size                &lt;5.00 GiB
-</span></span><span style="display:flex;"><span>  Current LE             <span style="color:#ff9f43">1279</span>
-</span></span><span style="display:flex;"><span>  Segments               <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Allocation             inherit
-</span></span><span style="display:flex;"><span>  Read ahead sectors     auto
-</span></span><span style="display:flex;"><span>   
-</span></span><span style="display:flex;"><span>  --- Logical volume ---
-</span></span><span style="display:flex;"><span>  LV Path                /dev/vgvdo/lvvdo
-</span></span><span style="display:flex;"><span>  LV Name                lvvdo
-</span></span><span style="display:flex;"><span>  VG Name                vgvdo
-</span></span><span style="display:flex;"><span>  LV UUID                nnGTW5-tVFa-T3Cy-9nHj-sozF-2KpP-rVfnSq
-</span></span><span style="display:flex;"><span>  LV Write Access        read/write
-</span></span><span style="display:flex;"><span>  LV Creation host, <span style="color:#ff5c57">time</span> server2, 2024-06-16 09:35:47 -0700
-</span></span><span style="display:flex;"><span>  LV VDO Pool name       vpool0
-</span></span><span style="display:flex;"><span>  LV Status              available
-</span></span><span style="display:flex;"><span>  <span style="color:#78787e"># open                 0</span>
-</span></span><span style="display:flex;"><span>  LV Size                20.00 GiB
-</span></span><span style="display:flex;"><span>  Current LE             <span style="color:#ff9f43">5120</span>
-</span></span><span style="display:flex;"><span>  Segments               <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Allocation             inherit
-</span></span><span style="display:flex;"><span>  Read ahead sectors     auto
-</span></span><span style="display:flex;"><span>  - currently <span style="color:#ff5c57">set</span> to     <span style="color:#ff9f43">8192</span>
-</span></span><span style="display:flex;"><span>  Block device           253:4
-</span></span><span style="display:flex;"><span>   
-</span></span><span style="display:flex;"><span>  --- Physical volumes ---
-</span></span><span style="display:flex;"><span>  PV Name               /dev/sdf     
-</span></span><span style="display:flex;"><span>  PV UUID               0oAXHG-C4ub-Myou-5vZf-QxIX-KVT3-ipMZCp
-</span></span><span style="display:flex;"><span>  PV Status             allocatable
-</span></span><span style="display:flex;"><span>  Total PE / Free PE    <span style="color:#ff9f43">1279</span> / <span style="color:#ff9f43">0</span></span></span></code></pre></div>
-<p>The output reflects the creation of two logical volumes: a pool called /dev/vgvdo/vpool0 and a volume called /dev/vgvdo/lvvdo.</p>
-<h3 id="exercise-13-13-remove-a-volume-group-and-uninitialize-physical-volumeserver2">Exercise 13-13: Remove a Volume Group and Uninitialize Physical Volume(Server2)</h3>
-<ul>
-<li>remove the vgvdo volume group along with the VDO volumes</li>
-<li>uninitialize the physical volume /dev/sdf.</li>
-<li>confirm the deletion.</li>
-</ul>
-<p>1. Remove the volume group along with the VDO volumes using the vgremove command:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgremove vgvdo -f</span>
-</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvvdo&#34;</span> successfully removed.
-</span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo&#34;</span> successfully removed</span></span></code></pre></div>
-<p>Remember to proceed with caution whenever you perform erase operations.</p>
-<p>2. Execute <code>sudo vgs</code> and <code>sudo lvs</code> commands for confirmation.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  VG   <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree</span>
-</span></span><span style="display:flex;"><span>  rhel   <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g    <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  LV   VG   Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-</span></span><span style="display:flex;"><span>  root rhel -wi-ao---- &lt;17.00g                                                    
-</span></span><span style="display:flex;"><span>  swap rhel -wi-ao----   2.00g  </span></span></code></pre></div>
-<p>3. Remove the LVM structures from sdf using the <code>pvremove</code> command:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvremove /dev/sdf</span>
-</span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdf&#34;</span> successfully wiped.</span></span></code></pre></div>
-<p>4. Confirm the removal by running <code>sudo pvs</code>.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  PV         VG   Fmt  Attr PSize   PFree
-</span></span><span style="display:flex;"><span>  /dev/sda2  rhel lvm2 a--  &lt;19.00g    <span style="color:#ff9f43">0</span> </span></span></code></pre></div>
-<p>The disk is now back to its raw state and can be repurposed.</p>
-<p>5. Verify that the sdf disk used in the previous exercises has returned to its original raw state using the <code>lsblk</code> command:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
-</span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
-</span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
-</span></span><span style="display:flex;"><span>└─sda2          8:2    <span style="color:#ff9f43">0</span>   19G  <span style="color:#ff9f43">0</span> part 
-</span></span><span style="display:flex;"><span>  ├─rhel-root 253:0    <span style="color:#ff9f43">0</span>   17G  <span style="color:#ff9f43">0</span> lvm  /
-</span></span><span style="display:flex;"><span>  └─rhel-swap 253:1    <span style="color:#ff9f43">0</span>    2G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
-</span></span><span style="display:flex;"><span>sdb             8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sdc             8:32   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sdd             8:48   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sde             8:64   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sdf             8:80   <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sr0            11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom </span></span></code></pre></div>
-<p>This brings the exercise to an end.</p>
-<h2 id="storage-dyi-labs">Storage DYI Labs</h2>
-<h3 id="lab-13-1-create-and-remove-partitions-with-parted">Lab 13-1: Create and Remove Partitions with parted</h3>
-<p>Create a 100MB primary partition on one of the available 250MB disks (lsblk) by invoking the parted utility directly at the command prompt. Apply label &ldquo;msdos&rdquo; if the disk is new.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mklabel msdos</span>
-</span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">continue</span>?
-</span></span><span style="display:flex;"><span>Yes/No? yes                                                               
-</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb mkpart primary 1 101m             </span>
-</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
-<p>Create another 100MB partition by running parted interactively while ensuring that the second partition won&rsquo;t overlap the first.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb</span>
-</span></span><span style="display:flex;"><span>GNU Parted 3.5
-</span></span><span style="display:flex;"><span>Using /dev/sdb
-</span></span><span style="display:flex;"><span>Welcome to GNU Parted! Type <span style="color:#5af78e">&#39;help&#39;</span> to view a list of commands.
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">(</span>parted<span style="color:#ff6ac1">)</span> mkpart primary <span style="color:#ff9f43">101</span> 201m                                         </span></span></code></pre></div>
-<p>Verify the label and the partitions.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">(</span>parted<span style="color:#ff6ac1">)</span> print                                                            
-</span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>Disk /dev/sdb: 262MB
-</span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
-</span></span><span style="display:flex;"><span>Partition Table: msdos
-</span></span><span style="display:flex;"><span>Disk Flags: 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Number  Start   End    Size    Type     File system  Flags
-</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  101MB  99.6MB  primary
-</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">2</span>      101MB   201MB  101MB   primary</span></span></code></pre></div>
-<p>Remove both partitions at the command prompt.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdb rm 1 rm 2</span></span></span></code></pre></div>
-<h3 id="lab-13-2-create-and-remove-partitions-with-gdisk">Lab 13-2: Create and Remove Partitions with gdisk</h3>
-<p>Create two 80MB partitions on one of the 250MB disks (lsblk) using the gdisk utility. Make sure the partitions won&rsquo;t overlap.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: o
-</span></span><span style="display:flex;"><span>This option deletes all partitions and creates a new protective MBR.
-</span></span><span style="display:flex;"><span>Proceed? <span style="color:#ff6ac1">(</span>Y/N<span style="color:#ff6ac1">)</span>: y
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
-</span></span><span style="display:flex;"><span>Disk /dev/sdb: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
-</span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
-</span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
-</span></span><span style="display:flex;"><span>Disk identifier <span style="color:#ff6ac1">(</span>GUID<span style="color:#ff6ac1">)</span>: 226F7476-7F8C-4445-9025-53B6737AD1E4
-</span></span><span style="display:flex;"><span>Partition table holds up to <span style="color:#ff9f43">128</span> entries
-</span></span><span style="display:flex;"><span>Main partition table begins at sector <span style="color:#ff9f43">2</span> and ends at sector <span style="color:#ff9f43">33</span>
-</span></span><span style="display:flex;"><span>First usable sector is 34, last usable sector is <span style="color:#ff9f43">511966</span>
-</span></span><span style="display:flex;"><span>Partitions will be aligned on 2048-sector boundaries
-</span></span><span style="display:flex;"><span>Total free space is <span style="color:#ff9f43">511933</span> sectors <span style="color:#ff6ac1">(</span>250.0 MiB<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: n
-</span></span><span style="display:flex;"><span>Partition number <span style="color:#ff6ac1">(</span>1-128, default 1<span style="color:#ff6ac1">)</span>: 
-</span></span><span style="display:flex;"><span>First sector <span style="color:#ff6ac1">(</span>34-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 2048<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: 
-</span></span><span style="display:flex;"><span>Last sector <span style="color:#ff6ac1">(</span>2048-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 511966<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: +80M
-</span></span><span style="display:flex;"><span>Current <span style="color:#ff5c57">type</span> is <span style="color:#ff9f43">8300</span> <span style="color:#ff6ac1">(</span>Linux filesystem<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>Hex code or GUID <span style="color:#ff6ac1">(</span>L to show codes, <span style="color:#ff5c57">Enter</span> <span style="color:#ff6ac1">=</span> 8300<span style="color:#ff6ac1">)</span>: 
-</span></span><span style="display:flex;"><span>Changed <span style="color:#ff5c57">type</span> of partition to <span style="color:#5af78e">&#39;Linux filesystem&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: n
-</span></span><span style="display:flex;"><span>Partition number <span style="color:#ff6ac1">(</span>2-128, default 2<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>First sector <span style="color:#ff6ac1">(</span>34-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 165888<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: <span style="color:#ff9f43">165888</span>
-</span></span><span style="display:flex;"><span>Last sector <span style="color:#ff6ac1">(</span>165888-511966, <span style="color:#ff5c57">default</span> <span style="color:#ff6ac1">=</span> 511966<span style="color:#ff6ac1">)</span> or <span style="color:#ff6ac1">{</span>+-<span style="color:#ff6ac1">}</span>size<span style="color:#ff6ac1">{</span>KMGTP<span style="color:#ff6ac1">}</span>: +80M
-</span></span><span style="display:flex;"><span>Current <span style="color:#ff5c57">type</span> is <span style="color:#ff9f43">8300</span> <span style="color:#ff6ac1">(</span>Linux filesystem<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>Hex code or GUID <span style="color:#ff6ac1">(</span>L to show codes, <span style="color:#ff5c57">Enter</span> <span style="color:#ff6ac1">=</span> 8300<span style="color:#ff6ac1">)</span>: 
-</span></span><span style="display:flex;"><span>Changed <span style="color:#ff5c57">type</span> of partition to <span style="color:#5af78e">&#39;Linux filesystem&#39;</span></span></span></code></pre></div>
-<p>Verify the partitions.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: p
-</span></span><span style="display:flex;"><span>Disk /dev/sdb: <span style="color:#ff9f43">512000</span> sectors, 250.0 MiB
-</span></span><span style="display:flex;"><span>Model: VBOX HARDDISK   
-</span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512/512 bytes
-</span></span><span style="display:flex;"><span>Disk identifier <span style="color:#ff6ac1">(</span>GUID<span style="color:#ff6ac1">)</span>: 226F7476-7F8C-4445-9025-53B6737AD1E4
-</span></span><span style="display:flex;"><span>Partition table holds up to <span style="color:#ff9f43">128</span> entries
-</span></span><span style="display:flex;"><span>Main partition table begins at sector <span style="color:#ff9f43">2</span> and ends at sector <span style="color:#ff9f43">33</span>
-</span></span><span style="display:flex;"><span>First usable sector is 34, last usable sector is <span style="color:#ff9f43">511966</span>
-</span></span><span style="display:flex;"><span>Partitions will be aligned on 2048-sector boundaries
-</span></span><span style="display:flex;"><span>Total free space is <span style="color:#ff9f43">184253</span> sectors <span style="color:#ff6ac1">(</span>90.0 MiB<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Number  Start <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>    End <span style="color:#ff6ac1">(</span>sector<span style="color:#ff6ac1">)</span>  Size       Code  Name
-</span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">1</span>            <span style="color:#ff9f43">2048</span>          <span style="color:#ff9f43">165887</span>   80.0 MiB    <span style="color:#ff9f43">8300</span>  Linux filesystem
-</span></span><span style="display:flex;"><span>   <span style="color:#ff9f43">2</span>          <span style="color:#ff9f43">165888</span>          <span style="color:#ff9f43">329727</span>   80.0 MiB    <span style="color:#ff9f43">8300</span>  Linux filesystem</span></span></code></pre></div>
-<p>Save</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
-</span></span><span style="display:flex;"><span>PARTITIONS!!
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Do you want to proceed? <span style="color:#ff6ac1">(</span>Y/N<span style="color:#ff6ac1">)</span>: y
-</span></span><span style="display:flex;"><span>OK; writing new GUID partition table <span style="color:#ff6ac1">(</span>GPT<span style="color:#ff6ac1">)</span> to /dev/sdb.
-</span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
-<p>Delete the partitions</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d  
-</span></span><span style="display:flex;"><span>Partition number <span style="color:#ff6ac1">(</span>1-2<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: d
-</span></span><span style="display:flex;"><span>Using <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Command <span style="color:#ff6ac1">(</span>? <span style="color:#ff6ac1">for</span> <span style="color:#ff5c57">help</span><span style="color:#ff6ac1">)</span>: w
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
-</span></span><span style="display:flex;"><span>PARTITIONS!!
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Do you want to proceed? <span style="color:#ff6ac1">(</span>Y/N<span style="color:#ff6ac1">)</span>: y
-</span></span><span style="display:flex;"><span>OK; writing new GUID partition table <span style="color:#ff6ac1">(</span>GPT<span style="color:#ff6ac1">)</span> to /dev/sdb.
-</span></span><span style="display:flex;"><span>The operation has completed successfully.</span></span></code></pre></div>
-<h3 id="lab-13-3-create-volume-group-and-logical-volumes">Lab 13-3: Create Volume Group and Logical Volumes</h3>
-<p>initialize 1x250MB disk for use in LVM (use lsblk to identify available disks).</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mklabel msdos</span>
-</span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/sdd will be destroyed and all data
-</span></span><span style="display:flex;"><span>on this disk will be lost. Do you want to <span style="color:#ff6ac1">continue</span>?
-</span></span><span style="display:flex;"><span>Yes/No? yes                                                               
-</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd mkpart primary 1 250m              </span>
-</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo parted /dev/sdd print                              </span>
-</span></span><span style="display:flex;"><span>Model: ATA VBOX HARDDISK <span style="color:#ff6ac1">(</span>scsi<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>Disk /dev/sdd: 262MB
-</span></span><span style="display:flex;"><span>Sector size <span style="color:#ff6ac1">(</span>logical/physical<span style="color:#ff6ac1">)</span>: 512B/512B
-</span></span><span style="display:flex;"><span>Partition Table: msdos
-</span></span><span style="display:flex;"><span>Disk Flags: 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Number  Start   End    Size   Type     File system  Flags
-</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">1</span>      1049kB  250MB  249MB  primary
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo pvcreate /dev/sdd1</span>
-</span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdd1&#34;</span> successfully created.</span></span></code></pre></div>
-<p>(Can also just use the full disk without making it into a partition first.)</p>
-<p>Create volume group vg100 with PE size 16MB and add the physical volume.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgcreate -vs 16 vg100 /dev/sdd1</span>
-</span></span><span style="display:flex;"><span>  Wiping signatures on new PV /dev/sdd1.
-</span></span><span style="display:flex;"><span>  Adding physical volume <span style="color:#5af78e">&#39;/dev/sdd1&#39;</span> to volume group <span style="color:#5af78e">&#39;vg100&#39;</span>
-</span></span><span style="display:flex;"><span>  Creating volume group backup <span style="color:#5af78e">&#34;/etc/lvm/backup/vg100&#34;</span> <span style="color:#ff6ac1">(</span>seqno 1<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vg100&#34;</span> successfully created</span></span></code></pre></div>
-<p>Create two logical volumes lvol0 and swapvol of sizes 90MB and 120MB.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -vL 90 vg100</span>
-</span></span><span style="display:flex;"><span>  Creating logical volume lvol0
-</span></span><span style="display:flex;"><span>  Archiving volume group <span style="color:#5af78e">&#34;vg100&#34;</span> metadata <span style="color:#ff6ac1">(</span>seqno 1<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>  Activating logical volume vg100/lvol0.
-</span></span><span style="display:flex;"><span>  activation/volume_list configuration setting not defined: Checking only host tags <span style="color:#ff6ac1">for</span> vg100/lvol0.
-</span></span><span style="display:flex;"><span>  Creating vg100-lvol0
-</span></span><span style="display:flex;"><span>  Loading table <span style="color:#ff6ac1">for</span> vg100-lvol0 <span style="color:#ff6ac1">(</span>253:2<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>  Resuming vg100-lvol0 <span style="color:#ff6ac1">(</span>253:2<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>  Wiping known signatures on logical volume vg100/lvol0.
-</span></span><span style="display:flex;"><span>  Initializing 4.00 KiB of logical volume vg100/lvol0 with value 0.
-</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;lvol0&#34;</span> created.
-</span></span><span style="display:flex;"><span>  Creating volume group backup <span style="color:#5af78e">&#34;/etc/lvm/backup/vg100&#34;</span> <span style="color:#ff6ac1">(</span>seqno 2<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo lvcreate -l 8 -n swapvol vg100</span>
-</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;swapvol&#34;</span> created.</span></span></code></pre></div>
-<p>Use the vgs, pvs, lvs, and vgdisplay commands for verification.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  LV      VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-</span></span><span style="display:flex;"><span>  root    rhel  -wi-ao---- &lt;17.00g                                                    
-</span></span><span style="display:flex;"><span>  swap    rhel  -wi-ao----   2.00g                                                    
-</span></span><span style="display:flex;"><span>  lvol0   vg100 -wi-a-----  90.00m                                                    
-</span></span><span style="display:flex;"><span>  swapvol vg100 -wi-a----- 120.00m                                                    
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  VG    <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree </span>
-</span></span><span style="display:flex;"><span>  rhel    <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g     <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  vg100   <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- 225.00m 15.00m
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  PV         VG    Fmt  Attr PSize   PFree 
-</span></span><span style="display:flex;"><span>  /dev/sda2  rhel  lvm2 a--  &lt;19.00g     <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  /dev/sdd1  vg100 lvm2 a--  225.00m 15.00m
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgdisplay</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  --- Volume group ---
-</span></span><span style="display:flex;"><span>  VG Name               vg100
-</span></span><span style="display:flex;"><span>  System ID             
-</span></span><span style="display:flex;"><span>  Format                lvm2
-</span></span><span style="display:flex;"><span>  Metadata Areas        <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Metadata Sequence No  <span style="color:#ff9f43">5</span>
-</span></span><span style="display:flex;"><span>  VG Access             read/write
-</span></span><span style="display:flex;"><span>  VG Status             resizable
-</span></span><span style="display:flex;"><span>  MAX LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Open LV               <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Max PV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Act PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  VG Size               225.00 MiB
-</span></span><span style="display:flex;"><span>  PE Size               15.00 MiB
-</span></span><span style="display:flex;"><span>  Total PE              <span style="color:#ff9f43">15</span>
-</span></span><span style="display:flex;"><span>  Alloc PE / Size       <span style="color:#ff9f43">14</span> / 210.00 MiB
-</span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">1</span> / 15.00 MiB
-</span></span><span style="display:flex;"><span>  VG UUID               fEUf8R-nxKF-Uxud-7rmm-JvSQ-PsN1-Mrs3zc
-</span></span><span style="display:flex;"><span>   
-</span></span><span style="display:flex;"><span>  --- Volume group ---
-</span></span><span style="display:flex;"><span>  VG Name               rhel
-</span></span><span style="display:flex;"><span>  System ID             
-</span></span><span style="display:flex;"><span>  Format                lvm2
-</span></span><span style="display:flex;"><span>  Metadata Areas        <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Metadata Sequence No  <span style="color:#ff9f43">3</span>
-</span></span><span style="display:flex;"><span>  VG Access             read/write
-</span></span><span style="display:flex;"><span>  VG Status             resizable
-</span></span><span style="display:flex;"><span>  MAX LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Open LV               <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Max PV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Act PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  VG Size               &lt;19.00 GiB
-</span></span><span style="display:flex;"><span>  PE Size               4.00 MiB
-</span></span><span style="display:flex;"><span>  Total PE              <span style="color:#ff9f43">4863</span>
-</span></span><span style="display:flex;"><span>  Alloc PE / Size       <span style="color:#ff9f43">4863</span> / &lt;19.00 GiB
-</span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">0</span> / <span style="color:#ff9f43">0</span>   
-</span></span><span style="display:flex;"><span>  VG UUID               UiK3fy-FGOc-2fnP-C1Y6-JS0l-irEe-Sq3c4h</span></span></code></pre></div>
-<h3 id="lab-13-4-expand-volume-group-and-logical-volume">Lab 13-4: Expand Volume Group and Logical Volume</h3>
-<p>Create a partition on an available 250MB disk and initialize it for use in LVM (use lsblk to identify available disks).</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb mklabel msdos</span>
-</span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to <span style="color:#ff6ac1">continue</span>?
-</span></span><span style="display:flex;"><span>Yes/No? yes                                                               
-</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># parted /dev/sdb mkpart primary 1 250m                   </span>
-</span></span><span style="display:flex;"><span>Information: You may need to update /etc/fstab.</span></span></code></pre></div>
-<p>Add the new physical volume to vg100.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vg100 /dev/sdb1</span>
-</span></span><span style="display:flex;"><span>  Device /dev/sdb1 has updated name <span style="color:#ff6ac1">(</span>devices file /dev/sdd1<span style="color:#ff6ac1">)</span>
-</span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdb1&#34;</span> successfully created.
-</span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vg100&#34;</span> successfully extended</span></span></code></pre></div>
-<p>Expand the lvol0 logical volume to size 300MB.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvextend -L +210 /dev/vg100/lvol0</span>
-</span></span><span style="display:flex;"><span>  Size of logical volume vg100/lvol0 changed from 90.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">6</span> extents<span style="color:#ff6ac1">)</span> to 300.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">20</span> extents<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>  Logical volume vg100/lvol0 successfully resized.</span></span></code></pre></div>
-<p>Use the vgs, pvs, lvs, and vgdisplay commands for verification.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  LV      VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-</span></span><span style="display:flex;"><span>  root    rhel  -wi-ao---- &lt;17.00g                                                    
-</span></span><span style="display:flex;"><span>  swap    rhel  -wi-ao----   2.00g                                                    
-</span></span><span style="display:flex;"><span>  lvol0   vg100 -wi-a-----  90.00m                                                    
-</span></span><span style="display:flex;"><span>  swapvol vg100 -wi-a----- 120.00m<span style="color:#ff6ac1">](</span>&lt;<span style="color:#ff6ac1">[</span>root@server20 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
-</span></span><span style="display:flex;"><span>  LV      VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-</span></span><span style="display:flex;"><span>  root    rhel  -wi-ao---- %3C17.00g                                                    
-</span></span><span style="display:flex;"><span>  swap    rhel  -wi-ao----   2.00g                                                    
-</span></span><span style="display:flex;"><span>  lvol0   vg100 -wi-a----- 300.00m                                                    
-</span></span><span style="display:flex;"><span>  swapvol vg100 -wi-a----- 120.00m&gt;<span style="color:#ff6ac1">)</span>                                                  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  VG    <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree </span>
-</span></span><span style="display:flex;"><span>  rhel    <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g     <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  vg100   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- 450.00m 30.00m
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  PV         VG    Fmt  Attr PSize   PFree 
-</span></span><span style="display:flex;"><span>  /dev/sda2  rhel  lvm2 a--  &lt;19.00g     <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  /dev/sdb1  vg100 lvm2 a--  225.00m 30.00m
-</span></span><span style="display:flex;"><span>  /dev/sdd1  vg100 lvm2 a--  225.00m     <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  LV      VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-</span></span><span style="display:flex;"><span>  root    rhel  -wi-ao---- &lt;17.00g                                                    
-</span></span><span style="display:flex;"><span>  swap    rhel  -wi-ao----   2.00g                                                    
-</span></span><span style="display:flex;"><span>  lvol0   vg100 -wi-a----- 300.00m                                                    
-</span></span><span style="display:flex;"><span>  swapvol vg100 -wi-a----- 120.00m                                                    
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgdisplay</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  --- Volume group ---
-</span></span><span style="display:flex;"><span>  VG Name               vg100
-</span></span><span style="display:flex;"><span>  System ID             
-</span></span><span style="display:flex;"><span>  Format                lvm2
-</span></span><span style="display:flex;"><span>  Metadata Areas        <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Metadata Sequence No  <span style="color:#ff9f43">7</span>
-</span></span><span style="display:flex;"><span>  VG Access             read/write
-</span></span><span style="display:flex;"><span>  VG Status             resizable
-</span></span><span style="display:flex;"><span>  MAX LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Open LV               <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Max PV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur PV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Act PV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  VG Size               450.00 MiB
-</span></span><span style="display:flex;"><span>  PE Size               15.00 MiB
-</span></span><span style="display:flex;"><span>  Total PE              <span style="color:#ff9f43">30</span>
-</span></span><span style="display:flex;"><span>  Alloc PE / Size       <span style="color:#ff9f43">28</span> / 420.00 MiB
-</span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">2</span> / 30.00 MiB
-</span></span><span style="display:flex;"><span>  VG UUID               fEUf8R-nxKF-Uxud-7rmm-JvSQ-PsN1-Mrs3zc
-</span></span><span style="display:flex;"><span>   
-</span></span><span style="display:flex;"><span>  --- Volume group ---
-</span></span><span style="display:flex;"><span>  VG Name               rhel
-</span></span><span style="display:flex;"><span>  System ID             
-</span></span><span style="display:flex;"><span>  Format                lvm2
-</span></span><span style="display:flex;"><span>  Metadata Areas        <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Metadata Sequence No  <span style="color:#ff9f43">3</span>
-</span></span><span style="display:flex;"><span>  VG Access             read/write
-</span></span><span style="display:flex;"><span>  VG Status             resizable
-</span></span><span style="display:flex;"><span>  MAX LV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur LV                <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Open LV               <span style="color:#ff9f43">2</span>
-</span></span><span style="display:flex;"><span>  Max PV                <span style="color:#ff9f43">0</span>
-</span></span><span style="display:flex;"><span>  Cur PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  Act PV                <span style="color:#ff9f43">1</span>
-</span></span><span style="display:flex;"><span>  VG Size               &lt;19.00 GiB
-</span></span><span style="display:flex;"><span>  PE Size               4.00 MiB
-</span></span><span style="display:flex;"><span>  Total PE              <span style="color:#ff9f43">4863</span>
-</span></span><span style="display:flex;"><span>  Alloc PE / Size       <span style="color:#ff9f43">4863</span> / &lt;19.00 GiB
-</span></span><span style="display:flex;"><span>  Free  PE / Size       <span style="color:#ff9f43">0</span> / <span style="color:#ff9f43">0</span>   
-</span></span><span style="display:flex;"><span>  VG UUID               UiK3fy-FGOc-2fnP-C1Y6-JS0l-irEe-Sq3c4h
-</span></span><span style="display:flex;"><span>   </span></span></code></pre></div>
-<h3 id="lab-13-5-add-a-vdo-logical-volume">Lab 13-5: Add a VDO Logical Volume</h3>
-<p>initialize the sdf disk for use in LVM and add it to vgvdo1.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvcreate /dev/sdc</span>
-</span></span><span style="display:flex;"><span>  Physical volume <span style="color:#5af78e">&#34;/dev/sdc&#34;</span> successfully created.
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo vgextend vgvdo1 /dev/sdc</span>
-</span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo1&#34;</span> successfully extended</span></span></code></pre></div>
-<p>Create a VDO logical volume named vdovol using the entire disk capacity.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvcreate --type vdo -n vdovol -l 100%FREE vgvdo1</span>
-</span></span><span style="display:flex;"><span>WARNING: LVM2_member signature detected on /dev/vgvdo1/vpool0 at offset 536. Wipe it? <span style="color:#ff6ac1">[</span>y/n<span style="color:#ff6ac1">]</span>: y
-</span></span><span style="display:flex;"><span>  Wiping LVM2_member signature on /dev/vgvdo1/vpool0.
-</span></span><span style="display:flex;"><span>    Logical blocks defaulted to <span style="color:#ff9f43">523108</span> blocks.
-</span></span><span style="display:flex;"><span>    The VDO volume can address <span style="color:#ff9f43">2</span> GB in <span style="color:#ff9f43">1</span> data slab.
-</span></span><span style="display:flex;"><span>    It can grow to address at most <span style="color:#ff9f43">16</span> TB of physical storage in <span style="color:#ff9f43">8192</span> slabs.
-</span></span><span style="display:flex;"><span>    If a larger maximum size might be needed, use bigger slabs.
-</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;vdovol&#34;</span> created.</span></span></code></pre></div>
-<p>Use the vgs, pvs, lvs, and vgdisplay commands for verification.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB123ecea1-63467dee PVID RjcGRyHDIWY0OqAgfIHC93WT03Na1WoO last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VBa5e3cbf7-10921e08 PVID qeP9dCevNnTy422I8p18NxDKQ2WyDodU last seen on /dev/sdf1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID brKVLFEG3AoBzhWoso0Sa1gLYHgNZ4vL last seen on /dev/sdb1 not found.
-</span></span><span style="display:flex;"><span>  VG     <span style="color:#78787e">#PV #LV #SN Attr   VSize   VFree  </span>
-</span></span><span style="display:flex;"><span>  rhel     <span style="color:#ff9f43">1</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n- &lt;19.00g      <span style="color:#ff9f43">0</span> 
-</span></span><span style="display:flex;"><span>  vgvdo1   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">2</span>   <span style="color:#ff9f43">0</span> wz--n-  &lt;5.24g 248.00m</span></span></code></pre></div>
-<h3 id="lab-13-6-reduce-and-remove-logical-volumes">Lab 13-6: Reduce and Remove Logical Volumes</h3>
-<p>reduce the size of vdovol logical volume to 80MB.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvreduce -L 80 /dev/vgvdo1/vdovol</span>
-</span></span><span style="display:flex;"><span>  No file system found on /dev/vgvdo1/vdovol.
-</span></span><span style="display:flex;"><span>  WARNING: /dev/vgvdo1/vdovol: Discarding 1.91 GiB at offset 83886080, please wait...
-</span></span><span style="display:flex;"><span>  Size of logical volume vgvdo1/vdovol changed from 1.99 GiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">510</span> extents<span style="color:#ff6ac1">)</span> to 80.00 MiB <span style="color:#ff6ac1">(</span><span style="color:#ff9f43">20</span> extents<span style="color:#ff6ac1">)</span>.
-</span></span><span style="display:flex;"><span>  Logical volume vgvdo1/vdovol successfully resized.
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvs</span>
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID none last seen on /dev/sdd2 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB123ecea1-63467dee PVID RjcGRyHDIWY0OqAgfIHC93WT03Na1WoO last seen on /dev/sdd1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VBa5e3cbf7-10921e08 PVID qeP9dCevNnTy422I8p18NxDKQ2WyDodU last seen on /dev/sdf1 not found.
-</span></span><span style="display:flex;"><span>  Devices file sys_wwid t10.ATA_VBOX_HARDDISK_VB428913dd-446a194f PVID brKVLFEG3AoBzhWoso0Sa1gLYHgNZ4vL last seen on /dev/sdb1 not found.
-</span></span><span style="display:flex;"><span>  LV     VG     Attr       LSize   Pool   Origin Data%  Meta%  Move Log Cpy%Sync Convert
-</span></span><span style="display:flex;"><span>  root   rhel   -wi-ao---- &lt;17.00g                                                      
-</span></span><span style="display:flex;"><span>  swap   rhel   -wi-ao----   2.00g                                                      
-</span></span><span style="display:flex;"><span>  vdovol vgvdo1 vwi-a-v---  80.00m vpool0        0.00                                   
-</span></span><span style="display:flex;"><span>  vpool0 vgvdo1 dwi-------  &lt;5.00g               60.00                                  
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># </span></span></span></code></pre></div>
-<p>erase logical volume vdovol.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvremove /dev/vgvdo1/vdovol</span>
-</span></span><span style="display:flex;"><span>Do you really want to remove active logical volume vgvdo1/vdovol? <span style="color:#ff6ac1">[</span>y/n<span style="color:#ff6ac1">]</span>: y
-</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;vdovol&#34;</span> successfully removed.</span></span></code></pre></div>
-<p>Confirm the deletion with vgs, pvs, lvs, and vgdisplay commands.</p>
-<h3 id="lab-13-7-remove-volume-group-and-physical-volumes">Lab 13-7: Remove Volume Group and Physical Volumes</h3>
-<p>\remove the volume group and uninitialized the physical volumes.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># vgremove vgvdo1</span>
-</span></span><span style="display:flex;"><span>  Volume group <span style="color:#5af78e">&#34;vgvdo1&#34;</span> successfully removed</span></span></code></pre></div>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvremove /dev/sdc</span>
-</span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdc&#34;</span> successfully wiped.
-</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># pvremove /dev/sdf</span>
-</span></span><span style="display:flex;"><span>  Labels on physical volume <span style="color:#5af78e">&#34;/dev/sdf&#34;</span> successfully wiped.</span></span></code></pre></div>
-<p>Confirm the deletion with vgs, pvs, lvs, and vgdisplay commands.</p>
-<p>Use the lsblk command and verify that the disks used for the LVM labs no longer show LVM information.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
-</span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
-</span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part /boot
-</span></span><span style="display:flex;"><span>└─sda2          8:2    <span style="color:#ff9f43">0</span>   19G  <span style="color:#ff9f43">0</span> part 
-</span></span><span style="display:flex;"><span>  ├─rhel-root 253:0    <span style="color:#ff9f43">0</span>   17G  <span style="color:#ff9f43">0</span> lvm  /
-</span></span><span style="display:flex;"><span>  └─rhel-swap 253:1    <span style="color:#ff9f43">0</span>    2G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
-</span></span><span style="display:flex;"><span>sdb             8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sdc             8:32   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sdd             8:48   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sde             8:64   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sdf             8:80   <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> disk 
-</span></span><span style="display:flex;"><span>sr0            11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  </span></span></code></pre></div>
-
-  <footer class="footline">
-  </footer>
-</article>
         </div>
       </main>
     </div>
-    <script src="/js/clipboard/clipboard.min.js?1744979713" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1744979713" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754309132" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754309132" defer></script>
     <script>
       window.MathJax = Object.assign( window.MathJax || {}, {
         tex: {
@@ -793,20 +185,20 @@ Not installed by default?</li>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-color.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1744979713" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1744979713" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-color.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1754309132" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1754309132" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/theme.min.js?1744979713" defer></script>
+    <script src="/js/theme.min.js?1754309132" defer></script>
   </body>
 </html>
