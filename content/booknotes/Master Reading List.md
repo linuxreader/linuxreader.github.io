@@ -75,6 +75,7 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - The Death of Ivan Illych
 - Siddhartha
 - The Sailor Who Fell from Grace with the Sea
+- The Temple of the Golden Pavilion
 ### Martial Arts
 - Jiu-Jitsu on the Brain
 - Mastering the Rubber Guard: Jiu Jitsu for Mixed Martial Arts Competition
@@ -190,7 +191,6 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - [ ] Rest
 - [ ] The Surrender Experiment
 - [ ] The Minimalist Entrepreneur
-- [x] Boys Adrift
 - [ ] Lessons in Stoicism
 - [ ] The Denial of Death
 - [ ] 1984
@@ -289,7 +289,6 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - [ ] This Naked Mind by Annie Grace 
 - [ ] The Almanack of Naval Ravikant by by Eric Jorgenson, Jack Butcher
 - [ ] The Wind-Up Bird Chronicle
-- [x] All Quiet on the Western Front
 - [ ] The Old Man and the Sea by Ernest Hemingway
 - [ ] Lolita by Vladimir Nabokov
 - [ ] The Brothers Karamazov by Fyodor Dostoevsky, Michael R. Katz
@@ -384,7 +383,6 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - [ ] ## [Raising Good Humans: A Mindful Guide to Breaking the Cycle of Reactive Parenting and Raising Kind, Confident Kids](https://www.amazon.com/dp/1684033888/?coliid=I2FJ1UH3OJZ4BB&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Raising Good Humans: A Mindful Guide to Breaking the Cycle of Reactive Parenting and Raising Kind, Confident Kids")
 - [ ] ## [Mindsight: The New Science of Personal Transformation](https://www.amazon.com/dp/0553386395/?coliid=IJG135RMNLYXY&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Mindsight: The New Science of Personal Transformation")
 - [ ] ## [You Can Heal Your Life](https://www.amazon.com/dp/0937611018/?coliid=IWIWMVNS8I2OO&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "You Can Heal Your Life")
-- [ ] ## [The Six Pillars of Self-Esteem: The Definitive Work on Self-Esteem by the Leading Pioneer in the Field](https://www.amazon.com/dp/0553374397/?coliid=I4P0RVJIESAQ3&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "The Six Pillars of Self-Esteem: The Definitive Work on Self-Esteem by the Leading Pioneer in the Field")
 - [ ] ## [Coaching Questions: A Coach's Guide to Powerful Asking Skills](https://www.amazon.com/dp/0979416361/?coliid=I2OEMNWRWKGGPE&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Coaching Questions: A Coach's Guide to Powerful Asking Skills")
 - [ ] ## [Taming Your Gremlin: A Surprisingly Simple Method for Getting Out of Your Own Way](https://www.amazon.com/dp/0060520221/?coliid=I3NLHYO0QZLYNJ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Taming Your Gremlin: A Surprisingly Simple Method for Getting Out of Your Own Way")
 - [ ] ## [How You Do Anything Is How You Do Everything](https://www.amazon.com/dp/0991596358/?coliid=I17T4MENYWY0P2&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "How You Do Anything Is How You Do Everything")
