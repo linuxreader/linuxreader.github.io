@@ -25,7 +25,5 @@ Updated: 09-3-2025
 
 ## What I am Reading
 
-![Helping Your Child With Extreme Picky Eating](https://m.media-amazon.com/images/I/71+eSFjFUML._SL1500_.jpg?classes=inline&height=175px)
-
-![Gravity's Rainbow](https://m.media-amazon.com/images/I/91F13fSzm8L._SL1500_.jpg?classes=inline&height=175px)
+![Helping Your Child With Extreme Picky Eating](https://m.media-amazon.com/images/I/71+eSFjFUML._SL1500_.jpg?classes=inline&height=175px)![Gravity's Rainbow](https://m.media-amazon.com/images/I/91F13fSzm8L._SL1500_.jpg?classes=inline&height=175px)
 
