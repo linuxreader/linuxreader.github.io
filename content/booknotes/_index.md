@@ -17,7 +17,7 @@ These are the summaries and notes of books I have read. These notes are the resu
 - [Why I Read Physical Books](Why%20I%20Read%20Physical%20Books.md)
 - [Book Graveyard](Book%20Graveyard.md)
 - [Master Reading List](Master%20Reading%20List.md)
-- [[Fiction Books]]
+- [Fiction Books](Fiction%20Books.md)
 
 You can use these notes to remember key points. Or to help decide if a book is going to help you with a specific problem. Books are sorted by highest rated. Click the titled link for each book to see my detailed notes. 
 
