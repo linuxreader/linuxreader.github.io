@@ -30,6 +30,11 @@ Chilling exploration of post-war Japan and the effect of westernization on cultu
 (8/10)
 Interesting story about an evil monk obsessed with beauty. 
 
+![Siddhartha](https://m.media-amazon.com/images/I/81RnEWkU+OL._SL1500_.jpg?classes=inline&height=175px)
+
+(8/10)
+Great intro to Eastern Philosophy. Quick read. Everyone should read this. 
+
 ![The Death of Ivan Ilych](https://m.media-amazon.com/images/I/51AIgi5z0XL.jpg?classes=inline&height=175px)
 
 (8/10)
