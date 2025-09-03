@@ -88,15 +88,21 @@ The muscle model of willpower predicts that self-control drains throughout the d
 If you never seem to have the time and energy for your “I will” challenge, schedule it for when you have the most strength.
 
 Make sure that your body is well-fueled with food that gives you lasting energy. Most psychologists and nutritionists recommend a low-glycemic diet—that is, one that helps you keep your blood sugar steady. Low-glycemic foods include lean proteins, nuts and beans, high-fiber grains and cereals, and most fruits and vegetables—basically, food that looks like its natural state and doesn’t have a ton of added sugar, fat, and chemicals. It may take some self-control to shift in this direction, but whatever steps you take (say, eating a hearty and healthy breakfast during the workweek instead of skipping breakfast, or snacking on nuts instead of sugar) will more than pay you back for any willpower you spend making the change.
- 
 
 Challenge the self-control muscle by asking people to control one small thing that they aren’t used to controlling.
 
 The important “muscle” action being trained in all these studies isn’t the specific willpower challenge of meeting deadlines, using your left hand to open doors, or keeping the F-word to yourself. It’s the habit of noticing what you are about to do, and choosing to do the more difficult thing instead of the easiest.
 
-Strengthen “I Won’t” Power: Commit to not swearing (or refraining from any habit of speech), not crossing your legs when you sit, or using your nondominant hand for a daily task like eating or opening doors.• Strengthen “I Will” Power: Commit to doing something every day (not something you already do) just for the practice of building a habit and not making excuses. It could be calling your mother, meditating for five minutes, or finding one thing in your house that needs to be thrown out or recycled.• Strengthen Self-Monitoring: Formally keep track of something you don’t usually pay close attention to. This could be your spending, what you eat, or how much time you spend online or watching TV. You don’t need fancy technology—pencil and paper will do. But if you need some inspiration, the Quantified Self movement (www.quantifiedself.com) has turned self-tracking into an art and science. 
+Strengthen “I Won’t” Power: 
+Commit to not swearing (or refraining from any habit of speech), not crossing your legs when you sit, or using your nondominant hand for a daily task like eating or opening doors.
 
- leaving candy out in a visible place can increase people’s general self-control (if they routinely resist the temptation).
+Strengthen “I Will” Power: 
+Commit to doing something every day (not something you already do) just for the practice of building a habit and not making excuses. It could be calling your mother, meditating for five minutes, or finding one thing in your house that needs to be thrown out or recycled.
+
+Strengthen Self-Monitoring: 
+Formally keep track of something you don’t usually pay close attention to. This could be your spending, what you eat, or how much time you spend online or watching TV. You don’t need fancy technology—pencil and paper will do. But if you need some inspiration, the Quantified Self movement (www.quantifiedself.com) has turned self-tracking into an art and science. 
+
+ Leaving candy out in a visible place can increase people’s general self-control (if they routinely resist the temptation).
 
 Fatigue should no longer be considered a physical event but rather a sensation or emotion.
 
