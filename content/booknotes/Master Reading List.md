@@ -8,7 +8,7 @@ I am reading way too many books at once. Goal is to cut this list down and read 
 
 ## Books I have Read
 
-These are books that I have read from cover to cover. (Checkmarks are to help me keep track of Physically Owned Books/ Books I want to own)
+These are books that I have read from cover to cover. 
 
 ### Health and Fitness
 - The Obesity Code: Unlocking the Secrets of Weight Loss (Why Intermittent Fasting Is the Key to Controlling Your Weight
@@ -26,6 +26,7 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - How Not to Die: Discover the Foods Scientifically Proven to Prevent and Reverse Disease
 - Becoming a Supple Leopard 2nd Edition: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance
 - Improve the Quality of Your Life - Why Live in Pain?
+- Built to Move
 ### Money
 - Who Owns the Ice House? : Eight Life Lessons From an Unlikely Entrepreneur
 - How To Make More Money Serving: Your Step by Step Guide for Increasing Tips
@@ -133,6 +134,7 @@ These are books that I have read from cover to cover. (Checkmarks are to help me
 - How to Win Friends and Influence People
 - The Tipping Point 
 - David vs Goliath
+- The Willpower Instinct
  
  ### Dog Training
 - The Power of Positive Dog Training

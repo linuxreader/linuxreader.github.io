@@ -24,6 +24,14 @@ You can use these notes to remember key points. Or to help decide if a book is g
 ---
 
 
+![The Willpower Instinct](https://m.media-amazon.com/images/I/71tvkO9Db4L._SL1500_.jpg?classes=inline&height=175px)
+
+[The Willpower Instinct](The%20Willpower%20Instinct.md) (9/10)
+
+Incredible read. Could have been a little shorter but I picked up a bunch of new habits in the past couple months since reading this. How meditation can shift us to a less stressed mode of ourselves. When we are stressed we have less willpower. How exercise can increase willpower. How our brain plays tricks on us and how we can use that to our advantage. Like how we assume our future self will handle things better some day. 
+
+---
+
 ![Caffeine Blues](https://m.media-amazon.com/images/I/81esD9K1FcL._SL1500_.jpg?classes=inline&height=175px)
 
 [Caffeine Blues](Caffeine%20Blues.md) (9/10)
