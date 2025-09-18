@@ -67,15 +67,13 @@ Stress—whether physical or psychological—is the enemy of self-control.
 
 Every act of willpower is drawing from the same source of strength, leaving people weaker with each successful act of self-control.
 
-# Left off here
+Self-control is like a muscle. When used, it gets tired. If you don’t rest the muscle, you can run out of strength entirely.
 
-Self-control is like a muscle. When used, it gets tired. If you don’t rest the muscle, you can run out of strength entirely, like an athlete who pushes himself to exhaustion.
+Not every willpower failure reveals our innate inadequacies; sometimes they point to how hard we’ve been working.
 
- It’s nice to know that not every willpower failure reveals our innate inadequacies; sometimes they point to how hard we’ve been working.
+The muscle model of willpower predicts that self-control drains throughout the day. 
 
-The muscle model of willpower predicts that self-control drains throughout the day. This week, pay attention to when you have the most willpower, and when you are most likely to give in. Do you wake up with willpower and steadily drain it? Or is there another time of the day when you find yourself recharged and refreshed? You can use this self-knowledge to plan your schedule wisely, and limit temptations when you know you’ll be the most depleted.
-
-If you never seem to have the time and energy for your “I will” challenge, schedule it for when you have the most strength.
+Pay attention to when you have the most willpower, and when you are most likely to give in. You can use this self-knowledge to plan your schedule wisely, and limit temptations when you know you’ll be the most depleted.
 
 Make sure that your body is well-fueled with food that gives you lasting energy. 
  
@@ -83,57 +81,80 @@ Challenge the self-control muscle by asking people to control one small thing th
 
 The important “muscle” action being trained in all these studies isn’t the specific willpower challenge of meeting deadlines, using your left hand to open doors, or keeping the F-word to yourself. It’s the habit of noticing what you are about to do, and choosing to do the more difficult thing instead of the easiest.
 
-Strengthen “I Won’t” Power: Commit to not swearing (or refraining from any habit of speech), not crossing your legs when you sit, or using your nondominant hand for a daily task like eating or opening doors.• Strengthen “I Will” Power: Commit to doing something every day (not something you already do) just for the practice of building a habit and not making excuses. It could be calling your mother, meditating for five minutes, or finding one thing in your house that needs to be thrown out or recycled.• Strengthen Self-Monitoring: Formally keep track of something you don’t usually pay close attention to. This could be your spending, what you eat, or how much time you spend online or watching TV. You don’t need fancy technology—pencil and paper will do. But if you need some inspiration, the Quantified Self movement (www.quantifiedself.com) has turned self-tracking into an art and science. 
+Strengthen “I Won’t” Power: 
+Commit to not swearing (or refraining from any habit of speech), not crossing your legs when you sit, or using your nondominant hand for a daily task like eating or opening doors.
 
- leaving candy out in a visible place can increase people’s general self-control (if they routinely resist the temptation).
+Strengthen “I Will” Power: 
+Commit to doing something every day (not something you already do) just for the practice of building a habit and not making excuses. It could be calling your mother, meditating for five minutes, or finding one thing in your house that needs to be thrown out or recycled.
+
+Strengthen Self-Monitoring: 
+Formally keep track of something you don’t usually pay close attention to. This could be your spending, what you eat, or how much time you spend online or watching TV. 
+
+The Quantified Self movement (www.quantifiedself.com) has turned self-tracking into an art and science. 
+
+ Leaving candy out in a visible place can increase people’s general self-control (if they routinely resist the temptation).
 
 Fatigue should no longer be considered a physical event but rather a sensation or emotion.
 
 Just as the brain may tell the body’s muscles to slow down when it fears physical exhaustion, the brain may put the brakes on its own energy-expensive exercise of the prefrontal cortex. This doesn’t mean we’re out of willpower; we just need to muster up the motivation to use it.
 
-All too often, we use the first feeling of fatigue as a reason to skip exercise, snap at our spouses, procrastinate a little longer, or order a pizza instead of cooking a healthy meal. To be sure, the demands of life really do drain our willpower, and perfect self-control is a fool’s quest. But you may have more willpower than the first impulse to give in would suggest. The next time you find yourself “too tired” to exert self-control, challenge yourself to go beyond that first feeling of fatigue. (Keep in mind that it’s also possible to overtrain—and if you find yourself constantly feeling drained, you may
+All too often, we use the first feeling of fatigue as a reason to skip exercise, snap at our spouses, procrastinate a little longer, or order a pizza instead of cooking a healthy meal. To be sure, the demands of life really do drain our willpower, and perfect self-control is a fool’s quest. But you may have more willpower than the first impulse to give in would suggest. The next time you find yourself “too tired” to exert self-control, challenge yourself to go beyond that first feeling of fatigue. (Keep in mind that it’s also possible to overtrain—and if you find yourself constantly feeling drained, you may need to consider whether you have been running yourself to real exhaustion.)
 
-need to consider whether you have been running yourself to real exhaustion.)
-
-the mere promise that practice would improve performance on a difficult task helped the students push past willpower exhaustion.
+The mere promise that practice would improve performance on a difficult task helped the students push past willpower exhaustion.
 
 If you think that not smoking is going to be as hard one year from now as it is that first day of nicotine withdrawal, when you would claw your own eyes out for a cigarette, you’re much more likely to give up. But if you can imagine a time when saying no will be second nature, you’ll be more willing to stick out the temporary misery.
 
 When your willpower is running low, find renewed strength by tapping into your want power. For your biggest willpower challenge, consider the following motivations:
 
-How will you benefit from succeeding at this challenge? What is the payoff for you personally? Greater health, happiness, freedom, financial security, or success?2. Who else will benefit if you succeed at this challenge? Surely there are others who depend on you and are affected by your choices. How does your behavior influence your family, friends, coworkers, employees or employer, and community? How would your success help them?3. Imagine that this challenge will get easier for you over time if you are willing to do what is difficult now. Can you imagine what your life will be like, and how you will feel about yourself, as you make progress on this challenge? Is some discomfort now worth it if you know it is only a temporary part of your progress?
+How will you benefit from succeeding at this challenge? 
+What is the payoff for you personally? Greater health, happiness, freedom, financial security, or success?
+
+Who else will benefit if you succeed at this challenge? 
+Surely there are others who depend on you and are affected by your choices. How does your behavior influence your family, friends, coworkers, employees or employer, and community? How would your success help them?
+
+Imagine to do what is difficult now. Can you imagine what your life will be like, and how you will feel about yourself, as you make progress on this challenge? Is some discomfort now worth it if you know it is only a temporary part of your progress?
 
 Sometimes our strongest motivation is not what we think it is, or think it should be. If you’re trying to change a behavior to please someone else or be the right kind of person, see if there is another “want” that holds more power for you.
 
 If we want to strengthen self-control, we may need to think about how we can best support the most exhausted version of ourselves—and not count on an ideal version of ourselves to show up and save the day.
 
-The limits of self-control present a paradox: We cannot control everything, and yet the only way to increase our self-control is to stretch our limits. Like a muscle, our willpower follows the rule of “Use it or lose it.” If we try to save our energy by becoming willpower coach potatoes, we will lose the strength we have. But if we try to run a willpower marathon every day, we set ourselves up for total collapse. Our challenge is to train like an intelligent athlete, pushing our limits but also pacing ourselves. And while we can find strength in our motivation when we feel weak, we can also look for ways to help our tired selves make good choices.
-CHAPTER SUMMARY 
-The Idea: Self-control is like a muscle. It gets tired from use, but regular exercise makes it stronger.
-Under the Microscope 
-• The highs and lows of willpower. Keep track of your self-control strength this week, with special interest in when you have the most willpower, and when you are most likely to give in or give up.• Is your exhaustion real? The next time you find yourself “too tired” to exert self-control, examine whether you can go beyond that first feeling of fatigue to take one more step. Willpower Experiments
+Like a muscle, our willpower follows the rule of “Use it or lose it.” If we try to save our energy by becoming willpower coach potatoes, we will lose the strength we have. 
 
-• The willpower diet. Make sure that your body is well fueled with food that gives you lasting energy.• A willpower workout. Exercise your self-control muscle by picking one thing to do (I will power) or not do (I won’t power) this week, or keeping track of something you aren’t used to paying close attention to.• Find your “want” power. When you find your biggest want power—the motivation that gives you strength when you feel weak—bring it to mind whenever you find yourself most tempted to give in or give up.
+If we try to run a willpower marathon every day, we set ourselves up for total collapse. 
 
-moral licensing. When you do something good, you feel good about yourself. This means you’re more likely to trust your impulses—which often means giving yourself permission to do something bad.
+Train like an intelligent athlete, pushing our limits but also pacing ourselves. And while we can find strength in our motivation when we feel weak, we can also look for ways to help our tired selves make good choices.
 
-Moral licensing doesn’t just give us permission to do something bad; it also lets us off the hook when we’re asked to do something good
+Self-control is like a muscle. It gets tired from use, but regular exercise makes it stronger.
 
-Why are we suddenly talking about discrimination and sex scandals instead of dieting and procrastination? Because what is a willpower challenge if not a battle between virtue and vice? Anything you moralize becomes fair game for the effect of moral licensing. If you tell yourself that you’re “good” when you exercise and “bad” when you don’t, then you’re more likely to skip the gym tomorrow if you work out today. Tell yourself you’re “good” for working on an important project and “bad” for procrastinating, and you’re more likely to slack off in the afternoon if you made progress in the morning. Simply put: Whenever we have conflicting desires, being good gives us permission to be a little bit bad.
+Keep track of when you have the most willpower, and when you are most likely to give in or give up.
 
-when you tell yourself that exercising, saving money, or giving up smoking is the right thing to do—not something that will help you meet your goals—you’re less likely to do it consistently.
+Is your exhaustion real? The next time you find yourself “too tired” to exert self-control, examine whether you can go beyond that first feeling of fatigue to take one more step. 
+
+The willpower diet. Make sure that your body is well fueled with food that gives you lasting energy.
+
+A willpower workout. Exercise your self-control muscle by picking one thing to do or keeping track of something you aren’t used to paying close attention to.
+
+Find your biggest want power—the motivation that gives you strength when you feel weak—bring it to mind whenever you find yourself most tempted to give in or give up.
+
+Moral licensing. When you do something good, you feel good about yourself. This means you’re more likely to trust your impulses—which often means giving yourself permission to do something bad.
+
+Moral licensing doesn’t just give us permission to do something bad; it also lets us off the hook when we’re asked to do something good.
+
+Whenever we have conflicting desires, being good gives us permission to be a little bit bad.
+
+When you tell yourself that exercising, saving money, or giving up smoking is the right thing to do—not something that will help you meet your goals—you’re less likely to do it consistently.
 
 When we think about our willpower challenges in moral terms, we get lost in self-judgments and lose sight of how those challenges will help us get what we want.
 
-This week, watch how you talk to yourself and others about your willpower failures and successes:• Do you tell yourself you’ve been “good” when you succeed at a willpower challenge, and “bad” when you give in to procrastination or temptation?• Do you use your “good” behavior to give yourself permission to do something “bad”? Is this a harmless reward, or is it sabotaging your larger willpower goals? 
+Do you use your “good” behavior to give yourself permission to do something “bad”? 
 
-making progress on a goal motivates people to engage in goal-sabotaging behavior.
+Is this a harmless reward, or is it sabotaging your larger willpower goals? 
+
+Making progress on a goal motivates people to engage in goal-sabotaging behavior.
 
 When you make progress toward your long-term goal, your brain—with its mental checklist of many goals—turns off the mental processes that were driving you to pursue your long-term goal. It will then turn its attention to the goal that has not yet been satisfied—the voice of self-indulgence. Psychologists call this goal liberation. The goal you’ve been suppressing with your self-control is going to become stronger, and any temptation will become more tempting.
 
-Although it runs counter to everything we believe about achieving our goals, focusing on progress can hold us back from success. That’s not to say that progress itself is a problem. The problem with progress is how it makes us feel—and even then, it’s only a problem if we listen to the feeling instead of sticking to our goals. Progress can be motivating, and even inspire future self-control, but only if you view your actions as evidence that you are committed to your goal. In other words, you need to look at what you have done and conclude that you must really care about your goal, so much so that you want
-
-to do even more to reach it. This perspective is easy to adopt; it’s just not our usual mind-set. More typically, we look for the reason to stop.
+Although it runs counter to everything we believe about achieving our goals, focusing on progress can hold us back from success. That’s not to say that progress itself is a problem. The problem with progress is how it makes us feel—and even then, it’s only a problem if we listen to the feeling instead of sticking to our goals. Progress can be motivating, and even inspire future self-control, but only if you view your actions as evidence that you are committed to your goal. In other words, you need to look at what you have done and conclude that you must really care about your goal, so much so that you want to do even more to reach it. This perspective is easy to adopt; it’s just not our usual mind-set. More typically, we look for the reason to stop.
 
 The next time you find yourself using past good behavior to justify indulging, pause and remember the why.
 
@@ -143,7 +164,9 @@ We wrongly but persistently expect to make different decisions tomorrow than we 
 
 As you go about making decisions related to your willpower challenge, notice if the promise of future good behavior comes up in your thinking. Do you tell yourself you will make up for today’s behavior tomorrow? What effect does this have on your self-control today? For extra credit, keep paying attention—all the way to tomorrow. Do you actually do what you said you would, or does the cycle of “indulge today, change tomorrow” begin again?
 
-we wrongly predict we will have much more free time in the future than we do today.
+We wrongly predict we will have much more free time in the future than we do today.
+
+# Left off here
 
 Apply Rachlin’s advice to your own willpower challenge this week: Aim to reduce the variability of your behavior day to day. View every choice you make as a commitment to all future choices. So instead of asking, “Do I want to eat this candy bar now?” ask yourself, “Do I want the consequences of eating a candy bar every afternoon for the next year?” Or if you’ve been putting something off that you know you should do, instead of asking “Would I rather do this today or tomorrow?” ask yourself, “Do I really want the consequences of always putting this off?”
 
