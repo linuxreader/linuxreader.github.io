@@ -12,18 +12,21 @@ I keep a page of projects that I want to do and tech that I want to learn [here.
 
 ## Now
 
-Updated: 09-3-2025
+Updated: 09-18-2025
 
-- Tapering caffeine by 20mg per day. 
-- Building up to running 2 miles per day. 
-- Calisthenics every other day.
+- Calisthenics 3X per week
+- Jiu Jitsu 1X per week
+- 2800 Calories per day
+- Weigh in Sunday mornings
 - 10-20 minutes of mobility work per day.
-- Losing 2 lbs per week.
+- Get down to 160lbs
+- Rotator cuff strengthening exercises
 - Apnea training to increase breath hold. (To explore physical and psychological benefits.)
 - Walking 10,000 steps per day.
 - Practicing Ansible and studying for RHCE certification
+- Tapering caffeine by 5mg per day. Today: 400
 
 ## What I am Reading
 
-![Helping Your Child With Extreme Picky Eating](https://m.media-amazon.com/images/I/71+eSFjFUML._SL1500_.jpg?classes=inline&height=175px)![Gravity's Rainbow](https://m.media-amazon.com/images/I/91F13fSzm8L._SL1500_.jpg?classes=inline&height=175px)
+![1Q84](https://m.media-amazon.com/images/I/51cxUhArJSL._SL1200_.jpg?classes=inline&height=175px)
 
