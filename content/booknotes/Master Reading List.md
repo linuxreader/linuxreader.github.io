@@ -189,7 +189,6 @@ These are books that I have read from cover to cover.
 # TBR (To be Read)
 
 - [ ] The Pathless Path
-- [ ] The Distraction Addiction
 - [ ] Rest
 - [ ] The Surrender Experiment
 - [ ] The Minimalist Entrepreneur
@@ -462,4 +461,6 @@ These are books that I have read from cover to cover.
 - [ ] ## [Built to Move: The Ten Essential Habits to Help You Move Freely and Live Fully](https://www.amazon.com/dp/0593534808/?coliid=I12FR80KA6LPZJ&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "Built to Move: The Ten Essential Habits to Help You Move Freely and Live Fully")
 - [ ] ## [The Book of Changes and the Unchanging Truth](https://www.amazon.com/dp/0937064297/?coliid=I21H7MQPJ1GIMT&colid=QZHN4BQA6ACK&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it "The Book of Changes and the Unchanging Truth")
 - [ ] ## [UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship](https://www.amazon.com/dp/0984358161/?coliid=I3FPEPO8WDCRM5&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship")
-- [ ] 
+- [ ] https://m.media-amazon.com/images/I/71L953v2dmL._SL1500_.jpg
+
+The Teachings of Don Juan: A Yaqui Way of Knowledge  - Carlos Castaneda

@@ -14,17 +14,17 @@ I keep a page of projects that I want to do and tech that I want to learn [here.
 
 Updated: 09-18-2025
 
+[[Workout Tracker]]
 - Calisthenics 3X per week
 - Jiu Jitsu 1X per week
 - 2800 Calories per day
-- Weigh in Sunday mornings
 - 10-20 minutes of mobility work per day.
 - Get down to 160lbs
 - Rotator cuff strengthening exercises
 - Apnea training to increase breath hold. (To explore physical and psychological benefits.)
 - Walking 10,000 steps per day.
 - Practicing Ansible and studying for RHCE certification
-- Tapering caffeine by 5mg per day. Today: 400
+- Tapering caffeine by 5mg per day. Today: 340
 
 ## What I am Reading
 
