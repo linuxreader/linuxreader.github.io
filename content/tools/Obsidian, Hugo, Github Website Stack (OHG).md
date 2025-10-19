@@ -39,6 +39,29 @@ everythingelsexyz.github.io on  main
 ❯ git config user.email "example@email.com"
 ```
 
+Then you will need to alias each repo:
+```bash
+~/Nextcloud/Documents 
+❯ cd linuxreader.github.io/
+
+linuxreader.github.io on  main [⇡] via 🐹 via  
+❯ git remote set-url origin git@github.com:linuxreader/repo.git
+
+
+
+everythingelsexyz.github.io on  main 
+git remote set-url origin git@everythingelsexyz.github.com:everythingelsexyz/everythingelsexyz.git
+
+
+```
+
+Load the keys into the agent:
+```bash
+ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/id_ed25519_everythingelsexyz
+
+```
+
 Next, go to your github homepage and select "Create repository". The repository name needs to match your github account name from earlier. It also must have public visibility:
 
 ![](../images/Pasted%20image%2020251019034937.png)

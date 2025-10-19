@@ -25,31 +25,31 @@ ssh-keygen -t ed25519 -C &#34;exampleemail@email.com&#34;">
     <meta itemprop="description" content="First, you’ll need to create a github account. If you won’t be using a custom domain (You can add one later), make sure you name the account what you want your website to be. The domain will be {{ account-name.github.io }}
 Once you have an account, the first thing you will do is generate a new ssh key and add it to github. This will give you passwordless access to your github account from your desktop. From my Fedora Linux machine, I will run:
 ssh-keygen -t ed25519 -C &#34;exampleemail@email.com&#34;">
-    <meta itemprop="wordCount" content="392">
+    <meta itemprop="wordCount" content="438">
     <title></title>
     <link href="/tools/obsidian-hugo-github-website-stack-ohg/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/tools/obsidian-hugo-github-website-stack-ohg/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1760873976" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1760873976" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1760873976" defer></script>
-    <script src="/js/search-lunr.min.js?1760873976" defer></script>
-    <script src="/js/search.min.js?1760873976" defer></script>
+    <link href="/images/favicon.svg?1760876839" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1760876839" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1760876839" defer></script>
+    <script src="/js/search-lunr.min.js?1760876839" defer></script>
+    <script src="/js/search.min.js?1760876839" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1760873976";
+      window.relearn.index_js_url="/searchindex.en.js?1760876839";
     </script>
-    <script src="/js/lunr/lunr.min.js?1760873976" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1760873976" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1760873976" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1760873976" defer></script>
+    <script src="/js/lunr/lunr.min.js?1760876839" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1760876839" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1760876839" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1760876839" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1760873976" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1760873976" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1760873976" rel="stylesheet">
-    <link href="/css/theme.min.css?1760873976" rel="stylesheet">
-    <link href="/css/format-html.min.css?1760873976" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1760876839" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1760876839" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1760876839" rel="stylesheet">
+    <link href="/css/theme.min.css?1760876839" rel="stylesheet">
+    <link href="/css/format-html.min.css?1760876839" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -168,8 +168,8 @@ ssh-keygen -t ed25519 -C &#34;exampleemail@email.com&#34;">
 <p>When it asks for the name of the key, give it a unique name to use for this account. I just picked the gitup account name to make it easy to identify:<br>
 <code>id_ed25519_example</code></p>
 <p>Then, grab your public key from ~/.ssh/id_ed25519_example.pub and add it in github under settings &gt; SSH and GPG Keys &gt; New SSH Key</p>
-<p><a href="#R-image-6eef761adf8b55df7537ad9afb696969" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../images/Pasted%20image%2020251019034622.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6eef761adf8b55df7537ad9afb696969"><img class="lazy lightbox lightbox-image" loading="lazy" src="../images/Pasted%20image%2020251019034622.png"></a></p>
+<p><a href="#R-image-94da67935807ab5dfa975ce0f85281ae" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../images/Pasted%20image%2020251019034622.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-94da67935807ab5dfa975ce0f85281ae"><img class="lazy lightbox lightbox-image" loading="lazy" src="../images/Pasted%20image%2020251019034622.png"></a></p>
 <p>If you have multiple github accounts, you&rsquo;ll have to create a couple aliases under ~/.ssh/config:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Host github.com
 </span></span><span style="display:flex;"><span>   HostName github.com
@@ -190,9 +190,23 @@ ssh-keygen -t ed25519 -C &#34;exampleemail@email.com&#34;">
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>everythingelsexyz.github.io on  main 
 </span></span><span style="display:flex;"><span>❯ git config user.email <span style="color:#5af78e">&#34;example@email.com&#34;</span></span></span></code></pre></div>
+<p>Then you will need to alias each repo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/Nextcloud/Documents 
+</span></span><span style="display:flex;"><span>❯ <span style="color:#ff5c57">cd</span> linuxreader.github.io/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>linuxreader.github.io on  main <span style="color:#ff6ac1">[</span>⇡<span style="color:#ff6ac1">]</span> via 🐹 via  
+</span></span><span style="display:flex;"><span>❯ git remote set-url origin git@github.com:linuxreader/repo.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>everythingelsexyz.github.io on  main 
+</span></span><span style="display:flex;"><span>git remote set-url origin git@everythingelsexyz.github.com:everythingelsexyz/everythingelsexyz.git</span></span></code></pre></div>
+<p>Load the keys into the agent:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-add ~/.ssh/id_ed25519
+</span></span><span style="display:flex;"><span>ssh-add ~/.ssh/id_ed25519_everythingelsexyz</span></span></code></pre></div>
 <p>Next, go to your github homepage and select &ldquo;Create repository&rdquo;. The repository name needs to match your github account name from earlier. It also must have public visibility:</p>
-<p><a href="#R-image-5d26f6530d00049bd3bcc0298bda08c5" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../images/Pasted%20image%2020251019034937.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5d26f6530d00049bd3bcc0298bda08c5"><img class="lazy lightbox lightbox-image" loading="lazy" src="../images/Pasted%20image%2020251019034937.png"></a></p>
+<p><a href="#R-image-0429e43017b3fdc6913cddc7495ffbf4" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../images/Pasted%20image%2020251019034937.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0429e43017b3fdc6913cddc7495ffbf4"><img class="lazy lightbox lightbox-image" loading="lazy" src="../images/Pasted%20image%2020251019034937.png"></a></p>
 <p>From your desktop, create a directory with {{ reponame.github.io }}. You must use this format for this to work:
 <code>mkdir everythingelsexyz.github.io &amp;&amp; cd everythingelsexyz.github.io</code></p>
 <p>Follow the instructions on github for &ldquo;…or create a new repository on the command line&rdquo;</p>
@@ -316,22 +330,22 @@ ssh-keygen -t ed25519 -C &#34;exampleemail@email.com&#34;">
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-color.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1760873976" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1760873976" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-color.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1760876839" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1760876839" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1760873976" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1760873976" defer></script>
-    <script src="/js/theme.min.js?1760873976" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1760876839" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1760876839" defer></script>
+    <script src="/js/theme.min.js?1760876839" defer></script>
   </body>
 </html>
