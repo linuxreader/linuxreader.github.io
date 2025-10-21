@@ -12,17 +12,15 @@ I keep a page of projects that I want to do and tech that I want to learn [here.
 
 ## Now
 
-Updated: 09-18-2025
+Updated: 10-21-2025
 
 - Calisthenics 3-4 times per week
-- Jiu Jitsu 1X per week
 - 2800 Calories per day
 - 10-20 minutes of mobility work per day.
-- Get down to 160lbs
 - Rotator cuff strengthening exercises
 - Walking 10,000 steps per day.
 - Practicing Ansible and studying for RHCE certification
-- Tapering caffeine by 5mg per day. Today: 340
+- Tapering caffeine by 10mg per day. Today: 330mg
 
 ## What I am Reading
 
