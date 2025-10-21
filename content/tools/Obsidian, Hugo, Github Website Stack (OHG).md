@@ -10,18 +10,42 @@ Then, grab your public key from ~/.ssh/id_ed25519_example.pub and add it in gith
 
 ![](../images/Pasted%20image%2020251019034622.png)
 
-If you have multiple github accounts, you'll have to create a couple aliases under ~/.ssh/config:
-```bash
-Host github.com
-   HostName github.com
-   IdentityFile ~/.ssh/id_ed25519
-   IdentitiesOnly yes
 
-# Other github account: everythingelsexyz
-Host github-everythingelsexyz
-   HostName github.com
-   IdentityFile ~/.ssh/id_ed25519_everythingelsexyz
-   IdentitiesOnly yes
+Next, go to your github homepage and select "Create repository". The repository name needs to match your github account name from earlier. It also must have public visibility:
+
+![](../images/Pasted%20image%2020251019053206.png)
+
+From your desktop, create a directory with {{ reponame.github.io }}. You must use this format for this to work:
+`mkdir everythingelsexyz.github.io && cd everythingelsexyz.github.io`
+
+Follow the instructions on github for "…or create a new repository on the command line". 
+
+```bash
+echo "# everythingelsexyz.github.io" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git https://github.com/everythingelsexyz/everythingelsexyz.github.io.git
+git push -u origin main
+```
+
+Then add credentials:  
+```bash
+git config user.name "everythingelsexyz"
+git config user.email "everythingelsedt@gmail.com"
+```
+
+If you have multiple github accounts, you'll have to create aliases for each one in the ~/.ssh/config file:
+```bash
+Host linuxreader.github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_ed25519
+
+Host everythingelsexyz.github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_ed25519_everythingelsexyz
+
 ```
 
 Then add your private keys to the ssh agent:
@@ -39,48 +63,24 @@ everythingelsexyz.github.io on  main
 ❯ git config user.email "example@email.com"
 ```
 
-Then you will need to alias each repo:
+Then you will need cd to each repo and add an alias:
 ```bash
-~/Nextcloud/Documents 
-❯ cd linuxreader.github.io/
-
 linuxreader.github.io on  main [⇡] via 🐹 via  
-❯ git remote set-url origin git@github.com:linuxreader/repo.git
-
-
+❯ git remote set-url origin git@linuxreader.github.com:linuxreader/linuxreader.git
 
 everythingelsexyz.github.io on  main 
 git remote set-url origin git@everythingelsexyz.github.com:everythingelsexyz/everythingelsexyz.git
-
-
 ```
 
 Load the keys into the agent:
 ```bash
 ssh-add ~/.ssh/id_ed25519
 ssh-add ~/.ssh/id_ed25519_everythingelsexyz
-
 ```
 
-Next, go to your github homepage and select "Create repository". The repository name needs to match your github account name from earlier. It also must have public visibility:
+## Adding a Hugo Theme to your Github Repository
 
-![](../images/Pasted%20image%2020251019034937.png)
 
-From your desktop, create a directory with {{ reponame.github.io }}. You must use this format for this to work:
-`mkdir everythingelsexyz.github.io && cd everythingelsexyz.github.io`
-
-Follow the instructions on github for "…or create a new repository on the command line"
-```bash
-echo "# everythingelsexyz" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/everythingelsexyz/everythingelsexyz.git
-git push -u origin main
-git remote set-url origin git@github-everythingelsexyz:everythingelsexyz/everythingelsexyz.git
-
-```
 
 Host
 
