@@ -126,11 +126,13 @@ function switchTab(tabGroup, tabId) {
   allTabItems &&
     allTabItems.forEach(function (e) {
       e.classList.remove('active');
+      e.setAttribute('aria-expanded', 'false');
       e.removeAttribute('tabindex');
     });
   targetTabItems &&
     targetTabItems.forEach(function (e) {
       e.classList.add('active');
+      e.setAttribute('aria-expanded', 'true');
       e.setAttribute('tabindex', '-1');
     });
 
@@ -345,7 +347,7 @@ function initMermaid(update, attrs) {
           var svg = d3.select(this);
           svg.html('<g>' + svg.html() + '</g>');
           var inner = svg.select('*:scope > g');
-          parent.insertAdjacentHTML('beforeend', '<button class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></button>');
+          parent.insertAdjacentHTML('beforeend', '<button class="svg-reset-button btn cstyle action noborder notitle interactive" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button>');
           var button = parent.querySelector('.svg-reset-button');
           var zoom = d3.zoom().on('zoom', function (e) {
             inner.attr('transform', e.transform);
@@ -740,8 +742,16 @@ function initCodeClipboard() {
         button = document.createElement('button');
         var buttonPrefix = isBlock ? 'block' : 'inline';
         button.classList.add(buttonPrefix + '-copy-to-clipboard-button');
+        if (isBlock) {
+          button.classList.add('btn');
+          button.classList.add('cstyle');
+          button.classList.add('action');
+          button.classList.add('noborder');
+          button.classList.add('notitle');
+          button.classList.add('interactive');
+        }
         button.setAttribute('title', window.T_Copy_to_clipboard);
-        button.innerHTML = '<i class="far fa-copy"></i>';
+        button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
         button.addEventListener('mouseleave', function () {
           this.removeAttribute('aria-label');
           this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');
@@ -1345,7 +1355,7 @@ function clearHistory() {
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
       url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
+      document.querySelectorAll('[data-nav-url="' + url + '"]').forEach(function (e) {
         e.classList.remove('visited');
       });
     }
@@ -1363,7 +1373,7 @@ function initHistory() {
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
       url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
+      document.querySelectorAll('[data-nav-url="' + url + '"]').forEach(function (e) {
         e.classList.add('visited');
       });
     }
@@ -1380,7 +1390,7 @@ function initScrollPositionSaver() {
     var state = window.history.state || {};
     state = Object.assign({}, typeof state === 'object' ? state : {});
     state.contentScrollTop = +elc.scrollTop;
-    window.history.replaceState(state, '', window.location);
+    window.history.replaceState(state, '');
   }
 
   var ticking = false;
@@ -1953,6 +1963,7 @@ ready(function () {
           isEmpty = !clone.innerHTML.trim();
         }
         button.querySelector('button').disabled = isEmpty;
+        button.querySelector('.btn').classList.toggle('interactive', !isEmpty);
         button.style.display = isEmpty && button.dataset.contentEmpty == 'hide' ? 'none' : 'inline-block';
       }
     });

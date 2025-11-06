@@ -10,4 +10,4 @@ alwaysopen = false
   publishResources = true
 +++
 
-{{% children containerstyle="div" style="h6" description=true %}}
+{{% children type="card" params.depth="3" description="true" %}}

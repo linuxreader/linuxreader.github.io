@@ -7,6 +7,7 @@ alwaysopen = false
   render = "always"
   list = "always"
   publishResources = true
+  
 +++
 
 {{% children containerstyle="div" style="h6" description=true %}}
