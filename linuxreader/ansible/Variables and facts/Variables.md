@@ -3,7 +3,7 @@ title = 'Variables
 description = 'All about Ansible variables'
 +++
 
-- Using and working with variables
+Using and working with variables
 - Capture command output using register
 
 ### Variables
