@@ -1,3 +1,7 @@
++++
+title = 'SSH Connections'
+description = 'SSH Connections'
++++
 ### Managing SSH Connections
 
 - How to provide for SSH keys for new users in such a way that users are provided with SSH keys without having to set them up themselves. 

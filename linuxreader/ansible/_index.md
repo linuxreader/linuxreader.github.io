@@ -1,5 +1,5 @@
 +++ 
-menuPre = '<i class="fa-fw fas fa-file-lines"></i> '
+menuPre = '<i class="fa-solid fa-robot"></i> '
 title = "Ansible" 
 weight = 1
 archetype = "moc" 

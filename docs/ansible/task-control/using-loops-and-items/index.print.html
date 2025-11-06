@@ -5,43 +5,45 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="Using Loops and Items Some modules enable you to provide a list that needs to be processed. Many modules don’t, and in these cases, it makes sense to use a loop mechanism to iterate over a list of items. Take, for instance, the yum module. While specifying the names of packages, you can use a list of packages. If, however, you want to do something similar for the service module, you find out that this is not possible. That is where loops come in. Working with Loops Install software packages using the yum module and then ensures that services installed from these packages are started using the service module:">
+    <meta name="description" content="Using Loops and Items">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:description" content="Using Loops and Items Some modules enable you to provide a list that needs to be processed. Many modules don’t, and in these cases, it makes sense to use a loop mechanism to iterate over a list of items. Take, for instance, the yum module. While specifying the names of packages, you can use a list of packages. If, however, you want to do something similar for the service module, you find out that this is not possible. That is where loops come in. Working with Loops Install software packages using the yum module and then ensures that services installed from these packages are started using the service module:">
+    <meta name="twitter:title" content="Using Loops and Items :: Linux Reader">
+    <meta name="twitter:description" content="Using Loops and Items">
     <meta property="og:url" content="http://linuxreader.com/ansible/task-control/using-loops-and-items/">
     <meta property="og:site_name" content="Linux Reader">
-    <meta property="og:description" content="Using Loops and Items Some modules enable you to provide a list that needs to be processed. Many modules don’t, and in these cases, it makes sense to use a loop mechanism to iterate over a list of items. Take, for instance, the yum module. While specifying the names of packages, you can use a list of packages. If, however, you want to do something similar for the service module, you find out that this is not possible. That is where loops come in. Working with Loops Install software packages using the yum module and then ensures that services installed from these packages are started using the service module:">
+    <meta property="og:title" content="Using Loops and Items :: Linux Reader">
+    <meta property="og:description" content="Using Loops and Items">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Ansible">
-    <meta itemprop="description" content="Using Loops and Items Some modules enable you to provide a list that needs to be processed. Many modules don’t, and in these cases, it makes sense to use a loop mechanism to iterate over a list of items. Take, for instance, the yum module. While specifying the names of packages, you can use a list of packages. If, however, you want to do something similar for the service module, you find out that this is not possible. That is where loops come in. Working with Loops Install software packages using the yum module and then ensures that services installed from these packages are started using the service module:">
+    <meta itemprop="name" content="Using Loops and Items :: Linux Reader">
+    <meta itemprop="description" content="Using Loops and Items">
     <meta itemprop="wordCount" content="936">
-    <title></title>
-    <link href="http://linuxreader.com/ansible/task-control/using-loops-and-items/" rel="canonical" type="text/html" title="">
-    <link href="/ansible/task-control/using-loops-and-items/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
-    <script src="/js/search-lunr.min.js?1762442645" defer></script>
-    <script src="/js/search.min.js?1762442645" defer></script>
+    <title>Using Loops and Items :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/task-control/using-loops-and-items/" rel="canonical" type="text/html" title="Using Loops and Items :: Linux Reader">
+    <link href="/ansible/task-control/using-loops-and-items/index.xml" rel="alternate" type="application/rss+xml" title="Using Loops and Items :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
-    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -114,7 +116,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/handlers/" title="Handlers (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -137,13 +139,13 @@
 
           </div>
           <span class="topbar-breadcrumbs highlightable">
-            
+            Using Loops and Items
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/using-loops-and-items/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/using-when-to-run-tasks-conditionally/" title="Using when to Run Tasks Conditionally (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -158,6 +160,200 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="using-loops-and-items">Using Loops and Items</h1>
+
+<h2 id="using-loops-and-items">Using Loops and Items</h2>
+<ul>
+<li>Some modules enable you to provide a list that needs to be processed.</li>
+<li>Many modules don&rsquo;t, and in these cases, it makes sense to use a loop mechanism to iterate over a list of items.</li>
+<li>Take, for instance, the yum module. While specifying the names of packages, you can use a list of packages.</li>
+<li>If, however, you want to do something similar for the service module, you find out that this is not possible.</li>
+<li>That is where loops come in.</li>
+</ul>
+<h4 id="working-with-loops">Working with Loops</h4>
+<p>Install software packages using the yum module and then ensures that services installed from these packages are started using the service module:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: install and start services
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install packages
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>          - vsftpd
+</span></span><span style="display:flex;"><span>          - httpd
+</span></span><span style="display:flex;"><span>          - samba
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: start the services
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">loop</span>:
+</span></span><span style="display:flex;"><span>        - vsftpd
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - smb</span></span></code></pre></div>
+<ul>
+<li>
+<p>A loop is defined at the same level as the service module.</p>
+</li>
+<li>
+<p>The loop has a list of services in a list (array) statement</p>
+</li>
+<li>
+<p>Items in the loop can be accessed by using the system internal variable <strong>item</strong>.</p>
+</li>
+<li>
+<p>At no place in the playbook is there a definition of the variable <strong>item</strong>; the loop takes care of this.</p>
+</li>
+<li>
+<p>When considering whether to use a loop, you should first investigate whether a module offers support for providing lists as values to the keys that are used.</p>
+</li>
+<li>
+<p>If this is the case, just provide a list, as all items in the list can be considered in one run of the module.</p>
+</li>
+<li>
+<p>If not, define the list using <strong>loop</strong> and provide <strong>&quot;{{ item }}&quot;</strong> as the value to the key.</p>
+</li>
+<li>
+<p>When using <strong>loop</strong>, the module is activated again on each iteration.</p>
+</li>
+</ul>
+<h4 id="using-loops-on-variables">Using Loops on Variables</h4>
+<ul>
+<li>Although it&rsquo;s possible to define a loop within a task, it&rsquo;s not the most elegant way.</li>
+<li>To create a flexible environment where static code is separated from dynamic site-specific parameters, it&rsquo;s a much better idea to define loops outside the static code, in variables.</li>
+<li>When you define loops within a variable, all the normal rules for working with variables apply: The variables can be defined in the play header, using an include file, or as host/hostgroup variables.</li>
+</ul>
+<p>Include the loop from a variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: install and start services
+      hosts: ansible1
+      vars:
+        services:
+        - vsftpd
+        - httpd
+        - smb
+      tasks:
+      - name: install packages
+        yum:
+          name:
+          - vsftpd
+          - httpd
+          - samba
+          state: latest
+      - name: start the services
+        service:
+          name: &#34;{{ item }}&#34;
+          state: started
+          enabled: yes
+        loop: &#34;{{ services }}&#34;</code></pre></div>
+<h4 id="using-loops-on-multivalued-variables">Using Loops on Multivalued Variables</h4>
+<p>An item can be a simple list, but it can also be presented as a multivalued variable, as long as the multivalued variable is presented as a list.</p>
+<p>Use variables that are imported from the file vars/users-list:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>users:
+  - username: linda
+    homedir: /home/linda
+    shell: /bin/bash
+    groups: wheel
+  - username: lisa
+    homedir: /home/lisa
+    shell: /bin/bash
+    groups: users
+  - username: anna
+    homedir: /home/anna
+    shell: /bin/bash
+    groups: users</code></pre></div>
+<p>Use the list in a playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: create users using a loop from a list
+      hosts: ansible1
+      vars_files: vars/users-list
+      tasks:
+      - name: create users
+        user:
+          name: &#34;{{ item.username }}&#34;
+          state: present
+          groups: &#34;{{ item.groups }}&#34;
+          shell: &#34;{{ item.shell }}&#34;
+        loop: &#34;{{ users }}&#34;</code></pre></div>
+<ul>
+<li>Working with multivalued variables is possible, but the variables in that case must be presented as a list; using dictionaries is not supported.</li>
+<li>The only way to loop over dictionaries is to use the <strong>dict2items</strong> filter.</li>
+<li>Use of filters is not included in the RHCE topics and for that reason is not explained further here.</li>
+<li>You can look up &ldquo;Iterating over a dictionary&rdquo; in the Ansible documentation for more information.</li>
+</ul>
+<h4 id="understanding-with_items">Understanding with_items</h4>
+<ul>
+<li>Since Ansible 2.5, using <strong>loop</strong> has been the command way to iterate over the values in a list.</li>
+<li>In earlier versions of Ansible, the <strong>with_<em>keyword</em></strong> statement was used instead.</li>
+<li>In this approach, the <em><strong>keyword</strong></em> is replaced with the name of an Ansible look-up plug-in, but the rest of the syntax is very common.</li>
+<li>Will be deprecated in a future version of Ansible.</li>
+</ul>
+<p><strong>With_keyword</strong> Options Overview
+with_items</p>
+<ul>
+<li>Used like loop to iterate over values in a list
+with_file</li>
+<li>Used to iterate over a list of filenames on the control node
+with_sequence</li>
+<li>Used to generate a list of values based on a numeric sequence</li>
+</ul>
+<p>Loop over a list using with_keyword:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: install and start services
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">services</span>:
+</span></span><span style="display:flex;"><span>        - vsftpd
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - smb
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install packages
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>          - vsftpd
+</span></span><span style="display:flex;"><span>          - httpd
+</span></span><span style="display:flex;"><span>          - samba
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: start the services
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">with_items</span>: <span style="color:#5af78e">&#34;{{ services }}&#34;</span></span></span></code></pre></div>
+<h3 id="lab--working-with-loop">Lab:  Working with loop</h3>
+<p>1. Use your editor to define a variables file with the name vars/packages and the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">packages:
+- name: httpd
+  state: absent
+- name: vsftpd
+  state: installed
+- name: mysql-server
+  state: latest</code></pre></div>
+<p>2. Use your editor to define a playbook with the name exercise71.yaml and create the play header:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: manage packages using a loop from a list
+  hosts: ansible1
+  vars_files: vars/packages
+  tasks:</code></pre></div>
+<p>3. Continue the playbook by adding the yum task that will manage the packages, using the <strong>packages</strong> variable as defined in the vars/packages variable include file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: manage packages using a loop from a list
+  hosts: ansible1
+  vars_files: vars/packages
+  tasks:
+  - name: install packages
+    yum:
+      name: &#34;{{ item.name }}&#34;
+      state: &#34;{{ item.state }}&#34;
+    loop: &#34;{{ packages }}&#34;</code></pre></div>
+<p>4. Run the playbook using <strong>ansible-playbook exercise71.yaml</strong>, and observe the results. In the results you should see which packages it is trying to manage and in which state it is trying to get the packages.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
@@ -173,22 +369,22 @@
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
-    <script src="/js/theme.min.js?1762442645" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
   </body>
 </html>

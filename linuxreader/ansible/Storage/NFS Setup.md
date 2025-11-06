@@ -1,3 +1,7 @@
++++
+title = 'NFS Setup'
+description = 'NFS Setup'
++++
 Server hosting the storage:
 
 ```yaml

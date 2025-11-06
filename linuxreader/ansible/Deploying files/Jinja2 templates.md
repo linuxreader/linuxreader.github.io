@@ -1,3 +1,7 @@
++++
+title = 'Jinja2 templates'
+description = 'Jinja2 templates'
++++
 ### Using Jinja2 Templates
 
 - A template is a configuration file that contains variables and, based on the variables, is generated on the managed hosts according to host-specific requirements. 

@@ -2,8 +2,6 @@
 title = 'Ansible Inventory and Ansible.cfg'
 description = 'Setting up and Ansible environment'
 +++
-
-
 ## Ansible projects
 
 For small companies, you can use a single Ansible configuration. But for larger ones, it's a good idea to use different project directories. A project directory contains everything you need to work on a single project. Including:

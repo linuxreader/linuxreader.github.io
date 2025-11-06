@@ -1,7 +1,7 @@
 +++ 
-menuPre = '<i class="fa-fw fas fa-box-open"></i> '
+menuPre = '<i class="fa-solid fa-cubes"></i> '
 title = "Containers" 
-weight = 3
+weight = 4
 archetype = "moc" 
 alwaysopen = false
 [_build]

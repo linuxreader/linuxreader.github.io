@@ -1,3 +1,7 @@
++++
+title = 'Execution Environments'
+description = 'Ansible Execution Environments'
++++
 Why use EEs?
 - Portable Ansible environments
 	- includes Ansible core version

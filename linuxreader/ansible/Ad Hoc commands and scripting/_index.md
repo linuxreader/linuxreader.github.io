@@ -1,5 +1,4 @@
 +++ 
-menuPre = '<i class="fa-fw fas fa-file-lines"></i> '
 title = "Ad Hoc Commands and Scripting" 
 weight = 1
 archetype = "moc" 
@@ -11,3 +10,4 @@ alwaysopen = false
 +++
 
 {{% children containerstyle="div" style="h6" description=true %}}
+

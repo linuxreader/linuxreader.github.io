@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Encrypted passwordsEncrypted passwords
+SSH ConnectionsSSH Connections
+Users and GroupsUsers and Groups">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Managing Users :: Linux Reader">
+    <meta name="twitter:description" content="Encrypted passwordsEncrypted passwords
+SSH ConnectionsSSH Connections
+Users and GroupsUsers and Groups">
+    <meta property="og:url" content="http://linuxreader.com/ansible/managing-users/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Managing Users :: Linux Reader">
+    <meta property="og:description" content="Encrypted passwordsEncrypted passwords
+SSH ConnectionsSSH Connections
+Users and GroupsUsers and Groups">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Managing Users :: Linux Reader">
+    <meta itemprop="description" content="Encrypted passwordsEncrypted passwords
+SSH ConnectionsSSH Connections
+Users and GroupsUsers and Groups">
+    <meta itemprop="wordCount" content="11">
+    <title>Managing Users :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/managing-users/" rel="canonical" type="text/html" title="Managing Users :: Linux Reader">
+    <link href="/ansible/managing-users/index.xml" rel="alternate" type="application/rss+xml" title="Managing Users :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/managing-users\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/managing-users/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-software/repositories-and-subscriptions/" title="Repositories and subscriptions (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Managing Users
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-users/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-users/encrypted-passwords/" title="Encrypted passwords (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="managing-users">Managing Users</h1>
+
+<div class="children children-h6 children-sort-">
+  <h6 class="children-title" id="encrypted-passwords"><a href="/ansible/managing-users/encrypted-passwords/">Encrypted passwords</a></h6><p>Encrypted passwords</p>
+  <h6 class="children-title" id="ssh-connections"><a href="/ansible/managing-users/ssh-connections/">SSH Connections</a></h6><p>SSH Connections</p>
+  <h6 class="children-title" id="users-and-groups"><a href="/ansible/managing-users/users-and-groups/">Users and Groups</a></h6><p>Users and Groups</p>
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Managing Users</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="encrypted-passwords">Encrypted passwords</h1>
+
+<h3 id="managing-encrypted-passwords">Managing Encrypted Passwords</h3>
+<p>When managing users in Ansible, you probably want to set user passwords
+as well. The challenge is that you cannot just enter a password as the
+value to the <strong>password:</strong> argument in the user module because the user
+module expects you to use an encrypted string.</p>
+<h4 id="understanding-encrypted-passwords">Understanding Encrypted Passwords</h4>
+<p>When a user creates a password, it is encrypted. The hash of the
+encrypted password is stored in the /etc/shadow file, a file that is
+strictly secured and accessible only with root privileges. The string
+looks like $6$237687687/$9809erhb8oyw48oih290u09. In this string are
+three elements, which are separated by $ signs:</p>
+<p>• The hashing algorithm that was used</p>
+<p>• The random salt that was used to encrypt the password</p>
+<p>• The encrypted hash of the user password</p>
+<p>When a user sets a password, a random salt is used to prevent two users
+who have identical passwords from having identical entries in
+/etc/shadow. The salt and the unencrypted password are combined and
+encrypted, which generates the encrypted hash that is stored in
+/etc/shadow. Based on this string, the password that the user enters can
+be verified against the password field in /etc/shadow, and if it
+matches, the user is authenticated.</p>
+<h4 class="h4" id="generating-encrypted-passwords">Generating Encrypted Passwords</h4>
+<p>When you&rsquo;re creating users with the Ansible user module, there is a
+password option. This option is not capable of generating an encrypted
+password. It expects an encrypted password string as its input. That
+means an external utility must be used to generate an encrypted string.
+This encrypted string must be stored in a variable to create the
+password. Because the variable is basically the user password, the
+variable should be stored securely in, for example, an Ansible Vault
+secured file.</p>
+<p>To generate the encrypted variable, you can choose to create the
+variable before creating the user account. Alternatively, you can run
+the command to create the variable in the playbook, use <strong>register</strong> to
+write the result to a variable, and use that to create the encrypted
+user. If you want to generate the variable beforehand, you can use the
+following ad hoc command:</p>
+<pre><code>ansible localhost -m debug -a &quot;msg={{ ‘password’ | password_hash(‘sha512’,’myrandomsalt’) }}&quot;
+</code></pre>
+<p>This command generates the encrypted string as shown in <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#list13_11">Listing
+13-11</a>, and this string can next be used in a
+playbook. An example of such a playbook is shown in <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#list13_12">Listing
+13-12</a>.</p>
+<p><strong>Listing 13-11</strong> Generating the Encrypted Password String</p>
+<p>::: pre_1
+[ansible@control ~]$ ansible localhost -m debug -a &ldquo;msg={{ ‘password’ | password_hash(‘sha512’,’myrandomsalt’) }}&rdquo;
+localhost | SUCCESS =&gt; {
+&ldquo;msg&rdquo;: &ldquo;$6$myrandomsalt$McEB.xAVUWe0./6XqZ8n/7k9VV/Gxndy9nIMLyQAiPnhyBoToMWbxX2vA4f.Uv9PKnPRaYUUc76AjLWVAX6U10&rdquo;
+}
+:::</p>
+<p><strong>Listing 13-12</strong> Sample Playbook That Creates an Encrypted User
+Password</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create user with encrypted pass
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible2.example.com
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">password</span>: <span style="color:#5af78e">&#34;$6$myrandomsalt$McEB.xAVUWe0./6XqZ8n/7k9VV/Gxndy9nIMLyQAiPnhyBoToMWbxX2vA4f.Uv9PKnPRaYUUc76AjLWVAX6U10&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: create the user
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: anna
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">password</span>: <span style="color:#5af78e">&#34;{{ password }}&#34;</span></span></span></code></pre></div>
+<p>The method that is used here works but is not elegant. First, you need
+to generate the encrypted password manually beforehand. Also, the
+encrypted password string is used in a readable way in the playbook. By
+seeing the encrypted password and salt, it&rsquo;s possible to get to the
+original password, which is why the password should not be visible in
+the playbook in a secure environment.</p>
+<p>In <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#exe13_3">Exercise 13-3</a> you create a playbook that
+prompts for the user password and that uses the debug module, which was
+used in <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#list13_11">Listing 13-11</a> inside the playbook,
+together with register, so that the password no longer is readable in
+clear text. Before looking at <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#exe13_3">Exercise 13-3</a>,
+though, let&rsquo;s first look at an alternative approach that also works.</p>
+<p>The procedure to use encrypted passwords while creating user accounts is
+documented in the Frequently Asked Questions from the Ansible
+documentation. Because the documentation is available on the exam, make
+sure you know where to find this information! Search for the item &ldquo;How
+do I generate encrypted passwords for the user module?&rdquo;</p>
+<h4 id="using-an-alternative-approach">Using an Alternative Approach</h4>
+<p>As has been mentioned on multiple occasions, in Ansible often different
+solutions exist for the same problem. And sometimes, apart from the most
+elegant solution, there&rsquo;s also a quick-and-dirty solution, and that
+counts for setting a user-encrypted password as well. Instead of using
+the solution described in the previous section, &ldquo;Generating Encrypted
+Passwords,&rdquo; you can use the Linux command <strong>echo password | passwd
+--stdin</strong> to set the user password. <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#list13_13">Listing
+13-13</a> shows how to do this. Notice this example
+focuses on how to do it, not on security. If you want to make the
+playbook more secure, it would be nice to store the password in Ansible
+Vault.</p>
+<p><strong>Listing 13-13</strong> Setting the User Password: Alternative Solution</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create user with encrypted password
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible3
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">password</span>: mypassword
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>: anna
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: configure user {{ user }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ user }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">groups</span>: wheel
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">append</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: set a password for {{ user }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">shell</span>: ‘echo {{ password }} | passwd --stdin {{ user }}’</span></span></code></pre></div>
+<p>::: box
+<strong>Exercise 13-3 Creating Users with Encrypted Passwords</strong></p>
+<p>1. Use your editor to create the file exercise133.yaml.</p>
+<p>2. Write the play header as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create user with encrypted password
+  hosts: ansible3
+  vars_prompt:
+  - name: passw
+    prompt: which password do you want to use
+  vars:
+    user: sharon
+  tasks:</code></pre></div>
+<p>3. Add the first task that uses the debug module to generate the
+encrypted password string and register to store the string in the
+variable <strong>mypass</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- debug:
+    msg: &#34;{{ ‘{{ passw }}’| password_hash(‘sha512’,’myrandomsalt’) }}&#34;
+  register: mypass</code></pre></div>
+<p>4. Add a debug module to analyze the exact format of the registered
+variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- debug:
+    var: mypass</code></pre></div>
+<p>5. Use <strong>ansible-playbook exercise133.yaml</strong> to run the playbook the
+first time so that you can see the exact name of the variable that you
+have to use. This code shows that the <strong>mypass.msg</strong> variable contains
+the encrypted password string (see <a href="/ansible/managing-users/encrypted-passwords/#ch13.xhtml#list13_14">Listing
+13-14</a>).</p>
+<p><strong>Listing 13-14</strong> Finding the Variable Name Using debug</p>
+<p>::: pre_1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">TASK [debug] *******************************************************************
+ok: [ansible2] =&gt; {
+    &#34;mypass&#34;: {
+        &#34;changed&#34;: false,
+        &#34;failed&#34;: false,
+        &#34;msg&#34;: &#34;$6$myrandomsalt$Jesm4QGoCGAny9ebP85apmh0/uUXrj0louYb03leLoOWSDy/imjVGmcODhrpIJZt0rz.GBp9pZYpfm0SU2/PO.&#34;
+    }
+}</code></pre></div>
+<p>:::</p>
+<p>6. Based on the output that you saw with the previous command, you can
+now use the user module to refer to the password in the right way. Add
+the following task to do so:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create the user
+  user:
+    name: &#34;{{ user }}&#34;
+    password: &#34;{{ mypass.msg }}&#34;</code></pre></div>
+<p>7. Use <strong>ansible-playbook exercise133.yaml</strong> to run the playbook and
+verify its output.
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ssh-connections">SSH Connections</h1>
+
+<h3 id="managing-ssh-connections">Managing SSH Connections</h3>
+<ul>
+<li>How to provide for SSH keys for new users in such a way that users are provided with SSH keys without having to set them up themselves.</li>
+<li>To do this, you use the authorized_key module together with the <strong>generate_ssh_key</strong> argument to the user module.</li>
+</ul>
+<h4 id="understanding-ssh-connection-management-requirements">Understanding SSH Connection Management Requirements</h4>
+<p>How SSH keys are used in the communication process between a user and an SSH server:</p>
+<ol>
+<li>The user initiates a session with an SSH server.</li>
+<li>The server sends back an identification token that is encrypted with the server private key to the user.</li>
+<li>The user uses the server’s public key fingerprint, which is stored in the ~/.ssh/known_hosts file to verify the identification token.</li>
+<li>If no public key fingerprint was stored yet in the ~/.ssh/known_hosts file, the user is prompted to store the remote server identity in the ~/.ssh/known_hosts file. At this point there is no good way to verify whether the user is indeed communicating with the intended server.</li>
+<li>After establishing the identity of the remote server, the user can either send over a password or generate an authentication token that is based on the user’s private key.</li>
+<li>If an authentication token that was based on the user’s private key is sent over, this token is received by the server, which tries to match it against the user’s public key that is stored in the ~/.ssh/authorized_keys file.</li>
+<li>After the incoming authentication token to the stored user public key in the authorized_keys file is matched, the user is authenticated. If this authentication fails and password authentication is allowed, password authentication is attempted next.</li>
+</ol>
+<p>In the authentication procedure, two key pairs play an important role. First, there is the server’s public/private key pair, which is used to establish a secure connection.
+To manage the host public key, you can use the Ansible known_hosts module. Next, there is the user’s public/private key pair, which the user uses to authenticate. To manage the public key in this key pair, you can use the Ansible authorized_key module.</p>
+<h4 id="lookup-plug-in">Lookup Plug-in</h4>
+<ul>
+<li>Enables Ansible to access data from outside sources.</li>
+<li>Read the file system or contact external datastores and services.</li>
+<li>Ran on the Ansible control host.</li>
+<li>Results are usually stored in variables or templates.</li>
+</ul>
+<p>Set the value of a variable to the contents of a file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: simple demo with the lookup plugin
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file_contents</span>: <span style="color:#5af78e">&#34;{{lookup(‘file’, ‘/etc/hosts’)}}&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff6ac1">var</span>: file_contents</span></span></code></pre></div>
+<h4 id="setting-up-ssh-user-keys">Setting Up SSH User Keys</h4>
+<ul>
+<li>To use SSH to connect to a user account on a managed host you can copy over the local user public key to the remote user ~/.ssh/authorized_keys file.</li>
+<li>If the target authorized_keys file just has to contain one single key, you could use the copy module to copy it over.</li>
+<li>To manage multiple keys in the remote user authorized_keys file, you’re better off using the authorized_key module.</li>
+</ul>
+<p>authorized_key module</p>
+<ul>
+<li>Copy the authorized_key for a user</li>
+<li>/home/ansible/.ssh/id_rsa.pub is used as the source.</li>
+<li>lookup plug-in is used to refer to the file contents that should be used:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: authorized_key simple demo
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: copy authorized key for ansible user
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">authorized_key</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">user</span>: ansible
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">key</span>: <span style="color:#5af78e">&#34;{{ lookup(‘file’, ‘/home/ansible/.ssh/id_rsa.pub’) }}&#34;</span></span></span></code></pre></div>
+<p>Do the same for multiple users:
+vars/users</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">users</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">username</span>: linda
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">groups</span>: sales
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">username</span>: lori
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">groups</span>: sales
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">username</span>: lisa
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">groups</span>: account
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">username</span>: lucy
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">groups</span>: account</span></span></code></pre></div>
+<p>vars/groups</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">usergroups</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">groupname</span>: sales
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">groupname</span>: account</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: configure users with SSH keys
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars_files</span>:
+</span></span><span style="display:flex;"><span>    - vars/users
+</span></span><span style="display:flex;"><span>    - vars/groups
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: add groups
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">group</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item.groupname }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ usergroups }}&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: add users
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item.username }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">groups</span>: <span style="color:#5af78e">&#34;{{ item.groups }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ users }}&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: add SSH public keys
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">authorized_key</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">user</span>: <span style="color:#5af78e">&#34;{{ item.username }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">key</span>: <span style="color:#5af78e">&#34;{{ lookup(‘file’, ‘files/’+ item.username + ‘/id_rsa.pub’) }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ users }}&#34;</span></span></span></code></pre></div>
+<ul>
+<li>
+<p>authorized_key module is set up to work on <strong>item.username</strong>, using a <strong>loop</strong> on the <strong>users</strong> variable.</p>
+</li>
+<li>
+<p>The id_rsa.pub files that have to be copied over are expected to exist in the files directory, which exists in the current project directory.</p>
+</li>
+<li>
+<p>Copying over the user public keys to the project directory is a solution because the authorized_keys module cannot read files from a hidden directory.</p>
+</li>
+<li>
+<p>It would be much nicer to use <strong>key: “{{ lookup(‘file’, ‘/home/’+ item.username + ‘.ssh/id_rsa.pub’) }}”</strong>, but that doesn’t work.</p>
+</li>
+<li>
+<p>In the first task you create a local user, including an SSH key.</p>
+</li>
+<li>
+<p>Because an SSH key should include the name of the user and host that it applies to, you need to use the <strong>generate_ssh_key</strong> argument, as well as the <strong>ssh_key_comment</strong> argument to write the correct comment into the public key.</p>
+</li>
+<li>
+<p>Without this content, the key will have generic content and not be considered a valid key.</p>
+</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: create the local user, including SSH key
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ username }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">generate_ssh_key</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ssh_key_comment</span>: <span style="color:#5af78e">&#34;{{ username }}@{{ ansible_fqdn }}&#34;</span></span></span></code></pre></div>
+<ul>
+<li>After creating the SSH keys this way, you aren’t able to fetch the key directly from the user home directory.</li>
+<li>To fix that problem, you create a directory with the name of the user in the project directory and copy the user public key from there by using the shell module:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: create a directory to store the file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ username }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: copy the local user ssh key to temporary {{ username }} key
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">shell</span>: ‘cat /home/{{ username }}/.ssh/id_rsa.pub &gt; {{ username }}/id_rsa.pub’
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: verify that file exists
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">command</span>: ls -l {{ username }}/</span></span></code></pre></div>
+<ul>
+<li>Next, in the second play you create the remote user and use the authorized_key module to copy the key from the temporary directory to the new user home directory.</li>
+</ul>
+<p><strong>Exercise 13-2 Managing Users with SSH Keys</strong>
+Steps</p>
+<ol>
+<li>Create a user on localhost.</li>
+<li>Use the appropriate arguments to create the SSH public/private key pair according to the required format.</li>
+<li>Make sure the public key is copied to a directory where it can be accessed.</li>
+<li>Uses the user module to create the user, as well as the authorized_key module to fetch the key from localhost and copy it to the .ssh/authorized_keys file in the remote user home directory.</li>
+<li>Use the command <strong>ansible-playbook exercise132.yaml -e username=radha</strong> to create the user radha with the appropriate SSH keys.</li>
+<li>To verify it has worked, use <strong>sudo su - radha</strong> on the control host, and type the command <strong>ssh ansible1</strong>. You should able to log in without entering a password.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: prepare localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create the local user, including SSH key
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ username }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">generate_ssh_key</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">ssh_key_comment</span>: <span style="color:#5af78e">&#34;{{ username }}@{{ ansible_fqdn }}&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create a directory to store the file
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ username }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: copy the local user ssh key to temporary {{ username }} key
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">shell</span>: ‘cat /home/{{ username }}/.ssh/id_rsa.pub &gt; {{ username }}/id_rsa.pub’
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: verify that file exists
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: ls -l {{ username }}/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: setup remote host
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create remote user, no need for SSH key
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ username }}&#34;</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: use authorized_key to set the password
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">authorized_key</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">user</span>: <span style="color:#5af78e">&#34;{{ username }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">key</span>: <span style="color:#5af78e">&#34;{{ lookup(‘file’, ‘./’+ username +’/id_rsa.pub’) }}&#34;</span></span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="users-and-groups">Users and Groups</h1>
+
+<h3 id="using-ansible-modules-to-manage-users-and-groups">Using Ansible Modules to Manage Users and Groups</h3>
+<ul>
+<li>management of the user and group accounts and their direct properties.</li>
+<li>management of sudo privilege escalation</li>
+<li>Setting up SSH connections and setting user passwords</li>
+</ul>
+<h4 id="modules">Modules</h4>
+<p>user</p>
+<ul>
+<li>manage users and their base properties</li>
+</ul>
+<p>group</p>
+<ul>
+<li>Manage groups and their properties</li>
+</ul>
+<p>pamd</p>
+<ul>
+<li>Manage advanced authentication configuration through linux pluggable authentication modules (PAM)</li>
+</ul>
+<p>known_hosts</p>
+<ul>
+<li>manage ssh known hosts</li>
+</ul>
+<p>authorized_key</p>
+<ul>
+<li>copy authorized key to a managed host</li>
+</ul>
+<p>lineinfile</p>
+<ul>
+<li>modify config file</li>
+</ul>
+<h4 id="managing-users-and-groups">Managing Users and Groups</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: creating a user and group
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: setup the group account
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">group</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: students
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: setup the user account
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: anna
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">create_home</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">groups</span>: wheel,students
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">append</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">generate_ssh_key</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">ssh_key_bits</span>: <span style="color:#ff9f43">2048</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">ssh_key_file</span>: .ssh/id_rsa</span></span></code></pre></div>
+<p><strong>group</strong> argument is</p>
+<ul>
+<li>used to specify the primary group of the user.</li>
+</ul>
+<p><strong>groups</strong> argument is</p>
+<ul>
+<li>
+<p>used to make the user a member of additional groups.</p>
+</li>
+<li>
+<p>While using the <strong>groups</strong> argument for existing users, make sure to include the <strong>append</strong> argument as well.</p>
+</li>
+<li>
+<p>Without <strong>append</strong>, all current secondary group assignments are overwritten.</p>
+</li>
+</ul>
+<p>Also notice that the user module has some options that cannot normally be managed with the Linux <strong>useradd</strong> command. The module can also be used to generate an SSH key and specify its properties.</p>
+<h4 id="managing-sudo">Managing sudo</h4>
+<p>No Ansible module specifically targets managing a sudo configuration</p>
+<p>two options:</p>
+<ol>
+<li>You can use the template module to create a sudo configuration file in the directory /etc/sudoers.d.
+<ul>
+<li>Using such a file is recommended because the file is managed independently, and as such, there is no risk it will be overwritten by an RPM update.</li>
+</ul>
+</li>
+<li>The alternative is to use the lineinfile module to manage the /etc/sudoers main configuration file directly.</li>
+</ol>
+<p>Users are created and added to a sudo file that is generated from a template:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    [ansible@control rhce8-book]$ cat vars/sudo
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">sudo_groups</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: developers
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groupid</span>: <span style="color:#ff9f43">5000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">sudo</span>: <span style="color:#ff6ac1">false</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: admins
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groupid</span>: <span style="color:#ff9f43">5001</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">sudo</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: dbas
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groupid</span>: <span style="color:#ff9f43">5002</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">sudo</span>: <span style="color:#ff6ac1">false</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: sales
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groupid</span>: <span style="color:#ff9f43">5003</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">sudo</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: account
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groupid</span>: <span style="color:#ff9f43">5004</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">sudo</span>: <span style="color:#ff6ac1">false</span>
+</span></span><span style="display:flex;"><span>    [ansible@control rhce8-book]$ cat vars/users
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">users</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">username</span>: linda
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groups</span>: sales
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">username</span>: lori
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groups</span>: sales
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">username</span>: lisa
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groups</span>: account
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">username</span>: lucy
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">groups</span>: account</span></span></code></pre></div>
+<ul>
+<li>vars/users file defines users and the groups they should be a member of.</li>
+<li>vars/sudo file defines new groups and, for each of these groups, sets a sudo parameter, which will be used in the template file:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>{% for item in sudo_groups %}
+</span></span><span style="display:flex;"><span>{% if item.sudo %}
+</span></span><span style="display:flex;"><span>%{{ item.name}} ALL=(ALL:ALL) NOPASSWD:ALL
+</span></span><span style="display:flex;"><span>{% endif %}
+</span></span><span style="display:flex;"><span>{% endfor %}</span></span></code></pre></div>
+<ul>
+<li>a <strong>for</strong> loop is used to walk through all items that have been defined in the <strong>sudo_groups</strong> variable in the vars/sudo file.</li>
+<li>for each of these groups an <strong>if</strong> statement is used to check the value of the Boolean variable sudo. If this variable is set to the Boolean value true, the group is added as a sudo group to the /etc/sudoers.d/sudogroups file.</li>
+</ul>
+<p><strong>Listing 13-4</strong> Managing sudo</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: configure sudo
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars_files</span>:
+</span></span><span style="display:flex;"><span>        - vars/sudo
+</span></span><span style="display:flex;"><span>        - vars/users
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: add groups
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">group</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item.name }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ sudo_groups }}&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: add users
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item.username }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">groups</span>: <span style="color:#5af78e">&#34;{{ item.groups }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ users }}&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: allow group members in sudo
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">src</span>: listing133.j2
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /etc/sudoers.d/sudogroups
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">validate</span>: ‘visudo -cf %s’
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0440</span></span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
+  </body>
+</html>

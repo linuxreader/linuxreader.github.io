@@ -1,3 +1,8 @@
++++
+title = 'proxmox-storage role'
+description = 'proxmox-storage role'
+draft = true
++++
 storage-dir1.yaml
 ```yaml
 ---

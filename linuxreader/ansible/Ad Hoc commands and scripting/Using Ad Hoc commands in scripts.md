@@ -1,3 +1,7 @@
++++
+title = 'Using Ad Hoc commands in scripts'
+description = 'Using Ad Hoc commands in scripts'
++++
 ## Ad hoc commands in Scripts
 
 Follow normal bash scripting guidelines to run ansible commands in a script:

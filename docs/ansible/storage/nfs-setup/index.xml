@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>NFS Setup :: Linux Reader</title>
     <link>http://linuxreader.com/ansible/storage/nfs-setup/</link>
-    <description>Server hosting the storage:&#xA;--- - name: Install Packages package: name: - nfs-utils state: present - name: Ensure directories to export exist file: # noqa 208 path: &#34;{{ item }}&#34; state: directory with_items: &#34;{{ nfs_exports | map(&#39;split&#39;) | map(&#39;first&#39;) | unique }}&#34; - name: Copy exports file template: src: exports.j2 dest: /etc/exports owner: root group: root mode: 0644 notify: reload nfs - name: Add firewall rule to enable NFS service ansible.posix.firewalld: immediate: true state: enabled permanent: true service: nfs notify: reload firewalld - name: Start and enable NFS service service: name: nfs-server state: started enabled: yes when: nfs_exports|length &gt; 0 - name: Set SELinux boolean for NFS ansible.posix.seboolean: name: nfs_export_all_rw state: yes persistent: yes - name: install required package for sefcontext module yum: name: policycoreutils-python-utils state: present - name: Set proper SELinux context on export dir sefcontext: target: /{{ item }}(/.*)? setype: nfs_t state: present notify: run restorecon with_items: &#34;{{ nfs_exports | map(&#39;split&#39;) | map(&#39;first&#39;) | unique }}&#34; {% for host in nfs_hosts %} /data {{ host }} (rw,wdelay,root_squash,no_subtree_check,sec=sys,rw,root_squash,no_all_squash) {% endfor %} Variables: nfs_exports:</description>
+    <description>NFS Setup</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://linuxreader.com/ansible/storage/nfs-setup/index.xml" rel="self" type="application/rss+xml" />

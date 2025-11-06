@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
@@ -12,7 +12,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="storage-dir1.yaml
 --- - block: - name: Detect secondary disk name ignore_errors: yes set_fact: disk2name: vda when: ansible_facts[&#39;devices&#39;][&#39;vda&#39;] is defined - name: Search for second disk, continue only if it is found assert: that: - disk2name is defined fail_msg: second hard disk not found - name: Debug detected disk debug: msg: &#34;{{ disk2name }} was found. Moving forward.&#34; - name: Create LVM and partitions block: - name: Create LVM Partition on second disk parted: name: &#34;{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }}&#34; label: gpt device: /dev/{{ disk2name }} number: 1 state: present flags: [ lvm ] - name: Create an LVM volume group lvg: vg: vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} pvs: /dev/{{ disk2name }}1 - name: Create lv lvol: lv: lv{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} size: 100%FREE vg: vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} - name: create filesystem filesystem: dev: /dev/vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }}/lv{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} fstype: xfs when: ansible_facts[&#39;devices&#39;][&#39;vda&#39;][&#39;partitions&#39;] is not defined - name: Create data directory file: dest: &#34;{{ storage_dir1 }}&#34; mode: 777 state: directory - name: Mount the filesystem mount: src: /dev/vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }}/lv{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} fstype: xfs state: present path: &#34;{{ storage_dir1 }}&#34; - name: Reset permissions on mounted filesystem file: path: &#34;{{ storage_dir1 }}&#34; state: directory mode: &#39;0777&#39; when: storage_dir1 is defined Variables:">
-    <meta property="og:url" content="http://linuxreader.com/ansible/storage/proxmox-storage-role/">
+    <meta property="og:url" content="http://localhost:1313/ansible/storage/proxmox-storage-role/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:description" content="storage-dir1.yaml
 --- - block: - name: Detect secondary disk name ignore_errors: yes set_fact: disk2name: vda when: ansible_facts[&#39;devices&#39;][&#39;vda&#39;] is defined - name: Search for second disk, continue only if it is found assert: that: - disk2name is defined fail_msg: second hard disk not found - name: Debug detected disk debug: msg: &#34;{{ disk2name }} was found. Moving forward.&#34; - name: Create LVM and partitions block: - name: Create LVM Partition on second disk parted: name: &#34;{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }}&#34; label: gpt device: /dev/{{ disk2name }} number: 1 state: present flags: [ lvm ] - name: Create an LVM volume group lvg: vg: vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} pvs: /dev/{{ disk2name }}1 - name: Create lv lvol: lv: lv{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} size: 100%FREE vg: vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} - name: create filesystem filesystem: dev: /dev/vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }}/lv{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} fstype: xfs when: ansible_facts[&#39;devices&#39;][&#39;vda&#39;][&#39;partitions&#39;] is not defined - name: Create data directory file: dest: &#34;{{ storage_dir1 }}&#34; mode: 777 state: directory - name: Mount the filesystem mount: src: /dev/vg{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }}/lv{{ storage_dir1 | regex_replace(&#39;^/&#39;, &#39;&#39;) | regex_replace(&#39;/&#39;, &#39;_&#39;) }} fstype: xfs state: present path: &#34;{{ storage_dir1 }}&#34; - name: Reset permissions on mounted filesystem file: path: &#34;{{ storage_dir1 }}&#34; state: directory mode: &#39;0777&#39; when: storage_dir1 is defined Variables:">
@@ -25,35 +25,35 @@
     <title></title>
     <link href="/ansible/storage/proxmox-storage-role/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/ansible/storage/proxmox-storage-role/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
-    <script src="/js/search-lunr.min.js?1762442645" defer></script>
-    <script src="/js/search.min.js?1762442645" defer></script>
+    <link href="/images/favicon.svg?1762447233" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762447233" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762447233" defer></script>
+    <script src="/js/search-lunr.js?1762447233" defer></script>
+    <script src="/js/search.js?1762447233" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+      window.relearn.index_js_url="/searchindex.en.js?1762447233";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762447233" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762447233" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762447233" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762447233" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
-    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
-    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762447233" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762447233" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762447233" rel="stylesheet">
+    <link href="/css/theme.css?1762447233" rel="stylesheet">
+    <link href="/css/format-html.css?1762447233" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
-      window.relearn.min = `.min`;
+      window.relearn.min = ``;
       window.relearn.path='\/ansible\/storage\/proxmox-storage-role\/';
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
-      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -118,7 +118,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-processes-and-tasks/" title="Execution Environments (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -291,35 +291,123 @@
       <div id="R-content-wrapper" class="highlightable">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
-            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="parent " data-nav-id="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><input type="checkbox" id="R-section-ee5145c58612a384986769058046b746" aria-controls="R-subsections-ee5145c58612a384986769058046b746"><label for="R-section-ee5145c58612a384986769058046b746"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ad Hoc Commands and Scripting</span></label><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a><ul id="R-subsections-ee5145c58612a384986769058046b746" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li></ul></li>
+            <li class="" data-nav-id="/ansible/control-node/"><input type="checkbox" id="R-section-51256f203510628e0492e57fa1dd1ec6" aria-controls="R-subsections-51256f203510628e0492e57fa1dd1ec6"><label for="R-section-51256f203510628e0492e57fa1dd1ec6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Control Node</span></label><a class="padding" href="/ansible/control-node/">Control Node</a><ul id="R-subsections-51256f203510628e0492e57fa1dd1ec6" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/control-node/ansible.cfg/"><a class="padding" href="/ansible/control-node/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/control-node/optimizing-ansible-processing/"><a class="padding" href="/ansible/control-node/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li></ul></li>
+            <li class="" data-nav-id="/ansible/deploying-files/"><input type="checkbox" id="R-section-7c974a7c4dcf3453ccace14c7f38f13f" aria-controls="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f"><label for="R-section-7c974a7c4dcf3453ccace14c7f38f13f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-files/">Deploying Files</a><ul id="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/jinja2-templates/"><a class="padding" href="/ansible/deploying-files/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/">Jinja2 templates</a></li></ul></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/"><input type="checkbox" id="R-section-7cc469ebbd5f7e560963779b9675e597" aria-controls="R-subsections-7cc469ebbd5f7e560963779b9675e597"><label for="R-section-7cc469ebbd5f7e560963779b9675e597"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-systems/">Deploying Files</a><ul id="R-subsections-7cc469ebbd5f7e560963779b9675e597" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li></ul></li>
+            <li class="" data-nav-id="/ansible/execution-environments/"><input type="checkbox" id="R-section-65eb33a34997cd45f5f49229981c4d2e" aria-controls="R-subsections-65eb33a34997cd45f5f49229981c4d2e"><label for="R-section-65eb33a34997cd45f5f49229981c4d2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/execution-environments/">Execution Environments</a><ul id="R-subsections-65eb33a34997cd45f5f49229981c4d2e" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/execution-environments/ansible-builder/"><a class="padding" href="/ansible/execution-environments/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-id="/ansible/execution-environments/execution-environments/"><a class="padding" href="/ansible/execution-environments/execution-environments/">Execution Environments</a></li></ul></li>
+            <li class="" data-nav-id="/ansible/inventory/"><input type="checkbox" id="R-section-3f39b2671b9b2dd1dbc36a62b346565a" aria-controls="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a"><label for="R-section-3f39b2671b9b2dd1dbc36a62b346565a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/inventory/">Execution Environments</a><ul id="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory-command/"><a class="padding" href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-id="/ansible/inventory/dynamic-inventory/"><a class="padding" href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-id="/ansible/inventory/host-name-patterns/"><a class="padding" href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-id="/ansible/inventory/using-multiple-inventories/"><a class="padding" href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></li></ul></li>
+            <li class="" data-nav-id="/ansible/managing-processes-and-tasks/"><a class="padding" href="/ansible/managing-processes-and-tasks/">Execution Environments</a></li>
             <li class="active hidden " data-nav-id="/ansible/storage/proxmox-storage-role/"><a class="padding" href="/ansible/storage/proxmox-storage-role/"></a></li>
             <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
-            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
             <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
             <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
-            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
             <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
-            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
             <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
-            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
             <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
-            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><input type="checkbox" id="R-section-fc95944d927ad1a52feaf7ff2addc71b" aria-controls="R-subsections-fc95944d927ad1a52feaf7ff2addc71b"><label for="R-section-fc95944d927ad1a52feaf7ff2addc71b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash Scripting</span></label><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu">
+            <li class="" data-nav-id="/bash-scripting/bash-shell/"><a class="padding" href="/bash-scripting/bash-shell/">Bash</a></li>
+            <li class="" data-nav-id="/bash-scripting/shell-scripting/"><a class="padding" href="/bash-scripting/shell-scripting/">Shell Scripting</a></li></ul></li>
+            <li class="" data-nav-id="/containers/"><input type="checkbox" id="R-section-98e55644e7defe4a283b28e510b18cf5" aria-controls="R-subsections-98e55644e7defe4a283b28e510b18cf5"><label for="R-section-98e55644e7defe4a283b28e510b18cf5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Containers</span></label><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu">
+            <li class="" data-nav-id="/containers/containers-1/"><a class="padding" href="/containers/containers-1/">Containers</a></li></ul></li>
+            <li class="" data-nav-id="/desktop/"><input type="checkbox" id="R-section-e1fc414efb00462ad25041a21e45e696" aria-controls="R-subsections-e1fc414efb00462ad25041a21e45e696"><label for="R-section-e1fc414efb00462ad25041a21e45e696"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Desktop</span></label><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu">
+            <li class="" data-nav-id="/desktop/new-setup/"><a class="padding" href="/desktop/new-setup/">Configure Fedora Desktop using Ansible</a></li>
+            <li class="" data-nav-id="/desktop/learning-touch-typing/"><a class="padding" href="/desktop/learning-touch-typing/">Learning Touch Typing</a></li>
+            <li class="" data-nav-id="/desktop/my-fedora-setup/"><a class="padding" href="/desktop/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-id="/desktop/silverblue/"><a class="padding" href="/desktop/silverblue/">Silverblue</a></li></ul></li>
+            <li class="" data-nav-id="/keyboard/"><input type="checkbox" id="R-section-9c70f15c7e0cd80e425ec652ecbd7e70" aria-controls="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70"><label for="R-section-9c70f15c7e0cd80e425ec652ecbd7e70"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Keyboard</span></label><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu">
+            <li class="" data-nav-id="/keyboard/learning-touch-typing/"><a class="padding" href="/keyboard/learning-touch-typing/">Learning Touch Typing</a></li>
+            <li class="" data-nav-id="/keyboard/vimguide/"><a class="padding" href="/keyboard/vimguide/">Vim Guide</a></li></ul></li>
+            <li class="" data-nav-id="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
+            <li class="" data-nav-id="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-id="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
+            <li class="" data-nav-id="/networking/ccna/ccna-notes/my-ccna-notes/"><a class="padding" href="/networking/ccna/ccna-notes/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-id="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
+            <li class="" data-nav-id="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-id="/redhat/"><input type="checkbox" id="R-section-22ddd467d467af44ac41abd22ed6268b" aria-controls="R-subsections-22ddd467d467af44ac41abd22ed6268b"><label for="R-section-22ddd467d467af44ac41abd22ed6268b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu RedHat</span></label><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu">
+            <li class="" data-nav-id="/redhat/advanced-file-management/"><a class="padding" href="/redhat/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-id="/redhat/advanced-package-management/"><a class="padding" href="/redhat/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-id="/redhat/advanced-user-management/"><a class="padding" href="/redhat/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-id="/redhat/file-management/"><a class="padding" href="/redhat/file-management/">Basic File Managment</a></li>
+            <li class="" data-nav-id="/redhat/basic-package-management/"><a class="padding" href="/redhat/basic-package-management/">Basic Package Management</a></li>
+            <li class="" data-nav-id="/redhat/basic-user-management/"><a class="padding" href="/redhat/basic-user-management/">Basic User Management</a></li>
+            <li class="" data-nav-id="/redhat/boot-process-grub2-and-kernel/"><a class="padding" href="/redhat/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="" data-nav-id="/redhat/installation/"><a class="padding" href="/redhat/installation/">Installation</a></li>
+            <li class="" data-nav-id="/redhat/interaction/"><a class="padding" href="/redhat/interaction/">Interaction</a></li>
+            <li class="" data-nav-id="/redhat/local-file-systems-and-swap/"><a class="padding" href="/redhat/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-id="/redhat/network-file-system-nfs/"><a class="padding" href="/redhat/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-id="/redhat/process-and-task-scheduling/"><a class="padding" href="/redhat/process-and-task-scheduling/">Process and Task Scheduling</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-exam-environment/"><a class="padding" href="/redhat/rhcsa-exam-environment/">RHCSA Exam Environment Guide</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-notes/"><a class="padding" href="/redhat/rhcsa-notes/">RHCSA Notes</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-study-tracker/"><a class="padding" href="/redhat/rhcsa-study-tracker/">RHCSA Study Tracker</a></li>
+            <li class="" data-nav-id="/redhat/rhcsa-vagrant-lab-setup/"><a class="padding" href="/redhat/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li>
+            <li class="" data-nav-id="/redhat/sample-exams/"><a class="padding" href="/redhat/sample-exams/">Sample Exams</a></li>
+            <li class="" data-nav-id="/redhat/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/redhat/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li>
+            <li class="" data-nav-id="/redhat/the-secure-shell-service/"><a class="padding" href="/redhat/the-secure-shell-service/">The Secure Shell Service</a></li></ul></li>
+            <li class="" data-nav-id="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-id="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX</a></li>
+            <li class="" data-nav-id="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo</a></li>
+            <li class="" data-nav-id="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/">How to Process Bookfusion Highlights with Vim</a></li>
+            <li class="" data-nav-id="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme</a></li>
+            <li class="" data-nav-id="/tools/nextcloud-on-rhel-based-systems/"><a class="padding" href="/tools/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></li>
+            <li class="" data-nav-id="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></li>
+            <li class="" data-nav-id="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/">Using Vagrant on Linux</a></li>
+            <li class="" data-nav-id="/tools/vimguide/"><a class="padding" href="/tools/vimguide/">Vim Guide</a></li>
+            <li class="" data-nav-id="/tools/using-man-pages/"><a class="padding" href="/tools/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li>
+            <li class="" data-nav-id="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bashes</span></label><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
+            <li class="" data-nav-id="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
+            <li class="" data-nav-id="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
+            <li class="" data-nav-id="/boot/"><input type="checkbox" id="R-section-a53bfb333437907a8d5bdc636d15c75d" aria-controls="R-subsections-a53bfb333437907a8d5bdc636d15c75d"><label for="R-section-a53bfb333437907a8d5bdc636d15c75d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Boots</span></label><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu">
+            <li class="" data-nav-id="/boot/boot-process-grub2-and-kernel/"><a class="padding" href="/boot/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="" data-nav-id="/boot/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/boot/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><input type="checkbox" id="R-section-f95cf8cea1c115dd046e46a833f33dfa" aria-controls="R-subsections-f95cf8cea1c115dd046e46a833f33dfa"><label for="R-section-f95cf8cea1c115dd046e46a833f33dfa"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Cyber Securities</span></label><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu">
+            <li class="" data-nav-id="/cyber-security/security-enhanced-linux/"><a class="padding" href="/cyber-security/security-enhanced-linux/">Security Enhanced Linux</a></li>
+            <li class="" data-nav-id="/cyber-security/the-linux-firewall/"><a class="padding" href="/cyber-security/the-linux-firewall/">The Linux Firewall</a></li>
+            <li class="" data-nav-id="/cyber-security/the-secure-shell-service/"><a class="padding" href="/cyber-security/the-secure-shell-service/">The Secure Shell Service</a></li></ul></li>
+            <li class="" data-nav-id="/files/"><input type="checkbox" id="R-section-31e56884d732922d4a0e407592968056" aria-controls="R-subsections-31e56884d732922d4a0e407592968056"><label for="R-section-31e56884d732922d4a0e407592968056"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Files</span></label><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu">
+            <li class="" data-nav-id="/files/advanced-file-management/"><a class="padding" href="/files/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-id="/files/file-management-1/"><a class="padding" href="/files/file-management-1/">Basic File Managment</a></li></ul></li>
+            <li class="" data-nav-id="/packages/"><input type="checkbox" id="R-section-bdf1e8ce92aa8ff6883c617f10480430" aria-controls="R-subsections-bdf1e8ce92aa8ff6883c617f10480430"><label for="R-section-bdf1e8ce92aa8ff6883c617f10480430"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Packages</span></label><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu">
+            <li class="" data-nav-id="/packages/advanced-package-management/"><a class="padding" href="/packages/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-id="/packages/basic-package-management/"><a class="padding" href="/packages/basic-package-management/">Basic Package Management</a></li></ul></li>
+            <li class="" data-nav-id="/storage/"><input type="checkbox" id="R-section-28a53f7a259bc0e6bfd5bf73591250a9" aria-controls="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9"><label for="R-section-28a53f7a259bc0e6bfd5bf73591250a9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storages</span></label><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu">
+            <li class="" data-nav-id="/storage/autofs/"><a class="padding" href="/storage/autofs/">AutoFS</a></li>
+            <li class="" data-nav-id="/storage/local-file-systems-and-swap/"><a class="padding" href="/storage/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-id="/storage/network-file-system-nfs/"><a class="padding" href="/storage/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-id="/storage/partitioning-mbr-and-gpt/"><a class="padding" href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></li>
+            <li class="" data-nav-id="/storage/thin-provisioning/"><a class="padding" href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></li>
+            <li class="" data-nav-id="/storage/virtual-data-optimizer-vdo/"><a class="padding" href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></li></ul></li>
+            <li class="" data-nav-id="/system/"><input type="checkbox" id="R-section-0ea554b019cc5a3e6337c45b68b3a647" aria-controls="R-subsections-0ea554b019cc5a3e6337c45b68b3a647"><label for="R-section-0ea554b019cc5a3e6337c45b68b3a647"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Systems</span></label><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu">
+            <li class="" data-nav-id="/system/installation/"><a class="padding" href="/system/installation/">Installation</a></li>
+            <li class="" data-nav-id="/system/interaction/"><a class="padding" href="/system/interaction/">Interaction</a></li>
+            <li class="" data-nav-id="/system/process-and-task-scheduling/"><a class="padding" href="/system/process-and-task-scheduling/">Process and Task Scheduling</a></li></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><input type="checkbox" id="R-section-ea23e0c86f0adbd857ee01a4f4dd70e4" aria-controls="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4"><label for="R-section-ea23e0c86f0adbd857ee01a4f4dd70e4"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Users and Groups</span></label><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu">
+            <li class="" data-nav-id="/users-and-groups/advanced-user-management/"><a class="padding" href="/users-and-groups/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-id="/users-and-groups/basic-user-management/"><a class="padding" href="/users-and-groups/basic-user-management/">Basic User Management</a></li></ul></li>
+            <li class="" data-nav-id="/virtualization/"><input type="checkbox" id="R-section-da8ee4406de37987b502b79e5b0a9d1c" aria-controls="R-subsections-da8ee4406de37987b502b79e5b0a9d1c"><label for="R-section-da8ee4406de37987b502b79e5b0a9d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Virtualizations</span></label><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu">
+            <li class="" data-nav-id="/virtualization/rhcsa-vagrant-lab-setup/"><a class="padding" href="/virtualization/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
@@ -356,22 +444,22 @@
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762447233" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762447233" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
-    <script src="/js/theme.min.js?1762442645" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762447233" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762447233" defer></script>
+    <script src="/js/theme.js?1762447233" defer></script>
   </body>
 </html>

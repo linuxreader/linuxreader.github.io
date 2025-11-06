@@ -1,3 +1,7 @@
++++
+title = 'Troubleshooting Common Scenarios'
+description = 'Troubleshooting Common Scenarios'
++++
 ### Troubleshooting Common Scenarios
 
 Apart from the problems that may arise in playbooks, another type of

@@ -1,4 +1,7 @@
-
++++
+title = 'Host Name Patterns'
+description = 'Working with host name patterns'
++++
 Working with host name patterns
 
 

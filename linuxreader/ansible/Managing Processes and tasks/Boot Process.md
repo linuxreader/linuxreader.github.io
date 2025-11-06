@@ -1,3 +1,7 @@
++++
+title = 'Boot Process'
+description = 'Managing Boot Process with Ansible'
++++
 ### Managing the Boot Process
 
 Managing the boot process with Ansible is a bit disappointing because

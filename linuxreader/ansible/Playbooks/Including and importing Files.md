@@ -1,3 +1,7 @@
++++
+title = 'Including and importing Files'
+description = 'Including and importing Files'
++++
 When content is included, it is dynamically processed at the moment that Ansible reaches that content. 
 - If content is imported, Ansible performs the import operation before starting to work on the tasks in the playbook.
 

@@ -1,3 +1,7 @@
++++
+title = 'Managing Services'
+description = 'Managing Services with Ansible'
++++
 ### Managing Services
 
 Services can be managed in many ways. You can manage systemd services,

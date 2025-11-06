@@ -5,40 +5,68 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="">
+    <meta name="description" content="AutoFSManaging AutoFS
+Local File Systems and SwapLocal file systems and swap
+Network File System (NFS)Managing NFS and AutoFS
+Partitioning, MBR, and GPTPartitions and their management.
+Remove a filesystem from a partitionRemove a filesystem from a partition.
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Storages :: Linux Reader">
+    <meta name="twitter:title" content="Storage :: Linux Reader">
+    <meta name="twitter:description" content="AutoFSManaging AutoFS
+Local File Systems and SwapLocal file systems and swap
+Network File System (NFS)Managing NFS and AutoFS
+Partitioning, MBR, and GPTPartitions and their management.
+Remove a filesystem from a partitionRemove a filesystem from a partition.
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
     <meta property="og:url" content="http://linuxreader.com/storage/">
     <meta property="og:site_name" content="Linux Reader">
-    <meta property="og:title" content="Storages :: Linux Reader">
+    <meta property="og:title" content="Storage :: Linux Reader">
+    <meta property="og:description" content="AutoFSManaging AutoFS
+Local File Systems and SwapLocal file systems and swap
+Network File System (NFS)Managing NFS and AutoFS
+Partitioning, MBR, and GPTPartitions and their management.
+Remove a filesystem from a partitionRemove a filesystem from a partition.
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Storages :: Linux Reader">
-    <title>Storages :: Linux Reader</title>
-    <link href="http://linuxreader.com/storage/" rel="canonical" type="text/html" title="Storages :: Linux Reader">
-    <link href="/storage/index.xml" rel="alternate" type="application/rss+xml" title="Storages :: Linux Reader">
-    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
-    <script src="/js/search-lunr.min.js?1762442645" defer></script>
-    <script src="/js/search.min.js?1762442645" defer></script>
+    <meta itemprop="name" content="Storage :: Linux Reader">
+    <meta itemprop="description" content="AutoFSManaging AutoFS
+Local File Systems and SwapLocal file systems and swap
+Network File System (NFS)Managing NFS and AutoFS
+Partitioning, MBR, and GPTPartitions and their management.
+Remove a filesystem from a partitionRemove a filesystem from a partition.
+Thin Provisioning and LVMThin provisioning and LVM
+Virtual Data Optimizer (VDO)VDO">
+    <meta itemprop="wordCount" content="47">
+    <title>Storage :: Linux Reader</title>
+    <link href="http://linuxreader.com/storage/" rel="canonical" type="text/html" title="Storage :: Linux Reader">
+    <link href="/storage/index.xml" rel="alternate" type="application/rss+xml" title="Storage :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
-    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -124,7 +152,7 @@
 
           </div>
           <span class="topbar-breadcrumbs highlightable">
-            Storages
+            Storage
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
@@ -149,14 +177,23 @@
   <header class="headline">
   </header>
 
-<h1 id="storages">Storages</h1>
+<h1 id="storage">Storage</h1>
 
+<div class="children children-h6 children-sort-">
+  <h6 class="children-title" id="autofs"><a href="/storage/autofs/">AutoFS</a></h6><p>Managing AutoFS</p>
+  <h6 class="children-title" id="local-file-systems-and-swap"><a href="/storage/local-file-systems-and-swap/">Local File Systems and Swap</a></h6><p>Local file systems and swap</p>
+  <h6 class="children-title" id="network-file-system-nfs"><a href="/storage/network-file-system-nfs/">Network File System (NFS)</a></h6><p>Managing NFS and AutoFS</p>
+  <h6 class="children-title" id="partitioning-mbr-and-gpt"><a href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></h6><p>Partitions and their management.</p>
+  <h6 class="children-title" id="remove-a-filesystem-from-a-partition"><a href="/storage/remove-a-filesystem-from-a-partition/">Remove a filesystem from a partition</a></h6><p>Remove a filesystem from a partition.</p>
+  <h6 class="children-title" id="thin-provisioning-and-lvm"><a href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></h6><p>Thin provisioning and LVM</p>
+  <h6 class="children-title" id="virtual-data-optimizer-vdo"><a href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></h6><p>VDO</p>
+</div>
 
   <footer class="footline">
   </footer>
 </article>
           <section>
-            <h1 class="a11y-only">Subsections of Storages</h1>
+            <h1 class="a11y-only">Subsections of Storage</h1>
 <article class="default">
   <header class="headline">
   </header>
@@ -2615,6 +2652,128 @@ understands both MBR and GPT formats.</p>
   <header class="headline">
   </header>
 
+<h1 id="remove-a-filesystem-from-a-partition">Remove a filesystem from a partition</h1>
+
+<h2 id="remove-a-filesystem-from-a-partition">Remove a filesystem from a partition</h2>
+<p>To delete a filesystem, partition, raid and disk labels from the disk. Use <code>wipefs -a /dev/sdb1</code> May also use <code>wipefs -a /dev/sdb?</code> to delete sub partitions? (I need to verify this)</p>
+<p>Make sure the filesystem is unmounted first.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+</span></span><span style="display:flex;"><span>NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>sda                       8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sda1                    8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>└─sda2                    8:2    <span style="color:#ff9f43">0</span>   19G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>  ├─rhel-root           253:0    <span style="color:#ff9f43">0</span>   17G  <span style="color:#ff9f43">0</span> lvm  /
+</span></span><span style="display:flex;"><span>  └─rhel-swap           253:1    <span style="color:#ff9f43">0</span>    2G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdb                       8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sdb1                    8:17   <span style="color:#ff9f43">0</span>   95M  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>├─sdb2                    8:18   <span style="color:#ff9f43">0</span>   95M  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>└─sdb3                    8:19   <span style="color:#ff9f43">0</span>   38M  <span style="color:#ff9f43">0</span> part <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdc                       8:32   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdd                       8:48   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─sdd1                    8:49   <span style="color:#ff9f43">0</span>  163M  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>  ├─vgfs-ext4vol        253:2    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>  └─vgfs-xfsvol         253:3    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>sde                       8:64   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─vgfs-ext4vol          253:2    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>├─vgfs-xfsvol           253:3    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>└─vgfs-swapvol          253:7    <span style="color:#ff9f43">0</span>  144M  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdf                       8:80   <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─vgvdo1-vpool0_vdata   253:4    <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>  └─vgvdo1-vpool0-vpool 253:5    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>    └─vgvdo1-lvvdo      253:6    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>sr0                      11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  </span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdb1</span>
+</span></span><span style="display:flex;"><span>/dev/sdb1: <span style="color:#ff9f43">2</span> bytes were erased at offset 0x00000438 <span style="color:#ff6ac1">(</span>ext4<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">53</span> ef
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdb2</span>
+</span></span><span style="display:flex;"><span>/dev/sdb2: <span style="color:#ff9f43">8</span> bytes were erased at offset 0x00000036 <span style="color:#ff6ac1">(</span>vfat<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">46</span> <span style="color:#ff9f43">41</span> <span style="color:#ff9f43">54</span> <span style="color:#ff9f43">31</span> <span style="color:#ff9f43">36</span> <span style="color:#ff9f43">20</span> <span style="color:#ff9f43">20</span> <span style="color:#ff9f43">20</span>
+</span></span><span style="display:flex;"><span>/dev/sdb2: <span style="color:#ff9f43">1</span> byte was erased at offset 0x00000000 <span style="color:#ff6ac1">(</span>vfat<span style="color:#ff6ac1">)</span>: eb
+</span></span><span style="display:flex;"><span>/dev/sdb2: <span style="color:#ff9f43">2</span> bytes were erased at offset 0x000001fe <span style="color:#ff6ac1">(</span>vfat<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">55</span> aa
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdb3</span>
+</span></span><span style="display:flex;"><span>wipefs: error: /dev/sdb3: probing initialization failed: Device or resource busy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdb</span>
+</span></span><span style="display:flex;"><span>wipefs: error: /dev/sdb: probing initialization failed: Device or resource busy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># swapoff /dev/sdb3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdb3</span>
+</span></span><span style="display:flex;"><span>/dev/sdb3: <span style="color:#ff9f43">10</span> bytes were erased at offset 0x00000ff6 <span style="color:#ff6ac1">(</span>swap<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">53</span> <span style="color:#ff9f43">57</span> <span style="color:#ff9f43">41</span> <span style="color:#ff9f43">50</span> <span style="color:#ff9f43">53</span> <span style="color:#ff9f43">50</span> <span style="color:#ff9f43">41</span> <span style="color:#ff9f43">43</span> <span style="color:#ff9f43">45</span> <span style="color:#ff9f43">32</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdb</span>
+</span></span><span style="display:flex;"><span>/dev/sdb: <span style="color:#ff9f43">2</span> bytes were erased at offset 0x000001fe <span style="color:#ff6ac1">(</span>dos<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">55</span> aa
+</span></span><span style="display:flex;"><span>/dev/sdb: calling ioctl to re-read partition table: Success
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+</span></span><span style="display:flex;"><span>NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>sda                       8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sda1                    8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>└─sda2                    8:2    <span style="color:#ff9f43">0</span>   19G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>  ├─rhel-root           253:0    <span style="color:#ff9f43">0</span>   17G  <span style="color:#ff9f43">0</span> lvm  /
+</span></span><span style="display:flex;"><span>  └─rhel-swap           253:1    <span style="color:#ff9f43">0</span>    2G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdb                       8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdc                       8:32   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdd                       8:48   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─sdd1                    8:49   <span style="color:#ff9f43">0</span>  163M  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>  ├─vgfs-ext4vol        253:2    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>  └─vgfs-xfsvol         253:3    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>sde                       8:64   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─vgfs-ext4vol          253:2    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>├─vgfs-xfsvol           253:3    <span style="color:#ff9f43">0</span>  128M  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>└─vgfs-swapvol          253:7    <span style="color:#ff9f43">0</span>  144M  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdf                       8:80   <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─vgvdo1-vpool0_vdata   253:4    <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>  └─vgvdo1-vpool0-vpool 253:5    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>    └─vgvdo1-lvvdo      253:6    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> lvm  
+</span></span><span style="display:flex;"><span>sr0                      11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  </span></span></code></pre></div>
+<p>I could not use this on a disk used in an LV. Remove the LVs: <code>lvremove lvvdo vgfs</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+</span></span><span style="display:flex;"><span>NAME           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>sda              8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sda1           8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>└─sda2           8:2    <span style="color:#ff9f43">0</span>   19G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>  ├─rhel-root  253:0    <span style="color:#ff9f43">0</span>   17G  <span style="color:#ff9f43">0</span> lvm  /
+</span></span><span style="display:flex;"><span>  └─rhel-swap  253:1    <span style="color:#ff9f43">0</span>    2G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdb              8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdc              8:32   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdd              8:48   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─sdd1           8:49   <span style="color:#ff9f43">0</span>  163M  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>sde              8:64   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>└─vgfs-swapvol 253:7    <span style="color:#ff9f43">0</span>  144M  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdf              8:80   <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sr0             11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  </span></span></code></pre></div>
+<p>Need to remove swapvol from swap:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># swapoff /dev/mapper/vgfs-swapvol</span></span></span></code></pre></div>
+<p>Remove the LV:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lvremove /dev/mapper/vgfs-swapvol</span>
+</span></span><span style="display:flex;"><span>Do you really want to remove active logical volume vgfs/swapvol? <span style="color:#ff6ac1">[</span>y/n<span style="color:#ff6ac1">]</span>: y
+</span></span><span style="display:flex;"><span>  Logical volume <span style="color:#5af78e">&#34;swapvol&#34;</span> successfully removed.</span></span></code></pre></div>
+<p>Wipe sdd:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># wipefs -a /dev/sdd</span>
+</span></span><span style="display:flex;"><span>/dev/sdd: <span style="color:#ff9f43">2</span> bytes were erased at offset 0x000001fe <span style="color:#ff6ac1">(</span>dos<span style="color:#ff6ac1">)</span>: <span style="color:#ff9f43">55</span> aa
+</span></span><span style="display:flex;"><span>/dev/sdd: calling ioctl to re-read partition table: Success
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server2 mapper<span style="color:#ff6ac1">]</span><span style="color:#78787e"># lsblk</span>
+</span></span><span style="display:flex;"><span>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>sda             8:0    <span style="color:#ff9f43">0</span>   20G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sda1          8:1    <span style="color:#ff9f43">0</span>    1G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>└─sda2          8:2    <span style="color:#ff9f43">0</span>   19G  <span style="color:#ff9f43">0</span> part 
+</span></span><span style="display:flex;"><span>  ├─rhel-root 253:0    <span style="color:#ff9f43">0</span>   17G  <span style="color:#ff9f43">0</span> lvm  /
+</span></span><span style="display:flex;"><span>  └─rhel-swap 253:1    <span style="color:#ff9f43">0</span>    2G  <span style="color:#ff9f43">0</span> lvm  <span style="color:#ff6ac1">[</span>SWAP<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>sdb             8:16   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdc             8:32   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdd             8:48   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sde             8:64   <span style="color:#ff9f43">0</span>  250M  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sdf             8:80   <span style="color:#ff9f43">0</span>    5G  <span style="color:#ff9f43">0</span> disk 
+</span></span><span style="display:flex;"><span>sr0            11:0    <span style="color:#ff9f43">1</span>  9.8G  <span style="color:#ff9f43">0</span> rom  </span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
 <h1 id="thin-provisioning-and-lvm">Thin Provisioning and LVM</h1>
 
 <h1 id="thin-provisioning">Thin Provisioning</h1>
@@ -2638,8 +2797,8 @@ understands both MBR and GPT formats.</p>
 <li>mirroring and striping across multiple disks</li>
 <li>snapshotting of logical volumes.</li>
 </ul>
-<p><a href="#R-image-6cf82f91c5b50dd785ce63eb33cf084f" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-0A8W8M1U.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6cf82f91c5b50dd785ce63eb33cf084f"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-0A8W8M1U.jpg"></a></p>
+<p><a href="#R-image-ffc782f75c690413b427e898c8a795f1" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-0A8W8M1U.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ffc782f75c690413b427e898c8a795f1"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-0A8W8M1U.jpg"></a></p>
 <ul>
 <li>Made up of three key objects called physical volume, volume group, and logical volume.</li>
 <li>These objects are further virtually broken down into Physical Extents (PEs) and Logical Extents (LEs).</li>
@@ -3347,8 +3506,8 @@ active logical volume&rdquo; message.</p>
 <li>Makes use of thin provisioning to identify and eliminate empty (zero-byte) data blocks. (zero-block elimination)</li>
 <li>Removes randomization of data blocks by moving in-use data blocks to contiguous locations on the storage device.</li>
 </ul>
-<p><a href="#R-image-7bf5cf31a98ff74522bcfd6fbd935300" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7bf5cf31a98ff74522bcfd6fbd935300"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
+<p><a href="#R-image-4a64d771f4d3e6577ede653365606419" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4a64d771f4d3e6577ede653365606419"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
 <p><strong>Stage 2</strong></p>
 <ul>
 <li>If it detects that new data is an identical copy of some existing data, it makes an internal note of it but does not actually write the redundant data to the disk. (de-duplication)</li>
@@ -3953,22 +4112,22 @@ Not installed by default?</li>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
-    <script src="/js/theme.min.js?1762442645" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
   </body>
 </html>

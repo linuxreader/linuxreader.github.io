@@ -1,7 +1,7 @@
 +++ 
 menuPre = '<i class="fa-fw fas fa-computer"></i> '
 title = "Desktop" 
-weight = 5
+weight = 6
 archetype = "moc" 
 alwaysopen = false
 [_build]

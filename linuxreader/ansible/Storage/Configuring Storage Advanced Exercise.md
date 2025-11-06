@@ -1,3 +1,7 @@
++++
+title = 'Configuring Storage Advanced Exercise'
+description = 'Configuring Storage Advanced Exercise'
++++
 ### Configuring Storage Advanced Exercise
 
 To work on this exercise, you need managed machines with an additional disk device: add

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>Handlers :: Linux Reader</title>
     <link>http://linuxreader.com/ansible/task-control/handlers/</link>
-    <description>Using Handlers A task that is triggered and is executed by a successful task. Working with Handlers Define a notify statement at the level where the task is defined. The notify statement should list the name of the handler that is to be executed Handlers are listed at the end of the play. Make sure the name of the handler matches the name of the item that is called in the notify statement, because that is what the handler is looking for. Handlers can be specified as a list, so one task can call multiple handlers. Lab Define the file index.html on localhost. Use this file in the second play to set up the web server. The handler is triggered from the task where the copy module is used to copy the index.html file. If this task is successful, the notify statement calls the handler. A second task is defined, which is intended to fail. --- - name: create file on localhost hosts: localhost tasks: - name: create index.html on localhost copy: content: &#34;welcome to the webserver&#34; dest: /tmp/index.html - name: set up web server hosts: all tasks: - name: install httpd yum: name: httpd state: latest - name: copy index.html copy: src: /tmp/index.html dest: /var/www/html/index.html notify: - restart_web - name: copy nothing - intended to fail copy: src: /tmp/nothing dest: /var/www/html/nothing.html handlers: - name: restart_web service: name: httpd state: restarted All tasks up to copy index.html run successfully. However, the task copy nothing fails, which is why the handler does not run. The solution seems easy: the handler doesn’t run because the task that copies the file /tmp/nothing fails as the source file doesn’t exist.</description>
+    <description>Handlers</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://linuxreader.com/ansible/task-control/handlers/index.xml" rel="self" type="application/rss+xml" />

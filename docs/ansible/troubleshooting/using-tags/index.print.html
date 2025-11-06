@@ -5,43 +5,45 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="Using Tags When you are using larger playbooks, Ansible enables you to use the tags attribute. A tag is a label that is applied to a task or another item like a block or a play, and while using the ansible-playbook --tags or ansible-playbook --skip-tags command, you can specify which tags need to be executed. Listing 11-15 shows a simple playbook example where tags are used, and in Listing 11-16 you can see the output generated while running this playbook.">
+    <meta name="description" content="Using Tags">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:description" content="Using Tags When you are using larger playbooks, Ansible enables you to use the tags attribute. A tag is a label that is applied to a task or another item like a block or a play, and while using the ansible-playbook --tags or ansible-playbook --skip-tags command, you can specify which tags need to be executed. Listing 11-15 shows a simple playbook example where tags are used, and in Listing 11-16 you can see the output generated while running this playbook.">
+    <meta name="twitter:title" content="Using Tags :: Linux Reader">
+    <meta name="twitter:description" content="Using Tags">
     <meta property="og:url" content="http://linuxreader.com/ansible/troubleshooting/using-tags/">
     <meta property="og:site_name" content="Linux Reader">
-    <meta property="og:description" content="Using Tags When you are using larger playbooks, Ansible enables you to use the tags attribute. A tag is a label that is applied to a task or another item like a block or a play, and while using the ansible-playbook --tags or ansible-playbook --skip-tags command, you can specify which tags need to be executed. Listing 11-15 shows a simple playbook example where tags are used, and in Listing 11-16 you can see the output generated while running this playbook.">
+    <meta property="og:title" content="Using Tags :: Linux Reader">
+    <meta property="og:description" content="Using Tags">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Ansible">
-    <meta itemprop="description" content="Using Tags When you are using larger playbooks, Ansible enables you to use the tags attribute. A tag is a label that is applied to a task or another item like a block or a play, and while using the ansible-playbook --tags or ansible-playbook --skip-tags command, you can specify which tags need to be executed. Listing 11-15 shows a simple playbook example where tags are used, and in Listing 11-16 you can see the output generated while running this playbook.">
+    <meta itemprop="name" content="Using Tags :: Linux Reader">
+    <meta itemprop="description" content="Using Tags">
     <meta itemprop="wordCount" content="654">
-    <title></title>
-    <link href="http://linuxreader.com/ansible/troubleshooting/using-tags/" rel="canonical" type="text/html" title="">
-    <link href="/ansible/troubleshooting/using-tags/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
-    <script src="/js/search-lunr.min.js?1762442645" defer></script>
-    <script src="/js/search.min.js?1762442645" defer></script>
+    <title>Using Tags :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/troubleshooting/using-tags/" rel="canonical" type="text/html" title="Using Tags :: Linux Reader">
+    <link href="/ansible/troubleshooting/using-tags/index.xml" rel="alternate" type="application/rss+xml" title="Using Tags :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
-    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -114,7 +116,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/" title="Using Modules for Troubleshooting and Testing (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -136,13 +138,13 @@
 
           </div>
           <span class="topbar-breadcrumbs highlightable">
-            
+            Using Tags
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/using-tags/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/variables-and-facts/" title="Variable and Facts (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -157,6 +159,146 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="using-tags">Using Tags</h1>
+
+<h3 id="using-tags">Using Tags</h3>
+<p>When you are using larger playbooks, Ansible enables you to use the
+<strong>tags</strong> attribute. A tag is a label that is applied to a task or
+another item like a block or a play, and while using the
+<strong>ansible-playbook --tags</strong> or <strong>ansible-playbook --skip-tags</strong>
+command, you can specify which tags need to be executed. <a href="/ansible/troubleshooting/using-tags/#ch11.xhtml#list11_15">Listing
+11-15</a> shows a simple playbook example where tags
+are used, and in <a href="/ansible/troubleshooting/using-tags/#ch11.xhtml#list11_16">Listing 11-16</a> you can see the
+output generated while running this playbook.</p>
+<p><strong>Listing 11-15</strong> Using <strong>tags</strong> in a Playbook</p>
+<p>::: pre_1
+&mdash;
+- name: using tags example
+hosts: all
+vars:
+service:
+- vsftpd
+- httpd
+tasks:
+- yum:
+name:
+- httpd
+- vsftpd
+state: present
+tags:
+- install
+- service:
+name: &ldquo;{{ item }}&rdquo;
+state: started
+enabled: yes
+loop: &ldquo;{{ services }}&rdquo;
+tags:
+- services
+:::</p>
+<p><strong>Listing 11-16 ansible-playbook --tags &ldquo;install&rdquo; listing1115.yaml</strong>
+Output</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook &ndash;tags &ldquo;install&rdquo; listing1115.yaml</p>
+<pre><code>PLAY [using tags example] ******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible2]
+ok: [ansible1]
+ok: [ansible4]
+ok: [ansible3]
+
+TASK [yum] *********************************************************************
+ok: [ansible2]
+ok: [ansible1]
+changed: [ansible3]
+changed: [ansible4]
+
+PLAY RECAP *********************************************************************
+ansible1                   : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2                   : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<p>Tags can be applied to many structures, such as imported plays, tasks,
+and roles, but the easiest way to get familiar with tags is to use them
+on a task. Note that tags cannot be applied on items that are
+dynamically included (instead of imported), using <strong>include_roles</strong> or
+<strong>include_tasks</strong>.</p>
+<p>While writing playbooks, you may apply the same tag multiple times. This
+capability allows you to define groups of tasks, where multiple tasks
+are configured with the same tag, and as a result, you can easily run a
+specific part of the requested configuration. When multiple tasks with
+multiple tags are used, you can get an overview of each using the
+<strong>ansible-playbook --list-tasks --list-tags</strong> command. In <a href="/ansible/troubleshooting/using-tags/#ch11.xhtml#list11_17">Listing
+11-17</a> you can see an example that is based on
+the playbook listing1114.yaml.</p>
+<p><strong>Listing 11-17</strong> Listing Tasks and Tags</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook &ndash;list-tags &ndash;list-tasks listing1115.yaml</p>
+<pre><code>playbook: listing1115.yaml
+
+  play #1 (all): using tags example.    TAGS: []
+    tasks:
+      yum.       TAGS: [install]
+      service.   TAGS: [services]
+      TASK TAGS: [install, services]
+</code></pre>
+<p>:::</p>
+<p>When working with tags, you can use some special tags. <a href="/ansible/troubleshooting/using-tags/#ch11.xhtml#tab11_5">Table
+11-5</a> gives an overview.</p>
+<p>::: group
+<strong>Table 11-5</strong> Special Tags Overview</p>
+<p><a href="#R-image-ce61d8ac6291ec4b99a597ea750a5d53" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab05.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ce61d8ac6291ec4b99a597ea750a5d53"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab05.jpg"></a>{width=&ldquo;940&rdquo; height=&ldquo;252&rdquo;}
+:::</p>
+<p>Apart from these special tags, you might also want to set a <strong>debug</strong>
+tag to easily identify tasks that should be run only if you specifically
+want to run debug tasks as well. If combined with the <strong>never</strong> tag, the
+task that is tagged with the <strong>debug,never</strong> tasks runs only if the
+<strong>debug</strong> tag is specifically requested. So in case you want to run the
+entire playbook, including tasks that have been tagged with <strong>debug</strong>,
+you need to use the <strong>ansible-playbook --tags all,debug</strong> command. In
+<a href="/ansible/troubleshooting/using-tags/#ch11.xhtml#exe11_3">Exercise 11-3</a> you can see how this can be used to
+optimize the playbook that was previously used in <a href="/ansible/troubleshooting/using-tags/#ch11.xhtml#exe11_2">Exercise
+11-2</a>.</p>
+<p>::: box
+<strong>Exercise 11-3 Using Tags to Make Debugging Easier</strong></p>
+<p>1. Rewrite the exercise112.yaml playbook that you created in the
+previous exercise, and include the line <strong>tags: [never, debug ]</strong> in
+the <strong>debug</strong> task. The complete playbook looks as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: using assert to check if volume group vgdata exists
+  hosts: all
+  tasks:
+  - name: check if vgdata exists
+    command: vgs vgdata
+    register: vg_result
+    ignore_errors: true
+  - name: show vg_result variable
+    debug:
+      var: vg_result
+    tags: [ never, debug ]
+  - name: print a message
+    assert:
+      that:
+      - vg_result.rc == 0
+      fail_msg: volume group not found
+      success_msg: volume group was found</code></pre></div>
+<p>2. Run the playbook using <strong>ansible-playbook --tags all
+exercise113.yaml</strong>. Notice that it does not run the <strong>debug</strong> task.</p>
+<p>3. Run the playbook using <strong>ansible-playbook --tags all,debug
+exercise113.yaml</strong>. Notice that it now does run the <strong>debug</strong> task as
+well.
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
@@ -172,22 +314,22 @@
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
-    <script src="/js/theme.min.js?1762442645" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
   </body>
 </html>

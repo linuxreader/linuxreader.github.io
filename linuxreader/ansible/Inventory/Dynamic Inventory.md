@@ -1,3 +1,7 @@
++++
+title = 'Dynamic Inventory'
+description = 'Using Dynamic Ansible Inventories'
++++
 ### Dynamic inventory scripts
 A script is used to detect inventory hosts so that you do not have to manually enter them. This is good for larger environments. You can find community provided dynamic inventory scripts that come with an .ini file that provides information on how to connect to a resource. 
 

@@ -1,3 +1,7 @@
++++
+title = 'Managing Partitions and LVM'
+description = 'Managing Partitions and LVM'
++++
 ### Managing Partitions and LVM
 
 After detecting the disk device that needs to be used, you can move on and start creating partitions and logical volumes. 

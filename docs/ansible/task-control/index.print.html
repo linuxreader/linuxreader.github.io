@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="HandlersHandlers
+Using Loops and ItemsUsing Loops and Items
+Using when to Run Tasks ConditionallyUsing when to Run Tasks Conditionally">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Task Control :: Linux Reader">
+    <meta name="twitter:description" content="HandlersHandlers
+Using Loops and ItemsUsing Loops and Items
+Using when to Run Tasks ConditionallyUsing when to Run Tasks Conditionally">
+    <meta property="og:url" content="http://linuxreader.com/ansible/task-control/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Task Control :: Linux Reader">
+    <meta property="og:description" content="HandlersHandlers
+Using Loops and ItemsUsing Loops and Items
+Using when to Run Tasks ConditionallyUsing when to Run Tasks Conditionally">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Task Control :: Linux Reader">
+    <meta itemprop="description" content="HandlersHandlers
+Using Loops and ItemsUsing Loops and Items
+Using when to Run Tasks ConditionallyUsing when to Run Tasks Conditionally">
+    <meta itemprop="wordCount" content="19">
+    <title>Task Control :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/task-control/" rel="canonical" type="text/html" title="Task Control :: Linux Reader">
+    <link href="/ansible/task-control/index.xml" rel="alternate" type="application/rss+xml" title="Task Control :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/task-control\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/task-control/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/storage/nfs-setup/" title="NFS Setup (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Task Control
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/handlers/" title="Handlers (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="task-control">Task Control</h1>
+
+<div class="children children-h6 children-sort-">
+  <h6 class="children-title" id="handlers"><a href="/ansible/task-control/handlers/">Handlers</a></h6><p>Handlers</p>
+  <h6 class="children-title" id="using-loops-and-items"><a href="/ansible/task-control/using-loops-and-items/">Using Loops and Items</a></h6><p>Using Loops and Items</p>
+  <h6 class="children-title" id="using-when-to-run-tasks-conditionally"><a href="/ansible/task-control/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></h6><p>Using when to Run Tasks Conditionally</p>
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Task Control</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="handlers">Handlers</h1>
+
+<h2 id="using-handlers">Using Handlers</h2>
+<ul>
+<li>A task that is triggered and is executed by a successful task.</li>
+</ul>
+<h4 id="working-with-handlers">Working with Handlers</h4>
+<ul>
+<li>Define a <strong>notify</strong> statement at the level where the task is defined.</li>
+<li>The <strong>notify</strong> statement should list the name of the handler that is to be executed</li>
+<li>Handlers are listed at the end of the play.</li>
+<li>Make sure the name of the handler matches the name of the item that is called in the <strong>notify</strong> statement, because that is what the handler is looking for.</li>
+<li>Handlers can be specified as a list, so one task can call multiple handlers.</li>
+</ul>
+<h3 id="lab">Lab</h3>
+<ul>
+<li>Define the file index.html on localhost. Use this file in the second play to set up the web server.</li>
+<li>The handler is triggered from the task where the copy module is used to copy the index.html file.</li>
+<li>If this task is successful, the <strong>notify</strong> statement calls the handler.</li>
+<li>A second task is defined, which is intended to fail.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create file on localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: create index.html on localhost
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;welcome to the webserver&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set up web server
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: install httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">notify</span>:
+</span></span><span style="display:flex;"><span>            - restart_web
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy nothing - intended to fail
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/nothing
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/nothing.html
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: restart_web
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+<ul>
+<li>
+<p>All tasks up to <strong>copy index.html</strong> run successfully. However, the task <strong>copy nothing</strong> fails, which is why the handler does not run. The solution seems easy: the handler doesn&rsquo;t run because the task that copies the file /tmp/nothing fails as the source file doesn&rsquo;t exist.</p>
+</li>
+<li>
+<p>Create the source file using <code>touch /tmp/nothing</code> on the control host and run the task again.</p>
+</li>
+<li>
+<p>After creating the source file and running the playbook again, the handler still doesn&rsquo;t run.</p>
+</li>
+<li>
+<p>Handlers run only if the task that triggers them gives a <strong>changed</strong> status.</p>
+</li>
+</ul>
+<p>Run an ad hoc command to remove the /var/www/html/index.html file on the managed hosts and run the playbook again:
+<code>ansible ansible2 -m file -a &quot;name=/var/www/html/index.html state=absent&quot;</code></p>
+<p>Run the playbook again and you&rsquo;ll see the handler runs.</p>
+<h4 id="understanding-handler-execution-and-exceptions">Understanding Handler Execution and Exceptions</h4>
+<p>When a task fails, none of the following tasks run. How does that make handlers different? A handler runs only on the success of a task, but the next task in the list also runs only if the previous task was successful. What, then, is so special about handlers?</p>
+<p>The difference is in the nature of the handler.</p>
+<ul>
+<li>Handlers are meant to perform an extra action when a task makes a change to a host.</li>
+<li>Handler should be considered an extension to the regular task.</li>
+<li>A conditional task that runs only upon the success of a previous task.</li>
+</ul>
+<p>Two methods to get Handlers to run even if a subsequent task fails:</p>
+<p><strong>force_handlers: true</strong> (More specific and preferred)</p>
+<ul>
+<li>Used in the play header to ensure that the handler will run even if a task fails.</li>
+</ul>
+<p><strong>ignore_errors: true</strong></p>
+<ul>
+<li>Used in the play header to accomplish the same thing.</li>
+</ul>
+<p>• Handlers are specified in a handlers section at the end of the play.
+• Handlers run in the order they occur in the handlers section and not in the order as triggered.
+• Handlers run only if the task calling them generates a changed status.
+• Handlers by default will not run if any task in the same play fails, unless <strong>force_handlers</strong> or <strong>ignore_errors</strong> are used.
+• Handlers run only after <em>all</em> tasks in the play where the handler is activated have been processed. You might want to define multiple plays to avoid this behavior.</p>
+<h3 id="lab-working-with-handlers">Lab: Working with Handlers</h3>
+<p>1. Open a playbook with the name exercise73.yaml.</p>
+<p>2. Define the play header:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: update the kernel
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  tasks:</span></span></code></pre></div>
+<p>3. Add a task that updates the current kernel:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: update the kernel
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: update kernel
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: kernel
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: reboot_server</span></span></code></pre></div>
+<p>4. Add a handler that reboots the server in case the kernel was successfully updated:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: update the kernel
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: update kernel
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: kernel
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: reboot_server
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: reboot_server
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: reboot</span></span></code></pre></div>
+<p>5. Run the playbook using <strong>ansible-playbook exercise73.yaml</strong> andobserve its result. Notice that the handler runs only if the kernel was updated. If the kernel already was at the latest version, nothing has changed and the handler does not run. Also notice that it wasn&rsquo;t really necessary to use <strong>force_handlers</strong> in the play header, but by using it anyway, at least you now know where to use it.</p>
+<h3 id="dealing-with-failures">Dealing with Failures</h3>
+<h4 id="understanding-task-execution">Understanding Task Execution</h4>
+<ul>
+<li>Tasks in Ansible playbooks are executed in the order they are specified.</li>
+<li>If a task in the playbook fails to execute on a host, the task generates an error and the play does not further execute on that specific host.</li>
+<li>This also goes for handlers: if any task that follows the task that triggers a handler fails, the handlers do not run.</li>
+<li>In both of these cases, it is important to know that the tasks that have run successfully still generate their result. Because this can give an unexpected result, it is important to always restore the original situation if that happens.</li>
+</ul>
+<p><strong>any_errors_fatal</strong></p>
+<ul>
+<li>Used in the play header or on a block.</li>
+<li>Stop executing on all hosts when a failing task is encountered</li>
+</ul>
+<h4 id="managing-task-errors">Managing Task Errors</h4>
+<p>Generically, tasks can generate three different types of results.
+ok</p>
+<ul>
+<li>The tasks has run successfully but no changes were applied
+changed</li>
+<li>The task has run successfully and changes have been applied
+failed</li>
+<li>While running the task, a failure condition was encountered</li>
+</ul>
+<p><strong>ignore_errors: yes</strong></p>
+<ul>
+<li>Keep running the playbook even if a task fails</li>
+</ul>
+<p><strong>force_handlers</strong>. If</p>
+<ul>
+<li>can be used to ensure that handlers will be executed, even if a failing task
+was encountered.</li>
+</ul>
+<h3 id="lab-ignore_">Lab: <strong>ignore_errors</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: restart sshd only if crond is running
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: get the crond server status
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">command</span>: /usr/bin/systemctl is-active crond
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">register</span>: result
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: restart sshd based on crond status
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: sshd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: restarted
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">when</span>: result.rc == 0</span></span></code></pre></div>
+<h3 id="lab-forcing-handlers-to-run">Lab: Forcing Handlers to Run</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create file on localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: create index.html on localhost
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;welcome to the webserver&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set up web server
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: install httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">notify</span>:
+</span></span><span style="display:flex;"><span>            - restart_web
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy nothing - intended to fail
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/nothing
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/nothing.html
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: restart_web
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+<h4 id="specifying-task-failure-conditions">Specifying Task Failure Conditions</h4>
+<p><strong>failed_when</strong></p>
+<ul>
+<li>conditional used to evaluate some expression.</li>
+<li>Set a failure condition on a task</li>
+</ul>
+<h3 id="lab-failed_when">Lab: failed_when</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: demonstrating failed_when
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: run a script
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">command</span>: echo hello world
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">failed_when</span>: <span style="color:#5af78e">&#34;’world’ in command_result.stdout&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: see if we get here
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: second task executed</span></span></code></pre></div>
+<p><strong>fail</strong> module</p>
+<ul>
+<li>specify when a task fails.</li>
+<li>Using this module makes sense only if <strong>when</strong> is used to define the exact condition when a failure should occur.</li>
+</ul>
+<h3 id="lab-using-the-fail-module">Lab: Using the fail Module</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: demonstrating the fail module
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: run a script
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">command</span>: echo hello world
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: report a failure
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">fail</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: the command has failed
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: <span style="color:#5af78e">&#34;’world’ in command_result.stdout&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: see if we get here
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: second task executed</span></span></code></pre></div>
+<ul>
+<li>The <strong>ignore_errors</strong> statement has movedfrom the task definition to the play  header.</li>
+<li>Without this move, the message &ldquo;second task executed&rdquo; would never be  shown because the fail module always generates a failure message.</li>
+<li>The main advantage of using the fail module instead of using <strong>failed_when</strong> is that the fail module can easily be used to set a clear failure message, which is not possible when using <strong>failed_when</strong>.</li>
+</ul>
+<h4 id="managing-changed-status">Managing Changed Status</h4>
+<p>In Ansible, there are commands that change something and commands that don&rsquo;t. Some commands, however, are not very obvious in reporting their
+status.</p>
+<h3 id="lab--change-status">Lab:  Change status</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: demonstrate changed status
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check local time
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">command</span>: date
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: print local time
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">var</span>: command_result.stdout</span></span></code></pre></div>
+<ul>
+<li>
+<p>Reports a changed status, even if nothing really was changed!</p>
+</li>
+<li>
+<p>Managing the changed status can be useful in avoiding unexpected results while running a playbook.</p>
+</li>
+</ul>
+<p><strong>changed_when</strong></p>
+<ul>
+<li>If you set <strong>changed_when</strong> to false, the playbook reports only an ok or failed status and never reports a changed status.</li>
+</ul>
+<h3 id="lab-using-changed_">Lab: Using <strong>changed_when</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: demonstrate changed status
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: check local time
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: date
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">changed_when</span>: <span style="color:#ff6ac1">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: print local time
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">var</span>: command_result.stdout</span></span></code></pre></div>
+<h4 id="using-blocks">Using Blocks</h4>
+<ul>
+<li>Useful when working with conditional statements.</li>
+<li>A group of tasks to which a <strong>when</strong> statement can be applied.</li>
+<li>As a result, if a single condition is true, multiple tasks can be executed.</li>
+<li>To do so, between the <strong>tasks:</strong> statement in the play header and the actual tasks that run the specific modules, you can insert a <strong>block:</strong> statement.</li>
+</ul>
+<h3 id="lab-using-blocks">Lab: Using Blocks</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: simple block example
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: setting up http
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: installing http
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: restart httpod
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: ansible_distribution == &#34;CentOS&#34;</span></span></code></pre></div>
+<ul>
+<li>The <strong>when</strong> statement is applied at the same level as the <strong>block</strong> definition.</li>
+<li>When you define it this way, the tasks in the block are executed only if the <strong>when</strong> statement is true.</li>
+</ul>
+<h4 id="using-blocks-with-rescue-and-always-statements">Using Blocks with rescue and always Statements</h4>
+<ul>
+<li>Blocks can be used for simple error handling as well, in such a way that if any task that is defined in the <strong>block</strong> statement fails, the tasks that are defined in the <strong>rescue</strong> section are executed.</li>
+<li>Besides that, an <strong>always</strong> section can be used to define tasks that should always run, regardless of the success or failure of the tasks in the block.</li>
+</ul>
+<h3 id="lab-using-blocks-rescue-and-always">Lab: Using Blocks, <strong>rescue</strong>, and <strong>always</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: using blocks
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>: 
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: intended to be successful
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: remove a file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cmd</span>: rm /var/www/html/index.html
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: printing status
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: block task was operated
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">rescue</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create a file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cmd</span>: touch /tmp/rescuefile
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: printing rescue status
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: rescue task was operated
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">always</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: always write a message to logs
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cmd</span>: logger hello
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: always printing this message
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: this message is always printed</span></span></code></pre></div>
+<ul>
+<li>Run this twice to see the rescue. (The file is already created so a task in the block fails)</li>
+</ul>
+<p><strong>command_warnings=False</strong></p>
+<ul>
+<li>
+<p>Setting in ansible.cfg to avoid seeing command module warning message.</p>
+</li>
+<li>
+<p>you cannot use a block on a loop.</p>
+</li>
+<li>
+<p>If you need to iterate over a list of values, think of using a different solution.</p>
+</li>
+</ul>
+<p><a href="/ansible/task-control/labs/">Labs</a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="using-loops-and-items">Using Loops and Items</h1>
+
+<h2 id="using-loops-and-items">Using Loops and Items</h2>
+<ul>
+<li>Some modules enable you to provide a list that needs to be processed.</li>
+<li>Many modules don&rsquo;t, and in these cases, it makes sense to use a loop mechanism to iterate over a list of items.</li>
+<li>Take, for instance, the yum module. While specifying the names of packages, you can use a list of packages.</li>
+<li>If, however, you want to do something similar for the service module, you find out that this is not possible.</li>
+<li>That is where loops come in.</li>
+</ul>
+<h4 id="working-with-loops">Working with Loops</h4>
+<p>Install software packages using the yum module and then ensures that services installed from these packages are started using the service module:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: install and start services
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install packages
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>          - vsftpd
+</span></span><span style="display:flex;"><span>          - httpd
+</span></span><span style="display:flex;"><span>          - samba
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: start the services
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">loop</span>:
+</span></span><span style="display:flex;"><span>        - vsftpd
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - smb</span></span></code></pre></div>
+<ul>
+<li>
+<p>A loop is defined at the same level as the service module.</p>
+</li>
+<li>
+<p>The loop has a list of services in a list (array) statement</p>
+</li>
+<li>
+<p>Items in the loop can be accessed by using the system internal variable <strong>item</strong>.</p>
+</li>
+<li>
+<p>At no place in the playbook is there a definition of the variable <strong>item</strong>; the loop takes care of this.</p>
+</li>
+<li>
+<p>When considering whether to use a loop, you should first investigate whether a module offers support for providing lists as values to the keys that are used.</p>
+</li>
+<li>
+<p>If this is the case, just provide a list, as all items in the list can be considered in one run of the module.</p>
+</li>
+<li>
+<p>If not, define the list using <strong>loop</strong> and provide <strong>&quot;{{ item }}&quot;</strong> as the value to the key.</p>
+</li>
+<li>
+<p>When using <strong>loop</strong>, the module is activated again on each iteration.</p>
+</li>
+</ul>
+<h4 id="using-loops-on-variables">Using Loops on Variables</h4>
+<ul>
+<li>Although it&rsquo;s possible to define a loop within a task, it&rsquo;s not the most elegant way.</li>
+<li>To create a flexible environment where static code is separated from dynamic site-specific parameters, it&rsquo;s a much better idea to define loops outside the static code, in variables.</li>
+<li>When you define loops within a variable, all the normal rules for working with variables apply: The variables can be defined in the play header, using an include file, or as host/hostgroup variables.</li>
+</ul>
+<p>Include the loop from a variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: install and start services
+      hosts: ansible1
+      vars:
+        services:
+        - vsftpd
+        - httpd
+        - smb
+      tasks:
+      - name: install packages
+        yum:
+          name:
+          - vsftpd
+          - httpd
+          - samba
+          state: latest
+      - name: start the services
+        service:
+          name: &#34;{{ item }}&#34;
+          state: started
+          enabled: yes
+        loop: &#34;{{ services }}&#34;</code></pre></div>
+<h4 id="using-loops-on-multivalued-variables">Using Loops on Multivalued Variables</h4>
+<p>An item can be a simple list, but it can also be presented as a multivalued variable, as long as the multivalued variable is presented as a list.</p>
+<p>Use variables that are imported from the file vars/users-list:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>users:
+  - username: linda
+    homedir: /home/linda
+    shell: /bin/bash
+    groups: wheel
+  - username: lisa
+    homedir: /home/lisa
+    shell: /bin/bash
+    groups: users
+  - username: anna
+    homedir: /home/anna
+    shell: /bin/bash
+    groups: users</code></pre></div>
+<p>Use the list in a playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: create users using a loop from a list
+      hosts: ansible1
+      vars_files: vars/users-list
+      tasks:
+      - name: create users
+        user:
+          name: &#34;{{ item.username }}&#34;
+          state: present
+          groups: &#34;{{ item.groups }}&#34;
+          shell: &#34;{{ item.shell }}&#34;
+        loop: &#34;{{ users }}&#34;</code></pre></div>
+<ul>
+<li>Working with multivalued variables is possible, but the variables in that case must be presented as a list; using dictionaries is not supported.</li>
+<li>The only way to loop over dictionaries is to use the <strong>dict2items</strong> filter.</li>
+<li>Use of filters is not included in the RHCE topics and for that reason is not explained further here.</li>
+<li>You can look up &ldquo;Iterating over a dictionary&rdquo; in the Ansible documentation for more information.</li>
+</ul>
+<h4 id="understanding-with_items">Understanding with_items</h4>
+<ul>
+<li>Since Ansible 2.5, using <strong>loop</strong> has been the command way to iterate over the values in a list.</li>
+<li>In earlier versions of Ansible, the <strong>with_<em>keyword</em></strong> statement was used instead.</li>
+<li>In this approach, the <em><strong>keyword</strong></em> is replaced with the name of an Ansible look-up plug-in, but the rest of the syntax is very common.</li>
+<li>Will be deprecated in a future version of Ansible.</li>
+</ul>
+<p><strong>With_keyword</strong> Options Overview
+with_items</p>
+<ul>
+<li>Used like loop to iterate over values in a list
+with_file</li>
+<li>Used to iterate over a list of filenames on the control node
+with_sequence</li>
+<li>Used to generate a list of values based on a numeric sequence</li>
+</ul>
+<p>Loop over a list using with_keyword:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: install and start services
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">services</span>:
+</span></span><span style="display:flex;"><span>        - vsftpd
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - smb
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install packages
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>          - vsftpd
+</span></span><span style="display:flex;"><span>          - httpd
+</span></span><span style="display:flex;"><span>          - samba
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: start the services
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">with_items</span>: <span style="color:#5af78e">&#34;{{ services }}&#34;</span></span></span></code></pre></div>
+<h3 id="lab--working-with-loop">Lab:  Working with loop</h3>
+<p>1. Use your editor to define a variables file with the name vars/packages and the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">packages:
+- name: httpd
+  state: absent
+- name: vsftpd
+  state: installed
+- name: mysql-server
+  state: latest</code></pre></div>
+<p>2. Use your editor to define a playbook with the name exercise71.yaml and create the play header:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: manage packages using a loop from a list
+  hosts: ansible1
+  vars_files: vars/packages
+  tasks:</code></pre></div>
+<p>3. Continue the playbook by adding the yum task that will manage the packages, using the <strong>packages</strong> variable as defined in the vars/packages variable include file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: manage packages using a loop from a list
+  hosts: ansible1
+  vars_files: vars/packages
+  tasks:
+  - name: install packages
+    yum:
+      name: &#34;{{ item.name }}&#34;
+      state: &#34;{{ item.state }}&#34;
+    loop: &#34;{{ packages }}&#34;</code></pre></div>
+<p>4. Run the playbook using <strong>ansible-playbook exercise71.yaml</strong>, and observe the results. In the results you should see which packages it is trying to manage and in which state it is trying to get the packages.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="using-when-to-run-tasks-conditionally">Using when to Run Tasks Conditionally</h1>
+
+<h2 id="using-when-to-run-tasks-conditionally">Using when to Run Tasks Conditionally</h2>
+<ul>
+<li>Use a <strong>when</strong> statement to run tasks conditionally.</li>
+<li>you can test whether:
+<ul>
+<li>a variable has a specific value</li>
+<li>whether a file exists</li>
+<li>whether a minimal amount of memory is available</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+<h4 id="working-with-when">Working with when</h4>
+<p>Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that</p>
+<ul>
+<li>when used in <strong>when</strong> statements, the variable that is evaluated is not placed between double curly braces.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: conditional install
+      hosts: all
+      tasks:
+      - name: install apache on Red Hat and family
+        yum:
+          name: httpd
+          state: latest
+        when: ansible_facts[’os_family’] == &#34;RedHat&#34;
+      - name: install apache on Ubuntu and family
+        apt:
+          name: apache2
+          state: latest
+        when: ansible_facts[’os_family’] == &#34;Debian&#34;</code></pre></div>
+<ul>
+<li>
+<p>not a part of any properties of the modules on which it is used</p>
+</li>
+<li>
+<p>must be indented at the same level as the module itself.</p>
+</li>
+<li>
+<p>For a string test, the string itself must be between double quotes.</p>
+</li>
+<li>
+<p>Without the double quotes, it would be considered an integer test.</p>
+</li>
+</ul>
+<h4 id="using-conditional-test-statements">Using Conditional Test Statements</h4>
+<p>Common conditional tests that you can perform with the <strong>when</strong> statement:</p>
+<p>Variable exists</p>
+<ul>
+<li>
+<p>variable is defined
+Variable does not exist</p>
+</li>
+<li>
+<p>variable is not defined
+First variable is present in list mentioned as second</p>
+</li>
+<li>
+<p>ansible_distribution in distributions
+Variable is true, 1 or yes</p>
+</li>
+<li>
+<p>variable
+Variable is false, 0 or no</p>
+</li>
+<li>
+<p>not variable
+Equal (string)</p>
+</li>
+<li>
+<p>key == &ldquo;value&rdquo;
+Equal (numeric)</p>
+</li>
+<li>
+<p>key == value
+Less than</p>
+</li>
+<li>
+<p>key &lt; value
+Less than or equal to</p>
+</li>
+<li>
+<p>key &lt;= value
+Greater than</p>
+</li>
+<li>
+<p>key &gt; value
+Greater than or equal to</p>
+</li>
+<li>
+<p>key &gt;= value
+Not equal to</p>
+</li>
+<li>
+<p>key != value</p>
+</li>
+<li>
+<p>Look for &ldquo;Tests&rdquo; in the Ansible documentation, and use the item that is found in Templating (Jinja2).</p>
+</li>
+<li>
+<p>When referring to variables in <strong>when</strong> statements, you don&rsquo;t have to use curly brackets because items in a <strong>when</strong> statement are considered to be variables by default.</p>
+</li>
+<li>
+<p>So you can write <strong>when: text == &ldquo;hello&rdquo;</strong> instead of <strong>when: &ldquo;{{ text }}&rdquo; == &ldquo;hello&rdquo;</strong>.</p>
+</li>
+</ul>
+<p>There are roughly four types of <strong>when</strong> conditional tests:
+• Checks related to variable existence
+• Boolean checks
+• String comparisons
+• Integer comparisons</p>
+<p>The first type of test checks whether a variable exists or is a part of another variable, such as a list.</p>
+<p>Checks for the existence of a specific disk device, using <strong>variable is defined</strong> and <strong>variable is not defined</strong>. All failing tests result in the message &ldquo;skipping.&rdquo;</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: check for existence of devices
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check if /dev/sda exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: a disk device /dev/sda exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sda’] is defined
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check if /dev/sdb exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: a disk device /dev/sdb exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sdb’] is defined
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: dummy test, intended to fail
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: failing
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: dummy is defined
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check if /dev/sdc does not exist
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: there is no /dev/sdc device
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sdc’] is not defined</span></span></code></pre></div>
+<h3 id="lab-check-that-finds-whether-the-first-variable-value-is-present-in-the-second-variables-list">Lab: Check that finds whether the first variable value is present in the second variable&rsquo;s list.</h3>
+<ul>
+<li>executes the <strong>debug</strong> task if the variable <strong>my_answer</strong> is in <strong>supported_packages</strong>.</li>
+<li><strong>vars_prompt</strong> is used. This stops the playbook, asks the user for input, and stores the input in a variable with the name my_answer.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: test if variable is in another variables list
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars_prompt</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: my_answer
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">prompt</span>: which package do you want to install
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">supported_packages</span>:
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - nginx
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: something
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: you are trying to install a supported package
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: my_answer in supported_packages</span></span></code></pre></div>
+<p><strong>Boolean check</strong></p>
+<ul>
+<li>Works on variables that have a Boolean value (not very common) T</li>
+<li>Should not be defined with the check for existence.</li>
+<li>Used to check whether a variable is defined.</li>
+</ul>
+<p><strong>string comparisons and integer comparisons</strong></p>
+<ul>
+<li>Ie: Check if more than 1 GB of disk space is available.</li>
+<li>When doing checks on available disk space and available memory, carefully look at the expected value.</li>
+<li>Memory is shown in megabytes, by default, whereas disk space is expressed in bytes.</li>
+</ul>
+<h3 id="lab-integer-check-install-vsftpd-if-more-than-50-mb-of-memory-is-available">Lab: integer check, install vsftpd if more than 50 MB of memory is available.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: conditionals test
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install vsftpd if sufficient memory available
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: vsftpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’memory_mb’][’real’][’free’] &gt; 50</span></span></code></pre></div>
+<h4 id="testing-multiple-conditions">Testing Multiple Conditions</h4>
+<ul>
+<li><strong>when</strong> statements can also be used to evaluate multiple conditions.</li>
+<li>To do so, you can group the conditions with parentheses and combine them with <strong>and</strong> and <strong>or</strong> keywords.</li>
+<li><strong>and</strong> runs if both conditionals are ture</li>
+<li><strong>or</strong> runs if one of the conditions are true</li>
+</ul>
+<h3 id="lab-and-is-used-and--runs-the-task-only-if-both-conditions-are-true">Lab: <strong>and</strong> is used and  runs the task only if both conditions are true.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: testing multiple conditions
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: showing output
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: using CentOS 8.1
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’distribution_version’] == &#34;8.1&#34; and ansible_facts[’distribution’] == &#34;CentOS&#34;</span></span></code></pre></div>
+<ul>
+<li>You can make more complex statements by grouping conditions together in parentheses.</li>
+<li>group the <strong>when</strong> statement starts with a &gt; sign to wrap the statement over the next five lines for readability.</li>
+</ul>
+<h3 id="lab-combining-complex-statements">Lab: Combining complex statements</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: using multiple conditions
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: removed
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: &gt;<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          ( ansible_facts[’distribution’] == &#34;RedHat&#34; and
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">            ansible_facts[’memfree_mb’] &lt; 512 )
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          or
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          ( ansible_facts[’distribution’] == &#34;CentOS&#34; and
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">            ansible_facts[’memfree_mb’] &lt; 256 )</span></span></span></code></pre></div>
+<h4 id="combining-loop-and-when">Combining loop and when</h4>
+<h3 id="lab-combining-loop-and-when-perform-a-kernel-update-only-if-boot-is-on-a-dedicated-mount-point-and-at-least-200-mbis-available-in-the-mount">Lab: Combining loop and when, Perform a kernel update only if /boot is on a dedicated mount point and at least 200 MBis available in the mount.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: conditionals test
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: update the kernel if sufficient space is available in /boot
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: kernel
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ ansible_facts[’mounts’] }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: item.mount == &#34;/boot&#34; and item.size_available &gt; 200000000</span></span></code></pre></div>
+<h4 id="combining-loop-and-register">Combining loop and register</h4>
+<h3 id="lab-combining-register-and-loop">Lab: Combining <strong>register</strong> and <strong>loop</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: test register
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">shell</span>: cat /etc/passwd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">register</span>: passwd_contents
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">msg</span>: passwd contains user lisa
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">when</span>: passwd_contents.stdout.find(’lisa’) != -1</span></span></code></pre></div>
+<p><strong>passwd_contents.stdout.find</strong>,</p>
+<ul>
+<li><strong>passwd_contents.stdout</strong> does not contain any item with the name <strong>find</strong>.</li>
+<li>Construction that is used here is <strong>variable.find</strong>, which enables a task to search a specific string in a variable. (the<strong>find</strong> function in Python is used)</li>
+<li>When the Python <strong>find</strong> function does not find a string, it returns a value of −1.</li>
+<li>If the requested string is found, the <strong>find</strong> function returns an integer that returns the position where the string was found.</li>
+<li>For instance, if the string lisa is found in /etc/passwd, it returns an unexpected value like 2604, which is the position in the file, expressed as a byte offset from the beginning, where the string is found for the first time.</li>
+<li>Because of the behavior of the Python <strong>find</strong> function, <strong>variable.find</strong> needs <em>not</em> to be equal to −1 to have the task succeed. So don&rsquo;t write <strong>passwd_contents.stdout.find(&rsquo;lisa&rsquo;) = 0</strong> (because it is not a Boolean), but instead write <strong>passwd_contents.stdout.find(&rsquo;lisa&rsquo;) != -1</strong>.</li>
+</ul>
+<h3 id="lab-practice-working-with-conditionals-using-register">Lab: Practice working with conditionals using <strong>register</strong>.</h3>
+<ul>
+<li>When using <strong>register</strong>, you might want to define a task that runs a command that will fail, just to capture the return code of that command, after which the playbook should continue. If that is the case, you must ensure that <strong>ignore_errors: yes</strong> is used in the task definition.</li>
+</ul>
+<p>1. Use your editor to create a new file with the name exercise72.yaml. Start writing the play header as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:</code></pre></div>
+<p>2. Add the first task, which checks whether the httpd service is running, using command output that will be registered. Notice the use of <strong>ignore_errors: yes</strong>. This line makes sure that if the service is <em>not</em> running, the play is still executed further.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:
+  - name: get httpd service status
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result</code></pre></div>
+<p>3. Add a debug task that shows the output of the command so that you can analyze what is currently in the registered variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:
+  - name: get httpd service status
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result
+  - name: show result variable contents
+    debug:
+      msg: printing contents of the registered variable {{ result }}</code></pre></div>
+<p>4. Complete the playbook by including the <strong>service</strong> task, which is started only if the value stored in <strong>result.rc</strong> (which is the return code of the command that was registered) contains a 0. This is the case if the previous command executed successfully.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:
+  - name: get httpd service status
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result
+  - name: show result variable contents
+    debug:
+      msg: printing contents of the registered variable {{ result }}
+  - name: restart sshd service
+    service:
+      name: sshd
+      state: restarted
+    when: result.rc == 0</code></pre></div>
+<p>5. Use an ad hoc command to make sure the httpd service is installed: <code>ansible ansible1 -m yum -a &quot;name=httpd state=latest&quot;</code>.</p>
+<p>6. Use an ad hoc command to make sure the httpd service is stopped: <code>ansible ansible1 -m service -a &quot;name=httpd state=stopped&quot;</code>.</p>
+<p>7. Run the playbook using <code>ansible-playbook exercise72.yaml</code> and analyze the result. You should see that the playbook skips the <strong>service</strong> task.</p>
+<p>8. Type <code>ansible ansible1 -m service -a &quot;name=httpd state=started&quot;</code> and run the playbook again, using <code>ansible-playbook exercise72.yaml</code>. Playbook execution at this point should be successful.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
+  </body>
+</html>

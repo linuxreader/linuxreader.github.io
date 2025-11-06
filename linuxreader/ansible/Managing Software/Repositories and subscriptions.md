@@ -1,3 +1,7 @@
++++
+title = 'Repositories and subscriptions'
+description = 'Repositories and subscriptions'
++++
 ### Using Modules to Manage Repositories and Subscriptions
 
 To work with software packages, you need to make sure that repositories

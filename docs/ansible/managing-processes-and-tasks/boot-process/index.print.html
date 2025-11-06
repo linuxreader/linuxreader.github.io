@@ -5,43 +5,45 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="Managing the Boot Process Managing the boot process with Ansible is a bit disappointing because Ansible offers no specific modules to do so. As a result, you must use generic modules instead, like the file module to manage the systemd boot targets or the lineinfile module to manage the GRUB configuration. What Ansible does offer, however, is the reboot module, which enables you to reboot a host and pick up after the reboot at the exact same location. The next two sections describe how to do this.">
+    <meta name="description" content="Managing Boot Process with Ansible">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:description" content="Managing the Boot Process Managing the boot process with Ansible is a bit disappointing because Ansible offers no specific modules to do so. As a result, you must use generic modules instead, like the file module to manage the systemd boot targets or the lineinfile module to manage the GRUB configuration. What Ansible does offer, however, is the reboot module, which enables you to reboot a host and pick up after the reboot at the exact same location. The next two sections describe how to do this.">
+    <meta name="twitter:title" content="Boot Process :: Linux Reader">
+    <meta name="twitter:description" content="Managing Boot Process with Ansible">
     <meta property="og:url" content="http://linuxreader.com/ansible/managing-processes-and-tasks/boot-process/">
     <meta property="og:site_name" content="Linux Reader">
-    <meta property="og:description" content="Managing the Boot Process Managing the boot process with Ansible is a bit disappointing because Ansible offers no specific modules to do so. As a result, you must use generic modules instead, like the file module to manage the systemd boot targets or the lineinfile module to manage the GRUB configuration. What Ansible does offer, however, is the reboot module, which enables you to reboot a host and pick up after the reboot at the exact same location. The next two sections describe how to do this.">
+    <meta property="og:title" content="Boot Process :: Linux Reader">
+    <meta property="og:description" content="Managing Boot Process with Ansible">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Ansible">
-    <meta itemprop="description" content="Managing the Boot Process Managing the boot process with Ansible is a bit disappointing because Ansible offers no specific modules to do so. As a result, you must use generic modules instead, like the file module to manage the systemd boot targets or the lineinfile module to manage the GRUB configuration. What Ansible does offer, however, is the reboot module, which enables you to reboot a host and pick up after the reboot at the exact same location. The next two sections describe how to do this.">
+    <meta itemprop="name" content="Boot Process :: Linux Reader">
+    <meta itemprop="description" content="Managing Boot Process with Ansible">
     <meta itemprop="wordCount" content="874">
-    <title></title>
-    <link href="http://linuxreader.com/ansible/managing-processes-and-tasks/boot-process/" rel="canonical" type="text/html" title="">
-    <link href="/ansible/managing-processes-and-tasks/boot-process/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
-    <script src="/js/search-lunr.min.js?1762442645" defer></script>
-    <script src="/js/search.min.js?1762442645" defer></script>
+    <title>Boot Process :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/managing-processes-and-tasks/boot-process/" rel="canonical" type="text/html" title="Boot Process :: Linux Reader">
+    <link href="/ansible/managing-processes-and-tasks/boot-process/index.xml" rel="alternate" type="application/rss+xml" title="Boot Process :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
-    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -114,7 +116,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-processes-and-tasks/" title="Managing Processes and Tasks (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -136,13 +138,13 @@
 
           </div>
           <span class="topbar-breadcrumbs highlightable">
-            
+            Boot Process
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-processes-and-tasks/boot-process/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-processes-and-tasks/managing-services/" title="Managing Services (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -157,6 +159,168 @@
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="boot-process">Boot Process</h1>
+
+<h3 id="managing-the-boot-process">Managing the Boot Process</h3>
+<p>Managing the boot process with Ansible is a bit disappointing because
+Ansible offers no specific modules to do so. As a result, you must use
+generic modules instead, like the file module to manage the systemd boot
+targets or the lineinfile module to manage the GRUB configuration. What
+Ansible does offer, however, is the reboot module, which enables you to
+reboot a host and pick up after the reboot at the exact same location.
+The next two sections describe how to do this.</p>
+<h4 class="h4" id="managing-systemd-targets">Managing Systemd Targets</h4>
+<p>Managing the default target that a host should start in is a common task
+on Ansible. However, the systemd module has no options to manage this
+setting, and no other option to manage it is available. For that reason,
+you must fall back to a generic option instead.</p>
+<p>If you need to manage the default systemd target, a file with the name
+/etc/systemd/system/default.target has to exist as a symbolic link to
+the desired default target. See, for instance, <a href="/ansible/managing-processes-and-tasks/boot-process/#ch14.xhtml#list14_5">Listing
+14-5</a>, where the output of the Linux <strong>ls -l</strong>
+command is used to show the current configuration.</p>
+<p><strong>Listing 14-5</strong> Showing the Default Systemd Target</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ls -l /etc/systemd/system/default.target
+lrwxrwxrwx. 1 root root 37 Mar 23 05:33 /etc/systemd/system/default.target -&gt; /lib/systemd/system/multi-user.target
+:::</p>
+<p>Because Ansible itself doesn&rsquo;t have any module to specifically set the
+default.target, you must use a generic module. In theory, you could use
+either the command module or the file module, but because the file
+module is a more specific module to generate the symbolic link, you
+should use the file module. <a href="/ansible/managing-processes-and-tasks/boot-process/#ch14.xhtml#list14_6">Listing 14-6</a> shows
+how to manage the boot target.</p>
+<p><strong>Listing 14-6</strong> Managing the Default Boot Target</p>
+<p>::: pre_1
+&mdash;
+- name: set default boot target
+hosts: ansible2
+tasks:
+- name: set boot target to graphical
+file:
+src: /usr/lib/systemd/system/graphical.target
+dest: /etc/systemd/system/default.target
+state: link
+:::</p>
+<h4 class="h4" id="rebooting-managed-hosts">Rebooting Managed Hosts</h4>
+<p>In some cases, a managed host needs to be rebooted while running a
+playbook. To do so, you can use the reboot module. This module uses
+several arguments to restart managed nodes. To verify the renewed
+availability of the managed hosts, you need to specify the
+<strong>test_command</strong> argument. This argument specifies an arbitrary command
+that Ansible should run successfully on the managed hosts after the
+reboot. The success of this command indicates that the rebooted host is
+available again.</p>
+<p>Equally useful while using the reboot module are the arguments that
+relate to timeouts. The reboot module uses no fewer than four of them:</p>
+<p>• <strong>connect_timeout:</strong> The maximum seconds to wait for a successful
+connection before trying again</p>
+<p>• <strong>post_reboot_delay:</strong> The number of seconds to wait after the
+<strong>reboot</strong> command before trying to validate the managed host is
+available again</p>
+<p>• <strong>pre_reboot_delay:</strong> The number of seconds to wait before actually
+issuing the reboot</p>
+<p>• <strong>reboot_timeout:</strong> The maximum seconds to wait for the rebooted
+machine to respond to the <strong>test</strong> command</p>
+<p>When the rebooted host is back, the current playbook continues its
+tasks. This scenario is shown in the example in <a href="/ansible/managing-processes-and-tasks/boot-process/#ch14.xhtml#list14_7">Listing
+14-7</a>, where first all managed hosts are rebooted,
+and after a successful reboot is issued, the message &ldquo;successfully
+rebooted&rdquo; is shown. <a href="/ansible/managing-processes-and-tasks/boot-process/#ch14.xhtml#list14_8">Listing 14-8</a> shows the
+result of running this playbook. In <a href="/ansible/managing-processes-and-tasks/boot-process/#ch14.xhtml#exe14_2">Exercise 14-2</a>
+you can practice rebooting hosts using the reboot module.</p>
+<p><strong>Listing 14-7</strong> Rebooting Managed Hosts</p>
+<p>::: pre_1
+&mdash;
+- name: reboot all hosts
+hosts: all
+gather_facts: no
+tasks:
+- name: reboot hosts
+reboot:
+msg: reboot initiated by Ansible
+test_command: whoami
+- name: print message to show host is back
+debug:
+msg: successfully rebooted
+:::</p>
+<p><strong>Listing 14-8</strong> Verifying the Success of the reboot Module</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing147.yaml</p>
+<pre><code>PLAY [reboot all hosts] *************************************************************************************************
+
+TASK [reboot hosts] *****************************************************************************************************
+changed: [ansible2]
+changed: [ansible1]
+changed: [ansible3]
+changed: [ansible4]
+changed: [ansible5]
+
+TASK [print message to show host is back] *******************************************************************************
+ok: [ansible1] =&gt; {
+    &quot;msg&quot;: &quot;successfully rebooted&quot;
+}
+ok: [ansible2] =&gt; {
+    &quot;msg&quot;: &quot;successfully rebooted&quot;
+}
+ok: [ansible3] =&gt; {
+    &quot;msg&quot;: &quot;successfully rebooted&quot;
+}
+ok: [ansible4] =&gt; {
+    &quot;msg&quot;: &quot;successfully rebooted&quot;
+}
+ok: [ansible5] =&gt; {
+    &quot;msg&quot;: &quot;successfully rebooted&quot;
+}
+
+PLAY RECAP **************************************************************************************************************
+ansible1                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible5                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<p>::: box
+<strong>Exercise 14-2 Managing Boot State</strong></p>
+<p>1. As a preparation for this playbook, so that it actually changes the
+default boot target on the managed host, use <strong>ansible ansible2 -m file
+-a &ldquo;state=link src=/usr/lib/systemd/system/graphical.target
+dest=/etc/systemd/system/default.target&rdquo;</strong>.</p>
+<p>2. Use your editor to create the file exercise142.yaml and write the
+following playbook header:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: set default boot target and reboot
+  hosts: ansible2
+  tasks:</code></pre></div>
+<p>3. Now you set the default boot target to multi-user.target. Add the
+following task to do so:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: set default boot target
+  file:
+    src: /usr/lib/systemd/system/multi-user.target
+    dest: /etc/systemd/system/default.target
+    state: link</code></pre></div>
+<p>4. Complete the playbook to reboot the managed hosts by including the
+following tasks:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: reboot hosts
+  reboot:
+    msg: reboot initiated by Ansible
+    test_command: whoami
+- name: print message to show host is back
+  debug:
+    msg: successfully rebooted</code></pre></div>
+<p>5. Run the playbook by using <strong>ansible-playbook exercise142.yaml</strong>.</p>
+<p>6. Test that the reboot was issued successfully by using <strong>ansible
+ansible2 -a &ldquo;systemctl get-default&rdquo;</strong>.
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
@@ -172,22 +336,22 @@
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
-    <script src="/js/theme.min.js?1762442645" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
   </body>
 </html>

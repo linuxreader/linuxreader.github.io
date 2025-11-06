@@ -1,3 +1,7 @@
++++
+title = 'Managing Packages'
+description = 'Managing Packages'
++++
 ### Using Modules to Manage Packages
 
 Managing software packages on managed nodes is one of the firstrequirements when working with Ansible. Different modules are available.

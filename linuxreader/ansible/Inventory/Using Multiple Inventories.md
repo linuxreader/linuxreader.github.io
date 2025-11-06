@@ -1,3 +1,7 @@
++++
+title = 'Using Multiple Inventories'
+description = 'Using Multiple Inventories'
++++
 #### Working with Multiple Inventory Files
 
 - Ansible supports working with multiple inventory files. 

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Ansible PlaybooksGetting started with Ansible Playbooks
+Including and importing FilesIncluding and importing Files">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Playbooks :: Linux Reader">
+    <meta name="twitter:description" content="Ansible PlaybooksGetting started with Ansible Playbooks
+Including and importing FilesIncluding and importing Files">
+    <meta property="og:url" content="http://linuxreader.com/ansible/playbooks/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Playbooks :: Linux Reader">
+    <meta property="og:description" content="Ansible PlaybooksGetting started with Ansible Playbooks
+Including and importing FilesIncluding and importing Files">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Playbooks :: Linux Reader">
+    <meta itemprop="description" content="Ansible PlaybooksGetting started with Ansible Playbooks
+Including and importing FilesIncluding and importing Files">
+    <meta itemprop="wordCount" content="13">
+    <title>Playbooks :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/playbooks/" rel="canonical" type="text/html" title="Playbooks :: Linux Reader">
+    <link href="/ansible/playbooks/index.xml" rel="alternate" type="application/rss+xml" title="Playbooks :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/playbooks\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/playbooks/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/networking/networking-with-ansible/" title="Networking with Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Playbooks
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/playbooks/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/playbooks/ansible-playbooks/" title="Ansible Playbooks (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="playbooks">Playbooks</h1>
+
+<div class="children children-h6 children-sort-">
+  <h6 class="children-title" id="ansible-playbooks"><a href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></h6><p>Getting started with Ansible Playbooks</p>
+  <h6 class="children-title" id="including-and-importing-files"><a href="/ansible/playbooks/including-and-importing-files/">Including and importing Files</a></h6><p>Including and importing Files</p>
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Playbooks</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-playbooks">Ansible Playbooks</h1>
+
+<ul>
+<li>Exploring playbooks</li>
+<li>YAML</li>
+<li>Managing Multiplay Playbooks</li>
+</ul>
+<p>Lets create our first playbook:</p>
+<p><code>[ansible@control base]$ vim playbook.yaml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd &lt;-- play is at the highest level
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>: &lt;-- play has a list of tasks
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package &lt;-- name of task 1
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>: &lt;-- module
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd &lt;-- argument 1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed &lt;-- argument 2
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service &lt;-- task 2
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span></span></span></code></pre></div>
+<p>There are thee dashes at the top of the playbook. And sometimes you&rsquo;ll find three dots at the end of a playbook. These make it easy to isolate the playbook and embed the playbook code into other projects.</p>
+<p>Playbooks are written in YAML format and saved as either .yml or .yaml. YAML specifies objects as key-value pairs (dictionaries). Key value pairs can be listed in either key: value (preferred) or key=value. And dashes specify lists of embedded objects.</p>
+<p>There is a collection of one or more plays in a playbook. Each play targets specific hosts and lists tasks to perform on those hosts. There is one play here with the name &ldquo;install start and enable httpd&rdquo;. You target the host names to target at the top of the play, not in the individual tasks performed.</p>
+<p>Each task is identified by &ldquo;- name&rdquo; (not required but recommended for troubleshooting and identifying tasks). Then the module is listed with arguments and their values under that.</p>
+<p>Indentation is important here. It identifies the relationships between different elements. Data elements at the same level must have the same indentation. And items that are children or properties of another element must be indented more than their parent elements.</p>
+<p>Indentation is created using spaces. Usually two spaces is used, but not required. You cannot use tabs for indentation.</p>
+<p>You can also edit your .vimrc file to help with indentation when it detects that you are working with a YAML file:
+<code>vim ~/.vimrc</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>autocmd FileType yaml setlocal ai ts=2 sw=2 et</code></pre></div>
+<p>Required elements:</p>
+<ul>
+<li>hosts - name of host(s) to perform play on</li>
+<li>name - name of the play</li>
+<li>tasks - one or more tasks to execute for this play</li>
+</ul>
+<p>To run a playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible-playbook playbook.yaml 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Name of the play</span>
+</span></span><span style="display:flex;"><span>PLAY <span style="color:#ff6ac1">[</span>install start and <span style="color:#ff5c57">enable</span> http+userd<span style="color:#ff6ac1">]</span> ***********************************************
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Overview of tasks and the hosts it was successful on</span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>Gathering Facts<span style="color:#ff6ac1">]</span> **************************************************************
+</span></span><span style="display:flex;"><span>fatal: <span style="color:#ff6ac1">[</span>web1<span style="color:#ff6ac1">]</span>: UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span><span style="color:#5af78e">&#34;changed&#34;</span>: false, <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>, <span style="color:#5af78e">&#34;unreachable&#34;</span>: true<span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>fatal: <span style="color:#ff6ac1">[</span>web2<span style="color:#ff6ac1">]</span>: UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span><span style="color:#5af78e">&#34;changed&#34;</span>: false, <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>, <span style="color:#5af78e">&#34;unreachable&#34;</span>: true<span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible2<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>install package<span style="color:#ff6ac1">]</span> **************************************************************
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible2<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>start and <span style="color:#ff5c57">enable</span> service<span style="color:#ff6ac1">]</span> *****************************************************
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible2<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># overview of the status of each task</span>
+</span></span><span style="display:flex;"><span>PLAY RECAP **************************************************************************
+</span></span><span style="display:flex;"><span>ansible1                   : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">3</span> <span style="color:#ff6ac1">(</span>no changes required<span style="color:#ff6ac1">)</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span> <span style="color:#ff6ac1">(</span>indicates the task was successful and target node was modified.<span style="color:#ff6ac1">)</span>   <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   
+</span></span><span style="display:flex;"><span>ansible2                   : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">3</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   
+</span></span><span style="display:flex;"><span>web1                       : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   
+</span></span><span style="display:flex;"><span>web2                       : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   </span></span></code></pre></div>
+<p>Before running tasks, the <code>ansible-playbook</code> command gathers facts (current configuration and settings) about managed nodes.</p>
+<h3 id="how-to-undo-playbook-modifications">How to undo playbook modifications</h3>
+<p>Ansible does not have a built in feature to undo a playbook that you ran. So to undo changes, you need to make another playbook that defines the new desired state of the host.</p>
+<h3 id="working-with-yaml">Working with YAML</h3>
+<p>Key value pairs can also be listed as:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: install vsftpd
+</span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">yum</span>: name=vsftpd
+</span></span><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: enable vsftpd
+</span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">service</span>: name=vsftpd enabled=true
+</span></span><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: create readme file</span></span></code></pre></div>
+<p>But better to list them as such for better readability:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;welcome to the FTP server\n&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /var/ftp/pub/README
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">force</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0444</span></span></span></code></pre></div>
+<p>Some modules support multiple values for a single key:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install multiple packages
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install packages
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: &lt;-- key with multiple values
+</span></span><span style="display:flex;"><span>      - nmap 
+</span></span><span style="display:flex;"><span>      - httpd
+</span></span><span style="display:flex;"><span>      - vsftpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest &lt;-- will install and/or update to latest version</span></span></code></pre></div>
+<h3 id="yaml-strings">YAML Strings</h3>
+<p>Valid fomats for a string in YAML:</p>
+<ul>
+<li><code>super string</code></li>
+<li><code>&quot;super string&quot;</code></li>
+<li><code>'super string'</code></li>
+</ul>
+<p>When inserting text into a file, you may have to deal with spacing. You can either preserve newline characters with a pipe <code>|</code> such as:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Using | to preserve newlines
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dest</span>: /tmp/rendezvous-with-death.txt
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">content</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          I have a rendezvous with Death
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          At some disputed barricade,
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          When Spring comes back with rustling shade
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          And apple-blossoms fill the air—</span></span></span></code></pre></div>
+<p>Output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>I have a rendezvous with Death
+</span></span><span style="display:flex;"><span>At some disputed barricade,
+</span></span><span style="display:flex;"><span>When Spring comes back with rustling shade
+</span></span><span style="display:flex;"><span>And apple-blossoms fill the air—</span></span></code></pre></div>
+<p>Or chose not to with a carrot &gt;</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: Using &gt; to fold lines into one
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dest</span>: /tmp/rendezvous-with-death.txt
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">content</span>: &gt;<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          I have a rendezvous with Death
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          At some disputed barricade,
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          When Spring comes back with rustling shade
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          And apple-blossoms fill the air—</span></span></span></code></pre></div>
+<p>Output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>I have a rendezvous with Death At some disputed barricade, When Spring comes back with rustling shade And apple-blossoms fill the air—</span></span></code></pre></div>
+<h3 id="checking-syntax-with---syntax-check">Checking syntax with <code>--syntax-check</code></h3>
+<p>You can use the <code>--syntax-check</code> flag to check a playbook for errors. The <code>ansible-playbook</code> command does check syntax by default though, and will throw the same error messages. The syntax check stops after detecting a single error. So you will need to fix the first errors in order to see errors further in the file. I&rsquo;ve added a tab in front of the host key to demonstrate:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[ansible@control base]$ cat playbook.yaml 
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>[ansible@control base]$ ansible-playbook --syntax-check playbook.yaml 
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">JSON: Expecting value</span>: line 1 column 1 (char 0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Syntax Error while loading YAML.
+</span></span><span style="display:flex;"><span>  mapping values are not allowed in this context
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">The error appears to be in &#39;/home/ansible/base/playbook.yaml&#39;</span>: line 3, column 10, but may
+</span></span><span style="display:flex;"><span>be elsewhere in the file depending on the exact syntax problem.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">The offending line appears to be</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>         ^ here</span></span></code></pre></div>
+<p>And here it is again, after fixing the syntax error:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[ansible@control base]$ vim playbook.yaml 
+</span></span><span style="display:flex;"><span>[ansible@control base]$ cat playbook.yaml 
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>[ansible@control base]$ ansible-playbook --syntax-check playbook.yaml 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">playbook</span>: playbook.yaml</span></span></code></pre></div>
+<h3 id="doing-a-dry-run">Doing a dry run</h3>
+<p>Use the -C flag to perform a dry run. This will check the success status of all of the tasks without actually making any changes.
+<code>ansible-playbook -C playbook.yaml</code></p>
+<h2 id="multiple-play-playbooks">Multiple play playbooks</h2>
+<p>Using multiple plays in a playbook lets you set up one group of servers with one configuration and another group with a different configuration. Each play has it&rsquo;s own list of hosts to address.</p>
+<p>You can also specify different parameters in each play such as <strong>become:</strong> or the <strong>remote_user:</strong> parameters.</p>
+<p>Try to keep playbooks small. As bigger playbooks will be harder to troubleshoot. You can use <em>include:</em> to include other playbooks. Other than troubleshooting, using smaller playbooks lets you use your playbooks in a flexible way to perform a wider range of tasks.</p>
+<p>Here is an example of a playbook with two plays:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd   &lt;--- play 1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: test httpd accessibility &lt;-- play 2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: test httpd access
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">url</span>: http://ansible1</span></span></code></pre></div>
+<h3 id="verbose-output-options">Verbose output options</h3>
+<p>You can increase the output of verbosity to an amount hitherto undreamt of. This can be useful for troubleshooting.</p>
+<p>Verbose output of the playbook above showing task results:
+<code>[ansible@control base]$ ansible-playbook -v playbook.yaml </code></p>
+<p>Verbose output of the playbook above showing task results and task configuration:
+<code>[ansible@control base]$ ansible-playbook -vv playbook.yaml </code></p>
+<p>Verbose output of the playbook above showing task results, task configuration, and info about connections to managed hosts:
+<code>[ansible@control base]$ ansible-playbook -vvv playbook.yaml </code></p>
+<p>Verbose output of the playbook above showing task results, task configuration, and info about connections to managed hosts, plug-ins, user accounts, and executed scripts:
+<code>[ansible@control base]$ ansible-playbook -vvvv playbook.yaml </code></p>
+<h3 id="lab-playbook">Lab playbook</h3>
+<p>Now we know enough to create and enable a simple webserver. Here is a playbook example. Just make sure to download the posix collection or you won&rsquo;t be able to use the firewalld module:
+<code>[ansible@control base]$ ansible-galaxy collection install ansible.posix</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[ansible@control base]$ cat playbook.yaml 
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Enable web server 
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: 
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - firewalld
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Create welcome page
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;Welcome to the webserver!\n&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /var/www/html/index.html
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: enable firewall
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>: 
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: firewalld
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Open service in firewall
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">firewalld</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>: http
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">permanent</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: enabled
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">immediate</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: test webserver accessibility
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: test webserver access
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">url</span>: http://ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">return_content</span>: <span style="color:#ff6ac1">yes</span> &lt;-- Return the body of the response as a content key in the dictionary result
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">status_code</span>: <span style="color:#ff9f43">200</span> &lt;--</span></span></code></pre></div>
+<p>After running this playbook, you should be able to reach the webserver at http://ansible1</p>
+<p>With return content and status code</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ok: [localhost] =&gt; {&#34;accept_ranges&#34;: &#34;bytes&#34;, &#34;changed&#34;: false, &#34;connection&#34;: &#34;close&#34;, &#34;content&#34;: &#34;Welcome to the webserver!\n&#34;, &#34;content_length&#34;: &#34;26&#34;, &#34;content_type&#34;: &#34;text/html; charset=UTF-8&#34;, &#34;cookies&#34;: {}, &#34;cookies_string&#34;: &#34;&#34;, &#34;date&#34;: &#34;Thu, 10 Apr 2025 12:12:37 GMT&#34;, &#34;elapsed&#34;: 0, &#34;etag&#34;: &#34;\&#34;1a-6326b4cfb4042\&#34;&#34;, &#34;last_modified&#34;: &#34;Thu, 10 Apr 2025 11:58:14 GMT&#34;, &#34;msg&#34;: &#34;OK (26 bytes)&#34;, &#34;redirected&#34;: false, &#34;server&#34;: &#34;Apache/2.4.62 (Red Hat Enterprise Linux)&#34;, &#34;status&#34;: 200, &#34;url&#34;: &#34;http://ansible1&#34;}</code></pre></div>
+<p>Adds this: <code>&quot;content&quot;: &quot;Welcome to the webserver!\n&quot;</code> and this: <code>&quot;status&quot;: 200, &quot;url&quot;: &quot;http://ansible1&quot;}</code> to verbose output for that task.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="including-and-importing-files">Including and importing Files</h1>
+
+<p>When content is included, it is dynamically processed at the moment that Ansible reaches that content.</p>
+<ul>
+<li>If content is imported, Ansible performs the import operation before starting to work on the tasks in the playbook.</li>
+</ul>
+<p>Files can be included and imported at different levels:</p>
+<p>• <strong>Roles:</strong> Roles are typically used to process a complete set of
+instructions provided by the role. Roles have a specific structure as
+well.</p>
+<p>• <strong>Playbooks:</strong> Playbooks can be imported as a complete playbook. You
+cannot do this from within a play. Playbooks can be imported only at the
+top level of the playbook.</p>
+<p>• <strong>Tasks:</strong> A task file is just a list of tasks and can be imported or
+included in another task.</p>
+<p>• <strong>Variables:</strong> As discussed in <a href="/ansible/playbooks/including-and-importing-files/#ch06.xhtml#ch06">Chapter 6</a>,
+&ldquo;<a href="/ansible/playbooks/including-and-importing-files/#ch06.xhtml#ch06">Working with Variables and Facts</a>,&rdquo; variables can be
+maintained in external files and included in a playbook. This makes
+managing generic multipurpose variables easier.</p>
+<h4 class="h4" id="importing-playbooks">Importing Playbooks</h4>
+<p>Importing playbooks is common in a setup where one master playbook is
+used, from which different additional playbooks are included. According
+to the Ansible Best Practices Guide (which is a part of the Ansible
+documentation), the master playbook could have the name site.yaml, and
+it can be used to include playbooks for each specific set of servers,
+for instance. When a playbook is imported, this replaces the entire
+play. So, you cannot import a playbook at a task level; it needs to
+happen at a play level. <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_4">Listing 10-4</a> gives an
+example of the playbook imported in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_5">Listing
+10-5</a>. In <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_6">Listing 10-6</a>,
+you can see the result of running the <strong>ansible-playbook
+listing105.yaml</strong> command.</p>
+<p><strong>Listing 10-4</strong> Sample Playbook to Be Imported</p>
+<p>::: pre_1
+- hosts: all
+tasks:
+- debug:
+msg: running the imported play
+:::</p>
+<p><strong>Listing 10-5</strong> Importing a Playbook</p>
+<p>::: pre_1
+&mdash;
+- name: run a task
+hosts: all
+tasks:
+- debug:
+msg: running task1</p>
+<pre><code>- name: importing a playbook
+  import_playbook: listing104.yaml
+</code></pre>
+<p>:::</p>
+<p><strong>Listing 10-6</strong> Running <strong>ansible-playbook listing105.yaml</strong> Result</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing105.yaml</p>
+<pre><code>PLAY [run a task] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible2]
+ok: [ansible1]
+ok: [ansible3]
+ok: [ansible4]
+
+TASK [debug] *******************************************************************
+ok: [ansible1] =&gt; {
+    &quot;msg&quot;: &quot;running task1&quot;
+}
+ok: [ansible2] =&gt; {
+    &quot;msg&quot;: &quot;running task1&quot;
+}
+ok: [ansible3] =&gt; {
+    &quot;msg&quot;: &quot;running task1&quot;
+}
+ok: [ansible4] =&gt; {
+    &quot;msg&quot;: &quot;running task1&quot;
+}
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible2]
+ok: [ansible1]
+ok: [ansible3]
+ok: [ansible4]
+
+TASK [debug] *******************************************************************
+ok: [ansible1] =&gt; {
+    &quot;msg&quot;: &quot;running the imported play&quot;
+}
+ok: [ansible2] =&gt; {
+    &quot;msg&quot;: &quot;running the imported play&quot;
+}
+ok: [ansible3] =&gt; {
+    &quot;msg&quot;: &quot;running the imported play&quot;
+}
+ok: [ansible4] =&gt; {
+    &quot;msg&quot;: &quot;running the imported play&quot;
+}
+
+PLAY RECAP *********************************************************************
+ansible1                   : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2                   : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3                   : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4                   : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<h4 class="h4" id="importing-and-including-task-files">Importing and Including Task Files</h4>
+<p>Instead of importing complete playbooks, you may include task files.
+When you use <strong>import_tasks</strong>, the tasks are statically imported while
+executing the playbook. When you use <strong>include_tasks</strong>, the tasks are
+dynamically included at the moment they are needed. Dynamically
+including task files is recommended when the task file is used in a
+conditional statement. If task files are mainly used to make development
+easier by working with separate task files, they can be statically
+imported.</p>
+<p>There are a few considerations when working with <strong>import_tasks</strong> to
+statically import tasks:</p>
+<p>• Loops cannot be used with <strong>import_tasks</strong>.</p>
+<p>• If a variable is used to specify the name of the file to import, this
+cannot be a host or group inventory variable.</p>
+<p>• When you use a <strong>when</strong> statement on the entire <strong>import_tasks</strong> file,
+the conditional statements are applied to each task that is involved.</p>
+<p>As an alternative, <strong>include_tasks</strong> can be used to dynamically include
+a task file. This approach also comes with some considerations:</p>
+<p>• When you use the <strong>ansible-playbook --list-tasks</strong> command, tasks
+that are in the included tasks are not displayed.</p>
+<p>• You cannot use <strong>ansible-playbook --start-at-task</strong> to start a
+playbook on a task that comes from an included task file.</p>
+<p>• You cannot use a <strong>notify</strong> statement in the main playbook to trigger
+a handler that is in the included tasks file.</p>
+<p>::: note</p>
+<hr>
+<p><strong>Tip</strong></p>
+<p>When you use includes and imports to work with task files, the
+recommendation is to store the task files in a separate directory. Doing
+so makes it easier to delegate task management to specific users.</p>
+<hr>
+<p>:::</p>
+<h4 class="h4" id="using-variables-when-importing-and-including-files">Using Variables When Importing and Including Files</h4>
+<p>The main goal to work with imported and included files is to make
+working with reusable code easy. To make sure you reach this goal, the
+imported and included files should be as generic as possible. That means
+it&rsquo;s a bad idea to include names of specific items that may change when
+used in a different context. Think, for instance, of the names of
+packages, users, services, and more.</p>
+<p>To deal with include files in a flexible way, you should define specific
+items as variables. Within the <strong>include_tasks</strong> file, for instance, you
+refer to {{ package }}, and in the main playbook from which the include
+files are called, you can define the variables. Obviously, you can use
+this approach with a straight variable definition or by using host
+variable or group variable include files.</p>
+<p>::: note</p>
+<hr>
+<p><strong>Exam tip</strong></p>
+<p>It&rsquo;s always possible to configure items in a way that is brilliant but
+quite complex. On the exam it&rsquo;s not a smart idea to go for complex. Just
+keep your solution as easy as possible. The only requirement on the exam
+is to get things working, and it doesn&rsquo;t matter exactly how you do that.</p>
+<hr>
+<p>:::</p>
+<p>In <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_7">Listings 10-7</a> through
+<a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_10">10-10</a>, you can see how include and import files
+are used to work on one project. The main playbook, shown in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_9">Listing
+10-9</a>, defines the variables to be used, as well
+as the names of the include and import files. Listings 10-7 and 10-8
+show the code from the include files, which use the variables that are
+defined in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_9">Listing 10-9</a>. The result of running
+the playbook in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_9">Listing 10-9</a> can be seen in
+<a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_10">Listing 10-10</a>.</p>
+<p><strong>Listing 10-7</strong> The Include Tasks File tasks/service.yaml Used for
+Services Definition</p>
+<p>::: pre_1
+- name: install {{ package }}
+yum:
+name: &ldquo;{{ package }}&rdquo;
+state: latest
+- name: start {{ service }}
+service:
+name: &ldquo;{{ service }}&rdquo;
+enabled: true
+state: started
+:::</p>
+<p>The sample tasks file in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_7">Listing 10-7</a> is
+straightforward; it uses the yum module to install a package and the
+service module to start and enable the package. The variables this file
+refers to are defined in the main playbook in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_9">Listing
+10-9</a>.</p>
+<p><strong>Listing 10-8</strong> The Import Tasks File tasks/firewall.yaml Used for
+Firewall Definition</p>
+<p>::: pre_1
+- name: install the firewall
+package:
+name: &ldquo;{{ firewall_package }}&rdquo;
+state: latest
+- name: start the firewall
+service:
+name: &ldquo;{{ firewall_service }}&rdquo;
+enabled: true
+state: started
+- name: open the port for the service
+firewalld:
+service: &ldquo;{{ item }}&rdquo;
+immediate: true
+permanent: true
+state: enabled
+loop: &ldquo;{{ firewall_rules }}&rdquo;
+:::</p>
+<p>In the sample firewall file in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_8">Listing 10-8</a>, the
+firewall service is installed, defined, and configured. In the
+configuration of the firewalld service, a loop is used on the variable
+firewall_rules. This variable obviously is defined in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_9">Listing
+10-9</a>, which is the file where site-specific
+contents such as variables are defined.</p>
+<p><strong>Listing 10-9</strong> Main Playbook Example</p>
+<p>::: pre_1
+&mdash;
+- name: setup a service
+hosts: ansible2
+tasks:
+- name: include the services task file
+include_tasks: tasks/service.yaml
+vars:
+package: httpd
+service: httpd
+when: ansible_facts[’os_family’] == ’RedHat’
+- name: import the firewall file
+import_tasks: tasks/firewall.yaml
+vars:
+firewall_package: firewalld
+firewall_service: firewalld
+firewall_rules:
+- http
+- https
+:::</p>
+<p>The main playbook in <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_9">Listing 10-9</a> shows the
+site-specific configuration. It performs two main tasks: it defines
+variables, and it calls an include file and an import file. The
+variables that are defined are used by the include and import files. The
+<strong>include_tasks</strong> statement is executed in a <strong>when</strong> statement. Notice
+that the <strong>firewall_rules</strong> variable contains a list as its value, which
+is used by the loop that is defined in the import file.</p>
+<p><strong>Listing 10-10</strong> Running <strong>ansible-playbook listing109.yaml</strong></p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing109.yaml</p>
+<pre><code>PLAY [setup a service] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible2]
+
+TASK [include the services task file] ******************************************
+included: /home/ansible/rhce8-book/tasks/service.yaml for ansible2
+
+TASK [install httpd] ***********************************************************
+ok: [ansible2]
+
+TASK [start httpd] *************************************************************
+changed: [ansible2]
+
+TASK [install the firewall] ****************************************************
+changed: [ansible2]
+
+TASK [start the firewall] ******************************************************
+ok: [ansible2]
+
+TASK [open the port for the service] *******************************************
+changed: [ansible2] =&gt; (item=http)
+changed: [ansible2] =&gt; (item=https)
+
+PLAY RECAP *********************************************************************
+ansible2                   : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<p>The interesting thing in the <a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#list10_10">Listing 10-10</a>
+output is that the include file is dynamically included while running
+the playbook. This is not the case for the statically imported file. In
+<a href="/ansible/playbooks/including-and-importing-files/#ch10.xhtml#exe10_3">Exercise 10-3</a> you practice working with include
+files.</p>
+<p>::: box
+<strong>Exercise 10-3 Using Includes and Imports</strong></p>
+<p>In this exercise you create a simple master playbook that installs a
+service. The name of the service is defined in a variable file, and the
+specific tasks are included through task files.</p>
+<p>1. Open the file exercise103-vars.yaml and define three variables as
+follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">packagename: vsftpd
+servicename: vsftpd
+firewalld_servicename: ftp</code></pre></div>
+<p>2. Create the exercise103-ftp.yaml file and give it the following
+contents to install, enable, and start the vsftpd service and also to
+make it accessible in the firewall:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: install {{ packagename }}
+  yum:
+    name: &#34;{{ packagename }}&#34;
+    state: latest
+- name: enable and start {{ servicename }}
+  service:
+    name: &#34;{{ servicename }}&#34;
+    state: started
+    enabled: true
+- name: open the service in the firewall
+  firewalld:
+    service: &#34;{{ firewalld_servicename }}&#34;
+    permanent: yes
+    state: enabled</code></pre></div>
+<p>3. Create the exercise103-copy.yaml file that manages the
+/var/ftp/pub/README file and make sure it has the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: copy a file
+  copy:
+    content: &#34;welcome to this server&#34;
+    dest: /var/ftp/pub/README</code></pre></div>
+<p>4. Create the master playbook exercise103.yaml that includes all of
+them and give it the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: install vsftpd on ansible2
+  vars_files: exercise103-vars.yaml
+  hosts: ansible2
+  tasks:
+  - name: install and enable vsftpd
+    import_tasks: exercise103-ftp.yaml
+  - name: copy the README file
+    import_tasks: exercise103-copy.yaml</code></pre></div>
+<p>5. Run the playbook and verify its output</p>
+<p>6. Run an ad hoc command to verify the /var/ftp/pub/README file has
+been created: <strong>ansible ansible2 -a &ldquo;cat /var/ftp/pub/README&rdquo;</strong>.</p>
+<h3 id="end-of-chapter-lab">End-of-Chapter Lab</h3>
+<p>In the end-of-chapter lab with this chapter, you reorganize a playbook
+to work with several different files instead of one big file. Do this
+according to the instructions in Lab 10-1.</p>
+<h3 id="lab-10-1">Lab 10-1</h3>
+<p>The lab82.yaml file, which you can find in the GitHub repository that
+goes with this course, is an optimal candidate for optimization.
+Optimize this playbook according to the following requirements:</p>
+<p>• Use includes and import to make this a modular playbook where
+different files are used to distinguish between the different tasks.</p>
+<p>• Optimize this playbook such that it will run on no more than two hosts
+at the same time and completes the entire playbook on these two hosts
+before continuing with the next host.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
+  </body>
+</html>

@@ -1,3 +1,7 @@
++++
+title = 'Ansible-inventory command'
+description = 'Ansible-inventory command'
++++
 ### Inventory commands:
 
 To view the inventory, specify the inventory file such as ~/base/inventory in the command line. You can name the inventory file anything you want. You can also set the default in the ansible.cfg file.

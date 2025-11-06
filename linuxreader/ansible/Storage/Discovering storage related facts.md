@@ -1,4 +1,7 @@
-
++++
+title = 'Discovering storage related facts'
+description = 'Discovering storage related facts'
++++
 
 **Table 15-2** Modules for Managing Storage
 

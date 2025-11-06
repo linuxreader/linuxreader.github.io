@@ -1,3 +1,8 @@
++++
+title = 'Jinja2 templates'
+description = 'Jinja2 templates'
++++
+
 ### Managing SELinux Properties
 
 - SELinux can be used on files to manage file context

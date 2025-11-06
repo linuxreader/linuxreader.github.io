@@ -5,63 +5,45 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="Table 15-2 Modules for Managing Storage
-To make sure that your playbook is applied to the right devices, you first need to find which devices are available on your managed system.
-After you find them, you can use conditionals to make sure that tasks are executed on the right devices.
-Using Storage-Related Facts Ansible_facts related to storage
-ansible_devices
-Available storage and device info ansible_device_links info on how to access storage and other device info ansible_mounts Mount point info ansible ansible1 -m setup -a &#39;filter=ansible_devices&#39;">
+    <meta name="description" content="Discovering storage related facts">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:description" content="Table 15-2 Modules for Managing Storage
-To make sure that your playbook is applied to the right devices, you first need to find which devices are available on your managed system.
-After you find them, you can use conditionals to make sure that tasks are executed on the right devices.
-Using Storage-Related Facts Ansible_facts related to storage
-ansible_devices
-Available storage and device info ansible_device_links info on how to access storage and other device info ansible_mounts Mount point info ansible ansible1 -m setup -a &#39;filter=ansible_devices&#39;">
+    <meta name="twitter:title" content="Discovering storage related facts :: Linux Reader">
+    <meta name="twitter:description" content="Discovering storage related facts">
     <meta property="og:url" content="http://linuxreader.com/ansible/storage/discovering-storage-related-facts/">
     <meta property="og:site_name" content="Linux Reader">
-    <meta property="og:description" content="Table 15-2 Modules for Managing Storage
-To make sure that your playbook is applied to the right devices, you first need to find which devices are available on your managed system.
-After you find them, you can use conditionals to make sure that tasks are executed on the right devices.
-Using Storage-Related Facts Ansible_facts related to storage
-ansible_devices
-Available storage and device info ansible_device_links info on how to access storage and other device info ansible_mounts Mount point info ansible ansible1 -m setup -a &#39;filter=ansible_devices&#39;">
+    <meta property="og:title" content="Discovering storage related facts :: Linux Reader">
+    <meta property="og:description" content="Discovering storage related facts">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Ansible">
-    <meta itemprop="description" content="Table 15-2 Modules for Managing Storage
-To make sure that your playbook is applied to the right devices, you first need to find which devices are available on your managed system.
-After you find them, you can use conditionals to make sure that tasks are executed on the right devices.
-Using Storage-Related Facts Ansible_facts related to storage
-ansible_devices
-Available storage and device info ansible_device_links info on how to access storage and other device info ansible_mounts Mount point info ansible ansible1 -m setup -a &#39;filter=ansible_devices&#39;">
+    <meta itemprop="name" content="Discovering storage related facts :: Linux Reader">
+    <meta itemprop="description" content="Discovering storage related facts">
     <meta itemprop="wordCount" content="442">
-    <title></title>
-    <link href="http://linuxreader.com/ansible/storage/discovering-storage-related-facts/" rel="canonical" type="text/html" title="">
-    <link href="/ansible/storage/discovering-storage-related-facts/index.xml" rel="alternate" type="application/rss+xml" title="">
-    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
-    <script src="/js/search-lunr.min.js?1762442645" defer></script>
-    <script src="/js/search.min.js?1762442645" defer></script>
+    <title>Discovering storage related facts :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/storage/discovering-storage-related-facts/" rel="canonical" type="text/html" title="Discovering storage related facts :: Linux Reader">
+    <link href="/ansible/storage/discovering-storage-related-facts/index.xml" rel="alternate" type="application/rss+xml" title="Discovering storage related facts :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
-    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -134,7 +116,7 @@ Available storage and device info ansible_device_links info on how to access sto
           <div class="topbar-area topbar-area-start" data-area="start">
             <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
             </div>
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/storage/configuring-storage-advanced-exercise/" title="Configuring Storage Advanced Exercise (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
@@ -147,13 +129,13 @@ Available storage and device info ansible_device_links info on how to access sto
 
           </div>
           <span class="topbar-breadcrumbs highlightable">
-            
+            Discovering storage related facts
           </span>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/storage/discovering-storage-related-facts/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
             </div>
 
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/storage/managing-partitions-and-lvm/" title="Managing Partitions and LVM (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
 
 
@@ -168,6 +150,90 @@ Available storage and device info ansible_device_links info on how to access sto
       <div id="R-main-overlay"></div>
       <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
         <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="discovering-storage-related-facts">Discovering storage related facts</h1>
+
+<p><strong>Table 15-2</strong> Modules for Managing Storage</p>
+<p><a href="#R-image-896a91dd0dcd994506180be6e12c5678" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/15tab02.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-896a91dd0dcd994506180be6e12c5678"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/15tab02.jpg"></a></p>
+<p>To make sure that your playbook is applied to the right devices, you first need to find which devices are available on your managed system.</p>
+<p>After you find them, you can use conditionals to make sure that tasks are executed on the right devices.</p>
+<h4 id="using-storage-related-facts">Using Storage-Related Facts</h4>
+<p>Ansible_facts related to storage</p>
+<p>ansible_devices</p>
+<ul>
+<li>Available storage and device info
+ansible_device_links</li>
+<li>info on how to access storage and other device info
+ansible_mounts</li>
+<li>Mount point info</li>
+</ul>
+<p><code>ansible ansible1 -m setup -a 'filter=ansible_devices'</code></p>
+<ul>
+<li>
+<p>Find generic information about storage devices.</p>
+</li>
+<li>
+<p>The <strong>filter</strong> argument to the setup module uses a shell-style wildcard to search for matching items and for that reason can search in the highest level facts, such as <strong>ansible_devices</strong>, but it is incapable of further specifying what is searched for. For that reason, in the <strong>filter</strong> argument to the setup module, you cannot use a construction like <code>ansible ansible1 -m setup -a &quot;filter=ansible_devices.sda&quot;</code> which is common when looking up the variable in conditional statements.</p>
+</li>
+</ul>
+<h4 id="using-storage-related-facts-in-conditional-statements">Using Storage-Related Facts in Conditional Statements</h4>
+<p>Assert module</p>
+<ul>
+<li>show an error message if a device does not exist and to perform a task if the device exists.</li>
+<li>For an easier solution, you can also use a <strong>when</strong> statement to look for the existence of a device.</li>
+<li>The advantage of using the assert module is that an error message can be printed if the condition is not met.</li>
+</ul>
+<p><strong>Listing 15-2</strong> Using assert to Run a Task Only If a Device Exists</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: search for /dev/sdb continue only if it is found
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">disk_name</span>: sdb
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: abort if second disk does not exist
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">assert</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">that</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#5af78e">&#34;ansible_facts[&#39;devices&#39;][&#39;{{ disk_name }}&#39;] is defined&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">fail_msg</span>: second hard disk not found
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;{{ disk_name }} was found, lets continue&#34;</span></span></span></code></pre></div>
+<p>Write a playbook that finds out the name of the disk device and puts that in a variable that you can work with further on in the playbook.</p>
+<p>The <strong>set_fact</strong> argument comes in handy to do so.</p>
+<p>You can use it in combination with a <strong>when</strong> conditional statement to store a detected device name in a variable.</p>
+<p>Storing the Detected Disk Device Name in a Variable</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: define variable according to diskname detected
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">set_fact</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">disk2name</span>: sdb
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sdb’]</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Detect secondary disk name
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">set_fact</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">disk2name</span>: vda
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: ansible_facts[&#39;devices&#39;][&#39;vda&#39;] is defined
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Search for second disk, continue only if it is found
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">assert</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">that</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#5af78e">&#34;ansible_facts[&#39;devices&#39;][disk2name] is defined&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">fail_msg</span>: second hard disk not found
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Debug detected disk
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;{{ disk2name }} was found. Moving forward.&#34;</span>
+</span></span><span style="display:flex;"><span>~                                                      </span></span></code></pre></div>
+<p>Next, see <a href="/ansible/storage/managing-partitions-and-lvm/">Managing Partitions and LVM</a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
         </div>
       </main>
     </div>
@@ -183,22 +249,22 @@ Available storage and device info ansible_device_links info on how to access sto
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
-    <script src="/js/theme.min.js?1762442645" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
   </body>
 </html>

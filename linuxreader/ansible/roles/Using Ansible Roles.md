@@ -1,10 +1,9 @@
 +++
 title = 'Ansible Roles'
-description = 'Manipulating files, SELinux, and Jinja2 templates'
+description = 'Ansible Roles'
 +++
 
-• Work with roles
-• Create roles
+Work with roles and Create roles
 
 
 ### Using Ansible Roles

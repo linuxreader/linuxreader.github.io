@@ -1,3 +1,7 @@
++++
+title = 'Ansible Facts'
+description = 'Ansible Facts'
++++
 An ansible **fact** variable is a variable that is automatically set based on the managed system. Facts are a default behavior used to discover information to use in conditionals. They are collected when Ansible executes on a remote system. 
 
 There are **systems facts** and **custom facts**. Systems facts are system property values. And custom facts are user-defined variables stored on managed hosts. 

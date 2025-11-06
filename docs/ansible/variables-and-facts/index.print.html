@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Ansible FactsAnsible Facts
+Ansible VaultAnsible Vault
+VariablesAll about Ansible variables">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Variable and Facts :: Linux Reader">
+    <meta name="twitter:description" content="Ansible FactsAnsible Facts
+Ansible VaultAnsible Vault
+VariablesAll about Ansible variables">
+    <meta property="og:url" content="http://linuxreader.com/ansible/variables-and-facts/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Variable and Facts :: Linux Reader">
+    <meta property="og:description" content="Ansible FactsAnsible Facts
+Ansible VaultAnsible Vault
+VariablesAll about Ansible variables">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Variable and Facts :: Linux Reader">
+    <meta itemprop="description" content="Ansible FactsAnsible Facts
+Ansible VaultAnsible Vault
+VariablesAll about Ansible variables">
+    <meta itemprop="wordCount" content="10">
+    <title>Variable and Facts :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/variables-and-facts/" rel="canonical" type="text/html" title="Variable and Facts :: Linux Reader">
+    <link href="/ansible/variables-and-facts/index.xml" rel="alternate" type="application/rss+xml" title="Variable and Facts :: Linux Reader">
+    <link href="/images/favicon.svg?1762453719" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762453719" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762453719" defer></script>
+    <script src="/js/search-lunr.min.js?1762453719" defer></script>
+    <script src="/js/search.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762453719";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762453719" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762453719" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762453719" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762453719" rel="stylesheet">
+    <link href="/css/theme.min.css?1762453719" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762453719" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/variables-and-facts\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/variables-and-facts/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/using-tags/" title="Using Tags (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Variable and Facts
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/variables-and-facts/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/variables-and-facts/ansible-facts/" title="Ansible Facts (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="variable-and-facts">Variable and Facts</h1>
+
+<div class="children children-h6 children-sort-">
+  <h6 class="children-title" id="ansible-facts"><a href="/ansible/variables-and-facts/ansible-facts/">Ansible Facts</a></h6><p>Ansible Facts</p>
+  <h6 class="children-title" id="ansible-vault"><a href="/ansible/variables-and-facts/ansible-vault/">Ansible Vault</a></h6><p>Ansible Vault</p>
+  <h6 class="children-title" id="variables"><a href="/ansible/variables-and-facts/variables/">Variables</a></h6><p>All about Ansible variables</p>
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Variable and Facts</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-facts">Ansible Facts</h1>
+
+<p>An ansible <strong>fact</strong> variable is a variable that is automatically set based on the managed system. Facts are a default behavior used to discover information to use in conditionals. They are collected when Ansible executes on a remote system.</p>
+<p>There are <strong>systems facts</strong> and <strong>custom facts</strong>. Systems facts are system property values. And custom facts are user-defined variables stored on managed hosts.</p>
+<p>If no variables are defined at the command prompt, it will use the variable set for the play. You can also define the variables with the <code>-e</code> flag when running the playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible-playbook variable-pb.yaml -e <span style="color:#ff5c57">users</span><span style="color:#ff6ac1">=</span>john
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PLAY <span style="color:#ff6ac1">[</span>create a user using a variable<span style="color:#ff6ac1">]</span> ************************************************************************************************************************
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>Gathering Facts<span style="color:#ff6ac1">]</span> ***************************************************************************************************************************************
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>create a user john on host ansible1<span style="color:#ff6ac1">]</span> *******************************************************************************************************************
+</span></span><span style="display:flex;"><span>changed: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PLAY RECAP ***************************************************************************************************************************************************
+</span></span><span style="display:flex;"><span>ansible1                   : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">2</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   </span></span></code></pre></div>
+<p>A <strong>magic variable</strong> is a system variable that is automatically set.</p>
+<p>Notice the &ldquo;Gathering Facts&rdquo; task. when you run a playbook. This is an implicit tasks ran every time you run a playbook. This task grabs facts from managed hosts and stores them in the variable <strong>ansible_facts</strong>.</p>
+<p>You can use the <strong>debug</strong> module to display variables like so:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: show facts
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: show facts
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">var</span>: ansible_facts &lt;-- this module does require variables to be enclosed in curly brackets</span></span></code></pre></div>
+<p>This outputs a gigantic list of facts from our managed nodes.</p>
+<p>Two formats for using ansible facts variables:
+Square brackets (prefered): <code>ansible_facts['default_ipv4']['address']</code>
+Dotted: <code>ansible_facts.default_ipv4.address</code></p>
+<p>Commonly used ansible_facts:</p>
+<p><a href="#R-image-82ddedd68bbd390333cbffbdd3edd357" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../../images/Pasted%20image%2020250518052059.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-82ddedd68bbd390333cbffbdd3edd357"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../../images/Pasted%20image%2020250518052059.png"></a></p>
+<p>There are additional Ansible modules for gathering more information. See `ansible-doc -l | grep fact</p>
+<hr>
+<p><code>package_facts</code> module collects information about software packages installed on managed hosts.</p>
+<h3 id="two-ways-facts-are-displayed">Two ways facts are displayed</h3>
+<p><strong>Ansible_facts variable</strong> (current way)</p>
+<ul>
+<li>All facts are stored in a dictionary with the name <strong>ansible_facts</strong>, and items in this dictionary are addressed using the notation with square brackets</li>
+<li>ie: <code>ansible_facts['distribution_version']</code></li>
+<li>Recommended to use this.</li>
+</ul>
+<p><strong>injected variables</strong> (old way)</p>
+<ul>
+<li>
+<p>Variable are prefixed with the string ansible_</p>
+</li>
+<li>
+<p>Will lose support eventually</p>
+</li>
+<li>
+<p>Old approach and the new approach both still occur.</p>
+<ul>
+<li><code>ansible ansible1 -m setup</code> command Ansible facts are injected as variables.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ansible1 | SUCCESS =&gt; {
+        &#34;ansible_facts&#34;: {
+            &#34;ansible_all_ipv4_addresses&#34;: [
+                &#34;192.168.122.1&#34;,
+                &#34;192.168.4.201&#34;
+            ],
+            &#34;ansible_all_ipv6_addresses&#34;: [
+                &#34;fe80::e564:5033:5dec:aead&#34;
+            ],
+            &#34;ansible_apparmor&#34;: {</code></pre></div>
+<p>Comparing ansible_facts Versus Injected Facts as Variables</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ansible_facts                               Injected Variable
+--------------------------------------------------------------
+ansible_facts[&#39;hostname&#39;]                  ansible_hostname
+ansible_facts[&#39;distribution&#39;]              ansible_distribution
+ansible_facts[&#39;default_ipv4&#39;][&#39;address&#39;]   ansible_default_ipv4[&#39;address&#39;]
+ansible_facts[&#39;interfaces&#39;]                ansible_interfaces
+ansible_facts[&#39;devices&#39;]                   ansible_devices
+ansible_facts[&#39;devices&#39;][&#39;sda&#39;]\
+[&#39;partitions&#39;][&#39;sda1&#39;][&#39;size&#39;]             ansible_devices[&#39;sda&#39;][&#39;partitions&#39;][&#39;sda1&#39;][&#39;size&#39;]
+ansible_facts[&#39;distribution_version&#39;]      ansible_distribution_version</code></pre></div>
+<p>Different notations can be used in either method, the listings address the facts in dotted notation, not in the notation with square brackets.</p>
+<p>Addressing Facts with Injected Variables:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    - hosts: all
+</span></span><span style="display:flex;"><span>      tasks:
+</span></span><span style="display:flex;"><span>      - name: show IP address
+</span></span><span style="display:flex;"><span>        debug:
+</span></span><span style="display:flex;"><span>          msg: &gt;
+</span></span><span style="display:flex;"><span>            This host uses IP address <span style="color:#ff6ac1">{{</span> ansible_default_ipv4.address <span style="color:#ff6ac1">}}</span></span></span></code></pre></div>
+<p>Addressing Facts Using the ansible_facts Variable</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - hosts: all
+      tasks:
+      - name: show IP address
+        debug:
+          msg: &gt;
+            This host uses IP address {{ ansible_facts.default_ipv4.address }}</code></pre></div>
+<p>If, for some reason, you want the method where facts are injected into variables to be the default method, you can use
+<strong>inject_facts_as_vars=true</strong> in the <strong>[default]</strong> section of the ansible.cfg file.</p>
+<p>• In Ansible versions since 2.5, all facts are stored in one variable: <strong>ansible_facts</strong>. This method is used while gathering facts from a playbook.</p>
+<p>• Before Ansible version 2.5, facts were injected into variables such as <strong>ansible_hostname</strong>. This method is used by the setup module. (Note that this may change in future versions of Ansible.)</p>
+<p>• Facts can be addressed in dotted notation:
+<code>{{ansible_facts.default_ipv4.address }}</code></p>
+<p>• Alternatively, facts can be addressed in square brackets notation:
+<code>{{ ansible_facts['default_ipv4']['address'] }}</code>. (preferred)</p>
+<h4 id="managing-fact-gathering">Managing Fact Gathering</h4>
+<p>By default, upon execution of each playbook, facts are gathered. This does slow down playbooks, and for that reason, it is possible to disable fact gathering completely. To do so, you can use the <strong>gather_facts: no</strong> parameter in the play header. If later in the same playbook it is necessary to gather facts, you can do this by running the setup module in a task.</p>
+<p>Even if it is possible to disable fact gathering for all of your Ansible configuration, this practice is not recommended. Too many playbooks use conditionals that are based on the current value of facts, and all of these conditionals would stop working if fact gathering were disabled altogether.</p>
+<p>As an alternative to make working with facts more efficient, you can disable a fact cache. To do so, you need to install an external plug-in.
+Currently, two plug-ins are available for this purpose: <strong>jsonfile</strong> and <strong>redis</strong>. To configure fact caching using the redis plug-in, you need to
+install it first. Next, you can enable fact caching through ansible.cfg.</p>
+<p>The following procedure describes how to do this:</p>
+<p>1. Use <strong>yum install redis</strong>.</p>
+<p>2. Use <strong>service redis start</strong>.</p>
+<p>3. Use <strong>pip install redis</strong>.</p>
+<p>4. Edit /etc/ansible/ansible.cfg and ensure it contains the following
+parameters:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">[defaults]
+gathering = smart
+fact_caching = redis
+fact_caching_timeout = 86400</code></pre></div>
+<p><strong>Note</strong></p>
+<p>Fact caching can be convenient but should be used with caution. If, for instance, a playbook installs a certain package only if a sufficient
+amount of disk space is available, it should not do this based on information that may be up to 24 hours old. For that reason, using a
+fact cache is not recommended in many situations.</p>
+<h4 id="custom-facts">Custom Facts</h4>
+<ul>
+<li>
+<p>Used to provide a host with arbitrary values that Ansible can use to change the behavior of plays.</p>
+</li>
+<li>
+<p>can be provided as static files.</p>
+</li>
+<li>
+<p>files must</p>
+<ul>
+<li>be in either INI or JSON format,</li>
+<li>have the extension .fact, and</li>
+<li>on the managed hosts must be stored in the /etc/ansible/facts.d directory.</li>
+</ul>
+</li>
+<li>
+<p>can be generated by a script, and</p>
+<ul>
+<li>in that case the only requirement is that the script must generate its output in JSON format.</li>
+</ul>
+</li>
+</ul>
+<p>Dynamic custom facts are useful because they allow the facts to be determined at the moment that a script is running.  provides an example of a static custom fact file.</p>
+<p>Custom Facts Sample File:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [packages]
+    web_package = httpd
+    ftp_package = vsftpd
+    
+    [services]
+    web_service = httpd
+    ftp_service = vsftpd</code></pre></div>
+<p>To get the custom facts files on the managed hosts, you can use a playbook that copies a local custom fact file (existing in the current Ansible project directory) to the appropriate location on the managed hosts. Notice that this playbook uses variables, which are explained in more detail in the section titled &ldquo;Working with Variables.&rdquo;</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: Install custom facts
+      hosts: all
+      vars:
+        remote_dir: /etc/ansible/facts.d
+        facts_file: listing68.fact
+      tasks:
+      - name: create remote directory
+        file:
+          state: directory
+          recurse: yes
+          path: &#34;{{ remote_dir }}&#34;
+      - name: install new facts
+        copy:
+          src: &#34;{{ facts_file }}&#34;
+          dest: &#34;{{ remote_dir }}&#34;</code></pre></div>
+<p>Custom facts are stored in the variable <strong>ansible_facts.ansible_local</strong>.
+In this variable, you use the filename of the custom fact file and the label in the custom fact file. For instance, after you run the playbook
+in <a href="/ansible/variables-and-facts/ansible-facts/#ch06.xhtml#list6_9">Listing 6-9</a>, the web_package fact that was defined in listing68.fact is accessible as</p>
+<pre><code>{{ ansible_facts[’ansible_local’][’listing67’][’packages’][’web_package’] }}
+</code></pre>
+<p>To verify, you can use the setup module with the filter argument. Notice that because the setup module produces injected variables as a result, the ad hoc command to use is <code>ansible all -m setup -a &quot;filter=ansible_local&quot;</code> . The command <code>ansible all -m setup -a  &quot;filter=ansible_facts\['ansible_local'\]&quot;</code> does not work.</p>
+<h3 id="lab-working-with-ansible-facts">Lab Working with Ansible Facts</h3>
+<p>1. Create a custom fact file with the name custom.fact and the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">[software]
+package = httpd
+service = httpd
+state = started
+enabled = true</code></pre></div>
+<p>2. Write a playbook with the name copy_facts.yaml and the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: copy custom facts
+  become: yes
+  hosts: ansible1
+  tasks:
+  - name: create the custom facts directory
+    file:
+      state: directory
+      recurse: yes
+      path: /etc/ansible/facts.d
+  - name: copy the custom facts
+    copy:
+      src: custom.fact
+      dest: /etc/ansible/facts.d</code></pre></div>
+<p>3. Apply the playbook using <code>ansible-playbook copy_facts.yaml -i inventory</code></p>
+<p>4. Check the availability of the custom facts by using <code>ansible all -m setup -a &quot;filter=ansible_local&quot; -i inventory</code></p>
+<p>5. Use an ad hoc command to ensure that the httpd service is not installed on any of the managed servers: <code>ansible all -m yum -a &quot;name=httpd state=absent&quot; -i inventory -b</code></p>
+<p>6. Create a playbook with the name <strong>setup_with_facts.yaml</strong> that installs and enables the httpd service, using the custom facts:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: install and start the web service
+  hosts: ansible1
+  tasks:
+  - name: install the package
+    yum:
+      name: &#34;{{ ansible_facts[&#39;ansible_local&#39;][&#39;custom&#39;][&#39;software&#39;][&#39;package&#39;] }}&#34;
+      state: latest
+  - name: start the service
+    service:
+      name: &#34;{{ ansible_facts[&#39;ansible_local&#39;][&#39;custom&#39;][&#39;software&#39;][&#39;service&#39;] }}&#34;
+      state: &#34;{{ ansible_facts[&#39;ansible_local&#39;][&#39;custom&#39;][&#39;software&#39;][&#39;state&#39;] }}&#34;
+      enabled: &#34;{{ ansible_facts[&#39;ansible_local&#39;][&#39;custom&#39;][&#39;software&#39;][&#39;enabled&#39;] }}&#34;</code></pre></div>
+<p>7. Run the playbook to install and set up the service by using <code>ansible-playbook setup_with_facts.yaml -i inventory -b</code></p>
+<p>8. Use an ad hoc command to verify the service is running: <code>ansible ansible1 -a &quot;systemctl status httpd&quot; -i inventory -b</code></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-vault">Ansible Vault</h1>
+
+<h3 id="ansible-vault">Ansible Vault</h3>
+<ul>
+<li>For webkeys, passwords, and other types of sensitive data that you really shouldn&rsquo;t store as plain text in a playbook.</li>
+<li>Can use Ansible Vault to encrypt and decrypt sensitive data to make it unreadable, and only while accessing data does it ask for a password so that it is decrypted.</li>
+</ul>
+<p>1. Sensitive data is stored as values in variables in a separate variable file.
+2. The variable file is encrypted, using the <strong>ansible-vault</strong> command.
+3. While accessing the variable file from a playbook, you enter a password to decrypt.</p>
+<h4 id="managing-encrypted-files">Managing Encrypted Files</h4>
+<p><code>ansible-vault create secret.yaml</code></p>
+<ul>
+<li>Ansible Vault prompts for a password and then opens the file using the default editor.</li>
+<li>The password can be provided in a password file.(must be really well protected (for example, by putting it in the user root home directory))</li>
+<li>If a password file is used, the encrypted variable file can be created using <code>ansible-vault create \--vault-password-file=passfile secret.yaml</code></li>
+</ul>
+<p><code>ansible-vault encrypt</code></p>
+<ul>
+<li>encrypt one or more existing files.</li>
+<li>The encrypted file can next be used from a playbook, where a password needs to be entered to decrypt.</li>
+</ul>
+<p><code>ansible-vault decrypt</code></p>
+<ul>
+<li>used to decrypt the file.</li>
+</ul>
+<p>Commonly used <strong>ansible-vault</strong> commands:
+<code>create</code></p>
+<ul>
+<li>Creates new encrypted file
+<code>encrypt</code></li>
+<li>Encrypts an existing file
+<code>encrypt_string</code></li>
+<li>Encrypts a string
+<code>decrypt</code></li>
+<li>Decrypts an existing file
+<code>rekey</code></li>
+<li>Changes password on an existing file
+<code>view</code></li>
+<li>Shows contents of an existing file
+<code>edit</code></li>
+<li>Edits an existing encrypted file</li>
+</ul>
+<h4 id="using-vault-in-playbooks">Using Vault in Playbooks</h4>
+<p><code>--vault-id @prompt</code></p>
+<ul>
+<li>When a Vault-encrypted file is accessed from a playbook, a password must be entered.</li>
+<li>Has the <code>ansible-playbook</code> command prompt for a password for each of the Vault-encrypted files that may be used</li>
+<li>Enables a playbook to work with multiple Vault-encrypted files where these files are allowed to have different passwords set.</li>
+</ul>
+<p><code>ansible-playbook --ask-vault-pass</code></p>
+<ul>
+<li>Used if all Vault-encrypted files a playbook refers to have the same password set.</li>
+</ul>
+<p><code>ansible-playbook --vault-password-file=secret</code></p>
+<ul>
+<li>Obtain the Vault password from a password file.</li>
+<li>Password file should contain a string that is stored as a single line in the file.</li>
+<li>Make sure the vault password file is protected through file permissions, such that it is not accessible by unauthorized users!</li>
+</ul>
+<h4 id="managing-files-with-sensitive-variables">Managing Files with Sensitive Variables</h4>
+<ul>
+<li>
+<p>You should separate files containing unencrypted variables from files that contain encrypted variables.</p>
+</li>
+<li>
+<p>Use <strong>group_vars</strong> and <strong>host_vars</strong> variable inclusion for this.</p>
+</li>
+<li>
+<p>You may create a directory (instead of a file) with the name of the host or host group.</p>
+</li>
+<li>
+<p>Within that directory you can create a file with the name <strong>vars</strong>, which contains unencrypted variables, and a file with the name <strong>vault</strong>, which contains Vault-encrypted variables.</p>
+</li>
+<li>
+<p>Vault-encrypted variables can be included from a file using the <code>vars_files</code> parameter.</p>
+</li>
+</ul>
+<h3 id="lab--working-with-ansible-vault">Lab:  Working with Ansible Vault</h3>
+<p>1. Create a secret file containing encrypted values for a variable user and a variable password by using <code>ansible-vault create secrets.yaml</code></p>
+<p>Set the password to <strong>password</strong> and enter the following lines:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">username: bob
+pwhash: password</code></pre></div>
+<p>When creating users, you cannot provide the password in plain text; it needs to be provided as a hashed value.
+Because this exercise focuses on the use of Vault, the password is not provided as a hashed value, and as a result, a warning is displayed. You may ignore this warning.</p>
+<p>2. Create the file create-users.yaml and provide the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create a user with vaulted variables
+  hosts: ansible1
+  vars_files:
+    - secrets.yaml
+  tasks:
+  - name: creating user
+    user:
+      name: &#34;{{ username }}&#34;
+      password: &#34;{{ pwhash }}&#34;</code></pre></div>
+<p>3. Run the playbook by using <code>ansible-playbook --ask-vault-pass create-users.yaml</code></p>
+<p>4. Change the current password on <strong>secrets.yaml</strong> by using <code>ansible-vault rekey secrets.yaml</code> and set the new password to
+<strong>secretpassword</strong>.</p>
+<p>5. To automate the process of entering the password, use <code>echo secretpassword &gt; vault-pass</code></p>
+<p>6. Use <code>chmod 400 vault-pass</code> to ensure the file is readable for the ansible user only; this is about as much as you can do to secure the file.</p>
+<p>7. Verify that it&rsquo;s working by using <code>ansible-playbook --vault-password-file=vault-pass create-users.yaml</code>
+JunctionScallopPoise</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="variables">Variables</h1>
+
+<p>Using and working with variables</p>
+<ul>
+<li>Capture command output using register</li>
+</ul>
+<h3 id="variables">Variables</h3>
+<p>Three types of variables:</p>
+<ul>
+<li>Fact</li>
+<li>Variable</li>
+<li>Magic Variable</li>
+</ul>
+<p><strong>Variables</strong> make Ansible really flexible. Especially when used in combination with conditionals. These are defined at the discretion of the user.:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: create a user using a variable
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">users</span>: lisa &lt;-- defaults value for this play
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create a user {{ users }} on host {{ ansible_hostname }} &lt;-- ansible fact variable
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ users }}&#34;</span> &lt;-- If value starts with variable, the whole line must have double quotes</span></span></code></pre></div>
+<h3 id="working-with-variables">Working with Variables</h3>
+<ul>
+<li>Variables can be used to refer to a wide range of dynamic data, such as names of files, services, packages, users, URLs to specific servers, etc.</li>
+</ul>
+<h4 id="defining-variables">Defining Variables</h4>
+<p>To define a variable</p>
+<ul>
+<li>key: value structure in a vars section in the play header.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: using variables
+      hosts: ansible1
+      vars: &lt;-------------
+        ftp_package: vsftpd &lt;------------
+      tasks:
+      - name: install package
+        yum:
+          name: &#34;{{ ftp_package }}&#34; &lt;------------
+          state: latest</code></pre></div>
+<ul>
+<li>As the variable is the first item in the value, its name must be placed between double curly brackets as well as double quotes.</li>
+</ul>
+<p>Variable equirements:</p>
+<p>• Must start with a letter.
+• Case sensitive.
+• Can contain only letters, numbers, and underscores.</p>
+<h4 id="using-include-files">Using Include Files</h4>
+<ul>
+<li>It is common to define variables in include files. Specific host and host group variables can be used as include files</li>
+<li>it&rsquo;s also possible to include an arbitrary file as a variable file, using the <strong>vars_files:</strong> statement.</li>
+<li>The <strong>vars_files:</strong> parameter can have a single value or a list providing multiple values. If a list is used, each item needs to start with a dash</li>
+<li>When you include variables from files, it&rsquo;s a good idea to work with a separate directory that contains all variables because that makes it easier to manage as your projects grow bigger.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: using a variable include file
+      hosts: ansible1
+      vars_files: vars/common &lt;--------------
+      tasks:
+      - name: install package
+        yum:
+          name: &#34;{{ my_package }}&#34; &lt;------------
+          state: latest</code></pre></div>
+<p><strong>vars/common</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    my_package: nmap
+    my_ftp_service: vsftpd
+    my_file_service: smb</code></pre></div>
+<ul>
+<li>If variables are defined in individual playbooks, they are spread all over, and it may be difficult to get an overview of all variables that are used on a site.</li>
+</ul>
+<h4 id="managing-host-and-group-variables">Managing Host and Group Variables</h4>
+<p><strong>host_vars</strong> and <strong>group_vars</strong></p>
+<ul>
+<li>set variables for specific hosts or specific host groups.</li>
+<li>In older versions of Ansible, it was common to set host variables and group variables in inventory, but this practice is now deprecated.</li>
+</ul>
+<p><strong>host_vars</strong></p>
+<ul>
+<li>Must create a subdirectory with the name <strong>host_vars</strong> within the Ansible project directory.</li>
+<li>In this directory, create a file that matches the inventory name of the host to which the variables should be applied.</li>
+<li>So the variables for host ansible1 are defined in <strong>host_vars/ansible1</strong>.</li>
+</ul>
+<p><strong>group_vars</strong></p>
+<ul>
+<li>Must create a directory with the name <strong>group_vars</strong>.</li>
+<li>In this directory, a file with the name of the host group is created, and in this file all variables are defined.</li>
+<li>ie: <strong>group_vars/webservers</strong></li>
+</ul>
+<h3 id="lab-using-host-and-host-group-variables">LAB: Using Host and Host Group Variables</h3>
+<p>1. Create a project directory in your home directory. Type <strong>mkdir ~/chapter6</strong> to create the chapter6 project directory, and use <strong>cd ~/chapter6</strong> to go into this directory.</p>
+<p>2. Type <strong>cp ../ansible.cfg .</strong> to copy the ansible.cfg file that you used before. No further modifications to this file are required.</p>
+<p>3. Type <strong>vim inventory</strong> to create a file with the name inventory, and ensure it has the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">[webservers]
+ansible1
+
+[dbservers]
+ansible2</code></pre></div>
+<p>4. Create the file webservers.yaml, containing the following contents. Notice that nothing is really changed by running this playbook. It just uses the debug module to show the current value of the variables.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: configure web services
+  hosts: webservers
+  tasks:
+  - name: this is the {{ web_package }} package
+    debug:
+      msg: &#34;Installing {{ web_package }}&#34;
+  - name: this is the {{ web_service }} service
+    debug:
+      msg: &#34;Starting the {{ web_service }}&#34;</code></pre></div>
+<p>5. Create the file group_vars/webservers with the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">web_package: httpd
+web_service: httpd</code></pre></div>
+<p>6. Run the playbook with some verbosity to verify it is working by using <code>ansible-playbook -vv webservers.yaml</code></p>
+<h4 id="using-multivalued-variables">Using Multivalued Variables</h4>
+<p>Two types of multivalued variables:</p>
+<p><strong>array</strong> (list)</p>
+<ul>
+<li>key that can have multiple items as its value.</li>
+<li>Each item in a list starts with a dash (-).</li>
+<li>Individual items in a list can be addressed using the index number (starting at zero), as in {{ users[1] }} (which would print the key-value pairs that are set for user lisa)</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    users:
+      - linda:
+        username: linda
+        homedir: /home/linda
+        shell: /bin/bash
+      - lisa:
+        username: lisa
+        homedir: /home/lisa
+        shell: /bin/bash
+      - anna:
+        username: anna
+        homedir: /home/anna
+        shell: /bin/bash</code></pre></div>
+<p><strong>dictionary</strong> (hash)</p>
+<ul>
+<li>Unordered collection of items, a collection of key-value pairs.</li>
+<li>In Python, a dictionary is defined as my_dict = { key1: &lsquo;car&rsquo;, key2:&lsquo;bike&rsquo; }.</li>
+<li>Because it is based on Python, Ansible lets users use dictionaries as an alternative notation to arrays</li>
+<li>not as common in use as arrays.</li>
+<li>Items in values in a dictionary are not started with a dash.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    users:
+      linda:
+        username: linda
+        homedir: /home/linda
+        shell: /bin/bash
+      lisa:
+        username: lisa
+        homedir: /home/lisa
+        shell: /bin/bash
+      anna:
+        username: anna
+        homedir: /home/anna
+        shell: /bin/bash</code></pre></div>
+<p>Addressing Specific Keys in a Dictionary Multivalued Variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: show dictionary also known as hash
+      hosts: ansible1
+      vars_files:
+      - vars/users-dictionary
+      tasks:
+      - name: print dictionary values
+        debug:
+          msg: &#34;User {{ users.linda.username }} has homedirectory {{ users.linda.homedir }} and shell {{ users.linda.shell }}&#34;</code></pre></div>
+<p>Using the Square Brackets Notation to Address Multivalued Variables (recommended method)</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: show dictionary also known as hash
+      hosts: ansible1
+      vars_files:
+        - vars/users-dictionary
+      tasks:
+        - name: print dictionary values
+          debug:
+            msg: &#34;User {{ users[’linda’][’username’] }} has homedirectory {{ users[’linda’][’homedir’] }} and shell {{ users[’linda’][’shell’]  }}&#34;</code></pre></div>
+<p><strong>Magic Variables</strong></p>
+<ul>
+<li>Variables that are set automatically by Ansible to reflect an Ansible internal state.</li>
+<li>There are about 30 magic variables</li>
+<li>Common Magic Variables</li>
+</ul>
+<p><a href="#R-image-d0196ca9780bd546b3301b1792e17c30" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/06tab05.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d0196ca9780bd546b3301b1792e17c30"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/06tab05.jpg"></a></p>
+<ul>
+<li>you cannot use their name for anything else.</li>
+<li>If you try to set a magic variable to another value anyway, it always resets to the default internal value.</li>
+</ul>
+<p>Debug module can be used to show the current values assigned to the hostvars magic variable.</p>
+<ul>
+<li>Shows many settings that you can change by modifying the ansible.cfg configuration file.</li>
+<li>If local facts are defined on the host, you will see them also.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [ansible@control ~]$ ansible localhost -m debug -a &#39;var=hostvars[&#34;ansible1&#34;]&#39;
+    localhost | SUCCESS =&gt; {
+        &#34;hostvars[\&#34;ansible1\&#34;]&#34;: {
+            &#34;ansible_check_mode&#34;: false,
+            &#34;ansible_diff_mode&#34;: false,
+            &#34;ansible_facts&#34;: {},
+            &#34;ansible_forks&#34;: 5,
+            &#34;ansible_inventory_sources&#34;: [
+                &#34;/home/ansible/inventory&#34;
+            ],
+            &#34;ansible_playbook_python&#34;: &#34;/usr/bin/python3.6&#34;,
+            &#34;ansible_verbosity&#34;: 0,
+            &#34;ansible_version&#34;: {
+                &#34;full&#34;: &#34;2.9.5&#34;,
+                &#34;major&#34;: 2,
+                &#34;minor&#34;: 9,
+                &#34;revision&#34;: 5,
+                &#34;string&#34;: &#34;2.9.5&#34;
+            },
+            &#34;group_names&#34;: [
+                &#34;ungrouped&#34;
+            ],
+            &#34;groups&#34;: {
+                &#34;all&#34;: [
+                    &#34;ansible1&#34;,
+                    &#34;ansible2&#34;
+                ],
+                &#34;ungrouped&#34;: [
+                    &#34;ansible1&#34;,
+                    &#34;ansible2&#34;
+                ]
+            },
+            &#34;inventory_dir&#34;: &#34;/home/ansible&#34;,
+            &#34;inventory_file&#34;: &#34;/home/ansible/inventory&#34;,
+            &#34;inventory_hostname&#34;: &#34;ansible1&#34;,
+            &#34;inventory_hostname_short&#34;: &#34;ansible1&#34;,
+            &#34;omit&#34;: &#34;__omit_place_holder__38849508966537e44da5c665d4a784c3bc0060de&#34;,
+            &#34;playbook_dir&#34;: &#34;/home/ansible&#34;
+        }
+    }</code></pre></div>
+<h4 id="variable-precedence">Variable Precedence</h4>
+<ul>
+<li>Avoid using variables with the same names that are defined at different levels.</li>
+<li>If a variable with the same name is defined at different levels, the most specific variable always wins.</li>
+<li>Variables that are defined while running the <strong>playbook</strong> command using the <strong>-e key=value</strong> command-line argument have the highest precedence.</li>
+<li>After variables that are passed as command-line options, playbook variables are considered.</li>
+<li>Next are variables that are defined for inventory hosts or host groups.</li>
+<li>Consult the Ansible documentation item &ldquo;Variable precedence&rdquo; for more details and an overview of the 22 different levels where variables can be set and how precedence works for them.</li>
+</ul>
+<p>1. Variables passed on the command line
+2. Variables defined in or included from a playbook
+3. Inventory variables</p>
+<h3 id="capturing-command-output-using-register">Capturing Command Output Using register</h3>
+<p>The result of commands can also be used as a variable byusing the <strong>register</strong> parameter in a task.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: test register
+      hosts: ansible1
+      tasks:
+      - shell: cat /etc/passwd
+        register: passwd_contents
+      - debug:
+          var: &#34;passwd_contents&#34;</code></pre></div>
+<p>The <code>cat /etc/passwd</code> command is executed by the shell module. Notice that in this playbook no names are used for tasks. Using names for tasks is
+not mandatory; it&rsquo;s just recommended in more complex playbooks because this convention makes identification of the tasks easier. The entire contents of the command are next stored in the variable <strong>passwd_contents</strong>.</p>
+<p>This variable contains the output of the command, stored in different keys. <a href="/ansible/variables-and-facts/variables/#ch06.xhtml#tab6_7">Table 6-7</a> provides an overview of the most
+useful keys, and <a href="/ansible/variables-and-facts/variables/#ch06.xhtml#list6_19">Listing 6-19</a> shows the partial result of the <code>ansible-playbook listing618.yaml</code> command.</p>
+<p>Keys Used with <strong>register</strong>
+cmd</p>
+<ul>
+<li>Command that was used
+rc</li>
+<li>Return code of the command
+stderr</li>
+<li>Error messages
+stderr_lines</li>
+<li>Errors line by line
+stdout</li>
+<li>command output
+stdout_line</li>
+<li>Command output line by line</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [ansible@control ~]$ ansible-playbook listing618.yaml
+    
+    PLAY [test register] *******************************************************************
+    
+    TASK [Gathering Facts] *****************************************************************
+    ok: [ansible2]
+    ok: [ansible1]
+    
+    TASK [shell] ***************************************************************************
+    changed: [ansible2]
+    changed: [ansible1]
+    
+    TASK [debug] ***************************************************************************
+    ok: [ansible1] =&gt; {
+        &#34;passwd_contents&#34;: {
+            &#34;changed&#34;: true,
+            &#34;cmd&#34;: &#34;cat /etc/passwd&#34;,
+            &#34;delta&#34;: &#34;0:00:00.004149&#34;,
+            &#34;end&#34;: &#34;2020-04-02 02:28:10.692306&#34;,
+            &#34;failed&#34;: false,
+            &#34;rc&#34;: 0,
+            &#34;start&#34;: &#34;2020-04-02 02:28:10.688157&#34;,
+            &#34;stderr&#34;: &#34;&#34;,
+            &#34;stderr_lines&#34;: [],
+            &#34;stdout&#34;: &#34;root:x:0:0:root:/root:/bin/bash\nbin:x:1:1:bin:/bin:/sbin/nologin\ndaemon:x:2:2:daemon:/sbin:/sbin/nologin\nadm:x:3:4:adm:/var/adm:/sbin/nologin\nlp:x:4:7:lp:/var/spool/lpd:/sbin/nologin\nsync:x:5:0:sync:/sbin:/bin/sync\nshutdown:x:6:0:shutdown:/sbin:/sbin/shutdown\nhalt:x:7:0:halt:/sbin:/sbin/halt\nansible:x:1000:1000:ansible:/home/ansible:/bin/bash\napache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin\nlinda:x:1002:1002::/home/linda:/bin/bash\nlisa:x:1003:1003::/home/lisa:/bin/bash&#34;,
+            &#34;stdout_lines&#34;: [
+                &#34;root:x:0:0:root:/root:/bin/bash&#34;,
+                &#34;bin:x:1:1:bin:/bin:/sbin/nologin&#34;,
+                &#34;daemon:x:2:2:daemon:/sbin:/sbin/nologin&#34;,
+                &#34;adm:x:3:4:adm:/var/adm:/sbin/nologin&#34;,
+                &#34;lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin&#34;,
+                &#34;sync:x:5:0:sync:/sbin:/bin/sync&#34;,
+                &#34;shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown&#34;,
+                &#34;halt:x:7:0:halt:/sbin:/sbin/halt&#34;,
+                &#34;ansible:x:1000:1000:ansible:/home/ansible:/bin/bash&#34;,
+                &#34;apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin&#34;,
+                &#34;linda:x:1002:1002::/home/linda:/bin/bash&#34;,
+                &#34;lisa:x:1003:1003::/home/lisa:/bin/bash&#34;
+            ]
+        }
+    }</code></pre></div>
+<p>Ensure that a task runs only if a command produces a specific result by using <strong>register</strong> with conditionals.</p>
+<p><strong>register</strong> shows the values that are returned by specific tasks. Tasks have common return values, but modules may have specific
+return values. That means you cannot assume, based on the result of an example using a specific module, that the return values you see are
+available for all modules. Consult the module documentation for more information about specific return values.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762453719" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762453719" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762453719" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762453719" defer></script>
+    <script src="/js/theme.min.js?1762453719" defer></script>
+  </body>
+</html>
