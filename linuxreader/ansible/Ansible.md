@@ -14,7 +14,7 @@
 -  [[Modules/Modules|Modules]]
 -  [[../networking/Networking|Networking]]
 -  [[Playbooks/Playbooks|Playbooks]]
--  [[RHCE Exam|RHCE Exam]]
+-  [[../personal/tech/RHCE Exam|RHCE Exam]]
 -  [[roles/roles|roles]]
 -  [[Storage/Storage|Storage]]
 -  [[task control/task control|task control]]

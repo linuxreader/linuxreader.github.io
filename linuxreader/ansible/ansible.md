@@ -15,7 +15,6 @@
 -  [[ansible/Modules/Modules|Modules]]
 -  [[ansible/Networking/Networking|Networking]]
 -  [[ansible/Playbooks/Playbooks|Playbooks]]
--  [[ansible/RHCE Exam|RHCE Exam]]
 -  [[ansible/roles/roles|roles]]
 -  [[ansible/Storage/Storage|Storage]]
 -  [[ansible/task control/task control|task control]]
