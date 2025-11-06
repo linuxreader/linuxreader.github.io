@@ -1,14 +1,8 @@
 ---
 title: Master Reading List
 ---
-
-## In Progress
-
-I am reading way too many books at once. Goal is to cut this list down and read only 1 book at a time.
-
-## Books I have Read
-
-These are books that I have read from cover to cover. 
+### In Progress
+- 1Q84
 
 ### Health and Fitness
 - The Obesity Code: Unlocking the Secrets of Weight Loss (Why Intermittent Fasting Is the Key to Controlling Your Weight
@@ -462,5 +456,4 @@ These are books that I have read from cover to cover.
 - [ ] ## [The Book of Changes and the Unchanging Truth](https://www.amazon.com/dp/0937064297/?coliid=I21H7MQPJ1GIMT&colid=QZHN4BQA6ACK&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it "The Book of Changes and the Unchanging Truth")
 - [ ] ## [UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship](https://www.amazon.com/dp/0984358161/?coliid=I3FPEPO8WDCRM5&colid=QZHN4BQA6ACK&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it "UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship")
 - [ ] https://m.media-amazon.com/images/I/71L953v2dmL._SL1500_.jpg
-
-The Teachings of Don Juan: A Yaqui Way of Knowledge  - Carlos Castaneda
+- [ ] The Teachings of Don Juan: A Yaqui Way of Knowledge  - Carlos Castaneda

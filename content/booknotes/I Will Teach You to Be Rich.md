@@ -1,4 +1,4 @@
- ![|200](Pasted%20image%2020240911050841.png)
+ ![|200](../images/Pasted%20image%2020240911050841.png)
 
 - Set up accounts at solid banks.
 - Automate day-to-day money management (bills, savings, debt payoff, etc.).

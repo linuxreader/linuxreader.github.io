@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.152.0">
+    <meta name="generator" content="Hugo 0.152.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Nextcloud setup guide on a RHEL based server">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Nextcloud on RHEL Based Systems :: Linux Reader">
     <meta name="twitter:description" content="Nextcloud setup guide on a RHEL based server">
-    <meta property="og:url" content="http://linuxreader.com/tools/nextcloud-on-rhel-based-systems/">
+    <meta property="og:url" content="http://localhost:1313/tools/nextcloud-on-rhel-based-systems/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Nextcloud on RHEL Based Systems :: Linux Reader">
     <meta property="og:description" content="Nextcloud setup guide on a RHEL based server">
@@ -21,37 +21,37 @@
     <meta itemprop="description" content="Nextcloud setup guide on a RHEL based server">
     <meta itemprop="wordCount" content="1961">
     <title>Nextcloud on RHEL Based Systems :: Linux Reader</title>
-    <link href="http://linuxreader.com/tools/nextcloud-on-rhel-based-systems/" rel="canonical" type="text/html" title="Nextcloud on RHEL Based Systems :: Linux Reader">
+    <link href="http://localhost:1313/tools/nextcloud-on-rhel-based-systems/" rel="canonical" type="text/html" title="Nextcloud on RHEL Based Systems :: Linux Reader">
     <link href="/tools/nextcloud-on-rhel-based-systems/index.xml" rel="alternate" type="application/rss+xml" title="Nextcloud on RHEL Based Systems :: Linux Reader">
-    <link href="/images/favicon.svg?1761216854" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1761216854" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1761216854" defer></script>
-    <script src="/js/search-lunr.min.js?1761216854" defer></script>
-    <script src="/js/search.min.js?1761216854" defer></script>
+    <link href="/images/favicon.svg?1761232489" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1761232489" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1761232489" defer></script>
+    <script src="/js/search-lunr.js?1761232489" defer></script>
+    <script src="/js/search.js?1761232489" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1761216854";
+      window.relearn.index_js_url="/searchindex.en.js?1761232489";
     </script>
-    <script src="/js/lunr/lunr.min.js?1761216854" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1761216854" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1761216854" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1761216854" defer></script>
+    <script src="/js/lunr/lunr.min.js?1761232489" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1761232489" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1761232489" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1761232489" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1761216854" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1761216854" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1761216854" rel="stylesheet">
-    <link href="/css/theme.min.css?1761216854" rel="stylesheet">
-    <link href="/css/format-print.min.css?1761216854" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1761232489" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1761232489" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1761232489" rel="stylesheet">
+    <link href="/css/theme.css?1761232489" rel="stylesheet">
+    <link href="/css/format-print.css?1761232489" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
-      window.relearn.min = `.min`;
+      window.relearn.min = ``;
       window.relearn.path='\/tools\/nextcloud-on-rhel-based-systems\/';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -376,8 +376,8 @@ Extract the contents to /var/www/nextcloud
 <p>Before you go any further, you will need to have a domain name set up for your server. I use Cloudflare to manage my DNS records. You will want to make a CNAME record for your nextcloud subdomain.</p>
 <p>Just add &ldquo;nextcloud&rdquo; as the name and &ldquo;yourwebsite.com&rdquo; as the content. This will make it so &ldquo;nextcloud.yourwebsite.com&rdquo; is the site for your nextcloud dashboard. Also, make sure to select &ldquo;DNS Only&rdquo; under proxy status.</p>
 <p>Here&rsquo;s what my CloudFlare domain setup looks with this blog as the main site, and cloud.perfectdarkmode.com as the nextcloud site:</p>
-<p><a href="#R-image-5f1a72945907f61b5e35c353fda902a2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5f1a72945907f61b5e35c353fda902a2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
+<p><a href="#R-image-c756fc253b98cd27c192d0d465b00375" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c756fc253b98cd27c192d0d465b00375"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
 <p>Then you need to update trusted domains in /var/www/nextcloud/config/config.php:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#39;trusted_domains&#39;</span> <span style="color:#ff6ac1">=</span>&gt;
 </span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">[</span>
@@ -401,11 +401,11 @@ Extract the contents to /var/www/nextcloud
 <p>Obtain an SSL certificate. (See my <a href="/tools/obsidian-site-setup/">Obsidian site setup</a> post for information about Certbot and Apache setup.)</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo certbot -d {subdomain}.{domain}.com</code></pre></div>
 <p>Now log into nextcloud with your admin account using the DNS name you set earlier:</p>
-<p><a href="#R-image-f40c3f5358a4f7b2c0f085e6ad819795" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f40c3f5358a4f7b2c0f085e6ad819795"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
+<p><a href="#R-image-3bc915b6d521443074829f5f2b291cce" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3bc915b6d521443074829f5f2b291cce"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
 <p>I recommend setting up a normal user account instead of doing everything as &ldquo;admin&rdquo;. Just hit the &ldquo;A&rdquo; icon at the top right and go to &ldquo;Accounts&rdquo;. Then just select &ldquo;New Account&rdquo; and create a user account with whatever privileges you want.</p>
-<p><a href="#R-image-fb728afe9e64571d0936d3064bc8d207" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fb728afe9e64571d0936d3064bc8d207"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
+<p><a href="#R-image-58609abe4e13f6eaccbeef4647f00ff3" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-58609abe4e13f6eaccbeef4647f00ff3"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
 <p>I may make a post about which Nextcloud apps I recommend and customize the setup a bit. Let me know if that&rsquo;s something you&rsquo;d like to see. That&rsquo;s all for now.</p>
 <h3 id="make-log-dir">Make log dir:</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /var/log/nextcloud
@@ -583,22 +583,22 @@ fail2ban-client status sshd</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-color.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1761216854" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1761216854" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-color.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1761232489" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1761232489" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1761216854" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1761216854" defer></script>
-    <script src="/js/theme.min.js?1761216854" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1761232489" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1761232489" defer></script>
+    <script src="/js/theme.js?1761232489" defer></script>
   </body>
 </html>
