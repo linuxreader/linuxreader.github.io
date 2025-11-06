@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="This chapter covers the following exam topics:
+2.0 Network Access
+2.6 Compare Cisco Wireless Architectures and AP modes
+Autonomous AP Architecture
+VLANs must be trunked from the distribution layer switch (where routing commonly takes place) to the access layer, where they are extended further over a trunk link to the AP.
+Two wireless users that are associated to the same autonomous AP can reach each other through the AP without having to pass up into the wired network">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="This chapter covers the following exam topics:
+2.0 Network Access
+2.6 Compare Cisco Wireless Architectures and AP modes
+Autonomous AP Architecture
+VLANs must be trunked from the distribution layer switch (where routing commonly takes place) to the access layer, where they are extended further over a trunk link to the AP.
+Two wireless users that are associated to the same autonomous AP can reach each other through the AP without having to pass up into the wired network">
+    <meta property="og:url" content="http://linuxreader.com/networking/ccna/ccna-notes/wireless_architectures/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="This chapter covers the following exam topics:
+2.0 Network Access
+2.6 Compare Cisco Wireless Architectures and AP modes
+Autonomous AP Architecture
+VLANs must be trunked from the distribution layer switch (where routing commonly takes place) to the access layer, where they are extended further over a trunk link to the AP.
+Two wireless users that are associated to the same autonomous AP can reach each other through the AP without having to pass up into the wired network">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Networking">
+    <meta itemprop="description" content="This chapter covers the following exam topics:
+2.0 Network Access
+2.6 Compare Cisco Wireless Architectures and AP modes
+Autonomous AP Architecture
+VLANs must be trunked from the distribution layer switch (where routing commonly takes place) to the access layer, where they are extended further over a trunk link to the AP.
+Two wireless users that are associated to the same autonomous AP can reach each other through the AP without having to pass up into the wired network">
+    <meta itemprop="wordCount" content="1686">
+    <title></title>
+    <link href="/networking/ccna/ccna-notes/wireless_architectures/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/networking/ccna/ccna-notes/wireless_architectures/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/networking\/ccna\/ccna-notes\/wireless_architectures\/';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/networking/ccna/ccna-notes/wireless_architectures/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/" title="Networking (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/ccna-notes/wireless_architectures/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/consoling_in_to_mx80_from_linux/" title="Consoling in to MX80 from linux (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable networking" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<p>This chapter covers the following exam topics:</p>
+<p>2.0 Network Access</p>
+<p>2.6 Compare Cisco Wireless Architectures and AP modes</p>
+<p>Autonomous AP Architecture</p>
+<p>VLANs must be trunked from the distribution layer switch (where routing commonly takes place) to the access layer, where they are extended further over a trunk link to the AP.</p>
+<p>Two wireless users that are associated to the same autonomous AP can reach each other through the AP without having to pass up into the wired network</p>
+<p>An autonomous AP must also be configured with a management IP address so that you can remotely manage it.</p>
+<p>configure SSIDs, VLANs, and many RF parameters like the channel and transmit power to be used.</p>
+<p>management address is not normally part of any of the data VLANs, so a dedicated management VLAN (i.e., VLAN 10) must be added to the trunk links to reach the AP.</p>
+<p>Each AP must be configured and maintained individually unless you leverage a management platform such as Cisco Prime Infrastructure or Cisco DNA Center.</p>
+<p>That might sound straightforward until you have to add a new VLAN and configure every switch and AP in your network to carry and support it.</p>
+<p>Cloud-based AP Architecture</p>
+<p>Cisco Meraki is cloud-based and offers centralized management of wireless, switched, and security networks built from Meraki products. For example, through the cloud networking service, you can configure and manage APs, monitor wireless performance and activity, generate reports, and so on.</p>
+<p>Cisco Meraki APs can be deployed automatically, once you register with the Meraki cloud. Each AP will contact the cloud when it powers up and will self-configure. From that point on, you can manage the AP through the Meraki cloud dashboard.</p>
+<p>From the cloud, you can push out code upgrades and configuration changes to the APs in the enterprise</p>
+<p>adds the intelligence needed to automatically instruct each AP on which channel and transmit power level to use.</p>
+<p>Can also collect information from all of the APs about things such as RF interference, rogue or unexpected wireless devices that were overheard, and wireless usage statistics.</p>
+<p>The data path from the wireless network to the wired network is very short; the autonomous AP links the two networks. Data to and from wireless clients does not have to travel up into the cloud and back; the cloud is used to bring management functions into the data plane.</p>
+<p>the network in Figure 27-3 consists of two distinct paths—one for data traffic and another for management traffic, corresponding to the following two functions:</p>
+<p>Distribution
+Layer
+Access Layer
+Cisco Meraki
+APs
+Cisco Meraki
+Cloud
+Management
+Trunk Link
+Trunk Link
+Data
+Figure 27-3 Cisco Meraki Cloud-Based Wireless Network Architecture &ldquo;&gt;</p>
+<p>A control plane: Traffic used to control, configure, manage, and monitor the AP itself</p>
+<p>A data plane: End-user traffic passing through the AP</p>
+<p>Split-MAC Architectures</p>
+<p>The real-time processes involve sending and receiving 802.11 frames, beacons, and probe messages. 802.11 data encryption is also handled in real time, on a per-packet basis. The AP must interact with wireless clients on some low level, known as the Media Access Control (MAC) layer. These functions must stay with the AP hardware, closest to the clients.</p>
+<p>The management functions are not integral to handling frames over the RF channels, but are things that should be centrally administered. Therefore, those functions can be moved to a centrally located platform away from the AP.</p>
+<p>When the functions of an autonomous AP are divided, the AP hardware is known as a lightweight access point, and performs only the real-time 802.11 operation.</p>
+<p>the AP is left with duties in Layers 1 and 2, where frames are moved into and out of the RF domain. The AP becomes totally dependent on the WLC for every other WLAN function, such as authenticating users, managing security policies, and even selecting RF channels and output power.</p>
+<p>The lightweight AP-WLC division of labor is known as a split-MAC architecture, where the normal MAC operations are pulled apart into two distinct locations.</p>
+<p>the AP and WLC can be located on the same VLAN or IP subnet, but they do not have to be</p>
+<p>CAPWAP relationship actually consists of two separate tunnels, as follows:</p>
+<p>CAPWAP control messages: Carries exchanges that are used to configure the AP and manage its operation. The control messages are authenticated and encrypted, so the AP is securely controlled by only the appropriate WLC, then transported over the control tunnel.</p>
+<p>CAPWAP data: Used for packets traveling to and from wireless clients that are associated with the AP. Data packets are transported over the data tunnel but are not encrypted by default. When data encryption is enabled for an AP, packets are protected with Datagram Transport Layer Security (DTLS).</p>
+<p>Every AP and WLC must also authenticate each other with digital certificates. An X.509 certificate is preinstalled in each device when it is purchased.</p>
+<p>Notice how VLAN 100 exists at the WLC and in the air as SSID 100, near the wireless clients—but not in between the AP and the WLC</p>
+<p>Because the AP sits on the access layer where its CAPWAP tunnels terminate, it can use one IP address for both management and tunneling. No trunk link is needed because all of the VLANs it supports are encapsulated and tunneled as Layer 3 IP packets, rather than individual Layer 2 VLANs.</p>
+<p>As the wireless network grows, the WLC simply builds more CAPWAP tunnels to reach more Aps</p>
+<p>WLC can begin offering a variety of additional functions:</p>
+<p>Dynamic channel assignment: The WLC can automatically choose and configure the RF channel used by each AP, based on other active access points in the area.</p>
+<p>Transmit power optimization: The WLC can automatically set the transmit power of each AP based on the coverage area needed.</p>
+<p>Self-healing wireless coverage: If an AP radio dies, the coverage hole can be “healed” by turning up the transmit power of surrounding APs automatically.</p>
+<p>Flexible client roaming: Clients can roam between APs with very fast roaming times.</p>
+<p>Dynamic client load balancing: If two or more APs are positioned to cover the same geographic area, the WLC can associate clients with the least used AP. This distributes the client load across the APs.</p>
+<p>RF monitoring: The WLC manages each AP so that it scans channels to monitor the RF usage. By listening to a channel, the WLC can remotely gather information about RF interference, noise, signals from neighboring APs, and signals from rogue APs or ad hoc clients.</p>
+<p>Security management: The WLC can authenticate clients from a central service and can require wireless clients to obtain an IP address from a trusted DHCP server before allowing them to associate and access the WLAN.</p>
+<p>Wireless intrusion protection system: Leveraging its central location, the WLC can monitor client data to detect and prevent malicious activity.</p>
+<p>Comparing Wireless LAN Controller Deployments</p>
+<p>locate the WLC in a central location so that you can maximize the number of APs joined to it. This is usually called a unified or centralized WLC deployment</p>
+<p>Typical unified WLCs can support a maximum of 6000 APs</p>
+<p>A WLC can also be located in a central position in the network, inside a data center in a private cloud, as shown in Figure 27-9. This is known as a cloud-based WLC deployment, where the WLC exists as a virtual machine rather than a physical device.</p>
+<p>Such a controller can typically support up to 3000 APs.</p>
+<p>For small campuses or distributed branch locations, where the number of APs is relatively small in each, the WLC can be co-located with a stack of switches, as shown in Figure 27-10. This is known as an embedded WLC deployment</p>
+<p>Typical Cisco embedded WLCs can support up to 200 APs. The APs do not necessarily have to be connected to the switches that host the WLC</p>
+<p>the WLC function can be co-located with an AP that is installed at the branch site. This is known as a Cisco Mobility Express WLC deployment</p>
+<p>A Mobility Express WLC can support up to 100 APs.</p>
+<p>Cisco AP Modes</p>
+<p>WLC, you can also configure a lightweight AP to operate in one of the following special-purpose modes:</p>
+<p>Local: The default lightweight mode that offers one or more functioning BSSs on a specific channel. During times that it is not transmitting, the AP will scan the other channels to measure the level of noise, measure interference, discover rogue devices, and match against intrusion detection system (IDS) events.</p>
+<p>Monitor: The AP does not transmit at all, but its receiver is enabled to act as a dedicated sensor. The AP checks for IDS events, detects rogue access points, and determines the position of stations through location-based services.</p>
+<p>FlexConnect: An AP at a remote site can locally switch traffic between an SSID and a VLAN if its CAPWAP tunnel to the WLC is down and if it is configured to do so.</p>
+<p>Sniffer: An AP dedicates its radios to receiving 802.11 traffic from other sources, much like a sniffer or packet capture device. The captured traffic is then forwarded to a PC running network analyzer software such as Wildpackets OmniPeek or WireShark, where it can be analyzed further.</p>
+<p>Rogue detector: An AP dedicates itself to detecting rogue devices by correlating MAC addresses heard on the wired network with those heard over the air. Rogue devices are those that appear on both networks.</p>
+<p>Bridge: An AP becomes a dedicated bridge (point-to-point or point-to-multipoint) between two networks. Two APs in bridge mode can be used to link two locations separated by a distance. Multiple APs in bridge mode can form an indoor or outdoor mesh network.</p>
+<p>Flex+Bridge: FlexConnect operation is enabled on a mesh AP.</p>
+<p>SE-Connect: The AP dedicates its radios to spectrum analysis on all wireless channels. You can remotely connect a PC running software such as MetaGeek Chanalyzer or Cisco Spectrum Expert to the AP to collect and analyze the spectrum analysis data to discover sources of interference.</p>
+<p>Remember that a lightweight AP is normally in local mode when it is providing BSSs and allowing client devices to associate to wireless LANs. When an AP is configured to operate in one of the other modes, local mode (and the BSSs) is disabled.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="active hidden " data-nav-id="/networking/ccna/ccna-notes/wireless_architectures/"><a class="padding" href="/networking/ccna/ccna-notes/wireless_architectures/"></a></li>
+            <li class="" data-nav-id="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
+            <li class="" data-nav-id="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-id="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
+            <li class="" data-nav-id="/networking/ccna/ccna-notes/my-ccna-notes/"><a class="padding" href="/networking/ccna/ccna-notes/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-id="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
+            <li class="" data-nav-id="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>http://linuxreader.com/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/</link>
+    <description>Ad hoc commands in Scripts Follow normal bash scripting guidelines to run ansible commands in a script:&#xA;[ansible@control base]$ vim httpd-ansible.sh Let’s set up a script that installs and starts/enables httpd, creates a user called “anna”, and copies the ansible control node’s /etc/hosts file to /tmp/ on the managed nodes:&#xA;#!/bin/bash ansible all -m yum -a &#34;name=httpd state=latest&#34; ansible all -m service -a &#34;name=httpd state=started enabled=yes&#34; ansible all -m user -a &#34;name=anna&#34; ansible all -m copy -a &#34;src=http://linuxreader.com/etc/hosts dest=/tmp/hosts&#34; [ansible@control base]$ chmod +x httpd-ansible.sh [ansible@control base]$ ./httpd-ansible.sh web2 | UNREACHABLE! =&gt; { &#34;changed&#34;: false, &#34;msg&#34;: &#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;, &#34;unreachable&#34;: true } web1 | UNREACHABLE! =&gt; { &#34;changed&#34;: false, &#34;msg&#34;: &#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;, &#34;unreachable&#34;: true } ansible1 | SUCCESS =&gt; { &#34;ansible_facts&#34;: { &#34;discovered_interpreter_python&#34;: &#34;/usr/bin/python3&#34; }, &#34;changed&#34;: false, &#34;msg&#34;: &#34;Nothing to do&#34;, &#34;rc&#34;: 0, &#34;results&#34;: [] } ansible2 | SUCCESS =&gt; { &#34;ansible_facts&#34;: { &#34;discovered_interpreter_python&#34;: &#34;/usr/bin/python3&#34; }, &#34;changed&#34;: false, &#34;msg&#34;: &#34;Nothing to do&#34;, &#34;rc&#34;: 0, &#34;results&#34;: [] } ... &lt;-- Results truncated And from the ansible1 node we can verify:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://linuxreader.com/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

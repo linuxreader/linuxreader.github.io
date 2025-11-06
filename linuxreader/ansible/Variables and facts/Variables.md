@@ -1,5 +1,5 @@
 +++
-title = 'Variables
+title = 'Variables'
 description = 'All about Ansible variables'
 +++
 

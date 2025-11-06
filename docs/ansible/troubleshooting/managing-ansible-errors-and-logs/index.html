@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Managing Ansible Errors and Logs Using Check Mode Before actually running a playbook in a way that all changes are implemented, you can start the playbooks in check mode. To do this, you use the --check or -C command-line argument to the ansible or ansible-playbook command. The effect of using check mode is that changes that would have been made are shown but not executed. You should realize, though, that check mode is not supported in all cases. You will, for instance, have problems with check mode if it is applied to conditionals, where a specific task can do its work only after a preceding task has made some changes. Also, to successfully use check mode, the modules need to support it, but some don’t. Modules that don’t support check mode don’t show any result while running check mode, but also they don’t make any changes.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Managing Ansible Errors and Logs Using Check Mode Before actually running a playbook in a way that all changes are implemented, you can start the playbooks in check mode. To do this, you use the --check or -C command-line argument to the ansible or ansible-playbook command. The effect of using check mode is that changes that would have been made are shown but not executed. You should realize, though, that check mode is not supported in all cases. You will, for instance, have problems with check mode if it is applied to conditionals, where a specific task can do its work only after a preceding task has made some changes. Also, to successfully use check mode, the modules need to support it, but some don’t. Modules that don’t support check mode don’t show any result while running check mode, but also they don’t make any changes.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/troubleshooting/managing-ansible-errors-and-logs/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Managing Ansible Errors and Logs Using Check Mode Before actually running a playbook in a way that all changes are implemented, you can start the playbooks in check mode. To do this, you use the --check or -C command-line argument to the ansible or ansible-playbook command. The effect of using check mode is that changes that would have been made are shown but not executed. You should realize, though, that check mode is not supported in all cases. You will, for instance, have problems with check mode if it is applied to conditionals, where a specific task can do its work only after a preceding task has made some changes. Also, to successfully use check mode, the modules need to support it, but some don’t. Modules that don’t support check mode don’t show any result while running check mode, but also they don’t make any changes.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Managing Ansible Errors and Logs Using Check Mode Before actually running a playbook in a way that all changes are implemented, you can start the playbooks in check mode. To do this, you use the --check or -C command-line argument to the ansible or ansible-playbook command. The effect of using check mode is that changes that would have been made are shown but not executed. You should realize, though, that check mode is not supported in all cases. You will, for instance, have problems with check mode if it is applied to conditionals, where a specific task can do its work only after a preceding task has made some changes. Also, to successfully use check mode, the modules need to support it, but some don’t. Modules that don’t support check mode don’t show any result while running check mode, but also they don’t make any changes.">
+    <meta itemprop="wordCount" content="2144">
+    <title></title>
+    <link href="/ansible/troubleshooting/managing-ansible-errors-and-logs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/troubleshooting/managing-ansible-errors-and-logs/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/troubleshooting\/managing-ansible-errors-and-logs\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/troubleshooting/managing-ansible-errors-and-logs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#managing-ansible-errors-and-logs">Managing Ansible Errors and Logs</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h3 id="managing-ansible-errors-and-logs">Managing Ansible Errors and Logs</h3>
+<h4 id="using-check-mode">Using Check Mode</h4>
+<p>Before actually running a playbook in a way that all changes are
+implemented, you can start the playbooks in check mode. To do this, you
+use the <strong>--check</strong> or <strong>-C</strong> command-line argument to the <strong>ansible</strong>
+or <strong>ansible-playbook</strong> command. The effect of using check mode is that
+changes that would have been made are shown but not executed. You should
+realize, though, that check mode is not supported in all cases. You
+will, for instance, have problems with check mode if it is applied to
+conditionals, where a specific task can do its work only after a
+preceding task has made some changes. Also, to successfully use check
+mode, the modules need to support it, but some don&rsquo;t. Modules that don&rsquo;t
+support check mode don&rsquo;t show any result while running check mode, but
+also they don&rsquo;t make any changes.</p>
+<p>Apart from the command-line argument, you can use <strong>check_mode: yes</strong> or
+<strong>check_mode: no</strong> with any task in a playbook. If <strong>check_mode: yes</strong>
+is used, the task always runs in check mode (and does not implement any
+changes), regardless of the use of the <strong>--check</strong> option. If a task
+has <strong>check_mode: no</strong> set, it never runs in check mode and just does
+its work, even if the <strong>ansible-playbook</strong> command is used with the
+<strong>--check</strong> option. Using check mode on individual tasks might be a
+good idea if using check mode on the entire playbook gives unpredicted
+results: you can enable it on just a couple of tasks to ensure that they
+run successfully before proceeding to the next set of tasks. Notice that
+using <strong>check_mode: no</strong> for specific tasks can be dangerous; these
+tasks will make changes, even if the entire playbook was started with
+the <strong>--check</strong> option!</p>
+<p>::: note</p>
+<hr>
+<p><strong>Note</strong></p>
+<p>The <strong>check_mode</strong> argument is a replacement for the <strong>always_run</strong>
+option that was used in Ansible 2.5 and earlier. In current Ansible
+versions, you should not use <strong>always_run</strong> anymore.</p>
+<p>Another option that is commonly used with the <strong>--check</strong> option is
+<strong>--diff</strong>. This option reports changes to template files without
+actually applying them. <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_1">Listing 11-1</a> shows a
+sample playbook, <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_2">Listing 11-2</a> shows the template
+that it is processing, and <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_3">Listing 11-3</a> shows
+the result of running this playbook with the <strong>ansible-playbook
+listing111.yaml --check --diff</strong> command.</p>
+<hr>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: simple template example
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">src</span>: listing112.j2
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /etc/issue
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">::</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">**Listing</span> <span style="color:#ff9f43">11-2</span><span style="color:#78787e">**</span> Sample Template File
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">::</span>: pre_1
+</span></span><span style="display:flex;"><span>    {<span style="color:#78787e"># /etc/issue #}</span>
+</span></span><span style="display:flex;"><span>    Welcome to {{ ansible_facts[’hostname’] }}
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">::</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">**Listing</span> <span style="color:#ff9f43">11-3</span><span style="color:#78787e">**</span> Running the listing111.yaml Sample Playbook
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">::</span>: pre_1
+</span></span><span style="display:flex;"><span>    [ansible@control rhce8-book]$ ansible-playbook listing111.yaml --check --diff
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    PLAY [simple template example] *************************************************
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    TASK [Gathering Facts] *********************************************************
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ok</span>: [ansible2]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    TASK [template] ****************************************************************
+</span></span><span style="display:flex;"><span>    --- before
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">+++ after</span>: /home/ansible/.ansible/tmp/ansible-local-4493uxbpju1e/tmpm5gn7crg/listing112.j2
+</span></span><span style="display:flex;"><span>    @@ -<span style="color:#ff9f43">0</span>,<span style="color:#ff9f43">0</span> +1,3 @@
+</span></span><span style="display:flex;"><span>    +Welcome to ansible2
+</span></span><span style="display:flex;"><span>    +
+</span></span><span style="display:flex;"><span>    +
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">changed</span>: [ansible2]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    PLAY RECAP *********************************************************************
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ansible2                   </span>: ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span></span></code></pre></div>
+<h4 id="understanding-output">Understanding Output</h4>
+<p>When you run the <strong>ansible-playbook</strong> command, output is generated.
+You&rsquo;ve probably had a glimpse of it before, but let&rsquo;s look at the output
+in a more structured way now. <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_4">Listing 11-4</a> shows
+some typical sample output generated by running the <strong>ansible-playbook</strong>
+command.</p>
+<p><strong>Listing 11-4 ansible-playbook</strong> Command Output</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing52.yaml</p>
+<pre><code>PLAY [install start and enable httpd] ******************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible2]
+ok: [ansible1]
+ok: [ansible3]
+ok: [ansible4]
+
+TASK [install package] *********************************************************
+changed: [ansible2]
+changed: [ansible1]
+changed: [ansible3]
+changed: [ansible4]
+
+TASK [start and enable service] ************************************************
+changed: [ansible2]
+changed: [ansible1]
+changed: [ansible3]
+changed: [ansible4]
+
+PLAY RECAP *********************************************************************
+ansible1                   : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2                   : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3                   : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4                   : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<p>In the output of any <strong>ansible-playbook</strong> command, you can see different
+items:</p>
+<p><a href="#R-image-7ca1648b61ce4be2d426a2fbe7870c86" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/key_topic_icon.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ca1648b61ce4be2d426a2fbe7870c86"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/key_topic_icon.jpg"></a>{width=&ldquo;64&rdquo; height=&ldquo;51&rdquo;}</p>
+<p>• An indicator of the play that is started</p>
+<p>• If not disabled, the Gathering Facts task that is executed for each
+play</p>
+<p>• Each individual task, including the task name if that was specified</p>
+<p>• The Play Recap, which summarizes the play results</p>
+<p>In the Play Recap, different results can be shown. <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#tab11_2">Table
+11-2</a> gives an overview.</p>
+<p>::: group
+<strong>Table 11-2</strong> Playbook Recap Overview</p>
+<p><a href="#R-image-20f799eeae723207382abd4f1d7594ef" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab02.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-20f799eeae723207382abd4f1d7594ef"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab02.jpg"></a>{width=&ldquo;941&rdquo; height=&ldquo;338&rdquo;}
+:::</p>
+<p>As discussed before, when you use the <strong>ansible-playbook</strong> command, you
+can increase the output verbosity level using one or more <strong>-v</strong>
+options. <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#tab11_3">Table 11-3</a> lists what these options
+accomplish. For generic troubleshooting, you might want to consider
+using <strong>-vv</strong>, which shows output as well as input data. In particular
+cases using the <strong>-vvv</strong> option can be useful because it adds connection
+information as well.</p>
+<p>The <strong>-vvvv</strong> option just brings too much information in many cases but
+can be useful if you need to analyze which exact scripts are executed or
+whether any problems were encountered in privilege escalation. Make sure
+to capture the output of any command that runs with <strong>-vvvv</strong> to a text
+file, though, so that you can read it in an easy way. Even for a simple
+playbook, it can easily generate more than 10 screens of output.</p>
+<p>::: group
+<strong>Table 11-3</strong> Verbosity Options Overview</p>
+<p><a href="#R-image-0aa7717421cde7a9eef3225ef4221cd7" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab03.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0aa7717421cde7a9eef3225ef4221cd7"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab03.jpg"></a>{width=&ldquo;941&rdquo; height=&ldquo;209&rdquo;}
+:::</p>
+<p>In <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_5">Listing 11-5</a> you can see the output of a
+small playbook that runs different tasks on the managed hosts. <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_5">Listing
+11-5</a> shows details about execution of one task on
+host ansible4, and as you can see, it goes deep in the amount of detail
+that is shown. One component is worth looking at, and that is the
+escalation succeeded that you can see in the output. This means that
+privilege escalation was successful and tasks were executed because
+<strong>become_user</strong> was defined in ansible.cfg. Failing privilege escalation
+is one of the common reasons why playbook execution may go wrong, which
+is why it&rsquo;s worth keeping an eye on this indicator.</p>
+<p><strong>Listing 11-5</strong> Analyzing Partial <strong>-vvvv</strong> Output</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    &lt;ansible4&gt; ESTABLISH SSH CONNECTION FOR USER: ansible
+    &lt;ansible4&gt; SSH: EXEC ssh -vvv -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ’User=&#34;ansible&#34;’ -o ConnectTimeout=10 -o ControlPath=/home/ansible/.ansible/cp/859d5267e3 ansible4 ’/bin/sh -c ’&#34;’&#34;’chmod u+x /home/ansible/.ansible/tmp/ansible-tmp-1587544652.4716983-118789810824208/ /home/ansible/.ansible/tmp/ansible-tmp-1587544652.4716983-118789810824208/AnsiballZ_systemd.py &amp;&amp; sleep 0’&#34;’&#34;’’
+    Escalation succeeded
+    &lt;ansible4&gt; (0, b’’, b&#34;OpenSSH_8.0p1, OpenSSL 1.1.1c FIPS  28 May 2019\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug3: /etc/ssh/ssh_config line 51: Including file /etc/ssh/ssh_config.d/05-redhat.conf depth 0\r\ndebug1: Reading configuration data /etc/ssh/ssh_config.d/05-redhat.conf\r\ndebug2: checking match for ’final all’ host ansible4 originally ansible4\r\ndebug3: /etc/ssh/ssh_config.d/05-redhat.conf line 3: not matched ’final’\r\ndebug2: match not found\r\ndebug3: /etc/ssh/ssh_config.d/05-redhat.conf line 5: Including file /etc/crypto-policies/back-ends/openssh.config depth 1 (parse only)\r\ndebug1: Reading configuration data /etc/crypto-policies/back-ends/openssh.config\r\ndebug3: gss kex names ok: [gss-gex-sha1-,gss-group14-sha1-]\r\ndebug3: kex names ok: [curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1]\r\ndebug1: configuration requests final Match pass\r\ndebug1: re-parsing configuration\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug3: /etc/ssh/ssh_config line 51: Including file /etc/ssh/ssh_config.d/05-redhat.conf depth 0\r\ndebug1: Reading configuration data /etc/ssh/ssh_config.d/05-redhat.conf\r\ndebug2: checking match for ’final all’ host ansible4 originally ansible4\r\ndebug3: /etc/ssh/ssh_config.d/05-redhat.conf line 3: matched ’final’\r\ndebug2: match found\r\ndebug3: /etc/ssh/ssh_config.d/05-redhat.conf line 5: Including file /etc/crypto-policies/back-ends/openssh.config depth 1\r\ndebug1: Reading configuration data /etc/crypto-policies/back-ends/openssh.config\r\ndebug3: gss kex names ok: [gss-gex-sha1-,gss-group14-sha1-]\r\ndebug3: kex names ok: [curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1]\r\ndebug1: auto-mux: Trying existing master\r\ndebug2: fd 4 setting O_NONBLOCK\r\ndebug2: mux_client_hello_exchange: master version 4\r\ndebug3: mux_client_forwards: request forwardings: 0 local, 0 remote\r\ndebug3: mux_client_request_session: entering\r\ndebug3: mux_client_request_alive: entering\r\ndebug3: mux_client_request_alive: done pid = 4764\r\ndebug3: mux_client_request_session: session request sent\r\ndebug3: mux_client_read_packet: read header failed: Broken pipe\r\ndebug2: Received exit status from master 0\r\n&#34;)
+    &lt;ansible4&gt; ESTABLISH SSH CONNECTION FOR USER: ansible
+    &lt;ansible4&gt; SSH: EXEC ssh -vvv -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ’User=&#34;ansible&#34;’ -o ConnectTimeout=10 -o ControlPath=/home/ansible/.ansible/cp/859d5267e3 -tt ansible4 ’/bin/sh -c ’&#34;’&#34;’sudo -H -S -n  -u root /bin/sh -c ’&#34;’&#34;’&#34;’&#34;’&#34;’&#34;’&#34;’&#34;’echo BECOME-SUCCESS-muvtpdvqkslnlegyhoibfcrilvlyjcqp ; /usr/libexec/platform-python /home/ansible/.ansible/tmp/ansible-tmp-1587544652.4716983-118789810824208/AnsiballZ_systemd.py’&#34;’&#34;’&#34;’&#34;’&#34;’&#34;’&#34;’&#34;’ &amp;&amp; sleep 0’&#34;’&#34;’’
+    Escalation succeeded</code></pre></div>
+<h4 id="optimizing-command-output-error-formatting">Optimizing Command Output Error Formatting</h4>
+<p>You might have noticed that the formatting of error messages in Ansible
+command output can be a bit hard to read. Fortunately, there&rsquo;s an easy
+way to make it a little more readable by including two options in the
+ansible.cfg file. These options are <strong>stdout_callback = debug</strong> and
+<strong>stdout_callback = error</strong>. After including these options, you&rsquo;ll
+notice it&rsquo;s a lot easier to read error output and distinguish between
+its different components!</p>
+<h4 class="h4" id="logging-to-files">Logging to Files</h4>
+<p>By default, Ansible does not write anything to log files. The reason is
+that the Ansible commands have all the options that may be useful to
+write output to the STDOUT. If so required, it&rsquo;s always possible to use
+shell redirection to write the command output to a file.</p>
+<p>If you do need Ansible to write log files, you can set the <strong>log_path</strong>
+parameter in ansible.cfg. Alternatively, Ansible can log to the filename
+that is specified as the argument to the $ANSIBLE_LOG_PATH variable.
+Notice that Ansible logs can grow big very fast, so if logging to output
+files is enabled, make sure that Linux log rotation is configured to
+ensure that files cannot grow beyond a specific maximum size.</p>
+<h4 class="h4" id="running-task-by-task">Running Task by Task</h4>
+<p>When you analyze playbook behavior, it&rsquo;s possible to run playbook tasks
+one by one or to start running a playbook at a specific task. The
+<strong>ansible-playbook --step</strong> command runs playbooks task by task and
+prompts for confirmation before running the next task. Alternatively,
+you can use the <strong>ansible-playbook --start-at-task=&quot;task name&quot;</strong>
+command to start playbook execution as a specific task. Before using
+this command, you might want to use <strong>ansible-playbook --list-tasks</strong>
+for a list of all tasks that have been configured. To use these options
+in an efficient way, you must configure each task with its own name. In
+<a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#list11_6">Listing 11-6</a> you can see what running playbooks
+this way looks like. This listing first shows how to list tasks in a
+playbook and next how the <strong>--start-at-task</strong> and <strong>--step</strong> options
+are used.</p>
+<p><strong>Listing 11-6</strong> Running Tasks One by One</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook &ndash;list-tasks exercise81.yaml</p>
+<pre><code>playbook: exercise81.yaml
+
+  play #1 (ansible1): testing file manipulation skills.    TAGS: []
+    tasks:
+      create a new file              TAGS: []
+      check status of the new file   TAGS: []
+      for debugging purposes only    TAGS: []
+      change file owner if needed    TAGS: []
+
+  play #2 (ansible1): fetching a remote file.    TAGS: []
+    tasks:
+      fetch file from remote machine.    TAGS: []
+
+  play #3 (localhost): adding text to the file that is now on localhost TAGS: []
+    tasks:
+      add a message.    TAGS: []
+
+  play #4 (ansible2): copy the modified file to ansible2.    TAGS: []
+    tasks:
+      copy motd file.    TAGS: []
+[ansible@control rhce8-book]$ ansible-playbook --start-at-task &quot;add a message&quot;  --step exercise81.yaml
+
+PLAY [testing file manipulation skills] ****************************************
+
+PLAY [fetching a remote file] **************************************************
+
+PLAY [adding text to the file that is now on localhost] ************************
+Perform task: TASK: Gathering Facts (N)o/(y)es/(c)ontinue:
+</code></pre>
+<p>:::</p>
+<p>In <a href="/ansible/troubleshooting/managing-ansible-errors-and-logs/#ch11.xhtml#exe11_1">Exercise 11-1</a> you learn how to apply check
+mode while working with templates.</p>
+<p>::: box
+<strong>Exercise 11-1 Using Templates in Check Mode</strong></p>
+<p>1. Locate the file httpd.conf; you can find it in the rhce8-book
+directory, which you can download from the GitHub repository at
+<a href="https://github.com/sandervanvugt/rhce8-book" rel="external" target="_blank">https://github.com/sandervanvugt/rhce8-book</a>. Use <strong>mv httpd.conf
+exercise111-httpd.j2</strong> to rename it to a Jinja2 template file.</p>
+<p>2. Open the exercise111-httpd.j2 file with an editor, and apply
+modifications to existing parameters so that they look like the
+following:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">ServerRoot &#34;{{ apache_root }}&#34;
+User {{ apache_user }}
+Group {{ apache_group }}</code></pre></div>
+<p>3. Write a playbook that takes care of the complete Apache web server
+setup and installation, starts and enables the service, opens a port in
+the firewall, and uses the template module to create the
+/etc/httpd/conf/httpd.conf file based on the template that you created
+in step 2 of this exercise. The complete playbook with the name
+exercise111.yaml looks like the following (make sure you have the
+<em>exact</em> contents shown below and do <em>not</em> correct any typos):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: perform basic apache setup
+  hosts: ansible2
+  vars:
+    apache_root: /etc/httpd
+    apache_user: httpd
+    apache_group: httpd
+  tasks:
+  - name: install RPM package
+    yum:
+      name: httpd
+      state: latest
+  - name: copy template file
+    template:
+      src: exercise111-httpd.j2
+      dest: /etc/httpd/httpd.conf
+  - name: start and enable service
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: open port in firewall
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+      immediate: yes</code></pre></div>
+<p>4. Run the command <strong>ansible-playbook --syntax-check
+exercise111.yaml</strong>. If no errors are found in the playbook syntax, you
+should just see the name of the playbook.</p>
+<p>5. Run the command <strong>ansible-playbook --check --diff
+exercise111.yaml</strong>. In the output of the command, pay attention to the
+task copy template file. After the line that starts with <strong>+++ after</strong>,
+you should see the lines in the template that were configured to use a
+variable, using the right variables.</p>
+<p>6. Run the playbook to perform all its tasks step by step, using the
+command <strong>ansible-playbook --step exercise111.yaml</strong>. Press <strong>y</strong> to
+confirm the first step. Next, press <strong>c</strong> to automatically continue. The
+playbook will fail on the copy template file task because the target
+directory does not exist. Notice that the <strong>--syntax-check</strong> and the
+<strong>--check</strong> options do not check for any logical errors in the playbook
+and for that reason have not detected this problem.</p>
+<p>7. Edit the exercise111.yaml file and ensure the <strong>template</strong> task
+contains the following corrected line: (replace the old line starting
+with <strong>dest:</strong>):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">dest: /etc/httpd/conf/httpd.conf</code></pre></div>
+<p>8. Type <strong>ansible-playbook --list-tasks exercise111.yaml</strong> to list all
+the tasks in the playbook.</p>
+<p>9. To avoid running the entire playbook again, use <strong>ansible-playbook
+--start-at-task=&quot;copy template file&quot; exercise111.yaml</strong> to run the
+playbook to completion.
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/troubleshooting/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

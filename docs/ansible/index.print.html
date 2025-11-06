@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Ad Hoc Commands and Scripting Ansible DocumentationAnsible Documentation resources
+Ansible Inventory and Ansible.cfgSetting up and Ansible environment
+Ansible PlaybooksGetting started with Ansible Playbooks
+Ansible RolesManipulating files, SELinux, and Jinja2 templates
+Building an Ansible lab with AnsibleBuilding an Ansible lab with Ansible using Ansible and Libvirt
+Common modules with examplesCommon Ansible modules with examples
+Deploying filesManipulating files, SELinux, and Jinja2 templates
+Networking with AnsibleNetworking with Ansible Setting up an Ansible LabBasic Ansible lab for RHCE">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ansible :: Linux Reader">
+    <meta name="twitter:description" content="Ad Hoc Commands and Scripting Ansible DocumentationAnsible Documentation resources
+Ansible Inventory and Ansible.cfgSetting up and Ansible environment
+Ansible PlaybooksGetting started with Ansible Playbooks
+Ansible RolesManipulating files, SELinux, and Jinja2 templates
+Building an Ansible lab with AnsibleBuilding an Ansible lab with Ansible using Ansible and Libvirt
+Common modules with examplesCommon Ansible modules with examples
+Deploying filesManipulating files, SELinux, and Jinja2 templates
+Networking with AnsibleNetworking with Ansible Setting up an Ansible LabBasic Ansible lab for RHCE">
+    <meta property="og:url" content="http://linuxreader.com/ansible/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Ansible :: Linux Reader">
+    <meta property="og:description" content="Ad Hoc Commands and Scripting Ansible DocumentationAnsible Documentation resources
+Ansible Inventory and Ansible.cfgSetting up and Ansible environment
+Ansible PlaybooksGetting started with Ansible Playbooks
+Ansible RolesManipulating files, SELinux, and Jinja2 templates
+Building an Ansible lab with AnsibleBuilding an Ansible lab with Ansible using Ansible and Libvirt
+Common modules with examplesCommon Ansible modules with examples
+Deploying filesManipulating files, SELinux, and Jinja2 templates
+Networking with AnsibleNetworking with Ansible Setting up an Ansible LabBasic Ansible lab for RHCE">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Ansible :: Linux Reader">
+    <meta itemprop="description" content="Ad Hoc Commands and Scripting Ansible DocumentationAnsible Documentation resources
+Ansible Inventory and Ansible.cfgSetting up and Ansible environment
+Ansible PlaybooksGetting started with Ansible Playbooks
+Ansible RolesManipulating files, SELinux, and Jinja2 templates
+Building an Ansible lab with AnsibleBuilding an Ansible lab with Ansible using Ansible and Libvirt
+Common modules with examplesCommon Ansible modules with examples
+Deploying filesManipulating files, SELinux, and Jinja2 templates
+Networking with AnsibleNetworking with Ansible Setting up an Ansible LabBasic Ansible lab for RHCE">
+    <meta itemprop="wordCount" content="78">
+    <title>Ansible :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/" rel="canonical" type="text/html" title="Ansible :: Linux Reader">
+    <link href="/ansible/index.xml" rel="alternate" type="application/rss+xml" title="Ansible :: Linux Reader">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/';
+      window.relearn.relBasePath='..';
+      window.relearn.relBaseUri='..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/" title="Linux Reader (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Ansible
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible">Ansible</h1>
+
+<div class="children children-h6 children-sort-">
+  <h6 class="children-title" id="ad-hoc-commands-and-scripting"><a href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a></h6><p><div class="children children-h6 children-sort-">
+</div></p>
+  <h6 class="children-title" id="ansible-documentation"><a href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></h6><p>Ansible Documentation resources</p>
+  <h6 class="children-title" id="ansible-inventory-and-ansiblecfg"><a href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></h6><p>Setting up and Ansible environment</p>
+  <h6 class="children-title" id="ansible-playbooks"><a href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></h6><p>Getting started with Ansible Playbooks</p>
+  <h6 class="children-title" id="ansible-roles"><a href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></h6><p>Manipulating files, SELinux, and Jinja2 templates</p>
+  <h6 class="children-title" id="building-an-ansible-lab-with-ansible"><a href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></h6><p>Building an Ansible lab with Ansible using Ansible and Libvirt</p>
+  <h6 class="children-title" id="common-modules-with-examples"><a href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></h6><p>Common Ansible modules with examples</p>
+  <h6 class="children-title" id="deploying-files"><a href="/ansible/deploying-files/deploying-files/">Deploying files</a></h6><p>Manipulating files, SELinux, and Jinja2 templates</p>
+  <h6 class="children-title" id="networking-with-ansible"><a href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></h6><p>Networking with Ansible </p>
+  <h6 class="children-title" id="setting-up-an-ansible-lab"><a href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></h6><p>Basic Ansible lab for RHCE</p>
+  <h6 class="children-title" id="variables"><a href="/ansible/variables-and-facts/variables/">Variables</a></h6><p>All about Ansible variables</p>
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Ansible</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ad-hoc-commands-and-scripting">Ad Hoc Commands and Scripting</h1>
+
+<div class="children children-h6 children-sort-">
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-documentation">Ansible Documentation</h1>
+
+<h2 id="ansible-navigator"><code>ansible-navigator</code></h2>
+<p>Was advised to start using this tools for Ansible because it is available during the RHCE exam.
+<a href="https://ansible.readthedocs.io/projects/navigator/" rel="external" target="_blank">https://ansible.readthedocs.io/projects/navigator/</a></p>
+<h2 id="ansible-docs">Ansible Docs</h2>
+<p><a href="https://docs.ansible.com/" rel="external" target="_blank">https://docs.ansible.com/</a></p>
+<h2 id="ansible-doc"><code>ansible-doc</code></h2>
+<p><a href="https://docs.ansible.com/ansible/latest/cli/ansible-doc.html" rel="external" target="_blank">https://docs.ansible.com/ansible/latest/cli/ansible-doc.html</a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-inventory-and-ansiblecfg">Ansible Inventory and Ansible.cfg</h1>
+
+<h2 id="ansible-projects">Ansible projects</h2>
+<p>For small companies, you can use a single Ansible configuration. But for larger ones, it&rsquo;s a good idea to use different project directories. A project directory contains everything you need to work on a single project. Including:</p>
+<ul>
+<li>playbooks</li>
+<li>variable files</li>
+<li>task files</li>
+<li>inventory files</li>
+<li>ansible.cfg</li>
+</ul>
+<p><em>playbook</em>
+An Ansible script written in YAML that enforce the desired configuration on manage hosts.</p>
+<h2 id="inventory">Inventory</h2>
+<p>A file that Identifies hosts that Ansible has to manage. You can also use this to list and group hosts and specify host variables. Each project should have it&rsquo;s own inventory file.</p>
+<p>/etc/ansible/hosts</p>
+<ul>
+<li>can be used for system wide inventory.</li>
+<li>default if no inventory file is specified.</li>
+<li>has some basic inventory formatting info if you forget)</li>
+<li>Ansible will also target localhosts if no hosts are found in the inventory file.</li>
+<li>It&rsquo;s a good idea to store inventory files in large environments in their own project folders.</li>
+</ul>
+<p>localhost is not defined in inventory. It is an implicit host that is usable and refers to the Ansible control machine. Using localhost can be a good way to verify the accessibility of services on managed hosts.</p>
+<h3 id="listing-hosts">Listing hosts</h3>
+<p>List hosts by IP address or hostname. You can list a range of hosts in an inventory file as well such as <code>web-server[1:10].example.com</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>ansible1:2222 &lt; specify ssh port if the host is not using the default port 22
+</span></span><span style="display:flex;"><span>ansible2
+</span></span><span style="display:flex;"><span><span style="color:#ff9f43">10.0.10.55</span>
+</span></span><span style="display:flex;"><span>web-server[1:10].example.com</span></span></code></pre></div>
+<h3 id="listing-groups">Listing groups</h3>
+<p>You can list groups and groups of groups. See the groups web and db are included in the group &ldquo;servers:children&rdquo;</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>ansible1
+</span></span><span style="display:flex;"><span>ansible2
+</span></span><span style="display:flex;"><span><span style="color:#ff9f43">10.0.10.55</span>
+</span></span><span style="display:flex;"><span>web-server[1:10].example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[web]
+</span></span><span style="display:flex;"><span>web-server[1:10].example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[db]
+</span></span><span style="display:flex;"><span>db1
+</span></span><span style="display:flex;"><span>db2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[servers:children] &lt;-- servers is the group of groups and children is the parameter that specifies child groups
+</span></span><span style="display:flex;"><span>web
+</span></span><span style="display:flex;"><span>db</span></span></code></pre></div>
+<p>There are 3 general approaches to using groups:</p>
+<p><strong>Functional groups</strong>
+Address a specific group of hosts according to use. Such as web servers or database servers.</p>
+<p><strong>Regional host groups</strong>
+Used when working with region oriented infrastructure. Such as USA, Canada.</p>
+<p><strong>Staging host groups</strong>
+Used to address different hosts according to the staging phase that the current environment is in. Such as testing, development, production.</p>
+<p>Undefined host groups are called implicit host groups. These are <strong>all</strong>, <strong>ungrouped</strong>, and <strong>localhost</strong>. Names making the meaning obvious.</p>
+<h3 id="host-variables">Host variables</h3>
+<p>In older versions of Ansible you could define variables for hosts. This is no longer used. Example:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[groupname:vars]
+</span></span><span style="display:flex;"><span>ansible=ansible_user</span></span></code></pre></div>
+<p>Variables are now set using <strong>host_vars</strong> and <strong>group_vars</strong> directories instead.</p>
+<h3 id="multiple-inventory-files">Multiple inventory files</h3>
+<p>Put all inventory files in a directory and specify the directory as the inventory to be used. For dynamic directories you also need to set the execution bit on the inventory file.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-playbooks">Ansible Playbooks</h1>
+
+<ul>
+<li>Exploring playbooks</li>
+<li>YAML</li>
+<li>Managing Multiplay Playbooks</li>
+</ul>
+<p>Lets create our first playbook:</p>
+<p><code>[ansible@control base]$ vim playbook.yaml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd &lt;-- play is at the highest level
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>: &lt;-- play has a list of tasks
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package &lt;-- name of task 1
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>: &lt;-- module
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd &lt;-- argument 1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed &lt;-- argument 2
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service &lt;-- task 2
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span></span></span></code></pre></div>
+<p>There are thee dashes at the top of the playbook. And sometimes you&rsquo;ll find three dots at the end of a playbook. These make it easy to isolate the playbook and embed the playbook code into other projects.</p>
+<p>Playbooks are written in YAML format and saved as either .yml or .yaml. YAML specifies objects as key-value pairs (dictionaries). Key value pairs can be listed in either key: value (preferred) or key=value. And dashes specify lists of embedded objects.</p>
+<p>There is a collection of one or more plays in a playbook. Each play targets specific hosts and lists tasks to perform on those hosts. There is one play here with the name &ldquo;install start and enable httpd&rdquo;. You target the host names to target at the top of the play, not in the individual tasks performed.</p>
+<p>Each task is identified by &ldquo;- name&rdquo; (not required but recommended for troubleshooting and identifying tasks). Then the module is listed with arguments and their values under that.</p>
+<p>Indentation is important here. It identifies the relationships between different elements. Data elements at the same level must have the same indentation. And items that are children or properties of another element must be indented more than their parent elements.</p>
+<p>Indentation is created using spaces. Usually two spaces is used, but not required. You cannot use tabs for indentation.</p>
+<p>You can also edit your .vimrc file to help with indentation when it detects that you are working with a YAML file:
+<code>vim ~/.vimrc</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>autocmd FileType yaml setlocal ai ts=2 sw=2 et</code></pre></div>
+<p>Required elements:</p>
+<ul>
+<li>hosts - name of host(s) to perform play on</li>
+<li>name - name of the play</li>
+<li>tasks - one or more tasks to execute for this play</li>
+</ul>
+<p>To run a playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible-playbook playbook.yaml 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Name of the play</span>
+</span></span><span style="display:flex;"><span>PLAY <span style="color:#ff6ac1">[</span>install start and <span style="color:#ff5c57">enable</span> http+userd<span style="color:#ff6ac1">]</span> ***********************************************
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Overview of tasks and the hosts it was successful on</span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>Gathering Facts<span style="color:#ff6ac1">]</span> **************************************************************
+</span></span><span style="display:flex;"><span>fatal: <span style="color:#ff6ac1">[</span>web1<span style="color:#ff6ac1">]</span>: UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span><span style="color:#5af78e">&#34;changed&#34;</span>: false, <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web1: Name or service not known&#34;</span>, <span style="color:#5af78e">&#34;unreachable&#34;</span>: true<span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>fatal: <span style="color:#ff6ac1">[</span>web2<span style="color:#ff6ac1">]</span>: UNREACHABLE! <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span><span style="color:#5af78e">&#34;changed&#34;</span>: false, <span style="color:#5af78e">&#34;msg&#34;</span>: <span style="color:#5af78e">&#34;Failed to connect to the host via ssh: ssh: Could not resolve hostname web2: Name or service not known&#34;</span>, <span style="color:#5af78e">&#34;unreachable&#34;</span>: true<span style="color:#ff6ac1">}</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible2<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>install package<span style="color:#ff6ac1">]</span> **************************************************************
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible2<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TASK <span style="color:#ff6ac1">[</span>start and <span style="color:#ff5c57">enable</span> service<span style="color:#ff6ac1">]</span> *****************************************************
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible2<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>ok: <span style="color:#ff6ac1">[</span>ansible1<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># overview of the status of each task</span>
+</span></span><span style="display:flex;"><span>PLAY RECAP **************************************************************************
+</span></span><span style="display:flex;"><span>ansible1                   : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">3</span> <span style="color:#ff6ac1">(</span>no changes required<span style="color:#ff6ac1">)</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span> <span style="color:#ff6ac1">(</span>indicates the task was successful and target node was modified.<span style="color:#ff6ac1">)</span>   <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   
+</span></span><span style="display:flex;"><span>ansible2                   : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">3</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   
+</span></span><span style="display:flex;"><span>web1                       : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   
+</span></span><span style="display:flex;"><span>web2                       : <span style="color:#ff5c57">ok</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">changed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">unreachable</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">1</span>    <span style="color:#ff5c57">failed</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">skipped</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">rescued</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>    <span style="color:#ff5c57">ignored</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span>   </span></span></code></pre></div>
+<p>Before running tasks, the <code>ansible-playbook</code> command gathers facts (current configuration and settings) about managed nodes.</p>
+<h3 id="how-to-undo-playbook-modifications">How to undo playbook modifications</h3>
+<p>Ansible does not have a built in feature to undo a playbook that you ran. So to undo changes, you need to make another playbook that defines the new desired state of the host.</p>
+<h3 id="working-with-yaml">Working with YAML</h3>
+<p>Key value pairs can also be listed as:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: install vsftpd
+</span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">yum</span>: name=vsftpd
+</span></span><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: enable vsftpd
+</span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">service</span>: name=vsftpd enabled=true
+</span></span><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: create readme file</span></span></code></pre></div>
+<p>But better to list them as such for better readability:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;welcome to the FTP server\n&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /var/ftp/pub/README
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">force</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0444</span></span></span></code></pre></div>
+<p>Some modules support multiple values for a single key:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install multiple packages
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install packages
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: &lt;-- key with multiple values
+</span></span><span style="display:flex;"><span>      - nmap 
+</span></span><span style="display:flex;"><span>      - httpd
+</span></span><span style="display:flex;"><span>      - vsftpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest &lt;-- will install and/or update to latest version</span></span></code></pre></div>
+<h3 id="yaml-strings">YAML Strings</h3>
+<p>Valid fomats for a string in YAML:</p>
+<ul>
+<li><code>super string</code></li>
+<li><code>&quot;super string&quot;</code></li>
+<li><code>'super string'</code></li>
+</ul>
+<p>When inserting text into a file, you may have to deal with spacing. You can either preserve newline characters with a pipe <code>|</code> such as:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Using | to preserve newlines
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dest</span>: /tmp/rendezvous-with-death.txt
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">content</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          I have a rendezvous with Death
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          At some disputed barricade,
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          When Spring comes back with rustling shade
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          And apple-blossoms fill the air—</span></span></span></code></pre></div>
+<p>Output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>I have a rendezvous with Death
+</span></span><span style="display:flex;"><span>At some disputed barricade,
+</span></span><span style="display:flex;"><span>When Spring comes back with rustling shade
+</span></span><span style="display:flex;"><span>And apple-blossoms fill the air—</span></span></code></pre></div>
+<p>Or chose not to with a carrot &gt;</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> - <span style="color:#ff6ac1">name</span>: Using &gt; to fold lines into one
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dest</span>: /tmp/rendezvous-with-death.txt
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">content</span>: &gt;<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          I have a rendezvous with Death
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          At some disputed barricade,
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          When Spring comes back with rustling shade
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          And apple-blossoms fill the air—</span></span></span></code></pre></div>
+<p>Output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>I have a rendezvous with Death At some disputed barricade, When Spring comes back with rustling shade And apple-blossoms fill the air—</span></span></code></pre></div>
+<h3 id="checking-syntax-with---syntax-check">Checking syntax with <code>--syntax-check</code></h3>
+<p>You can use the <code>--syntax-check</code> flag to check a playbook for errors. The <code>ansible-playbook</code> command does check syntax by default though, and will throw the same error messages. The syntax check stops after detecting a single error. So you will need to fix the first errors in order to see errors further in the file. I&rsquo;ve added a tab in front of the host key to demonstrate:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[ansible@control base]$ cat playbook.yaml 
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>[ansible@control base]$ ansible-playbook --syntax-check playbook.yaml 
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">JSON: Expecting value</span>: line 1 column 1 (char 0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Syntax Error while loading YAML.
+</span></span><span style="display:flex;"><span>  mapping values are not allowed in this context
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">The error appears to be in &#39;/home/ansible/base/playbook.yaml&#39;</span>: line 3, column 10, but may
+</span></span><span style="display:flex;"><span>be elsewhere in the file depending on the exact syntax problem.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">The offending line appears to be</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>         ^ here</span></span></code></pre></div>
+<p>And here it is again, after fixing the syntax error:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[ansible@control base]$ vim playbook.yaml 
+</span></span><span style="display:flex;"><span>[ansible@control base]$ cat playbook.yaml 
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>[ansible@control base]$ ansible-playbook --syntax-check playbook.yaml 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">playbook</span>: playbook.yaml</span></span></code></pre></div>
+<h3 id="doing-a-dry-run">Doing a dry run</h3>
+<p>Use the -C flag to perform a dry run. This will check the success status of all of the tasks without actually making any changes.
+<code>ansible-playbook -C playbook.yaml</code></p>
+<h2 id="multiple-play-playbooks">Multiple play playbooks</h2>
+<p>Using multiple plays in a playbook lets you set up one group of servers with one configuration and another group with a different configuration. Each play has it&rsquo;s own list of hosts to address.</p>
+<p>You can also specify different parameters in each play such as <strong>become:</strong> or the <strong>remote_user:</strong> parameters.</p>
+<p>Try to keep playbooks small. As bigger playbooks will be harder to troubleshoot. You can use <em>include:</em> to include other playbooks. Other than troubleshooting, using smaller playbooks lets you use your playbooks in a flexible way to perform a wider range of tasks.</p>
+<p>Here is an example of a playbook with two plays:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: install start and enable httpd   &lt;--- play 1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: test httpd accessibility &lt;-- play 2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: test httpd access
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">url</span>: http://ansible1</span></span></code></pre></div>
+<h3 id="verbose-output-options">Verbose output options</h3>
+<p>You can increase the output of verbosity to an amount hitherto undreamt of. This can be useful for troubleshooting.</p>
+<p>Verbose output of the playbook above showing task results:
+<code>[ansible@control base]$ ansible-playbook -v playbook.yaml </code></p>
+<p>Verbose output of the playbook above showing task results and task configuration:
+<code>[ansible@control base]$ ansible-playbook -vv playbook.yaml </code></p>
+<p>Verbose output of the playbook above showing task results, task configuration, and info about connections to managed hosts:
+<code>[ansible@control base]$ ansible-playbook -vvv playbook.yaml </code></p>
+<p>Verbose output of the playbook above showing task results, task configuration, and info about connections to managed hosts, plug-ins, user accounts, and executed scripts:
+<code>[ansible@control base]$ ansible-playbook -vvvv playbook.yaml </code></p>
+<h3 id="lab-playbook">Lab playbook</h3>
+<p>Now we know enough to create and enable a simple webserver. Here is a playbook example. Just make sure to download the posix collection or you won&rsquo;t be able to use the firewalld module:
+<code>[ansible@control base]$ ansible-galaxy collection install ansible.posix</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[ansible@control base]$ cat playbook.yaml 
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Enable web server 
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install package
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: 
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - firewalld
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: installed
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Create welcome page
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;Welcome to the webserver!\n&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /var/www/html/index.html
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: enable firewall
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>: 
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: firewalld
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Open service in firewall
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">firewalld</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>: http
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">permanent</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: enabled
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">immediate</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: test webserver accessibility
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: test webserver access
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">url</span>: http://ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">return_content</span>: <span style="color:#ff6ac1">yes</span> &lt;-- Return the body of the response as a content key in the dictionary result
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">status_code</span>: <span style="color:#ff9f43">200</span> &lt;--</span></span></code></pre></div>
+<p>After running this playbook, you should be able to reach the webserver at http://ansible1</p>
+<p>With return content and status code</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ok: [localhost] =&gt; {&#34;accept_ranges&#34;: &#34;bytes&#34;, &#34;changed&#34;: false, &#34;connection&#34;: &#34;close&#34;, &#34;content&#34;: &#34;Welcome to the webserver!\n&#34;, &#34;content_length&#34;: &#34;26&#34;, &#34;content_type&#34;: &#34;text/html; charset=UTF-8&#34;, &#34;cookies&#34;: {}, &#34;cookies_string&#34;: &#34;&#34;, &#34;date&#34;: &#34;Thu, 10 Apr 2025 12:12:37 GMT&#34;, &#34;elapsed&#34;: 0, &#34;etag&#34;: &#34;\&#34;1a-6326b4cfb4042\&#34;&#34;, &#34;last_modified&#34;: &#34;Thu, 10 Apr 2025 11:58:14 GMT&#34;, &#34;msg&#34;: &#34;OK (26 bytes)&#34;, &#34;redirected&#34;: false, &#34;server&#34;: &#34;Apache/2.4.62 (Red Hat Enterprise Linux)&#34;, &#34;status&#34;: 200, &#34;url&#34;: &#34;http://ansible1&#34;}</code></pre></div>
+<p>Adds this: <code>&quot;content&quot;: &quot;Welcome to the webserver!\n&quot;</code> and this: <code>&quot;status&quot;: 200, &quot;url&quot;: &quot;http://ansible1&quot;}</code> to verbose output for that task.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-roles">Ansible Roles</h1>
+
+<p>• Work with roles
+• Create roles</p>
+<h3 id="using-ansible-roles">Using Ansible Roles</h3>
+<ul>
+<li>Ready-to-use playbook-based Ansible solutions that you can easily include in your own playbooks.</li>
+<li>Community roles are provided through Ansible Galaxy</li>
+<li>Also possible to create your own roles.</li>
+<li>Red Hat provides RHEL System Roles.</li>
+<li>Roles make it possible to provide Ansible code in a reusable way.</li>
+<li>You can easily define a specific task in a role, and after defining it in a role, you can easily redistribute that and ensure that tasks are handled the same way, no matter where they are executed.</li>
+<li>Roles can be custom-made for specific environments, or default roles provided from Ansible Galaxy can be used.</li>
+</ul>
+<h4 id="understanding-ansible-roles">Understanding Ansible Roles</h4>
+<ul>
+<li>work with include files.</li>
+<li>All the different components that you may use in a playbook are used in roles and stored in separate directories.</li>
+<li>While defining the role, you don&rsquo;t need to tell the role that it should look in some of these specific directories; it does that automatically.</li>
+<li>The only thing you need to do is tell your Ansible playbook that it should include a role.</li>
+<li>Different components of the role are stored in different subdirectories.</li>
+</ul>
+<p>Roles Sample Directory Structure:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [ansible@control roles]$ tree testrole/
+    testrole/
+    |-- defaults
+    |   `-- main.yml
+    |-- files
+    |-- handlers
+    |   `-- main.yml
+    |-- meta
+    |   `-- main.yml
+    |-- README.md
+    |-- tasks
+    |   `-- main.yml
+    |-- templates
+    |-- tests
+    |   |-- inventory
+    |   `-- test.yml
+    `-- vars
+        `-- main.yml</code></pre></div>
+<p>Role Directory Structure
+<strong>defaults</strong></p>
+<ul>
+<li>
+<p>Default variables that may be overwritten by other variables
+<strong>files</strong></p>
+</li>
+<li>
+<p>Static files that are needed by role tasks
+<strong>handlers</strong></p>
+</li>
+<li>
+<p>Handlers for use in this role
+<strong>meta</strong></p>
+</li>
+<li>
+<p>metadata, such as dependencies, plus license and maintainer information
+<strong>tasks</strong></p>
+</li>
+<li>
+<p>Role task definitions
+<strong>templates</strong></p>
+</li>
+<li>
+<p>Jinja2 templates
+<strong>tests</strong></p>
+</li>
+<li>
+<p>Optional inventory and a test.yml file to test the role
+<strong>vars</strong></p>
+</li>
+<li>
+<p>Variables that are not meant to be overwritten</p>
+</li>
+<li>
+<p>Most of the role directories have a main.yml file.</p>
+</li>
+<li>
+<p>This is the entry-point YAML file that is used to define components in the role.</p>
+</li>
+</ul>
+<h4 id="understanding-role-location">Understanding Role Location</h4>
+<p>Roles can be stored in different locations:</p>
+<p><strong>./roles</strong></p>
+<ul>
+<li>store roles in the current project directory.</li>
+<li>highest precedence.</li>
+</ul>
+<p><strong>~/.ansible/roles</strong></p>
+<ul>
+<li>exists in the current user home directory and makes the role available to the current user only.</li>
+<li>second-highest precedence.</li>
+</ul>
+<p><strong>/etc/ansible/roles</strong></p>
+<ul>
+<li>Where roles are stored to make them accessible to any user.</li>
+</ul>
+<p><strong>/usr/share/ansible/roles</strong></p>
+<ul>
+<li>Where roles are stored after they are installed from RPM files.</li>
+<li>lowest precedence</li>
+<li>should not be used for storing custom-made roles.</li>
+</ul>
+<p><code>ansible-galaxy init { newrolename }</code></p>
+<ul>
+<li>create a custom role</li>
+<li>creates the default role directory structure with a main.yml file</li>
+<li>includes sample files</li>
+</ul>
+<h4 id="using-roles-from-playbooks">Using Roles from Playbooks</h4>
+<ul>
+<li>Call roles in a playbook the same way you call a task</li>
+<li>Roles are included as a list.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: include some roles
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">roles</span>:
+</span></span><span style="display:flex;"><span>      - role1
+</span></span><span style="display:flex;"><span>      - role2</span></span></code></pre></div>
+<ul>
+<li>Roles are executed before the tasks.</li>
+<li>In specific cases you might have to execute tasks before the roles. To do so, you can specify these tasks in a <strong>pre_tasks</strong> section.</li>
+<li>Also, it&rsquo;s possible to use the <strong>post_tasks</strong> section to include tasks that will be executed after the roles, but also after tasks specified in the playbook as well as the handlers they call.</li>
+</ul>
+<h4 id="creating-custom-roles">Creating Custom Roles</h4>
+<ul>
+<li>Use <code>mkdir roles</code> to create a roles subdirectory in the current directory, and use <code>cd roles</code> to get into that subdirectory.</li>
+<li>Use <code>ansible-galaxy init motd</code> to create the motd role structure.</li>
+<li>Add contents to <strong>motd/tasks/main.yml</strong></li>
+<li>Add contents to motd/templates/motd.j2</li>
+<li>Add contents to <strong>motd/defaults/main.yml</strong></li>
+<li>Add contents to <strong>motd/meta/main.yml</strong></li>
+<li>Create the playbook <strong>exercise91.yaml</strong> to run the role</li>
+<li>Run the playbook by using <code>ansible-playbook exercise91.yaml</code></li>
+<li>Verify that modifications have been applied correctly by using the ad hoc command <code>ansible ansible2 -a &quot;cat /etc/motd&quot;</code></li>
+</ul>
+<p>Sample role all under <strong>roles/motd/</strong>:</p>
+<p><strong>defaults/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># defaults file for motd</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">system_manager</span>: anna@example.com</span></span></code></pre></div>
+<p><strong>meta/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff6ac1">galaxy_info</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">author</span>: Sander van V
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">description</span>: your description
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">company</span>: your company (optional)
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">license</span>: license (GPLv2, CC-BY, etc)
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">min_ansible_version</span>: <span style="color:#ff9f43">2.5</span></span></span></code></pre></div>
+<p><strong>tasks/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>tasks file for motd
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: copy motd file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">src</span>: templates/motd.j2
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">dest</span>: /etc/motd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">owner</span>: root
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">group</span>: root
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0444</span></span></span></code></pre></div>
+<p><strong>templates/motd.j2</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Welcome to {{ ansible_hostname }}
+    
+This file was created on {{ ansible_date_time.date }}
+Disconnect if you have no business being here
+    
+Contact {{ system_manager }} if anything is wrong</code></pre></div>
+<p>Playbook <strong>motd.yml</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: use the motd role playbook
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">roles</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">role</span>: motd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">system_manager</span>: bob@example.com</span></span></code></pre></div>
+<p>handlers/main.yml example:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># handlers file for base-config</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: source profile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: source /etc/profile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: source bash
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: source /etc/bash.bashrc                               </span></span></code></pre></div>
+<h4 id="managing-role-dependencies">Managing Role Dependencies</h4>
+<ul>
+<li>Roles may use other roles as a dependency.</li>
+<li>You can put role dependencies in meta/main.yml</li>
+<li>Dependent roles are always executed before the roles that depend on them.</li>
+<li>Dependent roles are executed once.</li>
+<li>When two roles that are used in a playbook call the same dependency, the dependent role is executed once only.</li>
+<li>When calling dependent roles, it is possible to pass variables to the dependent role.</li>
+<li>You can define a <strong>when</strong> statement to ensure that the dependent role is executed only in specific situations.</li>
+</ul>
+<p>Defining dependencies in <strong>meta/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    <span style="color:#ff6ac1">dependencies</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">role</span>: apache
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">port</span>: <span style="color:#ff9f43">8080</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">role</span>: mariabd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">when</span>: environment == ’production’</span></span></code></pre></div>
+<h4 id="understanding-file-organization-best-practices">Understanding File Organization Best Practices</h4>
+<ul>
+<li>
+<p>Working with roles splits the contents of the role off the tasks that are run through the playbook.</p>
+</li>
+<li>
+<p>Splitting files to store them in a location that makes sense is common in Ansible</p>
+</li>
+<li>
+<p>When you&rsquo;re working with Ansible, it&rsquo;s a good idea to work with project directories in bigger environments.</p>
+</li>
+<li>
+<p>Working with project directories makes it easier to delegate tasks and have the right people responsible for the right things.</p>
+</li>
+<li>
+<p>Each project directory may have its own ansible.cfg file, inventory file, and playbooks.</p>
+</li>
+<li>
+<p>If the project grows bigger, variable files and other include files may be used, and they are normally stored in subdirectories.</p>
+</li>
+<li>
+<p>At the top-level directory, create the main playbook from which other playbooks are included. The suggested name for the main playbook is <strong>site.yml</strong>.</p>
+</li>
+<li>
+<p>Use <strong>group_vars/</strong> and <strong>host_vars/</strong> to set host-related variables and do not define them in inventory.</p>
+</li>
+<li>
+<p>Consider using different inventory files to differentiate between production and staging phases.</p>
+</li>
+<li>
+<p>Use roles to standardize common tasks.</p>
+</li>
+</ul>
+<p>When you are working with roles, some additional recommendations apply:</p>
+<ul>
+<li>
+<p>Use a version control repository to maintain roles in a consistent way. Git is commonly used for this purpose.</p>
+</li>
+<li>
+<p>Sensitive information should never be included in roles. Use Ansible Vault to store sensitive information in an encrypted way.</p>
+</li>
+<li>
+<p>Use <code>ansible-galaxy init</code> to create the role base structure. Remove files and directories you don&rsquo;t use.</p>
+</li>
+<li>
+<p>Don&rsquo;t forget to provide additional information in the role&rsquo;s <strong>README.md</strong> and <strong>meta/main.yml</strong> files.</p>
+</li>
+<li>
+<p>Keep roles focused on a specific function. It is better to use multiple roles to perform multiple tasks.</p>
+</li>
+<li>
+<p>Try to develop roles in a generic way, such that they can be used for multiple purposes.</p>
+</li>
+</ul>
+<h3 id="lab-9-1">Lab 9-1</h3>
+<p>Create a playbook that starts the Nginx web server on ansible1, according to the following requirements:
+• A requirements file must be used to install the Nginx web server. Do NOT use the latest version of the Galaxy role, but instead use the version before that.
+• The same requirements file must also be used to install the latest version of postgresql.
+• The playbook needs to ensure that neither httpd nor mysql is currently installed.</p>
+<h3 id="lab-9-2">Lab 9-2</h3>
+<p>Use the RHEL SELinux System Role to manage SELinux properties according
+to the following requirements:</p>
+<p>• A Boolean is set to allow SELinux relabeling to be automated using
+cron.
+• The directory /var/ftp/uploads is created, permissions are set to 777,
+and the context label is set to public_content_rw_t.
+• SELinux should allow web servers to use port 82 instead of port 80.
+• SELinux is in enforcing state.
+Subjects:
+<code>ansible-playbook timesync.yaml</code> to run the playbook. Observe its output. Notice that some messages in red are shown, but these can safely be ignored.</p>
+<p>5. Use <code>ansible ansible2 -a &quot;timedatectl show&quot;</code> and notice that the <strong>timezone</strong> variable is set to UTC.</p>
+<h3 id="lab-9-1-1">Lab 9-1</h3>
+<p>Create a playbook that starts the Nginx web server on ansible1, according to the following requirements:
+• A requirements file must be used to install the Nginx web server. Do NOT use the latest version of the Galaxy role, but instead use the version before that.
+• The same requirements file must also be used to install the latest version of postgresql.
+<code>ansible-galaxy install -r roles/requirements.yml</code></p>
+<p><code>cat roles/requirements.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">src</span>: geerlingguy.nginx
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">version</span>: <span style="color:#5af78e">&#34;3.1.4&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">src</span>: geerlingguy.postgresql</span></span></code></pre></div>
+<p>• The playbook needs to ensure that neither httpd nor mysql is currently installed.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: ensure conflicting packages are not installed
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: web1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: remove packages
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: 
+</span></span><span style="display:flex;"><span>      - mysql
+</span></span><span style="display:flex;"><span>      - httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: absent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: nginx web server
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: web1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">roles</span>: 
+</span></span><span style="display:flex;"><span>  - geerlingguy.nginx
+</span></span><span style="display:flex;"><span>  - geerlingguy.postgresql</span></span></code></pre></div>
+<p>(Had to add a variable file for redhat 10 into the role. )</p>
+<h3 id="lab-9-2-1">Lab 9-2</h3>
+<p>Use the RHEL SELinux System Role to manage SELinux properties according to the following requirements:</p>
+<p>• A Boolean is set to allow SELinux relabeling to be automated using
+cron.
+• The directory /var/ftp/uploads is created, permissions are set to 777,
+and the context label is set to public_content_rw_t.
+• SELinux should allow web servers to use port 82 instead of port 80.
+• SELinux is in enforcing state.</p>
+<p><code>vim lab92.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: manage ftp selinux properties
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ftp1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_booleans</span>: 
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: cron_can_relabel
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">persistent</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_state</span>: enforcing
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">ports</span>: <span style="color:#ff9f43">82</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">proto</span>: tcp
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: http_port_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">local</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create /var/ftp/uploads/
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /var/ftp/uploads
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">777</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: set selinux context
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">sefcontext</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">target</span>: <span style="color:#5af78e">&#39;/var/ftp/uploads(/.*)?&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: public_content_rw_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">ftype</span>: d
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: run restorecon
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Execute the role and reboot in a rescue block
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Include selinux role
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: rhel-system-roles.selinux
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">rescue</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: &gt;-<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          Fail if failed for a different reason than selinux_reboot_required</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">fail</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;role failed&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: not selinux_reboot_required
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Restart managed host
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">reboot</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Wait for managed host to come back
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">wait_for_connection</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">delay</span>: <span style="color:#ff9f43">10</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">timeout</span>: <span style="color:#ff9f43">300</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Reapply the role
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: rhel-system-roles.selinux
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>:  run restorecon
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">command</span>: restorecon -v /var/ftp/uploads</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="building-an-ansible-lab-with-ansible">Building an Ansible lab with Ansible</h1>
+
+<p>When I started studying for RHCE, the study guide had me manually set up virtual machines for the Ansible lab environment. I thought.. Why not start my automation journey right, and automate them using Vagrant.</p>
+<p>I use Libvirt to manage KVM/QEMU Virtual Machines and the Virt-Manager app to set them up. I figured I could use Vagrant to automatically build this lab from a file. And I got part of the way. I ended up with this Vagrant file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Vagrant.configure<span style="color:#ff6ac1">(</span><span style="color:#5af78e">&#34;2&#34;</span><span style="color:#ff6ac1">)</span> <span style="color:#ff6ac1">do</span> |config|
+</span></span><span style="display:flex;"><span>  config.vm.box <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;almalinux/9&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  config.vm.provider :libvirt <span style="color:#ff6ac1">do</span> |libvirt|
+</span></span><span style="display:flex;"><span>    libvirt.uri <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;qemu:///system&#34;</span>
+</span></span><span style="display:flex;"><span>    libvirt.cpus <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">2</span>
+</span></span><span style="display:flex;"><span>    libvirt.memory <span style="color:#ff6ac1">=</span> <span style="color:#ff9f43">2048</span>
+</span></span><span style="display:flex;"><span>  end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   config.vm.define <span style="color:#5af78e">&#34;control&#34;</span> <span style="color:#ff6ac1">do</span> |control|
+</span></span><span style="display:flex;"><span>    control.vm.network <span style="color:#5af78e">&#34;private_network&#34;</span>, ip: <span style="color:#5af78e">&#34;192.168.124.200&#34;</span>
+</span></span><span style="display:flex;"><span>    control.vm.hostname <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;control.example.com&#34;</span>
+</span></span><span style="display:flex;"><span>  end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  config.vm.define <span style="color:#5af78e">&#34;ansible1&#34;</span> <span style="color:#ff6ac1">do</span> |ansible1|
+</span></span><span style="display:flex;"><span>    ansible1.vm.network <span style="color:#5af78e">&#34;private_network&#34;</span>, ip: <span style="color:#5af78e">&#34;192.168.124.201&#34;</span>
+</span></span><span style="display:flex;"><span>    ansible1.vm.hostname <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;ansible1.example.com&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  config.vm.define <span style="color:#5af78e">&#34;ansible2&#34;</span> <span style="color:#ff6ac1">do</span> |ansible2|
+</span></span><span style="display:flex;"><span>    ansible2.vm.network <span style="color:#5af78e">&#34;private_network&#34;</span>, ip: <span style="color:#5af78e">&#34;192.168.124.202&#34;</span>
+</span></span><span style="display:flex;"><span>    ansible2.vm.hostname <span style="color:#ff6ac1">=</span> <span style="color:#5af78e">&#34;ansible2.example.com&#34;</span>
+</span></span><span style="display:flex;"><span>  end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>end</span></span></code></pre></div>
+<p>I could run this Vagrant file and Build and destroy the lab in seconds. But there was a problem. The Libvirt plugin, or Vagrant itself, I&rsquo;m not sure which, kept me from doing a couple important things.</p>
+<p>First, I could not specify the initial disk creation size. I could add additional disks of varying sizes but, if I wanted to change the size of the first disk, I would have to go back in after the fact and expand it manually&hellip;</p>
+<p>Second, the Libvirt plugin networking settings were a bit confusing. When you add the private network option as seen in the Vagrant file, it would add this as a secondary connection, and route everything through a different public connection.</p>
+<p>Now I couldn&rsquo;t get the VMs to run using the public connection for whatever reason, and it seems the only workaround was to make DHCP reservations for the guests Mac addresses which gave me even more problems to solve. But I won&rsquo;t go there..</p>
+<p>So why not get my feet wet and learn how to deploy VMs with Ansible? This way, I would get the granularity and control that Ansible gives me, some extra practice with Ansible, and not having to use software that has just enough abstraction to get in the way.</p>
+<p>The guide I followed to set this up can be found on Redhat&rsquo;s blog <a href="https://www.redhat.com/en/blog/build-VM-fast-ansible" rel="external" target="_blank">here.</a> And it was pretty easy to set up all things considered.</p>
+<p>I&rsquo;ll rehash the steps here:</p>
+<ol>
+<li>Download a cloud image</li>
+<li>Customize the image</li>
+<li>Install and start a VM</li>
+<li>Access the VM</li>
+</ol>
+<h3 id="creating-the-role">Creating the role</h3>
+<p>Move to roles directory
+<code>cd roles</code></p>
+<p>Initialize the role
+<code>ansible-galaxy role init kvm_provision</code></p>
+<p>Switch into the role directory
+<code>cd kvm_provision/</code></p>
+<p>Remove unused directories
+<code>rm -r files handlers vars</code></p>
+<h3 id="define-variables">Define variables</h3>
+<p>Add default variables to main.yml
+<code>cd defaults/ &amp;&amp; vim main.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># defaults file for kvm_provision</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">base_image_name</span>: AlmaLinux-9-GenericCloud-9.5-20241120.x86_64.qcow2
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">base_image_url</span>: https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/{{ base_image_name }}
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">base_image_sha</span>: abddf01589d46c841f718cec239392924a03b34c4fe84929af5d543c50e37e37
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">libvirt_pool_dir</span>: <span style="color:#5af78e">&#34;/var/lib/libvirt/images&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_name</span>: f34-dev
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_vcpus</span>: <span style="color:#ff9f43">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_ram_mb</span>: <span style="color:#ff9f43">2048</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_net</span>: default
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_root_pass</span>: test123
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">cleanup_tmp</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">ssh_key</span>: /root/.ssh/id_rsa.pub
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Added option to configure ip address</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">ip_addr</span>: <span style="color:#ff9f43">192.168.124.250</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">gw_addr</span>: <span style="color:#ff9f43">192.168.124.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Added option to configure disk size</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">vm_disksize</span>: <span style="color:#ff9f43">20</span></span></span></code></pre></div>
+<h3 id="defining-a-vm-template">Defining a VM template</h3>
+<p>The community.libvirt.virt module is used to provision a KVM VM. This module uses a VM definition in XML format with libvirt syntax. You can dump a VM definition of a current VM and then convert it to a template from there. Or you can just use this:</p>
+<p><code>cd templates/ &amp;&amp; vim vm-template.xml.j2</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff6ac1">&lt;domain</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;kvm&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;name&gt;</span>{{ vm_name }}<span style="color:#ff6ac1">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;memory</span> <span style="color:#57c7ff">unit=</span><span style="color:#5af78e">&#39;MiB&#39;</span><span style="color:#ff6ac1">&gt;</span>{{ vm_ram_mb }}<span style="color:#ff6ac1">&lt;/memory&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;vcpu</span> <span style="color:#57c7ff">placement=</span><span style="color:#5af78e">&#39;static&#39;</span><span style="color:#ff6ac1">&gt;</span>{{ vm_vcpus }}<span style="color:#ff6ac1">&lt;/vcpu&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;os&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;type</span> <span style="color:#57c7ff">arch=</span><span style="color:#5af78e">&#39;x86_64&#39;</span> <span style="color:#57c7ff">machine=</span><span style="color:#5af78e">&#39;pc-q35-5.2&#39;</span><span style="color:#ff6ac1">&gt;</span>hvm<span style="color:#ff6ac1">&lt;/type&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;boot</span> <span style="color:#57c7ff">dev=</span><span style="color:#5af78e">&#39;hd&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;/os&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;cpu</span> <span style="color:#57c7ff">mode=</span><span style="color:#5af78e">&#39;host-model&#39;</span> <span style="color:#57c7ff">check=</span><span style="color:#5af78e">&#39;none&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;devices&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;emulator&gt;</span>/usr/bin/qemu-system-x86_64<span style="color:#ff6ac1">&lt;/emulator&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;disk</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;file&#39;</span> <span style="color:#57c7ff">device=</span><span style="color:#5af78e">&#39;disk&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;driver</span> <span style="color:#57c7ff">name=</span><span style="color:#5af78e">&#39;qemu&#39;</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;qcow2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;source</span> <span style="color:#57c7ff">file=</span><span style="color:#5af78e">&#39;{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;target</span> <span style="color:#57c7ff">dev=</span><span style="color:#5af78e">&#39;vda&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x05&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#78787e">&lt;!-- Added: Specify the disk size using a variable --&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;size</span> <span style="color:#57c7ff">unit=</span><span style="color:#5af78e">&#39;GiB&#39;</span><span style="color:#ff6ac1">&gt;</span>{{ disk_size }}<span style="color:#ff6ac1">&lt;/size&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/disk&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;interface</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;network&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;source</span> <span style="color:#57c7ff">network=</span><span style="color:#5af78e">&#39;{{ vm_net }}&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;model</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x01&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/interface&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;channel</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;unix&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;target</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio&#39;</span> <span style="color:#57c7ff">name=</span><span style="color:#5af78e">&#39;org.qemu.guest_agent.0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio-serial&#39;</span> <span style="color:#57c7ff">controller=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">port=</span><span style="color:#5af78e">&#39;1&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/channel&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;channel</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;spicevmc&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;target</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio&#39;</span> <span style="color:#57c7ff">name=</span><span style="color:#5af78e">&#39;com.redhat.spice.0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;virtio-serial&#39;</span> <span style="color:#57c7ff">controller=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">port=</span><span style="color:#5af78e">&#39;2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/channel&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;input</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;tablet&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;usb&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;usb&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0&#39;</span> <span style="color:#57c7ff">port=</span><span style="color:#5af78e">&#39;1&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/input&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;input</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;mouse&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;ps2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;input</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;keyboard&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;ps2&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;graphics</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;spice&#39;</span> <span style="color:#57c7ff">autoport=</span><span style="color:#5af78e">&#39;yes&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;listen</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;address&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;image</span> <span style="color:#57c7ff">compression=</span><span style="color:#5af78e">&#39;off&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/graphics&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;video&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;model</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;qxl&#39;</span> <span style="color:#57c7ff">ram=</span><span style="color:#5af78e">&#39;65536&#39;</span> <span style="color:#57c7ff">vram=</span><span style="color:#5af78e">&#39;65536&#39;</span> <span style="color:#57c7ff">vgamem=</span><span style="color:#5af78e">&#39;16384&#39;</span> <span style="color:#57c7ff">heads=</span><span style="color:#5af78e">&#39;1&#39;</span> <span style="color:#57c7ff">primary=</span><span style="color:#5af78e">&#39;yes&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x01&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/video&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;memballoon</span> <span style="color:#57c7ff">model=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x06&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/memballoon&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;rng</span> <span style="color:#57c7ff">model=</span><span style="color:#5af78e">&#39;virtio&#39;</span><span style="color:#ff6ac1">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;backend</span> <span style="color:#57c7ff">model=</span><span style="color:#5af78e">&#39;random&#39;</span><span style="color:#ff6ac1">&gt;</span>/dev/urandom<span style="color:#ff6ac1">&lt;/backend&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">&lt;address</span> <span style="color:#57c7ff">type=</span><span style="color:#5af78e">&#39;pci&#39;</span> <span style="color:#57c7ff">domain=</span><span style="color:#5af78e">&#39;0x0000&#39;</span> <span style="color:#57c7ff">bus=</span><span style="color:#5af78e">&#39;0x07&#39;</span> <span style="color:#57c7ff">slot=</span><span style="color:#5af78e">&#39;0x00&#39;</span> <span style="color:#57c7ff">function=</span><span style="color:#5af78e">&#39;0x0&#39;</span><span style="color:#ff6ac1">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">&lt;/rng&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">&lt;/devices&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">&lt;/domain&gt;</span></span></span></code></pre></div>
+<p>The template uses some of the variables from earlier. This allows flexibility to changes things by just changing the variables.</p>
+<h2 id="define-tasks-for-the-role-to-perform">Define tasks for the role to perform</h2>
+<p><code>cd ../tasks/ &amp;&amp; vim main.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># tasks file for kvm_provision</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># ensure the required package dependencies `guestfs-tools` and `python3-libvirt` are installed. This role requires these packages to connect to `libvirt` and to customize the virtual image in a later step. These package names work on Fedora Linux. If you&#39;re using RHEL 8 or CentOS, use `libguestfs-tools` instead of `guestfs-tools`. For other distributions, adjust accordingly.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Ensure requirements in place
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>      - guestfs-tools
+</span></span><span style="display:flex;"><span>      - python3-libvirt
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># obtain a list of existing VMs so that you don&#39;t overwrite an existing VM on accident. uses the `virt` module from the collection `community.libvirt`, which interacts with a running instance of KVM with `libvirt`. It obtains the list of VMs by specifying the parameter `command: list_vms` and saves the results in a variable `existing_vms`. `changed_when: no` for this task to ensure that it&#39;s not marked as changed in the playbook results. This task doesn&#39;t make any change in the machine; it only checks the existing VMs. This is a good practice when developing Ansible automation to prevent false reports of changes.</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Get VMs list
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">community.libvirt.virt</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: list_vms
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">register</span>: existing_vms
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">changed_when</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e">#execute only when the VM name the user provides doesn&#39;t exist. And uses the module `get_url` to download the base cloud image into the `/tmp` directory</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Create VM if not exists
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Download base image
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">get_url</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">url</span>: <span style="color:#5af78e">&#34;{{ base_image_url }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: <span style="color:#5af78e">&#34;/tmp/{{ base_image_name }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">checksum</span>: <span style="color:#5af78e">&#34;sha256:{{ base_image_sha }}&#34;</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># copy the file to libvirt&#39;s pool directory so we don&#39;t edit the original, which can be used to provision other VMS later</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Copy base image to libvirt directory
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: <span style="color:#5af78e">&#34;{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: <span style="color:#5af78e">&#34;/tmp/{{ base_image_name }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">force</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">remote_src</span>: <span style="color:#ff6ac1">yes</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0660</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: copy_results
+</span></span><span style="display:flex;"><span>  - 
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Resize the VM disk</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Resize VM disk
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: qemu-img resize &#34;{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2&#34; &#34;{{ disk_size }}G&#34;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: copy_results is changed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># uses command module to run virt-customize to customize the image</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Configure the image
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      virt-customize -a {{ libvirt_pool_dir }}/{{ vm_name }}.qcow2 \
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --hostname {{ vm_name }} \
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --root-password password:{{ vm_root_pass }} \
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --ssh-inject &#39;root:file:{{ ssh_key }}&#39; \
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">      --uninstall cloud-init --selinux-relabel</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Added option to configure an IP address</span>
+</span></span><span style="display:flex;"><span>      --firstboot-command &#34;nmcli c m eth0 con-name eth0 ip4 {{ ip_addr }}/24 gw4 {{ gw_addr }} ipv4.method manual &amp;&amp; nmcli c d eth0 &amp;&amp; nmcli c u eth0&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: copy_results is changed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Define vm
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">community.libvirt.virt</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">command</span>: define
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">xml</span>: <span style="color:#5af78e">&#34;{{ lookup(&#39;template&#39;, &#39;vm-template.xml.j2&#39;) }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: <span style="color:#5af78e">&#34;vm_name not in existing_vms.list_vms&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Ensure VM is started
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">community.libvirt.virt</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ vm_name }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: running
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">register</span>: vm_start_results
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">until</span>: <span style="color:#5af78e">&#34;vm_start_results is success&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">retries</span>: <span style="color:#ff9f43">15</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">delay</span>: <span style="color:#ff9f43">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Ensure temporary file is deleted
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">path</span>: <span style="color:#5af78e">&#34;/tmp/{{ base_image_name }}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">state</span>: absent
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">when</span>: cleanup_tmp | bool</span></span></code></pre></div>
+<p>Changed my user to own the libvirt directory:
+<code>chown -R david:david /var/lib/libvirt/images</code></p>
+<p>Create playbook <code>kvm_provision.yaml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Deploys VM based on cloud image
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">gather_facts</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">pool_dir</span>: <span style="color:#5af78e">&#34;/var/lib/libvirt/images&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">vm</span>: control
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">vcpus</span>: <span style="color:#ff9f43">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ram_mb</span>: <span style="color:#ff9f43">2048</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">cleanup</span>: <span style="color:#ff6ac1">no</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">net</span>: default
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ssh_pub_key</span>: <span style="color:#5af78e">&#34;/home/davidt/.ssh/id_ed25519.pub&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">disksize</span>: <span style="color:#ff9f43">20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: KVM Provision role
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: kvm_provision
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">libvirt_pool_dir</span>: <span style="color:#5af78e">&#34;{{ pool_dir }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">vm_name</span>: <span style="color:#5af78e">&#34;{{ vm }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">vm_vcpus</span>: <span style="color:#5af78e">&#34;{{ vcpus }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">vm_ram_mb</span>: <span style="color:#5af78e">&#34;{{ ram_mb }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">vm_net</span>: <span style="color:#5af78e">&#34;{{ net }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cleanup_tmp</span>: <span style="color:#5af78e">&#34;{{ cleanup }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">ssh_key</span>: <span style="color:#5af78e">&#34;{{ ssh_pub_key }}&#34;</span></span></span></code></pre></div>
+<p>Add the libvirt collection
+<code>ansible-galaxy collection install community.libvirt</code></p>
+<p>Create a VM with a new name
+<code>ansible-playbook -K kvm_provision.yaml -e vm=ansible1</code></p>
+<p>&ndash;run-command &rsquo;nmcli c a type Ethernet ifname eth0 con-name eth0 ip4 192.168.124.200 gw4 192.168.124.1'</p>
+<p>parted /dev/vda resizepargit t 4 100%
+Warning: Partition /dev/vda4 is being used. Are you sure you want to continue?
+Yes/No? y                                                              <br>
+Information: You may need to update /etc/fstab.</p>
+<p>lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda    252:0    0   20G  0 disk
+├─vda2 252:2    0  200M  0 part /boot/efi
+├─vda3 252:3    0    1G  0 part /boot
+└─vda4 252:4    0  8.8G  0 part /</p>
+<p>variables
+{{ ansible_user }}
+{{ ansible_password }}
+{{ gw_addr }}
+{{ ip_addr }}</p>
+<p>; useradd -m -p {{ ansible_user }} ; chage -d 0 {{ ansible_user }} ; cat {{ ansible_password }} &gt; passwd {{ ansible_user }} &ndash;stdin&quot; \</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>  - name: Configure the image
+    command: |
+      virt-customize -a {{ libvirt_pool_dir }}/{{ vm_name }}.qcow2 \
+      --hostname {{ vm_name }} \
+      --root-password password:{{ vm_root_pass }} \
+      --uninstall cloud-init --selinux-relabel \
+      --firstboot-command &#34;nmcli c m eth0 con-name eth0 ip4 \
+                           {{ ip_addr }}/24 gw4 {{ gw_addr }} \
+                           ipv4.method manual &amp;&amp; nmcli c d eth0 \
+                           &amp;&amp; nmcli c u eth0 &amp;&amp; adduser \
+                           {{ ansible_user }} &amp;&amp; echo \
+                           &#34;{{ ansible_password }}&#34; | passwd \
+                           --stdin {{ ansible_user }}&#34;
+    when: copy_results is changed
+
+  - name: Add ssh keys
+    command: |
+      virt-customize -a {{ libvirt_pool_dir }}/{{ vm_name }}.qcow2 \
+      --ssh-inject &#39;{{ ansible_user }}:file:{{ ssh_key }}&#39;</code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="common-modules-with-examples">Common modules with examples</h1>
+
+<p><strong>uri:</strong>
+Interacts with basic http and https web services. (Verify connectivity to a web server
++9)</p>
+<p>Test httpd accessibility:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">url</span>: http://ansible1</span></span></code></pre></div>
+<p>Show result of the command while running the playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">url</span>: http://ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">return_content</span>: <span style="color:#ff6ac1">yes</span></span></span></code></pre></div>
+<p>Show the status code that signifies the success of the request:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">uri</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">url</span>: http://ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">status_code</span>: <span style="color:#ff9f43">200</span></span></span></code></pre></div>
+<p><strong>debug:</strong>
+Prints statements during execution. Used for debugging variables or expressions without stopping a playbook.</p>
+<p>Print out the value of the ansible_facts variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">var</span>: ansible_facts</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="deploying-files">Deploying files</h1>
+
+<p>This chapter covers the following subjects:</p>
+<p>• Using Modules to Manipulate Files
+• Managing SELinux Properties
+• Using Jinja2 Templates</p>
+<h3 id="rhce-exam-topics">RHCE exam topics</h3>
+<p>• Use Ansible modules for system administration tasks that work with:
+• File contents
+• Use advanced Ansible features
+• Create and use templates to create customized configuration files</p>
+<h3 id="using-modules-to-manipulate-files">Using Modules to Manipulate Files</h3>
+<h4 id="file-module-manipulation-overview">File Module Manipulation Overview</h4>
+<p>Common modules to manipulate files
+<strong>copy</strong></p>
+<ul>
+<li>Copies files to remote locations
+<strong>fetch</strong></li>
+<li>Fetches files from remote locations
+<strong>file</strong></li>
+<li>Manage file and file properties</li>
+<li>Create new files or directories</li>
+<li>Create links</li>
+<li>Remove files</li>
+<li>Set permissions and ownership</li>
+</ul>
+<p><strong>acl</strong></p>
+<ul>
+<li>Work with file system ACLs
+<strong>find</strong></li>
+<li>Find files based on properties
+<strong>lineinfile</strong></li>
+<li>Manages lines in text files
+<strong>blockinfile</strong></li>
+<li>Manage blocks in text files
+<strong>replace</strong></li>
+<li>Replaces strings in text files based on regex
+<strong>synchronize</strong></li>
+<li>Performs rsync-based synchronization tasks
+<strong>stat</strong></li>
+<li>Retrieves file or file system status</li>
+<li>enables you to retrieve file status information.</li>
+<li>gets status information and is not used to change anything</li>
+<li>use it to check specific file and perform an action if the properties are not set as expected.
+Shows:</li>
+<li>which permission mode is set,</li>
+<li>whether it is a link,</li>
+<li>which checksum is set on the file</li>
+<li>etc.</li>
+<li>See <code>ansible-doc stat</code> for list of full output</li>
+</ul>
+<h3 id="lab-view-information-about-etchosts-file">Lab: View information about /etc/hosts file</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: stat module tests
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">stat</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /etc/hosts
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: st
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: show current values
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: current value of the st variable is {{ st }}</span></span></code></pre></div>
+<h3 id="lab-write-a-message-if-the-expected-permission-mode-is-not-set">Lab: write a message if the expected permission mode is not set.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: stat module test
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">command</span>: touch /tmp/statfile
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">stat</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/statfile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: st
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: show current values
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: current value of the st variable is {{ st }}
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">fail</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;unexpected file mode, should be set to 0640&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: st.stat.mode != &#39;0640&#39;                               </span></span></code></pre></div>
+<h3 id="lab--use-the-file-module-to-correct-file-properties-discovered-with-stat">Lab:  Use the file Module to Correct File Properties Discovered with stat</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: stat module tests
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">command</span>: touch /tmp/statfile
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">stat</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/statfile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: st
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: show current values
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: current value of the st variable is {{ st }}
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: changing file permissions if that&#39;s needed
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/statfile
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0640</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: st.stat.mode != &#39;0640&#39;</span></span></code></pre></div>
+<h4 id="managing-file-contents">Managing File Contents</h4>
+<p>Use lineinfile or blockinfile instead of copy to manage text in a file</p>
+<h3 id="lab-change-a-string-based-on-a-regular-expression">Lab: Change a string, based on a regular expression.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: configuring SSH
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: disable root SSH login
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /etc/ssh/sshd_config
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">regexp</span>: <span style="color:#5af78e">&#34;^PermitRootLogin&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">line</span>: <span style="color:#5af78e">&#34;PermitRootLogin no&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: restart sshd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: restart sshd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: sshd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+<h3 id="lab-manipulate-multiple-lines">Lab: Manipulate multiple lines</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: modifying file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: ensure /tmp/hosts exists
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/hosts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: touch
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: add some lines to /tmp/hosts
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">blockinfile</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/hosts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">block</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        192.168.4.110 host1.example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        192.168.4.120 host2.example.com</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present</span></span></code></pre></div>
+<p>When blockinfile is used, the text specified in the block is copied with a start and end indicator.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@ansible1 ~<span style="color:#ff6ac1">]</span>$ cat /tmp/hosts
+</span></span><span style="display:flex;"><span>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+</span></span><span style="display:flex;"><span>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+</span></span><span style="display:flex;"><span>192.168.122.201 ansible1
+</span></span><span style="display:flex;"><span>192.168.122.202 ansible2
+</span></span><span style="display:flex;"><span>192.168.122.203 ansible3
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># BEGIN ANSIBLE MANAGED BLOCK</span>
+</span></span><span style="display:flex;"><span>192.168.4.110 host1.example.com
+</span></span><span style="display:flex;"><span>192.168.4.120 host2.example.com
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># END ANSIBLE MANAGED BLOCK</span></span></span></code></pre></div>
+<h3 id="lab-creating-and-removing-files">Lab: Creating and Removing Files</h3>
+<p>Use the file module to create a new directory and in that directory create an empty file, then remove the directory recursively.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: using the file module
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create directory
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /newdir
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">owner</span>: ansible
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">group</span>: ansible
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">770</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create file in that directory
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /newdir/newfile
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: touch
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: show the new file
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">stat</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /newdir/newfile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: result
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        This shows that newfile was created
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        &#34;{{ result }}&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: removing everything again
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /newdir
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: absent               </span></span></code></pre></div>
+<ul>
+<li><strong>state: absent</strong> recursively removes the directory.</li>
+</ul>
+<h4 id="moving-files-around">Moving Files Around</h4>
+<p>copy module
+copies a file from the Ansible control host to a managed machine.</p>
+<p>fetch module
+enables you to do the opposite</p>
+<p>synchronize module
+performs Linux rsync-like tasks,
+ensuring that a file from the control host is synchronized to a file with that name on the managed host.</p>
+<p>copy module always creates a new file, whereas the synchronize module updates a current existing file.</p>
+<h3 id="lab-moving-a-file-around-with-ansible">Lab: Moving a File Around with Ansible</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: file copy modules
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: copy file demo
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: /etc/hosts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /tmp/
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: add some lines to /tmp/hosts
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">blockinfile</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/hosts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">block</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        192.168.4.110 host1.example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        192.168.4.120 host2.example.com</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: verify file checksum
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">stat</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/hosts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">checksum_algorithm</span>: md5
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: result
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;The checksum of /tmp/hosts is {{ result.stat.checksum }}&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: fetch a file
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">fetch</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: /tmp/hosts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /tmp/</span></span></code></pre></div>
+<ul>
+<li>Ansible creates a subdirectory on the control node for each managed host in the dest directory and puts the file that fetch has copied from the remote host in that subdirectory:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/tmp/ansible1/tmp/hosts
+</span></span><span style="display:flex;"><span>/tmp/ansible2/tmp/hosts</span></span></code></pre></div>
+<h3 id="lab-managing-files-with-ansible">Lab: Managing Files with Ansible</h3>
+<p>1. Create a file with the name exercise81.yaml and give it the following play header:
+2. Add a task that creates a new empty file:
+3. Use the stat module to check on the status of the new file:
+4. To see what the status module is doing, add a line that uses the debug module:
+5. Now that you understand which values are stored in newfile, you can add a conditional play that changes the current owner if not set correctly:
+6. Add a second play to the playbook that fetches a remote file:
+7. Now that you have fetched the file so that it is on the Ansible control machine, use blockinfile to edit it:
+8. In the final step, copy the modified file to ansible2 by including the following play:
+9. At this point you&rsquo;re ready to run the playbook. Type <code>ansible-playbook exercise81.yaml</code> to run it and observe the results.
+10. Type <code>ansible ansible2 -a &quot;cat /tmp/motd&quot;</code> to verify that the modified motd file was successfully copied to ansible2.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: testing file manipulation skills
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create new file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: /tmp/newfile
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: touch
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: check the status of the new file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">stat</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">path</span>: /tmp/newfile
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">register</span>: newfile
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: for debugging only
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: the current values for newfile are {{ newfile }}
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: change file owner if needed
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">path</span>: /tmp/newfile
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">owner</span>: ansible
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">when</span>: newfile.stat.pw_name != &#39;ansible&#39;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: fetching a remote file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: fetch file from remote machine
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">fetch</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">src</span>: /etc/motd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dest</span>: /tmp
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: adding text to the text file that is now on localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: add a message
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">blockinfile</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /tmp/ansible1/etc/motd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">block</span>: |<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        welcome to this server
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">        for authorized users only</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: copy the modified file to ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: copy motd file
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: /tmp/ansible1/etc/motd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /tmp</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="networking-with-ansible">Networking with Ansible</h1>
+
+<p>3 modules for managing the networking on nodes:</p>
+<ul>
+<li>service</li>
+<li>daemon</li>
+<li>system settings</li>
+</ul>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="setting-up-an-ansible-lab">Setting up an Ansible Lab</h1>
+
+<h2 id="requirements-for-ansible">Requirements for Ansible</h2>
+<ul>
+<li>Python 3 on control node and managed nodes</li>
+<li>sudo ssh access to managed nodes</li>
+<li>Ansible installed on the Control node</li>
+</ul>
+<h2 id="lab-setup">Lab Setup</h2>
+<p>For this lab, we will need three virtual machines using RHEL 9. 1 control node and 2 managed nodes. Use IP addresses based on your lab network environment:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Hostname</th>
+          <th>pretty hostname</th>
+          <th>ip addreess</th>
+          <th>RAM</th>
+          <th>Storage</th>
+          <th>vCPUs</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>control.example.com</td>
+          <td>control</td>
+          <td>192.168.122.200</td>
+          <td>2048MB</td>
+          <td>20G</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>ansible1.example.com</td>
+          <td>ansible1</td>
+          <td>192.168.122.201</td>
+          <td>2048MB</td>
+          <td>20G</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>ansible2.example.com</td>
+          <td>ansible2</td>
+          <td>192.168.122.202</td>
+          <td>2048MB</td>
+          <td>20G</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>I have set these VMs up in virt-manager, then cloned them so I can rebuild the lab later. You can automate this using Vagrant or Ansible but that will come later. Ignore the Win10 VM. It&rsquo;s a necessary evil:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p><a href="#R-image-bb8d70361aad6f05762b250d87923f75" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250403052342.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bb8d70361aad6f05762b250d87923f75"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250403052342.png"></a></p>
+<h3 id="setting-hostnames-and-verifying-dependencies">Setting hostnames and verifying dependencies</h3>
+<p>Set a hostname on all three machines:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># hostnamectl set-hostname control.example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># hostnamectl set-hostname --pretty control</span></span></span></code></pre></div>
+<p>Install Ansible on Control Node</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># dnf -y install ansible-core</span>
+</span></span><span style="display:flex;"><span>...</span></span></code></pre></div>
+<p>Verify python3 is installed:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># python --version</span>
+</span></span><span style="display:flex;"><span>Python 3.9.18</span></span></code></pre></div>
+<h3 id="configure-ansible-user-and-ssh">Configure Ansible user and SSH</h3>
+<p>Add a user for Ansible. This can be any username you like, but we will use &ldquo;ansible&rdquo; as our lab user. Also, the ansible user needs sudo access.  We will also make it so no password is required for convenience. You will need to do this on the control node and both managed nodes:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@control ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># useradd ansible</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@control ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># visudo</span></span></span></code></pre></div>
+<p>Add this line to the file that comes up:
+<code>ansible ALL=(ALL) NOPASSWD: ALL</code></p>
+<p>Configure a password for the ansible user:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@control ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># passwd ansible</span>
+</span></span><span style="display:flex;"><span>Changing password <span style="color:#ff6ac1">for</span> user ansible.
+</span></span><span style="display:flex;"><span>New password: 
+</span></span><span style="display:flex;"><span>BAD PASSWORD: The password is shorter than <span style="color:#ff9f43">8</span> characters
+</span></span><span style="display:flex;"><span>Retype new password: 
+</span></span><span style="display:flex;"><span>passwd: all authentication tokens updated successfully.</span></span></code></pre></div>
+<p>On the control node only: Add host names of the nodes to /etc/hosts:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">echo</span> <span style="color:#5af78e">&#34;192.168.124.201 ansible1 &gt;&gt; /etc/hosts
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">&gt; ^C
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[root@control ~]# echo &#34;</span>192.168.124.201 ansible1<span style="color:#5af78e">&#34; &gt;&gt; /etc/hosts
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[root@control ~]# echo &#34;</span>192.168.124.202 ansible2<span style="color:#5af78e">&#34; &gt;&gt; /etc/hosts
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[root@control ~]# cat /etc/hosts
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">192.168.124.201 ansible1
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">192.168.124.202 ansible2</span></span></span></code></pre></div>
+<p>Log in to the ansible user account for the remaining steps. Note, Ansible assumes passwordless (key-based) login for ssh. If you insist on using passwords, add the &ndash;ask-pass (-k) flag to your Ansible commands. (This may require sshpass package to work)</p>
+<p>On the control node only:  Generate an ssh key to send to the hosts for passwordless Login:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control ~<span style="color:#ff6ac1">]</span>$ ssh-keygen -N <span style="color:#5af78e">&#34;&#34;</span> -q
+</span></span><span style="display:flex;"><span>Enter file in which to save the key <span style="color:#ff6ac1">(</span>/home/ansible/.ssh/id_rsa<span style="color:#ff6ac1">)</span>: </span></span></code></pre></div>
+<p>Copy the public key to the nodes and test passwordless access and test passwordless login to the managed nodes:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>^C<span style="color:#ff6ac1">[</span>ansible@control ~<span style="color:#ff6ac1">]</span>$ ssh-copy-id ansible@ansible1
+</span></span><span style="display:flex;"><span>/usr/bin/ssh-copy-id: INFO: Source of key<span style="color:#ff6ac1">(</span>s<span style="color:#ff6ac1">)</span> to be installed: <span style="color:#5af78e">&#34;/home/ansible/.ssh/id_rsa.pub&#34;</span>
+</span></span><span style="display:flex;"><span>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key<span style="color:#ff6ac1">(</span>s<span style="color:#ff6ac1">)</span>, to filter out any that are already installed
+</span></span><span style="display:flex;"><span>/usr/bin/ssh-copy-id: INFO: <span style="color:#ff9f43">1</span> key<span style="color:#ff6ac1">(</span>s<span style="color:#ff6ac1">)</span> remain to be installed -- <span style="color:#ff6ac1">if</span> you are prompted now it is to install the new keys
+</span></span><span style="display:flex;"><span>ansible@ansible1<span style="color:#5af78e">&#39;s password: 
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Number of key(s) added: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Now try logging into the machine, with:   &#34;ssh &#39;</span>ansible@ansible1<span style="color:#5af78e">&#39;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">and check to make sure that only the key(s) you wanted were added.
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[ansible@control ~]$ ssh-copy-id ansible@ansible2
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &#34;/home/ansible/.ssh/id_rsa.pub&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">The authenticity of host &#39;</span>ansible2 <span style="color:#ff6ac1">(</span>192.168.124.202<span style="color:#ff6ac1">)</span><span style="color:#5af78e">&#39; can&#39;</span>t be established.
+</span></span><span style="display:flex;"><span>ED25519 key fingerprint is SHA256:r47sLc/WzVA4W4ifKk6w1gTnxB3Iim8K2K0KB82X9yo.
+</span></span><span style="display:flex;"><span>This key is not known by any other names
+</span></span><span style="display:flex;"><span>Are you sure you want to <span style="color:#ff6ac1">continue</span> connecting <span style="color:#ff6ac1">(</span>yes/no/<span style="color:#ff6ac1">[</span>fingerprint<span style="color:#ff6ac1">])</span>? yes
+</span></span><span style="display:flex;"><span>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key<span style="color:#ff6ac1">(</span>s<span style="color:#ff6ac1">)</span>, to filter out any that are already installed
+</span></span><span style="display:flex;"><span>/usr/bin/ssh-copy-id: INFO: <span style="color:#ff9f43">1</span> key<span style="color:#ff6ac1">(</span>s<span style="color:#ff6ac1">)</span> remain to be installed -- <span style="color:#ff6ac1">if</span> you are prompted now it is to install the new keys
+</span></span><span style="display:flex;"><span>ansible@ansible2<span style="color:#5af78e">&#39;s password: 
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Number of key(s) added: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Now try logging into the machine, with:   &#34;ssh &#39;</span>ansible@ansible2<span style="color:#ff5c57">&#39;</span><span style="color:#5af78e">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">and check to make sure that only the key(s) you wanted were added.
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[ansible@control ~]</span>$<span style="color:#5af78e"> ssh ansible1
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Register this system with Red Hat Insights: insights-client --register
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Create an account or view all your systems at https://red.ht/insights-dashboard
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Last failed login: Thu Apr  3 05:34:20 MST 2025 from 192.168.124.200 on ssh:notty
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">There was 1 failed login attempt since the last successful login.
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[ansible@ansible1 ~]</span>$<span style="color:#5af78e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">logout
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Connection to ansible1 closed.
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[ansible@control ~]</span>$<span style="color:#5af78e"> ssh ansible2
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Register this system with Red Hat Insights: insights-client --register
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Create an account or view all your systems at https://red.ht/insights-dashboard
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">[ansible@ansible2 ~]</span>$<span style="color:#5af78e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">logout
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Connection to ansible2 closed.</span></span></span></code></pre></div>
+<p>Install lab stuff from the RHCE guide:
+<code>sudo dnf -y install git</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control ~<span style="color:#ff6ac1">]</span>$ git clone https://github.com/sandervanvugt/rhce8-book 
+</span></span><span style="display:flex;"><span>Cloning into <span style="color:#5af78e">&#39;rhce8-book&#39;</span>...
+</span></span><span style="display:flex;"><span>remote: Enumerating objects: 283, <span style="color:#ff6ac1">done</span>.
+</span></span><span style="display:flex;"><span>remote: Counting objects: 100% <span style="color:#ff6ac1">(</span>283/283<span style="color:#ff6ac1">)</span>, <span style="color:#ff6ac1">done</span>.
+</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% <span style="color:#ff6ac1">(</span>233/233<span style="color:#ff6ac1">)</span>, <span style="color:#ff6ac1">done</span>.
+</span></span><span style="display:flex;"><span>remote: Total <span style="color:#ff9f43">283</span> <span style="color:#ff6ac1">(</span>delta 27<span style="color:#ff6ac1">)</span>, reused <span style="color:#ff9f43">278</span> <span style="color:#ff6ac1">(</span>delta 24<span style="color:#ff6ac1">)</span>, pack-reused <span style="color:#ff9f43">0</span> <span style="color:#ff6ac1">(</span>from 0<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>Receiving objects: 100% <span style="color:#ff6ac1">(</span>283/283<span style="color:#ff6ac1">)</span>, 62.79 KiB | 357.00 KiB/s, <span style="color:#ff6ac1">done</span>.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% <span style="color:#ff6ac1">(</span>27/27<span style="color:#ff6ac1">)</span>, <span style="color:#ff6ac1">done</span>.</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="variables">Variables</h1>
+
+<p>Using and working with variables</p>
+<ul>
+<li>Capture command output using register</li>
+</ul>
+<h3 id="variables">Variables</h3>
+<p>Three types of variables:</p>
+<ul>
+<li>Fact</li>
+<li>Variable</li>
+<li>Magic Variable</li>
+</ul>
+<p><strong>Variables</strong> make Ansible really flexible. Especially when used in combination with conditionals. These are defined at the discretion of the user.:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: create a user using a variable
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">users</span>: lisa &lt;-- defaults value for this play
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create a user {{ users }} on host {{ ansible_hostname }} &lt;-- ansible fact variable
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ users }}&#34;</span> &lt;-- If value starts with variable, the whole line must have double quotes</span></span></code></pre></div>
+<h3 id="working-with-variables">Working with Variables</h3>
+<ul>
+<li>Variables can be used to refer to a wide range of dynamic data, such as names of files, services, packages, users, URLs to specific servers, etc.</li>
+</ul>
+<h4 id="defining-variables">Defining Variables</h4>
+<p>To define a variable</p>
+<ul>
+<li>key: value structure in a vars section in the play header.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: using variables
+      hosts: ansible1
+      vars: &lt;-------------
+        ftp_package: vsftpd &lt;------------
+      tasks:
+      - name: install package
+        yum:
+          name: &#34;{{ ftp_package }}&#34; &lt;------------
+          state: latest</code></pre></div>
+<ul>
+<li>As the variable is the first item in the value, its name must be placed between double curly brackets as well as double quotes.</li>
+</ul>
+<p>Variable equirements:</p>
+<p>• Must start with a letter.
+• Case sensitive.
+• Can contain only letters, numbers, and underscores.</p>
+<h4 id="using-include-files">Using Include Files</h4>
+<ul>
+<li>It is common to define variables in include files. Specific host and host group variables can be used as include files</li>
+<li>it&rsquo;s also possible to include an arbitrary file as a variable file, using the <strong>vars_files:</strong> statement.</li>
+<li>The <strong>vars_files:</strong> parameter can have a single value or a list providing multiple values. If a list is used, each item needs to start with a dash</li>
+<li>When you include variables from files, it&rsquo;s a good idea to work with a separate directory that contains all variables because that makes it easier to manage as your projects grow bigger.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: using a variable include file
+      hosts: ansible1
+      vars_files: vars/common &lt;--------------
+      tasks:
+      - name: install package
+        yum:
+          name: &#34;{{ my_package }}&#34; &lt;------------
+          state: latest</code></pre></div>
+<p><strong>vars/common</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    my_package: nmap
+    my_ftp_service: vsftpd
+    my_file_service: smb</code></pre></div>
+<ul>
+<li>If variables are defined in individual playbooks, they are spread all over, and it may be difficult to get an overview of all variables that are used on a site.</li>
+</ul>
+<h4 id="managing-host-and-group-variables">Managing Host and Group Variables</h4>
+<p><strong>host_vars</strong> and <strong>group_vars</strong></p>
+<ul>
+<li>set variables for specific hosts or specific host groups.</li>
+<li>In older versions of Ansible, it was common to set host variables and group variables in inventory, but this practice is now deprecated.</li>
+</ul>
+<p><strong>host_vars</strong></p>
+<ul>
+<li>Must create a subdirectory with the name <strong>host_vars</strong> within the Ansible project directory.</li>
+<li>In this directory, create a file that matches the inventory name of the host to which the variables should be applied.</li>
+<li>So the variables for host ansible1 are defined in <strong>host_vars/ansible1</strong>.</li>
+</ul>
+<p><strong>group_vars</strong></p>
+<ul>
+<li>Must create a directory with the name <strong>group_vars</strong>.</li>
+<li>In this directory, a file with the name of the host group is created, and in this file all variables are defined.</li>
+<li>ie: <strong>group_vars/webservers</strong></li>
+</ul>
+<h3 id="lab-using-host-and-host-group-variables">LAB: Using Host and Host Group Variables</h3>
+<p>1. Create a project directory in your home directory. Type <strong>mkdir ~/chapter6</strong> to create the chapter6 project directory, and use <strong>cd ~/chapter6</strong> to go into this directory.</p>
+<p>2. Type <strong>cp ../ansible.cfg .</strong> to copy the ansible.cfg file that you used before. No further modifications to this file are required.</p>
+<p>3. Type <strong>vim inventory</strong> to create a file with the name inventory, and ensure it has the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">[webservers]
+ansible1
+
+[dbservers]
+ansible2</code></pre></div>
+<p>4. Create the file webservers.yaml, containing the following contents. Notice that nothing is really changed by running this playbook. It just uses the debug module to show the current value of the variables.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: configure web services
+  hosts: webservers
+  tasks:
+  - name: this is the {{ web_package }} package
+    debug:
+      msg: &#34;Installing {{ web_package }}&#34;
+  - name: this is the {{ web_service }} service
+    debug:
+      msg: &#34;Starting the {{ web_service }}&#34;</code></pre></div>
+<p>5. Create the file group_vars/webservers with the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">web_package: httpd
+web_service: httpd</code></pre></div>
+<p>6. Run the playbook with some verbosity to verify it is working by using <code>ansible-playbook -vv webservers.yaml</code></p>
+<h4 id="using-multivalued-variables">Using Multivalued Variables</h4>
+<p>Two types of multivalued variables:</p>
+<p><strong>array</strong> (list)</p>
+<ul>
+<li>key that can have multiple items as its value.</li>
+<li>Each item in a list starts with a dash (-).</li>
+<li>Individual items in a list can be addressed using the index number (starting at zero), as in {{ users[1] }} (which would print the key-value pairs that are set for user lisa)</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    users:
+      - linda:
+        username: linda
+        homedir: /home/linda
+        shell: /bin/bash
+      - lisa:
+        username: lisa
+        homedir: /home/lisa
+        shell: /bin/bash
+      - anna:
+        username: anna
+        homedir: /home/anna
+        shell: /bin/bash</code></pre></div>
+<p><strong>dictionary</strong> (hash)</p>
+<ul>
+<li>Unordered collection of items, a collection of key-value pairs.</li>
+<li>In Python, a dictionary is defined as my_dict = { key1: &lsquo;car&rsquo;, key2:&lsquo;bike&rsquo; }.</li>
+<li>Because it is based on Python, Ansible lets users use dictionaries as an alternative notation to arrays</li>
+<li>not as common in use as arrays.</li>
+<li>Items in values in a dictionary are not started with a dash.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    users:
+      linda:
+        username: linda
+        homedir: /home/linda
+        shell: /bin/bash
+      lisa:
+        username: lisa
+        homedir: /home/lisa
+        shell: /bin/bash
+      anna:
+        username: anna
+        homedir: /home/anna
+        shell: /bin/bash</code></pre></div>
+<p>Addressing Specific Keys in a Dictionary Multivalued Variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: show dictionary also known as hash
+      hosts: ansible1
+      vars_files:
+      - vars/users-dictionary
+      tasks:
+      - name: print dictionary values
+        debug:
+          msg: &#34;User {{ users.linda.username }} has homedirectory {{ users.linda.homedir }} and shell {{ users.linda.shell }}&#34;</code></pre></div>
+<p>Using the Square Brackets Notation to Address Multivalued Variables (recommended method)</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: show dictionary also known as hash
+      hosts: ansible1
+      vars_files:
+        - vars/users-dictionary
+      tasks:
+        - name: print dictionary values
+          debug:
+            msg: &#34;User {{ users[’linda’][’username’] }} has homedirectory {{ users[’linda’][’homedir’] }} and shell {{ users[’linda’][’shell’]  }}&#34;</code></pre></div>
+<p><strong>Magic Variables</strong></p>
+<ul>
+<li>Variables that are set automatically by Ansible to reflect an Ansible internal state.</li>
+<li>There are about 30 magic variables</li>
+<li>Common Magic Variables</li>
+</ul>
+<p><a href="#R-image-c80207cfc79d8557ab36b93a66700ca2" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/06tab05.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c80207cfc79d8557ab36b93a66700ca2"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/06tab05.jpg"></a></p>
+<ul>
+<li>you cannot use their name for anything else.</li>
+<li>If you try to set a magic variable to another value anyway, it always resets to the default internal value.</li>
+</ul>
+<p>Debug module can be used to show the current values assigned to the hostvars magic variable.</p>
+<ul>
+<li>Shows many settings that you can change by modifying the ansible.cfg configuration file.</li>
+<li>If local facts are defined on the host, you will see them also.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [ansible@control ~]$ ansible localhost -m debug -a &#39;var=hostvars[&#34;ansible1&#34;]&#39;
+    localhost | SUCCESS =&gt; {
+        &#34;hostvars[\&#34;ansible1\&#34;]&#34;: {
+            &#34;ansible_check_mode&#34;: false,
+            &#34;ansible_diff_mode&#34;: false,
+            &#34;ansible_facts&#34;: {},
+            &#34;ansible_forks&#34;: 5,
+            &#34;ansible_inventory_sources&#34;: [
+                &#34;/home/ansible/inventory&#34;
+            ],
+            &#34;ansible_playbook_python&#34;: &#34;/usr/bin/python3.6&#34;,
+            &#34;ansible_verbosity&#34;: 0,
+            &#34;ansible_version&#34;: {
+                &#34;full&#34;: &#34;2.9.5&#34;,
+                &#34;major&#34;: 2,
+                &#34;minor&#34;: 9,
+                &#34;revision&#34;: 5,
+                &#34;string&#34;: &#34;2.9.5&#34;
+            },
+            &#34;group_names&#34;: [
+                &#34;ungrouped&#34;
+            ],
+            &#34;groups&#34;: {
+                &#34;all&#34;: [
+                    &#34;ansible1&#34;,
+                    &#34;ansible2&#34;
+                ],
+                &#34;ungrouped&#34;: [
+                    &#34;ansible1&#34;,
+                    &#34;ansible2&#34;
+                ]
+            },
+            &#34;inventory_dir&#34;: &#34;/home/ansible&#34;,
+            &#34;inventory_file&#34;: &#34;/home/ansible/inventory&#34;,
+            &#34;inventory_hostname&#34;: &#34;ansible1&#34;,
+            &#34;inventory_hostname_short&#34;: &#34;ansible1&#34;,
+            &#34;omit&#34;: &#34;__omit_place_holder__38849508966537e44da5c665d4a784c3bc0060de&#34;,
+            &#34;playbook_dir&#34;: &#34;/home/ansible&#34;
+        }
+    }</code></pre></div>
+<h4 id="variable-precedence">Variable Precedence</h4>
+<ul>
+<li>Avoid using variables with the same names that are defined at different levels.</li>
+<li>If a variable with the same name is defined at different levels, the most specific variable always wins.</li>
+<li>Variables that are defined while running the <strong>playbook</strong> command using the <strong>-e key=value</strong> command-line argument have the highest precedence.</li>
+<li>After variables that are passed as command-line options, playbook variables are considered.</li>
+<li>Next are variables that are defined for inventory hosts or host groups.</li>
+<li>Consult the Ansible documentation item &ldquo;Variable precedence&rdquo; for more details and an overview of the 22 different levels where variables can be set and how precedence works for them.</li>
+</ul>
+<p>1. Variables passed on the command line
+2. Variables defined in or included from a playbook
+3. Inventory variables</p>
+<h3 id="capturing-command-output-using-register">Capturing Command Output Using register</h3>
+<p>The result of commands can also be used as a variable byusing the <strong>register</strong> parameter in a task.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: test register
+      hosts: ansible1
+      tasks:
+      - shell: cat /etc/passwd
+        register: passwd_contents
+      - debug:
+          var: &#34;passwd_contents&#34;</code></pre></div>
+<p>The <code>cat /etc/passwd</code> command is executed by the shell module. Notice that in this playbook no names are used for tasks. Using names for tasks is
+not mandatory; it&rsquo;s just recommended in more complex playbooks because this convention makes identification of the tasks easier. The entire contents of the command are next stored in the variable <strong>passwd_contents</strong>.</p>
+<p>This variable contains the output of the command, stored in different keys. <a href="/ansible/variables-and-facts/variables/#ch06.xhtml#tab6_7">Table 6-7</a> provides an overview of the most
+useful keys, and <a href="/ansible/variables-and-facts/variables/#ch06.xhtml#list6_19">Listing 6-19</a> shows the partial result of the <code>ansible-playbook listing618.yaml</code> command.</p>
+<p>Keys Used with <strong>register</strong>
+cmd</p>
+<ul>
+<li>Command that was used
+rc</li>
+<li>Return code of the command
+stderr</li>
+<li>Error messages
+stderr_lines</li>
+<li>Errors line by line
+stdout</li>
+<li>command output
+stdout_line</li>
+<li>Command output line by line</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [ansible@control ~]$ ansible-playbook listing618.yaml
+    
+    PLAY [test register] *******************************************************************
+    
+    TASK [Gathering Facts] *****************************************************************
+    ok: [ansible2]
+    ok: [ansible1]
+    
+    TASK [shell] ***************************************************************************
+    changed: [ansible2]
+    changed: [ansible1]
+    
+    TASK [debug] ***************************************************************************
+    ok: [ansible1] =&gt; {
+        &#34;passwd_contents&#34;: {
+            &#34;changed&#34;: true,
+            &#34;cmd&#34;: &#34;cat /etc/passwd&#34;,
+            &#34;delta&#34;: &#34;0:00:00.004149&#34;,
+            &#34;end&#34;: &#34;2020-04-02 02:28:10.692306&#34;,
+            &#34;failed&#34;: false,
+            &#34;rc&#34;: 0,
+            &#34;start&#34;: &#34;2020-04-02 02:28:10.688157&#34;,
+            &#34;stderr&#34;: &#34;&#34;,
+            &#34;stderr_lines&#34;: [],
+            &#34;stdout&#34;: &#34;root:x:0:0:root:/root:/bin/bash\nbin:x:1:1:bin:/bin:/sbin/nologin\ndaemon:x:2:2:daemon:/sbin:/sbin/nologin\nadm:x:3:4:adm:/var/adm:/sbin/nologin\nlp:x:4:7:lp:/var/spool/lpd:/sbin/nologin\nsync:x:5:0:sync:/sbin:/bin/sync\nshutdown:x:6:0:shutdown:/sbin:/sbin/shutdown\nhalt:x:7:0:halt:/sbin:/sbin/halt\nansible:x:1000:1000:ansible:/home/ansible:/bin/bash\napache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin\nlinda:x:1002:1002::/home/linda:/bin/bash\nlisa:x:1003:1003::/home/lisa:/bin/bash&#34;,
+            &#34;stdout_lines&#34;: [
+                &#34;root:x:0:0:root:/root:/bin/bash&#34;,
+                &#34;bin:x:1:1:bin:/bin:/sbin/nologin&#34;,
+                &#34;daemon:x:2:2:daemon:/sbin:/sbin/nologin&#34;,
+                &#34;adm:x:3:4:adm:/var/adm:/sbin/nologin&#34;,
+                &#34;lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin&#34;,
+                &#34;sync:x:5:0:sync:/sbin:/bin/sync&#34;,
+                &#34;shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown&#34;,
+                &#34;halt:x:7:0:halt:/sbin:/sbin/halt&#34;,
+                &#34;ansible:x:1000:1000:ansible:/home/ansible:/bin/bash&#34;,
+                &#34;apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin&#34;,
+                &#34;linda:x:1002:1002::/home/linda:/bin/bash&#34;,
+                &#34;lisa:x:1003:1003::/home/lisa:/bin/bash&#34;
+            ]
+        }
+    }</code></pre></div>
+<p>Ensure that a task runs only if a command produces a specific result by using <strong>register</strong> with conditionals.</p>
+<p><strong>register</strong> shows the values that are returned by specific tasks. Tasks have common return values, but modules may have specific
+return values. That means you cannot assume, based on the result of an example using a specific module, that the return values you see are
+available for all modules. Consult the module documentation for more information about specific return values.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

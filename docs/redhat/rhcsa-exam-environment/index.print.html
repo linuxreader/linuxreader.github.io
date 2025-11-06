@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Exam environment guide for RHCSA">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RHCSA Exam Environment Guide :: Linux Reader">
+    <meta name="twitter:description" content="Exam environment guide for RHCSA">
+    <meta property="og:url" content="http://linuxreader.com/redhat/rhcsa-exam-environment/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="RHCSA Exam Environment Guide :: Linux Reader">
+    <meta property="og:description" content="Exam environment guide for RHCSA">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="RedHat">
+    <meta itemprop="name" content="RHCSA Exam Environment Guide :: Linux Reader">
+    <meta itemprop="description" content="Exam environment guide for RHCSA">
+    <meta itemprop="wordCount" content="227">
+    <title>RHCSA Exam Environment Guide :: Linux Reader</title>
+    <link href="http://linuxreader.com/redhat/rhcsa-exam-environment/" rel="canonical" type="text/html" title="RHCSA Exam Environment Guide :: Linux Reader">
+    <link href="/redhat/rhcsa-exam-environment/index.xml" rel="alternate" type="application/rss+xml" title="RHCSA Exam Environment Guide :: Linux Reader">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/redhat\/rhcsa-exam-environment\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/redhat/rhcsa-exam-environment/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/process-and-task-scheduling/" title="Process and Task Scheduling (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#exam-setup">Exam setup</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            RHCSA Exam Environment Guide
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/rhcsa-exam-environment/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/rhcsa-notes/" title="RHCSA Notes (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable redhat" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="rhcsa-exam-environment-guide">RHCSA Exam Environment Guide</h1>
+
+<p><a href="https://www.youtube.com/watch?v=Me6Y12-sux8&list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX&index=2" rel="external" target="_blank">https://www.youtube.com/watch?v=Me6Y12-sux8&list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX&index=2</a></p>
+<p>Be aware of the timer for the exam</p>
+<p>Each task has a revisit and done button for you reference. The exam system does not take these into account.</p>
+<p>Click activities &gt; terminal to bring up a new terminal. You ssh into the lab vms from there.</p>
+<p>For vm manager activities &gt; vm manager</p>
+<p>Ip addresses are located in config information</p>
+<p>Can also open a console from VM manager</p>
+<p>From vm manager, you can select &ldquo;Rebuild node # vm&rdquo; to erase and reset the vm.</p>
+<p><a href="#R-image-18ce38c2456b73f715992ba12750a627" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240710073529.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-18ce38c2456b73f715992ba12750a627"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710073529.png"></a></p>
+<p>Try not to use keyboard shortcuts, as it may not behave well in the environment.</p>
+<p>Can open chat icon to take a break. Exam timer is still running during break. May have to perform room scan when you start back up.</p>
+<p>Contact proctor if you need help.</p>
+<h2 id="exam-setup">Exam setup</h2>
+<p><a href="https://www.youtube.com/watch?v=TmrS7FhaaRA&list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX&index=3" rel="external" target="_blank">https://www.youtube.com/watch?v=TmrS7FhaaRA&list=PLz70mC333bic8uSAtRaB31CPUr6Ixi5SX&index=3</a></p>
+<p>Need an 8gb usb and fedora media writer
+4gb free space on laptop
+4g RAM minimum
+wired mouse
+two webcams (laptop builtin and external)
+High speed internet
+ID Proof
+No electronic devices
+No paper or any helping material
+You can skip questions if you want and go back.</p>
+<p>You set up exam environment laptop.
+You will get an email with the details and the exam image.</p>
+<p>Found a PDF on the setup but it may not be up to date:
+<a href="https://learn.redhat.com/t5/Certification-Resources/Getting-Ready-for-your-Red-Hat-Remote-Exam/ba-p/33528?attachment-id=166" rel="external" target="_blank">https://learn.redhat.com/t5/Certification-Resources/Getting-Ready-for-your-Red-Hat-Remote-Exam/ba-p/33528?attachment-id=166</a></p>
+<p>Max Marks: 300
+Passing marks: 70% (210)
+1 free exam retake</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

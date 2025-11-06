@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Manipulating files, SELinux, and Jinja2 templates">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ansible Roles :: Linux Reader">
+    <meta name="twitter:description" content="Manipulating files, SELinux, and Jinja2 templates">
+    <meta property="og:url" content="http://linuxreader.com/ansible/roles/using-ansible-roles/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Ansible Roles :: Linux Reader">
+    <meta property="og:description" content="Manipulating files, SELinux, and Jinja2 templates">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="name" content="Ansible Roles :: Linux Reader">
+    <meta itemprop="description" content="Manipulating files, SELinux, and Jinja2 templates">
+    <meta itemprop="wordCount" content="1648">
+    <title>Ansible Roles :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/roles/using-ansible-roles/" rel="canonical" type="text/html" title="Ansible Roles :: Linux Reader">
+    <link href="/ansible/roles/using-ansible-roles/index.xml" rel="alternate" type="application/rss+xml" title="Ansible Roles :: Linux Reader">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/roles\/using-ansible-roles\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/roles/using-ansible-roles/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/playbooks/ansible-playbooks/" title="Ansible Playbooks (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#using-ansible-roles">Using Ansible Roles</a></li>
+        <li><a href="#lab-9-1">Lab 9-1</a></li>
+        <li><a href="#lab-9-2">Lab 9-2</a></li>
+        <li><a href="#lab-9-1-1">Lab 9-1</a></li>
+        <li><a href="#lab-9-2-1">Lab 9-2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Ansible Roles
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/roles/using-ansible-roles/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/" title="Building an Ansible lab with Ansible (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ansible-roles">Ansible Roles</h1>
+
+<p>• Work with roles
+• Create roles</p>
+<h3 id="using-ansible-roles">Using Ansible Roles</h3>
+<ul>
+<li>Ready-to-use playbook-based Ansible solutions that you can easily include in your own playbooks.</li>
+<li>Community roles are provided through Ansible Galaxy</li>
+<li>Also possible to create your own roles.</li>
+<li>Red Hat provides RHEL System Roles.</li>
+<li>Roles make it possible to provide Ansible code in a reusable way.</li>
+<li>You can easily define a specific task in a role, and after defining it in a role, you can easily redistribute that and ensure that tasks are handled the same way, no matter where they are executed.</li>
+<li>Roles can be custom-made for specific environments, or default roles provided from Ansible Galaxy can be used.</li>
+</ul>
+<h4 id="understanding-ansible-roles">Understanding Ansible Roles</h4>
+<ul>
+<li>work with include files.</li>
+<li>All the different components that you may use in a playbook are used in roles and stored in separate directories.</li>
+<li>While defining the role, you don&rsquo;t need to tell the role that it should look in some of these specific directories; it does that automatically.</li>
+<li>The only thing you need to do is tell your Ansible playbook that it should include a role.</li>
+<li>Different components of the role are stored in different subdirectories.</li>
+</ul>
+<p>Roles Sample Directory Structure:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    [ansible@control roles]$ tree testrole/
+    testrole/
+    |-- defaults
+    |   `-- main.yml
+    |-- files
+    |-- handlers
+    |   `-- main.yml
+    |-- meta
+    |   `-- main.yml
+    |-- README.md
+    |-- tasks
+    |   `-- main.yml
+    |-- templates
+    |-- tests
+    |   |-- inventory
+    |   `-- test.yml
+    `-- vars
+        `-- main.yml</code></pre></div>
+<p>Role Directory Structure
+<strong>defaults</strong></p>
+<ul>
+<li>
+<p>Default variables that may be overwritten by other variables
+<strong>files</strong></p>
+</li>
+<li>
+<p>Static files that are needed by role tasks
+<strong>handlers</strong></p>
+</li>
+<li>
+<p>Handlers for use in this role
+<strong>meta</strong></p>
+</li>
+<li>
+<p>metadata, such as dependencies, plus license and maintainer information
+<strong>tasks</strong></p>
+</li>
+<li>
+<p>Role task definitions
+<strong>templates</strong></p>
+</li>
+<li>
+<p>Jinja2 templates
+<strong>tests</strong></p>
+</li>
+<li>
+<p>Optional inventory and a test.yml file to test the role
+<strong>vars</strong></p>
+</li>
+<li>
+<p>Variables that are not meant to be overwritten</p>
+</li>
+<li>
+<p>Most of the role directories have a main.yml file.</p>
+</li>
+<li>
+<p>This is the entry-point YAML file that is used to define components in the role.</p>
+</li>
+</ul>
+<h4 id="understanding-role-location">Understanding Role Location</h4>
+<p>Roles can be stored in different locations:</p>
+<p><strong>./roles</strong></p>
+<ul>
+<li>store roles in the current project directory.</li>
+<li>highest precedence.</li>
+</ul>
+<p><strong>~/.ansible/roles</strong></p>
+<ul>
+<li>exists in the current user home directory and makes the role available to the current user only.</li>
+<li>second-highest precedence.</li>
+</ul>
+<p><strong>/etc/ansible/roles</strong></p>
+<ul>
+<li>Where roles are stored to make them accessible to any user.</li>
+</ul>
+<p><strong>/usr/share/ansible/roles</strong></p>
+<ul>
+<li>Where roles are stored after they are installed from RPM files.</li>
+<li>lowest precedence</li>
+<li>should not be used for storing custom-made roles.</li>
+</ul>
+<p><code>ansible-galaxy init { newrolename }</code></p>
+<ul>
+<li>create a custom role</li>
+<li>creates the default role directory structure with a main.yml file</li>
+<li>includes sample files</li>
+</ul>
+<h4 id="using-roles-from-playbooks">Using Roles from Playbooks</h4>
+<ul>
+<li>Call roles in a playbook the same way you call a task</li>
+<li>Roles are included as a list.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: include some roles
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">roles</span>:
+</span></span><span style="display:flex;"><span>      - role1
+</span></span><span style="display:flex;"><span>      - role2</span></span></code></pre></div>
+<ul>
+<li>Roles are executed before the tasks.</li>
+<li>In specific cases you might have to execute tasks before the roles. To do so, you can specify these tasks in a <strong>pre_tasks</strong> section.</li>
+<li>Also, it&rsquo;s possible to use the <strong>post_tasks</strong> section to include tasks that will be executed after the roles, but also after tasks specified in the playbook as well as the handlers they call.</li>
+</ul>
+<h4 id="creating-custom-roles">Creating Custom Roles</h4>
+<ul>
+<li>Use <code>mkdir roles</code> to create a roles subdirectory in the current directory, and use <code>cd roles</code> to get into that subdirectory.</li>
+<li>Use <code>ansible-galaxy init motd</code> to create the motd role structure.</li>
+<li>Add contents to <strong>motd/tasks/main.yml</strong></li>
+<li>Add contents to motd/templates/motd.j2</li>
+<li>Add contents to <strong>motd/defaults/main.yml</strong></li>
+<li>Add contents to <strong>motd/meta/main.yml</strong></li>
+<li>Create the playbook <strong>exercise91.yaml</strong> to run the role</li>
+<li>Run the playbook by using <code>ansible-playbook exercise91.yaml</code></li>
+<li>Verify that modifications have been applied correctly by using the ad hoc command <code>ansible ansible2 -a &quot;cat /etc/motd&quot;</code></li>
+</ul>
+<p>Sample role all under <strong>roles/motd/</strong>:</p>
+<p><strong>defaults/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># defaults file for motd</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">system_manager</span>: anna@example.com</span></span></code></pre></div>
+<p><strong>meta/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff6ac1">galaxy_info</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">author</span>: Sander van V
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">description</span>: your description
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">company</span>: your company (optional)
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">license</span>: license (GPLv2, CC-BY, etc)
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">min_ansible_version</span>: <span style="color:#ff9f43">2.5</span></span></span></code></pre></div>
+<p><strong>tasks/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>tasks file for motd
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: copy motd file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">src</span>: templates/motd.j2
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">dest</span>: /etc/motd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">owner</span>: root
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">group</span>: root
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0444</span></span></span></code></pre></div>
+<p><strong>templates/motd.j2</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Welcome to {{ ansible_hostname }}
+    
+This file was created on {{ ansible_date_time.date }}
+Disconnect if you have no business being here
+    
+Contact {{ system_manager }} if anything is wrong</code></pre></div>
+<p>Playbook <strong>motd.yml</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: use the motd role playbook
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">roles</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">role</span>: motd
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">system_manager</span>: bob@example.com</span></span></code></pre></div>
+<p>handlers/main.yml example:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># handlers file for base-config</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: source profile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: source /etc/profile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: source bash
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: source /etc/bash.bashrc                               </span></span></code></pre></div>
+<h4 id="managing-role-dependencies">Managing Role Dependencies</h4>
+<ul>
+<li>Roles may use other roles as a dependency.</li>
+<li>You can put role dependencies in meta/main.yml</li>
+<li>Dependent roles are always executed before the roles that depend on them.</li>
+<li>Dependent roles are executed once.</li>
+<li>When two roles that are used in a playbook call the same dependency, the dependent role is executed once only.</li>
+<li>When calling dependent roles, it is possible to pass variables to the dependent role.</li>
+<li>You can define a <strong>when</strong> statement to ensure that the dependent role is executed only in specific situations.</li>
+</ul>
+<p>Defining dependencies in <strong>meta/main.yml</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    <span style="color:#ff6ac1">dependencies</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">role</span>: apache
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">port</span>: <span style="color:#ff9f43">8080</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">role</span>: mariabd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">when</span>: environment == ’production’</span></span></code></pre></div>
+<h4 id="understanding-file-organization-best-practices">Understanding File Organization Best Practices</h4>
+<ul>
+<li>
+<p>Working with roles splits the contents of the role off the tasks that are run through the playbook.</p>
+</li>
+<li>
+<p>Splitting files to store them in a location that makes sense is common in Ansible</p>
+</li>
+<li>
+<p>When you&rsquo;re working with Ansible, it&rsquo;s a good idea to work with project directories in bigger environments.</p>
+</li>
+<li>
+<p>Working with project directories makes it easier to delegate tasks and have the right people responsible for the right things.</p>
+</li>
+<li>
+<p>Each project directory may have its own ansible.cfg file, inventory file, and playbooks.</p>
+</li>
+<li>
+<p>If the project grows bigger, variable files and other include files may be used, and they are normally stored in subdirectories.</p>
+</li>
+<li>
+<p>At the top-level directory, create the main playbook from which other playbooks are included. The suggested name for the main playbook is <strong>site.yml</strong>.</p>
+</li>
+<li>
+<p>Use <strong>group_vars/</strong> and <strong>host_vars/</strong> to set host-related variables and do not define them in inventory.</p>
+</li>
+<li>
+<p>Consider using different inventory files to differentiate between production and staging phases.</p>
+</li>
+<li>
+<p>Use roles to standardize common tasks.</p>
+</li>
+</ul>
+<p>When you are working with roles, some additional recommendations apply:</p>
+<ul>
+<li>
+<p>Use a version control repository to maintain roles in a consistent way. Git is commonly used for this purpose.</p>
+</li>
+<li>
+<p>Sensitive information should never be included in roles. Use Ansible Vault to store sensitive information in an encrypted way.</p>
+</li>
+<li>
+<p>Use <code>ansible-galaxy init</code> to create the role base structure. Remove files and directories you don&rsquo;t use.</p>
+</li>
+<li>
+<p>Don&rsquo;t forget to provide additional information in the role&rsquo;s <strong>README.md</strong> and <strong>meta/main.yml</strong> files.</p>
+</li>
+<li>
+<p>Keep roles focused on a specific function. It is better to use multiple roles to perform multiple tasks.</p>
+</li>
+<li>
+<p>Try to develop roles in a generic way, such that they can be used for multiple purposes.</p>
+</li>
+</ul>
+<h3 id="lab-9-1">Lab 9-1</h3>
+<p>Create a playbook that starts the Nginx web server on ansible1, according to the following requirements:
+• A requirements file must be used to install the Nginx web server. Do NOT use the latest version of the Galaxy role, but instead use the version before that.
+• The same requirements file must also be used to install the latest version of postgresql.
+• The playbook needs to ensure that neither httpd nor mysql is currently installed.</p>
+<h3 id="lab-9-2">Lab 9-2</h3>
+<p>Use the RHEL SELinux System Role to manage SELinux properties according
+to the following requirements:</p>
+<p>• A Boolean is set to allow SELinux relabeling to be automated using
+cron.
+• The directory /var/ftp/uploads is created, permissions are set to 777,
+and the context label is set to public_content_rw_t.
+• SELinux should allow web servers to use port 82 instead of port 80.
+• SELinux is in enforcing state.
+Subjects:
+<code>ansible-playbook timesync.yaml</code> to run the playbook. Observe its output. Notice that some messages in red are shown, but these can safely be ignored.</p>
+<p>5. Use <code>ansible ansible2 -a &quot;timedatectl show&quot;</code> and notice that the <strong>timezone</strong> variable is set to UTC.</p>
+<h3 id="lab-9-1-1">Lab 9-1</h3>
+<p>Create a playbook that starts the Nginx web server on ansible1, according to the following requirements:
+• A requirements file must be used to install the Nginx web server. Do NOT use the latest version of the Galaxy role, but instead use the version before that.
+• The same requirements file must also be used to install the latest version of postgresql.
+<code>ansible-galaxy install -r roles/requirements.yml</code></p>
+<p><code>cat roles/requirements.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">src</span>: geerlingguy.nginx
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">version</span>: <span style="color:#5af78e">&#34;3.1.4&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">src</span>: geerlingguy.postgresql</span></span></code></pre></div>
+<p>• The playbook needs to ensure that neither httpd nor mysql is currently installed.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: ensure conflicting packages are not installed
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: web1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: remove packages
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: 
+</span></span><span style="display:flex;"><span>      - mysql
+</span></span><span style="display:flex;"><span>      - httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: absent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: nginx web server
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: web1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">roles</span>: 
+</span></span><span style="display:flex;"><span>  - geerlingguy.nginx
+</span></span><span style="display:flex;"><span>  - geerlingguy.postgresql</span></span></code></pre></div>
+<p>(Had to add a variable file for redhat 10 into the role. )</p>
+<h3 id="lab-9-2-1">Lab 9-2</h3>
+<p>Use the RHEL SELinux System Role to manage SELinux properties according to the following requirements:</p>
+<p>• A Boolean is set to allow SELinux relabeling to be automated using
+cron.
+• The directory /var/ftp/uploads is created, permissions are set to 777,
+and the context label is set to public_content_rw_t.
+• SELinux should allow web servers to use port 82 instead of port 80.
+• SELinux is in enforcing state.</p>
+<p><code>vim lab92.yml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: manage ftp selinux properties
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ftp1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_booleans</span>: 
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: cron_can_relabel
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">persistent</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_state</span>: enforcing
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">ports</span>: <span style="color:#ff9f43">82</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">proto</span>: tcp
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: http_port_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">local</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create /var/ftp/uploads/
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /var/ftp/uploads
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">777</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: set selinux context
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">sefcontext</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">target</span>: <span style="color:#5af78e">&#39;/var/ftp/uploads(/.*)?&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: public_content_rw_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">ftype</span>: d
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: run restorecon
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Execute the role and reboot in a rescue block
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Include selinux role
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: rhel-system-roles.selinux
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">rescue</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: &gt;-<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          Fail if failed for a different reason than selinux_reboot_required</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">fail</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;role failed&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: not selinux_reboot_required
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Restart managed host
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">reboot</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Wait for managed host to come back
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">wait_for_connection</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">delay</span>: <span style="color:#ff9f43">10</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">timeout</span>: <span style="color:#ff9f43">300</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: Reapply the role
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: rhel-system-roles.selinux
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>:  run restorecon
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">command</span>: restorecon -v /var/ftp/uploads</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

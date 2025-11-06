@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Managing Users Advanced Scenario Exercise It’s time to work on an advanced scenario now. Exercise 13-4 includes a step-by-step procedure that guides you through the process of setting up a complex playbook. In this procedure I tried to give you practical guidelines on how to approach such a complex task on the exam, including the part where you may change your mind because you have realized there is a more efficient method. It is important to read the steps carefully because some improvements will be applied while working on this procedure.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Managing Users Advanced Scenario Exercise It’s time to work on an advanced scenario now. Exercise 13-4 includes a step-by-step procedure that guides you through the process of setting up a complex playbook. In this procedure I tried to give you practical guidelines on how to approach such a complex task on the exam, including the part where you may change your mind because you have realized there is a more efficient method. It is important to read the steps carefully because some improvements will be applied while working on this procedure.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/managing-users/labs/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Managing Users Advanced Scenario Exercise It’s time to work on an advanced scenario now. Exercise 13-4 includes a step-by-step procedure that guides you through the process of setting up a complex playbook. In this procedure I tried to give you practical guidelines on how to approach such a complex task on the exam, including the part where you may change your mind because you have realized there is a more efficient method. It is important to read the steps carefully because some improvements will be applied while working on this procedure.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Managing Users Advanced Scenario Exercise It’s time to work on an advanced scenario now. Exercise 13-4 includes a step-by-step procedure that guides you through the process of setting up a complex playbook. In this procedure I tried to give you practical guidelines on how to approach such a complex task on the exam, including the part where you may change your mind because you have realized there is a more efficient method. It is important to read the steps carefully because some improvements will be applied while working on this procedure.">
+    <meta itemprop="wordCount" content="1760">
+    <title></title>
+    <link href="/ansible/managing-users/labs/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/managing-users/labs/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/managing-users\/labs\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/managing-users/labs/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#managing-users-advanced-scenario-exercise">Managing Users Advanced Scenario Exercise</a></li>
+        <li><a href="#h3_178">Lab 13-1</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/managing-users/labs/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h3 id="managing-users-advanced-scenario-exercise">Managing Users Advanced Scenario Exercise</h3>
+<p>It&rsquo;s time to work on an advanced scenario now. <a href="/ansible/managing-users/labs/#ch13.xhtml#exe13_4">Exercise
+13-4</a> includes a step-by-step procedure that guides
+you through the process of setting up a complex playbook. In this
+procedure I tried to give you practical guidelines on how to approach
+such a complex task on the exam, including the part where you may change
+your mind because you have realized there is a more efficient method. It
+is important to read the steps carefully because some improvements will
+be applied while working on this procedure.</p>
+<p>::: note</p>
+<hr>
+<p><strong>Warning</strong></p>
+<p>This exercise is written such that you can learn from errors that are
+made. In early steps, some configuration is created that will be
+optimized later. I purposely used this approach, and you are advised to
+closely follow the steps in the exercise before investigating the final
+solution in the exercise134.yaml playbook.</p>
+<hr>
+<p>:::</p>
+<p>::: box
+<strong>Exercise 13-4 Setting Up Ansible Users</strong></p>
+<p>In this exercise you create a few Ansible users. The users need to be
+created on the Ansible control host as well as on the managed hosts, and
+after running the playbook, any user created on the localhost must be
+able to log in using SSH keys to the corresponding user account on the
+remote host without having to enter a password. Make sure that the setup
+meets the following requirements:</p>
+<p>• Create users sharon, blair, ashley, and ahmed.</p>
+<p>• Users sharon and blair are members of the group admins; users ashley
+and ahmed are members of the group students.</p>
+<p>• On the managed hosts, members of the group admins should have sudo
+privileges to run any command they want.</p>
+<p>• All users must be configured with the default password &ldquo;password&rdquo;.</p>
+<p>1. This time you&rsquo;re going to use a different approach and set up the
+framework of the playbook first. This is a good approach to start the
+development of more complex playbooks and minimizes chances that you
+miss anything in the playbook. To do so, use your editor to create a
+file with the name exercise134.yaml, and define the play headers and the
+names and modules you intend to use for each of the tasks according to
+the following example:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create users on localhost
+  hosts: localhost
+  tasks:
+  - name: create groups
+    groups:
+  - name: create users
+    users:
+
+- name: create users on managed hosts
+  hosts: ansible4
+  tasks:
+  - name: create groups
+    groups:
+  - name: create users
+    users:
+  - name: copy authorized keys
+    authorized_key:
+  - name: modify sudo configuration
+    template</code></pre></div>
+<p>2. Now that you have defined the global structure, you can start
+filling it in with details. Begin with the first play, which should
+start with the creation of the user accounts. In this play, users and
+groups need to be created. To start with, focus on the basic setup and
+fill it in with additional details later:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create users on localhost
+  hosts: localhost
+  vars:
+    users:
+    - username: sharon
+      groups: admins
+    - username: blair
+      groups: admins
+    - username: ashley
+      groups: students
+    - username: ahmed
+      groups: students
+  tasks:
+  - name: create groups
+    groups:
+      name: &#34;{{ item.groups }}&#34;
+      state: present
+    loop: &#34;{{ users }}&#34;
+  - name: create users
+    user:
+      name: &#34;{{ item.username }}&#34;
+      groups: &#34;{{ item.groups }}&#34;
+    loop: &#34;{{ users }}&#34;</code></pre></div>
+<p>3. Because you&rsquo;re in for a big project this time, now is a good moment
+to give it a try. To do so, temporarily comment out the entire second
+play and run the playbook in check mode by using <strong>ansible-playbook -C
+exercise134.yaml</strong>. If you typed the exact text listed in step 2, you
+get an error at the line where the groups module is referred to. That&rsquo;s
+right&mdash;there is no groups module; the name is group. Correct this and
+run the playbook again in check mode. Notice that in check mode you
+might get false errors. Just double-check, and if you&rsquo;re convinced
+you&rsquo;ve done it right, ignore the error. Notice that it also doesn&rsquo;t
+really hurt if you just run the playbook. Any later modifications will
+be added to the configuration anyway.</p>
+<p>4. Now you&rsquo;re ready to complete the first play by adding the remaining
+tasks to it. To do so, you still have to do two things, all of which
+must be done on the user module: you need to set the user password, and
+you need to create an SSH key pair. To generate the password, you need
+to generate an encrypted string that can be used as an argument to the
+user module <strong>password</strong> argument. To generate this string, use an ad
+hoc command: <strong>ansible localhost -m debug -a &ldquo;msg={{ &lsquo;password&rsquo; |
+password_hash(&lsquo;sha512&rsquo;, &lsquo;mysalt&rsquo;) }}&rdquo;</strong>. Just copy the crypto string
+this generates (it starts with $6$) and use that in the next step.</p>
+<p>5. Complete the user task in the first play with the
+<strong>generate_ssh_key</strong> and <strong>password</strong> arguments. The complete task looks
+as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create users
+    user:
+      name: &#34;{{ item.username }}&#34;
+      groups: &#34;{{ item.groups }}&#34;
+      generate_ssh_key: yes
+      password: $6$mysalt$khiuhihrb8y349hwbohbuoehr8bhqohoibhro8bohoiheoi
+    loop: &#34;{{ users }}&#34;
+  tags: setuplocal</code></pre></div>
+<p>Notice the use of <strong>tags: setuplocal</strong> on the last line; this tag makes
+it easier to run specific parts of the playbook only, which can be
+convenient later in the setup procedure. You might want to run the
+playbook now by using <strong>ansible-playbook exercise134.yaml
+--tags=setuplocal</strong>.</p>
+<p>6. At this point the local part of the setup seems to be done, so you
+can work on the second play. You should start by observing what you&rsquo;re
+trying to do. In the second play, a couple of tasks are exactly the same
+as in the first play. Because just repeating the same stuff again
+wouldn&rsquo;t be very efficient, you can create some imports instead and move
+the existing code to a file that will be imported. To start with, create
+the exercise134-vars.yaml file and give it the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+    users:
+    - username: sharon
+      groups: admins
+    - username: blair
+      groups: admins
+    - username: ashley
+      groups: students
+    - username: ahmed
+      groups: students</code></pre></div>
+<p>7. Create the exercise134-tasks.yaml file and give it the following
+contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create groups
+    group:
+      name: &#34;{{ item.groups }}&#34;
+      state: present
+    loop: &#34;{{ users }}&#34;
+- name: create users
+    user:
+      name: &#34;{{ item.username }}&#34;
+      groups: &#34;{{ item.groups }}&#34;
+      generate_ssh_key: yes
+      ssh_key_comment: &#34;{{ item.username }}@{{ ansible_fqdn }}&#34;
+      password: $6$mysalt$khiuhihrb8y349hwbohbuoehr8bhqohoibhro8bohoiheoi
+    loop: &#34;{{ users }}&#34;</code></pre></div>
+<p>8. Now it&rsquo;s time to rewrite the playbook so that the entire playbook
+looks as follows (note that the last two tasks still need to be
+defined):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create users on localhost
+  hosts: localhost
+  vars_files:
+  - exercise134-vars.yaml
+  tasks:
+  - name: include user and group setup
+    import_tasks: exercise134-tasks.yaml
+  tags: setuplocal
+
+- name: create users on managed hosts
+  hosts: ansible4
+  vars_files:
+  - exercise134-vars.yaml
+  tasks:
+  - name: include user and group setup
+    import_tasks: exercise134-tasks.yaml
+  - name: copy authorized keys
+    authorized_key:
+  - name: modify sudo configuration</code></pre></div>
+<p>9. You can work on the copy authorized keys tasks at this point.
+Because the users were created on localhost and each user has its own
+SSH key pair, this step appears to be fairly easy. The challenge in this
+task is the use of the lookup plug-in. Complete the authorized_key task
+such that the second play looks as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create users on managed hosts
+  hosts: ansible4
+  vars_files:
+  - exercise134-vars.yaml
+  tasks:
+  - name: include user and group setup
+    import_tasks: exercise134-tasks.yaml
+  - name: copy authorized keys
+    authorized_key:
+      user: &#34;{{ item.username }}&#34;
+      key: &#34;{{ lookup(‘file’, ‘/home/’+ item.username + ‘/.ssh/id_rsa.pub’) }}&#34;
+    loop: &#34;{{ users }}&#34;
+  - name: modify sudo configuration
+  tags: setupremote</code></pre></div>
+<p>10. Because you can easily make an error while using the lookup
+plug-in, it&rsquo;s a good idea to run the second play by using
+<strong>ansible-playbook exercise134.yaml --tags=setupremote</strong>. Notice that
+this play works only if the first play has been executed successfully.
+And oops! That doesn&rsquo;t work out well! You can see the error shown in
+<a href="/ansible/managing-users/labs/#ch13.xhtml#list13_15">Listing 13-15</a>. This error is generated because
+the authorized_keys module cannot access the id_rsa.pub file directly
+from the hidden .ssh directory in the user home directory.</p>
+<p><strong>Listing 13-15</strong> Task 10 Error Output</p>
+<p>::: pre_1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">TASK [copy authorized keys] *******************************************************
+[WARNING]: Unable to find ‘/home/laksmi/id_rsa.pub’ in expected paths (use -vvvvv
+to see paths)
+fatal: [ansible3]: FAILED! =&gt; {&#34;msg&#34;: &#34;An unhandled exception occurred while running the lookup plugin ‘file’. Error was a &lt;class ‘ansible.errors.AnsibleError’&gt;, original message: could not locate file in lookup: /home/laksmi/id_rsa.pub&#34;}</code></pre></div>
+<p>:::</p>
+<p>11. To fix the error that occurred in step 10, you must rewrite the
+first play with the solution discussed in the earlier section &ldquo;Managing
+SSH Connections.&rdquo; The following code shows the entire first play, with
+the modifications you need to make applied after the <strong>import_tasks:</strong>
+statement:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create users on localhost
+  hosts: localhost
+  vars_files:
+  - exercise134-vars.yaml
+  tasks:
+  - name: include user and group setup
+    import_tasks: exercise134-tasks.yaml
+  - name: create a directory to store the key file
+    file:
+      name: &#34;{{ item.username }}&#34;
+      state: directory
+    loop: &#34;{{ users }}&#34;
+  - name: copy the local user ssh key to temporary {{ item.username }} key
+    shell: ‘cat /home/{{ item.username }}/.ssh/id_rsa.pub &gt; {{ item.username }}/id_rsa.pub’
+    loop: &#34;{{ users }}&#34;
+  - name: verify that file exists
+    command: ls -l {{ item.username }}/
+    loop: &#34;{{ users }}&#34;
+  tags: setuplocal</code></pre></div>
+<p>12. Now it&rsquo;s time to configure the sudo file in the /etc/sudoers.d/
+directory. While you&rsquo;ve been setting up the rough structure of the
+playbook so far, using the template module has been suggested. But the
+fact is that the file that needs to be created is simple and
+straightforward, and just needs to contain the line <strong>%admins
+ALL=(ALL:ALL) NOPASSWD:ALL</strong>. Because this is a simple task, you don&rsquo;t
+need to use the template module. Just use the copy module instead, such
+that after the authorized_key task, only the following task is included:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: copy sudoers file
+  copy:
+    content: ‘%admins ALL=(ALL:ALL) NOPASSWD:ALL’
+    dest: /etc/sudoers.d/admins</code></pre></div>
+<p>13. Before running the playbook, you may verify what you have typed
+with the sample playbook in the GitHub repository at
+<a href="https://github.com/sandervanvugt/rhce8-book/exercise134.yaml" rel="external" target="_blank">https://github.com/sandervanvugt/rhce8-book/exercise134.yaml</a>.</p>
+<p>14. At this point, you can run the playbook by using <strong>ansible-playbook
+exercise134.yaml</strong>, and you should encounter no errors.</p>
+<p>15. To verify that all works well, on the control host, type <strong>sudo
+su - ahmed</strong>, and once in a shell as user ahmed, type <strong>ssh ansible2</strong>.
+Ansible should let the user in without asking for a password.
+:::</p>
+<h3 id="h3_178" class="h3">Lab 13-1</h3>
+<p>Write a playbook that creates users according to the following
+specifications:</p>
+<p>• Create users kim, christina, kelly, and bill.</p>
+<p>• Users kim and kelly must be members of the profs group; users
+christina and bill are members of the students group.</p>
+<p>• While creating the users, set the encrypted password to &ldquo;password&rdquo;.</p>
+<p>• Ensure that members of the group profs have sudo privileges.
+:::</p>
+<p>[]{#ch14.xhtml}</p>
+<p>::: {#ch14.xhtml#sbo-rt-content}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/managing-users/labs/"><a class="padding" href="/ansible/managing-users/labs/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Using Modules for Troubleshooting and Testing While working with playbooks, you may use different modules for troubleshooting. The debug module was used in previous chapters and is particularly useful for analyzing variable behavior. Some other modules may prove useful when troubleshooting Ansible. Table 11-4 gives an overview.
+::: group Table 11-4 Troubleshooting Modules Overview
+{width=“940” height=“295”} :::
+The following sections discuss how these modules can be used.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Using Modules for Troubleshooting and Testing While working with playbooks, you may use different modules for troubleshooting. The debug module was used in previous chapters and is particularly useful for analyzing variable behavior. Some other modules may prove useful when troubleshooting Ansible. Table 11-4 gives an overview.
+::: group Table 11-4 Troubleshooting Modules Overview
+{width=“940” height=“295”} :::
+The following sections discuss how these modules can be used.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Using Modules for Troubleshooting and Testing While working with playbooks, you may use different modules for troubleshooting. The debug module was used in previous chapters and is particularly useful for analyzing variable behavior. Some other modules may prove useful when troubleshooting Ansible. Table 11-4 gives an overview.
+::: group Table 11-4 Troubleshooting Modules Overview
+{width=“940” height=“295”} :::
+The following sections discuss how these modules can be used.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Using Modules for Troubleshooting and Testing While working with playbooks, you may use different modules for troubleshooting. The debug module was used in previous chapters and is particularly useful for analyzing variable behavior. Some other modules may prove useful when troubleshooting Ansible. Table 11-4 gives an overview.
+::: group Table 11-4 Troubleshooting Modules Overview
+{width=“940” height=“295”} :::
+The following sections discuss how these modules can be used.">
+    <meta itemprop="wordCount" content="1967">
+    <title></title>
+    <link href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/troubleshooting\/using-modules-for-troubleshooting-and-testing\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#using-modules-for-troubleshooting-and-testing">Using Modules for Troubleshooting and Testing</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h3 id="using-modules-for-troubleshooting-and-testing">Using Modules for Troubleshooting and Testing</h3>
+<p>While working with playbooks, you may use different modules for
+troubleshooting. The debug module was used in previous chapters and is
+particularly useful for analyzing variable behavior. Some other modules
+may prove useful when troubleshooting Ansible. <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#tab11_4">Table
+11-4</a> gives an overview.</p>
+<p>::: group
+<strong>Table 11-4</strong> Troubleshooting Modules Overview</p>
+<p><a href="#R-image-e231c7546675b8def34e9d0c996de0bb" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="Images/11tab04.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e231c7546675b8def34e9d0c996de0bb"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="Images/11tab04.jpg"></a> {width=&ldquo;940&rdquo; height=&ldquo;295&rdquo;}
+:::</p>
+<p>The following sections discuss how these modules can be used.</p>
+<h4 class="h4" id="using-the-debug-module">Using the Debug Module</h4>
+<p>The debug module is useful to visualize what is happening at a certain
+point in a playbook. It works with two arguments: the <strong>msg</strong> argument
+can be used to print a message, and the <strong>var</strong> argument can be used to
+print the value of a variable. Notice that when you use the <strong>var</strong>
+argument, the variable does not have to be referred to using the usual
+<strong>{{ varname }}</strong> structure, just use <strong>varname</strong> instead. If variables
+are used in the <strong>msg</strong> argument, they must be referred to the normal
+way, using the <strong>{{ varname }}</strong> syntax.</p>
+<p>Because you have already seen the debug module in action in numerous
+examples in Chapters 6, 7, and 8 of this book, no new examples are
+included here.</p>
+<h4 class="h4" id="using-the-uri-module">Using the uri Module</h4>
+<p>The best way to learn how to work with these modules is to look at some
+examples. <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_7">Listing 11-7</a> shows an example where
+the uri module is used.</p>
+<p><strong>Listing 11-7</strong> Using the uri Module</p>
+<p>::: pre_1
+&mdash;
+- name: test webserver access
+hosts: localhost
+become: no
+tasks:
+- name: connect to the web server
+uri:
+url: <a href="http://ansible2.example.com" rel="external" target="_blank">http://ansible2.example.com</a>
+return_content: yes
+register: this
+failed_when: &ldquo;’welcome’ not in this.content&rdquo;
+- debug:
+var: this.content
+:::</p>
+<p>The playbook in <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_7">Listing 11-7</a> uses the uri module
+to connect to a web server. The <strong>return_content</strong> argument captures the
+web server content, which is stored in a variable using <strong>register</strong>.
+Next, the <strong>failed_when</strong> statement makes this module fail if the text
+&ldquo;welcome&rdquo; is not in the registered variable. For debugging purposes, the
+debug module is used to show the contents of the variable.</p>
+<p>In <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_8">Listing 11-8</a> you can see the partial result
+of running this playbook. Notice that the playbook does not generate a
+failure because the default web page that is shown by the Apache web
+server contains the text &ldquo;welcome.&rdquo;</p>
+<p><strong>Listing 11-8 ansible-playbook listing117.yaml</strong> Command Result</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control rhce8-book<span style="color:#ff6ac1">]</span>$ ansible-playbook listing117.yaml
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    PLAY <span style="color:#ff6ac1">[</span><span style="color:#ff5c57">test</span> webserver access<span style="color:#ff6ac1">]</span> ***************************************************
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    TASK <span style="color:#ff6ac1">[</span>Gathering Facts<span style="color:#ff6ac1">]</span> *********************************************************
+</span></span><span style="display:flex;"><span>    ok: <span style="color:#ff6ac1">[</span>localhost<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    TASK <span style="color:#ff6ac1">[</span>connect to the web server<span style="color:#ff6ac1">]</span> ***********************************************
+</span></span><span style="display:flex;"><span>    ok: <span style="color:#ff6ac1">[</span>localhost<span style="color:#ff6ac1">]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    TASK <span style="color:#ff6ac1">[</span>debug<span style="color:#ff6ac1">]</span> *******************************************************************
+</span></span><span style="display:flex;"><span>    ok: <span style="color:#ff6ac1">[</span>localhost<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">=</span>&gt; <span style="color:#ff6ac1">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#5af78e">&#34;this.content&#34;</span>: <span style="color:#5af78e">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">    
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">    PLAY RECAP *********************************************************************
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">    localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">    </span></span></span></code></pre></div>
+<p>Using the uri module can be useful to perform a simple test to check
+whether a web server is available, but you can also use it to check
+accessibility or returned information from an API endpoint.</p>
+<h4 class="h4" id="using-the-stat-module">Using the stat Module</h4>
+<p>You can use the stat module to check on the status of files. Although
+this module can be useful for checking on the status of just a few
+files, it&rsquo;s not a file system integrity checker that was developed to
+check file status on a large scale. If you need large-scale file system
+integrity checking, you should use Linux utilities such as aide.</p>
+<p>The stat module is useful in combination with <strong>register</strong>. In this use,
+the stat module is used to register the status of a specific file, and
+in a <strong>when</strong> statement, a check can be done to see whether the file
+status is not as expected. In combination with the fail module, you can
+use this module to generate a failure and error message if the file does
+not meet the expected status. <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_9">Listing 11-9</a> shows
+an example, and <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_10">Listing 11-10</a> shows the
+resulting output, where you can see that the fail module fails the
+playbook because the file owner is not root.</p>
+<p><strong>Listing 11-9</strong> Using stat to Check Expected File Status</p>
+<p>::: pre_1
+&mdash;
+- name: create a file
+hosts: all
+tasks:
+- file:
+path: /tmp/statfile
+state: touch
+owner: ansible</p>
+<pre><code>- name: check file status
+  hosts: all
+  tasks:
+  - stat:
+      path: /tmp/statfile
+    register: stat_out
+  - fail:
+      msg: &quot;/tmp/statfile file owner not as expected&quot;
+    when: stat_out.stat.pw_name != ’root’
+</code></pre>
+<p>:::</p>
+<p><strong>Listing 11-10 ansible-playbook listing119.yaml</strong> Command Result</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing119.yaml</p>
+<pre><code>PLAY [create a file] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible2]
+ok: [ansible1]
+ok: [ansible3]
+ok: [ansible4]
+fatal: [ansible6]: UNREACHABLE! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;Failed to connect to the host via ssh: ansible@ansible6: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).&quot;, &quot;unreachable&quot;: true}
+fatal: [ansible5]: UNREACHABLE! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;Failed to connect to the host via ssh: ssh: connect to host ansible5 port 22: No route to host&quot;, &quot;unreachable&quot;: true}
+
+TASK [file] ********************************************************************
+changed: [ansible2]
+changed: [ansible1]
+changed: [ansible3]
+changed: [ansible4]
+
+PLAY [check file status] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible1]
+ok: [ansible2]
+ok: [ansible3]
+ok: [ansible4]
+
+TASK [stat] ********************************************************************
+ok: [ansible2]
+ok: [ansible1]
+ok: [ansible3]
+ok: [ansible4]
+
+TASK [fail] ********************************************************************
+fatal: [ansible2]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;/tmp/statfile file owner not as expected&quot;}
+fatal: [ansible1]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;/tmp/statfile file owner not as expected&quot;}
+fatal: [ansible3]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;/tmp/statfile file owner not as expected&quot;}
+fatal: [ansible4]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;/tmp/statfile file owner not as expected&quot;}
+
+PLAY RECAP *********************************************************************
+ansible1                   : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+ansible2                   : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+ansible3                   : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+ansible4                   : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+ansible5                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+ansible6                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<h4 class="h4" id="using-the-assert-module">Using the assert Module</h4>
+<p>The assert module is a bit like the fail module. You can use it to
+perform a specific conditional action. The assert module works with a
+<strong>that</strong> option that defines a list of conditionals. If any one of these
+conditionals is false, the task fails, and if all the conditionals are
+true, the task is successful. Based on the success or failure of a task,
+the module uses the <strong>success_msg</strong> or <strong>fail_msg</strong> options to print a
+message. <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_11">Listing 11-11</a> shows an example that
+uses the assert module.</p>
+<p><strong>Listing 11-11</strong> Using the assert Module</p>
+<p>::: pre_1
+&mdash;
+- hosts: localhost
+vars_prompt:
+- name: filesize
+prompt: &ldquo;specify a file size in megabytes&rdquo;
+tasks:
+- name: check if file size is valid
+assert:
+that:
+- &ldquo;{{ (filesize | int) &lt;= 100 }}&rdquo;
+- &ldquo;{{ (filesize | int) &gt;= 1 }}&rdquo;
+fail_msg: &ldquo;file size must be between 0 and 100&rdquo;
+success_msg: &ldquo;file size is good, let\’s continue&rdquo;
+- name: create a file
+command: dd if=/dev/zero of=/bigfile bs=1 count={{ filesize }}
+:::</p>
+<p>The example in <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_11">Listing 11-11</a> contains a few new
+items. As you can see, the play header starts with a <strong>vars_prompt</strong>.
+This defines a variable named <strong>filesize</strong>, which is based on the input
+provided by the user. This <strong>filesize</strong> variable is next used by the
+assert module. The <strong>that</strong> statement contains a list in which two
+conditions are stated. If specified like this, all conditions stated in
+the <strong>that</strong> condition must be true. So you are looking for <strong>filesize</strong>
+to be equal to or bigger than 1, and smaller than or equal to 100.</p>
+<p>Before this can be done, one little problem needs to be managed: when
+<strong>vars_prompt</strong> is used, the variable type is set to be a string by
+default. This means that a statement like</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>**filesize left <span style="color:#ff5c57">caret</span><span style="color:#ff6ac1">=</span> 100**</span></span></code></pre></div>
+<p>would
+fail with a type mismatch. That is why a Jinja2 filter is used to
+convert the variable type from string to integer.</p>
+<p>Filters are a powerful feature provided by the Jinja2 templating
+language and can be used in Ansible to modify variables before
+processing. For more information about filters, see
+<a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html" rel="external" target="_blank">https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html</a>.
+The int filter can be used to convert the value of a string variable to
+an integer. To do this, you need to rewrite the entire variable as a
+Jinja2 operation, which is done using <strong>&quot;{{ (filesize | int) left caret= 100
+}}&quot;</strong>.</p>
+<p>In this line, the entire string is written as a variable. The variable
+is further treated in a Jinja2 context. In this context, the part
+<strong>(filesize | int)</strong> ensures that the string is converted to an
+integer, which makes it possible to check if the value is smaller than
+100.</p>
+<p>When you run the code in <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_11">Listing 11-11</a>, the
+result shown in <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_12">Listing 11-12</a> is produced.</p>
+<p><strong>Listing 11-12 ansible-playbook listing1111.yaml</strong> Output</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing1111.yaml</p>
+<pre><code>PLAY [localhost] *****************************************************************
+
+TASK [Gathering Facts] ***********************************************************
+ok: [localhost]
+
+TASK [check if file size is valid] ***********************************************
+fatal: [localhost]: FAILED! =&gt; {
+    &quot;assertion&quot;: &quot;filesize left caret= 100&quot;,
+    &quot;changed&quot;: false,
+    &quot;evaluated_to&quot;: false,
+    &quot;msg&quot;: &quot;file size must be between 0 and 100&quot;
+}
+
+PLAY RECAP ***********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<p>As you can see, the task that is defined with the assert module fails
+because the variable has a value that is not between the minimum and
+maximum sizes that are defined.</p>
+<p>Understanding the need for using the filter to convert the variable type
+might not be easy. So, let&rsquo;s also look at <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_13">Listing
+11-13</a>, which shows an example of a playbook that
+will fail. You can see its behavior in <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_14">Listing
+11-14</a>, where the playbook is executed.</p>
+<p><strong>Listing 11-13</strong> Failing Version of the <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_11">Listing
+11-11</a> Playbook</p>
+<p>::: pre_1
+&mdash;
+- hosts: localhost
+vars_prompt:
+- name: filesize
+prompt: &ldquo;specify a file size in megabytes&rdquo;
+tasks:
+- name: check if file size is valid
+assert:
+that:
+- filesize &lt;= 100
+- filesize &gt;= 1
+fail_msg: &ldquo;file size must be between 0 and 100&rdquo;
+success_msg: &ldquo;file size is good, let\’s continue&rdquo;
+- name: create a file
+command: dd if=/dev/zero of=/bigfile bs=1 count={{ filesize }}
+:::</p>
+<p><strong>Listing 11-14 ansible-playbook listing1113.yaml</strong> Failing Result</p>
+<p>::: pre_1
+[ansible@control rhce8-book]$ ansible-playbook listing1113.yaml
+specify a file size in megabytes:</p>
+<pre><code>PLAY [localhost] *****************************************************************
+
+TASK [Gathering Facts] ***********************************************************
+ok: [localhost]
+
+TASK [check if file size is valid] ***********************************************
+fatal: [localhost]: FAILED! =&gt; {&quot;msg&quot;: &quot;The conditional check ’filesize left caret= 100’ failed. The error was: Unexpected templating type error occurred on ({% if filesize left caret= 100 %} True {% else %} False {% endif %}): ’left caret=’ not supported between instances of ’str’ and ’int’&quot;}
+
+PLAY RECAP ***********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+</code></pre>
+<p>:::</p>
+<p>As you can see, the code in <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#list11_13">Listing 11-13</a> fails
+because the \left caret= test is not supported between a string and an integer.</p>
+<p>In <a href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/#ch11.xhtml#exe11_2">Exercise 11-2</a> you work with some of the
+modules discussed in this section.</p>
+<p>::: box
+<strong>Exercise 11-2 Using Modules for Troubleshooting</strong></p>
+<p>1. Open your editor to create the file exercise112.yaml and define the
+play header:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: using assert to check if volume group vgdata exists
+  hosts: all
+  tasks:</code></pre></div>
+<p>2. Add a task that uses the command <strong>vgs vgdata</strong> to check whether a
+volume group with the name vgdata exists. The task should use
+<strong>register</strong> to register the command result, and it should continue if
+this is not the case.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: check if vgdata exists
+  command: vgs vgdata
+  register: vg_result
+  ignore_errors: true</code></pre></div>
+<p>3. To make it easier to use <strong>assert</strong> in the next step on the right
+variable, include a <strong>debug</strong> task to show the value of the variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: show vg_result variable
+  debug:
+    var: vg_result</code></pre></div>
+<p>4. Add a task to print a success or failure message, depending on the
+result of the <strong>vgs</strong> command from the first task:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: print a message
+  assert:
+    that:
+    - vg_result.rc == 0
+    fail_msg: volume group not found
+    success_msg: volume group was found</code></pre></div>
+<p>5. Use the command <strong>ansible-playbook exercise112.yaml</strong> to verify its
+contents. Assuming that the LVM Volume Group vgdata was not found, it
+should print &ldquo;volume group not found.&rdquo;</p>
+<p>6. Change the playbook to verify that it will print the <strong>success_msg</strong>
+if the requested volume group was found. You can do so by having it run
+the command <strong>vgs cl</strong>, which on CentOS 8 should give a positive result.
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

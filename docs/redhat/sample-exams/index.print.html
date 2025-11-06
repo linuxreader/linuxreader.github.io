@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Sample Exams 1-4 in the book">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sample Exams :: Linux Reader">
+    <meta name="twitter:description" content="Sample Exams 1-4 in the book">
+    <meta property="og:url" content="http://linuxreader.com/redhat/sample-exams/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Sample Exams :: Linux Reader">
+    <meta property="og:description" content="Sample Exams 1-4 in the book">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="RedHat">
+    <meta itemprop="name" content="Sample Exams :: Linux Reader">
+    <meta itemprop="description" content="Sample Exams 1-4 in the book">
+    <meta itemprop="wordCount" content="3013">
+    <title>Sample Exams :: Linux Reader</title>
+    <link href="http://linuxreader.com/redhat/sample-exams/" rel="canonical" type="text/html" title="Sample Exams :: Linux Reader">
+    <link href="/redhat/sample-exams/index.xml" rel="alternate" type="application/rss+xml" title="Sample Exams :: Linux Reader">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/redhat\/sample-exams\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/redhat/sample-exams/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/rhcsa-vagrant-lab-setup/" title="RHCSA Vagrant Lab Setup (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#appendix-a-sample-rhcsa-exam-1">Appendix A: Sample RHCSA Exam 1</a>
+      <ul>
+        <li><a href="#setup-for-sample-exam-1">Setup for Sample Exam 1:</a></li>
+        <li><a href="#tasks">Tasks:</a></li>
+      </ul>
+    </li>
+    <li><a href="#appendix-b-sample-rhcsa-exam-2">Appendix B: Sample RHCSA Exam 2</a>
+      <ul>
+        <li><a href="#setup-for-sample-exam-2">Setup for Sample Exam 2:</a></li>
+        <li><a href="#tasks-1">Tasks:</a></li>
+      </ul>
+    </li>
+    <li><a href="#appendix-c-sample-rhcsa-exam-3">Appendix C: Sample RHCSA Exam 3</a>
+      <ul>
+        <li><a href="#setup-for-sample-exam-3">Setup for Sample Exam 3:</a></li>
+        <li><a href="#tasks-2">Tasks:</a></li>
+      </ul>
+    </li>
+    <li><a href="#appendix-d-sample-rhcsa-exam-4">Appendix D: Sample RHCSA Exam 4</a>
+      <ul>
+        <li><a href="#setup-for-sample-exam-4">Setup for Sample Exam 4:</a></li>
+        <li><a href="#tasks-3">Tasks:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Sample Exams
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/sample-exams/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/system-initialization-message-logging-and-system-tuning/" title="System Initialization, Message Logging, and System Tuning (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable redhat" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="sample-exams">Sample Exams</h1>
+
+<h2 id="appendix-a-sample-rhcsa-exam-1">Appendix A: Sample RHCSA Exam 1</h2>
+<p>Time Duration:3 hours
+Passing Score:70% (210 out of 300)</p>
+<p>All settings performed in the virtual machines must survive system reboots, or you will lose marks.</p>
+<h3 id="setup-for-sample-exam-1">Setup for Sample Exam 1:</h3>
+<p>RHEL 9 Server with GUI
+20GB disk for the OS with default partitioning.
+2x300MB disks and a network interface. (.293GiB for virt-manager)
+Do not configure the network interface or create a normal user account during installation.</p>
+<h3 id="tasks">Tasks:</h3>
+<p><strong>Task 01:</strong>
+Assuming the root user password is lost, and your system is running in multi-user target with no current root session open. Reboot the system into an appropriate target level and reset the root user password to root1234. (Exercise 11-2). After completing this task, log in as the root user and perform the remaining tasks presented below.
+*done</p>
+<p><strong>Task 02:</strong>
+Configure a network connection on the primary network device with:</p>
+<ul>
+<li>IP address 192.168.0.241/24</li>
+<li>gateway 192.168.0.1</li>
+<li>nameserver 192.168.0.1</li>
+</ul>
+<p>Use different IP assignments based on your lab setup.
+*done</p>
+<p><strong>Task 03:</strong>
+Using a manual method (modify file by hand), set the system hostname to rhcsa1.example.com and alias rhcsa1. Make sure that the new hostname is reflected in the command prompt.
+*done</p>
+<p><strong>Task 04:</strong>
+Set the default boot target to multi-user.
+*done</p>
+<p><strong>Task 05:</strong>
+Set SELinux to permissive mode.
+*done</p>
+<p><strong>Task 06:</strong>
+Perform a case-insensitive search for all lines in the /usr/share/dict/linux.words file that begin with the pattern &ldquo;essential&rdquo;. Redirect the output to /var/tmp/pattern.txt file. Make sure that empty lines are omitted.
+*done</p>
+<p><strong>Task 07:</strong>
+Change the primary command prompt for the root user to display the hostname, username, and current working directory information in that order. Update the per-user initialization file for permanence.
+*done</p>
+<p><strong>Task 08:</strong>
+Create user accounts called user10, user20, and user30. Set their passwords to Temp1234. Make user10 and user30 accounts to expire on December 31, 2023.
+*done</p>
+<p><strong>Task 09:</strong>
+Create a group called group10 and add user20 and user30 as secondary members.
+*done</p>
+<p><strong>Task 10:</strong>
+Create a user account called user40 with UID 2929. Set the password to user1234.
+*done</p>
+<p><strong>Task 11:</strong>
+Attach the RHEL 9 ISO image to the VM and mount it persistently to /mnt/cdrom. Define access to both repositories and confirm.
+*done</p>
+<p><strong>Task 12:</strong>
+Create a logical volume called lvol1 of size 280MB in vgtest volume group. Mount the ext4 file system persistently to /mnt/mnt1
+*30 minutes in  done</p>
+<p><strong>Task 13:</strong>
+Change group membership on /mnt/mnt1 to group10. Set read/write/execute permissions on /mnt/mnt1 for group members and revoke all permissions for public.
+*done</p>
+<p><strong>Task 14:</strong>
+Create a logical volume called lvswap of size 280MB in vgtest volume group. Initialize the logical volume for swap use. Use the UUID and place an entry for persistence.
+*done</p>
+<p><strong>Task 15:</strong>
+Use the combination of tar and bzip2 commands to create a compressed archive of the /usr/lib directory. Store the archive under /var/tmp as usr.tar.bz2.
+*done</p>
+<p><strong>Task 16:</strong>
+Create a directory hierarchy /dir1/dir2/dir3/dir4 and apply SELinux contexts of /etc on it recursively.
+*done</p>
+<p><strong>Task 17:</strong>
+Enable access to the atd service for user20 and deny for user30.
+*done</p>
+<p><strong>Task 18:</strong>
+Add a custom message &ldquo;This is RHCSA sample exam on $(date) by $LOGNAME&rdquo; to the /var/log/messages file as the root user. Use regular expression to confirm the message entry to the log file.
+*done</p>
+<p><strong>Task 19:</strong>
+Allow user20 to use sudo without being prompted for their password.
+*done</p>
+<p><strong>Task 20:</strong>
+Write a bash shell script to create three user accounts&mdash;user555, user666, and user777&mdash;with no login shell and passwords matching their usernames. The script should also extract the three usernames from the /etc/passwd file and redirect them into /var/tmp/newusers.
+*done (1 hour in)</p>
+<p><strong>Task 21:</strong>
+Launch a container as user20 using the latest version of ubi8 image. Configure the container to auto-start at system reboots without the need for user20 to log in.
+*done</p>
+<p><strong>Task 22:</strong>
+Launch a container as user20 using the latest version of ubi9 image with two environment variables SHELL and HOSTNAME. Configure the container to auto-start via systemd without the need for user20 to log in. Connect to the container and verify variable settings.
+*done</p>
+<p>Reboot the system and validate the configuration.</p>
+<h2 id="appendix-b-sample-rhcsa-exam-2">Appendix B: Sample RHCSA Exam 2</h2>
+<p>Started at 13:15 on the first timer</p>
+<h3 id="setup-for-sample-exam-2">Setup for Sample Exam 2:</h3>
+<ul>
+<li>Build a virtual machine with RHEL 9 Server with GUI</li>
+<li>Use a 20GB disk for the OS with default partitioning.</li>
+<li>Add 1x400MB disk and a network interface. (.381GiB in Virt-Manager)</li>
+<li>Do not configure the network interface or create a normal user account during installation.</li>
+</ul>
+<h3 id="tasks-1">Tasks:</h3>
+<p><strong>Task 01:</strong> Using the nmcli command,</p>
+<ul>
+<li>Configure a network connection on the primary network device:
+<ul>
+<li>IP address 192.168.0.242/24,</li>
+<li>gateway 192.168.0.1, and</li>
+<li>nameserver 192.168.0.1.</li>
+</ul>
+</li>
+</ul>
+<p>Use different IP assignments based on your lab environment.
+*done</p>
+<p><strong>Task 02:</strong> Using the hostnamectl command,</p>
+<ul>
+<li>set the system hostname to rhcsa2.example.com and alias rhcsa2.</li>
+<li>Make sure that the new hostname is reflected in the command prompt.
+*done</li>
+</ul>
+<p><strong>Task 03:</strong> Create a user account called user70</p>
+<ul>
+<li>With UID 7000 and</li>
+<li>Comments &ldquo;I am user70&rdquo;</li>
+<li>Set the maximum allowable inactivity for this user to 30 days.
+*done</li>
+</ul>
+<p><strong>Task 04:</strong> Create a user account called user50</p>
+<ul>
+<li>With a non-interactive shell.
+*done</li>
+</ul>
+<p><strong>Task 05:</strong> Attach the RHEL 9 ISO image to the VM and mount it persistently
+to /mnt/dvdrom.</p>
+<ul>
+<li>Define access to both repositories and confirm.
+*done 13:15 minutes in</li>
+</ul>
+<p><strong>Task 06:</strong> Create a logical volume called lv1</p>
+<ul>
+<li>Size equal to 10 LEs in vg1 volume group (create vg1 with PE size 8MB in a partition on the 400MB disk).</li>
+<li>Initialize the logical volume with XFS type and mount it on /mnt/lvfs1.</li>
+<li>Create a file called lv1file1 in the mount point.</li>
+<li>Set the file system to automatically mount at each system reboot.
+*done</li>
+</ul>
+<p><strong>Task 07:</strong> Add a group called group20</p>
+<ul>
+<li>Change group membership on /mnt/lvfs1 to group20.</li>
+<li>Set read/write/execute permissions on /mnt/lvfs1 for the owner, group members, and others.
+*done</li>
+</ul>
+<p><strong>Task 08:</strong> Extend the file system in the logical volume lv1 by 64MB
+without unmounting it and without losing any data.</p>
+<ul>
+<li>Confirm the new size for the logical volume and the file system.
+*done</li>
+</ul>
+<p><strong>Task 09:</strong> Create a swap partition of size 85MB on the 400MB disk. Use its
+UUID and ensure it is activated after every system reboot.
+*done</p>
+<p><strong>Task 10:</strong> Create a disk partition of size 100MB on the 400MB disk</p>
+<ul>
+<li>Format it with Ext4 file system structures.</li>
+<li>Assign label stdlabel to the file system.</li>
+<li>Mount the file system on /mnt/stdfs1 persistently using the label.</li>
+<li>Create file stdfile1 in the mount point.
+*done 43 minutes in</li>
+</ul>
+<p><strong>Task 11:</strong> Use the tar and gzip command combination</p>
+<ul>
+<li>create a compressed archive of the /etc directory.</li>
+<li>Store the archive under /var/tmp using a filename of your choice.
+*done</li>
+</ul>
+<p><strong>Task 12:</strong> Create a directory /direct01</p>
+<ul>
+<li>apply SELinux contexts for /root to it.
+*done</li>
+</ul>
+<p><strong>Task 13:</strong> Set up a cron job for user70</p>
+<ul>
+<li>To search for files by the name &ldquo;core&rdquo; in the /var directory and</li>
+<li>copy them to the directory /var/tmp/coredir1.</li>
+<li>This job should run every Monday at 1:20 a.m.
+*done</li>
+</ul>
+<p><strong>Task 14:</strong> Search for all files in the entire directory structure</p>
+<ul>
+<li>That have been modified in the past 30 days and save the file listing in the /var/tmp/modfiles.txt file.
+*done</li>
+</ul>
+<p><strong>Task 15:</strong> Modify the bootloader program and set the default autoboot
+timer value to 2 seconds.
+*boot</p>
+<p><strong>Task 16:</strong> Determine the recommended tuning profile for the system and
+apply it.
+*done</p>
+<p><strong>Task 17:</strong>
+Configure Chrony to synchronize system time with the hardware
+clock. Remove all other NTP sources.
+*done</p>
+<p><strong>Task 18:</strong> Install package group called &ldquo;Development Tools&rdquo;</p>
+<ul>
+<li>capture its information in /var/tmp/systemtools.out file.
+*done 1hour 13 in</li>
+</ul>
+<p><strong>Task 19:</strong> Lock user account user70.</p>
+<ul>
+<li>Use regular expressions to capture the line that shows the lock and store the output in file /var/tmp/user70.lock.
+*bash</li>
+</ul>
+<p><strong>Task 20:</strong> Write a bash shell script</p>
+<ul>
+<li>so that it prints RHCSA when RHCE is passed as an argument, and vice versa.</li>
+<li>If no argument is provided, the script should print a usage message and quit with exit value 5.
+*done 1 hour 43 in</li>
+</ul>
+<p><strong>Task 21:</strong> Launch a rootful container and configure it to auto-start via
+systemd.
+*done</p>
+<p><strong>Task 22:</strong> Launch a rootless container</p>
+<ul>
+<li>As user80 with /data01 mapped to /data01</li>
+<li>using the latest version of the ubi9 image.</li>
+<li>Configure a systemd service to auto-start the container on system reboots without the need for user80 to log in.</li>
+<li>Create files under the shared mount point and validate data persistence.
+*done
+1 hour 54 minutes</li>
+</ul>
+<h2 id="appendix-c-sample-rhcsa-exam-3">Appendix C: Sample RHCSA Exam 3</h2>
+<h3 id="setup-for-sample-exam-3">Setup for Sample Exam 3:</h3>
+<p>Two virtual machines with RHEL 9 Server with GUI</p>
+<ul>
+<li>Use a 20GB disk for the OS with default partitioning.</li>
+<li>Add 1x5GB disk to VM1 and a network interface to both virtual machines.</li>
+<li>Do not configure the network interfaces or create a normal user account during installation.</li>
+</ul>
+<h3 id="tasks-2">Tasks:</h3>
+<p>Task 01: On VM1, set the system hostname to rhcsa3.example.com and alias
+rhcsa3 using the hostnamectl command.</p>
+<ul>
+<li>Make sure that the new hostname is reflected in the command prompt.</li>
+</ul>
+<p>Task 02: On rhcsa3, configure a network connection on the primary
+network device:</p>
+<ul>
+<li>IP address 192.168.0.243/24, gateway 192.168.0.1, and nameserver 192.168.0.1 using the nmcli command</li>
+</ul>
+<p>Task 03: On VM2, set the system hostname to rhcsa4.example.com</p>
+<ul>
+<li>alias rhcsa4 using a manual method (modify file by hand).</li>
+<li>Make sure that the new hostname is reflected in the command prompt.</li>
+</ul>
+<p>Task 04: On rhcsa4, configure a network connection on the primary
+network device</p>
+<ul>
+<li>IP address 192.168.0.244/24, gateway 192.168.0.1, and nameserver 192.168.0.1 using a manual method (create/modify files by hand).</li>
+</ul>
+<p>Task 05: Run &ldquo;ping -c2 rhcsa4&rdquo; on rhcsa3.</p>
+<ul>
+<li>Run &ldquo;ping -c2 rhcsa3&rdquo; on rhcsa4.</li>
+<li>You should see 0% loss in both outputs.</li>
+</ul>
+<p>Task 06: On rhcsa3 and rhcsa4, attach the RHEL 9 ISO image to the VM and
+mount it persistently to /mnt/sr0.</p>
+<ul>
+<li>Define access to both repositories and confirm.</li>
+</ul>
+<p>Task 07: On rhcsa3, add HTTP port 8300/TCP to the SELinux policy
+database persistently.</p>
+<p>Task 08: On rhcsa3, create LVM VDO volume</p>
+<ul>
+<li>Called vdo1 on the 5GB disk</li>
+<li>logical size 20GB and mounted with Ext4 structures on /mnt/vdo1.</li>
+</ul>
+<p>Task 09: Configure NFS service on rhcsa3</p>
+<ul>
+<li>share /rh_share3 with rhcsa4.</li>
+<li>Configure AutoFS direct map on rhcsa4 to mount /rh_share3 on /mnt/rh_share4.</li>
+<li>User user80 (create on both systems) should be able to create files under the share on the NFS server as well as under the mount point on the NFS client.</li>
+</ul>
+<p>Task 09: Configure NFS service on rhcsa3</p>
+<ul>
+<li>share /rh_share3 with rhcsa4.</li>
+<li>Configure AutoFS direct map on rhcsa4 to mount /rh_share3 on /mnt/rh_share4.</li>
+<li>User user80 (create on both systems) should be able to create files under the share on the NFS server as well as under the mount point on the NFS client.</li>
+</ul>
+<p>Task 10: Configure NFS service on rhcsa4 and</p>
+<ul>
+<li>share the home directory for user60 (create user60 on both systems) with rhcsa3.</li>
+<li>Configure AutoFS indirect map on rhcsa3 to automatically mount the home directory under /nfsdir when user60 logs on to rhcsa3.</li>
+</ul>
+<p>Task 11: On rhcsa3, create a group called group30 with GID 3000</p>
+<ul>
+<li>add user60 and user80 to this group.</li>
+<li>Create a directory called /sdata, enable setgid bit on it.</li>
+<li>Add write permission bit for group members.</li>
+<li>Set ownership and owning group to root and group30.</li>
+<li>Create a file called file1 under /sdata as user60 and modify the file as user80 successfully.</li>
+</ul>
+<p>Task 12: On rhcsa3, create directory /var/dir1</p>
+<ul>
+<li>with full permissions for everyone.</li>
+<li>Disallow non-owners to remove files.</li>
+<li>Test by creating file /var/dir1/stkfile1 as user60 and removing it as user80.</li>
+</ul>
+<p>Task 13: On rhcsa3, search for all manual pages for the description containing the keyword &ldquo;password&rdquo;.</p>
+<ul>
+<li>redirect the output to file /var/tmp/man.out.</li>
+</ul>
+<p>Task 14: On rhcsa3, create file lnfile1 under /var/tmp</p>
+<ul>
+<li>Create one hard link /var/tmp/lnfile2 and one soft link /boot/file1.</li>
+<li>Edit lnfile1 using one link at a time and confirm.</li>
+</ul>
+<p>Task 15: On rhcsa3, install software group called &ldquo;Legacy UNIX
+Compatibility&rdquo;.</p>
+<p>Task 16: On rhcsa3, add the http service to &ldquo;external&rdquo; firewalld zone persistently.</p>
+<p>Task 17: On rhcsa3, set SELinux type shadow_t on a new file testfile1 in
+/usr</p>
+<ul>
+<li>ensure that the context is not affected by a SELinux
+relabeling.</li>
+</ul>
+<p>Task 18: Configure passwordless ssh access for user60 from rhcsa3 to
+rhcsa4. (Exercise 18-2).</p>
+<p>Task 19: Write a bash shell script</p>
+<ul>
+<li>Checks for the existence of files (not directories) under the /usr/bin directory</li>
+<li>That begin with the letters &ldquo;ac&rdquo; and display their statistics (the stat command).</li>
+</ul>
+<p>Task 20: On rhcsa3, write a containerfile to include the ls and pwd
+commands in a custom ubi8 image.</p>
+<ul>
+<li>Launch a named rootless container as user60 using this image.</li>
+<li>Confirm command execution.</li>
+</ul>
+<p>Task 21: On rhcsa3, launch a named rootless container as user60</p>
+<ul>
+<li>with host port 10000 mapped to container port 80.</li>
+<li>Employ the latest version of the ubi8 image.</li>
+<li>Configure a systemd service to autostart the container without the need for user60 to log in.</li>
+<li>Validate port mapping using an appropriate podman subcommand.</li>
+</ul>
+<p>Task 22: On rhcsa3, launch another named rootless container (use a
+unique name for the container) as user60 with /host_data01 mapped to
+/container_data01, one variable ENVIRON=Exam, and host port 1050 mapped
+to container port 1050. Use the latest version of the ubi9 image.
+Configure a separate systemd service to auto-start the container without
+the need for user60 to log in. Create a file under the shared directory
+and validate data persistence. Verify port mapping and variable settings
+using appropriate podman subcommands.</p>
+<h2 id="appendix-d-sample-rhcsa-exam-4">Appendix D: Sample RHCSA Exam 4</h2>
+<p>(Using server1 and server2)</p>
+<h3 id="setup-for-sample-exam-4">Setup for Sample Exam 4:</h3>
+<p>Build two virtual machines with RHEL 9 Server with GUI (Exercises 1-1
+and 1-2). Use a 20GB disk for the OS with default partitioning. Add
+1x5GB disk to VM2 and a network interface to both virtual machines. Do
+not configure the network interfaces or create a normal user account
+during installation.</p>
+<h3 id="tasks-3">Tasks:</h3>
+<p>Task 01: On VM1, set the system hostname to rhcsa5.example.com and alias
+rhcsa5 using the hostnamectl command. Make sure that the new hostname is
+reflected in the command prompt. (Exercises 15-1 and 15-5).
+*done</p>
+<p>Task 02: On rhcsa5, configure a network connection on the primary
+network device with IP address 192.168.0.245/24, gateway 192.168.0.1,
+and nameserver 192.168.0.1 using the nmcli command. Use different IP
+assignments based on your lab environment. (Exercise 15-4).
+*done</p>
+<p>Task 03: On VM2, set the system hostname to rhcsa6.example.com and alias rhcsa6 using a manual method (modify file by hand). Make sure that the
+new hostname is reflected in the command prompt. (Exercises 15-1 and
+15-5).
+*done</p>
+<p>Task 04: On rhcsa6, configure a network connection on the primary
+network device with IP address 192.168.0.246/24, gateway 192.168.0.1,
+and nameserver 192.168.0.1 using a manual method (create/modify files by
+hand). Use different IP assignments based on your lab environment.
+(Exercise 15-3).
+*done</p>
+<p>Task 05: Run &ldquo;ping -c2 rhcsa6&rdquo; on rhcsa5. Run &ldquo;ping -c2 rhcsa5&rdquo; on
+rhcsa6. You should see 0% loss in both outputs. (Exercise 15-5).
+*done</p>
+<p>Task 06: On rhcsa5 and rhcsa6, attach the RHEL 9 ISO image to the VM and
+mount it persistently to /mnt/sr0. Define access to both repositories
+and confirm. (Exercise 9-1).
+*done
+<em>30 minutes in</em></p>
+<p>Task 07: Export /share5 on rhcsa5 and mount it to /share6 persistently
+on rhcsa6. (Exercises 16-1 and 16-2). *done (used notes) 1.5 hours in</p>
+<p>Task 08: Use NFS to export home directories for all users (u1, u2, and u3) on rhcsa6 so that tregistry.access.redhat.com/ubi9heir home directories become available under /home1 when they log on to rhcsa5. Create u1, u2, and u3. *done used notes 2 hours in</p>
+<p>Task 09: On rhcsa5, add HTTP port 8400/UDP to the public firewall zone persistently.
+*done</p>
+<p>Task 10: Configure passwordless ssh access for u1 from rhcsa5 to rhcsa6. Copy the directory /etc/sysconfig from rhcsa5 to rhcsa6 under /var/tmp/remote securely.  *done (2.5 hour in used notes)</p>
+<p>Task 11: On rhcsa6, create LVM VDO volume vdo2 on the 5GB disk with logical size 20GB and mounted persistently with XFS structures on /mnt/vdo2.
+*done 3 hours (used notes)</p>
+<p>Task 12: On rhcsa6, flip the value of the Boolean nfs_export_all_rw persistently.
+*done</p>
+<p>Task 13: On rhcsa5 and rhcsa6, set the tuning profile to powersave.
+*done</p>
+<p>Task 14: On rhcsa5, create file lnfile1 under /var/tmp and create three hard links called hard1, hard2, and hard3 for it. Identify the inode number associated with all four files. Edit any of the files and observe the metadata for all the files for confirmation.
+*done (on rhcsa6, oops)</p>
+<p>Task 15: On rhcsa5, members (user100 and user200) of group100 should be able to collaborate on files under /shared but cannot delete each other&rsquo;s files.
+*4 hours in (done used notes)</p>
+<p>Task 16: On rhcsa6, list all files that are part of the &ldquo;setup&rdquo; package, and use regular expressions and I/O redirection to send the output lines containing &ldquo;hosts&rdquo; to /var/tmp/setup.pkg.
+*done</p>
+<p>Task 17: On rhcsa5, check the current version of the Linux kernel. Download and install the latest version of the kernel from Red Hat website. Ensure that the existing kernel and its configuration remain intact. Reboot the system and confirm the newregistry.access.redhat.com/ubi9 version is loaded. *done with dnf instead of downloading from site (4.5hours in)</p>
+<p>Task 18: On rhcsa5, configure journald to store messages permanently under /var/log/journal and fall back to memory-only option if /var/log/journal directory does not exist or has permission/access issues.
+*done</p>
+<p>Task 19: Write a bash shell script that defines an environment variable called ENV1=book1 and creates a user account that matches the value of the variable.
+*done</p>
+<p>Task 20: On rhcsa5, launch a named rootful container with host port 443 mapped to container port 443. Employ the latest version of the ubi9 image. Configure a systemd service to auto-start the container at system reboots. Validate port mapping using an appropriate podman subcommand.
+*done</p>
+<p>Task 21: On rhcsa5, launch a named rootless container as user100 with /data01 mapped to /data01 and two variables KERN=$(uname -r) and SHELL defined. Use the latest version of the ubi8 image. Configure a systemd service to auto-start the container at system reboots without the need
+for user100 to log in. Create a file under the shared mount point and validate data persistence.
+*done (5 hours in)</p>
+<p>Task 22: On rhcsa5, write a containerfile to include the PATH
+environment variable output in a custom ubi9 image. Launch a named rootless container as user100 using this image. Confirm command execution.
+*done (5hours 10 minutes)</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

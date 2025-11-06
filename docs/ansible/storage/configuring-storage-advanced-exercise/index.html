@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta property="og:url" content="http://linuxreader.com/ansible/storage/configuring-storage-advanced-exercise/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta itemprop="wordCount" content="2271">
+    <title></title>
+    <link href="/ansible/storage/configuring-storage-advanced-exercise/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/storage/configuring-storage-advanced-exercise/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/storage\/configuring-storage-advanced-exercise\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/storage/configuring-storage-advanced-exercise/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#configuring-storage-advanced-exercise">Configuring Storage Advanced Exercise</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/storage/configuring-storage-advanced-exercise/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h3 id="configuring-storage-advanced-exercise">Configuring Storage Advanced Exercise</h3>
+<p>To work on this exercise, you need managed machines with an additional disk device: add
+a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.</p>
+<p><strong>Exercise 15-3 Setting Up an Advanced Storage Solution</strong></p>
+<p>In this exercise you need to set up a storage solution that meets the
+following requirements:</p>
+<p>• Tasks in this playbook should be executed only on hosts where the device /dev/sdb exists.</p>
+<p>• If no device /dev/sdb exists, the playbook should print &ldquo;device sdb not present&rdquo; and stop executing tasks on that host.</p>
+<p>• Configure the device with one partition that includes all available disk space.</p>
+<p>• Create an LVM volume group with the name vgfiles.</p>
+<p>• If the volume group is bigger than 5 GB, create an LVM logical volume with the name lvfiles and a size of 6 GB. Note that you must check the LVM volume group size and not the /dev/sdb1 size because in theory you could have multiple block devices in a volume group.</p>
+<p>• If the volume group is equal to or smaller than 5 GB, create an LVM logical volume with the name lvfiles and a size of 3 GB.</p>
+<p>• Format the volume with the XFS file system.</p>
+<p>• Mount it on the /files directory.</p>
+<p>1. Check the size of the volume group. You can, however, write a test that works on a default volume group, and that is what you&rsquo;re going to do first, using the name of the default volume group on CentOS 8, which is &ldquo;cl&rdquo;. The purpose is to test the constructions, which is why it doesn&rsquo;t really matter that the two tasks have overlapping <strong>when</strong> statements. So create a file with the name exercise153-dev1.yaml and give it the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: get vg sizes
+  hosts: all
+  tasks:
+  - name: find small vgroup sizes
+    debug:
+      msg: volume group smaller than or equal to 20G
+    when:
+    - ansible_facts[’lvm’][’vgs’][’cl’] is defined
+    - ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00
+  - name: find large vgroup size
+    debug:
+      msg: volume group larger than or equal to 19G
+    when:
+    - ansible_facts[’lvm’][’vgs’][’cl’] is defined
+    - ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &gt;= 19.00</code></pre></div>
+<p>2. Run the playbook by using <strong>ansible-playbook
+exercise153-dev1.yaml</strong>. You&rsquo;ll notice that it fails with the error
+shown in <a href="/ansible/storage/configuring-storage-advanced-exercise/#ch15.xhtml#list15_12">Listing 15-12</a>.</p>
+<p><strong>Listing 15-12 exercise153-dev1.yaml</strong> Failure Message</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>TASK [find small vgroups sizes] ***************************************************
+fatal: [ansible1]: FAILED! =&gt; \{\&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] \\&lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+fatal: [ansible2]: FAILED! =&gt; {&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+fatal: [ansible3]: FAILED! =&gt; {&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+fatal: [ansible4]: FAILED! =&gt; {&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+skipping: [ansible5]
+skipping: [ansible6]
+
+TASK [find large vgroups sizes] ***************************************************
+skipping: [ansible5]
+skipping: [ansible6]</code></pre></div>
+<p>:::</p>
+<p>3. As you can see in the errors in <a href="/ansible/storage/configuring-storage-advanced-exercise/#ch15.xhtml#list15_12">Listing
+15-12</a>, there are two problems in the playbook.
+The first problem is that there is no <strong>ignore_errors</strong> in the failing
+play, which means that only hosts that haven&rsquo;t failed will reach the
+next task. The second error is the &ldquo;Unexpected templating error&rdquo;. The
+playbook in its current form is trying to perform a logical test to
+compare the value of two variables that have an incompatible variable
+type. The Ansible fact has the type &ldquo;AnsibleUnsafeText&rdquo;, and the value
+of 20.00 is a float, not an integer. To make this test work, you must
+force the type of both variables to be set to an integer. Now write
+<strong>exercise153-dev2.yaml</strong> where this is happening; notice the use of the
+filter <strong>int</strong>, which is essential for the success of this playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: get vg sizes
+  ignore_errors: yes
+  hosts: all
+  tasks:
+  - name: set vgroup sizes in variables
+    set_fact:
+      vgsize: &#34;{{ ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] | int }}&#34;
+  - name: debug this
+    debug:
+      msg: the value of vgsize is {{ vgsize }}
+  - name: testing big vgsize value
+    debug:
+      msg: the value of vgsize is bigger than 5
+    when: vgsize | int &gt; 5
+  - name: testing small vgsize value
+    debug:
+      msg: the value of vgsize is smaller than 5
+    when: vgsize | int &lt;= 5</code></pre></div>
+<p>4. Run this playbook. You&rsquo;ll notice it skips and ignores some tasks but
+doesn&rsquo;t fail anywhere, which means that this playbook&mdash;although
+absolutely not perfect&mdash;is usable as an example to test the size of the
+vgfiles volume group later in this exercise.</p>
+<p>5. Now that you&rsquo;ve tested the most complex part of the assignment, you
+can start writing the rest of the playbook. Do this in a new file with
+the name exercise153.yaml. Because this playbook has quite a few tasks
+to accomplish, it might be smart to define the rough structure and
+ensure that all elements that are needed later are at least documented
+so that you can later work out the details. So let&rsquo;s start with the
+first part, where the play header is defined, as well as the rough
+structure. This is the part where you still have the global overview of
+all the tasks in this requirement, so you need to make sure you won&rsquo;t
+forget about them later, which is a real risk if you&rsquo;ve been into the
+details too much for too long.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: set up hosts that have an sdb device
+  hosts: all
+  tasks:
+  - name: getting out with a nice failure message if there is no second disk
+    # fail:
+    debug:
+      msg: write a nice failure message and a when test here
+    # when: something
+  - name: create a partition
+    #parted
+    debug:
+      msg: creating the partition
+  - name: create a volume group
+    #lvg:
+    debug:
+      msg: creating the volume group
+  - name: get the vg size and store it in a variable
+    #set_fact:
+    debug:
+      msg: storing variable as an integer
+  - name: create an LVM on big volume groups
+    #lvol:
+    debug:
+      msg: use when statement to create 6g lvol if vsize &gt; 5
+  - name: create an LVM on small volume groups
+    #lvol:
+    debug:
+      msg: use when statement to create 3g lvol if vsize &lt;= 5
+  - name: formatting the XFS filesystem
+    # filesystem
+    debug:
+      msg: creating the filesystem
+  - name: mounting /dev/vgfiles/lvfiles
+    # mount:
+    debug:
+      msg: mounting the volume</code></pre></div>
+<p>6. The advantage of a generic structure like the one you just defined
+is that you can run a test at any moment. Now it&rsquo;s time to fill it in.
+Start with the play header and then check whether /dev/sdb is present on
+the managed system:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: setup up hosts that have an sdb device
+  hosts: all
+  tasks:
+  - name: getting out with a nice failure message if there is no second disk
+    fail:
+      msg: there is no second disk
+    when: ansible_facts[’devices’][’sdb’] is not defined</code></pre></div>
+<p>7. At this point I recommend you run a test to see that the playbook
+really does skip all hosts that don&rsquo;t have a second disk device. Use
+<strong>ansible-playbook exercise153.yaml</strong> to do so and observe that you see
+a lot of skipping messages in the output.</p>
+<p>8. If all is well so far, you can continue to create the partition and
+create the logical volume group as well. Here are the tasks you need to
+enter. Notice that no size is specified at any point, which means that
+the partition and the volume group will be allowed to grow up to the
+maximum size.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create a partition
+  parted:
+    device: /dev/sdb
+    number: 1
+    state: present
+- name: create a volume group
+  lvg:
+    pvs: /dev/sdb1
+    vg: vgfiles</code></pre></div>
+<p>9. At this point you can insert the part where you save the volume
+group size into a variable, which can be used in the <strong>when</strong> statement
+that will occur in one of the next tasks. Also, because it&rsquo;s good to
+check a lot while you are writing a complex playbook, use the debug
+module to verify the results.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: get vg size and convert to integer in new variable
+  set_fact:
+    vgsize: &#34;{{ ansible_facts[’lvm’][’vgs’][’vgfiles’][’size_g’] | int }}&#34;
+- name: show vgsize value
+  debug:
+    var: &#34;{{ vgsize }}&#34;</code></pre></div>
+<p>10. After this important step, it&rsquo;s time to run a test. If you need it,
+you can find a sample playbook of the state so far named
+exercise153-step9.yaml in the GitHub repository at
+<a href="https://github.com/sandervanvugt/rhce8-book" rel="external" target="_blank">https://github.com/sandervanvugt/rhce8-book</a>, but it&rsquo;s obviously much
+better and recommended to run your own code! So use <strong>ansible-playbook
+exercise153.yaml</strong> to verify what you&rsquo;ve got so far. Notice that you
+<em>must</em> make sure to run it on hosts that don&rsquo;t have any configuration
+yet. If a configuration already exists, that will most likely give you
+false positives! If you want to make sure all is clean, use <strong>ansible
+all -a &ldquo;dd if=/dev/zero of=/dev/sdb bs=1M count=10&rdquo;</strong> to wipe the
+/dev/sdb devices on your managed hosts, followed by <strong>ansible all -m
+reboot</strong> to reboot all of them before you test. The purpose of all this
+is that at this point you see the error message shown in <a href="/ansible/storage/configuring-storage-advanced-exercise/#ch15.xhtml#list15_13">Listing
+15-13</a>. Before moving on to the next step, try to
+understand what is going wrong.</p>
+<p><strong>Listing 15-13</strong> Error Message After <a href="/ansible/storage/configuring-storage-advanced-exercise/#ch15.xhtml#exe15_3">Exercise
+15-3</a> Step 10</p>
+<p>::: pre_1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">TASK [get vg size and convert to integer in new variable] ******************************
+fatal: [ansible2]: FAILED! =&gt; {&#34;msg&#34;: &#34;The task includes an option with an undefined variable. The error was: ’dict object’ has no attribute ’vgfiles’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-step9.yaml’: line 18, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      vg: vgfiles\n  - name: get vg size and convert to integer in new variable\n    ^ here\n&#34;}
+fatal: [ansible3]: FAILED! =&gt; {&#34;msg&#34;: &#34;The task includes an option with an undefined variable. The error was: ’dict object’ has no attribute ’vgfiles’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-step9.yaml’: line 18, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      vg: vgfiles\n  - name: get vg size and convert to integer in new variable\n    ^ here\n&#34;}</code></pre></div>
+<p>:::</p>
+<p>11. As you can see, the variable that you are trying to use has no
+value yet. And that is for the simple reason that fact gathering is
+required to set the variable, and fact gathering is happening at the
+beginning of the playbook. At this point, you need to add a task that
+runs the setup module right after creating the volume group, and then
+you can try again. In the output you have to look at the [show vgsize
+value] task, which should look all right now, and everything after that
+can be ignored. See exercise153-step11.yaml in the GitHub repository if
+you need the complete example.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1"># skipping first part of the playbook in this listing
+- name: create a volume group
+  lvg:
+    pvs: /dev/sdb1
+    vg: vgfiles
+- name: run the setup module so that we can use updated facts
+  setup:
+- name: get vg size and convert to integer in new variable
+  set_fact:
+    vgsize: &#34;{{ ansible_facts[’lvm’][’vgs’][’vgfiles’][’size_g’] | int }}&#34;
+- name: show vgsize value
+  debug:
+    var: &#34;{{ vgsize }}&#34;</code></pre></div>
+<p>12. Assuming that all went well, you can now add the two conditional
+tests, where according to the <strong>vgsize</strong> value, the lvol module is used
+to create the logical volumes:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create an LVM on big volume groups
+  lvol:
+    vg: vgfiles
+    lv: lvfiles
+    size: 6g
+  when: vgsize | int &gt; 5
+- name: create an LVM on small volume groups
+  lvol:
+    vg: vgfiles
+    lv: lvfiles
+    size: 3g
+  when: vgsize | int &lt;= 5</code></pre></div>
+<p>13. Add the tasks to format the volumes with the XFS file system and
+mount them:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: formatting the XFS filesystem
+  filesystem:
+    dev: /dev/vgfiles/lvfiles
+    fstype: xfs
+- name: mounting /dev/vgfile/lvfiles
+  mount:
+    path: /file
+    state: mounted
+    src: /dev/vgfiles/lvfiles
+    fstype: xfs</code></pre></div>
+<p>14. That&rsquo;s all! The playbook is now ready for use. Run it by using
+<strong>ansible-playbook exercise153.yaml</strong> and verify its output.</p>
+<p>15. Use the ad hoc command <strong>ansible ansible2,ansible3 -a &ldquo;lvs&rdquo;</strong> to
+show LVM logical volume sizes on the machines with the additional hard
+drive. You should see that all has worked out well and you are done!
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/storage/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/storage/configuring-storage-advanced-exercise/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="3 Extended ACLs Friday, September 17, 2021 1:11 PM
+IP and TCP Header
+IP Header
+Misc Header Fields▪ 9 bytes
+▪ 1 byte ▪▪ ie 6 = tcpidentify TCP header Protocol Header Checksum▪ 2 bytes ▪ 4 bytes Source IP Dest. IP▪ 4 bytes Options▪ variable TCP Header Source Port- 2 bytes 2 bytes Dest. port Rest of TCP- 16 bytes tcp or udp keyword
+can optionally reference the source and/or destination portequal, not equal, less than, greater than, and for a range of port numbers can use port numbers or keywords for some well-known application ports
+positions of the source and destination port fields in the access-list command and these port
+number keywords. access-list 101 permit (protocol) Source_IP (source port) dest_IP (dest port) Protocol– tcpudp eq ne lt_ Source Port lt_gt_ range_ eq ne lt_gt_ range_ Dest. Port eq: =lt: &lt; ne: not equal gt: &gt;range: x to y ie: # access-list 101 permit tcp 172.16.1.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21 eq 21 is in the destination port position
+Apps and Port number shortcuts for ACL Commands
+20 21 ftpftp-data
+22 -
+23 25 telnetsmtp
+53 67 domainbootps (dhcp server)
+68 69 bootpc (dhcp clienttftp )
+80 www
+110 161 pop3snmp
+443 514 - -
+16,384 -32,767 (RTP/ Voice/ Video) -
+Extended IP ACL Configuration">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="3 Extended ACLs Friday, September 17, 2021 1:11 PM
+IP and TCP Header
+IP Header
+Misc Header Fields▪ 9 bytes
+▪ 1 byte ▪▪ ie 6 = tcpidentify TCP header Protocol Header Checksum▪ 2 bytes ▪ 4 bytes Source IP Dest. IP▪ 4 bytes Options▪ variable TCP Header Source Port- 2 bytes 2 bytes Dest. port Rest of TCP- 16 bytes tcp or udp keyword
+can optionally reference the source and/or destination portequal, not equal, less than, greater than, and for a range of port numbers can use port numbers or keywords for some well-known application ports
+positions of the source and destination port fields in the access-list command and these port
+number keywords. access-list 101 permit (protocol) Source_IP (source port) dest_IP (dest port) Protocol– tcpudp eq ne lt_ Source Port lt_gt_ range_ eq ne lt_gt_ range_ Dest. Port eq: =lt: &lt; ne: not equal gt: &gt;range: x to y ie: # access-list 101 permit tcp 172.16.1.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21 eq 21 is in the destination port position
+Apps and Port number shortcuts for ACL Commands
+20 21 ftpftp-data
+22 -
+23 25 telnetsmtp
+53 67 domainbootps (dhcp server)
+68 69 bootpc (dhcp clienttftp )
+80 www
+110 161 pop3snmp
+443 514 - -
+16,384 -32,767 (RTP/ Voice/ Video) -
+Extended IP ACL Configuration">
+    <meta property="og:url" content="http://linuxreader.com/networking/ccna/newccnanotes/3-extended-acls/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="3 Extended ACLs Friday, September 17, 2021 1:11 PM
+IP and TCP Header
+IP Header
+Misc Header Fields▪ 9 bytes
+▪ 1 byte ▪▪ ie 6 = tcpidentify TCP header Protocol Header Checksum▪ 2 bytes ▪ 4 bytes Source IP Dest. IP▪ 4 bytes Options▪ variable TCP Header Source Port- 2 bytes 2 bytes Dest. port Rest of TCP- 16 bytes tcp or udp keyword
+can optionally reference the source and/or destination portequal, not equal, less than, greater than, and for a range of port numbers can use port numbers or keywords for some well-known application ports
+positions of the source and destination port fields in the access-list command and these port
+number keywords. access-list 101 permit (protocol) Source_IP (source port) dest_IP (dest port) Protocol– tcpudp eq ne lt_ Source Port lt_gt_ range_ eq ne lt_gt_ range_ Dest. Port eq: =lt: &lt; ne: not equal gt: &gt;range: x to y ie: # access-list 101 permit tcp 172.16.1.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21 eq 21 is in the destination port position
+Apps and Port number shortcuts for ACL Commands
+20 21 ftpftp-data
+22 -
+23 25 telnetsmtp
+53 67 domainbootps (dhcp server)
+68 69 bootpc (dhcp clienttftp )
+80 www
+110 161 pop3snmp
+443 514 - -
+16,384 -32,767 (RTP/ Voice/ Video) -
+Extended IP ACL Configuration">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Networking">
+    <meta itemprop="description" content="3 Extended ACLs Friday, September 17, 2021 1:11 PM
+IP and TCP Header
+IP Header
+Misc Header Fields▪ 9 bytes
+▪ 1 byte ▪▪ ie 6 = tcpidentify TCP header Protocol Header Checksum▪ 2 bytes ▪ 4 bytes Source IP Dest. IP▪ 4 bytes Options▪ variable TCP Header Source Port- 2 bytes 2 bytes Dest. port Rest of TCP- 16 bytes tcp or udp keyword
+can optionally reference the source and/or destination portequal, not equal, less than, greater than, and for a range of port numbers can use port numbers or keywords for some well-known application ports
+positions of the source and destination port fields in the access-list command and these port
+number keywords. access-list 101 permit (protocol) Source_IP (source port) dest_IP (dest port) Protocol– tcpudp eq ne lt_ Source Port lt_gt_ range_ eq ne lt_gt_ range_ Dest. Port eq: =lt: &lt; ne: not equal gt: &gt;range: x to y ie: # access-list 101 permit tcp 172.16.1.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21 eq 21 is in the destination port position
+Apps and Port number shortcuts for ACL Commands
+20 21 ftpftp-data
+22 -
+23 25 telnetsmtp
+53 67 domainbootps (dhcp server)
+68 69 bootpc (dhcp clienttftp )
+80 www
+110 161 pop3snmp
+443 514 - -
+16,384 -32,767 (RTP/ Voice/ Video) -
+Extended IP ACL Configuration">
+    <meta itemprop="wordCount" content="832">
+    <title></title>
+    <link href="http://linuxreader.com/networking/ccna/newccnanotes/3-extended-acls/" rel="canonical" type="text/html" title="">
+    <link href="/networking/ccna/newccnanotes/3-extended-acls/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/networking\/ccna\/newccnanotes\/3-extended-acls\/';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/networking/ccna/newccnanotes/3-extended-acls/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/" title="Networking (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/ccna/newccnanotes/3-extended-acls/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/consoling_in_to_mx80_from_linux/" title="Consoling in to MX80 from linux (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable networking" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

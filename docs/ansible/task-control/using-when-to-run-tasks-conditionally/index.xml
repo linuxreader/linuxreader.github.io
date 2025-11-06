@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>http://linuxreader.com/ansible/task-control/using-when-to-run-tasks-conditionally/</link>
+    <description>Using when to Run Tasks Conditionally Use a when statement to run tasks conditionally. you can test whether: a variable has a specific value whether a file exists whether a minimal amount of memory is available etc. Working with when Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that&#xA;when used in when statements, the variable that is evaluated is not placed between double curly braces. --- - name: conditional install hosts: all tasks: - name: install apache on Red Hat and family yum: name: httpd state: latest when: ansible_facts[’os_family’] == &#34;RedHat&#34; - name: install apache on Ubuntu and family apt: name: apache2 state: latest when: ansible_facts[’os_family’] == &#34;Debian&#34; not a part of any properties of the modules on which it is used</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://linuxreader.com/ansible/task-control/using-when-to-run-tasks-conditionally/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

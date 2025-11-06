@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Managing SELinux Properties SELinux can be used on files to manage file context context can be set on ports SELinux properties can be managed using Booleans. Modules for Managing Changes on SELinux: file
+Manages context on files but not in the SELinux Policy sefcontext Manages file context in the SELinux policy command Is required to run the restorecon command after using sefcontext selinux Manages current SELinux state seboolean Manages SELinux Booleans Managing SELinux File Context The context type that is set on the file defines which processes can work with the files. The file context type can be set on a file directly, or it can be set on the SELinux policy. All SELinux properties should be set in the SELinux policy. sefcontext module.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Managing SELinux Properties SELinux can be used on files to manage file context context can be set on ports SELinux properties can be managed using Booleans. Modules for Managing Changes on SELinux: file
+Manages context on files but not in the SELinux Policy sefcontext Manages file context in the SELinux policy command Is required to run the restorecon command after using sefcontext selinux Manages current SELinux state seboolean Manages SELinux Booleans Managing SELinux File Context The context type that is set on the file defines which processes can work with the files. The file context type can be set on a file directly, or it can be set on the SELinux policy. All SELinux properties should be set in the SELinux policy. sefcontext module.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/deploying-files/selinux-file-properties/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Managing SELinux Properties SELinux can be used on files to manage file context context can be set on ports SELinux properties can be managed using Booleans. Modules for Managing Changes on SELinux: file
+Manages context on files but not in the SELinux Policy sefcontext Manages file context in the SELinux policy command Is required to run the restorecon command after using sefcontext selinux Manages current SELinux state seboolean Manages SELinux Booleans Managing SELinux File Context The context type that is set on the file defines which processes can work with the files. The file context type can be set on a file directly, or it can be set on the SELinux policy. All SELinux properties should be set in the SELinux policy. sefcontext module.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Managing SELinux Properties SELinux can be used on files to manage file context context can be set on ports SELinux properties can be managed using Booleans. Modules for Managing Changes on SELinux: file
+Manages context on files but not in the SELinux Policy sefcontext Manages file context in the SELinux policy command Is required to run the restorecon command after using sefcontext selinux Manages current SELinux state seboolean Manages SELinux Booleans Managing SELinux File Context The context type that is set on the file defines which processes can work with the files. The file context type can be set on a file directly, or it can be set on the SELinux policy. All SELinux properties should be set in the SELinux policy. sefcontext module.">
+    <meta itemprop="wordCount" content="833">
+    <title></title>
+    <link href="/ansible/deploying-files/selinux-file-properties/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/deploying-files/selinux-file-properties/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/deploying-files\/selinux-file-properties\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/deploying-files/selinux-file-properties/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#managing-selinux-properties">Managing SELinux Properties</a></li>
+        <li><a href="#lab-managing-selinux-context-with-sefcontext">Lab Managing SELinux Context with sefcontext</a></li>
+        <li><a href="#lab-changing-selinux-state-and-booleans">Lab: Changing SELinux State and Booleans</a></li>
+        <li><a href="#lab-changing-selinux-context">Lab: Changing SELinux Context</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/deploying-files/selinux-file-properties/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h3 id="managing-selinux-properties">Managing SELinux Properties</h3>
+<ul>
+<li>SELinux can be used on files to manage file context</li>
+<li>context can be set on ports</li>
+<li>SELinux properties can be managed using Booleans.</li>
+</ul>
+<p>Modules for Managing Changes on SELinux:
+<strong>file</strong></p>
+<ul>
+<li>Manages context on files but not in the SELinux Policy
+<strong>sefcontext</strong></li>
+<li>Manages file context in the SELinux policy
+<strong>command</strong></li>
+<li>Is required to run the <code>restorecon</code> command after using sefcontext
+<strong>selinux</strong></li>
+<li>Manages current SELinux state
+<strong>seboolean</strong></li>
+<li>Manages SELinux Booleans</li>
+</ul>
+<h4 id="managing-selinux-file-context">Managing SELinux File Context</h4>
+<ul>
+<li>The context type that is set on the file defines which processes can work with the files.</li>
+<li>The file context type can be set on a file directly, or it can be set on the SELinux policy.</li>
+<li>All SELinux properties should be set in the SELinux policy.</li>
+</ul>
+<p><strong>sefcontext</strong> module.</p>
+<ul>
+<li>Setting a context type in the policy doesn&rsquo;t automatically apply it to files though.</li>
+<li>You still need to run the Linux <code>restorecon</code> command to do this.</li>
+<li>Ansible does not offer a module to run this command; it needs to be invoked using the command module.</li>
+</ul>
+<p><strong>file</strong> module</p>
+<ul>
+<li>Can set SELinux context.</li>
+<li>The context is set directly on the file, not in the SELinux policy.</li>
+<li>As a result, if at any time default context is applied from the policy to the file system, all context that has been set with the Ansible file module risks being overwritten.</li>
+</ul>
+<p><strong>policycoreutils-python-utils RPM</strong></p>
+<ul>
+<li>Not installed by default in all installation patterns.</li>
+<li>Needed to be able to work with the Ansible sefcontext module and the Linux <code>restorecon</code> command</li>
+</ul>
+<h3 id="lab-managing-selinux-context-with-sefcontext">Lab Managing SELinux Context with sefcontext</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: show selinux
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install required packages
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: policycoreutils-python-utils
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create testfile
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: /tmp/selinux
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: touch
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: set selinux context
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">sefcontext</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">target</span>: /tmp/selinux
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: httpd_sys_content_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>:
+</span></span><span style="display:flex;"><span>      - run restorecon
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: run restorecon
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">command</span>: restorecon -v /tmp/selinux</span></span></code></pre></div>
+<ul>
+<li>You might just have to configure a service with a nondefault documentroot, which means that SELinux will deny access to the service.</li>
+<li>You should ask yourself if this task requires any changes at an SELinux level.</li>
+</ul>
+<h4 id="applying-generic-selinux-management-tasks">Applying Generic SELinux Management Tasks</h4>
+<p><strong>selinux</strong> module</p>
+<ul>
+<li>enables you to set the current state of SELinux to either permissive, enforcing, or disabled.</li>
+</ul>
+<p><strong>seboolean</strong> module</p>
+<ul>
+<li>enables you to easily enable or disable functionality in SELinux using Booleans.</li>
+</ul>
+<h3 id="lab-changing-selinux-state-and-booleans">Lab: Changing SELinux State and Booleans</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: enabling SELinux and a boolean
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">myboolean</span>: httpd_read_user_content
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: enabling SELinux
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">policy</span>: targeted &lt;--- must specify policy
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: enforcing
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: checking current {{ myboolean }} Boolean status
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">shell</span>: getsebool -a | grep {{ myboolean }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: bool_stat
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: showing boolean status
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: the current {{ myboolean }} status is {{ bool_stat.stdout }}
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: enabling boolean
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">seboolean</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ myboolean }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">persistent</span>: <span style="color:#ff6ac1">yes</span></span></span></code></pre></div>
+<h3 id="lab-changing-selinux-context">Lab: Changing SELinux Context</h3>
+<ul>
+<li>Install, start, and configure a web server that has the DocumentRoot set to the /web directory.</li>
+<li>In this directory, create a file named index.html that shows the message &ldquo;welcome to the webserver.&rdquo;</li>
+<li>Ensure that SELinux is enabled and allows access to the web server document root.</li>
+<li>Also ensure that SELinux allows users to publish web pages from their home directory.</li>
+</ul>
+<p>1. Start by creating a playbook outline. A good approach for doing this is to create the playbook play header and list all tasks that need to be accomplished by providing a name as well as the name of the task that you want to run.
+2. Enable SELinux and set to the enforcing state.
+3. Install the web server, start and enable it, create the /web directory, and create the index.html file in the /web directory.
+4. Use the <strong>lineinfile</strong> module to change the httpd.conf contents. Two different lines need to be changed.
+5. Configure the SELinux-specific settings.
+6. Run the playbook and verify its output.
+8. Verify that the web service is accessible by using <code>curl http://ansible1</code>. In this case, it should not work. Try to analyze why.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Managing web server SELinux properties
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: ensure SELinux is enabled and enforcing
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">policy</span>: targeted
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: enforcing
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install the webserver
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: start and enable the webserver
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: open the firewall service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">firewalld</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>: http
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: enabled
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">immediate</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create the /web directory
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: /web
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: create the index.html file in /web
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">content</span>: ’welcome to the exercise82 web server’
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /web/index.html
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: use lineinfile to change webserver configuration
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /etc/httpd/conf/httpd.conf
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">regexp</span>: ’^DocumentRoot &#34;/var/www/html&#34;’
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">line</span>: DocumentRoot &#34;/web&#34;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: restart httpd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: use lineinfile to change webserver security
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">lineinfile</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /etc/httpd/conf/httpd.conf
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">regexp</span>: ’^&lt;Directory &#34;/var/www&#34;&gt;’
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">line</span>: ’&lt;Directory &#34;/web&#34;&gt;’
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: use sefcontext to set context on new documentroot
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">sefcontext</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">target</span>: ’/web(/.*)?’
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: httpd_sys_content_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: run the restorecon command
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: restorecon -Rv /web
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: allow the web server to run user content
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">seboolean</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: httpd_read_user_content
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">persistent</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: restart httpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

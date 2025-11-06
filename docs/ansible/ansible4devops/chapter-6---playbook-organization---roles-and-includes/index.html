@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Chapter 6 - Playbook Organization - Roles and Includes So far, we’ve used fairly straightforward examples in this book. Most examples are created for a particular server, and are in one long playbook.
+Ansible is flexible when it comes to organizing tasks in more efficient ways so you can make playbooks more maintainable, reusable, and powerful. We’ll look at two ways to split up tasks more efficiently using includes and roles, and we’ll explore Ansible Galaxy, a repository of some community-maintained roles that help configure common packages and applications.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Chapter 6 - Playbook Organization - Roles and Includes So far, we’ve used fairly straightforward examples in this book. Most examples are created for a particular server, and are in one long playbook.
+Ansible is flexible when it comes to organizing tasks in more efficient ways so you can make playbooks more maintainable, reusable, and powerful. We’ll look at two ways to split up tasks more efficiently using includes and roles, and we’ll explore Ansible Galaxy, a repository of some community-maintained roles that help configure common packages and applications.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Chapter 6 - Playbook Organization - Roles and Includes So far, we’ve used fairly straightforward examples in this book. Most examples are created for a particular server, and are in one long playbook.
+Ansible is flexible when it comes to organizing tasks in more efficient ways so you can make playbooks more maintainable, reusable, and powerful. We’ll look at two ways to split up tasks more efficiently using includes and roles, and we’ll explore Ansible Galaxy, a repository of some community-maintained roles that help configure common packages and applications.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Chapter 6 - Playbook Organization - Roles and Includes So far, we’ve used fairly straightforward examples in this book. Most examples are created for a particular server, and are in one long playbook.
+Ansible is flexible when it comes to organizing tasks in more efficient ways so you can make playbooks more maintainable, reusable, and powerful. We’ll look at two ways to split up tasks more efficiently using includes and roles, and we’ll explore Ansible Galaxy, a repository of some community-maintained roles that help configure common packages and applications.">
+    <meta itemprop="wordCount" content="3955">
+    <title></title>
+    <link href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/ansible4devops\/chapter-6---playbook-organization---roles-and-includes\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#chapter-6---playbook-organization---roles-and-includes">Chapter 6 - Playbook Organization - Roles and Includes</a>
+      <ul>
+        <li><a href="#chap08.xhtml_leanpub-auto-includes">Includes</a></li>
+        <li><a href="#chap08.xhtml_leanpub-auto-roles">Roles</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#chap08.xhtml_leanpub-auto-ansible-galaxy">Ansible Galaxy</a></li>
+        <li><a href="#chap08.xhtml_leanpub-auto-summary-5">Summary</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="chapter-6---playbook-organization---roles-and-includes">Chapter 6 - Playbook Organization - Roles and Includes</h2>
+<p>So far, we&rsquo;ve used fairly straightforward examples in this book. Most
+examples are created for a particular server, and are in one long
+playbook.</p>
+<p>Ansible is flexible when it comes to organizing tasks in more efficient
+ways so you can make playbooks more maintainable, reusable, and
+powerful. We&rsquo;ll look at two ways to split up tasks more efficiently
+using includes and roles, and we&rsquo;ll explore Ansible Galaxy, a repository
+of some community-maintained roles that help configure common packages
+and applications.</p>
+<h3 id="chap08.xhtml_leanpub-auto-includes">Includes</h3>
+<p>We&rsquo;ve already seen one of the most basic ways of including other files
+in Chapter 4, when <code>vars_files</code> was used to place variables into a
+separate <code>vars.yml</code> file instead of inline with the playbook:</p>
+<!-- raw HTML omitted -->
+<p>vars_files:</p>
+<ul>
+<li>vars.yml<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Tasks can easily be included in a similar way. In the <code>tasks:</code> section
+of your playbook, you can add <code>include</code> directives like so:</p>
+<!-- raw HTML omitted -->
+<p>Just like with variable include files, tasks are formatted in a flat
+list in the included file. As an example, the <code>included-playbook.yml</code>
+could look like this:</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>name: Add private keys for user.
+copy:
+src: &quot;{{ item.src }}&quot;
+dest: &quot;/home/.ssh/{{ item.dest }}&quot;
+owner: &quot;{{ username }}&quot;
+group: &quot;{{ username }}&quot;
+mode: 0600
+with_items: ssh_private_keys</p>
+</li>
+<li>
+<p>name: Restart example service.
+service: name=example state=restarted<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>In this case, you&rsquo;d probably want to name the file <code>user-config.yml</code>,
+since it&rsquo;s used to configure a user account and restart some service.
+Now, in this and any other playbook that provisions or configures a
+server, if you want to configure a particular user&rsquo;s account, add the
+following in your playbook&rsquo;s <code>tasks</code> section:</p>
+<!-- raw HTML omitted -->
+<p>We used <code>{{ username }}</code> and <code>{{ ssh_private_keys }}</code> variables in this
+include file instead of hard-coded values so we could make this include
+file reusable. You could define the variables in your playbook&rsquo;s inline
+variables or an included variables file, but Ansible also lets you pass
+variables directly into includes using normal YAML syntax. For example:</p>
+<!-- raw HTML omitted -->
+<p>To make the syntax more readable, you can use structured variables, like
+so:</p>
+<!-- raw HTML omitted -->
+<p>Include files can even include other files, so you could have something
+like the following:</p>
+<!-- raw HTML omitted -->
+<p><em>inside <code>user-config.yml</code></em></p>
+<!-- raw HTML omitted -->
+<h4 id="chap08.xhtml_leanpub-auto-dynamic-includes">Dynamic includes</h4>
+<p>Until Ansible 2.0.0, includes were processed when your playbook run
+started, so you couldn&rsquo;t do things like load a particular include when
+some condition was met. Ansible 2.0.0 evaluates includes during playbook
+execution, so you can do something like the following:</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>include: tasks/extra-tasks.yml
+when: extra_tasks_file.stat.exists<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>If the file <code>tasks/extra-tasks.yml</code> is not present, Ansible skips the
+<code>include</code>. You can even use a <code>with_items</code> loop (or any other <code>with_*</code>
+loop) with includes. Includes evaluated during playback execution can
+make your playbooks much more flexible!</p>
+<h4 id="chap08.xhtml_leanpub-auto-handler-includes">Handler includes</h4>
+<p>Handlers can be included just like tasks, within a playbook&rsquo;s <code>handlers</code>
+section. For example:</p>
+<!-- raw HTML omitted -->
+<p>This can be helpful in limiting the noise in your main playbook, since
+handlers are usually used for things like restarting services or loading
+a configuration, and can distract from the playbook&rsquo;s primary purpose.</p>
+<h4 id="chap08.xhtml_leanpub-auto-playbook-includes">Playbook includes</h4>
+<p>Playbooks can even be included in other playbooks, using the same
+<code>include</code> syntax in the top level of your playbook. For example, if you
+have two playbooks&mdash;one to set up your webservers (<code>web.yml</code>), and one
+to set up your database servers (<code>db.yml</code>), you could use the following
+playbook to run both at the same time:</p>
+<!-- raw HTML omitted -->
+<p>tasks:
+[&hellip;]</p>
+<ul>
+<li>include: web.yml</li>
+<li>include: db.yml<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>This way, you can create playbooks to configure all the servers in your
+infrastructure, then create a master playbook that includes each of the
+individual playbooks. When you want to initialize your infrastructure,
+make changes across your entire fleet of servers, or check to make sure
+their configuration matches your playbook definitions, you can run one
+<code>ansible-playbook</code> command!</p>
+<h4 id="chap08.xhtml_leanpub-auto-complete-includes-example">Complete includes example</h4>
+<p>What if I told you we could remake the 137-line Drupal LAMP server
+playbook from Chapter 4 in just 21 lines? With includes, it&rsquo;s easy; just
+break out each of the sets of tasks into their own include files, and
+you&rsquo;ll end up with a main playbook like this:</p>
+<!-- raw HTML omitted -->
+<p>All you need to do is create two new folders in the same folder where
+you saved the Drupal <code>playbook.yml</code> file, <code>handlers</code> and <code>tasks</code>, then
+create files inside for each section of the playbook.</p>
+<p>For example, inside <code>handlers/handlers.yml</code>, you&rsquo;d have:</p>
+<!-- raw HTML omitted -->
+<p>And inside <code>tasks/drush.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>Separating all the tasks into separate includes files means you&rsquo;ll have
+more files to manage for your playbook, but it helps keep the main
+playbook more compact. It&rsquo;s easier to see all the installation and
+configuration steps the playbook contains, and it separates tasks into
+individual, maintainable groupings. Instead of having to browse one
+playbook with twenty-three separate tasks, you now maintain eight
+included files with two to five tasks, each.</p>
+<p>It&rsquo;s much easier to maintain small groupings of related tasks than one
+long playbook. However, there&rsquo;s no reason to try to <em>start</em> writing a
+playbook with lots of individual includes. Most of the time, it&rsquo;s best
+to start with a monolithic playbook while you&rsquo;re working on the setup
+and configuration details, then move sets of tasks out to included files
+after you start seeing logical groupings.</p>
+<p>You can also use tags (demonstrated in the previous chapter) to limit
+the playbook run to a certain include file. Using the above example, if
+you wanted to add a &lsquo;drush&rsquo; tag to the included drush file (so you could
+run <code>ansible-playbook playbook.yml --tags=drush</code> and only run the drush
+tasks), you can change line 20 to the following:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>You can find the entire example Drupal LAMP server playbook using
+include files in this book&rsquo;s code repository at
+<a href="https://github.com/geerlingguy/ansible-for-devops" rel="external" target="_blank">https://github.com/geerlingguy/ansible-for-devops</a>, in the <code>includes</code>
+directory.</p>
+<!-- raw HTML omitted -->
+<p>You can&rsquo;t use variables for task include file names (like you could with
+<code>include_vars</code> directives, e.g.
+<code>include_vars: &quot;{{ ansible_os_family }}.yml&quot;</code> as a task, or with
+<code>vars_files</code>). There&rsquo;s usually a better way than conditional task
+includes to accomplish conditional task inclusion using a different
+playbook structure, or roles, which we will discuss next.</p>
+<!-- raw HTML omitted -->
+<h3 id="chap08.xhtml_leanpub-auto-roles">Roles</h3>
+<p>Including playbooks inside other playbooks makes your playbook
+organization a little more sane, but once you start wrapping up your
+entire infrastructure&rsquo;s configuration in playbooks, you might end up
+with something resembling Russian nesting dolls.</p>
+<p>Wouldn&rsquo;t it be nice if there were a way to take bits of related
+configuration, and package them together nicely? Additionally, what if
+we could take these packages (often configuring the same thing on many
+different servers) and make them flexible so that we can use the same
+package throughout our infrastructure, with slightly different settings
+on individual servers or groups of servers?</p>
+<p>Ansible Roles can do all that and more!</p>
+<p>Let&rsquo;s dive into what makes an Ansible role by taking one of the playbook
+examples from Chapter 4 and splitting it into a more flexible structure
+using roles.</p>
+<h4 id="chap08.xhtml_leanpub-auto-role-scaffolding">Role scaffolding</h4>
+<p>Instead of requiring you to explicitly include certain files and
+playbooks in a role, Ansible automatically includes any <code>main.yml</code> files
+inside specific directories that make up the role.</p>
+<p>There are only two directories required to make a working Ansible role:</p>
+<!-- raw HTML omitted -->
+<p>If you create a directory structure like the one shown above, with a
+<code>main.yml</code> file in each directory, Ansible will run all the tasks
+defined in <code>tasks/main.yml</code> if you call the role from your playbook
+using the following syntax:</p>
+<!-- raw HTML omitted -->
+<p>Your roles can live in a couple different places: the default global
+Ansible role path (configurable in <code>/etc/ansible/ansible.cfg</code>), or a
+<code>roles</code> folder in the same directory as your main playbook file.</p>
+<!-- raw HTML omitted -->
+<p>Another simple way to build the scaffolding for a role is to use the
+command: <code>ansible-galaxy init role_name</code>. Running this command creates
+an example role in the current working directory, which you can modify
+to suit your needs. Using the <code>init</code> command also ensures the role is
+structured correctly in case you want to someday contribute the role to
+Ansible Galaxy.</p>
+<!-- raw HTML omitted -->
+<h4 id="chap08.xhtml_leanpub-auto-building-your-first-role">Building your first role</h4>
+<p>Let&rsquo;s clean up the Node.js server example from Chapter four, and break
+out one of the main parts of the configuration&mdash;installing Node.js and
+any required npm modules.</p>
+<p>Create a <code>roles</code> folder in the same directory as the main <code>playbook.yml</code>
+file like, we created in Chapter 4&rsquo;s first example. Inside the <code>roles</code>
+folder, create a new folder: <code>nodejs</code> (which will be our role&rsquo;s name).
+Create two folders inside the <code>nodejs</code> role directory: <code>meta</code> and
+<code>tasks</code>.</p>
+<p>Inside the <code>meta</code> folder, add a simple <code>main.yml</code> file with the
+following contents:</p>
+<!-- raw HTML omitted -->
+<p>The meta information for your role is defined in this file. In basic
+examples and simple roles, you just need to list any role dependencies
+(other roles that are required to be run before the current role can do
+its work). You can add more to this file to describe your role to
+Ansible and to Ansible Galaxy, but we&rsquo;ll dive deeper into meta
+information later. For now, save the file and head over to the <code>tasks</code>
+folder.</p>
+<p>Create a <code>main.yml</code> file in this folder, and add the following contents
+(basically copying and pasting the configuration from the Chapter 4
+example):</p>
+<!-- raw HTML omitted -->
+<p>The Node.js directory structure should now look like the following:</p>
+<!-- raw HTML omitted -->
+<p>You now have a complete Ansible role that you can use in your node.js
+server configuration playbook. Delete the Node.js app installation lines
+from <code>playbook.yml</code>, and reformat the playbook so the other tasks run
+first (in a <code>pre_tasks:</code> section instead of <code>tasks:</code>), then the role,
+then the rest of the tasks (in the main <code>tasks:</code> section). Something
+like:</p>
+<!-- raw HTML omitted -->
+<p>roles:</p>
+<ul>
+<li>nodejs</li>
+</ul>
+<p>tasks:</p>
+<h1 id="nodejs-app-deployment-tasks">Node.js app deployment tasks&hellip;<!-- raw HTML omitted --><!-- raw HTML omitted --></h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>You can view the full example of this playbook in the
+<a href="https://github.com/geerlingguy/ansible-for-devops/blob/master/nodejs-role/" rel="external" target="_blank">ansible-for-devops code
+repository</a>.</p>
+<!-- raw HTML omitted -->
+<p>Once you finish reformatting the main playbook, everything will run
+exactly the same during an <code>ansible-playbook</code> run, with the exception of
+the tasks inside the <code>nodejs</code> role being prefixed with
+<code>nodejs | [Task name here]</code>.</p>
+<p>This little bit of extra data shown during playbook runs is useful
+because it automatically prefixes tasks with the role that provides
+them, without you having to add in descriptions as part of the <code>name</code>
+values of the tasks.</p>
+<p>Our role isn&rsquo;t all that helpful at this point, though, because it still
+does only one thing, and it&rsquo;s not really flexible enough to be used on
+other servers that might need different Node.js modules to be installed.</p>
+<h4 id="chap08.xhtml_leanpub-auto-more-flexibility-with-role-vars-and-defaults">More flexibility with role vars and defaults</h4>
+<p>To make our role more flexible, we can make it use a list of npm modules
+instead of a hardcoded value, then allow playbooks using the role to
+provide their own module list variable to override our role&rsquo;s default
+list.</p>
+<p>When running a role&rsquo;s tasks, Ansible picks up variables defined in a
+role&rsquo;s <code>vars/main.yml</code> file and <code>defaults/main.yml</code> (I&rsquo;ll get to the
+differences between the two later), but will allow your playbooks to
+override the defaults or other role-provided variables if you want.</p>
+<p>Modify the <code>tasks/main.yml</code> file to use a list variable and iterate
+through the list to install as many packages as your playbook wants:</p>
+<!-- raw HTML omitted -->
+<p>Let&rsquo;s provide a sane default for the new <code>node_npm_modules</code> variable in
+<code>defaults/main.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>Now, if you run the playbook as-is, it will still do the exact same
+thing&mdash;install the <code>forever</code> module. But since the role is more
+flexible, we could create a new playbook like our first, but add a
+variable (either in a <code>vars</code> section or in an included file via
+<code>vars_files</code>) to override the default, like so:</p>
+<!-- raw HTML omitted -->
+<p>When you run the playbook with this custom variable (we didn&rsquo;t change
+<em>anything</em> with our <code>nodejs</code> role), all three of the above npm modules
+will be installed.</p>
+<p>Hopefully you&rsquo;re beginning to see how this can be powerful!</p>
+<p>Imagine if you had a playbook structure like:</p>
+<!-- raw HTML omitted -->
+<p>Each one of the roles lives in its own isolated world, and can be shared
+with other servers and groups of servers in your infrastructure.</p>
+<ul>
+<li>A <code>yum-repo-setup</code> role could enable certain repositories and import
+their GPG keys.</li>
+<li>A <code>firewall</code> role could have per-server or per-inventory-group options
+for ports and services to allow or deny.</li>
+<li>An <code>app-deploy</code> role could deploy your app to a directory
+(configurable per-server) and set certain app options per-server or
+per-group.</li>
+</ul>
+<p>These things are easy to manage when you have small bits of
+functionality separated into different roles. Instead of managing 100+
+lines of playbook tasks, and manually prefixing every <code>name:</code> with
+something like &ldquo;Common |&rdquo; or &ldquo;App Deploy |&rdquo;, you now manage a few
+roles with 10-20 lines of YAML each.</p>
+<p>On top of that, when you&rsquo;re building your main playbooks, they can be
+extremely simple (like the above example), enabling you to see
+<em>everything</em> being configured and deployed on a particular server
+without scrolling through dozens of included playbook files and hundreds
+of tasks.</p>
+<!-- raw HTML omitted -->
+<p><strong>Variable precedence</strong>: Note that Ansible handles variables placed in
+included files in <code>defaults</code> with less precedence than those placed in
+<code>vars</code>. If you have certain variables you need to allow hosts/playbooks
+to easily override, you should probably put them into <code>defaults</code>. If
+they are common variables that should almost always be the values
+defined in your role, put them into <code>vars</code>. For more on variable
+precedence, see the aptly-named &ldquo;Variable Precedence&rdquo; section in the
+previous chapter.</p>
+<!-- raw HTML omitted -->
+<h4 id="chap08.xhtml_leanpub-auto-other-role-parts-handlers-files-and-templates">Other role parts: handlers, files, and templates</h4>
+<h5 id="chap08.xhtml_leanpub-auto-handlers-1">Handlers</h5>
+<p>In one of the prior examples, we introduced handlers&mdash;tasks that could
+be called via the <code>notify</code> option after any playbook task resulted in a
+change&mdash;and an example handler for restarting Apache was given:</p>
+<!-- raw HTML omitted -->
+<p>In Ansible roles, handlers are first-class citizens, alongside tasks,
+variables, and other configuration. You can store handlers directly
+inside a <code>main.yml</code> file inside a role&rsquo;s <code>handlers</code> directory. So if we
+had a role for Apache configuration, our <code>handlers/main.yml</code> file could
+look like this:</p>
+<!-- raw HTML omitted -->
+<p>You can call handlers defined in a role&rsquo;s handlers folder just like
+those included directly in your playbooks (e.g.
+<code>notify: restart apache</code>).</p>
+<h5 id="chap08.xhtml_leanpub-auto-files-and-templates">Files and Templates</h5>
+<p>For the following examples, let&rsquo;s assume our role is structured with
+files and templates inside <code>files</code> and <code>templates</code> directories,
+respectively:</p>
+<!-- raw HTML omitted -->
+<p>when copying a file directly to the server, add the filename or the full
+path from within a role&rsquo;s <code>files</code> directory, like so:</p>
+<!-- raw HTML omitted -->
+<p>Similarly, when specifying a template, add the filename or the full path
+from within a role&rsquo;s <code>templates</code> directory, like so:</p>
+<!-- raw HTML omitted -->
+<p>The <code>copy</code> module copies files from within the module&rsquo;s <code>files</code> folder,
+and the <code>template</code> module runs given template files through the Jinja2
+templating engine, merging in any variables available during your
+playbook run before copying the file to the server.</p>
+<h4 id="chap08.xhtml_leanpub-auto-organizing-more-complex-and-cross-platform-roles">Organizing more complex and cross-platform roles</h4>
+<p>For simple package installation and configuration roles, you can get by
+with placing all tasks, variables, and handlers directly in the
+respective <code>main.yml</code> file Ansible automatically loads. But you can also
+<em>include</em> other files from within a role&rsquo;s <code>main.yml</code> files if needed.</p>
+<p>As a rule of thumb, I keep my playbook and role task files under 100
+lines of YAML if at all possible. It&rsquo;s easier to keep the entire set of
+tasks in my head while making changes or fixing bugs. If I start nearing
+that limit, I usually split the tasks into logical groupings, and
+include files from the <code>main.yml</code> file.</p>
+<p>Let&rsquo;s take a look at the way my <code>geerlingguy.apache</code> role is set up
+(it&rsquo;s <a href="https://galaxy.ansible.com/list#/roles/428" rel="external" target="_blank">available on Ansible
+Galaxy</a> and can be
+downloaded to your roles directory with the command
+<code>ansible-galaxy install geerlingguy.apache</code>; we&rsquo;ll discuss Ansible
+Galaxy itself later).</p>
+<p>Initially, the role&rsquo;s main <code>tasks/main.yml</code> file looked something like
+the following (generally speaking):</p>
+<!-- raw HTML omitted -->
+<p>Soon after creating the role, though, I wanted to make the role work
+with both Debian and RedHat hosts. I could&rsquo;ve added two sets of tasks in
+the <code>main.yml</code> file, resulting in twice the number of tasks and a bunch
+of extra <code>when</code> statements:</p>
+<!-- raw HTML omitted -->
+<p>If I had gone this route, and continued with the rest of the playbook
+tasks in one file, I would&rsquo;ve quickly surpassed my informal 100-line
+limit. So I chose to use includes in my main tasks file:</p>
+<!-- raw HTML omitted -->
+<p>Two important things to notice about this style of distribution-specific
+inclusion:</p>
+<ol>
+<li>When including vars files (with <code>include_vars</code>), you can actually
+<em>use variables in the name of the file</em>. This is handy in many
+situtations, and here we&rsquo;re including a vars file in the format
+<code>distribution_name.yml</code>. For our purposes, since the role will be
+used on Debian and RedHat-based hosts, we can create <code>Debian.yml</code>
+and <code>RedHat.yml</code> files in our role&rsquo;s <code>defaults</code> and <code>vars</code> folders,
+and put distribution-specific variables there.</li>
+<li>When including playbook files (with <code>include</code>), you can&rsquo;t use
+variables in the name of the file, but you can do the next best
+thing: include the files by name explicitly, and use a condition to
+tell Ansible whether to run the tasks inside (the <code>when</code> condition
+will be applied to every task inside the included playbook).</li>
+</ol>
+<p>After setting things up this way, I put RedHat and CentOS-specific tasks
+(like <code>yum</code> tasks) into <code>tasks/setup-RedHat.yml</code>, and Debian and
+Ubuntu-specific tasks (like <code>apt</code> tasks) into <code>tasks/setup-Debian.yml</code>.
+There are other ways of making roles work cross-platform, but using
+distribution-specific variables files and included playbooks is one of
+the simplest.</p>
+<p>Now this Apache role can be used across different distributions, and
+with clever usage of variables in tasks and in configuration templates,
+it can be used in a wide variety of infrastructure that needs Apache
+installed.</p>
+<h3 id="chap08.xhtml_leanpub-auto-ansible-galaxy">Ansible Galaxy</h3>
+<p>Ansible roles are powerful and flexible; they allow you to encapsulate
+sets of configuration and deployable units of playbooks, variables,
+templates, and other files, so you can easily reuse them across
+different servers.</p>
+<p>It&rsquo;s annoying to have to start from scratch every time, though; wouldn&rsquo;t
+it be better if people could share roles for commonly-installed
+applications and services?</p>
+<p>Enter <a href="https://galaxy.ansible.com/" rel="external" target="_blank">Ansible Galaxy</a>.</p>
+<p>Ansible Galaxy, or just &lsquo;Galaxy&rsquo;, is a repository of
+community-contributed roles for common Ansible content. There are
+already hundreds of roles available which can configure and deploy
+common applications, and they&rsquo;re all available through the
+<code>ansible-galaxy</code> command, introduced in Ansible 1.4.2.</p>
+<p>Galaxy offers the ability to add, download, and rate roles. With an
+account, you can contribute your own roles or rate others&rsquo; roles (though
+you don&rsquo;t need an account to use roles).</p>
+<h4 id="chap08.xhtml_leanpub-auto-getting-roles-from-galaxy">Getting roles from Galaxy</h4>
+<p>One of the primary functions of the <code>ansible-galaxy</code> command is
+retrieving roles from Galaxy. Roles must be downloaded before they can
+be used in playbooks.</p>
+<p>Remember the basic LAMP (Linux, Apache, MySQL and PHP) server we
+installed earlier in the book? Let&rsquo;s create it again, but this time,
+using a few roles from Galaxy:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>The latest version or a role will be downloaded if no version is
+specified. To specify a version, add the version after the role name,
+for example: <code>$ ansible-galaxy install geerlingguy.apache,1.0.0</code>.</p>
+<!-- raw HTML omitted -->
+<p>Ansible Galaxy is still evolving rapidly, and has seen many
+improvements. There are a few areas where Galaxy could use some
+improvement (like browsing for roles by Operating System in the online
+interface, or automatically downloading roles that are included in
+playbooks), but most of these little bugs or rough spots will be fixed
+in time. Please check Ansible Galaxy&rsquo;s
+<a href="https://galaxy.ansible.com/intro" rel="external" target="_blank">About</a> page and stay tuned to
+Ansible&rsquo;s blog for the latest updates.</p>
+<!-- raw HTML omitted -->
+<h5 id="chap08.xhtml_leanpub-auto-using-role-requirements-files-to-manage-dependencies">Using role requirements files to manage dependencies</h5>
+<p>If your infrastructure configuration requires five, ten, fifteen or more
+Ansible roles, installing them all via <code>ansible-galaxy install</code> commands
+can be exhausting. Additionally, if you host roles internally (e.g. via
+an internal Git or Mercurial repository), you can&rsquo;t install the roles
+through Ansible Galaxy. You can, however, pass the <code>ansible-galaxy</code>
+command a &ldquo;requirements&rdquo; file with the <code>-r</code> option to automatically
+download all dependencies.</p>
+<p>Ansible allows a simple <code>.txt</code> format that is very basic (though this
+format is deprecated and may be removed), but you should generally use
+the more standard and expressive YAML format, which allows you to
+install roles from Ansible Galaxy, GitHub, an HTTP download, BitBucket,
+or your own repository. It also allows you to specify the path into
+which the roles should be downloaded. An example <code>requirements.yml</code> file
+looks like this:</p>
+<!-- raw HTML omitted -->
+<p>To install the roles defined in a requirements file, use the command
+<code>ansible-galaxy install -r requirements.yml</code>. For more documentation on
+Ansible requirements files, see the official documentation: <a href="http://docs.ansible.com/ansible/galaxy.html#advanced-control-over-role-requirements-files" rel="external" target="_blank">Advanced
+Control over Role Requirements
+Files</a>.</p>
+<h4 id="chap08.xhtml_leanpub-auto-a-lamp-server-in-eight-lines-of-yaml">A LAMP server in eight lines of YAML</h4>
+<p>With the Apache, MySQL, and PHP roles installed, we can quickly create a
+LAMP server. This example assumes you already have a CentOS-based linux
+VM or server booted and can connect to it or run Ansible as a
+provisioner via Vagrant on it, and that you&rsquo;ve run the
+<code>ansible-galaxy install</code> command above to download the required roles.</p>
+<p>First, create an Ansible playbook named <code>lamp.yml</code> with the following
+contents:</p>
+<!-- raw HTML omitted -->
+<p>Now, run the playbook against a host:</p>
+<!-- raw HTML omitted -->
+<p>After a few minutes, an entire LAMP server should be set up and running.
+If you add in a few variables, you can configure virtualhosts, PHP
+configuration options, MySQL server settings, etc.</p>
+<p>We&rsquo;ve effectively reduced about thirty lines of YAML (from previous
+examples dealing with LAMP or LAMP-like servers) down to three.
+Obviously, the roles have extra code in them, but the power here is in
+abstraction. Since most companies have many servers using similar
+software, but with slightly different configurations, having
+centralized, flexible roles saves a lot of repetition.</p>
+<p>You could think of Galaxy roles as glorified packages; they not only
+install software, but they configure it <em>exactly</em> how you want it, every
+time, with minimal adjustment. Additionally, many of these roles work
+across different flavors of Linux and UNIX, so you have better
+configuration portability!</p>
+<h4 id="chap08.xhtml_leanpub-auto-a-solr-server-in-eight-lines-of-yaml">A Solr server in eight lines of YAML</h4>
+<p>Let&rsquo;s grab a few more roles and build an Apache Solr search server,
+which requires Java and Apache Tomcat to be installed and configured.</p>
+<!-- raw HTML omitted -->
+<p>Then create a playbook named <code>solr.yml</code> with the following contents:</p>
+<!-- raw HTML omitted -->
+<p>Now we have a fully-functional Solr server, and we could add some
+variables to configure it exactly how we want, by using a non-default
+port, or changing the memory allocation for Tomcat6.</p>
+<p>I could&rsquo;ve also left out the <code>java</code> and <code>tomcat6</code> roles, since they&rsquo;ll
+be automatically picked up during installation of the <code>geerlingguy.solr</code>
+role (they&rsquo;re listed in the <code>solr</code> role&rsquo;s dependencies).</p>
+<p>A role&rsquo;s page on the Ansible Galaxy website highlights available
+variables for setting things like what version of Solr to install, where
+to install it, etc. For an example, view the <a href="https://galaxy.ansible.com/list#/roles/445" rel="external" target="_blank">geerlingguy.solr Galaxy
+page</a>.</p>
+<p>You can build a wide variety of servers with minimal effort with
+existing contributed roles on Galaxy. Instead of having to maintain
+lengthy playbooks and roles unique to each server, Galaxy lets you build
+a list of the required roles, and a few variables that set up the
+servers with the proper versions and paths. Configuration management
+with Ansible Galaxy becomes <em>true</em> configuration management&mdash;you get to
+spend more time managing your server&rsquo;s configuration, and less time on
+packaging and building individual services!</p>
+<h4 id="chap08.xhtml_leanpub-auto-helpful-galaxy-commands">Helpful Galaxy commands</h4>
+<p>Some other helpful <code>ansible-galaxy</code> commands you might use from time to
+time:</p>
+<ul>
+<li><code>ansible-galaxy list</code> displays a list of installed roles, with version
+numbers</li>
+<li><code>ansible-galaxy remove [role]</code> removes an installed role</li>
+<li><code>ansible-galaxy init</code> can be used to create a role template suitable
+for submission to Ansible Galaxy</li>
+</ul>
+<p>You can configure the default path where Ansible roles will be
+downloaded by editing your <code>ansible.cfg</code> configuration file (normally
+located in <code>/etc/ansible/ansible.cfg</code>), and setting a <code>roles_path</code> in
+the <code>[defaults]</code> section.</p>
+<h4 id="chap08.xhtml_leanpub-auto-contributing-to-ansible-galaxy">Contributing to Ansible Galaxy</h4>
+<p>If you&rsquo;ve been working on some useful Ansible roles, and you&rsquo;d like to
+share them with others, all you need to do is make sure they follow
+Ansible Galaxy&rsquo;s basic template (especially within the <code>meta/main.yml</code>
+and <code>README.md</code> files). To get started, use <code>ansible-galaxy init</code> to
+generate a basic Galaxy template, and make your own role match the
+Galaxy template&rsquo;s structure.</p>
+<p>Then push your role up to a new project on GitHub (I usually name my
+Galaxy roles like <code>ansible-role-[rolename]</code>, so I can easily see them
+when browsing my repos on GitHub), and add a new role while logged into
+galaxy.ansible.com.</p>
+<h3 id="chap08.xhtml_leanpub-auto-summary-5">Summary</h3>
+<p>Using includes and Ansible roles organizes Playbooks and makes them
+maintainable. This chapter introduced different ways of using <code>include</code>,
+the power and flexible structure of roles, and how you can utilize
+Ansible Galaxy, the community repository of configurable Ansible roles
+that do just about anything.</p>
+<!-- raw HTML omitted -->
+<p>[]{#chap09.xhtml}</p>
+<p>::: {}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/"><a class="padding" href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

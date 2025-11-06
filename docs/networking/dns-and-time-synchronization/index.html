@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="DNS Stuff">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="DNS :: Linux Reader">
+    <meta name="twitter:description" content="DNS Stuff">
+    <meta property="og:url" content="http://linuxreader.com/networking/dns-and-time-synchronization/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="DNS :: Linux Reader">
+    <meta property="og:description" content="DNS Stuff">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Networking">
+    <meta itemprop="name" content="DNS :: Linux Reader">
+    <meta itemprop="description" content="DNS Stuff">
+    <meta itemprop="wordCount" content="1527">
+    <title>DNS :: Linux Reader</title>
+    <link href="/networking/dns-and-time-synchronization/index.xml" rel="alternate" type="application/rss+xml" title="DNS :: Linux Reader">
+    <link href="/networking/dns-and-time-synchronization/index.print.html" rel="alternate" type="text/html" title="DNS :: Linux Reader">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/networking\/dns-and-time-synchronization\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/networking/dns-and-time-synchronization/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/consoling_in_to_mx80_from_linux/" title="Consoling in to MX80 from linux (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#dns-and-name-resolution">DNS and Name Resolution</a>
+      <ul>
+        <li><a href="#dns-name-space-and-domains">DNS Name Space and Domains</a></li>
+        <li><a href="#dns-roles">DNS Roles</a></li>
+        <li><a href="#etcresolvconf">/etc/resolv.conf</a></li>
+        <li><a href="#viewing-and-adjusting-name-resolution-sources-and-order">Viewing and Adjusting Name Resolution Sources and Order</a></li>
+        <li><a href="#dig-command-domain-information-groper">dig command (domain information groper)</a></li>
+        <li><a href="#host-command">host Command</a></li>
+        <li><a href="#nslookup-command">nslookup Command</a></li>
+        <li><a href="#getent-command">getent Command</a></li>
+        <li><a href="#hostname">Hostname</a></li>
+        <li><a href="#lab-change-the-hostname">Lab: Change the Hostname</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            DNS
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/dns-and-time-synchronization/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/networking/how-to-study-for-the-ccna-exam/" title="How to Study for the CCNA Exam (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable networking" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="dns">DNS</h1>
+
+<h2 id="dns-and-name-resolution">DNS and Name Resolution</h2>
+<ul>
+<li>DNS is also referred to as BIND (Berkeley Internet Name Domain)
+<ul>
+<li>An implementation of DNS,</li>
+<li>Most popular DNS application in use.</li>
+<li>Name resolution is the technique that uses DNS/BIND for hostname lookups.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dns-name-space-and-domains">DNS Name Space and Domains</h3>
+<ul>
+<li>DNS name space is a
+<ul>
+<li>Hierarchical organization of all the domains on the Internet.</li>
+<li>Root of the name space is represented by a period (.)</li>
+<li>Hierarchy below the root (.) denotes the top-level domains (TLDs) with names such as .com, .net, .edu, .org, .gov, .ca, and .de.</li>
+<li>A DNS domain is a collection of one or more systems. Subdomains fall under their parent domains and are separated by a period (.).
+root of the name space is represented by a period (	- redhat.com is a second-level subdomain that falls under .com, and bugzilla.redhat.com is a third-level subdomain that falls under redhat.com.</li>
+</ul>
+</li>
+</ul>
+<p><a href="#R-image-f0360f185970a47f4cd04e128d0a24e2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-TJ7OW7U5%201.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f0360f185970a47f4cd04e128d0a24e2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-TJ7OW7U5%201.jpg"></a></p>
+<ul>
+<li>Deepest level of the hierarchy are the leaves (systems, nodes, or any device with an IP address) of the name space.
+<ul>
+<li>a network switch net01 in .travel.gc.ca subdomain will be known as net01.travel.gc.ca.</li>
+<li>If a period (.) is added to the end of this name to look like net01.travel.gc.ca., it will be referred to as the Fully Qualified Domain Name (FQDN) for net01.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dns-roles">DNS Roles</h3>
+<p>A DNS system or nameserver can be a</p>
+<ul>
+<li>primary server</li>
+<li>secondary server</li>
+<li>or client</li>
+</ul>
+<p><strong>Primary server</strong></p>
+<ul>
+<li>Responsible for its domain (or subdomain).</li>
+<li>Maintains a master database of all the hostnames and their associated IP addresses that are included in that domain.</li>
+<li>All changes in the database are done on this server.</li>
+<li>Each domain must have one primary server with one or more optional secondary servers for load balancing and redundancy.</li>
+</ul>
+<p><strong>Secondary server</strong></p>
+<ul>
+<li>Stores an updated copy of the master database.</li>
+<li>Provide name resolution service in the event the primary server goes down.</li>
+</ul>
+<p><strong>Client</strong></p>
+<ul>
+<li>Queries nameservers for name lookups.</li>
+<li>DNS client on Linux involves two text files.
+<ul>
+<li>/etc/resolv.conf</li>
+</ul>
+</li>
+</ul>
+<h3 id="etcresolvconf">/etc/resolv.conf</h3>
+<ul>
+<li>DNS resolver configuration file where information to support hostname lookups is defined.</li>
+<li>May be edited manually with a text editor.</li>
+<li>Referenced by resolver utilities to construct and transmit queries.</li>
+</ul>
+<p><strong>Key directives</strong></p>
+<ul>
+<li>
+<p>domain</p>
+</li>
+<li>
+<p>nameserver</p>
+</li>
+<li>
+<p>search</p>
+<p>Directive                           Description</p>
+</li>
+</ul>
+<p><strong>domain</strong></p>
+<ul>
+<li>Identifies the default domain name to be searched for queries</li>
+</ul>
+<p><strong>nameserver</strong></p>
+<ul>
+<li>Declares up to three DNS server IP addresses to be queried one at a time in the order in which they are listed. Nameserver entries may be defined as separate line items with the directive or on a single line.</li>
+</ul>
+<p><strong>search</strong></p>
+<ul>
+<li>Specifies up to six domain names, of which the first must be the local domain. No need to define the domain directive if the search directive is used.</li>
+</ul>
+<p><strong>Sample entry</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>  domain                              example.com
+
+  search                              example.net example.org example.edu example.gov
+
+  nameserver                          192.168.0.1 8.8.8.8 8.8.4.4</code></pre></div>
+<p><strong>Variation</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>  domain                              example.com
+
+  search                              example.net example.org example.edu example.gov
+
+  nameserver                          192.168.0.1
+
+  nameserver                          8.8.8.8
+
+  nameserver                          8.8.4.4</code></pre></div>
+<ul>
+<li>Entries are automatically placed by the NetworkManager service.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 tmp<span style="color:#ff6ac1">]</span><span style="color:#78787e"># cat /etc/resolv.conf</span>
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># Generated by NetworkManager</span>
+</span></span><span style="display:flex;"><span>nameserver 2001:578:3f::30
+</span></span><span style="display:flex;"><span>nameserver 2001:578:3f:1::30</span></span></code></pre></div>
+<ul>
+<li>If this file is absent, the resolver utilities only query the nameserver configured on the localhost, determine the domain name from the hostname of the system, and construct the search path based on the domain name.</li>
+</ul>
+<h3 id="viewing-and-adjusting-name-resolution-sources-and-order">Viewing and Adjusting Name Resolution Sources and Order</h3>
+<p><strong>/etc/nsswitch.conf</strong></p>
+<ul>
+<li>
+<p>Directs the lookup utilities to the correct source to get hostname information.</p>
+</li>
+<li>
+<p>Also identifies the order in which to consult source and an action to be taken next.</p>
+</li>
+<li>
+<p>Four keywords oversee this behavior</p>
+<ul>
+<li>success</li>
+<li>notfoundq</li>
+<li>unavail</li>
+<li>tryagain</li>
+</ul>
+<p>Keyword                 Meaning                 Default Action</p>
+</li>
+</ul>
+<p><strong>success</strong></p>
+<ul>
+<li>Information found in return (do not try the source and provided to next source) the requester.</li>
+</ul>
+<p><strong>notfound</strong></p>
+<ul>
+<li>Information not found continue (try the next in source source).</li>
+</ul>
+<p><strong>unavail</strong></p>
+<ul>
+<li>Source down or not continue (try the next responding; service source) disabled or not configured.</li>
+</ul>
+<p><strong>tryagain</strong></p>
+<ul>
+<li>Source busy, retry continue (try the next later source).</li>
+</ul>
+<p>Example shows two sources for name resolution: files (/etc/hosts) and DNS (/etc/resolv.conf).</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hosts:files    dns</span></span></code></pre></div>
+<ul>
+<li>Default behavior</li>
+<li>Search will terminate if the requested information is found in the hosts table.</li>
+</ul>
+<p>Instruct the lookup programs to return if the requested information is not found there:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hosts:files <span style="color:#ff6ac1">[</span><span style="color:#ff5c57">notfound</span><span style="color:#ff6ac1">=</span><span style="color:#ff6ac1">return</span><span style="color:#ff6ac1">]</span> dns</span></span></code></pre></div>
+<ul>
+<li>Query tools available in RHEL 9:
+<ul>
+<li><code>dig</code></li>
+<li><code>host</code></li>
+<li><code>nslookup</code></li>
+<li><code>getent</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="dig-command-domain-information-groper">dig command (domain information groper)</h3>
+<ul>
+<li>DNS lookup utility.</li>
+<li>Queries the nameserver specified at the command line or consults the resolv.conf file to determine the nameservers to be queried.</li>
+<li>May be used to troubleshoot DNS issues due to its flexibility and verbosity.</li>
+</ul>
+<p>To get the IP for redhat.com using the nameserver listed in the resolv.conf file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># dig redhat.com</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>; &lt;&lt;&gt;&gt; DiG 9.16.23-RH &lt;&lt;&gt;&gt; redhat.com
+</span></span><span style="display:flex;"><span>;; global options: +cmd
+</span></span><span style="display:flex;"><span>;; Got answer:
+</span></span><span style="display:flex;"><span>;; -&gt;&gt;HEADER<span style="color:#5af78e">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ff9f43">9017</span>
+</span></span><span style="display:flex;"><span>;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: <span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; OPT PSEUDOSECTION:
+</span></span><span style="display:flex;"><span>; EDNS: version: 0, flags:; udp: <span style="color:#ff9f43">4000</span>
+</span></span><span style="display:flex;"><span>;; QUESTION SECTION:
+</span></span><span style="display:flex;"><span>;redhat.com.			IN	A
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; ANSWER SECTION:
+</span></span><span style="display:flex;"><span>redhat.com.		3599	IN	A	52.200.142.250
+</span></span><span style="display:flex;"><span>redhat.com.		3599	IN	A	34.235.198.240
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; Query time: <span style="color:#ff9f43">94</span> msec
+</span></span><span style="display:flex;"><span>;; SERVER: 172.16.10.150#53<span style="color:#ff6ac1">(</span>172.16.10.150<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>;; WHEN: Fri Jul <span style="color:#ff9f43">19</span> 13:12:13 MST <span style="color:#ff9f43">2024</span>
+</span></span><span style="display:flex;"><span>;; MSG SIZE  rcvd: <span style="color:#ff9f43">71</span></span></span></code></pre></div>
+<p>To perform a reverse lookup on the redhat.com IP (52.200.142.250), use the -x option with the command:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># dig -x 52.200.142.250</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>; &lt;&lt;&gt;&gt; DiG 9.16.23-RH &lt;&lt;&gt;&gt; -x 52.200.142.250
+</span></span><span style="display:flex;"><span>;; global options: +cmd
+</span></span><span style="display:flex;"><span>;; Got answer:
+</span></span><span style="display:flex;"><span>;; -&gt;&gt;HEADER<span style="color:#5af78e">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ff9f43">23057</span>
+</span></span><span style="display:flex;"><span>;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; OPT PSEUDOSECTION:
+</span></span><span style="display:flex;"><span>; EDNS: version: 0, flags:; udp: <span style="color:#ff9f43">4000</span>
+</span></span><span style="display:flex;"><span>;; QUESTION SECTION:
+</span></span><span style="display:flex;"><span>;250.142.200.52.in-addr.arpa.	IN	PTR
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; ANSWER SECTION:
+</span></span><span style="display:flex;"><span>250.142.200.52.in-addr.arpa. <span style="color:#ff9f43">299</span> IN	PTR	ec2-52-200-142-250.compute-1.amazonaws.com.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; Query time: <span style="color:#ff9f43">421</span> msec
+</span></span><span style="display:flex;"><span>;; SERVER: 172.16.10.150#53<span style="color:#ff6ac1">(</span>172.16.10.150<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span>;; WHEN: Fri Jul <span style="color:#ff9f43">19</span> 14:22:52 MST <span style="color:#ff9f43">2024</span>
+</span></span><span style="display:flex;"><span>;; MSG SIZE  rcvd: <span style="color:#ff9f43">112</span></span></span></code></pre></div>
+<h3 id="host-command">host Command</h3>
+<ul>
+<li>Works on the same principles as the <code>dig</code> command in terms of nameserver determination.</li>
+<li>Produces less data in the output by default.</li>
+<li>-v option if you want more info.</li>
+</ul>
+<p>Perform a lookup on redhat.com:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># host redhat.com</span>
+</span></span><span style="display:flex;"><span>redhat.com has address 34.235.198.240
+</span></span><span style="display:flex;"><span>redhat.com has address 52.200.142.250
+</span></span><span style="display:flex;"><span>redhat.com mail is handled by <span style="color:#ff9f43">10</span> us-smtp-inbound-2.mimecast.com.
+</span></span><span style="display:flex;"><span>redhat.com mail is handled by <span style="color:#ff9f43">10</span> us-smtp-inbound-1.mimecast.com.</span></span></code></pre></div>
+<p>Rerun with -v added:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># host -v redhat.com</span>
+</span></span><span style="display:flex;"><span>Trying <span style="color:#5af78e">&#34;redhat.com&#34;</span>
+</span></span><span style="display:flex;"><span>;; -&gt;&gt;HEADER<span style="color:#5af78e">&lt;&lt;- opcode: QUERY, status: NOERROR, id: 28687
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">;; QUESTION SECTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">;redhat.com.			IN	A
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">;; ANSWER SECTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">redhat.com.		3127	IN	A	52.200.142.250
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">redhat.com.		3127	IN	A	34.235.198.240
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Received 60 bytes from 172.16.1.19#53 in 8 ms
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">Trying &#34;redhat.com&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">;; -&gt;&gt;HEADER&lt;&lt;- opcode</span>: QUERY, status: NOERROR, id: <span style="color:#ff9f43">47268</span>
+</span></span><span style="display:flex;"><span>;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: <span style="color:#ff9f43">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; QUESTION SECTION:
+</span></span><span style="display:flex;"><span>;redhat.com.			IN	AAAA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; AUTHORITY SECTION:
+</span></span><span style="display:flex;"><span>redhat.com.		869	IN	SOA	dns1.p01.nsone.net. hostmaster.nsone.net. <span style="color:#ff9f43">1684376201</span> <span style="color:#ff9f43">200</span> <span style="color:#ff9f43">7200</span> <span style="color:#ff9f43">1209600</span> <span style="color:#ff9f43">3600</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Received <span style="color:#ff9f43">93</span> bytes from 172.16.1.19#53 in <span style="color:#ff9f43">5</span> ms
+</span></span><span style="display:flex;"><span>Trying <span style="color:#5af78e">&#34;redhat.com&#34;</span>
+</span></span><span style="display:flex;"><span>;; -&gt;&gt;HEADER<span style="color:#5af78e">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ff9f43">61563</span>
+</span></span><span style="display:flex;"><span>;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: <span style="color:#ff9f43">12</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; QUESTION SECTION:
+</span></span><span style="display:flex;"><span>;redhat.com.			IN	MX
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; ANSWER SECTION:
+</span></span><span style="display:flex;"><span>redhat.com.		3570	IN	MX	<span style="color:#ff9f43">10</span> us-smtp-inbound-1.mimecast.com.
+</span></span><span style="display:flex;"><span>redhat.com.		3570	IN	MX	<span style="color:#ff9f43">10</span> us-smtp-inbound-2.mimecast.com.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; ADDITIONAL SECTION:
+</span></span><span style="display:flex;"><span>us-smtp-inbound-1.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	205.139.110.242
+</span></span><span style="display:flex;"><span>us-smtp-inbound-1.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	170.10.128.242
+</span></span><span style="display:flex;"><span>us-smtp-inbound-1.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	170.10.128.221
+</span></span><span style="display:flex;"><span>us-smtp-inbound-1.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	170.10.128.141
+</span></span><span style="display:flex;"><span>us-smtp-inbound-1.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	205.139.110.221
+</span></span><span style="display:flex;"><span>us-smtp-inbound-1.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	205.139.110.141
+</span></span><span style="display:flex;"><span>us-smtp-inbound-2.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	170.10.128.221
+</span></span><span style="display:flex;"><span>us-smtp-inbound-2.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	205.139.110.141
+</span></span><span style="display:flex;"><span>us-smtp-inbound-2.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	205.139.110.221
+</span></span><span style="display:flex;"><span>us-smtp-inbound-2.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	205.139.110.242
+</span></span><span style="display:flex;"><span>us-smtp-inbound-2.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	170.10.128.141
+</span></span><span style="display:flex;"><span>us-smtp-inbound-2.mimecast.com.	<span style="color:#ff9f43">270</span> IN	A	170.10.128.242
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Received <span style="color:#ff9f43">297</span> bytes from 172.16.10.150#53 in <span style="color:#ff9f43">12</span> ms</span></span></code></pre></div>
+<p>Perform a reverse lookup on the IP of redhat.com with verbosity:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># host -v 52.200.142.250</span>
+</span></span><span style="display:flex;"><span>Trying <span style="color:#5af78e">&#34;250.142.200.52.in-addr.arpa&#34;</span>
+</span></span><span style="display:flex;"><span>;; -&gt;&gt;HEADER<span style="color:#5af78e">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style="color:#ff9f43">62219</span>
+</span></span><span style="display:flex;"><span>;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span style="color:#ff9f43">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; QUESTION SECTION:
+</span></span><span style="display:flex;"><span>;250.142.200.52.in-addr.arpa.	IN	PTR
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>;; ANSWER SECTION:
+</span></span><span style="display:flex;"><span>250.142.200.52.in-addr.arpa. <span style="color:#ff9f43">300</span> IN	PTR	ec2-52-200-142-250.compute-1.amazonaws.com.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Received <span style="color:#ff9f43">101</span> bytes from 172.16.10.150#53 in <span style="color:#ff9f43">430</span> ms</span></span></code></pre></div>
+<h3 id="nslookup-command">nslookup Command</h3>
+<ul>
+<li>Queries the nameservers listed in the resolv.conf file or specified at the command line.</li>
+<li>See man pages for interactive mode</li>
+</ul>
+<p>Get the IP for redhat.com using nameserver 8.8.8.8 instead of the nameserver defined in resolv.conf:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># nslookup redhat.com 8.8.8.8</span>
+</span></span><span style="display:flex;"><span>Server:		8.8.8.8
+</span></span><span style="display:flex;"><span>Address:	8.8.8.8#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>Name:	redhat.com
+</span></span><span style="display:flex;"><span>Address: 34.235.198.240
+</span></span><span style="display:flex;"><span>Name:	redhat.com
+</span></span><span style="display:flex;"><span>Address: 52.200.142.250</span></span></code></pre></div>
+<p>Perform a reverse lookup on the IP of redhat.com using the nameserver from the resolver configuration file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># nslookup 52.200.142.250</span>
+</span></span><span style="display:flex;"><span>250.142.200.52.in-addr.arpa	<span style="color:#ff5c57">name</span> <span style="color:#ff6ac1">=</span> ec2-52-200-142-250.compute-1.amazonaws.com.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Authoritative answers can be found from:</span></span></code></pre></div>
+<h3 id="getent-command">getent Command</h3>
+<ul>
+<li>Fetch matching entries from the databases defined in the nsswitch.conf file.</li>
+<li>Reads the corresponding database and displays the information if found.</li>
+<li>For name resolution, use the hosts database and <code>getent</code> will attempt to resolve the specified hostname or IP address.</li>
+</ul>
+<p>Run the following for forward and reverse lookups:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># getent hosts redhat.com</span>
+</span></span><span style="display:flex;"><span>34.235.198.240  redhat.com
+</span></span><span style="display:flex;"><span>52.200.142.250  redhat.com</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server10 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># getent hosts 34.235.198.240</span>
+</span></span><span style="display:flex;"><span>34.235.198.240  ec2-34-235-198-240.compute-1.amazonaws.com</span></span></code></pre></div>
+<h3 id="hostname">Hostname</h3>
+<ul>
+<li>&ldquo;-&rdquo;, &ldquo;_ &ldquo;, and &ldquo;. &quot; characters are allowed.</li>
+<li>Up to 253 characters.</li>
+<li>Stored in /etc/hostname.</li>
+<li>Can be viewed with several different commands, such as <code>hostname</code>, <code>hostnamectl</code>, <code>uname</code>, and <code>nmcli</code>, as well as by displaying the content of the /etc/hostname file.</li>
+</ul>
+<p>View the hostname:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostnamectl --static</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname -n</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /etc/hostname</span></span></code></pre></div>
+<h3 id="lab-change-the-hostname">Lab: Change the Hostname</h3>
+<p>Server1</p>
+<ol>
+<li>Open /etc/hostname and change the entry to server10.example.com</li>
+<li>restart the systemd-hostnamed service daemon</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart systemd-hostnamed</span></span></code></pre></div>
+<ol start="3">
+<li>confirm</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname</span></span></code></pre></div>
+<p>server2</p>
+<ol>
+<li>Change the hostname with hostnamectl:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo hostnamectl set-hostname server21.example.com</span></span></code></pre></div>
+<ol start="2">
+<li>
+<p>Log out and back in for the prompt to update</p>
+</li>
+<li>
+<p>Change the hostname using nmcli</p>
+</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmcli general hostname server20.example.com</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-id="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
+            <li class="active " data-nav-id="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
+            <li class="" data-nav-id="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-id="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
+            <li class="" data-nav-id="/networking/ccna/ccna-notes/my-ccna-notes/"><a class="padding" href="/networking/ccna/ccna-notes/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-id="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
+            <li class="" data-nav-id="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-id="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
+            <li class="" data-nav-id="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
+            <li class="" data-nav-id="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

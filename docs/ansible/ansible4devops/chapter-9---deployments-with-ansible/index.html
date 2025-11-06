@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Chapter 9 - Deployments with Ansible Deploying application code to servers is one of the hardest, but most rewarding, tasks of any development team. Most shops using traditional deployment techniques (manual steps, shell scripts, and prayers) dread deployments, especially for complex, monolithic apps.
+Deployments are less daunting when you adopt modern deployment processes and use the right amount of automation. In the best case, deployments become so boring and routine they barely register as a blip on your team’s radar.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Chapter 9 - Deployments with Ansible Deploying application code to servers is one of the hardest, but most rewarding, tasks of any development team. Most shops using traditional deployment techniques (manual steps, shell scripts, and prayers) dread deployments, especially for complex, monolithic apps.
+Deployments are less daunting when you adopt modern deployment processes and use the right amount of automation. In the best case, deployments become so boring and routine they barely register as a blip on your team’s radar.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/ansible4devops/chapter-9---deployments-with-ansible/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Chapter 9 - Deployments with Ansible Deploying application code to servers is one of the hardest, but most rewarding, tasks of any development team. Most shops using traditional deployment techniques (manual steps, shell scripts, and prayers) dread deployments, especially for complex, monolithic apps.
+Deployments are less daunting when you adopt modern deployment processes and use the right amount of automation. In the best case, deployments become so boring and routine they barely register as a blip on your team’s radar.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Chapter 9 - Deployments with Ansible Deploying application code to servers is one of the hardest, but most rewarding, tasks of any development team. Most shops using traditional deployment techniques (manual steps, shell scripts, and prayers) dread deployments, especially for complex, monolithic apps.
+Deployments are less daunting when you adopt modern deployment processes and use the right amount of automation. In the best case, deployments become so boring and routine they barely register as a blip on your team’s radar.">
+    <meta itemprop="wordCount" content="5028">
+    <title></title>
+    <link href="/ansible/ansible4devops/chapter-9---deployments-with-ansible/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/ansible4devops/chapter-9---deployments-with-ansible/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/ansible4devops\/chapter-9---deployments-with-ansible\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/ansible4devops/chapter-9---deployments-with-ansible/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#chapter-9---deployments-with-ansible">Chapter 9 - Deployments with Ansible</a>
+      <ul>
+        <li><a href="#chap11.xhtml_leanpub-auto-deployment-strategies">Deployment strategies</a></li>
+        <li><a href="#chap11.xhtml_leanpub-auto-simple-single-server-deployments">Simple single-server deployments</a></li>
+        <li><a href="#chap11.xhtml_leanpub-auto-zero-downtime-multi-server-deployments">Zero-downtime multi-server deployments</a></li>
+        <li><a href="#chap11.xhtml_leanpub-auto-capistrano-style-and-blue-green-deployments">Capistrano-style and blue-green deployments</a></li>
+        <li><a href="#chap11.xhtml_leanpub-auto-additional-deployment-features">Additional Deployment Features</a></li>
+        <li><a href="#chap11.xhtml_leanpub-auto-summary-12">Summary</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ansible4devops/chapter-9---deployments-with-ansible/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="chapter-9---deployments-with-ansible">Chapter 9 - Deployments with Ansible</h2>
+<p>Deploying application code to servers is one of the hardest, but most
+rewarding, tasks of any development team. Most shops using traditional
+deployment techniques (manual steps, shell scripts, and prayers) dread
+deployments, especially for complex, monolithic apps.</p>
+<p>Deployments are less daunting when you adopt modern deployment processes
+and use the right amount of automation. In the best case, deployments
+become so boring and routine they barely register as a blip on your
+team&rsquo;s radar.</p>
+<p>Consider Etsy, a company whose engineers are deploying code to
+production <a href="http://www.slideshare.net/mikebrittain/principles-and-practices-in-continuous-deployment-at-etsy" rel="external" target="_blank">up to 40 times per
+day</a>,
+with no manual intervention from the operations team. The operations
+team is free to work on more creative endeavors, and the developers see
+their code go live in near-real-time!</p>
+<p>Etsy&rsquo;s production deployment schedule is enabled by a strong
+DevOps-oriented culture (with robust code repository management,
+continuous integration, well-tested code, feature flags, etc.). While it
+may not be immediately possible to start deploying <em>your</em> application to
+production 20 times a day, you can move a long way towards effortless
+deployments by automating deployments with Ansible.</p>
+<h3 id="chap11.xhtml_leanpub-auto-deployment-strategies">Deployment strategies</h3>
+<p>There are dozens of ways to deploy code to servers. For the most basic
+applications, you may only need to switch to a new tag in a code
+repository on the server and restarting a service.</p>
+<p>For more complex applications, you might do a full Blue-Green
+deployment, where you build an entire new infrastructure alongside your
+current production infrastructure, run tests on the new infrastructure,
+then automatically cut over to the new instances. This may be overkill
+for many applications (especially if &lt;100% uptime is acceptable), but
+it is becoming more and more common&mdash;and Ansible automates the entire
+process.</p>
+<p>In this chapter, we will be covering the following deployment
+strategies:</p>
+<ol>
+<li>Single-server deployments.</li>
+<li>Zero-downtime multi-server deployments.</li>
+<li>Capistrano-style and blue-green deployments.</li>
+</ol>
+<p>These are three of the most common deployment techniques, and they cover
+many common use cases. There are other ways to strengthen your
+deployment processes, often involving application-level and
+organizational change, but those deployment aspects are out of the scope
+of this book.</p>
+<h3 id="chap11.xhtml_leanpub-auto-simple-single-server-deployments">Simple single-server deployments</h3>
+<p>The vast majority of small applications and websites are easily run on a
+single virtual machine or dedicated server. Using Ansible to provision
+and manage the configuration on the server is a no-brainer. Even though
+you only have to manage <em>one</em> server, it&rsquo;s better to encapsulate all the
+setup so you don&rsquo;t end up with a <em>snowflake server</em>.</p>
+<p>In this instance, we are managing a Ruby on Rails site that allows users
+to perform CRUD operations on articles (database records with a title
+and body).</p>
+<p>The code repository for this app is located on GitHub at
+<code>https://github.com/geerlingguy/demo-rails-app</code>.</p>
+<p>Begin by creating a new Vagrant VM for local testing using the following
+Vagrantfile:</p>
+<!-- raw HTML omitted -->
+<p>In this case, we have a VM at the IP address <code>192.168.33.7</code>. When
+provisioned, it will run the Ansible playbook defined in
+<code>playbooks/main.yml</code> on the VM.</p>
+<h4 id="chap11.xhtml_leanpub-auto-provisioning-a-ruby-on-rails-server">Provisioning a Ruby on Rails server</h4>
+<p>To prepare for our application deployment, we need to do the following:</p>
+<ol>
+<li>Install git (our application is version controlled in a git
+repository).</li>
+<li>Install Node.js (asset compilation requires its Javascript runtime).</li>
+<li>Install Ruby (our application requires version 2.2.0 or later).</li>
+<li>Install Passenger with Nginx (we need a fast web server to run our
+rails application).</li>
+<li>Install any other dependencies, and prepare the server for
+deployment.</li>
+</ol>
+<p>Let&rsquo;s create a new playbook just for the provisioning tasks (we&rsquo;ll worry
+about deployment later), in a new file, <code>playbooks/provision.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>This is a straightforward playbook. We&rsquo;ll need to define a few variables
+to make sure the <code>geerlingguy.ruby</code> role installs the correct version of
+Ruby (at least 2.2.0), and the <code>geerlingguy.passenger</code> role is
+configured to serve our app correctly.</p>
+<p>There are also a few other variables we will need, like <code>app_directory</code>
+and <code>app_user</code>, so let&rsquo;s create the variables file now, at
+<code>playbooks/vars.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>The passenger variables tell Passenger to run a server available on
+every network interface, and to launch our app (which will be located in
+<code>/opt/demo-rails-app/public</code>) with <code>production</code> settings (the app&rsquo;s
+environment), using the <code>ruby</code> binary we have installed in
+<code>/usr/local/bin/ruby</code>.</p>
+<p>The Ruby variables tell the <code>ruby</code> role to install Ruby 2.2.0 from
+source, since the packages available through Ubuntu&rsquo;s standard apt
+repositories only contain older versions.</p>
+<p>The playbook specified in our Vagrantfile, <code>playbooks/main.yml</code>, doesn&rsquo;t
+yet exist. Let&rsquo;s create the playbook and include the above
+<code>provisioning.yml</code> playbook so our server will be provisioned
+successfully. We&rsquo;ll separate out the deployment steps into another
+playbook and include that separately. Inside <code>playbooks/main.yml</code>:</p>
+<!-- raw HTML omitted -->
+<h4 id="chap11.xhtml_leanpub-auto-deploying-a-rails-app-to-the-server">Deploying a Rails app to the server</h4>
+<p>All the dependencies for our app&rsquo;s deployment were configured in
+<code>provision.yml</code>, so we&rsquo;re ready to build a playbook to perform all the
+deployment tasks.</p>
+<p>Add a line to the <code>main.yml</code> file to include a new <code>deploy.yml</code>
+playbook:</p>
+<!-- raw HTML omitted -->
+<p>Now we&rsquo;re ready to create a the <code>deploy.yml</code> playbook, which will do the
+following:</p>
+<ol>
+<li>Use git to check out the latest production release of the Rails app.</li>
+<li>Copy over a <code>secrets.yml</code> template with secure app data required for
+running the app.</li>
+<li>Make sure all the gems required for the app are installed (via
+Bundler).</li>
+<li>Create the database (if it doesn&rsquo;t already exist).</li>
+<li>Run <code>rake</code> tasks to make sure the database schema is up-to-date and
+all assets (like JS and CSS) are compiled.</li>
+<li>Make sure the app files&rsquo; ownership is set correctly so Passenger and
+Nginx serve them without error.</li>
+<li>If any changes or updates were made, restart Passenger and Nginx.</li>
+</ol>
+<p>Most of these tasks will use Ansible&rsquo;s modules, but for a few, we&rsquo;ll
+just wrap the normal deployment-related commands in <code>shell</code> since there
+aren&rsquo;t pre-existing modules to take care of them for us:</p>
+<!-- raw HTML omitted -->
+<p>The first thing you&rsquo;ll notice (besides the fact we&rsquo;ve included the
+<code>vars.yml</code> file again, since we need those variables in this playbook as
+well) is we&rsquo;ve added the <code>geerlingguy.passenger</code> role in this playbook.
+Since we&rsquo;ll be using one of the handlers defined in that role
+(<code>restart nginx</code>), we need to include the role explicitly. We could&rsquo;ve
+added a separate handler specific to this playbook, but it&rsquo;s more
+maintainable to reuse handlers from roles if necessary.</p>
+<p>Let&rsquo;s walk through the tasks, one-by-one:</p>
+<ol>
+<li>(Lines 12-20) We put all the application files in place by checking
+out the git repository at the version <code>app_version</code> into the
+directory <code>app_directory</code>. We set <code>accept_hostkey</code> to true so this
+task doesn&rsquo;t hang the first time we deploy the app (since we haven&rsquo;t
+yet accepted the Git server&rsquo;s hostkey).</li>
+<li>(Lines 22-29) We copy a <code>secrets.yml</code> file to the application&rsquo;s
+configuration directory. There are different ways to deploy app
+secrets, but this is the easiest, and allows us to store the app
+secrets in an Ansible Vault-protected vars file if we so desire.</li>
+<li>(Lines 31-34) If the <code>app_updated</code> variable shows a change occurred
+as part of the first <code>git</code> task, we&rsquo;ll run a bundler command to
+ensure all the latest bundled dependencies are installed in the
+<code>vendor/bundle</code> directory.</li>
+<li>(Lines 36-43) Create the application database with <code>rake db:create</code>
+if it doesn&rsquo;t already exist. Since this application uses a SQLite
+database, it&rsquo;s a matter of checking if the .sqlite3 file exists, and
+if not, running the <code>db:create</code> task.</li>
+<li>(Lines 45-52) If the <code>app_updated</code> variable shows a change occurred
+as part of the first <code>git</code> task, we&rsquo;ll also run a couple <code>rake</code>
+tasks to make sure the database schema is up to date, and all assets
+(like scripts and stylesheets) are compiled.</li>
+<li>(Lines 54-61) Make sure all app files have the correct permissions
+for Passenger/Nginx to serve them correctly.</li>
+</ol>
+<p>Because many of the tasks result in filesystem changes that could change
+the behavior of the application, they all notify the <code>restart nginx</code>
+handler provided by the <code>geerlingguy.passenger</code> role, so Passenger
+reloads the configuration and restarts the app.</p>
+<p>There are a few new variables we need to add to <code>vars.yml</code>, and we also
+need to add the <code>secrets.yml.j2</code> template mentioned in the task that
+copies it into place.</p>
+<p>First, we&rsquo;ll create the secrets file, inside
+<code>playbooks/templates/secrets.yml.j2</code>:</p>
+<!-- raw HTML omitted -->
+<p>We&rsquo;ll be using a dictionary variable for <code>app_secrets</code>, so let&rsquo;s add it
+and all the other new variables to <code>playbooks/vars.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>Note the addition of the following variables to support our <code>deploy.yml</code>
+playbook:</p>
+<ul>
+<li><code>app_version</code>: This is the git tag or branch tip to be deployed to the
+server.</li>
+<li><code>app_secrets</code>: A dictionary of Rails app secrets, which are used to
+verify the integrity of signed app cookies. You can generate new,
+unique strings for these variables using <code>rake secret</code>.</li>
+<li><code>app_environment</code>: Environment settings required for certain commands
+(like <code>bundle exec</code> and <code>rake</code>) to run with the correct Rails
+application environment.</li>
+</ul>
+<h4 id="chap11.xhtml_leanpub-auto-provisioning-and-deploying-the-rails-app">Provisioning and Deploying the Rails App</h4>
+<p>Since we now have our <code>provision.yml</code> and <code>deploy.yml</code> playbooks
+completed, and both are <code>include</code>d in the <code>main.yml</code> playbook Vagrant
+will run, it&rsquo;s time to bring up the new VM using Vagrant, and see if our
+application works!</p>
+<p>The structure of your project folder should look like this:</p>
+<!-- raw HTML omitted -->
+<p>Before running the playbook, we need to make sure all the role
+dependencies are present. If you were building everything from scratch,
+you might have a <code>roles</code> directory with all the roles inside, but in
+this case, since we&rsquo;re using roles from Ansible Galaxy, it&rsquo;s best to not
+include the role files directly with our playbook, but instead, add a
+<code>requirements.yml</code> file to the project and install the roles
+automatically with Galaxy.</p>
+<p>Inside <code>requirements.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>In the same directory as the requirements file, run the command
+<code>$ ansible-galaxy install -r requirements.yml</code>, and after a minute, all
+the required roles will be downloaded to your default Ansible roles
+directory, if they&rsquo;re not already present.</p>
+<p>Change directory back to the main directory containing the
+<code>Vagrantfile</code>, and run <code>vagrant up</code>. Assuming everything runs correctly,
+you should see the playbook complete successfully after a few minutes:</p>
+<!-- raw HTML omitted -->
+<p>NOTIFIED: [geerlingguy.passenger | restart nginx] ***********************
+changed: [default]</p>
+<p>PLAY RECAP **************************************************************
+default               : ok=46   changed=28   unreachable=0    failed=0<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>Now, jump over to a web browser and load <code>http://192.168.33.7/</code>. You
+should see something like the following:</p>
+<!-- raw HTML omitted -->
+<p>Try creating, updating, and deleting a few articles to make sure the
+database and all app functionality is working correctly:</p>
+<!-- raw HTML omitted -->
+<p>The app seems to function perfectly, but it could use some improvements.
+After more development work, we have a new version of to deploy. We
+could update the <code>app_version</code> variable in <code>vars.yml</code> and run
+<code>vagrant provision</code> to run the entire provisioning and deployment
+playbook again, but to save time using our flexible playbook layout
+(with separate provisioning and deployment playbooks), we can run the
+<code>deploy.yml</code> playbook separately.</p>
+<h4 id="chap11.xhtml_leanpub-auto-deploying-application-updates">Deploying application updates</h4>
+<p>First, to test deployment without provisioning, we need to create an
+inventory file to tell Ansible how to connect directly to the
+Vagrant-managed VM.</p>
+<p>Create the file <code>playbooks/inventory-ansible</code> with the following
+contents:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>If you were creating this playbook for a server or VM running outside of
+Vagrant&rsquo;s control, you&rsquo;d probably have already created an inventory file
+or added the server to your global inventory, but when we&rsquo;re working
+with Vagrant, it&rsquo;s often convenient to use Vagrant&rsquo;s own
+dynamically-managed inventory. Running playbooks outside of Vagrant&rsquo;s
+<code>up</code>/<code>provision</code> functionality requires us to create a separate
+inventory file.</p>
+<!-- raw HTML omitted -->
+<p>Test the ability to run the <code>deploy.yml</code> playbook by running the
+following command inside the <code>playbooks</code> directory:</p>
+<!-- raw HTML omitted -->
+<p>Hopefully the playbook completed its run successfully. It may have
+reported a change in the &ldquo;Ensure demo application has correct user for
+files&rdquo; task, and if so, it will have restarted Passenger. Run it again,
+and ansible should report no changes:</p>
+<!-- raw HTML omitted -->
+<p>Hopefully you&rsquo;ve noticed running the <code>deploy.yml</code> playbook standalone is
+much faster than running the <code>provision</code> and <code>deploy</code> playbooks together
+(deployment only takes 16 tasks, while both playbooks add up to 70+
+tasks!). In the future, we can deploy application updates using only the
+<code>deploy.yml</code> playbook and changing the <code>app_version</code> either in
+<code>vars.yml</code> or by specifying the version on the command line in the
+<code>ansible-playbook</code> command.</p>
+<!-- raw HTML omitted -->
+<p>It&rsquo;s generally preferred to change variables in vars files that are
+versioned with your playbooks, rather than specify them through
+inventory files, environment variables, or on the command line. This way
+the entire state of your infrastructure is encapsulated in your playbook
+files, which ideally should be version controlled and managed similarly
+to the application they deploy. Plus, who wants to enter any more
+information on the command line than is absolutely required?</p>
+<!-- raw HTML omitted -->
+<p>Our application is a fairly generic web application with updates to
+application code (which require a webserver reload), styles (which need
+recompiling), and possibly the database schema (which needs <code>rake</code>
+migrate tasks to be run). Any time <code>app_version</code> is changed inside
+<code>playbooks/vars.yml</code>, the deploy playbook will automatically run all the
+required tasks to get our app running with the latest code.</p>
+<p>Update <code>app_version</code> to <code>1.3.0</code>, and then run the following command
+again:</p>
+<!-- raw HTML omitted -->
+<p>After a minute or so, the deployment should complete. Once complete,
+you&rsquo;ll see the much improved new version of the Demonstration Ruby on
+Rails Application:</p>
+<!-- raw HTML omitted -->
+<p>Application update deployments involve incrementing the <code>app_version</code> to
+the latest git tag, then running the <code>deploy.yml</code> playbook again. The
+<code>main.yml</code> playbook can be run to ensure the entire server stack is in
+the correct state, but it&rsquo;s faster to just deploy the app updates.</p>
+<h3 id="chap11.xhtml_leanpub-auto-zero-downtime-multi-server-deployments">Zero-downtime multi-server deployments</h3>
+<p>If you need to run an application on multiple servers for horizontal
+scalability or redundancy, deployments can be cumbersome, resulting in
+downtime and complicated deployment processes&mdash;but not when you use
+Ansible!</p>
+<p><a href="https://servercheck.in/" rel="external" target="_blank">Server Check.in</a> is a server and website
+monitoring service with a microservices-based architecture; there is a
+website, an API application, and a server checking application.</p>
+<p>The server checking application needs to run on a variety of servers
+hosted around the world by different providers to provide redundancy and
+reliability. Server Check.in uses Ansible to manage <em>rolling
+deployments</em> for this application, so new code is deployed across all
+the servers in minutes while maintaining 100% uptime!</p>
+<p>We&rsquo;ll emulate part of Server Check.in&rsquo;s infrastructure (the check server
+application) by deploying and updating a small Node.js application to a
+set of virtual machines. The code repository for this app is located on
+GitHub at <code>https://github.com/geerlingguy/demo-nodejs-api</code>. Here&rsquo;s a
+diagram of the infrastructure we&rsquo;ll be building:</p>
+<!-- raw HTML omitted -->
+<p>To begin, create four lightweight Vagrant VMs using the following
+Vagrantfile:</p>
+<!-- raw HTML omitted -->
+<p>The above <code>Vagrantfile</code> defines four VMs with 256MB of RAM and a unique
+hostname and IP address (defined by the <code>boxes</code> variable). Our Node.js
+app doesn&rsquo;t require much in the way of processing power or memory.</p>
+<p>In the <code>provision</code> section of the playbook, we told Vagrant to provision
+the all the VMs with Ansible, using the inventory file <code>inventory</code>, and
+the playbook <code>playbooks/main.yml</code>. Create these two files in the same
+folder as your Vagrantfile:</p>
+<!-- raw HTML omitted -->
+<p>Inside the <code>inventory</code> file, we just need to define a list of all the
+Node.js API app VMs by IP address:</p>
+<!-- raw HTML omitted -->
+<p>Inside the <code>main.yml</code> playbook, we&rsquo;ll call out two separate
+playbooks&mdash;one for the initial provisioning (installing Node.js and
+making sure the server is configured correctly), and another for
+deployment (ensuring our Node.js API app is present and running):</p>
+<!-- raw HTML omitted -->
+<p>Go ahead and create the <code>provision.yml</code> and <code>deploy.yml</code> playbooks,
+starting with <code>provision.yml</code>:</p>
+<!-- raw HTML omitted -->
+<p>This playbook runs on all the servers defined in our inventory file, and
+runs two roles on the servers: <code>geerlingguy.firewall</code> (which installs
+and configures a firewall, in this case opening ports 22 for SSH and
+8080 for our app) and <code>geerlingguy.nodejs</code> (which installs Node.js, NPM,
+and <code>forever</code>, which we&rsquo;ll use to run our app as a daemon).</p>
+<p>Since we&rsquo;re using two roles from Ansible Galaxy, it&rsquo;s best practice to
+also include those roles in a requirements file so CI tools and others
+using this playbook can install all the required roles.</p>
+<p>Create a <code>requirements.yml</code> file in the root folder and add the
+following:</p>
+<!-- raw HTML omitted -->
+<p>Whenever someone wants to run the playbook, the command
+<code>ansible-galaxy install -r requirements.yml</code> will install all the
+required roles.</p>
+<p>At this point, your project directory should be structured like the
+following:</p>
+<!-- raw HTML omitted -->
+<p>Before we run <code>vagrant up</code> and see our infrastructure in action, we need
+to build out the <code>deploy.yml</code> playbook, which will ensure our app is
+present and running correctly on all the servers.</p>
+<p>Inside <code>deploy.yml</code>, add the following:</p>
+<!-- raw HTML omitted -->
+<p>Use <code>sudo</code>, and set <code>gather_facts</code> to <code>no</code> to save a little time during
+deployments, since our app doesn&rsquo;t require any of the gathered system
+facts to run.</p>
+<p>Since we have a few variables to define, and we&rsquo;d like to track them
+separately for easier file revision history, we&rsquo;ll define the variables
+in a <code>vars.yml</code> file in the same directory as the <code>deploy.yml</code> playbook:</p>
+<!-- raw HTML omitted -->
+<p>Once you&rsquo;ve saved the <code>vars.yml</code> file, continue building out
+<code>deploy.yml</code>, starting with a task to clone the app&rsquo;s repository (which
+we just defined in <code>vars.yml</code>):</p>
+<!-- raw HTML omitted -->
+<p>Using variables for the <code>git</code> module&rsquo;s <code>repo</code> and <code>version</code> affords
+flexibility; app version changes might happen frequently, and it&rsquo;s
+easier to manage them in a separate <code>vars.yml</code> file.</p>
+<p>We also want to <code>notify</code> a <code>restart forever apps</code> handler whenever the
+codebase is changed. We&rsquo;ll define the <code>restart forever apps</code> handler
+later in the playbook.</p>
+<!-- raw HTML omitted -->
+<p>Once the app is present on the server, we need to use <code>npm</code> to install
+dependencies (using Ansible&rsquo;s <code>npm</code> module), then run the app&rsquo;s test
+suite using <code>npm test</code>. To save time, we only stop the application,
+update dependencies, and run tests if the application has changed (using
+the <code>app_updated</code> variable we registered when checking out the
+application code).</p>
+<p>Running the tests for the app during every deployment ensures the app is
+present and in a functioning state. Having a thorough unit and
+integration test suite running on every deployment is prerequisite to a
+frequent or continuously-integrated project! Running the tests during
+deployments also enables zero-downtime deployments, as we&rsquo;ll see later.</p>
+<!-- raw HTML omitted -->
+<p>Once the app is present and running correctly, we need to make sure it&rsquo;s
+started. There&rsquo;s a command to get the list of all running apps (using
+<code>forever</code>), then a command to start the app if it&rsquo;s not already running.</p>
+<!-- raw HTML omitted -->
+<p>The final task adds a cron job to make sure the app is started after the
+server reboots. Since we&rsquo;re managing the deamonization of our app using
+<code>forever</code> instead of the OS&rsquo;s init system, it&rsquo;s best to make sure the
+app starts on system boot using a <code>reboot</code> cron job.</p>
+<p>Remember when we added the line <code>notify: restart forever apps</code> to the
+task that ensured the app was present on the server? It&rsquo;s time to define
+this handler, which runs the command <code>forever restartall</code> (which does
+exactly what it says):</p>
+<!-- raw HTML omitted -->
+<p>At this point, the Ansible playbooks and Vagrant configuration should be
+complete. The playbook will clone the <code>demo-nodejs-api</code> project, run its
+tests to make sure everything&rsquo;s working correctly, then start the app
+using <code>forever</code> and make sure it&rsquo;s started whenever the the server
+reboots.</p>
+<p>Run the command below to test all the new servers and make sure the app
+is running correctly:</p>
+<!-- raw HTML omitted -->
+<p>If all the servers are online, you should see the text <code>&quot;hello john&quot;</code>
+repeated four times (once for each server):</p>
+<!-- raw HTML omitted -->
+<p>Run <code>vagrant provision</code> to run the entire provisioning and deployment
+process again, or just run
+<code>ansible-playbook -i inventory playbooks/deploy.yml</code> to run the
+deployment playbook again. In either case, you should see no changes,
+and Ansible should verify everything is <code>ok</code>.</p>
+<p>You now have a fleet of Node.js API servers similar to Server Check.in&rsquo;s
+server checking infrastructure&mdash;except it doesn&rsquo;t do much yet! Luckily,
+the project has seen some new feature development since the initial
+<code>1.0.0</code> version you just deployed. We now need a way to get the new
+version deployed to and running on all the servers while maintaining
+100% uptime for the API as a whole.</p>
+<h4 id="chap11.xhtml_leanpub-auto-ensuring-zero-downtime-with-serial-and-integration-tests">Ensuring zero downtime with <code>serial</code> and integration tests</h4>
+<p>Now, after a little extra time in development, we have new features to
+deploy in a <code>1.0.1</code> version. You could run the exact same
+<code>ansible-playbook</code> command as above, adding in
+<code>--extra-vars &quot;app_version=1.0.1&quot;</code>, but best practice is to update the
+variable in your included variables file, since that change is tracked
+in version control and used for automated deployments.</p>
+<p>Change the <code>app_version</code> in <code>playbooks/vars.yml</code> to <code>1.0.1</code>, and run the
+deployment playbook again:</p>
+<!-- raw HTML omitted -->
+<p>Uh oh&mdash;after we deployed the new version, our tests started failing!
+Since we deployed to all four servers asynchronously, all four
+application servers are offline, and our boss and customers are going to
+be very angry.</p>
+<p>In this case, rolling back is simple: revert to <code>1.0.0</code> and redeploy.
+Doing this now fixes the problem <em>this</em> time, but if part of the
+application update changed a database schema you could be in a world of
+hurt!</p>
+<p>Ansible has two particular settings to protect you when you deploy to
+many servers while maintaining your infrastructure&rsquo;s overall integrity
+during a failed deployment.</p>
+<p>Open the deployment playbook (<code>playbooks/deploy.yml</code>) and modify the
+initial settings to match the following:</p>
+<!-- raw HTML omitted -->
+<p>Note the addition of <code>serial: 1</code>. This tells Ansible to run the entire
+playbook on two servers at a time. If you update <code>app_version</code> to
+<code>1.0.1</code> again, and run the playbook, you should see it run on two of the
+four servers, and once it hits the test failure, the playbook execution
+will stop&mdash;leaving your other two servers up (and saving you a few
+hours on a conference bridge explaining the outage).</p>
+<p>You could again revert back to <code>1.0.0</code>, but in the time you were
+deploying the failed version, developers finished a new version that got
+all tests passing again, <code>1.0.2</code>. Go ahead and update <code>app_version</code> and
+run the playbook again.</p>
+<!-- raw HTML omitted -->
+<p><em>Whew!</em> Everything is back online and operational, and all tests are
+passing with the latest version of the application.</p>
+<!-- raw HTML omitted -->
+<p>Tests should rarely fail only on production. But there are many times
+where networking issues or even latency in third party services causes a
+random failure or two. Whenever you move beyond one server (usually to
+provide both redundancy and cacpacity), you will run into these
+transient issues. It&rsquo;s best to account for them in your automated
+deployment process by tuning <code>serial</code> and similar settings well.</p>
+<!-- raw HTML omitted -->
+<p>Ansible exposes two different settings for controlling rolling
+deployment failure scenarios:</p>
+<ol>
+<li><code>serial</code>: Can be an integer (e.g. <code>3</code>) or a percentage (e.g. <code>30%</code>).
+Used to control how many hosts Ansible will manage at once.</li>
+<li><code>max_fail_percentage</code>: An integer between <code>1-100</code>. Used to tell
+Ansible what percentage of hosts can fail a task before the play
+will be aborted.</li>
+</ol>
+<p>If you have some headroom in your infrastructure, set these values
+higher. If you have only as much infrastructure running as your
+application needs, and having more than one or two servers offline would
+put your infrastructure into a bad state, you should be more
+conservative with these settings&mdash;and maybe provision a little more
+capacity!</p>
+<h4 id="chap11.xhtml_leanpub-auto-deploying-to-app-servers-behind-a-load-balancer">Deploying to app servers behind a load balancer</h4>
+<p>In the case of Server Check.in, there are two separate API layers that
+manage the complexity of ensuring all server checks happen, regardless
+of whether certain servers are up or down. The &rsquo;load balancing&rsquo; occurs
+on the application layer instead of as a separate infrastructure layer
+(this is extremely helpful when dealing with global latency and network
+reliability variation).</p>
+<p>For many applications, especially those with app servers close together
+(e.g. in the same data center) the infrastructure layer follows a more
+traditional layout, with a load balancer to handle the API request
+distribution:</p>
+<!-- raw HTML omitted -->
+<p>For a demonstration of zero-downtime deployment with a load balancer,
+let&rsquo;s build a local infrastructure with one HAProxy load balancer and
+two Apache webservers.</p>
+<p>First, create a new project folder <code>deployments-balancer</code>, and within
+it, create the following Vagrantfile:</p>
+<!-- raw HTML omitted -->
+<p>This Vagrantfile will create three servers running Ubuntu 14.04: <code>bal1</code>
+(the balancer), and <code>app1</code> and <code>app2</code> (the application servers). We
+referenced an Ansible playbook at <code>playbooks/provision.yml</code> (to install
+the required software on the servers), as well as a custom inventory
+file at <code>inventory</code>. First, create the inventory file (<code>inventory</code>, in
+the same directory as the Vagrantfile), with the appropriate groupings
+and connection variables:</p>
+<!-- raw HTML omitted -->
+<p>With this inventory, we can operate on just the <code>balancer</code>, just the
+<code>app</code> servers, or all the servers together (in the <code>deployments</code> group).
+Next, create a playbook (at <code>playbooks/provision.yml</code>) to provision the
+servers:</p>
+<!-- raw HTML omitted -->
+<p>These two plays set up a firewall on both servers, and configure HAProxy
+on the load balancer, and Apache (with its default configuration) on the
+app servers. The only required configuration to get this infrastructure
+working is <code>haproxy_backend_servers</code>. We let the <code>geerlingguy.firewall</code>,
+<code>geerlingguy.haproxy</code>, and <code>geerlingguy.apache</code> roles do all the hard
+work for us.</p>
+<p>Now, to make sure we have all these roles installed, create a
+requirements file to install the roles from Ansible Galaxy. Create
+<code>requirements.yml</code> in the same directory as the Vagrantfile, with the
+following contents:</p>
+<!-- raw HTML omitted -->
+<p>To install the required roles, run
+<code>sudo ansible-galaxy install -r requirements.yml</code>.</p>
+<p>At this point, if you want to bring up your local load-balanced
+infrastructure, run <code>vagrant up</code> in the <code>deployments-balancer</code>
+directory, and wait a few minutes. Once everything is up and running,
+visit <code>http://192.168.4.2/</code>, and you should see the default Ubuntu
+Apache2 landing page:</p>
+<!-- raw HTML omitted -->
+<p>Verify round-robin load balancing is working by running the following
+command:</p>
+<!-- raw HTML omitted -->
+<p>You should see the load balancer distributing requests between the two
+backend app servers.</p>
+<p>When you deploy new code to the application servers, you need to
+guarantee the load balancer always has an app server from which requests
+can be served, so you want to use <code>serial</code> to do the deployment on each
+server (or groups of servers) in sequence. To make sure the servers are
+properly removed from HAProxy, then added again post-deploy, use
+<code>pre_tasks</code> and <code>post_tasks</code>.</p>
+<p>Create another playbook alongside <code>provision.yml</code> called <code>deploy.yml</code>,
+with the following contents:</p>
+<!-- raw HTML omitted -->
+<p>This playbook doesn&rsquo;t do much in terms of actual deployment, but it does
+illustrate how to do a zero-downtime rolling update over two or more
+application servers:</p>
+<ol>
+<li>In <code>pre_tasks</code>, the <code>haproxy</code> module disables the current <code>app</code>
+server (using the <code>inventory_hostname</code> variable) on all the load
+balancers in the <code>balancer</code> group, using <code>with_items</code>. The HAProxy
+task is delegated to each of the <code>balancer</code> servers (in our case,
+only one), since the task affects the load balancer, not the current
+<code>app</code> host.</li>
+<li>In the <code>post_tasks</code>, we first <code>wait_for</code> port 80 to be available,
+and once it is, the <code>haproxy</code> module re-enables the current <code>app</code>
+server on all the load balancers.</li>
+</ol>
+<p>Run the playbook on the local infrastructure with the following command:</p>
+<!-- raw HTML omitted -->
+<p>It should only take a few seconds to run, and once it&rsquo;s finished, all
+the servers should be back in the mix for the load balancer. If you want
+to quickly confirm the deployment playbook is working as it should, add
+a task which always fails, immediately following the <code>debug</code> task:</p>
+<!-- raw HTML omitted -->
+<p>If you run the deployment playbook again, wait for it to fail, then run
+the <code>curl</code> command again, you&rsquo;ll notice all the requests are being
+directed to the second app server:</p>
+<!-- raw HTML omitted -->
+<p>Fix the deployment by removing the <code>/bin/false</code> command. Run the
+playbook one more time to restore the infrastructure to a fully
+functional state.</p>
+<p>This demonstration may seem basic, but the <code>pre_tasks</code> and <code>post_tasks</code>
+in the playbook are identical to what many large-scale production
+infrastructure deployments use!</p>
+<h3 id="chap11.xhtml_leanpub-auto-capistrano-style-and-blue-green-deployments">Capistrano-style and blue-green deployments</h3>
+<p>Many developers who deal with Ruby applications are familiar with
+<a href="http://capistranorb.com/" rel="external" target="_blank">Capistrano</a>, a task automation and
+application deployment application built with Ruby. Capistrano&rsquo;s basic
+style of deployment is to create dated release directories, then symlink
+the current release into a stable application directory, along with
+resources that are continuous among releases (like logs and uploaded
+files).</p>
+<p>Capistrano does a lot more than that basic deployment model, but many
+people want to replicate a simple application deployment workflow (which
+also makes rollbacks easy, since you just revert the symlink to the
+previous release directory!). This is easy to do with Ansible, and
+rather than walk you through the entire process in this book, I&rsquo;ll point
+you to a few great resources and an Ansible Galaxy role that coordinates
+Capistrano-style deployments with ease:</p>
+<ul>
+<li><a href="http://blog.versioneye.com/2014/09/24/rebuilding-capistrano-like-deployment-with-ansible/" rel="external" target="_blank">Rebuilding Capistrano-like deployment with
+Ansible</a></li>
+<li><a href="https://galaxy.ansible.com/list#/roles/732" rel="external" target="_blank">project_deploy role on Ansible
+Galaxy</a></li>
+<li><a href="http://www.future500.nl/articles/2014/07/thoughts-on-deploying-with-ansible/" rel="external" target="_blank">Thoughts on deploying with
+Ansible</a>
+(background for the above role)</li>
+<li><a href="http://www.slideshare.net/ramondelafuente/ansible-projectdeploy" rel="external" target="_blank">Ansible
+project-deploy</a>
+(presentation about the above role)</li>
+</ul>
+<p>Extending things a little further, many organizations use <strong>blue-green</strong>
+deployments. The basic concept involves bringing up a parallel
+production infrastructure, then switching over to it. The cutover may
+take only a few milliseconds and no active production infrastructure is
+ever offline during the deployment process.</p>
+<p>A few different technologies and concepts, like container-based
+infrasturcture and microservices (which are faster to deploy), and
+better cloud autoscaling and load balancing options, have made
+blue-green deployments much easier than in the past.</p>
+<p>This book won&rsquo;t go through a detailed example of this style of
+deployment, as the process is similar to other examples provided, the
+only difference being an additional task of switching a load balancer
+from the old to the new infrastructure once it&rsquo;s up and running.
+Ansible&rsquo;s blog has an excellent overview of AWS-based blue-green
+deployments: <a href="http://www.ansible.com/blog/immutable-systems" rel="external" target="_blank">Immutable Systems and
+Ansible</a>, and there are
+built-in modules to manage almost any type of load balancer you could
+use, including <a href="http://docs.ansible.com/list_of_network_modules.html#f5" rel="external" target="_blank">F5&rsquo;s
+BIG-IP</a>,
+<a href="http://docs.ansible.com/haproxy_module.html" rel="external" target="_blank">HAProxy</a>, <a href="http://docs.ansible.com/netscaler_module.html" rel="external" target="_blank">Citrix
+NetScaler</a>, and <a href="http://docs.ansible.com/ec2_elb_module.html" rel="external" target="_blank">Amazon
+ELB</a>.</p>
+<h3 id="chap11.xhtml_leanpub-auto-additional-deployment-features">Additional Deployment Features</h3>
+<p>There are a few other Ansible modules and options which are helpful in
+the context of deployments:</p>
+<p><a href="http://docs.ansible.com/playbooks_delegation.html#run-once" rel="external" target="_blank"><code>run_once</code></a>
+and <code>delegate_to</code> are extremely helpful in scenarios like updating a
+database schema or clearing an application&rsquo;s cache, where you need a
+particular task to only run one time, on a particular server:</p>
+<!-- raw HTML omitted -->
+<p>Using <code>run_once</code> with <code>delegate_to</code> is similar to the pattern of using
+<code>when: inventory_hostname == groups.groupname[0]</code>, but is a little more
+precise in describing what you&rsquo;re trying to achieve&mdash;running a command
+once on a specific host.</p>
+<p>Another important aspect of a successful deployment is communication. If
+you&rsquo;re running playbooks as part of a CI/CD process, or in some other
+automated fashion, use one of the many built-in Ansible notification
+modules to share the deployment&rsquo;s progress via chat, email, or even
+text-to-speech on your Mac with the <code>osx_say</code> module! Ansible includes
+easy-to-use notification modules for:</p>
+<ul>
+<li>Campfire</li>
+<li>HipChat</li>
+<li>IRC</li>
+<li>Jabber</li>
+<li>Email</li>
+<li>Slack</li>
+<li>Twilio</li>
+<li>Amazon SNS</li>
+<li>etc.</li>
+</ul>
+<p>Many playbooks include notifications in both the <code>pre_tasks</code> and
+<code>post_tasks</code> sections, notifying admins in a chat channel when a
+deployment begins or ends. For example:</p>
+<!-- raw HTML omitted -->
+<p>For a great primer on Ansible notifications, see Ansible Inc&rsquo;s blog
+post: <a href="http://www.ansible.com/blog/listen-to-your-servers-talk" rel="external" target="_blank">Listen to your Servers
+Talk</a>.</p>
+<h3 id="chap11.xhtml_leanpub-auto-summary-12">Summary</h3>
+<p>Automating deployments with Ansible enables your development team to
+have their code on production servers more reliably and quickly, and it
+enables your operations team to spend less time on repetitive tasks, and
+more time improving your infrastructure.</p>
+<p>This chapter outlined only a few of the most popular deployment
+techniques, but Ansible is flexible enough to handle almost any
+situation out of the box.</p>
+<!-- raw HTML omitted -->
+<p>[]{#chap12.xhtml}</p>
+<p>::: {}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/ansible4devops/chapter-9---deployments-with-ansible/"><a class="padding" href="/ansible/ansible4devops/chapter-9---deployments-with-ansible/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

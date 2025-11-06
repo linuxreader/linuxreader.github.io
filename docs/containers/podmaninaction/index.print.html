@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="[]{#titlepage.xhtml}
+::: {} &lt;image height=&#34;1130&#34; width=&#34;900&#34; xlink:href=&#34;cover.jpeg&#34;&gt;{=html}&lt;/image&gt;{=html} :::
+[]{#ifm.html}
+Inside front cover Podman and Docker feature comparison
+&#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Feature | Podman | Docker | Description | &#43;=================&#43;===============&#43;===============&#43;======================================&#43; | Supports all | [✔]{.cambria} | [✔]{.cambria} | Both pull and run container images | | OCI and Docker | | | from container registries (i.e., | | images | | | quay.io and docker.io) | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Launches OCI | [✔]{.cambria} | [✔]{.cambria} | Launch containers using runc, crun, | | container | | | Kata, gVisor, and OCI container | | engines | | | engines | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Simple | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker share the same | | command-line | | | CLI. | | interface | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Integration | [✔]{.cambria} | [✘]{.cambria} | Podman supports running systemd | | with systemd | | | inside of the container as well as | | | | | many systemd features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fork/exec model | [✔]{.cambria} | [✘]{.cambria} | The container is a direct descendant | | | | | of the podman command. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fully support | [✔]{.cambria} | [✘]{.cambria} | Only Podman supports running | | user namespace | | | containers in separate user | | | | | namespaces. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Client–server | [✔]{.cambria} | [✔]{.cambria} | Docker is a RESTful API daemon. | | model | | | Podman supports RESTful API via a | | | | | systemd socket=activated service. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | compose scripts work against both | | dockercompose | | | restful APIs. Podman[’]{.calibre6}s | | | | | works in rootless mode. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | docker-py python bindings work | | docker-py | | | against both restful APIs. Podman’s | | | | | works in rootless mode. Podman also | | | | | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Daemonless | [✔]{.cambria} | [✘]{.cambria} | The podman command runs like a | | | | | traditional command-line tool, while | | | | | Docker requires multiple | | | | | root-running daemons. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman supports running multiple | | Kubernetes-like | | | containers within the same pod. | | pods | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman can launch containers and | | Kubernetes yaml | | | pods based on Kubernetes yaml. It | | | | | can also generate Kuberenetes.yaml | | | | | from running containers. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports Docker | [✘]{.cambria} | [✔]{.cambria} | Podman believes the future for | | swarm | | | orchestrated multi-node containers | | | | | is Kubernetes and does not plan on | | | | | implementing Swarm. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman allows you to configure | | registries | | | registries for short name expansion. | | | | | Docker is hard coded to docker.io | | | | | when you specify a short name. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman supports fully customizing | | defaults | | | all of its defaults including | | | | | security, namespaces, volumes, and | | | | | more. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Mac OS support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Mac via a VM running | | | | | Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Windows support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Windows WSL2 or a VM | | | | | running Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Linux support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker are supported on | | | | | all major Linux distributions. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43;">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="[]{#titlepage.xhtml}
+::: {} &lt;image height=&#34;1130&#34; width=&#34;900&#34; xlink:href=&#34;cover.jpeg&#34;&gt;{=html}&lt;/image&gt;{=html} :::
+[]{#ifm.html}
+Inside front cover Podman and Docker feature comparison
+&#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Feature | Podman | Docker | Description | &#43;=================&#43;===============&#43;===============&#43;======================================&#43; | Supports all | [✔]{.cambria} | [✔]{.cambria} | Both pull and run container images | | OCI and Docker | | | from container registries (i.e., | | images | | | quay.io and docker.io) | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Launches OCI | [✔]{.cambria} | [✔]{.cambria} | Launch containers using runc, crun, | | container | | | Kata, gVisor, and OCI container | | engines | | | engines | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Simple | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker share the same | | command-line | | | CLI. | | interface | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Integration | [✔]{.cambria} | [✘]{.cambria} | Podman supports running systemd | | with systemd | | | inside of the container as well as | | | | | many systemd features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fork/exec model | [✔]{.cambria} | [✘]{.cambria} | The container is a direct descendant | | | | | of the podman command. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fully support | [✔]{.cambria} | [✘]{.cambria} | Only Podman supports running | | user namespace | | | containers in separate user | | | | | namespaces. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Client–server | [✔]{.cambria} | [✔]{.cambria} | Docker is a RESTful API daemon. | | model | | | Podman supports RESTful API via a | | | | | systemd socket=activated service. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | compose scripts work against both | | dockercompose | | | restful APIs. Podman[’]{.calibre6}s | | | | | works in rootless mode. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | docker-py python bindings work | | docker-py | | | against both restful APIs. Podman’s | | | | | works in rootless mode. Podman also | | | | | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Daemonless | [✔]{.cambria} | [✘]{.cambria} | The podman command runs like a | | | | | traditional command-line tool, while | | | | | Docker requires multiple | | | | | root-running daemons. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman supports running multiple | | Kubernetes-like | | | containers within the same pod. | | pods | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman can launch containers and | | Kubernetes yaml | | | pods based on Kubernetes yaml. It | | | | | can also generate Kuberenetes.yaml | | | | | from running containers. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports Docker | [✘]{.cambria} | [✔]{.cambria} | Podman believes the future for | | swarm | | | orchestrated multi-node containers | | | | | is Kubernetes and does not plan on | | | | | implementing Swarm. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman allows you to configure | | registries | | | registries for short name expansion. | | | | | Docker is hard coded to docker.io | | | | | when you specify a short name. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman supports fully customizing | | defaults | | | all of its defaults including | | | | | security, namespaces, volumes, and | | | | | more. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Mac OS support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Mac via a VM running | | | | | Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Windows support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Windows WSL2 or a VM | | | | | running Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Linux support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker are supported on | | | | | all major Linux distributions. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43;">
+    <meta property="og:url" content="http://linuxreader.com/containers/podmaninaction/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="[]{#titlepage.xhtml}
+::: {} &lt;image height=&#34;1130&#34; width=&#34;900&#34; xlink:href=&#34;cover.jpeg&#34;&gt;{=html}&lt;/image&gt;{=html} :::
+[]{#ifm.html}
+Inside front cover Podman and Docker feature comparison
+&#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Feature | Podman | Docker | Description | &#43;=================&#43;===============&#43;===============&#43;======================================&#43; | Supports all | [✔]{.cambria} | [✔]{.cambria} | Both pull and run container images | | OCI and Docker | | | from container registries (i.e., | | images | | | quay.io and docker.io) | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Launches OCI | [✔]{.cambria} | [✔]{.cambria} | Launch containers using runc, crun, | | container | | | Kata, gVisor, and OCI container | | engines | | | engines | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Simple | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker share the same | | command-line | | | CLI. | | interface | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Integration | [✔]{.cambria} | [✘]{.cambria} | Podman supports running systemd | | with systemd | | | inside of the container as well as | | | | | many systemd features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fork/exec model | [✔]{.cambria} | [✘]{.cambria} | The container is a direct descendant | | | | | of the podman command. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fully support | [✔]{.cambria} | [✘]{.cambria} | Only Podman supports running | | user namespace | | | containers in separate user | | | | | namespaces. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Client–server | [✔]{.cambria} | [✔]{.cambria} | Docker is a RESTful API daemon. | | model | | | Podman supports RESTful API via a | | | | | systemd socket=activated service. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | compose scripts work against both | | dockercompose | | | restful APIs. Podman[’]{.calibre6}s | | | | | works in rootless mode. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | docker-py python bindings work | | docker-py | | | against both restful APIs. Podman’s | | | | | works in rootless mode. Podman also | | | | | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Daemonless | [✔]{.cambria} | [✘]{.cambria} | The podman command runs like a | | | | | traditional command-line tool, while | | | | | Docker requires multiple | | | | | root-running daemons. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman supports running multiple | | Kubernetes-like | | | containers within the same pod. | | pods | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman can launch containers and | | Kubernetes yaml | | | pods based on Kubernetes yaml. It | | | | | can also generate Kuberenetes.yaml | | | | | from running containers. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports Docker | [✘]{.cambria} | [✔]{.cambria} | Podman believes the future for | | swarm | | | orchestrated multi-node containers | | | | | is Kubernetes and does not plan on | | | | | implementing Swarm. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman allows you to configure | | registries | | | registries for short name expansion. | | | | | Docker is hard coded to docker.io | | | | | when you specify a short name. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman supports fully customizing | | defaults | | | all of its defaults including | | | | | security, namespaces, volumes, and | | | | | more. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Mac OS support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Mac via a VM running | | | | | Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Windows support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Windows WSL2 or a VM | | | | | running Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Linux support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker are supported on | | | | | all major Linux distributions. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43;">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Containers">
+    <meta itemprop="description" content="[]{#titlepage.xhtml}
+::: {} &lt;image height=&#34;1130&#34; width=&#34;900&#34; xlink:href=&#34;cover.jpeg&#34;&gt;{=html}&lt;/image&gt;{=html} :::
+[]{#ifm.html}
+Inside front cover Podman and Docker feature comparison
+&#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Feature | Podman | Docker | Description | &#43;=================&#43;===============&#43;===============&#43;======================================&#43; | Supports all | [✔]{.cambria} | [✔]{.cambria} | Both pull and run container images | | OCI and Docker | | | from container registries (i.e., | | images | | | quay.io and docker.io) | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Launches OCI | [✔]{.cambria} | [✔]{.cambria} | Launch containers using runc, crun, | | container | | | Kata, gVisor, and OCI container | | engines | | | engines | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Simple | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker share the same | | command-line | | | CLI. | | interface | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Integration | [✔]{.cambria} | [✘]{.cambria} | Podman supports running systemd | | with systemd | | | inside of the container as well as | | | | | many systemd features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fork/exec model | [✔]{.cambria} | [✘]{.cambria} | The container is a direct descendant | | | | | of the podman command. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Fully support | [✔]{.cambria} | [✘]{.cambria} | Only Podman supports running | | user namespace | | | containers in separate user | | | | | namespaces. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Client–server | [✔]{.cambria} | [✔]{.cambria} | Docker is a RESTful API daemon. | | model | | | Podman supports RESTful API via a | | | | | systemd socket=activated service. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | compose scripts work against both | | dockercompose | | | restful APIs. Podman[’]{.calibre6}s | | | | | works in rootless mode. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✔]{.cambria} | docker-py python bindings work | | docker-py | | | against both restful APIs. Podman’s | | | | | works in rootless mode. Podman also | | | | | supports podman-py for running | | | | | advanced features. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Daemonless | [✔]{.cambria} | [✘]{.cambria} | The podman command runs like a | | | | | traditional command-line tool, while | | | | | Docker requires multiple | | | | | root-running daemons. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman supports running multiple | | Kubernetes-like | | | containers within the same pod. | | pods | | | | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports | [✔]{.cambria} | [✘]{.cambria} | Podman can launch containers and | | Kubernetes yaml | | | pods based on Kubernetes yaml. It | | | | | can also generate Kuberenetes.yaml | | | | | from running containers. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Supports Docker | [✘]{.cambria} | [✔]{.cambria} | Podman believes the future for | | swarm | | | orchestrated multi-node containers | | | | | is Kubernetes and does not plan on | | | | | implementing Swarm. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman allows you to configure | | registries | | | registries for short name expansion. | | | | | Docker is hard coded to docker.io | | | | | when you specify a short name. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Customizable | [✔]{.cambria} | [✘]{.cambria} | Podman supports fully customizing | | defaults | | | all of its defaults including | | | | | security, namespaces, volumes, and | | | | | more. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Mac OS support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Mac via a VM running | | | | | Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Windows support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker support running | | | | | containers on a Windows WSL2 or a VM | | | | | running Linux. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43; | Linux support | [✔]{.cambria} | [✔]{.cambria} | Podman and Docker are supported on | | | | | all major Linux distributions. | &#43;—————–&#43;—————&#43;—————&#43;————————————–&#43;">
+    <meta itemprop="wordCount" content="94787">
+    <title></title>
+    <link href="http://linuxreader.com/containers/podmaninaction/" rel="canonical" type="text/html" title="">
+    <link href="/containers/podmaninaction/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/containers\/podmaninaction\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/containers/podmaninaction/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/containers/" title="Containers (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#fm.htm_heading_id_3">[]{#fm.htm_pgfId-1113482}preface</a></li>
+    <li><a href="#fm.htm_heading_id_4">[]{#fm.htm_pgfId-1113486}acknowledgments</a></li>
+    <li><a href="#fm.htm_heading_id_5">[]{#fm.htm_pgfId-1113491}about this book</a>
+      <ul>
+        <li><a href="#fm.htm_heading_id_6">[]{#fm.htm_pgfId-1113493}Who should read this book?</a></li>
+        <li><a href="#fm.htm_heading_id_7">[]{#fm.htm_pgfId-1113496}How this book is organized: A roadmap</a></li>
+        <li><a href="#fm.htm_heading_id_8">[]{#fm.htm_pgfId-1113520}liveBook discussion forum</a></li>
+        <li><a href="#fm.htm_heading_id_9">[]{#fm.htm_pgfId-1113526}Author online</a></li>
+      </ul>
+    </li>
+    <li><a href="#fm.htm_heading_id_10">[]{#fm.htm_pgfId-1113530}about the author</a></li>
+    <li><a href="#fm.htm_heading_id_11">[]{#fm.htm_pgfId-1113536}about the cover illustration</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#01.htm_heading_id_3">[]{#01.htm_pgfId-1031531}1.1 About all these terms</a></li>
+    <li><a href="#01.htm_heading_id_4">[]{#01.htm_pgfId-1031591}1.2 A brief overview of containers</a>
+      <ul>
+        <li><a href="#01.htm_heading_id_5">[]{#01.htm_pgfId-1031664}1.2.1 Container images: A new way to ship software</a></li>
+        <li><a href="#01.htm_heading_id_6">[]{#01.htm_pgfId-1031688}1.2.2 Container images lead to microservices</a></li>
+        <li><a href="#01.htm_heading_id_7">[]{#01.htm_pgfId-1031712}1.2.3 Container image format</a></li>
+        <li><a href="#01.htm_heading_id_8">[]{#01.htm_pgfId-1031793}1.2.4 Container standards</a></li>
+      </ul>
+    </li>
+    <li><a href="#01.htm_heading_id_9">[]{#01.htm_pgfId-1031807}1.3 Why use Podman when you have Docker?</a>
+      <ul>
+        <li><a href="#01.htm_heading_id_10">[]{#01.htm_pgfId-1031810}1.3.1 Why have only one way to run containers?</a></li>
+        <li><a href="#01.htm_heading_id_11">[]{#01.htm_pgfId-1031982}1.3.2 Rootless containers</a></li>
+        <li><a href="#01.htm_heading_id_12">[]{#01.htm_pgfId-1032001}1.3.3 Fork/exec model</a></li>
+        <li><a href="#01.htm_heading_id_13">[]{#01.htm_pgfId-1032026}1.3.4 Podman is daemonless</a></li>
+        <li><a href="#01.htm_heading_id_14">[]{#01.htm_pgfId-1032034}1.3.5 User-friendly command line</a></li>
+        <li><a href="#01.htm_heading_id_15">[]{#01.htm_pgfId-1032052}1.3.6 Support for REST API</a></li>
+        <li><a href="#01.htm_heading_id_16">[]{#01.htm_pgfId-1032061}1.3.7 Integration with systemd</a></li>
+        <li><a href="#01.htm_heading_id_17">[]{#01.htm_pgfId-1032083}1.3.8 Pods</a></li>
+        <li><a href="#01.htm_heading_id_18">[]{#01.htm_pgfId-1032099}1.3.9 Customizable registries</a></li>
+        <li><a href="#01.htm_heading_id_19">[]{#01.htm_pgfId-1032159}1.3.10 Multiple transports</a></li>
+        <li><a href="#01.htm_heading_id_20">[]{#01.htm_pgfId-1032211}1.3.11 Complete customizability</a></li>
+        <li><a href="#01.htm_heading_id_21">[]{#01.htm_pgfId-1032223}1.3.12 User-namespace support</a></li>
+      </ul>
+    </li>
+    <li><a href="#01.htm_heading_id_22">[]{#01.htm_pgfId-1032233}1.4 When not to use Podman</a></li>
+    <li><a href="#01.htm_heading_id_23">[]{#01.htm_pgfId-1032239}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#02.htm_heading_id_3">[]{#02.htm_pgfId-1037546}2.1 Working with containers</a>
+      <ul>
+        <li><a href="#02.htm_heading_id_4">[]{#02.htm_pgfId-1037552}2.1.1 Exploring containers</a></li>
+        <li><a href="#02.htm_heading_id_5">[]{#02.htm_pgfId-1037619}2.1.2 Running the containerized application</a></li>
+        <li><a href="#02.htm_heading_id_6">[]{#02.htm_pgfId-1037696}2.1.3 Stopping containers</a></li>
+        <li><a href="#02.htm_heading_id_7">[]{#02.htm_pgfId-1037737}2.1.4 Starting containers</a></li>
+        <li><a href="#02.htm_heading_id_8">[]{#02.htm_pgfId-1037765}2.1.5 Listing containers</a></li>
+        <li><a href="#02.htm_heading_id_9">[]{#02.htm_pgfId-1037795}2.1.6 Inspecting containers</a></li>
+        <li><a href="#02.htm_heading_id_10">[]{#02.htm_pgfId-1037843}2.1.7 Removing containers</a></li>
+        <li><a href="#02.htm_heading_id_11">[]{#02.htm_pgfId-1037863}2.1.8 exec-ing into a container</a></li>
+        <li><a href="#02.htm_heading_id_12">[]{#02.htm_pgfId-1037916}2.1.9 Creating an image from a container</a></li>
+      </ul>
+    </li>
+    <li><a href="#02.htm_heading_id_13">[]{#02.htm_pgfId-1038202}2.2 Working with container images</a>
+      <ul>
+        <li><a href="#02.htm_heading_id_14">[]{#02.htm_pgfId-1038207}2.2.1 Differences between a container and an image</a></li>
+        <li><a href="#02.htm_heading_id_15">[]{#02.htm_pgfId-1038261}2.2.2 Listing images</a></li>
+        <li><a href="#02.htm_heading_id_16">[]{#02.htm_pgfId-1038320}2.2.3 Inspecting images</a></li>
+        <li><a href="#02.htm_heading_id_17">[]{#02.htm_pgfId-1038364}2.2.4 Pushing images</a></li>
+        <li><a href="#02.htm_heading_id_18">[]{#02.htm_pgfId-1038455}2.2.5 podman login: Logging into a container registry</a></li>
+        <li><a href="#02.htm_heading_id_19">[]{#02.htm_pgfId-1038512}2.2.6 Tagging images</a></li>
+        <li><a href="#02.htm_heading_id_20">[]{#02.htm_pgfId-1038583}2.2.7 Removing images</a></li>
+        <li><a href="#02.htm_heading_id_21">[]{#02.htm_pgfId-1038657}2.2.8 Pulling images</a></li>
+        <li><a href="#02.htm_heading_id_22">[]{#02.htm_pgfId-1038812}2.2.9 Searching for images</a></li>
+        <li><a href="#02.htm_heading_id_23">[]{#02.htm_pgfId-1038842}2.2.10 Mounting images</a></li>
+      </ul>
+    </li>
+    <li><a href="#02.htm_heading_id_24">[]{#02.htm_pgfId-1038884}2.3 Building images</a>
+      <ul>
+        <li><a href="#02.htm_heading_id_25">[]{#02.htm_pgfId-1038895}2.3.1 Format of a Containerfile or Dockerfile</a></li>
+        <li><a href="#02.htm_heading_id_26">[]{#02.htm_pgfId-1039048}2.3.2 Automating the building of our application</a></li>
+      </ul>
+    </li>
+    <li><a href="#02.htm_heading_id_27">[]{#02.htm_pgfId-1039265}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#03.htm_heading_id_3">[]{#03.htm_pgfId-1048601}3.1 Using volumes with containers</a>
+      <ul>
+        <li><a href="#03.htm_heading_id_4">[]{#03.htm_pgfId-1048655}3.1.1 Named volumes</a></li>
+        <li><a href="#03.htm_heading_id_5">[]{#03.htm_pgfId-1048730}3.1.2 Volume mount options</a></li>
+        <li><a href="#03.htm_heading_id_6">[]{#03.htm_pgfId-1052263}3.1.3 podman run - -mount command option</a></li>
+      </ul>
+    </li>
+    <li><a href="#03.htm_heading_id_7">[]{#03.htm_pgfId-1052328}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#04.htm_heading_id_3">[]{#04.htm_pgfId-1103755}4.1 Running pods</a></li>
+    <li><a href="#04.htm_heading_id_4">[]{#04.htm_pgfId-1103802}4.2 Creating a pod</a></li>
+    <li><a href="#04.htm_heading_id_5">[]{#04.htm_pgfId-1103828}4.3 Adding a container to a pod</a></li>
+    <li><a href="#04.htm_heading_id_6">[]{#04.htm_pgfId-1103884}4.4 Starting a pod</a></li>
+    <li><a href="#04.htm_heading_id_7">[]{#04.htm_pgfId-1103924}4.5 Stopping a pod</a></li>
+    <li><a href="#04.htm_heading_id_8">[]{#04.htm_pgfId-1103948}4.6 Listing pods</a></li>
+    <li><a href="#04.htm_heading_id_9">[]{#04.htm_pgfId-1103966}4.7 Removing pods</a></li>
+    <li><a href="#04.htm_heading_id_10">[]{#04.htm_pgfId-1104112}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#05.htm_heading_id_3">[]{#05.htm_pgfId-1105544}5.1 Configuration files for storage</a>
+      <ul>
+        <li><a href="#05.htm_heading_id_4">[]{#05.htm_pgfId-1105558}5.1.1 Storage location</a></li>
+        <li><a href="#05.htm_heading_id_5">[]{#05.htm_pgfId-1105641}5.1.2 Storage drivers</a></li>
+      </ul>
+    </li>
+    <li><a href="#05.htm_heading_id_6">[]{#05.htm_pgfId-1105768}5.2 Configuration files for registries</a>
+      <ul>
+        <li><a href="#05.htm_heading_id_7">[]{#05.htm_pgfId-1105773}5.2.1 registries.conf</a></li>
+      </ul>
+    </li>
+    <li><a href="#05.htm_heading_id_8">[]{#05.htm_pgfId-1105908}5.3 Configuration files for engines</a></li>
+    <li><a href="#05.htm_heading_id_9">[]{#05.htm_pgfId-1106060}5.4 System configuration files</a></li>
+    <li><a href="#05.htm_heading_id_10">[]{#05.htm_pgfId-1106084}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#06.htm_heading_id_3">[]{#06.htm_pgfId-1110312}6.1 How does rootless Podman work?</a>
+      <ul>
+        <li><a href="#06.htm_heading_id_4">[]{#06.htm_pgfId-1110335}6.1.1 Images contain content owned by multiple user identifiers (UIDs)</a></li>
+      </ul>
+    </li>
+    <li><a href="#06.htm_heading_id_5">[]{#06.htm_pgfId-1110640}6.2 Rootless Podman under the covers</a>
+      <ul>
+        <li><a href="#06.htm_heading_id_6">[]{#06.htm_pgfId-1110658}6.2.1 Pulling the image</a></li>
+        <li><a href="#06.htm_heading_id_7">[]{#06.htm_pgfId-1110680}6.2.2 Creating a container</a></li>
+        <li><a href="#06.htm_heading_id_8">[]{#06.htm_pgfId-1110688}6.2.3 Setting up the network</a></li>
+        <li><a href="#06.htm_heading_id_9">[]{#06.htm_pgfId-1110707}6.2.4 Starting the container monitor: conmon</a></li>
+        <li><a href="#06.htm_heading_id_10">[]{#06.htm_pgfId-1110723}6.2.5 Launching the OCI runtime</a></li>
+        <li><a href="#06.htm_heading_id_11">[]{#06.htm_pgfId-1110762}6.2.6 The containerized application runs until completion</a></li>
+      </ul>
+    </li>
+    <li><a href="#06.htm_heading_id_12">[]{#06.htm_pgfId-1110780}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#07.htm_heading_id_3">[]{#07.htm_pgfId-1110308}7.1 Running systemd within a container</a>
+      <ul>
+        <li><a href="#07.htm_heading_id_4">[]{#07.htm_pgfId-1110355}7.1.1 Containerized systemd requirements</a></li>
+        <li><a href="#07.htm_heading_id_5">[]{#07.htm_pgfId-1110391}7.1.2 Podman container in systemd mode</a></li>
+        <li><a href="#07.htm_heading_id_6">[]{#07.htm_pgfId-1110439}7.1.3 Running an Apache service within a systemd container</a></li>
+      </ul>
+    </li>
+    <li><a href="#07.htm_heading_id_7">[]{#07.htm_pgfId-1110503}7.2 Journald for logging and events</a>
+      <ul>
+        <li><a href="#07.htm_heading_id_8">[]{#07.htm_pgfId-1110508}7.2.1 Log driver</a></li>
+        <li><a href="#07.htm_heading_id_9">[]{#07.htm_pgfId-1110574}7.2.2 Events</a></li>
+      </ul>
+    </li>
+    <li><a href="#07.htm_heading_id_10">[]{#07.htm_pgfId-1110633}7.3 Starting containers at boot</a>
+      <ul>
+        <li><a href="#07.htm_heading_id_11">[]{#07.htm_pgfId-1110638}7.3.1 Restarting containers</a></li>
+        <li><a href="#07.htm_heading_id_12">[]{#07.htm_pgfId-1110686}7.3.2 Podman containers as systemd services</a></li>
+        <li><a href="#07.htm_heading_id_13">[]{#07.htm_pgfId-1110769}7.3.3 Distributing systemd unit files to manage Podman containers</a></li>
+        <li><a href="#07.htm_heading_id_14">[]{#07.htm_pgfId-1110842}7.3.4 Automatically updating Podman containers</a></li>
+      </ul>
+    </li>
+    <li><a href="#07.htm_heading_id_15">[]{#07.htm_pgfId-1110957}7.4 Running containers in notify unit files</a></li>
+    <li><a href="#07.htm_heading_id_16">[]{#07.htm_pgfId-1110978}7.5 Rolling back failed containers after update</a></li>
+    <li><a href="#07.htm_heading_id_17">[]{#07.htm_pgfId-1110991}7.6 Socket-activated Podman containers</a></li>
+    <li><a href="#07.htm_heading_id_18">[]{#07.htm_pgfId-1111051}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#08.htm_heading_id_3">[]{#08.htm_pgfId-1118696}8.1 Kubernetes YAML files</a></li>
+    <li><a href="#08.htm_heading_id_4">[]{#08.htm_pgfId-1118705}8.2 Generating Kubernetes YAML files with Podman</a></li>
+    <li><a href="#08.htm_heading_id_5">[]{#08.htm_pgfId-1118798}8.3 Generating Podman pods and containers from Kubernetes YAML</a>
+      <ul>
+        <li><a href="#08.htm_heading_id_6">[]{#08.htm_pgfId-1118853}8.3.1 Shutting down pods and containers based on a Kubernetes YAML file</a></li>
+        <li><a href="#08.htm_heading_id_7">[]{#08.htm_pgfId-1118884}8.3.2 Building images using Podman and Kubernetes YAML files</a></li>
+      </ul>
+    </li>
+    <li><a href="#08.htm_heading_id_8">[]{#08.htm_pgfId-1118979}8.4 Running Podman within a container</a>
+      <ul>
+        <li><a href="#08.htm_heading_id_9">[]{#08.htm_pgfId-1119032}8.4.1 Running Podman within a Podman container</a></li>
+        <li><a href="#08.htm_heading_id_10">[]{#08.htm_pgfId-1119072}8.4.2 Running Podman within a Kubernetes pod</a></li>
+      </ul>
+    </li>
+    <li><a href="#08.htm_heading_id_11">[]{#08.htm_pgfId-1119118}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#09.htm_heading_id_3">[]{#09.htm_pgfId-1109433}9.1 Introducing the Podman service</a>
+      <ul>
+        <li><a href="#09.htm_heading_id_4">[]{#09.htm_pgfId-1109467}9.1.1 Systemd services</a></li>
+      </ul>
+    </li>
+    <li><a href="#09.htm_heading_id_5">[]{#09.htm_pgfId-1109565}9.2 Podman-supported APIs</a></li>
+    <li><a href="#09.htm_heading_id_6">[]{#09.htm_pgfId-1109682}9.3 Python libraries for interacting with Podman</a>
+      <ul>
+        <li><a href="#09.htm_heading_id_7">[]{#09.htm_pgfId-1109687}9.3.1 Using docker-py with the Podman API</a></li>
+        <li><a href="#09.htm_heading_id_8">[]{#09.htm_pgfId-1109731}9.3.2 Using podman-py with the Podman API</a></li>
+        <li><a href="#09.htm_heading_id_9">[]{#09.htm_pgfId-1109775}9.3.3 Which Python library should you use?</a></li>
+      </ul>
+    </li>
+    <li><a href="#09.htm_heading_id_10">[]{#09.htm_pgfId-1109821}9.4 Using docker-compose with the Podman service</a></li>
+    <li><a href="#09.htm_heading_id_11">[]{#09.htm_pgfId-1109917}9.5 podman - -remote</a>
+      <ul>
+        <li><a href="#09.htm_heading_id_12">[]{#09.htm_pgfId-1109935}9.5.1 Local connections</a></li>
+        <li><a href="#09.htm_heading_id_13">[]{#09.htm_pgfId-1109974}9.5.2 Remote connections</a></li>
+        <li><a href="#09.htm_heading_id_14">[]{#09.htm_pgfId-1110068}9.5.3 Setting up SSH on the client machine</a></li>
+        <li><a href="#09.htm_heading_id_15">[]{#09.htm_pgfId-1110087}9.5.4 Configuring a connection</a></li>
+      </ul>
+    </li>
+    <li><a href="#09.htm_heading_id_16">[]{#09.htm_pgfId-1110187}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#10.htm_heading_id_3">[]{#10.htm_pgfId-1114100}10.1 Read-only Linux kernel pseudo filesystems</a>
+      <ul>
+        <li><a href="#10.htm_heading_id_4">[]{#10.htm_pgfId-1114165}10.1.1 Unmasking the masked paths</a></li>
+        <li><a href="#10.htm_heading_id_5">[]{#10.htm_pgfId-1114200}10.1.2 Masking additional paths</a></li>
+      </ul>
+    </li>
+    <li><a href="#10.htm_heading_id_6">[]{#10.htm_pgfId-1114238}10.2 Linux capabilities</a>
+      <ul>
+        <li><a href="#10.htm_heading_id_7">[]{#10.htm_pgfId-1114267}10.2.1 Dropped Linux capabilities</a></li>
+        <li><a href="#10.htm_heading_id_8">[]{#10.htm_pgfId-1114369}10.2.2 Dropped CAP_SYS_ADMIN</a></li>
+        <li><a href="#10.htm_heading_id_9">[]{#10.htm_pgfId-1114384}10.2.3 Dropping capabilities</a></li>
+        <li><a href="#10.htm_heading_id_10">[]{#10.htm_pgfId-1114413}10.2.4 Adding capabilities</a></li>
+        <li><a href="#10.htm_heading_id_11">[]{#10.htm_pgfId-1114439}10.2.5 No new privileges</a></li>
+        <li><a href="#10.htm_heading_id_12">[]{#10.htm_pgfId-1114450}10.2.6 Root with no capabilities is still dangerous</a></li>
+      </ul>
+    </li>
+    <li><a href="#10.htm_heading_id_13">[]{#10.htm_pgfId-1114461}10.3 UID isolation: User namespace</a>
+      <ul>
+        <li><a href="#10.htm_heading_id_14">[]{#10.htm_pgfId-1114475}10.3.1 Isolating containers using the - -userns=auto flag</a></li>
+        <li><a href="#10.htm_heading_id_15">[]{#10.htm_pgfId-1114536}10.3.2 User-namespaced Linux capabilities</a></li>
+        <li><a href="#10.htm_heading_id_16">[]{#10.htm_pgfId-1114567}10.3.3 Rootless Podman with the - -userns=auto flag</a></li>
+        <li><a href="#10.htm_heading_id_17">[]{#10.htm_pgfId-1114589}10.3.4 User volumes with the - -userns=auto flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#10.htm_heading_id_18">[]{#10.htm_pgfId-1114645}10.4 Process isolation: PID namespace</a></li>
+    <li><a href="#10.htm_heading_id_19">[]{#10.htm_pgfId-1114671}10.5 Network isolation: Network namespace</a></li>
+    <li><a href="#10.htm_heading_id_20">[]{#10.htm_pgfId-1114711}10.6 IPC isolation: IPC namespace</a></li>
+    <li><a href="#10.htm_heading_id_21">[]{#10.htm_pgfId-1114733}10.7 Filesystem isolation: Mount namespace</a></li>
+    <li><a href="#10.htm_heading_id_22">[]{#10.htm_pgfId-1114752}10.8 Filesystem isolation: SELinux</a>
+      <ul>
+        <li><a href="#10.htm_heading_id_23">[]{#10.htm_pgfId-1114760}10.8.1 SELinux type enforcement</a></li>
+        <li><a href="#10.htm_heading_id_24">[]{#10.htm_pgfId-1114953}10.8.2 SELinux Multi-Category Security separation</a></li>
+      </ul>
+    </li>
+    <li><a href="#10.htm_heading_id_25">[]{#10.htm_pgfId-1115100}10.9. System call isolation seccomp</a></li>
+    <li><a href="#10.htm_heading_id_26">[]{#10.htm_pgfId-1115148}10.10 Virtual machine isolation</a></li>
+    <li><a href="#10.htm_heading_id_27">[]{#10.htm_pgfId-1115159}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#11.htm_heading_id_3">[]{#11.htm_pgfId-1121663}11.1 Daemon versus the fork/exec model</a>
+      <ul>
+        <li><a href="#11.htm_heading_id_4">[]{#11.htm_pgfId-1121669}11.1.1 Access to the docker.sock</a></li>
+        <li><a href="#11.htm_heading_id_5">[]{#11.htm_pgfId-1121703}11.1.2 Auditing and logging</a></li>
+      </ul>
+    </li>
+    <li><a href="#11.htm_heading_id_6">[]{#11.htm_pgfId-1121782}11.2 Podman secret handling</a></li>
+    <li><a href="#11.htm_heading_id_7">[]{#11.htm_pgfId-1121863}11.3 Podman image trust</a>
+      <ul>
+        <li><a href="#11.htm_heading_id_8">[]{#11.htm_pgfId-1121984}11.3.1 Podman image signing</a></li>
+      </ul>
+    </li>
+    <li><a href="#11.htm_heading_id_9">[]{#11.htm_pgfId-1122123}11.4 Podman image scanning</a>
+      <ul>
+        <li><a href="#11.htm_heading_id_10">[]{#11.htm_pgfId-1122154}11.5.1 Read-only containers</a></li>
+      </ul>
+    </li>
+    <li><a href="#11.htm_heading_id_11">[]{#11.htm_pgfId-1122175}11.5 Security in depth</a>
+      <ul>
+        <li><a href="#11.htm_heading_id_12">[]{#11.htm_pgfId-1122181}11.5.1 Podman uses all security mechanisms simultaneously</a></li>
+        <li><a href="#11.htm_heading_id_13">[]{#11.htm_pgfId-1122191}11.5.2 Where should you run your containers?</a></li>
+      </ul>
+    </li>
+    <li><a href="#11.htm_heading_id_14">[]{#11.htm_pgfId-1122200}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#A.htm_heading_id_3">[]{#A.htm_pgfId-1277719}A.1 Skopeo</a></li>
+    <li><a href="#A.htm_heading_id_4">[]{#A.htm_pgfId-1277858}A.2 Buildah</a>
+      <ul>
+        <li><a href="#A.htm_heading_id_5">[]{#A.htm_pgfId-1277883}A.2.1 Creating a working container from a base image</a></li>
+        <li><a href="#A.htm_heading_id_6">[]{#A.htm_pgfId-1277917}A.2.2 Adding data to a working container</a></li>
+        <li><a href="#A.htm_heading_id_7">[]{#A.htm_pgfId-1277940}A.2.3 Running commands in a working container</a></li>
+        <li><a href="#A.htm_heading_id_8">[]{#A.htm_pgfId-1278002}A.2.4 Adding content to a working container directly from the host</a></li>
+        <li><a href="#A.htm_heading_id_9">[]{#A.htm_pgfId-1278032}A.2.5 Configuring a working container</a></li>
+        <li><a href="#A.htm_heading_id_10">[]{#A.htm_pgfId-1278150}A.2.6 Creating an image from a working container</a></li>
+        <li><a href="#A.htm_heading_id_11">[]{#A.htm_pgfId-1278189}A.2.7 Pushing an image to a container registry</a></li>
+        <li><a href="#A.htm_heading_id_12">[]{#A.htm_pgfId-1278218}A.2.8 Building an image from Containerfiles</a></li>
+        <li><a href="#A.htm_heading_id_13">[]{#A.htm_pgfId-1278251}A.2.9 Buildah as a library</a></li>
+      </ul>
+    </li>
+    <li><a href="#A.htm_heading_id_14">[]{#A.htm_pgfId-1278260}A.3 CRI-O: Container Runtime Interface for OCI containers</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#B.htm_heading_id_3">[]{#B.htm_pgfId-1282853}B.1 runc</a></li>
+    <li><a href="#B.htm_heading_id_4">[]{#B.htm_pgfId-1282955}B.2 crun</a></li>
+    <li><a href="#B.htm_heading_id_5">[]{#B.htm_pgfId-1282973}B.3 Kata</a></li>
+    <li><a href="#B.htm_heading_id_6">[]{#B.htm_pgfId-1283010}B.4 gVisor</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#C.htm_heading_id_3">[]{#C.htm_pgfId-1284766}C.1 Installing Podman</a>
+      <ul>
+        <li><a href="#C.htm_heading_id_4">[]{#C.htm_pgfId-1284778}C.1.1 macOS</a></li>
+        <li><a href="#C.htm_heading_id_5">[]{#C.htm_pgfId-1284804}C.1.2 Windows</a></li>
+        <li><a href="#C.htm_heading_id_6">[]{#C.htm_pgfId-1284833}C.1.3 Arch Linux and Manjaro Linux</a></li>
+        <li><a href="#C.htm_heading_id_7">[]{#C.htm_pgfId-1284846}C.1.4 CentOS</a></li>
+        <li><a href="#C.htm_heading_id_8">[]{#C.htm_pgfId-1284856}C.1.5 Debian</a></li>
+        <li><a href="#C.htm_heading_id_9">[]{#C.htm_pgfId-1284867}C.1.6 Fedora</a></li>
+        <li><a href="#C.htm_heading_id_10">[]{#C.htm_pgfId-1284876}C.1.7 Fedora-CoreOS, Fedora Silverblue</a></li>
+        <li><a href="#C.htm_heading_id_11">[]{#C.htm_pgfId-1284887}C.1.8 Gentoo</a></li>
+        <li><a href="#C.htm_heading_id_12">[]{#C.htm_pgfId-1284896}C.1.9 OpenEmbedded</a></li>
+        <li><a href="#C.htm_heading_id_13">[]{#C.htm_pgfId-1284907}C.1.10 openSUSE</a></li>
+        <li><a href="#C.htm_heading_id_14">[]{#C.htm_pgfId-1284916}C.1.11 openSUSE Kubic</a></li>
+        <li><a href="#C.htm_heading_id_15">[]{#C.htm_pgfId-1284925}C.1.12 Raspberry Pi OS arm64</a></li>
+        <li><a href="#C.htm_heading_id_16">[]{#C.htm_pgfId-1284935}C.1.13 Red Hat Enterprise Linux</a></li>
+        <li><a href="#C.htm_heading_id_17">[]{#C.htm_pgfId-1284970}C.1.14 Ubuntu</a></li>
+      </ul>
+    </li>
+    <li><a href="#C.htm_heading_id_18">[]{#C.htm_pgfId-1284984}C.2 Building from source code</a></li>
+    <li><a href="#C.htm_heading_id_19">[]{#C.htm_pgfId-1284995}C.3 Podman Desktop</a></li>
+    <li><a href="#C.htm_heading_id_20">[]{#C.htm_pgfId-1285004}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#D.htm_heading_id_3">[]{#D.htm_pgfId-1286429}D.1 Joining the community</a></li>
+    <li><a href="#D.htm_heading_id_4">[]{#D.htm_pgfId-1286449}D.2 Podman on github.com</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#E.htm_heading_id_3">[]{#E.htm_pgfId-1286454}E.1 Using podman machine</a>
+      <ul>
+        <li><a href="#E.htm_heading_id_4">[]{#E.htm_pgfId-1286501}E.1.1 podman machine init</a></li>
+        <li><a href="#E.htm_heading_id_5">[]{#E.htm_pgfId-1286563}E.1.2 Podman machine SSH configuration</a></li>
+        <li><a href="#E.htm_heading_id_6">[]{#E.htm_pgfId-1286600}E.1.3 Starting the VM</a></li>
+        <li><a href="#E.htm_heading_id_7">[]{#E.htm_pgfId-1286646}E.1.4 Stopping the VM</a></li>
+      </ul>
+    </li>
+    <li><a href="#E.htm_heading_id_8">[]{#E.htm_pgfId-1286667}Summary</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#F.htm_heading_id_3">[]{#F.htm_pgfId-1289603}F.1 First steps</a>
+      <ul>
+        <li><a href="#F.htm_heading_id_4">[]{#F.htm_pgfId-1289610}F.1.1 Prerequisites</a></li>
+        <li><a href="#F.htm_heading_id_5">[]{#F.htm_pgfId-1289620}F.1.2 Installing Podman</a></li>
+      </ul>
+    </li>
+    <li><a href="#F.htm_heading_id_6">[]{#F.htm_pgfId-1289658}F.2 Using podman machine</a>
+      <ul>
+        <li><a href="#F.htm_heading_id_7">[]{#F.htm_pgfId-1289708}F.2.1 podman machine init</a></li>
+        <li><a href="#F.htm_heading_id_8">[]{#F.htm_pgfId-1289774}F.2.2 Podman machine SSH configuration</a></li>
+        <li><a href="#F.htm_heading_id_9">[]{#F.htm_pgfId-1289810}F.2.3 Starting the WSL 2 instance</a></li>
+        <li><a href="#F.htm_heading_id_10">[]{#F.htm_pgfId-1289859}F.2.4 Using podman machine commands</a></li>
+      </ul>
+    </li>
+    <li><a href="#F.htm_heading_id_11">[]{#F.htm_pgfId-1289968}Summary</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/containers/podmaninaction/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/containers/containers-1/" title="Containers (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable containers" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

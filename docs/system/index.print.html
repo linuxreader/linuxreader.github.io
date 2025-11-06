@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Systems :: Linux Reader">
+    <meta property="og:url" content="http://linuxreader.com/system/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Systems :: Linux Reader">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Systems :: Linux Reader">
+    <title>Systems :: Linux Reader</title>
+    <link href="http://linuxreader.com/system/" rel="canonical" type="text/html" title="Systems :: Linux Reader">
+    <link href="/system/index.xml" rel="alternate" type="application/rss+xml" title="Systems :: Linux Reader">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/system\/';
+      window.relearn.relBasePath='..';
+      window.relearn.relBaseUri='..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/system/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/storage/virtual-data-optimizer-vdo/" title="Virtual Data Optimizer (VDO) (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Systems
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/system/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/system/installation/" title="Installation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable system" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="systems">Systems</h1>
+
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Systems</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="installation">Installation</h1>
+
+<h1 id="chapter-1-rhcsa-notes---installation">Chapter 1 RHCSA Notes - Installation</h1>
+<h2 id="about-rhel9">About RHEL9</h2>
+<ul>
+<li>Kernel 5.14</li>
+<li>Released May 2019</li>
+<li>Built along side of Fedora 34</li>
+<li>Installer program = Anaconda</li>
+<li>Default Bootloader = GRUB2</li>
+<li>Default automatic partitioning = /boot, /, swap</li>
+<li>Default desktop environment = GNOME</li>
+</ul>
+<h2 id="installation-logs">Installation Logs</h2>
+<p><strong>/root/anaconda-ks.cfg</strong> Configuration entered</p>
+<p><strong>/var/log/anaconda/anaconda.log</strong> Contains informational, debug, and other general messages</p>
+<p><strong>/var/log/anaconda/journal.log</strong> Stores messages generated by many services and components during system installation</p>
+<p><strong>/var/log/anaconda/packaging.log</strong> Records messages generated by the dnf and rpm commands during software installation</p>
+<p><strong>/var/log/anaconda/program.log</strong> Captures messages generated by external programs</p>
+<p><strong>/var/log/anaconda/storage.log</strong> Records messages generated by storage modules</p>
+<p><strong>/var/log/anaconda/syslog</strong> Records messages related to the kernel</p>
+<p><strong>/var/log/anaconda/X.log</strong> Stores X Window System information</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Note: Logs are created in /tmp then transferred over to /var/log/anaconda once the install is finished.</code></pre></div>
+<h2 id="6-virtual-consoles">6 Virtual Consoles</h2>
+<ul>
+<li>Monitor the installation process.</li>
+<li>View diagnostic messages.</li>
+<li>Discover and fix any issues encountered.</li>
+<li>Information displayed on the console screens is captured in installation log files.</li>
+</ul>
+<p>Console 1 (Ctrl+Alt+F1)</p>
+<ul>
+<li>Main screen</li>
+<li>Select language</li>
+<li>Then switches default console to 6</li>
+</ul>
+<p>Console 2 (Ctrl_Alt+F2)</p>
+<ul>
+<li>Shell interface for root user</li>
+</ul>
+<p>Console 3 (Ctrl_Alt+F3)</p>
+<ul>
+<li>Displays install messages</li>
+<li>Stores them in /tmp/anaconda.log</li>
+<li>Info on detected hardware, etc.</li>
+</ul>
+<p>Console 4 (Ctrl_Alt+F4)</p>
+<ul>
+<li>Shows storage messages</li>
+<li>Stores them in /tmp/storage.log</li>
+</ul>
+<p>Console 5 (Ctrl_Alt+F5)</p>
+<ul>
+<li>Program messages</li>
+<li>Stores them in /tmp/program.log</li>
+</ul>
+<p>Console 6 (Ctrl_Alt+F6)</p>
+<ul>
+<li>Default Graphical configuration and installation console screen</li>
+</ul>
+<p>Console 1 Brings you to the log in screen. Console 2 does nothing. Console 3-6 all bring you to this log in screen</p>
+<p>Lab Setup</p>
+<p>VM1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>server1.example.om 
+192.168.0.110 
+Memory: 2GB 
+Storage: 1x20GB 
+2 vCPUs</code></pre></div>
+<p>VM2</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>server2.exmple.om 
+192.168.0.120 
+Memory: 2048 
+Storage: 1x20GB 
+	4x250 MB data disk 
+	1x5GB data disk 
+2 vCPUs</code></pre></div>
+<h2 id="setting-up-vm1">Setting up VM1</h2>
+<p>Download the disc iso on Redhat&rsquo;s website: <a href="https://access.redhat.com/downloads/content/rhel" rel="external" target="_blank">https://access.redhat.com/downloads/content/rhel</a></p>
+<p>Name RHEL9-VM1 Accept defaults.</p>
+<p>Set drive to 20 gigs</p>
+<p>press &ldquo;spe&rdquo; to hlt utooot</p>
+<p>Selet instll</p>
+<p>selet lnguge</p>
+<p>onfigure timezone under time &amp; dte</p>
+<p>go into instlltion destintion nd li &ldquo;done&rdquo;</p>
+<p>Networ nd hostnme settings</p>
+<ol>
+<li>hnge the hostnme to <a href="http://server1.exmple.om/" rel="external" target="_blank">server1.exmple.om</a></li>
+<li>go to IPv4 settings in networ nd host nd set to mnul ddress: 192.168.0.110 netms 24 gtewy 192.168.0.1 then sve</li>
+<li>slide the on/off swith in the min menu to on</li>
+</ol>
+<p>Set root pssword</p>
+<p>Chnge the oot order</p>
+<ol>
+<li>power off the vm</li>
+<li>Set oot sequene to hrd dis first then optil, remove floppy</li>
+</ol>
+<p>Accept license terms and rete user</p>
+<p>ssh from host os with putty</p>
+<p>Issue these Commnds after set up</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>whoami 
+hostname 
+pwd 
+logout or ctrl+d</code></pre></div>
+<h2 id="using-cockpit">Using cockpit</h2>
+<ul>
+<li>Web gui for managing RHEL system</li>
+<li>Comes pre-installed
+<ul>
+<li>if not then install with:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo dnf install cockpit</code></pre></div>
+</li>
+<li>must enable cockpit socket
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo systemctl enable --now cockpit.socket</code></pre></div>
+</li>
+<li>https://yourip:9090</li>
+</ul>
+<h2 id="labs">Labs</h2>
+<h3 id="lab">Lab:</h3>
+<p>Enable cockpit.socket:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo systemctl enable --now cockpit.socket</code></pre></div>
+<p>In a web browser, go to https://&lt;your-ip&gt;:9090</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="interaction">Interaction</h1>
+
+<p>Looking to get started using Fedora or Red Hat operating systems?</p>
+<p>This guide with get you started with the RHEL Graphical environment, file system, and essential commands to get started using Fedora, Red Hat, or other RHEL based systems.</p>
+<h2 id="redhat-rhel9-graphical-environment-wayland">RedHat (RHEL9) Graphical Environment (Wayland)</h2>
+<p>Redhat runs a graphical environment called Wayland. This is the foundation for running GUI apps. Wayland is a client/server display protocol. Which just means that the user (the client) requests a resource and the display manager (the server) serves those resources.</p>
+<p>Wayland is slowly replaced and older display protocol called &ldquo;X&rdquo;. And has better graphics capabilities, features, and performance than X. And consists of a Display or Login manager and a Desktop environment.</p>
+<p>The Display/ Login manager presents the login screen for users to log in. Once you log in, you get to the pre-configured desktop manager or Desktop Environment (DE). The GNOME Display Manager. (GDM)</p>
+<h2 id="file-system-and-directory-hierarchy">File System and Directory Hierarchy</h2>
+<p>The standard for the Linux filesystem is the Filesystem Hierarchy Standard (FHS). Which describes locations, names, and permissions for a variety of file types and directories.</p>
+<p>The directory structure starts at the root. Which is notated by a &ldquo;/&rdquo;. The top levels of the directory can be viewed by running the <code>ls</code> command on the root of the directory tree.</p>
+<p>Size of the root file system is automatically determined by the installer program based on the available disk space when you select the default partitioning (it may be altered). Here is a listing of the contents of /:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ ls /
+afs  bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  snap  srv  sys  tmp  usr  var</code></pre></div>
+<p>Some of these directories hold static data such as commands, configuration files, kernel and device files, etc. And some hold dynamic data such as log and status files.</p>
+<p>There are three major categories of file systems. They are:</p>
+<ol>
+<li>disk-based</li>
+<li>network-based</li>
+<li>memory-based</li>
+</ol>
+<p><strong>Disk-based</strong> files systems are physical media such as a hard drive or a USB flash drive and store information persistently. The root and boot file systems and both disk-based and created automatically when you select the default partitioning.</p>
+<p><strong>Network-Based</strong> file systems are disk-based file systems that are shared over the network for remote access. (Also stored persistently)</p>
+<p><strong>Memory-Based</strong> filesystems are virtual. And are created automatically at system startup and destroyed when the system goes down.</p>
+<h3 id="key-directories-in-">Key Directories in /</h3>
+<h4 id="etc-extended-text-configuration">/etc (extended text configuration)</h4>
+<p>This directory contains system configuration files for systemd, LVM, and user shell startup template files.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>david@fedora:$ ls /etc
+abrt                    dhcp                        gshadow-       locale.conf               openldap            request-key.d          sysctl.conf
+adjtime                 DIR_COLORS                  gss            localtime                 opensc.conf         resolv.conf            sysctl.d
+aliases                 DIR_COLORS.lightbgcolor     gssproxy       login.defs                opensc-x86_64.conf  rpc                    systemd
+alsa                    dleyna-server-service.conf  host.conf      logrotate.conf            openvpn             rpm                    system-release
+alternatives            dnf                         hostname       logrotate.d               opt                 rpmdevtools            system-release-cpe
+anaconda                dnsmasq.conf                hosts          lvm                       os-release          rpmlint                tcsd.conf
+anthy-unicode.conf      dnsmasq.d                   hp             machine-id                ostree              rsyncd.conf            terminfo
+apk                     dracut.conf                 httpd          magic                     PackageKit          rwtab.d                thermald
+appstream.conf          dracut.conf.d               idmapd.conf    mailcap                   pam.d               rygel.conf             timidity++.cfg
+asound.conf             egl                         ImageMagick-7  makedumpfile.conf.sample  paperspecs          samba                  tmpfiles.d
+audit                   environment                 init.d         man_db.conf               passwd              sane.d                 tpm2-tss
+authselect              ethertypes                  inittab        mcelog                    passwd-             sasl2                  Trolltech.conf
+avahi                   exports                     inputrc        mdevctl.d                 passwdqc.conf       security               trusted-key.key
+bash_completion.d       exports.d                   ipp-usb        mercurial                 pinforc             selinux                ts.conf
+bashrc                  favicon.png                 iproute2       mime.types                pkcs11              services               udev
+bindresvport.blacklist  fedora-release              iscsi          mke2fs.conf               pkgconfig           sestatus.conf          udisks2
+binfmt.d                filesystems                 issue          modprobe.d                pki                 sgml                   unbound
+bluetooth               firefox                     issue.d        modules-load.d            plymouth            shadow                 updatedb.conf
+brlapi.key              firewalld                   issue.net      mono                      pm                  shadow-                UPower
+brltty                  flatpak                     java           motd                      polkit-1            shells                 uresourced.conf
+brltty.conf             fonts                       jvm            motd.d                    popt.d              skel                   usb_modeswitch.conf
+ceph                    fprintd.conf                jvm-common     mtab                      ppp                 sos                    vconsole.conf
+chkconfig.d             fstab                       kdump          mtools.conf               printcap            speech-dispatcher      vdpau_wrapper.cfg
+chromium                fuse.conf                   kdump.conf     my.cnf                    profile             ssh                    vimrc
+chrony.conf             fwupd                       kernel         my.cnf.d                  profile.d           ssl                    virc
+cifs-utils              gcrypt                      keys           nanorc                    protocols           sssd                   vmware-tools
+containers              gdbinit                     keyutils       ndctl                     pulse               statetab.d             vpl
+credstore               gdbinit.d                   krb5.conf      ndctl.conf.d              qemu                subgid                 vpnc
+credstore.encrypted     gdm                         krb5.conf.d    netconfig                 qemu-ga             subgid-                vulkan
+crypto-policies         geoclue                     ld.so.cache    NetworkManager            rc0.d               subuid                 wgetrc
+crypttab                glvnd                       ld.so.conf     networks                  rc1.d               subuid-                whois.conf
+csh.cshrc               gnupg                       ld.so.conf.d   nfs.conf                  rc2.d               subversion             wireplumber
+csh.login               GREP_COLORS                 libaudit.conf  nfsmount.conf             rc3.d               sudo.conf              wpa_supplicant
+cups                    groff                       libblockdev    nftables                  rc4.d               sudoers                X11
+cupshelpers             group                       libibverbs.d   nilfs_cleanerd.conf       rc5.d               sudoers.d              xattr.conf
+dbus-1                  group-                      libnl          npmrc                     rc6.d               swid                   xdg
+dconf                   grub2.cfg                   libreport      nsswitch.conf             rc.d                swtpm-localca.conf     xml
+debuginfod              grub2-efi.cfg               libssh         nvme                      reader.conf.d       swtpm-localca.options  yum.repos.d
+default                 grub.d                      libuser.conf   odbc.ini                  redhat-release      swtpm_setup.conf       zfs-fuse
+depmod.d                gshadow                     libvirt        odbcinst.ini              request-key.conf    sysconfig</code></pre></div>
+<p>As you can see, there is a lot of stuff here.</p>
+<h4 id="root">/root</h4>
+<p>This is the default home directory for the root user.</p>
+<h4 id="mnt">/mnt</h4>
+<p>/mnt is used to temporarily mount a file system.</p>
+<h4 id="boot-disk-based">/boot (Disk-Based)</h4>
+<p>This directory contains the Linux Kernel, as well as boot support and configuration files.</p>
+<p>The size of /boot is determined by the installer program based on the available disk space when you select the default partitioning. It may be set to a different size during or after the installation.</p>
+<h4 id="home">/home</h4>
+<p>This is used to store user home directories and other user contents.</p>
+<h4 id="opt-optional">/opt (Optional)</h4>
+<p>This directory holds additional software that may need to be installed on the system. A sub directory is created for each installed software.</p>
+<h4 id="usr-unix-system-resources">/usr (UNIX System Resources)</h4>
+<p>Holds most of the system files such as:</p>
+<h5 id="usrbin">/usr/bin</h5>
+<p>Binary directory for user executable commands</p>
+<h5 id="usrsbin">/usr/sbin</h5>
+<p>System binaries required at boot and system administration commands not intended for execution by normal users. This directory is not included in the default search path for normal users.</p>
+<h5 id="usrlib-and-usrlib64">/usr/lib and /usr/lib64</h5>
+<p>Contain shared library routines required by many commands/programs located in /usr/bin and /usr/sbin. These are used by kernel and other applications and programs for their successful installation and operation.</p>
+<p>/usr/lib directory also stores system initialization and service management programs. /usr/lib64 contains 64-bit shared library routines.</p>
+<h5 id="usrinclude">/usr/include</h5>
+<p>Contains header files for the C programming language.</p>
+<h5 id="usrlocal">/usr/local:</h5>
+<p>This is a system administrator repository for storing commands and tools. These commands not generally included with the original Linux distribution.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Directory</th>
+          <th>Contains</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/usr/local/bin</td>
+          <td>ecutables</td>
+      </tr>
+      <tr>
+          <td>/usr/local/etc</td>
+          <td>configuration files</td>
+      </tr>
+      <tr>
+          <td>/usr/local/lib and /usr/local/lib64</td>
+          <td>library routines</td>
+      </tr>
+      <tr>
+          <td>/usr/share</td>
+          <td>manual pages, documentation, sample templates, configuration files</td>
+      </tr>
+  </tbody>
+</table>
+<h5 id="usrsrc">/usr/src:</h5>
+<p>This directory is used to store source code.</p>
+<h4 id="variable-directory-var">Variable Directory (/var)</h4>
+<p>For data that frequently changes while the system is operational. Such as log, status, spool, lock, etc.</p>
+<p>Common sub directories in /var:</p>
+<h5 id="varlog">/var/log</h5>
+<p>Contains most system log files. Such as boot logs, user logs, failed user logs, installation logs, cron logs, mail logs, etc.</p>
+<h5 id="varopt">/var/opt</h5>
+<p>Log, status, etc. for software installed in /opt.</p>
+<h5 id="varspool">/var/spool</h5>
+<p>Queued files such as print jobs, cron jobs, mail messages, etc.</p>
+<h5 id="vartmp">/var/tmp</h5>
+<p>For large or longer term temporary files that need to survive system reboots. These are deleted if they are not accessed for a period of 30 days.</p>
+<h4 id="tmp-temporary">/tmp (Temporary)</h4>
+<p>Temporary files that survive system reboots. These are deleted after 10 days if they are not accessed. Programs may need to create temporary files in order to run.</p>
+<h4 id="dev-devices">/dev (Devices)</h4>
+<p>Contains Device nodes for physical and virtual devices. Linux kernel talks to devices through these nodes. Device nodes are automatically created and deleted by the udevd service. Which dynamically manages devices.</p>
+<p>The two types of device files are character (or raw) and block.</p>
+<h4 id="character-devices">Character devices</h4>
+<ul>
+<li>Accessed serially.</li>
+<li>Console, serial printers, mice, keyboards, terminals, etc.</li>
+</ul>
+<h4 id="block-devices">Block devices</h4>
+<ul>
+<li>Accessed in a parallel fashion with data exchanged in blocks.</li>
+<li>Data on block devices is accessed randomly.</li>
+<li>Hard disk drives, optical drives, parallel printers, etc.</li>
+</ul>
+<h3 id="procfs-file-system-proc">Procfs File System (/proc)</h3>
+<ul>
+<li>Config and status info on:
+<ul>
+<li>Kernel, CPU, memory, disks, partitioning, file systems, networking, running processes, etc.</li>
+</ul>
+</li>
+<li>Zero-length pseudo files point to data maintained by the kernel in the memory.</li>
+<li>Interface to interact with kernel-maintained information.</li>
+<li>Contents created in memory at system boot time, updated during runtime, and destroyed at system shutdown.</li>
+</ul>
+<h3 id="runtime-file-system-run">Runtime File System (/run)</h3>
+<ul>
+<li>Data for processes running on the system.
+<ul>
+<li>/run/media</li>
+</ul>
+</li>
+<li>Used to automatically mount external file systems (CD, DVD, flash USB.)</li>
+<li>Contents deleted at shutdown.</li>
+</ul>
+<h3 id="the-system-file-system-sys">The System File System (/sys)</h3>
+<ul>
+<li>Info about hardware devices, drivers, and some kernel features.</li>
+<li>Used by the kernel to load necessary support for devices, create device nodes in /dev, and configure devices.</li>
+<li>Auto-maintained.</li>
+</ul>
+<h1 id="essential-system-commands">Essential System Commands</h1>
+<h3 id="tree-command">tree command</h3>
+<ul>
+<li>List hierarchy of directories and files.</li>
+<li>Column 2
+<ul>
+<li>Size.</li>
+</ul>
+</li>
+<li>Column 3
+<ul>
+<li>Full path.</li>
+</ul>
+</li>
+</ul>
+<p>Options.
+tree -a :: Include hidden files in the output.
+tree -d :: Exclude files from the output.
+tree -h :: Displays file sizes in human-friendly format.
+tree -f :: Prints the full path for each file.
+tree -p :: Includes file permissions in the output</p>
+<h2 id="labs">Labs</h2>
+<h3 id="list-only-the-directories--d-in-the-root-users-home-directory-root">List only the directories (-d) in the root user’s home directory (/root).</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tree -d /root</code></pre></div>
+<h3 id="list-files-in-the-etcsysconfig-directory-along-with-their-permissions-sizes-in-human-readable-format-and-full-path">List files in the /etc/sysconfig directory along with their permissions, sizes in human-readable format, and full path.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tree -phf /etc/sysconfig</code></pre></div>
+<h3 id="view-tree-man-pages">View tree man pages.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man tree</code></pre></div>
+<h1 id="prompt-symbols">Prompt Symbols</h1>
+<ul>
+<li>Hash sign (#) for root user.</li>
+<li>Dollar sign ($) for normal users.</li>
+</ul>
+<h1 id="linux-commands">Linux Commands</h1>
+<p>Two types of commands:</p>
+<ol>
+<li>User
+<ul>
+<li>General purpose.</li>
+<li>For any user.</li>
+</ul>
+</li>
+<li>System Management
+<ul>
+<li>Superuser.</li>
+<li>Require elevated privileges.</li>
+</ul>
+</li>
+</ol>
+<h1 id="command-mechanics">Command Mechanics</h1>
+<p>Basic Syntax</p>
+<ul>
+<li>command option(s) argument(s)</li>
+<li>Many commands have preconfigured default options and arguments.</li>
+</ul>
+<p>An option that starts with a single hyphen character (-la, for instance) ::: Short-option format.</p>
+<ul>
+<li>Two hyphen characters (&ndash;all, for instance)  ::: Long-option format.</li>
+</ul>
+<h2 id="listing-files-and-directories">Listing Files and Directories</h2>
+<h2 id="ls">ls</h2>
+<ul>
+<li>ll :: shortcut for ls -l</li>
+</ul>
+<p>Flags
+ls -l ::: View long listing format.
+ls -d ::: View info on the specified directory.
+ls -h ::: Human readable format.
+ls -a ::: List all files, including the hidden files.
+ls -t ::: Sort output by date and time with the newest file first.
+ls -R ::: List contents recursively.
+ls -i ::: View inode information.</p>
+<h3 id="labs-1">labs:</h3>
+<h4 id="show-the-long-listing-of-only-usr-without-showing-its-contents">Show the long listing of only /usr without showing its contents.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -ld /usr</code></pre></div>
+<h4 id="display-all-files-in-the-current-directory-with-their-sizes-in-human-friendly-format">Display all files in the current directory with their sizes in human-friendly format.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -lh</code></pre></div>
+<h4 id="list-all-files-including-the-hidden-files-in-the-current-directory-with-detailed-information">List all files, including the hidden files, in the current directory with detailed information.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -la</code></pre></div>
+<h4 id="sort-output-by-date-and-time-with-the-newest-file-first">Sort output by date and time with the newest file first.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -lt</code></pre></div>
+<h4 id="list-contents-of-the-etc-directory-recursively">List contents of the /etc directory recursively.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -R /etc</code></pre></div>
+<h4 id="list-directory-info-and-the-contents-of-a-directory-recursively">List directory info and the contents of a directory recursively.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -lR /etc</code></pre></div>
+<h4 id="view-ls-manpage">View ls manpage.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man ls</code></pre></div>
+<h3 id="printing-working-directory-pwd-command">Printing Working Directory (pwd) command</h3>
+<ul>
+<li>Returns the absolute path to a file or directory.</li>
+</ul>
+<h2 id="navigating-directories">Navigating Directories</h2>
+<p>Absolute path (full path or a fully qualified pathname) :: Points to a file or directory in relation to the top of the directory tree. It always starts with the forward slash (/).</p>
+<p>Relative path :: Points to a file or directory in relation to your current location.</p>
+<h3 id="labs-2">Labs:</h3>
+<h4 id="go-one-level-up-into-the-parent-directory-using-the-relative-path">Go one level up into the parent directory using the relative path</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd ..</code></pre></div>
+<h4 id="cd-into-etcsysconfig-using-the-absolute-path-etcsysconfig-or-the-relative-path-etcsysconfig">cd into /etc/sysconfig using the absolute path (/etc/sysconfig), or the relative path (etc/sysconfig)</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd /etc/sysconfig
+cd /
+cd etc/sysconfig</code></pre></div>
+<h4 id="change-into-the-usrbin-directory-from-etcsysconfig-using-relative-or-absolute-path">Change into the /usr/bin directory from /etc/sysconfig using relative or absolute path</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd /usr/bin</code></pre></div>
+<p>or</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd ../usr/bin</code></pre></div>
+<h4 id="return-to-your-home-directory">Return to your home directory</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd</code></pre></div>
+<p>or</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd ~</code></pre></div>
+<h4 id="use-the-absolute-path-to-change-into-the-home-directory-of-the-root-user-from-etcsysconfig">Use the absolute path to change into the home directory of the root user from /etc/sysconfig</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd ../../root</code></pre></div>
+<h4 id="switch-between-the-current-and-previous-directories">Switch between the current and previous directories</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd ..</code></pre></div>
+<h4 id="use-the-cd-command-to-print-the-home-directory-of-the-current-user">use the cd command to print the home directory of the current user</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cd -</code></pre></div>
+<h1 id="terminal-device-files">Terminal Device Files</h1>
+<ul>
+<li>Unique pseudo (or virtual) numbered device files that represent terminal sessions opened by users.</li>
+<li>Used to communicate with individual sessions.</li>
+<li>Stored in the /dev/pts/ (pseudo terminal session).</li>
+<li>Created  when a user opens a new terminal session.</li>
+<li>Removed when a session closes.</li>
+</ul>
+<h2 id="tty-command">tty command</h2>
+<ul>
+<li>Identify current terminal session.</li>
+<li>Displays filename and location.</li>
+<li>Example: /dev/pts/0</li>
+</ul>
+<h1 id="inspecting-systems-uptime-and-processor-load">Inspecting System’s Uptime and Processor Load</h1>
+<h2 id="uptime-command"><code>uptime</code> command</h2>
+<ul>
+<li>Displays:
+<ul>
+<li>System’s current time.</li>
+<li>System up time.</li>
+<li>Number of users currently logged in.</li>
+<li>Average % CPU load over the past 1, 5, and 15 minutes.
+<ul>
+<li>0.00 and 1.00 represent no load and full load.</li>
+<li>Greater than 1.00 signifies excess load (over 100%).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="clear-command">clear command</h3>
+<ul>
+<li>Clears the terminal screen and places the cursor at the top left of the screen.</li>
+<li>Can also use Ctrl+l for this command.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>clear</code></pre></div>
+<h2 id="determining-command-path">Determining Command Path</h2>
+<p>Tools for identifying the absolute path of the command that will be executed when you run it without specifying its full path.</p>
+<p><code>which</code>, <code>whereis</code>, and <code>type</code></p>
+<p>show the full location of the ls command:</p>
+<h2 id="which-command"><code>which</code> command</h2>
+<ul>
+<li>Show command aliases and location.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>[root@server1 bin]# which ls
+alias ls=&#39;ls --color=auto&#39;
+        /usr/bin/ls</code></pre></div>
+<h2 id="whereis-command"><code>whereis</code> command</h2>
+<ul>
+<li>Locates binary, source, and manual files for specified command name.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>[root@server1 bin]# whereis ls
+ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz /usr/share/man/man1p/ls.1p.gz&gt;)</code></pre></div>
+<h2 id="type-command"><code>type</code> command</h2>
+<ul>
+<li>Find whether the given command is an alias, shell built-in, file, function, or keyword.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>type ls</code></pre></div>
+<h2 id="viewing-system-information">Viewing System Information</h2>
+<h4 id="uname-command"><code>uname</code> command</h4>
+<ul>
+<li>Show system operating system name.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 bin<span style="color:#ff6ac1">]</span><span style="color:#78787e"># uname</span>
+</span></span><span style="display:flex;"><span>Linux</span></span></code></pre></div>
+<p>Flags
+uname -s ::: Show kernel name.
+uname -n ::: Show hostname.
+uname -r ::: Show kernel release.
+uname -v ::: Show kernel build date.
+uname -m ::: Show machine hardware name.
+uname -p ::: Show processor type.
+uname -i ::: Show hardware platform.
+uname -o ::: Show OS name.
+uname -a ::: Show kernel name, nodename, release, version, machine, and os.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>uname</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>uname -a</code></pre></div>
+<pre><code>Linux = Kernel name
+server1.example.com = Hostname of the system
+4.18.0-80.el8.x86_64 = Kernel release
+#1 SMP Wed Mar 13 12:02:46 UTC 2019 = Date and time of the kernel built
+x86_64 = Machine hardware name
+x86_64 = Processor type
+x86_64 = Hardware platform
+GNU/Linux = Operating system name
+</code></pre>
+<h2 id="viewing-cpu-specs">Viewing CPU Specs</h2>
+<h2 id="lscpu-command"><code>lscpu</code> command</h2>
+<ul>
+<li>Shows CPU:
+<ul>
+<li>Architecture.</li>
+<li>Operating modes.</li>
+<li>Vendor.</li>
+<li>Family.</li>
+<li>Model.</li>
+<li>Speed.</li>
+<li>Cache memory.</li>
+<li>Virtualization support type.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>lscpu</code></pre></div>
+<pre><code>architecture of the CPU (x86_64)
+supported modes of operation (32-bit and 64-bit)
+sequence number of the CPU on this system (1)
+threads per core (1)
+cores per socket (1)
+number of sockets (1)
+vendor ID (GenuineIntel)
+CPU model (58) model name (Intel …)
+speed (2294.784 MHz)
+amount and levels of cache memory (L1d, L1i, L2, and L3)
+</code></pre>
+<h2 id="getting-help">Getting Help</h2>
+<h3 id="manual-pages">Manual pages</h3>
+<ul>
+<li>Informational pages stored in /usr/share/man for each program.</li>
+</ul>
+<p>See <a href="/tools/using-man-pages/">Using Man Pages</a> for more.</p>
+<h4 id="man-command"><code>man</code> command</h4>
+<p>Flags:
+-k</p>
+<ul>
+<li>Perform a keyword search on manual pages.</li>
+<li>Must build the database with <code>mandb</code> first.</li>
+</ul>
+<p>-f</p>
+<ul>
+<li>Equivalent to whatis.</li>
+</ul>
+<h4 id="commands-to-find-informationhelp-about-programs">Commands to find information/help about programs.</h4>
+<ul>
+<li><code>apropos </code></li>
+<li><code>whatis</code></li>
+<li><code>info</code></li>
+<li><code>pinfo</code></li>
+</ul>
+<p><em>/usr/share/doc/</em></p>
+<ul>
+<li>Directory with additional program documentation.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>man passwd</span></span></code></pre></div>
+<p>line at the bottom indicates the line number of the manual page.</p>
+<h3 id="man-page-navigation">Man page navigation</h3>
+<p>h ::: Help on navigation.
+q ::: Quit the man page.
+Up arrow key ::: Scroll up one line.
+Enter or Down arrow key ::: Scroll down one line.
+f / Spacebar / Page down ::: Move forward one page.
+b / Page up ::: Move backward one page.
+d / u ::: Move down/up half a page.
+g / G ::: Move to the beginning / end of the man pages.
+:f ::: Display line number and bytes being viewed.
+/pattern ::: Searches forward for the specified pattern.
+?pattern ::: Searches backward for the specified pattern.
+n / N ::: Find the next / previous occurrence of a pattern.</p>
+<h2 id="headings-in-the-manual">Headings in the Manual</h2>
+<p><strong>NAME</strong></p>
+<ul>
+<li>Name of the command or file with a short description.
+<strong>SYNOPSIS</strong></li>
+<li>Syntax summary.
+<strong>DESCRIPTION</strong></li>
+<li>Overview of the command or file.
+<strong>OPTIONS</strong></li>
+<li>Options available for use.
+<strong>EXAMPLES</strong></li>
+<li>Some examples to explain the usage.
+<strong>FILES</strong></li>
+<li>A list of related files.
+<strong>SEE ALSO</strong></li>
+<li>Reference to other manual pages or topics.
+<strong>BUGS</strong></li>
+<li>Any reported bugs or issues.
+<strong>AUTHOR</strong></li>
+<li>Contributor information.</li>
+</ul>
+<h2 id="manual-sections">Manual Sections</h2>
+<ul>
+<li>Manual information is split into nine sections for organization and clarity.</li>
+<li>Man searches through each section until it finds a match.
+<ul>
+<li>Starts at section 1, then section 2, etc.</li>
+</ul>
+</li>
+<li>Some commands in Linux also have a configuration file with an identical name.
+<ul>
+<li>Ex: <code>passwd</code> command in /usr/bin and the passwd file in /etc.</li>
+</ul>
+</li>
+<li>Specify the section to find that page only.
+<ul>
+<li>Ex: <code>man 5 passwd</code></li>
+</ul>
+</li>
+<li>Section number is located at the top (header) of the page.</li>
+</ul>
+<p><strong>Section 1</strong></p>
+<ul>
+<li>Refers to user commands.
+<strong>Section 4</strong></li>
+<li>Contains special files.
+<strong>Section 5</strong></li>
+<li>Describes file formats for many system configuration files.
+<strong>Section 8</strong></li>
+<li>Documents system administration and privileged commands designed for the root user.</li>
+</ul>
+<p>Run <code>man man</code> for more details.</p>
+<h2 id="searching-by-keyword">Searching by Keyword</h2>
+<h2 id="apropos-command"><code>apropos</code> command</h2>
+<ul>
+<li>Search all sections of the manual pages and show a list of all entries matching the specified keyword in their names or descriptions.</li>
+<li>Must <code>mandb</code> command in order to build an indexed database of the manual pages prior to using.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mandb</span></span></code></pre></div>
+<h4 id="mandb-command"><code>mandb</code> command</h4>
+<ul>
+<li>Build an indexed database of the manual pages.</li>
+</ul>
+<h4 id="lab-find-a-forgotten-xfs-administration-command">Lab: Find a forgotten XFS administration command.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man -k xfs
+or
+apropos xfs</code></pre></div>
+<h4 id="lab-show-a-brief-list-of-options-and-a-description">Lab: Show a brief list of options and a description.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>passwd --help
+or
+passwd -?</code></pre></div>
+<h4 id="whatis-command"><code>whatis</code> command</h4>
+<ul>
+<li>Same output as <code>man -f</code></li>
+<li>Display one-line manual page descriptions.</li>
+</ul>
+<h2 id="info-and-pinfo-commands"><code>info</code> and <code>pinfo</code> Commands</h2>
+<ul>
+<li>Display command detailed documentation.</li>
+<li>Divided into sections called nodes.</li>
+<li>Header:
+<ul>
+<li>Name of the file being displayed.</li>
+<li>Names of the current, next, and previous nodes.</li>
+</ul>
+</li>
+<li>Almost identical to each other.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>info ls</span></span></code></pre></div>
+<p>u navigate efficiently.</p>
+<h3 id="info-page-navigation">info page Navigation</h3>
+<p>Down / Up arrows</p>
+<ul>
+<li>Move forward / backward one line.
+Spacebar / Del</li>
+<li>Move forward / backward one page.
+q</li>
+<li>Quit the info page.
+t</li>
+<li>Go to the top node of the document.
+s</li>
+<li>Search</li>
+</ul>
+<h2 id="documentation-in--usrsharedoc">Documentation in  /usr/share/doc/</h2>
+<p><em>/usr/share/doc/</em></p>
+<ul>
+<li>Stores general documentation for installed packages under subdirectories that match their names.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l /usr/share/doc/gzip</code></pre></div>
+<h2 id="online-rhel-documentation">Online RHEL Documentation</h2>
+<ul>
+<li>docs.redhat.com</li>
+<li>Release notes and guides on planning, installation, administration, security, storage management, virtualization, etc.</li>
+<li>access.redhat.com</li>
+</ul>
+<h2 id="labs-3">Labs</h2>
+<h3 id="lab-2-navigate-linux-directory-tree">Lab 2: Navigate Linux Directory Tree</h3>
+<p>Check your location in the directory tree.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pwd</span></span></code></pre></div>
+<p>Show file permissions in the current directory including the hidden files.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -la</span></span></code></pre></div>
+<p>Change directory into /etc and confirm the directory change.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> /etc
+</span></span><span style="display:flex;"><span>pwd</span></span></code></pre></div>
+<p>Switch back to the directory where you were before, and run pwd again to verify.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff5c57">cd</span> -
+</span></span><span style="display:flex;"><span>pwd</span></span></code></pre></div>
+<h3 id="lab-miscellaneous-tasks">Lab: Miscellaneous Tasks</h3>
+<p>Identify the terminal device file.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tty</span></span></code></pre></div>
+<p>Open a couple of terminal sessions. Compare the terminal numbers.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tty
+</span></span><span style="display:flex;"><span>/dev/pts/1</span></span></code></pre></div>
+<p>Execute the uptime command and analyze the system uptime and processor load information.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uptime</span></span></code></pre></div>
+<p>Use three commands to identify the location of the vgs command.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>which vgs
+</span></span><span style="display:flex;"><span>whereis vgs
+</span></span><span style="display:flex;"><span><span style="color:#ff5c57">type</span> vgs</span></span></code></pre></div>
+<h3 id="lab-identify-system-and-kernel-information">Lab: Identify System and Kernel Information</h3>
+<ol>
+<li>Analyze the basic information about the system and kernel reported.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname -a</span></span></code></pre></div>
+<p>Examine the key items relevant to the processor.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lscpu</span></span></code></pre></div>
+<h3 id="lab-man">Lab: Man</h3>
+<p>View man page for uname.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>man uname</span></span></code></pre></div>
+<p>View the 5 man page section for the shadow.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>man <span style="color:#ff9f43">5</span> shadow</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="process-and-task-scheduling">Process and Task Scheduling</h1>
+
+<h2 id="processes-and-priorities">Processes and Priorities</h2>
+<p>Process</p>
+<ul>
+<li>a unit for provisioning system resources.</li>
+<li>any program, application, or command that runs on the system.</li>
+<li>created in memory when a program, application, or command is initiated.</li>
+<li>organized in a hierarchical fashion.</li>
+<li>Each process has a parent process (a.k.a. a calling process) that spawns it.</li>
+<li>A single parent process may have one or many child processes
+<ul>
+<li>passes many of its attributes to them at the time of their creation.</li>
+</ul>
+</li>
+<li>Each process is assigned an exclusive identification number (Process IDentifier (PID))
+<ul>
+<li>is used by the kernel to manage and control the process through its lifecycle.</li>
+</ul>
+</li>
+<li>When a process completes its lifespan or is terminated, this event is reported back to its parent process, and all the resources provisioned to it (cpu cycles, memory, etc.) are then freed and the PID is removed from the system.</li>
+<li>background system processes are called daemons
+<ul>
+<li>which sit in the memory and wait for an event to trigger a request to use their services.</li>
+</ul>
+</li>
+<li><em>/proc</em>
+<ul>
+<li>Where information for each running process is recorded and maintained.</li>
+<li>Referenced by <code>ps</code> and other commands</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h3 id="process-states">Process States</h3>
+<ul>
+<li>Five basic process states:
+<ul>
+<li>running
+<ul>
+<li>being executed by the system CPU.</li>
+</ul>
+</li>
+<li>sleeping
+<ul>
+<li>waiting for input from a user or another process.</li>
+</ul>
+</li>
+<li>waiting
+<ul>
+<li>has received the input it was waiting for and is now ready to run as soon as its turn comes.</li>
+</ul>
+</li>
+<li>stopped
+<ul>
+<li>currently halted and will not run even when its turn comes unless a signal is sent to change its behavior.</li>
+</ul>
+</li>
+<li>zombie
+<ul>
+<li>Dead.</li>
+<li>Exists in the process table alongside other process entries</li>
+<li>takes up no resources.</li>
+<li>entry is retained until its parent process permits it to die</li>
+<li>also called a defunct process.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="#R-image-d8d08f0ce2f328c303273db04f4e6e17" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-5YWJN0KN%201.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d8d08f0ce2f328c303273db04f4e6e17"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-5YWJN0KN%201.jpg"></a></p>
+<h3 id="ps-command"><code>ps</code> command</h3>
+<ul>
+<li>Lists processes specific to the terminal where this command is issued.</li>
+<li>Shows:
+<ul>
+<li>PID</li>
+<li>terminal (TTY) the process spawned in</li>
+<li>cumulative time (TIME) the system CPU has given to the process</li>
+<li>name of the command or program (CMD) being executed.</li>
+<li>may be customized to view only desired columns</li>
+<li>can use ps to list a process by it&rsquo;s ownership or owning group.</li>
+</ul>
+</li>
+<li>Output with -ef
+<ul>
+<li>UID
+<ul>
+<li>UID of process owner</li>
+</ul>
+</li>
+<li>PID
+<ul>
+<li>Process ID</li>
+</ul>
+</li>
+<li>PPID
+<ul>
+<li>Parent Process ID</li>
+</ul>
+</li>
+<li>C
+<ul>
+<li>CPU utilization</li>
+</ul>
+</li>
+<li>STIME
+<ul>
+<li>Start time</li>
+</ul>
+</li>
+<li>TTY
+<ul>
+<li>Controlling terminal</li>
+<li>?
+<ul>
+<li>daemon process</li>
+</ul>
+</li>
+<li>console
+<ul>
+<li>system console</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TIME
+<ul>
+<li>Aggregated execution time</li>
+</ul>
+</li>
+<li>CMD
+<ul>
+<li>command or program name</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Flags
+<ul>
+<li>-e
+<ul>
+<li>every</li>
+</ul>
+</li>
+<li>-f
+<ul>
+<li>full format</li>
+</ul>
+</li>
+<li>-F
+<ul>
+<li>Extra full format</li>
+</ul>
+</li>
+<li>-l
+<ul>
+<li>long format</li>
+</ul>
+</li>
+<li>-efl
+<ul>
+<li>Detailed process report</li>
+</ul>
+</li>
+<li>&ndash;forest
+<ul>
+<li>tree like hierarchy</li>
+</ul>
+</li>
+<li>-x
+<ul>
+<li>include daemon processes</li>
+</ul>
+</li>
+<li>-o
+<ul>
+<li>user-defined format</li>
+<li>Make sure there are no white spaces between comma separated values.</li>
+</ul>
+</li>
+<li>-C
+<ul>
+<li>command list</li>
+<li>list processes that match a specific command name.</li>
+</ul>
+</li>
+<li>-U or -u
+<ul>
+<li>List user supplied as argument.</li>
+</ul>
+</li>
+<li>-G or -g
+<ul>
+<li>List processes owned by a specific group</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="top-command"><code>top</code> command</h3>
+<ul>
+<li>Display processes in real time</li>
+<li>q or ctrl+c to quit</li>
+<li>Hotkeys while in top
+<ul>
+<li>o
+<ul>
+<li>re-sequence the process list.</li>
+</ul>
+</li>
+<li>f
+<ul>
+<li>add or remove fields</li>
+</ul>
+</li>
+<li>F
+<ul>
+<li>select the field to sort on</li>
+</ul>
+</li>
+<li>h
+<ul>
+<li>help</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+<li>summary portion
+<ul>
+<li>First 5 lines
+<ul>
+<li>1
+<ul>
+<li>system uptime, number of users logged in, and system load averages over the period of 1, 5, and 15 minutes.</li>
+</ul>
+</li>
+<li>2
+<ul>
+<li>task (or process) information</li>
+<li>total number of tasks running</li>
+<li>How many of the total are running, sleeping, stopped, and zombie</li>
+</ul>
+</li>
+<li>3
+<ul>
+<li>processor usage</li>
+<li>CPU time in percentage spent in running user and system processes, in idling and waiting, and so on.</li>
+</ul>
+</li>
+<li>4
+<ul>
+<li>memory utilization
+<ul>
+<li>total, free, used, and allocated for buffering and caching</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>5
+<ul>
+<li>swap useage
+<ul>
+<li>total, free, and in use</li>
+</ul>
+</li>
+<li>avail Mem
+<ul>
+<li>estimate of memory available for starting processes without using swap.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tasks portion
+<ul>
+<li>details for each process</li>
+<li>12 columns
+<ul>
+<li>1 and 2
+<ul>
+<li>Process identifier (PID) and owner (USER)</li>
+</ul>
+</li>
+<li>3 and 4
+<ul>
+<li>Process priority (PR) and nice value (NI)</li>
+</ul>
+</li>
+<li>5 and 6
+<ul>
+<li>Depict amounts of virtual memory (VIRT) and non-swapped resident memory (RES) in use</li>
+</ul>
+</li>
+<li>7
+<ul>
+<li>Shows the amount of shareable memory available to the process (SHR)</li>
+</ul>
+</li>
+<li>8
+<ul>
+<li>Represents the process status (S)</li>
+</ul>
+</li>
+<li>9 and 10
+<ul>
+<li>Express the CPU (%CPU) and memory (%MEM) utilization</li>
+</ul>
+</li>
+<li>11
+<ul>
+<li>Exhibits the CPU time in hundredths of a second (TIME+)</li>
+</ul>
+</li>
+<li>12
+<ul>
+<li>Identifies the process name (COMMAND)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="listing-a-specific-process">Listing a Specific Process</h3>
+<h3 id="pidof-and-pgrep-command"><code>pidof</code> and <code>pgrep</code> command</h3>
+<ul>
+<li>List only the PID of a specific process</li>
+<li>pass a process name as an argument to view its PID</li>
+<li>identical if used without any options</li>
+</ul>
+<h3 id="listing-processes-by-user-and-group-ownership">Listing Processes by User and Group Ownership</h3>
+<ul>
+<li>can use <code>ps</code> to list a process by it&rsquo;s ownership or owning group.</li>
+</ul>
+<h3 id="process-niceness-and-priority">Process Niceness and Priority</h3>
+<ul>
+<li>A process is spawned at a certain priority,</li>
+<li>priority is established based on the nice value.</li>
+<li>Higher niceness lowers execution priority of a process</li>
+<li>Lower niceness increase priority.</li>
+<li>Child process inherits nice value of it&rsquo;s calling process.</li>
+<li>Can choose a nicenes based on urgency, importance, or system load.</li>
+<li>Normal users can only increase niceness of their processes.</li>
+<li>Root can raise or lower niceness of any process.</li>
+<li>40 nice values
+<ul>
+<li>-20
+<ul>
+<li>highest and most favorable</li>
+</ul>
+</li>
+<li>+19
+<ul>
+<li>lowest and least favorable</li>
+</ul>
+</li>
+<li>0
+<ul>
+<li>default</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Showing nice and priority with ps
+<ul>
+<li>niceness of 0 corresponds to priority of 80</li>
+<li>-20 corresponds to priority of 60</li>
+</ul>
+</li>
+<li>Showing nice and priority with top.
+<ul>
+<li>niceness of 0 corresponds to priority of 20</li>
+<li>-20 corresponds to priority of 0</li>
+</ul>
+</li>
+</ul>
+<h3 id="nice-command"><code>nice</code> command</h3>
+<ul>
+<li>Launch a program at a non-default priority.</li>
+</ul>
+<h3 id="renice-command"><code>renice</code> command</h3>
+<ul>
+<li>Alter the priority of a running program</li>
+</ul>
+<h3 id="controlling-processes-with-signals">Controlling Processes with Signals</h3>
+<ul>
+<li>terminating the process gracefully</li>
+<li>killing it abruptly</li>
+<li>forcing it to re-read its configuration.</li>
+<li>Ordinary users can kill processes that they own, while the root user privilege is needed to kill any process on the system.</li>
+<li>Processes in a waiting state ignore the soft termination signal.</li>
+</ul>
+<h3 id="kill-command"><code>kill</code> command</h3>
+<ul>
+<li>Pass a signal to a process</li>
+<li>Requires one or more PIDs</li>
+</ul>
+<p>Flags</p>
+<ul>
+<li>-l
+<ul>
+<li>view a list of signals</li>
+</ul>
+</li>
+</ul>
+<p>Common signals
+- 1 SIGHUP (hangup)
+- causes a process to disconnect itself from a closed terminal that it was tied to
+- instruct a running daemon to re-read its configuration without a restart.
+- 2 SIGINT
+- ^c (Ctrl+c) signal issued on the controlling terminal to interrupt the execution of a process.
+- 9 SIGKILL
+- Terminates a process abruptly
+- 15 SIGTERM (default)
+- Soft termination signal to stop a process in an orderly fashion.
+- Default signal if none is specified with the command.
+- 18 SIGCONT
+- Same as using the bg command to resume
+- 19 SIGSTOP
+- Same as using Ctrl+z to suspend a job
+- 20 SIGTSTP
+- Same as using the fg command</p>
+<h3 id="pkill-command">pkill command</h3>
+<ul>
+<li>pass a signal to a process</li>
+<li>requires one or more process names to send a signal to.</li>
+</ul>
+<h2 id="job-scheduling">Job Scheduling</h2>
+<ul>
+<li>Run a command at a specified time.</li>
+<li>One time or periodic.</li>
+<li>One time command can be used to run a command at a time with low system usage.</li>
+<li>Periodic examples:
+<ul>
+<li>creating a compressed archive</li>
+<li>trimming log files</li>
+<li>monitoring the system</li>
+<li>running a custom script</li>
+<li>removing unwanted files from the system.</li>
+</ul>
+</li>
+<li><code>atd</code> and <code>crond</code> manage jobs</li>
+</ul>
+<h3 id="atd">atd</h3>
+<ul>
+<li>Run one time jobs.</li>
+<li>atd daemon retries a missed job at the same time next day.</li>
+<li>Does not need a restart with changes</li>
+</ul>
+<h3 id="crond">crond</h3>
+<ul>
+<li>Run periodic scheduled jobs.</li>
+<li>Daemon reads the schedules in files located in the <em>/var/spool/cron</em> and <em>/etc/cron.d</em> directories.
+<ul>
+<li>scans these files in short intervals</li>
+<li>updates the in-memory schedules to reflect any modifications.</li>
+<li>runs a job at its scheduled time only</li>
+<li>does not entertain any missed jobs.</li>
+<li>Does not need a restart with changes</li>
+</ul>
+</li>
+</ul>
+<h3 id="controlling-user-access">Controlling user access</h3>
+<ul>
+<li>all users can schedule jobs</li>
+<li>access to job scheduling can be edited
+<ul>
+<li>must add users to allowed or deny file in <em>/etc</em>
+<ul>
+<li><em>/etc/at.allow</em> &amp; <em>/etc/cron.allow</em>
+<ul>
+<li>Does not exist by default.</li>
+</ul>
+</li>
+<li><em>/etc/at.deny</em> &amp; <em>/etc/cron.deny</em>
+<ul>
+<li>Exists by default</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>list one username per line</li>
+<li>root user is always permitted</li>
+</ul>
+</li>
+<li>Denial message appears if unauthorized user attempts to use at or cron.
+<ul>
+<li>Only if there is an entry for the calling user in the deny files.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>at.allow / cron.allow</th>
+          <th>at.deny / cron.deny</th>
+          <th>Impact</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Exists, and contains user entries</td>
+          <td>Existence does not matter</td>
+          <td>All users listed in allow files are permitted</td>
+      </tr>
+      <tr>
+          <td>Exists, but is empty</td>
+          <td>Existence does not matter</td>
+          <td>No users are permitted</td>
+      </tr>
+      <tr>
+          <td>Does not exist</td>
+          <td>Exists, and contains user entries</td>
+          <td>All users, other than those listed in deny files, are permitted</td>
+      </tr>
+      <tr>
+          <td>Does not exist</td>
+          <td>Exists, but is empty</td>
+          <td>All users are permitted</td>
+      </tr>
+      <tr>
+          <td>Does not exist</td>
+          <td>Does not exist</td>
+          <td>No users are permitted</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ul>
+<h3 id="scheduler-log-file">Scheduler Log File</h3>
+<p><em>/var/log/cron</em>
+- Logs for both <code>atd</code> and <code>cron</code>
+Shows
+- time of activity
+- hostname
+- process name and PID
+- owner
+- message for each invocation
+- service start time and delays
+- must have root privileges to view</p>
+<h3 id="at-command"><code>at</code> command</h3>
+<ul>
+<li>schedule a one-time execution of a program in the future.</li>
+<li>Submitted jobs are spooled in the <em>/var/spool/at/</em> and executed by the atd daemon at the specified time.</li>
+<li>file created containing the settings for establishing the user’s shell environment to ensure a successful execution.
+<ul>
+<li>also includes the name of the command or program to be run.</li>
+</ul>
+</li>
+<li>no need to restart the daemon after a job submission.</li>
+<li>assumes the current year and today’s date if the year and date are not mentioned.</li>
+<li>ways to express time:
+<ul>
+<li>at 1:15am
+<ul>
+<li>(executes the task at the next 1:15 a.m.)</li>
+</ul>
+</li>
+<li>at noon
+<ul>
+<li>(executes the task at 12:00 p.m.)</li>
+</ul>
+</li>
+<li>at 23:45
+<ul>
+<li>(executes the task at 11:45 p.m.)</li>
+</ul>
+</li>
+<li>at midnight
+<ul>
+<li>(executes the task at 12:00 a.m.)</li>
+</ul>
+</li>
+<li>at 17:05 tomorrow
+<ul>
+<li>(executes the task at 5:05 p.m. on the next day)</li>
+</ul>
+</li>
+<li>at now + 5 hours
+<ul>
+<li>(executes the task 5 hours from now. We can specify minutes, days, or weeks in place of hours)</li>
+</ul>
+</li>
+<li>at 3:00 10/15/20
+<ul>
+<li>(executes the task at 3:00 a.m. on October 15, 2020)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Flags
+<ul>
+<li>-f
+<ul>
+<li>supply a filename</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="crontab">Crontab</h3>
+<h3 id="crontab-command"><code>crontab</code> command</h3>
+<ul>
+<li>other method for scheduling tasks for running in the future.</li>
+<li>Unlike atd, crond executes cron jobs on a regular basis as defined in the <em>/etc/crontab</em> file.</li>
+<li>Crontables (another name for crontab files) are located in the <em>/var/spool/cron</em> directory.</li>
+<li>Each authorized user with a scheduled job has a file matching their login name in this directory.
+<ul>
+<li>such as <em>/var/spool/cron/user1</em></li>
+</ul>
+</li>
+<li><em>/etc/crontab/</em> &amp; <em>/etc/cron.d/</em>
+<ul>
+<li>Other locations for system crontables.</li>
+<li>Only root can create, modify, or delete them.</li>
+</ul>
+</li>
+<li>crond daemon
+<ul>
+<li>scans entries in all 3 directories.</li>
+<li>adds log entry to <em>/var/log/cronfile</em></li>
+<li>no need to start after modifying cron jobs.</li>
+</ul>
+</li>
+<li>flags
+<ul>
+<li>-e
+<ul>
+<li>edit crontables</li>
+</ul>
+</li>
+<li>-l
+<ul>
+<li>list crontables</li>
+</ul>
+</li>
+<li>-r
+<ul>
+<li>remove crontables.</li>
+<li>Do not run crontab -r if you do not wish to remove the crontab file. Instead, edit the file with crontab -e and just erase the entry.</li>
+</ul>
+</li>
+<li>-u
+<ul>
+<li>modify a different user’s crontable</li>
+<li>provided they are allowed to do so and the other user is listed in the cron.allow file.</li>
+<li>root user can use the -u flag to alter other users’ crontables even if the affected users are not listed in the allow file.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="syntax-of-user-crontables">Syntax of User Crontables</h3>
+<ul>
+<li><em>/etc/crontab</em>
+<ul>
+<li>Specifies the syntax that each user cron job must comply with in order for crond to interpret and execute it successfully.</li>
+</ul>
+</li>
+<li>Each entry for a user crontable has 6 lines
+<ul>
+<li>1-5
+<ul>
+<li>schedule</li>
+</ul>
+</li>
+<li>6
+<ul>
+<li>login name of executing user</li>
+</ul>
+</li>
+<li>rest for command or program to be executed.
+example crontable line</li>
+<li>20 1,12 1-15 feb * ls&gt; /tmp/ls.out</li>
+</ul>
+</li>
+<li>Field Content Description</li>
+<li>1
+<ul>
+<li>Minute of the hour</li>
+<li>Valid values are 0 (the exact hour) to 59. This field can have one specific value as in field 1, multiple comma-separated values as in field 2, a range of values as in field 3, a mix of fields 2 and 3 (1-5,6-19), or an * representing every minute of the hour as in field 5.</li>
+</ul>
+</li>
+<li>2
+<ul>
+<li>Hour of the day</li>
+<li>Valid values are 0 (midnight) to 23. Same usage applies as described for field 1.</li>
+</ul>
+</li>
+<li>3
+<ul>
+<li>Day of the month</li>
+<li>Valid values are 1 to 31. Same usage applies as described for field 1.</li>
+</ul>
+</li>
+<li>4
+<ul>
+<li>Month of the year</li>
+<li>Valid values are 1 to 12 or jan to dec. Same usage applies as described for field 1.</li>
+</ul>
+</li>
+<li>5
+<ul>
+<li>Day of the week</li>
+<li>Valid values are 0 to 7 or sun to sat, with 0 and 7 representing Sunday, 1 representing Monday, and so on. Same usage applies as described for field 1.</li>
+</ul>
+</li>
+<li>6
+<ul>
+<li>Command or program to execute</li>
+<li>Specifies the full path name of the command or program to be executed, along with any options or arguments that it requires.</li>
+</ul>
+</li>
+</ul>
+<p><em>/etc/crontab</em> contents:
+<a href="#R-image-4107d497ab9594ae9cbc216f311ad3ee" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240815080652.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4107d497ab9594ae9cbc216f311ad3ee"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240815080652.png"></a></p>
+<ul>
+<li>Step values may be used with * and ranges in the crontables using the forward slash character (/).</li>
+<li>Step values allow the number of skips for a given value.</li>
+<li>Example:
+<ul>
+<li>/2 in the minute field
+<ul>
+<li>every second minute</li>
+</ul>
+</li>
+<li>/3 in the minute field
+<ul>
+<li>every third minute,</li>
+</ul>
+</li>
+<li>0-59/4 in the minute field
+<ul>
+<li>every 4th minute</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Make sure you understand and memorize the order of the fields defined in crontables.</p>
+<h3 id="anacron">Anacron</h3>
+<ul>
+<li>service that runs after every system reboot</li>
+<li>checks for any cron and at jobs that were scheduled for execution during the time the system was down and were missed as a result.</li>
+<li>useful on laptop, desktop, and similar purpose systems with extended periods of frequent downtimes and are not intended for 24/7 operations.</li>
+<li>Scans the <em>/etc/cron.hourly/0anacron</em> file for three factors to learn whether to run missed jobs.</li>
+<li>May be run manually at the command line.
+<ul>
+<li>Run <code>anacron</code> to run all jobs in <em>/etc/anacrontab</em> that were missed.</li>
+</ul>
+</li>
+<li><em>/var/spool/anacron</em>
+<ul>
+<li>Where anacron stores job execution dates</li>
+</ul>
+</li>
+<li>3 factors must be true for anacron to execute scripts in <em>/etc/cron.daily</em>, <em>/etc/cron.weekly</em>, and <em>/etc/cron.monthly</em>
+<ul>
+<li>
+<ol>
+<li>Presence of the <em>/var/spool/anacron/cron.daily</em> file.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Elapsed time of 24 hours since it was last run.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>System is plugged in to an AC source.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>settings defined in <em>/etc/anacrontab</em>
+<ul>
+<li>5 variables defined by default:
+<ul>
+<li><strong>SHELL</strong> and <strong>PATH</strong>
+<ul>
+<li>Set the shell and path to be used for executing the programs.</li>
+</ul>
+</li>
+<li><strong>MAILTO</strong>
+<ul>
+<li>Defines the login name or an email of the user who is to be sent any output and error messages.</li>
+</ul>
+</li>
+<li><strong>RANDOM_DELAY</strong>
+<ul>
+<li>Expresses the maximum arbitrary delay in minutes added to the base delay of the jobs as defined in column 2 of the last three lines.</li>
+</ul>
+</li>
+<li><strong>START_HOURS_RANGE</strong>
+<ul>
+<li>States the hour duration within which the missed jobs could be run.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bottom 3 lines define the schedule and the programs to be executed:
+<ul>
+<li>Column 1:
+<ul>
+<li>Period in days (or @daily, @weekly, @monthly, or @yearly)</li>
+<li>How often to run the specified job.</li>
+</ul>
+</li>
+<li>Column 2:
+<ul>
+<li>How many minutes to wait after system boot to execute the job.</li>
+</ul>
+</li>
+<li>Column 3:
+<ul>
+<li>Unique job identifier</li>
+</ul>
+</li>
+<li>Columns 4 to 6:
+<ul>
+<li>Command to be used to execute the scripts located under the <em>/etc/cron.daily</em>, <em>/etc/cron.weekly</em>, and <em>/etc/cron.monthly</em> directories.</li>
+<li>By default, the <code>run-parts</code> command is invoked for execution at the default niceness.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>For each job:
+<ul>
+<li>Examines whether the job was already run during the specified period (column 1).</li>
+<li>Executes it after waiting for the number of minutes (column 2) plus the <strong>RANDOM_DELAY</strong> value if it wasn’t.</li>
+<li>When all missed jobs have been carried out and there is none pending, Anacron exits.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="process-and-task-scheduling-labs">Process and Task Scheduling Labs</h2>
+<h3 id="lab-ps">Lab: ps</h3>
+<ol>
+<li>ps</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps</code></pre></div>
+<ol start="2">
+<li>Check manual pages:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man ps</code></pre></div>
+<ol start="3">
+<li>Run with &ldquo;every&rdquo; and &ldquo;full format&rdquo; flags:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code> ps -ef</code></pre></div>
+<ol start="4">
+<li>Produce an output with the command name in column 1, PID in column 2, PPID in column 3, and owner name in column 4, run it as follows:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code> ps -o comm,pid,ppid,user</code></pre></div>
+<ol start="5">
+<li>Check how many sshd processes are currently running on the system:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code> ps -C sshd</code></pre></div>
+<h3 id="lab-top">Lab: top</h3>
+<ol>
+<li>top</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>top</code></pre></div>
+<ol start="2">
+<li>View manual page:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man top</code></pre></div>
+<h3 id="lab-list-a-specific-process">Lab: List a specific process</h3>
+<ol>
+<li>list the PID of the rsyslogd daemon</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>pidof rsyslogd
+or
+pgrep rsyslogd</code></pre></div>
+<h3 id="lab-listing-processes-by-user-and-group-ownership">Lab: Listing Processes by User and Group Ownership</h3>
+<ol>
+<li>List processes owned by user1:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -U user1</code></pre></div>
+<ol start="2">
+<li>List processes owned by group root:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -G root</code></pre></div>
+<h3 id="lab-nice">Lab: nice</h3>
+<ol>
+<li>View the default nice value:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>nice</code></pre></div>
+<ol start="2">
+<li>List priority and niceness for all processes:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl</code></pre></div>
+<h3 id="lab-start-processes-at-non-default-priorities-2-terminals">Lab: Start Processes at Non-Default Priorities (2 terminals)</h3>
+<ol>
+<li>Run the top command at the default priority/niceness in Terminal 1:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>top</code></pre></div>
+<ol start="2">
+<li>Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="3">
+<li>Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a lower priority with a nice value of +2:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>nice -n 2 top</code></pre></div>
+<ol start="4">
+<li>\Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="5">
+<li>Terminate the top session in Terminal 1 by pressing the letter q and relaunch it at a higher priority with a nice value of -10. Use sudo for root privileges.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo nice -n -10 top</code></pre></div>
+<ol start="6">
+<li>Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="7">
+<li>Terminate the top session by pressing the letter q.</li>
+</ol>
+<h3 id="lab-alter-process-priorities-2-terminals">Lab: Alter Process Priorities (2 terminals)</h3>
+<ol>
+<li>Run the top command at the default priority/niceness in Terminal 1:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>top</code></pre></div>
+<ol start="2">
+<li>Check the priority and niceness for the top command in Terminal 2 using the ps command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="3">
+<li>While the top session is running in Terminal 1, increase its priority by renicing it to -5. Use the command substitution to get the PID of top. Prepend the renice command by sudo. The output indicates the old (0) and new (-5) priorities for the process.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo renice -n -5 $(pidof top)</code></pre></div>
+<ol start="4">
+<li>Validate the above change with ps. Focus on columns 7 and 8.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="5">
+<li>Repeat the above but set the process to run at a lower priority by renicing it to 8: The output indicates the old (-5) and new (8) priorities for the process.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo renice -n 8 $(pidof top)</code></pre></div>
+<ol start="6">
+<li>Validate the above change with ps. Focus on columns 7 and 8.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<h3 id="lab-controlling-processes-with-signals">Lab: Controlling Processes with Signals</h3>
+<ol>
+<li>Pass the soft termination signal to the crond daemon, use either of the following:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo pkill crond
+# or
+sudo kill $(pidof crond)</code></pre></div>
+<ol start="2">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -ef | grep crond</code></pre></div>
+<ol start="3">
+<li>Forcefully kill crond:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo pkill -9 crond
+# or
+sudo pkill -s SIGKILL crond
+# or
+sudo kill -9 $(pgrep crond)</code></pre></div>
+<ol start="4">
+<li>Kill all crond processes:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo killall crond</code></pre></div>
+<ol start="5">
+<li>View manual pages:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man kill
+man pkill
+man killall</code></pre></div>
+<h3 id="lab-cron-and-atd">Lab: cron and atd</h3>
+<ol>
+<li>View log files for cron and atd</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo cat /var/log/cron</code></pre></div>
+<h3 id="lab-at-and-crond">Lab: at and crond</h3>
+<ol>
+<li>run /home/user1/.bash_profile file for user1 2 hours from now:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>at -f ~/.bash_profile now + 2 hours</code></pre></div>
+<ol start="2">
+<li>Consult crontab manual pages:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man crontab</code></pre></div>
+<h3 id="lab-submit-view-list-and-erase-an-at-job">Lab: Submit, View, List, and Erase an at Job</h3>
+<p>1.Run the at command and specify the correct execution time and date for the job. Type the entire command at the first at&gt; prompt and press Enter. Press Ctrl+d at the second at&gt; prompt to complete the job submission and return to the shell prompt.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>at 1:30pm 3/31/20
+date &amp;&gt; /tmp/date.out</code></pre></div>
+<p>The system assigned job ID 5 to it, and the output also pinpoints the job’s execution time.</p>
+<p>2.List the job file created in the /var/spool/at directory:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo ls -l /var/spool/at/</code></pre></div>
+<p>3.List the spooled job with the at command. You may alternatively use atq to list it.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>at -l
+# or
+atq</code></pre></div>
+<p>4.Display the contents of this file with the at command and specify the job ID:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>at -c 5</code></pre></div>
+<p>5.Remove the spooled job with the at command by specifying its job ID. You may alternatively run atrm 5 to delete it.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>at -d 5</code></pre></div>
+<p>This should erase the job file from the /var/spool/at directory. You can</p>
+<ol start="6">
+<li>confirm the deletion by running atq or at -l.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>atq</code></pre></div>
+<h3 id="lab-add-list-and-erase-a-cron-job">Lab: Add, List, and Erase a Cron Job</h3>
+<p>assume that all users are currently denied access to cron</p>
+<ol>
+<li>Edit the /etc/cron.allow file and add user1 to it:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo vim /etc/cron.allow
+user1</code></pre></div>
+<ol start="2">
+<li>Switch to user1 Open the crontable and append the following schedule to it. Save the file when done and exit out of the editor.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>crontab -e
+*/5 10-11 5,20 * * echo &#34;Hello, this is a cron test.&#34; &gt; /tmp/hello.out</code></pre></div>
+<ol start="3">
+<li>Check for the presence of a new file by the name user1 under the /var/spool/cron directory:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo ls -l /var/spool/cron</code></pre></div>
+<ol start="4">
+<li>List the contents of the crontable:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>crontab -l</code></pre></div>
+<ol start="5">
+<li>Remove the crontable and confirm the deletion:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>crontab -r
+crontab -l</code></pre></div>
+<h3 id="lab-anacron">Lab: Anacron</h3>
+<ol>
+<li>View the default content of /etc/anacrontab without commented or empty lines:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat /etc/anacrontab | grep -ve ^# -ve ^$</code></pre></div>
+<ol start="2">
+<li>View anacron man pages:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>man anacron</code></pre></div>
+<h3 id="lab-8-1-nice-and-renice-a-process">Lab 8-1: Nice and Renice a Process</h3>
+<ol>
+<li>As user1 with sudo on server1, open two terminal sessions. Run the top command in terminal 1. Run the pgrep or ps command in terminal 2 to determine the PID and the nice value of top.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="2">
+<li>Stop top on terminal 1 and relaunch at a lower priority (+8).</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>nice -n 8 top</code></pre></div>
+<ol start="3">
+<li>Confirm the new nice value of the process in terminal 2.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<ol start="4">
+<li>Issue the renice command in terminal 2 and increase the priority of top to -10:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>renice -n -10 $(pidof top)</code></pre></div>
+<ol start="5">
+<li>Confirm:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ps -efl | grep top</code></pre></div>
+<h3 id="lab-8-2-configure-a-user-crontab-file">Lab 8-2: Configure a User Crontab File</h3>
+<p>As user1 on server1, run the tty and date commands to determine the terminal file (assume /dev/pts/1) and current system time.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tty
+date</code></pre></div>
+<p>Create a cron entry to display “Hello World” on the terminal. Schedule echo “Hello World” &gt; /dev/tty/1 to run 3 minutes from the current system time.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>crontab -e
+*/3 * * * * echo &#34;Hello World&#34; &gt; /dev/pts/2</code></pre></div>
+<p>As root, ensure user1 can schedule cron jobs.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo vim /etc/cron.allow
+user1</code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

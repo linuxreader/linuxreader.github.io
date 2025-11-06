@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Using Handlers A task that is triggered and is executed by a successful task. Working with Handlers Define a notify statement at the level where the task is defined. The notify statement should list the name of the handler that is to be executed Handlers are listed at the end of the play. Make sure the name of the handler matches the name of the item that is called in the notify statement, because that is what the handler is looking for. Handlers can be specified as a list, so one task can call multiple handlers. Lab Define the file index.html on localhost. Use this file in the second play to set up the web server. The handler is triggered from the task where the copy module is used to copy the index.html file. If this task is successful, the notify statement calls the handler. A second task is defined, which is intended to fail. --- - name: create file on localhost hosts: localhost tasks: - name: create index.html on localhost copy: content: &#34;welcome to the webserver&#34; dest: /tmp/index.html - name: set up web server hosts: all tasks: - name: install httpd yum: name: httpd state: latest - name: copy index.html copy: src: /tmp/index.html dest: /var/www/html/index.html notify: - restart_web - name: copy nothing - intended to fail copy: src: /tmp/nothing dest: /var/www/html/nothing.html handlers: - name: restart_web service: name: httpd state: restarted All tasks up to copy index.html run successfully. However, the task copy nothing fails, which is why the handler does not run. The solution seems easy: the handler doesn’t run because the task that copies the file /tmp/nothing fails as the source file doesn’t exist.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Using Handlers A task that is triggered and is executed by a successful task. Working with Handlers Define a notify statement at the level where the task is defined. The notify statement should list the name of the handler that is to be executed Handlers are listed at the end of the play. Make sure the name of the handler matches the name of the item that is called in the notify statement, because that is what the handler is looking for. Handlers can be specified as a list, so one task can call multiple handlers. Lab Define the file index.html on localhost. Use this file in the second play to set up the web server. The handler is triggered from the task where the copy module is used to copy the index.html file. If this task is successful, the notify statement calls the handler. A second task is defined, which is intended to fail. --- - name: create file on localhost hosts: localhost tasks: - name: create index.html on localhost copy: content: &#34;welcome to the webserver&#34; dest: /tmp/index.html - name: set up web server hosts: all tasks: - name: install httpd yum: name: httpd state: latest - name: copy index.html copy: src: /tmp/index.html dest: /var/www/html/index.html notify: - restart_web - name: copy nothing - intended to fail copy: src: /tmp/nothing dest: /var/www/html/nothing.html handlers: - name: restart_web service: name: httpd state: restarted All tasks up to copy index.html run successfully. However, the task copy nothing fails, which is why the handler does not run. The solution seems easy: the handler doesn’t run because the task that copies the file /tmp/nothing fails as the source file doesn’t exist.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/task-control/handlers/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Using Handlers A task that is triggered and is executed by a successful task. Working with Handlers Define a notify statement at the level where the task is defined. The notify statement should list the name of the handler that is to be executed Handlers are listed at the end of the play. Make sure the name of the handler matches the name of the item that is called in the notify statement, because that is what the handler is looking for. Handlers can be specified as a list, so one task can call multiple handlers. Lab Define the file index.html on localhost. Use this file in the second play to set up the web server. The handler is triggered from the task where the copy module is used to copy the index.html file. If this task is successful, the notify statement calls the handler. A second task is defined, which is intended to fail. --- - name: create file on localhost hosts: localhost tasks: - name: create index.html on localhost copy: content: &#34;welcome to the webserver&#34; dest: /tmp/index.html - name: set up web server hosts: all tasks: - name: install httpd yum: name: httpd state: latest - name: copy index.html copy: src: /tmp/index.html dest: /var/www/html/index.html notify: - restart_web - name: copy nothing - intended to fail copy: src: /tmp/nothing dest: /var/www/html/nothing.html handlers: - name: restart_web service: name: httpd state: restarted All tasks up to copy index.html run successfully. However, the task copy nothing fails, which is why the handler does not run. The solution seems easy: the handler doesn’t run because the task that copies the file /tmp/nothing fails as the source file doesn’t exist.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Using Handlers A task that is triggered and is executed by a successful task. Working with Handlers Define a notify statement at the level where the task is defined. The notify statement should list the name of the handler that is to be executed Handlers are listed at the end of the play. Make sure the name of the handler matches the name of the item that is called in the notify statement, because that is what the handler is looking for. Handlers can be specified as a list, so one task can call multiple handlers. Lab Define the file index.html on localhost. Use this file in the second play to set up the web server. The handler is triggered from the task where the copy module is used to copy the index.html file. If this task is successful, the notify statement calls the handler. A second task is defined, which is intended to fail. --- - name: create file on localhost hosts: localhost tasks: - name: create index.html on localhost copy: content: &#34;welcome to the webserver&#34; dest: /tmp/index.html - name: set up web server hosts: all tasks: - name: install httpd yum: name: httpd state: latest - name: copy index.html copy: src: /tmp/index.html dest: /var/www/html/index.html notify: - restart_web - name: copy nothing - intended to fail copy: src: /tmp/nothing dest: /var/www/html/nothing.html handlers: - name: restart_web service: name: httpd state: restarted All tasks up to copy index.html run successfully. However, the task copy nothing fails, which is why the handler does not run. The solution seems easy: the handler doesn’t run because the task that copies the file /tmp/nothing fails as the source file doesn’t exist.">
+    <meta itemprop="wordCount" content="1789">
+    <title></title>
+    <link href="/ansible/task-control/handlers/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/task-control/handlers/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/task-control\/handlers\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/task-control/handlers/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#using-handlers">Using Handlers</a>
+      <ul>
+        <li></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#lab-working-with-handlers">Lab: Working with Handlers</a></li>
+        <li><a href="#dealing-with-failures">Dealing with Failures</a></li>
+        <li><a href="#lab-ignore_">Lab: <strong>ignore_errors</strong></a></li>
+        <li><a href="#lab-forcing-handlers-to-run">Lab: Forcing Handlers to Run</a></li>
+        <li><a href="#lab-failed_when">Lab: failed_when</a></li>
+        <li><a href="#lab-using-the-fail-module">Lab: Using the fail Module</a></li>
+        <li><a href="#lab--change-status">Lab:  Change status</a></li>
+        <li><a href="#lab-using-changed_">Lab: Using <strong>changed_when</strong></a></li>
+        <li><a href="#lab-using-blocks">Lab: Using Blocks</a></li>
+        <li><a href="#lab-using-blocks-rescue-and-always">Lab: Using Blocks, <strong>rescue</strong>, and <strong>always</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/handlers/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="using-handlers">Using Handlers</h2>
+<ul>
+<li>A task that is triggered and is executed by a successful task.</li>
+</ul>
+<h4 id="working-with-handlers">Working with Handlers</h4>
+<ul>
+<li>Define a <strong>notify</strong> statement at the level where the task is defined.</li>
+<li>The <strong>notify</strong> statement should list the name of the handler that is to be executed</li>
+<li>Handlers are listed at the end of the play.</li>
+<li>Make sure the name of the handler matches the name of the item that is called in the <strong>notify</strong> statement, because that is what the handler is looking for.</li>
+<li>Handlers can be specified as a list, so one task can call multiple handlers.</li>
+</ul>
+<h3 id="lab">Lab</h3>
+<ul>
+<li>Define the file index.html on localhost. Use this file in the second play to set up the web server.</li>
+<li>The handler is triggered from the task where the copy module is used to copy the index.html file.</li>
+<li>If this task is successful, the <strong>notify</strong> statement calls the handler.</li>
+<li>A second task is defined, which is intended to fail.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create file on localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: create index.html on localhost
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;welcome to the webserver&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set up web server
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: install httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">notify</span>:
+</span></span><span style="display:flex;"><span>            - restart_web
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy nothing - intended to fail
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/nothing
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/nothing.html
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: restart_web
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+<ul>
+<li>
+<p>All tasks up to <strong>copy index.html</strong> run successfully. However, the task <strong>copy nothing</strong> fails, which is why the handler does not run. The solution seems easy: the handler doesn&rsquo;t run because the task that copies the file /tmp/nothing fails as the source file doesn&rsquo;t exist.</p>
+</li>
+<li>
+<p>Create the source file using <code>touch /tmp/nothing</code> on the control host and run the task again.</p>
+</li>
+<li>
+<p>After creating the source file and running the playbook again, the handler still doesn&rsquo;t run.</p>
+</li>
+<li>
+<p>Handlers run only if the task that triggers them gives a <strong>changed</strong> status.</p>
+</li>
+</ul>
+<p>Run an ad hoc command to remove the /var/www/html/index.html file on the managed hosts and run the playbook again:
+<code>ansible ansible2 -m file -a &quot;name=/var/www/html/index.html state=absent&quot;</code></p>
+<p>Run the playbook again and you&rsquo;ll see the handler runs.</p>
+<h4 id="understanding-handler-execution-and-exceptions">Understanding Handler Execution and Exceptions</h4>
+<p>When a task fails, none of the following tasks run. How does that make handlers different? A handler runs only on the success of a task, but the next task in the list also runs only if the previous task was successful. What, then, is so special about handlers?</p>
+<p>The difference is in the nature of the handler.</p>
+<ul>
+<li>Handlers are meant to perform an extra action when a task makes a change to a host.</li>
+<li>Handler should be considered an extension to the regular task.</li>
+<li>A conditional task that runs only upon the success of a previous task.</li>
+</ul>
+<p>Two methods to get Handlers to run even if a subsequent task fails:</p>
+<p><strong>force_handlers: true</strong> (More specific and preferred)</p>
+<ul>
+<li>Used in the play header to ensure that the handler will run even if a task fails.</li>
+</ul>
+<p><strong>ignore_errors: true</strong></p>
+<ul>
+<li>Used in the play header to accomplish the same thing.</li>
+</ul>
+<p>• Handlers are specified in a handlers section at the end of the play.
+• Handlers run in the order they occur in the handlers section and not in the order as triggered.
+• Handlers run only if the task calling them generates a changed status.
+• Handlers by default will not run if any task in the same play fails, unless <strong>force_handlers</strong> or <strong>ignore_errors</strong> are used.
+• Handlers run only after <em>all</em> tasks in the play where the handler is activated have been processed. You might want to define multiple plays to avoid this behavior.</p>
+<h3 id="lab-working-with-handlers">Lab: Working with Handlers</h3>
+<p>1. Open a playbook with the name exercise73.yaml.</p>
+<p>2. Define the play header:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: update the kernel
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  tasks:</span></span></code></pre></div>
+<p>3. Add a task that updates the current kernel:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: update the kernel
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: update kernel
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: kernel
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: reboot_server</span></span></code></pre></div>
+<p>4. Add a handler that reboots the server in case the kernel was successfully updated:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: update the kernel
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: update kernel
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: kernel
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: reboot_server
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: reboot_server
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: reboot</span></span></code></pre></div>
+<p>5. Run the playbook using <strong>ansible-playbook exercise73.yaml</strong> andobserve its result. Notice that the handler runs only if the kernel was updated. If the kernel already was at the latest version, nothing has changed and the handler does not run. Also notice that it wasn&rsquo;t really necessary to use <strong>force_handlers</strong> in the play header, but by using it anyway, at least you now know where to use it.</p>
+<h3 id="dealing-with-failures">Dealing with Failures</h3>
+<h4 id="understanding-task-execution">Understanding Task Execution</h4>
+<ul>
+<li>Tasks in Ansible playbooks are executed in the order they are specified.</li>
+<li>If a task in the playbook fails to execute on a host, the task generates an error and the play does not further execute on that specific host.</li>
+<li>This also goes for handlers: if any task that follows the task that triggers a handler fails, the handlers do not run.</li>
+<li>In both of these cases, it is important to know that the tasks that have run successfully still generate their result. Because this can give an unexpected result, it is important to always restore the original situation if that happens.</li>
+</ul>
+<p><strong>any_errors_fatal</strong></p>
+<ul>
+<li>Used in the play header or on a block.</li>
+<li>Stop executing on all hosts when a failing task is encountered</li>
+</ul>
+<h4 id="managing-task-errors">Managing Task Errors</h4>
+<p>Generically, tasks can generate three different types of results.
+ok</p>
+<ul>
+<li>The tasks has run successfully but no changes were applied
+changed</li>
+<li>The task has run successfully and changes have been applied
+failed</li>
+<li>While running the task, a failure condition was encountered</li>
+</ul>
+<p><strong>ignore_errors: yes</strong></p>
+<ul>
+<li>Keep running the playbook even if a task fails</li>
+</ul>
+<p><strong>force_handlers</strong>. If</p>
+<ul>
+<li>can be used to ensure that handlers will be executed, even if a failing task
+was encountered.</li>
+</ul>
+<h3 id="lab-ignore_">Lab: <strong>ignore_errors</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: restart sshd only if crond is running
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: get the crond server status
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">command</span>: /usr/bin/systemctl is-active crond
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">register</span>: result
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: restart sshd based on crond status
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: sshd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: restarted
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">when</span>: result.rc == 0</span></span></code></pre></div>
+<h3 id="lab-forcing-handlers-to-run">Lab: Forcing Handlers to Run</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create file on localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: localhost
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: create index.html on localhost
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">content</span>: <span style="color:#5af78e">&#34;welcome to the webserver&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set up web server
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">force_handlers</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: install httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/index.html
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/index.html
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">notify</span>:
+</span></span><span style="display:flex;"><span>            - restart_web
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: copy nothing - intended to fail
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">copy</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">src</span>: /tmp/nothing
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">dest</span>: /var/www/html/nothing.html
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">name</span>: restart_web
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+<h4 id="specifying-task-failure-conditions">Specifying Task Failure Conditions</h4>
+<p><strong>failed_when</strong></p>
+<ul>
+<li>conditional used to evaluate some expression.</li>
+<li>Set a failure condition on a task</li>
+</ul>
+<h3 id="lab-failed_when">Lab: failed_when</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: demonstrating failed_when
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: run a script
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">command</span>: echo hello world
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">failed_when</span>: <span style="color:#5af78e">&#34;’world’ in command_result.stdout&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: see if we get here
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: second task executed</span></span></code></pre></div>
+<p><strong>fail</strong> module</p>
+<ul>
+<li>specify when a task fails.</li>
+<li>Using this module makes sense only if <strong>when</strong> is used to define the exact condition when a failure should occur.</li>
+</ul>
+<h3 id="lab-using-the-fail-module">Lab: Using the fail Module</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: demonstrating the fail module
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: run a script
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">command</span>: echo hello world
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: report a failure
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">fail</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: the command has failed
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: <span style="color:#5af78e">&#34;’world’ in command_result.stdout&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: see if we get here
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: second task executed</span></span></code></pre></div>
+<ul>
+<li>The <strong>ignore_errors</strong> statement has movedfrom the task definition to the play  header.</li>
+<li>Without this move, the message &ldquo;second task executed&rdquo; would never be  shown because the fail module always generates a failure message.</li>
+<li>The main advantage of using the fail module instead of using <strong>failed_when</strong> is that the fail module can easily be used to set a clear failure message, which is not possible when using <strong>failed_when</strong>.</li>
+</ul>
+<h4 id="managing-changed-status">Managing Changed Status</h4>
+<p>In Ansible, there are commands that change something and commands that don&rsquo;t. Some commands, however, are not very obvious in reporting their
+status.</p>
+<h3 id="lab--change-status">Lab:  Change status</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: demonstrate changed status
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check local time
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">command</span>: date
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: print local time
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">var</span>: command_result.stdout</span></span></code></pre></div>
+<ul>
+<li>
+<p>Reports a changed status, even if nothing really was changed!</p>
+</li>
+<li>
+<p>Managing the changed status can be useful in avoiding unexpected results while running a playbook.</p>
+</li>
+</ul>
+<p><strong>changed_when</strong></p>
+<ul>
+<li>If you set <strong>changed_when</strong> to false, the playbook reports only an ok or failed status and never reports a changed status.</li>
+</ul>
+<h3 id="lab-using-changed_">Lab: Using <strong>changed_when</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: demonstrate changed status
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: check local time
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">command</span>: date
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">register</span>: command_result
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">changed_when</span>: <span style="color:#ff6ac1">false</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: print local time
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">var</span>: command_result.stdout</span></span></code></pre></div>
+<h4 id="using-blocks">Using Blocks</h4>
+<ul>
+<li>Useful when working with conditional statements.</li>
+<li>A group of tasks to which a <strong>when</strong> statement can be applied.</li>
+<li>As a result, if a single condition is true, multiple tasks can be executed.</li>
+<li>To do so, between the <strong>tasks:</strong> statement in the play header and the actual tasks that run the specific modules, you can insert a <strong>block:</strong> statement.</li>
+</ul>
+<h3 id="lab-using-blocks">Lab: Using Blocks</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: simple block example
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: setting up http
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: installing http
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: restart httpod
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: ansible_distribution == &#34;CentOS&#34;</span></span></code></pre></div>
+<ul>
+<li>The <strong>when</strong> statement is applied at the same level as the <strong>block</strong> definition.</li>
+<li>When you define it this way, the tasks in the block are executed only if the <strong>when</strong> statement is true.</li>
+</ul>
+<h4 id="using-blocks-with-rescue-and-always-statements">Using Blocks with rescue and always Statements</h4>
+<ul>
+<li>Blocks can be used for simple error handling as well, in such a way that if any task that is defined in the <strong>block</strong> statement fails, the tasks that are defined in the <strong>rescue</strong> section are executed.</li>
+<li>Besides that, an <strong>always</strong> section can be used to define tasks that should always run, regardless of the success or failure of the tasks in the block.</li>
+</ul>
+<h3 id="lab-using-blocks-rescue-and-always">Lab: Using Blocks, <strong>rescue</strong>, and <strong>always</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: using blocks
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>: 
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: intended to be successful
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: remove a file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cmd</span>: rm /var/www/html/index.html
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: printing status
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: block task was operated
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">rescue</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create a file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cmd</span>: touch /tmp/rescuefile
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: printing rescue status
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: rescue task was operated
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">always</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: always write a message to logs
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">shell</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">cmd</span>: logger hello
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: always printing this message
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">msg</span>: this message is always printed</span></span></code></pre></div>
+<ul>
+<li>Run this twice to see the rescue. (The file is already created so a task in the block fails)</li>
+</ul>
+<p><strong>command_warnings=False</strong></p>
+<ul>
+<li>
+<p>Setting in ansible.cfg to avoid seeing command module warning message.</p>
+</li>
+<li>
+<p>you cannot use a block on a loop.</p>
+</li>
+<li>
+<p>If you need to iterate over a list of values, think of using a different solution.</p>
+</li>
+</ul>
+<p><a href="/ansible/task-control/labs/">Labs</a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/task-control/handlers/"><a class="padding" href="/ansible/task-control/handlers/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

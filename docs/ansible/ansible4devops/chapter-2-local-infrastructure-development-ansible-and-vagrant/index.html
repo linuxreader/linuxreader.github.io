@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Chapter 2 Local Infrastructure Development Ansible and Vagrant Prototyping and testing with local virtual machines Ansible works well with any server to which you can connect—remote or local. For speedier testing and development of Ansible playbooks, and for testing in general, it’s a very good idea to work locally. Local development and testing of infrastructure is both safer and faster than doing it on remote/live machines—especially in production environments!
+In the past decade, test-driven development (TDD), in one form or another, has become the norm for much of the software industry. Infrastructure development hasn’t been as organized until recently, and best practices dictate that infrastructure (which is becoming more and more important to the software that runs on it) should be thoroughly tested as well.">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Chapter 2 Local Infrastructure Development Ansible and Vagrant Prototyping and testing with local virtual machines Ansible works well with any server to which you can connect—remote or local. For speedier testing and development of Ansible playbooks, and for testing in general, it’s a very good idea to work locally. Local development and testing of infrastructure is both safer and faster than doing it on remote/live machines—especially in production environments!
+In the past decade, test-driven development (TDD), in one form or another, has become the norm for much of the software industry. Infrastructure development hasn’t been as organized until recently, and best practices dictate that infrastructure (which is becoming more and more important to the software that runs on it) should be thoroughly tested as well.">
+    <meta property="og:url" content="http://linuxreader.com/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Chapter 2 Local Infrastructure Development Ansible and Vagrant Prototyping and testing with local virtual machines Ansible works well with any server to which you can connect—remote or local. For speedier testing and development of Ansible playbooks, and for testing in general, it’s a very good idea to work locally. Local development and testing of infrastructure is both safer and faster than doing it on remote/live machines—especially in production environments!
+In the past decade, test-driven development (TDD), in one form or another, has become the norm for much of the software industry. Infrastructure development hasn’t been as organized until recently, and best practices dictate that infrastructure (which is becoming more and more important to the software that runs on it) should be thoroughly tested as well.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Chapter 2 Local Infrastructure Development Ansible and Vagrant Prototyping and testing with local virtual machines Ansible works well with any server to which you can connect—remote or local. For speedier testing and development of Ansible playbooks, and for testing in general, it’s a very good idea to work locally. Local development and testing of infrastructure is both safer and faster than doing it on remote/live machines—especially in production environments!
+In the past decade, test-driven development (TDD), in one form or another, has become the norm for much of the software industry. Infrastructure development hasn’t been as organized until recently, and best practices dictate that infrastructure (which is becoming more and more important to the software that runs on it) should be thoroughly tested as well.">
+    <meta itemprop="wordCount" content="1619">
+    <title></title>
+    <link href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/ansible4devops\/chapter-2-local-infrastructure-development-ansible-and-vagrant\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#chapter-2-local-infrastructure-development-ansible-and-vagrant">Chapter 2 Local Infrastructure Development Ansible and Vagrant</a>
+      <ul>
+        <li><a href="#chap04.xhtml_leanpub-auto-prototyping-and-testing-with-local-virtual-machines">Prototyping and testing with local virtual machines</a></li>
+        <li><a href="#chap04.xhtml_leanpub-auto-your-first-local-server-setting-up-vagrant">Your first local server: Setting up Vagrant</a></li>
+        <li><a href="#chap04.xhtml_leanpub-auto-using-ansible-with-vagrant">Using Ansible with Vagrant</a></li>
+        <li><a href="#chap04.xhtml_leanpub-auto-your-first-ansible-playbook">Your first Ansible playbook</a></li>
+        <li><a href="#chap04.xhtml_leanpub-auto-summary-1">Summary</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="chapter-2-local-infrastructure-development-ansible-and-vagrant">Chapter 2 Local Infrastructure Development Ansible and Vagrant</h2>
+<h3 id="chap04.xhtml_leanpub-auto-prototyping-and-testing-with-local-virtual-machines">Prototyping and testing with local virtual machines</h3>
+<p>Ansible works well with any server to which you can connect&mdash;remote
+<em>or</em> local. For speedier testing and development of Ansible playbooks,
+and for testing in general, it&rsquo;s a very good idea to work locally. Local
+development and testing of infrastructure is both safer and faster than
+doing it on remote/live machines&mdash;especially in production
+environments!</p>
+<!-- raw HTML omitted -->
+<p>In the past decade, test-driven development (TDD), in one form or
+another, has become the norm for much of the software industry.
+Infrastructure development hasn&rsquo;t been as organized until recently, and
+best practices dictate that infrastructure (which is becoming more and
+more important to the software that runs on it) should be thoroughly
+tested as well.</p>
+<p>Changes to software are tested either manually or in some automated
+fashion; there are now systems that integrate both with Ansible and with
+other deployment and configuration management tools, to allow some
+amount of infrastructure testing as well. Even if it&rsquo;s just testing a
+configuration change locally before applying it to production, that
+approach is a thousand times better than what, in the software
+development world, would be called &lsquo;cowboy coding&rsquo;&mdash;working directly in
+a production environment, not documenting or encapsulating changes in
+code, and not having a way to roll back to a previous version.</p>
+<!-- raw HTML omitted -->
+<p>The past decade has seen the growth of many virtualization tools that
+allow for flexible and very powerful infrastructure emulation, all from
+your local workstation! It&rsquo;s empowering to be able to play around with a
+config file, or to tweak the order of a server update to perfection,
+over and over again, with no fear of breaking an important server. If
+you use a local virtual machine, there&rsquo;s no downtime for a server
+rebuild; just re-run the provisioning on a new VM, and you&rsquo;re back up
+and running in minutes&mdash;with no one the wiser.</p>
+<p><a href="http://www.vagrantup.com/" rel="external" target="_blank">Vagrant</a>, a server provisioning tool, and
+<a href="https://www.virtualbox.org/" rel="external" target="_blank">VirtualBox</a>, a local virtualization
+environment, make a potent combination for testing infrastructure and
+individual server configurations locally. Both applications are free and
+open source, and work well on Mac, Linux, or Windows hosts.</p>
+<p>We&rsquo;re going to set up Vagrant and VirtualBox for easy testing with
+Ansible to provision a new server.</p>
+<h3 id="chap04.xhtml_leanpub-auto-your-first-local-server-setting-up-vagrant">Your first local server: Setting up Vagrant</h3>
+<p>To get started with your first local virtual server, you need to
+download and install Vagrant and VirtualBox, and set up a simple
+Vagrantfile, which will describe the virtual server.</p>
+<ol>
+<li>Download and install Vagrant and VirtualBox (whichever version is
+appropriate for your OS): - <a href="http://www.vagrantup.com/downloads.html" rel="external" target="_blank">Download
+Vagrant</a> - <a href="https://www.virtualbox.org/wiki/Downloads" rel="external" target="_blank">Download
+VirtualBox</a> (when
+installing, make sure the command line tools are installed, so
+Vagrant work with it)</li>
+<li>Create a new folder somewhere on your hard drive where you will keep
+your Vagrantfile and provisioning instructions.</li>
+<li>Open a Terminal or PowerShell window, then navigate to the folder
+you just created.</li>
+<li>Add a CentOS 7.x 64-bit &lsquo;box&rsquo; using the
+<a href="http://docs.vagrantup.com/v2/boxes.html" rel="external" target="_blank"><code>vagrant box add</code></a>
+command: <code>vagrant box add geerlingguy/centos7</code> (note: HashiCorp&rsquo;s
+<a href="https://atlas.hashicorp.com/boxes/search" rel="external" target="_blank">Atlas</a> has a
+comprehensive list of different pre-made Linux boxes. Also, check
+out the &lsquo;official&rsquo; Vagrant Ubuntu boxes on the <a href="https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Boxes" rel="external" target="_blank">Vagrant
+wiki</a>.</li>
+<li>Create a default virtual server configuration using the box you just
+downloaded: <code>vagrant init geerlingguy/centos7</code></li>
+<li>Boot your CentOS server: <code>vagrant up</code></li>
+</ol>
+<p>Vagrant has downloaded a pre-built 64-bit CentOS 7 virtual machine (you
+can <a href="http://docs.vagrantup.com/v2/virtualbox/boxes.html" rel="external" target="_blank">build your own</a>
+virtual machine &lsquo;boxes&rsquo;, if you so desire), loaded it into VirtualBox
+with the configuration defined in the default Vagrantfile (which is now
+in the folder you created earlier), and booted the virtual machine.</p>
+<p>Managing this virtual server is extremely easy: <code>vagrant halt</code> will shut
+down the VM, <code>vagrant up</code> will bring it back up, and <code>vagrant destroy</code>
+will completely delete the machine from VirtualBox. A simple
+<code>vagrant up</code> again will re-create it from the base box you originally
+downloaded.</p>
+<p>Now that you have a running server, you can use it just like you would
+any other server, and you can connect via SSH. To connect, enter
+<code>vagrant ssh</code> from the folder where the Vagrantfile is located. If you
+want to connect manually, or connect from another application, enter
+<code>vagrant ssh-config</code> to get the required SSH details.</p>
+<h3 id="chap04.xhtml_leanpub-auto-using-ansible-with-vagrant">Using Ansible with Vagrant</h3>
+<p>Vagrant&rsquo;s ability to bring up preconfigured boxes is convenient on its
+own, but you could do similar things with the same efficiency using
+VirtualBox&rsquo;s (or VMWare&rsquo;s, or Parallels&rsquo;) GUI. Vagrant has some other
+tricks up its sleeve:</p>
+<ul>
+<li><a href="http://docs.vagrantup.com/v2/networking/index.html" rel="external" target="_blank"><strong>Network interface
+management</strong></a>: You
+can forward ports to a VM, share the public network connection, or use
+private networking for inter-VM and host-only communication.</li>
+<li><a href="http://docs.vagrantup.com/v2/synced-folders/index.html" rel="external" target="_blank"><strong>Shared folder
+management</strong></a>:
+Vagrant sets up shares between your host machine and VMs using NFS or
+(much slower) native folder sharing in VirtualBox.</li>
+<li><a href="http://docs.vagrantup.com/v2/multi-machine/index.html" rel="external" target="_blank"><strong>Multi-machine
+management</strong></a>:
+Vagrant is able to configure and control multiple VMs within one
+Vagrantfile. This is important because, as stated in the
+documentation, &ldquo;Historically, running complex environments was done by
+flattening them onto a single machine. The problem with that is that
+it is an inaccurate model of the production setup, which behaves far
+differently.&rdquo;</li>
+<li><a href="http://docs.vagrantup.com/v2/provisioning/index.html" rel="external" target="_blank"><strong>Provisioning</strong></a>:
+When running <code>vagrant up</code> the first time, Vagrant automatically
+<em>provisions</em> the newly-minted VM using whatever provisioner you have
+configured in the Vagrantfile. You can also run <code>vagrant provision</code>
+after the VM has been created to explicitly run the provisioner again.</li>
+</ul>
+<p>It&rsquo;s this last feature that is most important for us. Ansible is one of
+many provisioners integrated with Vagrant (others include basic shell
+scripts, Chef, Docker, Puppet, and Salt). When you call
+<code>vagrant provision</code> (or <code>vagrant up</code>) the first time, Vagrant passes off
+the VM to Ansible, and tells Ansible to run a defined Ansible playbook.
+We&rsquo;ll get into the details of Ansible playbooks later, but for now,
+we&rsquo;re going to edit our Vagrantfile to use Ansible to provision our
+virtual machine.</p>
+<p>Open the Vagrantfile that was created when we used the <code>vagrant init</code>
+command earlier. Add the following lines just before the final &rsquo;end&rsquo;
+(Vagrantfiles use Ruby syntax, in case you&rsquo;re wondering):</p>
+<!-- raw HTML omitted -->
+<p>This is a very basic configuration to get you started using Ansible with
+Vagrant. There are <a href="http://docs.vagrantup.com/v2/provisioning/ansible.html" rel="external" target="_blank">many other Ansible
+options</a> you can
+use once we get deeper into using Ansible. For now, we just want to set
+up a very basic playbook&mdash;a simple file you create to tell Ansible how
+to configure your VM.</p>
+<h3 id="chap04.xhtml_leanpub-auto-your-first-ansible-playbook">Your first Ansible playbook</h3>
+<p>Let&rsquo;s create the Ansible <code>playbook.yml</code> file now. Create an empty text
+file in the same folder as your Vagrantfile, and put in the following
+contents:</p>
+<!-- raw HTML omitted -->
+<p>I&rsquo;ll get into what this playbook is doing in a minute. For now, let&rsquo;s
+run the playbook on our VM. Make sure you&rsquo;re in the same directory as
+the Vagrantfile and new playbook.yml file, and enter
+<code>vagrant provision</code>. You should see status messages for each of the
+&rsquo;tasks&rsquo; you defined, and then a recap showing what Ansible did on your
+VM&mdash;something like the following:</p>
+<!-- raw HTML omitted -->
+<p>Ansible just took the simple playbook you defined, parsed the YAML
+syntax, and ran a bunch of commands via SSH to configure the server as
+you specified. Let&rsquo;s go through the playbook, step by step:</p>
+<!-- raw HTML omitted -->
+<p>This first line is a marker showing that the rest of the document will
+be formatted in YAML (read a <a href="http://www.yaml.org/start.html" rel="external" target="_blank">getting started guide for
+YAML</a>).</p>
+<!-- raw HTML omitted -->
+<p>This line tells Ansible to which hosts this playbook applies. <code>all</code>
+works here, since Vagrant is invisibly using its own Ansible inventory
+file (instead of the one we created earlier in <code>/etc/ansible/hosts</code>),
+which just defines the Vagrant VM.</p>
+<!-- raw HTML omitted -->
+<p>Since we need privileged access to install NFS and modify system
+configuration, this line tells Ansible to use <code>sudo</code> for all the tasks
+in the playbook.</p>
+<!-- raw HTML omitted -->
+<p>All the tasks after this line will be run on all hosts (or, in our case,
+our one VM).</p>
+<!-- raw HTML omitted -->
+<p>This command is the equivalent of running <code>yum install ntp</code>, but is much
+more intelligent; it will check if ntp is installed, and, if not,
+install it. This is the equivalent of the following shell script:</p>
+<!-- raw HTML omitted -->
+<p>However, the above script is still not quite as robust as Ansible&rsquo;s
+<code>yum</code> command. What if ntpdate is installed, but not ntp? This script
+would require extra tweaking and complexity to match the simple Ansible
+yum command, especially after we explore the yum module more intimately
+(or the <code>apt</code> module, when using Ubuntu and Debian-flavored Linux).</p>
+<!-- raw HTML omitted -->
+<p>This final task both checks and ensures that the ntpd service is started
+and running, and sets it to start at system boot. A shell script with
+the same effect would be:</p>
+<!-- raw HTML omitted -->
+<p>You can see how things start getting complex in the land of shell
+scripts! And this shell script is still not as robust as what you get
+with Ansible. To maintain idempotency and handle error conditions,
+you&rsquo;ll have to do a lot more extra work with basic shell scripts than
+you do with Ansible.</p>
+<p>We could be even more terse (and really demonstrate Ansible&rsquo;s powerful
+simplicity) and not use Ansible&rsquo;s <code>name</code> module to give human-readable
+names to each command, resulting in the following playbook:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Just as with code and configuration files, documentation in Ansible
+(e.g. using the <code>name</code> function and/or adding comments to the YAML for
+complicated tasks) is not absolutely necessary. However, I&rsquo;m a firm
+believer in thorough (but concise) documentation, so I almost always
+document what my tasks will do by providing a <code>name</code> for each one. This
+also helps when you&rsquo;re running the playbooks, so you can see what&rsquo;s
+going on in a human-readable format.</p>
+<!-- raw HTML omitted -->
+<h3 id="chap04.xhtml_leanpub-auto-summary-1">Summary</h3>
+<p>Your workstation is on the path to becoming an
+&ldquo;infrastructure-in-a-box,&rdquo; and you can now ensure your infrastructure is
+as well-tested as the code that runs on top if it. With one small
+example, you&rsquo;ve got a glimpse at the simple-yet-powerful Ansible
+playbook. We&rsquo;ll dive deeper into Ansible playbooks later, and we&rsquo;ll also
+explore Vagrant a little more as we go.</p>
+<!-- raw HTML omitted -->
+<p>[]{#chap05.xhtml}</p>
+<p>::: {}</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/"><a class="padding" href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

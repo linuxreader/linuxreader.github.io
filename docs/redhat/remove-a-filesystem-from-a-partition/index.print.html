@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Remove a filesystem from a partition To delete a filesystem, partition, raid and disk labels from the disk. Use wipefs -a /dev/sdb1 May also use wipefs -a /dev/sdb? to delete sub partitions? (I need to verify this)
+Make sure the filesystem is unmounted first.
+[root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk ├─sdb1 8:17 0 95M 0 part ├─sdb2 8:18 0 95M 0 part └─sdb3 8:19 0 38M 0 part [SWAP] sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom [root@server2 mapper]# wipefs -a /dev/sdb1 /dev/sdb1: 2 bytes were erased at offset 0x00000438 (ext4): 53 ef [root@server2 mapper]# wipefs -a /dev/sdb2 /dev/sdb2: 8 bytes were erased at offset 0x00000036 (vfat): 46 41 54 31 36 20 20 20 /dev/sdb2: 1 byte was erased at offset 0x00000000 (vfat): eb /dev/sdb2: 2 bytes were erased at offset 0x000001fe (vfat): 55 aa [root@server2 mapper]# wipefs -a /dev/sdb3 wipefs: error: /dev/sdb3: probing initialization failed: Device or resource busy [root@server2 mapper]# wipefs -a /dev/sdb wipefs: error: /dev/sdb: probing initialization failed: Device or resource busy [root@server2 mapper]# swapoff /dev/sdb3 [root@server2 mapper]# wipefs -a /dev/sdb3 /dev/sdb3: 10 bytes were erased at offset 0x00000ff6 (swap): 53 57 41 50 53 50 41 43 45 32 [root@server2 mapper]# wipefs -a /dev/sdb /dev/sdb: 2 bytes were erased at offset 0x000001fe (dos): 55 aa /dev/sdb: calling ioctl to re-read partition table: Success [root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom I could not use this on a disk used in an LV. Remove the LVs: lvremove lvvdo vgfs">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Remove a filesystem from a partition To delete a filesystem, partition, raid and disk labels from the disk. Use wipefs -a /dev/sdb1 May also use wipefs -a /dev/sdb? to delete sub partitions? (I need to verify this)
+Make sure the filesystem is unmounted first.
+[root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk ├─sdb1 8:17 0 95M 0 part ├─sdb2 8:18 0 95M 0 part └─sdb3 8:19 0 38M 0 part [SWAP] sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom [root@server2 mapper]# wipefs -a /dev/sdb1 /dev/sdb1: 2 bytes were erased at offset 0x00000438 (ext4): 53 ef [root@server2 mapper]# wipefs -a /dev/sdb2 /dev/sdb2: 8 bytes were erased at offset 0x00000036 (vfat): 46 41 54 31 36 20 20 20 /dev/sdb2: 1 byte was erased at offset 0x00000000 (vfat): eb /dev/sdb2: 2 bytes were erased at offset 0x000001fe (vfat): 55 aa [root@server2 mapper]# wipefs -a /dev/sdb3 wipefs: error: /dev/sdb3: probing initialization failed: Device or resource busy [root@server2 mapper]# wipefs -a /dev/sdb wipefs: error: /dev/sdb: probing initialization failed: Device or resource busy [root@server2 mapper]# swapoff /dev/sdb3 [root@server2 mapper]# wipefs -a /dev/sdb3 /dev/sdb3: 10 bytes were erased at offset 0x00000ff6 (swap): 53 57 41 50 53 50 41 43 45 32 [root@server2 mapper]# wipefs -a /dev/sdb /dev/sdb: 2 bytes were erased at offset 0x000001fe (dos): 55 aa /dev/sdb: calling ioctl to re-read partition table: Success [root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom I could not use this on a disk used in an LV. Remove the LVs: lvremove lvvdo vgfs">
+    <meta property="og:url" content="http://linuxreader.com/redhat/remove-a-filesystem-from-a-partition/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Remove a filesystem from a partition To delete a filesystem, partition, raid and disk labels from the disk. Use wipefs -a /dev/sdb1 May also use wipefs -a /dev/sdb? to delete sub partitions? (I need to verify this)
+Make sure the filesystem is unmounted first.
+[root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk ├─sdb1 8:17 0 95M 0 part ├─sdb2 8:18 0 95M 0 part └─sdb3 8:19 0 38M 0 part [SWAP] sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom [root@server2 mapper]# wipefs -a /dev/sdb1 /dev/sdb1: 2 bytes were erased at offset 0x00000438 (ext4): 53 ef [root@server2 mapper]# wipefs -a /dev/sdb2 /dev/sdb2: 8 bytes were erased at offset 0x00000036 (vfat): 46 41 54 31 36 20 20 20 /dev/sdb2: 1 byte was erased at offset 0x00000000 (vfat): eb /dev/sdb2: 2 bytes were erased at offset 0x000001fe (vfat): 55 aa [root@server2 mapper]# wipefs -a /dev/sdb3 wipefs: error: /dev/sdb3: probing initialization failed: Device or resource busy [root@server2 mapper]# wipefs -a /dev/sdb wipefs: error: /dev/sdb: probing initialization failed: Device or resource busy [root@server2 mapper]# swapoff /dev/sdb3 [root@server2 mapper]# wipefs -a /dev/sdb3 /dev/sdb3: 10 bytes were erased at offset 0x00000ff6 (swap): 53 57 41 50 53 50 41 43 45 32 [root@server2 mapper]# wipefs -a /dev/sdb /dev/sdb: 2 bytes were erased at offset 0x000001fe (dos): 55 aa /dev/sdb: calling ioctl to re-read partition table: Success [root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom I could not use this on a disk used in an LV. Remove the LVs: lvremove lvvdo vgfs">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="RedHat">
+    <meta itemprop="description" content="Remove a filesystem from a partition To delete a filesystem, partition, raid and disk labels from the disk. Use wipefs -a /dev/sdb1 May also use wipefs -a /dev/sdb? to delete sub partitions? (I need to verify this)
+Make sure the filesystem is unmounted first.
+[root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk ├─sdb1 8:17 0 95M 0 part ├─sdb2 8:18 0 95M 0 part └─sdb3 8:19 0 38M 0 part [SWAP] sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom [root@server2 mapper]# wipefs -a /dev/sdb1 /dev/sdb1: 2 bytes were erased at offset 0x00000438 (ext4): 53 ef [root@server2 mapper]# wipefs -a /dev/sdb2 /dev/sdb2: 8 bytes were erased at offset 0x00000036 (vfat): 46 41 54 31 36 20 20 20 /dev/sdb2: 1 byte was erased at offset 0x00000000 (vfat): eb /dev/sdb2: 2 bytes were erased at offset 0x000001fe (vfat): 55 aa [root@server2 mapper]# wipefs -a /dev/sdb3 wipefs: error: /dev/sdb3: probing initialization failed: Device or resource busy [root@server2 mapper]# wipefs -a /dev/sdb wipefs: error: /dev/sdb: probing initialization failed: Device or resource busy [root@server2 mapper]# swapoff /dev/sdb3 [root@server2 mapper]# wipefs -a /dev/sdb3 /dev/sdb3: 10 bytes were erased at offset 0x00000ff6 (swap): 53 57 41 50 53 50 41 43 45 32 [root@server2 mapper]# wipefs -a /dev/sdb /dev/sdb: 2 bytes were erased at offset 0x000001fe (dos): 55 aa /dev/sdb: calling ioctl to re-read partition table: Success [root@server2 mapper]# lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 20G 0 disk ├─sda1 8:1 0 1G 0 part └─sda2 8:2 0 19G 0 part ├─rhel-root 253:0 0 17G 0 lvm / └─rhel-swap 253:1 0 2G 0 lvm [SWAP] sdb 8:16 0 250M 0 disk sdc 8:32 0 250M 0 disk sdd 8:48 0 250M 0 disk └─sdd1 8:49 0 163M 0 part ├─vgfs-ext4vol 253:2 0 128M 0 lvm └─vgfs-xfsvol 253:3 0 128M 0 lvm sde 8:64 0 250M 0 disk ├─vgfs-ext4vol 253:2 0 128M 0 lvm ├─vgfs-xfsvol 253:3 0 128M 0 lvm └─vgfs-swapvol 253:7 0 144M 0 lvm [SWAP] sdf 8:80 0 5G 0 disk └─vgvdo1-vpool0_vdata 253:4 0 5G 0 lvm └─vgvdo1-vpool0-vpool 253:5 0 20G 0 lvm └─vgvdo1-lvvdo 253:6 0 20G 0 lvm sr0 11:0 1 9.8G 0 rom I could not use this on a disk used in an LV. Remove the LVs: lvremove lvvdo vgfs">
+    <meta itemprop="wordCount" content="717">
+    <title></title>
+    <link href="http://linuxreader.com/redhat/remove-a-filesystem-from-a-partition/" rel="canonical" type="text/html" title="">
+    <link href="/redhat/remove-a-filesystem-from-a-partition/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/redhat\/remove-a-filesystem-from-a-partition\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/redhat/remove-a-filesystem-from-a-partition/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/" title="RedHat (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#remove-a-filesystem-from-a-partition">Remove a filesystem from a partition</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/remove-a-filesystem-from-a-partition/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/redhat/advanced-file-management/" title="Advanced File Management (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable redhat" tabindex="-1">
+        <div class="flex-block-wrapper">
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>

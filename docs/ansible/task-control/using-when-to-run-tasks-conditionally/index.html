@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Using when to Run Tasks Conditionally Use a when statement to run tasks conditionally. you can test whether: a variable has a specific value whether a file exists whether a minimal amount of memory is available etc. Working with when Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that
+when used in when statements, the variable that is evaluated is not placed between double curly braces. --- - name: conditional install hosts: all tasks: - name: install apache on Red Hat and family yum: name: httpd state: latest when: ansible_facts[’os_family’] == &#34;RedHat&#34; - name: install apache on Ubuntu and family apt: name: apache2 state: latest when: ansible_facts[’os_family’] == &#34;Debian&#34; not a part of any properties of the modules on which it is used">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Using when to Run Tasks Conditionally Use a when statement to run tasks conditionally. you can test whether: a variable has a specific value whether a file exists whether a minimal amount of memory is available etc. Working with when Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that
+when used in when statements, the variable that is evaluated is not placed between double curly braces. --- - name: conditional install hosts: all tasks: - name: install apache on Red Hat and family yum: name: httpd state: latest when: ansible_facts[’os_family’] == &#34;RedHat&#34; - name: install apache on Ubuntu and family apt: name: apache2 state: latest when: ansible_facts[’os_family’] == &#34;Debian&#34; not a part of any properties of the modules on which it is used">
+    <meta property="og:url" content="http://linuxreader.com/ansible/task-control/using-when-to-run-tasks-conditionally/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Using when to Run Tasks Conditionally Use a when statement to run tasks conditionally. you can test whether: a variable has a specific value whether a file exists whether a minimal amount of memory is available etc. Working with when Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that
+when used in when statements, the variable that is evaluated is not placed between double curly braces. --- - name: conditional install hosts: all tasks: - name: install apache on Red Hat and family yum: name: httpd state: latest when: ansible_facts[’os_family’] == &#34;RedHat&#34; - name: install apache on Ubuntu and family apt: name: apache2 state: latest when: ansible_facts[’os_family’] == &#34;Debian&#34; not a part of any properties of the modules on which it is used">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Using when to Run Tasks Conditionally Use a when statement to run tasks conditionally. you can test whether: a variable has a specific value whether a file exists whether a minimal amount of memory is available etc. Working with when Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that
+when used in when statements, the variable that is evaluated is not placed between double curly braces. --- - name: conditional install hosts: all tasks: - name: install apache on Red Hat and family yum: name: httpd state: latest when: ansible_facts[’os_family’] == &#34;RedHat&#34; - name: install apache on Ubuntu and family apt: name: apache2 state: latest when: ansible_facts[’os_family’] == &#34;Debian&#34; not a part of any properties of the modules on which it is used">
+    <meta itemprop="wordCount" content="1526">
+    <title></title>
+    <link href="/ansible/task-control/using-when-to-run-tasks-conditionally/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/task-control/using-when-to-run-tasks-conditionally/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1762442645" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762442645" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762442645" defer></script>
+    <script src="/js/search-lunr.min.js?1762442645" defer></script>
+    <script src="/js/search.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762442645";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762442645" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762442645" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762442645" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762442645" rel="stylesheet">
+    <link href="/css/theme.min.css?1762442645" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762442645" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/task-control\/using-when-to-run-tasks-conditionally\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/task-control/using-when-to-run-tasks-conditionally/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/ad-hoc-commands-and-scripting/" title="Ad Hoc Commands and Scripting (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#using-when-to-run-tasks-conditionally">Using when to Run Tasks Conditionally</a>
+      <ul>
+        <li></li>
+        <li><a href="#lab-check-that-finds-whether-the-first-variable-value-is-present-in-the-second-variables-list">Lab: Check that finds whether the first variable value is present in the second variable&rsquo;s list.</a></li>
+        <li><a href="#lab-integer-check-install-vsftpd-if-more-than-50-mb-of-memory-is-available">Lab: integer check, install vsftpd if more than 50 MB of memory is available.</a></li>
+        <li><a href="#lab-and-is-used-and--runs-the-task-only-if-both-conditions-are-true">Lab: <strong>and</strong> is used and runs the task only if both conditions are true.</a></li>
+        <li><a href="#lab-combining-complex-statements">Lab: Combining complex statements</a></li>
+        <li><a href="#lab-combining-loop-and-when-perform-a-kernel-update-only-if-boot-is-on-a-dedicated-mount-point-and-at-least-200-mbis-available-in-the-mount">Lab: Combining loop and when, Perform a kernel update only if /boot is on a dedicated mount point and at least 200 MBis available in the mount.</a></li>
+        <li><a href="#lab-combining-register-and-loop">Lab: Combining <strong>register</strong> and <strong>loop</strong></a></li>
+        <li><a href="#lab-practice-working-with-conditionals-using-register">Lab: Practice working with conditionals using <strong>register</strong>.</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/task-control/using-when-to-run-tasks-conditionally/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/ansible/troubleshooting/ansible-documentation/" title="Ansible Documentation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h2 id="using-when-to-run-tasks-conditionally">Using when to Run Tasks Conditionally</h2>
+<ul>
+<li>Use a <strong>when</strong> statement to run tasks conditionally.</li>
+<li>you can test whether:
+<ul>
+<li>a variable has a specific value</li>
+<li>whether a file exists</li>
+<li>whether a minimal amount of memory is available</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+<h4 id="working-with-when">Working with when</h4>
+<p>Install the right software package for the Apache web server, based on the Linux distribution that was found in the Ansible facts. Notice that</p>
+<ul>
+<li>when used in <strong>when</strong> statements, the variable that is evaluated is not placed between double curly braces.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: conditional install
+      hosts: all
+      tasks:
+      - name: install apache on Red Hat and family
+        yum:
+          name: httpd
+          state: latest
+        when: ansible_facts[’os_family’] == &#34;RedHat&#34;
+      - name: install apache on Ubuntu and family
+        apt:
+          name: apache2
+          state: latest
+        when: ansible_facts[’os_family’] == &#34;Debian&#34;</code></pre></div>
+<ul>
+<li>
+<p>not a part of any properties of the modules on which it is used</p>
+</li>
+<li>
+<p>must be indented at the same level as the module itself.</p>
+</li>
+<li>
+<p>For a string test, the string itself must be between double quotes.</p>
+</li>
+<li>
+<p>Without the double quotes, it would be considered an integer test.</p>
+</li>
+</ul>
+<h4 id="using-conditional-test-statements">Using Conditional Test Statements</h4>
+<p>Common conditional tests that you can perform with the <strong>when</strong> statement:</p>
+<p>Variable exists</p>
+<ul>
+<li>
+<p>variable is defined
+Variable does not exist</p>
+</li>
+<li>
+<p>variable is not defined
+First variable is present in list mentioned as second</p>
+</li>
+<li>
+<p>ansible_distribution in distributions
+Variable is true, 1 or yes</p>
+</li>
+<li>
+<p>variable
+Variable is false, 0 or no</p>
+</li>
+<li>
+<p>not variable
+Equal (string)</p>
+</li>
+<li>
+<p>key == &ldquo;value&rdquo;
+Equal (numeric)</p>
+</li>
+<li>
+<p>key == value
+Less than</p>
+</li>
+<li>
+<p>key &lt; value
+Less than or equal to</p>
+</li>
+<li>
+<p>key &lt;= value
+Greater than</p>
+</li>
+<li>
+<p>key &gt; value
+Greater than or equal to</p>
+</li>
+<li>
+<p>key &gt;= value
+Not equal to</p>
+</li>
+<li>
+<p>key != value</p>
+</li>
+<li>
+<p>Look for &ldquo;Tests&rdquo; in the Ansible documentation, and use the item that is found in Templating (Jinja2).</p>
+</li>
+<li>
+<p>When referring to variables in <strong>when</strong> statements, you don&rsquo;t have to use curly brackets because items in a <strong>when</strong> statement are considered to be variables by default.</p>
+</li>
+<li>
+<p>So you can write <strong>when: text == &ldquo;hello&rdquo;</strong> instead of <strong>when: &ldquo;{{ text }}&rdquo; == &ldquo;hello&rdquo;</strong>.</p>
+</li>
+</ul>
+<p>There are roughly four types of <strong>when</strong> conditional tests:
+• Checks related to variable existence
+• Boolean checks
+• String comparisons
+• Integer comparisons</p>
+<p>The first type of test checks whether a variable exists or is a part of another variable, such as a list.</p>
+<p>Checks for the existence of a specific disk device, using <strong>variable is defined</strong> and <strong>variable is not defined</strong>. All failing tests result in the message &ldquo;skipping.&rdquo;</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: check for existence of devices
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check if /dev/sda exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: a disk device /dev/sda exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sda’] is defined
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check if /dev/sdb exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: a disk device /dev/sdb exists
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sdb’] is defined
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: dummy test, intended to fail
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: failing
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: dummy is defined
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: check if /dev/sdc does not exist
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: there is no /dev/sdc device
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’devices’][’sdc’] is not defined</span></span></code></pre></div>
+<h3 id="lab-check-that-finds-whether-the-first-variable-value-is-present-in-the-second-variables-list">Lab: Check that finds whether the first variable value is present in the second variable&rsquo;s list.</h3>
+<ul>
+<li>executes the <strong>debug</strong> task if the variable <strong>my_answer</strong> is in <strong>supported_packages</strong>.</li>
+<li><strong>vars_prompt</strong> is used. This stops the playbook, asks the user for input, and stores the input in a variable with the name my_answer.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: test if variable is in another variables list
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars_prompt</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: my_answer
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">prompt</span>: which package do you want to install
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">supported_packages</span>:
+</span></span><span style="display:flex;"><span>        - httpd
+</span></span><span style="display:flex;"><span>        - nginx
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: something
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: you are trying to install a supported package
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: my_answer in supported_packages</span></span></code></pre></div>
+<p><strong>Boolean check</strong></p>
+<ul>
+<li>Works on variables that have a Boolean value (not very common) T</li>
+<li>Should not be defined with the check for existence.</li>
+<li>Used to check whether a variable is defined.</li>
+</ul>
+<p><strong>string comparisons and integer comparisons</strong></p>
+<ul>
+<li>Ie: Check if more than 1 GB of disk space is available.</li>
+<li>When doing checks on available disk space and available memory, carefully look at the expected value.</li>
+<li>Memory is shown in megabytes, by default, whereas disk space is expressed in bytes.</li>
+</ul>
+<h3 id="lab-integer-check-install-vsftpd-if-more-than-50-mb-of-memory-is-available">Lab: integer check, install vsftpd if more than 50 MB of memory is available.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: conditionals test
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install vsftpd if sufficient memory available
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: vsftpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’memory_mb’][’real’][’free’] &gt; 50</span></span></code></pre></div>
+<h4 id="testing-multiple-conditions">Testing Multiple Conditions</h4>
+<ul>
+<li><strong>when</strong> statements can also be used to evaluate multiple conditions.</li>
+<li>To do so, you can group the conditions with parentheses and combine them with <strong>and</strong> and <strong>or</strong> keywords.</li>
+<li><strong>and</strong> runs if both conditionals are ture</li>
+<li><strong>or</strong> runs if one of the conditions are true</li>
+</ul>
+<h3 id="lab-and-is-used-and--runs-the-task-only-if-both-conditions-are-true">Lab: <strong>and</strong> is used and  runs the task only if both conditions are true.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: testing multiple conditions
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: showing output
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">msg</span>: using CentOS 8.1
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: ansible_facts[’distribution_version’] == &#34;8.1&#34; and ansible_facts[’distribution’] == &#34;CentOS&#34;</span></span></code></pre></div>
+<ul>
+<li>You can make more complex statements by grouping conditions together in parentheses.</li>
+<li>group the <strong>when</strong> statement starts with a &gt; sign to wrap the statement over the next five lines for readability.</li>
+</ul>
+<h3 id="lab-combining-complex-statements">Lab: Combining complex statements</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: using multiple conditions
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: removed
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: &gt;<span style="color:#5af78e">
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          ( ansible_facts[’distribution’] == &#34;RedHat&#34; and
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">            ansible_facts[’memfree_mb’] &lt; 512 )
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          or
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">          ( ansible_facts[’distribution’] == &#34;CentOS&#34; and
+</span></span></span><span style="display:flex;"><span><span style="color:#5af78e">            ansible_facts[’memfree_mb’] &lt; 256 )</span></span></span></code></pre></div>
+<h4 id="combining-loop-and-when">Combining loop and when</h4>
+<h3 id="lab-combining-loop-and-when-perform-a-kernel-update-only-if-boot-is-on-a-dedicated-mount-point-and-at-least-200-mbis-available-in-the-mount">Lab: Combining loop and when, Perform a kernel update only if /boot is on a dedicated mount point and at least 200 MBis available in the mount.</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: conditionals test
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: update the kernel if sufficient space is available in /boot
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: kernel
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">loop</span>: <span style="color:#5af78e">&#34;{{ ansible_facts[’mounts’] }}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">when</span>: item.mount == &#34;/boot&#34; and item.size_available &gt; 200000000</span></span></code></pre></div>
+<h4 id="combining-loop-and-register">Combining loop and register</h4>
+<h3 id="lab-combining-register-and-loop">Lab: Combining <strong>register</strong> and <strong>loop</strong></h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: test register
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">shell</span>: cat /etc/passwd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">register</span>: passwd_contents
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">msg</span>: passwd contains user lisa
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">when</span>: passwd_contents.stdout.find(’lisa’) != -1</span></span></code></pre></div>
+<p><strong>passwd_contents.stdout.find</strong>,</p>
+<ul>
+<li><strong>passwd_contents.stdout</strong> does not contain any item with the name <strong>find</strong>.</li>
+<li>Construction that is used here is <strong>variable.find</strong>, which enables a task to search a specific string in a variable. (the<strong>find</strong> function in Python is used)</li>
+<li>When the Python <strong>find</strong> function does not find a string, it returns a value of −1.</li>
+<li>If the requested string is found, the <strong>find</strong> function returns an integer that returns the position where the string was found.</li>
+<li>For instance, if the string lisa is found in /etc/passwd, it returns an unexpected value like 2604, which is the position in the file, expressed as a byte offset from the beginning, where the string is found for the first time.</li>
+<li>Because of the behavior of the Python <strong>find</strong> function, <strong>variable.find</strong> needs <em>not</em> to be equal to −1 to have the task succeed. So don&rsquo;t write <strong>passwd_contents.stdout.find(&rsquo;lisa&rsquo;) = 0</strong> (because it is not a Boolean), but instead write <strong>passwd_contents.stdout.find(&rsquo;lisa&rsquo;) != -1</strong>.</li>
+</ul>
+<h3 id="lab-practice-working-with-conditionals-using-register">Lab: Practice working with conditionals using <strong>register</strong>.</h3>
+<ul>
+<li>When using <strong>register</strong>, you might want to define a task that runs a command that will fail, just to capture the return code of that command, after which the playbook should continue. If that is the case, you must ensure that <strong>ignore_errors: yes</strong> is used in the task definition.</li>
+</ul>
+<p>1. Use your editor to create a new file with the name exercise72.yaml. Start writing the play header as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:</code></pre></div>
+<p>2. Add the first task, which checks whether the httpd service is running, using command output that will be registered. Notice the use of <strong>ignore_errors: yes</strong>. This line makes sure that if the service is <em>not</em> running, the play is still executed further.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:
+  - name: get httpd service status
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result</code></pre></div>
+<p>3. Add a debug task that shows the output of the command so that you can analyze what is currently in the registered variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:
+  - name: get httpd service status
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result
+  - name: show result variable contents
+    debug:
+      msg: printing contents of the registered variable {{ result }}</code></pre></div>
+<p>4. Complete the playbook by including the <strong>service</strong> task, which is started only if the value stored in <strong>result.rc</strong> (which is the return code of the command that was registered) contains a 0. This is the case if the previous command executed successfully.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: restart sshd service if httpd is running
+  hosts: ansible1
+  tasks:
+  - name: get httpd service status
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result
+  - name: show result variable contents
+    debug:
+      msg: printing contents of the registered variable {{ result }}
+  - name: restart sshd service
+    service:
+      name: sshd
+      state: restarted
+    when: result.rc == 0</code></pre></div>
+<p>5. Use an ad hoc command to make sure the httpd service is installed: <code>ansible ansible1 -m yum -a &quot;name=httpd state=latest&quot;</code>.</p>
+<p>6. Use an ad hoc command to make sure the httpd service is stopped: <code>ansible ansible1 -m service -a &quot;name=httpd state=stopped&quot;</code>.</p>
+<p>7. Run the playbook using <code>ansible-playbook exercise72.yaml</code> and analyze the result. You should see that the playbook skips the <strong>service</strong> task.</p>
+<p>8. Type <code>ansible ansible1 -m service -a &quot;name=httpd state=started&quot;</code> and run the playbook again, using <code>ansible-playbook exercise72.yaml</code>. Playbook execution at this point should be successful.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/ansible/"><a class="padding" href="/ansible/"><i class="fa-fw fas fa-file-lines"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-id="/ansible/ad-hoc-commands-and-scripting/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/"><i class="fa-fw fas fa-file-lines"></i> Ad Hoc Commands and Scripting</a></li>
+            <li class="active hidden " data-nav-id="/ansible/task-control/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/task-control/using-when-to-run-tasks-conditionally/"></a></li>
+            <li class="" data-nav-id="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-id="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-id="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-id="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-id="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-id="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-id="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-id="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-id="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-id="/bash-scripting/"><a class="padding" href="/bash-scripting/"><i class="fa-fw fas fa-code"></i> Bash Scripting</a><ul id="R-subsections-fc95944d927ad1a52feaf7ff2addc71b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/containers/"><a class="padding" href="/containers/"><i class="fa-fw fas fa-box-open"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/desktop/"><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/keyboard/"><a class="padding" href="/keyboard/"><i class="fa-fw fas fa-keyboard"></i> Keyboard</a><ul id="R-subsections-9c70f15c7e0cd80e425ec652ecbd7e70" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/networking/"><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/redhat/"><a class="padding" href="/redhat/"><i class="fa-brands fab fa-redhat"></i> RedHat</a><ul id="R-subsections-22ddd467d467af44ac41abd22ed6268b" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/tools/"><a class="padding" href="/tools/">Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/bash/"><a class="padding" href="/bash/">Bashes</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/boot/"><a class="padding" href="/boot/">Boots</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/cyber-security/"><a class="padding" href="/cyber-security/">Cyber Securities</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/files/"><a class="padding" href="/files/">Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/packages/"><a class="padding" href="/packages/">Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/storage/"><a class="padding" href="/storage/">Storages</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/system/"><a class="padding" href="/system/">Systems</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/users-and-groups/"><a class="padding" href="/users-and-groups/">Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/virtualization/"><a class="padding" href="/virtualization/">Virtualizations</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-id="/now/"><a class="padding" href="/now/"><i class='fas fa-fw fa-play'></i> Now</a></li>
+            <li class="" data-nav-id="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-id="/booknotes/"><a class="padding" href="/booknotes/"><i class='fas fa-fw fa-file'></i> Book Notes</a></li>
+            <li class="" data-nav-id="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-id="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762442645" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762442645" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762442645" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762442645" defer></script>
+    <script src="/js/theme.min.js?1762442645" defer></script>
+  </body>
+</html>
