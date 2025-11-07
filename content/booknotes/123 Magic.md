@@ -1,6 +1,8 @@
----
-title: 123 Magic (4/10)
----
++++
+title = '123 Magic (4/10)'
+description = '123 Magic Book Summary'
++++
+
 
 ![123 Magic](https://m.media-amazon.com/images/I/61vWhousV5L._SL1500_.jpg?classes=inline&height=175px)
 
