@@ -1,6 +1,7 @@
 +++
 title = 'Boot Process, Grub2, and Kernel'
 description = 'Linux kernel, boot process, and password recovery'
+featured_image = "../images/boot.png"
 +++
 ## Linux Kernel
 - controls everything on the system.  
