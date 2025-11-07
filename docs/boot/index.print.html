@@ -5,48 +5,44 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
-    <meta name="description" content="Boot Process, Grub2, and KernelLinux kernel, boot process, and password recovery
-System Initialization, Message Logging, and System TuningSystem initialization, service management, tuning, and logging">
+    <meta name="description" content="Boot Process, Grub2, and KernelSystem Initialization, Message Logging, and System Tuning">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Boot :: Linux Reader">
-    <meta name="twitter:description" content="Boot Process, Grub2, and KernelLinux kernel, boot process, and password recovery
-System Initialization, Message Logging, and System TuningSystem initialization, service management, tuning, and logging">
+    <meta name="twitter:description" content="Boot Process, Grub2, and KernelSystem Initialization, Message Logging, and System Tuning">
     <meta property="og:url" content="http://linuxreader.com/boot/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Boot :: Linux Reader">
-    <meta property="og:description" content="Boot Process, Grub2, and KernelLinux kernel, boot process, and password recovery
-System Initialization, Message Logging, and System TuningSystem initialization, service management, tuning, and logging">
+    <meta property="og:description" content="Boot Process, Grub2, and KernelSystem Initialization, Message Logging, and System Tuning">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="Boot :: Linux Reader">
-    <meta itemprop="description" content="Boot Process, Grub2, and KernelLinux kernel, boot process, and password recovery
-System Initialization, Message Logging, and System TuningSystem initialization, service management, tuning, and logging">
-    <meta itemprop="wordCount" content="24">
+    <meta itemprop="description" content="Boot Process, Grub2, and KernelSystem Initialization, Message Logging, and System Tuning">
+    <meta itemprop="wordCount" content="12">
     <title>Boot :: Linux Reader</title>
     <link href="http://linuxreader.com/boot/" rel="canonical" type="text/html" title="Boot :: Linux Reader">
     <link href="/boot/index.xml" rel="alternate" type="application/rss+xml" title="Boot :: Linux Reader">
-    <link href="/images/favicon.svg?1762473041" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762473041" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762473041" defer></script>
-    <script src="/js/search-lunr.min.js?1762473041" defer></script>
-    <script src="/js/search.min.js?1762473041" defer></script>
+    <link href="/images/favicon.svg?1762526223" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762526223" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762526223" defer></script>
+    <script src="/js/search-lunr.min.js?1762526223" defer></script>
+    <script src="/js/search.min.js?1762526223" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762473041";
+      window.relearn.index_js_url="/searchindex.en.js?1762526223";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762473041" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762473041" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762473041" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762473041" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762526223" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762526223" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762526223" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762526223" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762473041" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762473041" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762473041" rel="stylesheet">
-    <link href="/css/theme.min.css?1762473041" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762473041" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762526223" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762526223" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762526223" rel="stylesheet">
+    <link href="/css/theme.min.css?1762526223" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762526223" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -164,9 +160,38 @@ System Initialization, Message Logging, and System TuningSystem initialization, 
 
 <h1 id="boot">Boot</h1>
 
-<div class="children children-type-list children-sort-">
-  <div class="children-title children-title-1"><a href="/boot/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></div><p>Linux kernel, boot process, and password recovery</p>
-  <div class="children-title children-title-1"><a href="/boot/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></div><p>System initialization, service management, tuning, and logging</p>
+<div class="children children-type-card children-sort-"><ul class="card-container">
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-96b02b171a681987883a554cb4cdfce7">
+    <div class="card-content">
+      <div class="card-title" id="R-card-96b02b171a681987883a554cb4cdfce7">
+        <a href="/boot/boot-process-grub2-and-kernel/">
+        Boot Process, Grub2, and Kernel
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-40636c42b7a53946b50e84dd9e72b3e8">
+    <div class="card-content">
+      <div class="card-title" id="R-card-40636c42b7a53946b50e84dd9e72b3e8">
+        <a href="/boot/system-initialization-message-logging-and-system-tuning/">
+        System Initialization, Message Logging, and System Tuning
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+</ul>
 </div>
 
   <footer class="footline">
@@ -918,8 +943,8 @@ timeout value when GRUB2 menu appears.</p>
 </li>
 </ul>
 <p>Append &ldquo;emergency&rdquo; to the kernel line entry:</p>
-<p><a href="#R-image-b8ee585639af5f155665ac9635e191df" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b8ee585639af5f155665ac9635e191df"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png"></a></p>
+<p><a href="#R-image-0da84ac4f87a9bc15179688b64051ea3" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0da84ac4f87a9bc15179688b64051ea3"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png"></a></p>
 <p>Other options:</p>
 <ul>
 <li>&ldquo;rescue&rdquo;</li>
@@ -937,8 +962,8 @@ timeout value when GRUB2 menu appears.</p>
 </li>
 <li>
 <p>Modify this kernel string and append &ldquo;rd.break&rdquo; to the end of the line.
-<a href="#R-image-1bd47be4f5a7f8418b605a49ce3ed106" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1bd47be4f5a7f8418b605a49ce3ed106"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png"></a></p>
+<a href="#R-image-df12b1795582464d7c53dbef520ba4f4" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-df12b1795582464d7c53dbef520ba4f4"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png"></a></p>
 </li>
 <li>
 <p>Press Ctrl+x when done to boot to the special shell. The system mounts the root file system read-only on the <em>/sysroot</em> directory. Make <em>/sysroot</em> appear as mounted on <em>/</em> using the <em>chroot</em> command:</p>
@@ -2456,22 +2481,22 @@ journals</li>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762473041" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762526223" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762473041" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762473041" defer></script>
-    <script src="/js/theme.min.js?1762473041" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762526223" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762526223" defer></script>
+    <script src="/js/theme.min.js?1762526223" defer></script>
   </body>
 </html>

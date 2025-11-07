@@ -5,60 +5,44 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
-    <meta name="description" content="Ansible Inventory and Ansible.cfgSetting up and Ansible environment
-Ansible-inventory commandAnsible-inventory command
-Dynamic InventoryUsing Dynamic Ansible Inventories
-Host Name PatternsWorking with host name patterns
-Using Multiple InventoriesUsing Multiple Inventories">
+    <meta name="description" content="Ansible Inventory and Ansible.cfgAnsible-inventory commandDynamic InventoryHost Name PatternsUsing Multiple Inventories">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Inventory :: Linux Reader">
-    <meta name="twitter:description" content="Ansible Inventory and Ansible.cfgSetting up and Ansible environment
-Ansible-inventory commandAnsible-inventory command
-Dynamic InventoryUsing Dynamic Ansible Inventories
-Host Name PatternsWorking with host name patterns
-Using Multiple InventoriesUsing Multiple Inventories">
+    <meta name="twitter:description" content="Ansible Inventory and Ansible.cfgAnsible-inventory commandDynamic InventoryHost Name PatternsUsing Multiple Inventories">
     <meta property="og:url" content="http://linuxreader.com/ansible/inventory/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Inventory :: Linux Reader">
-    <meta property="og:description" content="Ansible Inventory and Ansible.cfgSetting up and Ansible environment
-Ansible-inventory commandAnsible-inventory command
-Dynamic InventoryUsing Dynamic Ansible Inventories
-Host Name PatternsWorking with host name patterns
-Using Multiple InventoriesUsing Multiple Inventories">
+    <meta property="og:description" content="Ansible Inventory and Ansible.cfgAnsible-inventory commandDynamic InventoryHost Name PatternsUsing Multiple Inventories">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="Inventory :: Linux Reader">
-    <meta itemprop="description" content="Ansible Inventory and Ansible.cfgSetting up and Ansible environment
-Ansible-inventory commandAnsible-inventory command
-Dynamic InventoryUsing Dynamic Ansible Inventories
-Host Name PatternsWorking with host name patterns
-Using Multiple InventoriesUsing Multiple Inventories">
-    <meta itemprop="wordCount" content="28">
+    <meta itemprop="description" content="Ansible Inventory and Ansible.cfgAnsible-inventory commandDynamic InventoryHost Name PatternsUsing Multiple Inventories">
+    <meta itemprop="wordCount" content="14">
     <title>Inventory :: Linux Reader</title>
     <link href="http://linuxreader.com/ansible/inventory/" rel="canonical" type="text/html" title="Inventory :: Linux Reader">
     <link href="/ansible/inventory/index.xml" rel="alternate" type="application/rss+xml" title="Inventory :: Linux Reader">
-    <link href="/images/favicon.svg?1762473041" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762473041" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762473041" defer></script>
-    <script src="/js/search-lunr.min.js?1762473041" defer></script>
-    <script src="/js/search.min.js?1762473041" defer></script>
+    <link href="/images/favicon.svg?1762526223" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762526223" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762526223" defer></script>
+    <script src="/js/search-lunr.min.js?1762526223" defer></script>
+    <script src="/js/search.min.js?1762526223" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762473041";
+      window.relearn.index_js_url="/searchindex.en.js?1762526223";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762473041" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762473041" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762473041" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762473041" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762526223" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762526223" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762526223" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762526223" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762473041" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762473041" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762473041" rel="stylesheet">
-    <link href="/css/theme.min.css?1762473041" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762473041" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762526223" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762526223" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762526223" rel="stylesheet">
+    <link href="/css/theme.min.css?1762526223" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762526223" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -176,12 +160,83 @@ Using Multiple InventoriesUsing Multiple Inventories">
 
 <h1 id="inventory">Inventory</h1>
 
-<div class="children children-type-list children-sort-">
-  <div class="children-title children-title-1"><a href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></div><p>Setting up and Ansible environment</p>
-  <div class="children-title children-title-1"><a href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></div><p>Ansible-inventory command</p>
-  <div class="children-title children-title-1"><a href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></div><p>Using Dynamic Ansible Inventories</p>
-  <div class="children-title children-title-1"><a href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></div><p>Working with host name patterns</p>
-  <div class="children-title children-title-1"><a href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></div><p>Using Multiple Inventories</p>
+<div class="children children-type-card children-sort-"><ul class="card-container">
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-72889b43719a430a43c347168ec73fe7">
+    <div class="card-content">
+      <div class="card-title" id="R-card-72889b43719a430a43c347168ec73fe7">
+        <a href="/ansible/inventory/ansible-inventory/">
+        Ansible Inventory and Ansible.cfg
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-021e680f232c947f1fdf76d5d358e489">
+    <div class="card-content">
+      <div class="card-title" id="R-card-021e680f232c947f1fdf76d5d358e489">
+        <a href="/ansible/inventory/ansible-inventory-command/">
+        Ansible-inventory command
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-a103efd81b2544fbd2eac3c8c1c9e79e">
+    <div class="card-content">
+      <div class="card-title" id="R-card-a103efd81b2544fbd2eac3c8c1c9e79e">
+        <a href="/ansible/inventory/dynamic-inventory/">
+        Dynamic Inventory
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-6637492a0d4c19c1ebe0d9ebd379c2cb">
+    <div class="card-content">
+      <div class="card-title" id="R-card-6637492a0d4c19c1ebe0d9ebd379c2cb">
+        <a href="/ansible/inventory/host-name-patterns/">
+        Host Name Patterns
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-f9c3e159de9dc46328377dfd4e0a8249">
+    <div class="card-content">
+      <div class="card-title" id="R-card-f9c3e159de9dc46328377dfd4e0a8249">
+        <a href="/ansible/inventory/using-multiple-inventories/">
+        Using Multiple Inventories
+        </a>
+      </div>
+      <div class="card-content-text">
+          <!-- raw HTML omitted -->
+
+      </div>
+    </div>
+  </article>
+</li>
+</ul>
 </div>
 
   <footer class="footline">
@@ -675,22 +730,22 @@ webserver2</code></pre></div>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762473041" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762473041" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762526223" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762526223" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762473041" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762473041" defer></script>
-    <script src="/js/theme.min.js?1762473041" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762526223" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762526223" defer></script>
+    <script src="/js/theme.min.js?1762526223" defer></script>
   </body>
 </html>

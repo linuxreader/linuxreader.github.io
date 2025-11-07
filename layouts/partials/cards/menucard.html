@@ -1,0 +1,34 @@
+{{- $page := .page -}}
+{{- $title := .title -}}
+{{- $content := .content -}}
+{{- $href := .href -}}
+{{- $depth := .params.depth | default 0 -}}
+
+<article class="card card-depth-{{ $depth }}">
+  <div class="card-content">
+    {{- if $title }}
+      <h3 class="card-title">
+        {{- if $href }}
+          <a href="{{ $href | safeURL }}">{{ $title }}</a>
+        {{- else }}
+          {{ $title }}
+        {{- end }}
+      </h3>
+    {{- end }}
+
+    {{- if $content }}
+      <p class="card-text">{{ $content | safeHTML }}</p>
+    {{- end }}
+
+    {{- $children := .Pages -}}
+    {{- if $children }}
+      {{- $children := sort $children "Title" -}}
+      <ul class="card-child-list">
+        {{- range $children }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{- end }}
+      </ul>
+    {{- end }}
+  </div>
+</article>
+

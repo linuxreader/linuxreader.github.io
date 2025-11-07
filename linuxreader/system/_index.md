@@ -4,10 +4,11 @@ title = "System"
 menuPre = '<i class="fa-solid fa-server"></i> '
 weight = 11
 alwaysopen = false
+featured_image = "images/system.png"
 [_build]
   render = "always"
   list = "always"
   publishResources = true
 +++
 
-{{% children containerstyle="div" style="h6" description=true %}}
+{{% children type="card" description="true" %}}

@@ -4,10 +4,11 @@ title = "Cyber Security"
 weight = 5
 archetype = "moc" 
 alwaysopen = false
+featured_image = "images/cyber.jpg"
 [_build]
   render = "always"
   list = "always"
   publishResources = true
 +++
 
-{{% children containerstyle="div" style="h6" description=true %}}
+{{% children type="card" description="true" %}}

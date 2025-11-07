@@ -4,10 +4,11 @@ title = "Containers"
 weight = 4
 archetype = "moc" 
 alwaysopen = false
+featured_image = "images/containers.png"
 [_build]
   render = "always"
   list = "always"
   publishResources = true
 +++
 
-{{% children containerstyle="div" style="h6" description=true %}}
+{{% children type="card" description="true" %}}

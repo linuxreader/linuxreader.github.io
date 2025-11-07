@@ -4,10 +4,11 @@ title = "Ansible"
 weight = 1
 archetype = "moc" 
 alwaysopen = false
+featured_image = "images/ansible.png"
 [_build]
   render = "always"
   list = "always"
   publishResources = true
 +++
 
-{{% children type="card" params.depth="3" description="true" %}}
+{{% children type="card" description="true" %}}

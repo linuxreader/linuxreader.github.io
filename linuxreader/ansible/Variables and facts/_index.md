@@ -10,4 +10,4 @@ alwaysopen = false
   
 +++
 
-{{% children containerstyle="div" style="h6" description=true %}}
+{{% children type="card" description="true" %}}

@@ -6,6 +6,7 @@ title = "Book Notes"
   publishResources = true
 +++
 
+{{% children type="card" description="true" %}}
 
 These are the summaries and notes of books I have read. These notes are the result of wanting to further process books and retain information. After years of reading books one time and then forgetting most of them. 
 

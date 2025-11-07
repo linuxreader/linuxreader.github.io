@@ -4,10 +4,11 @@ title = "Desktop"
 weight = 6
 archetype = "moc" 
 alwaysopen = false
+featured_image = "images/desktop.png"
 [_build]
   render = "always"
   list = "always"
   publishResources = true
 +++
 
-{{% children containerstyle="div" style="h6" description=true %}}
+{{% children type="card" description="true" %}}
