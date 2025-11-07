@@ -257,8 +257,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "",
-    "content": "Check out what I am doing now, read my book notes, contact me, or see what this site is all about\nAnsible\rBash\rBoot\rContainers\rCyber Security\rDesktop\rFiles\rNetworking\rPackages\rStorage\rSystem\rTools\rUsers and Groups\rVirtualization",
-    "description": "Check out what I am doing now, read my book notes, contact me, or see what this site is all about\nAnsible\rBash\rBoot\rContainers\rCyber Security\rDesktop\rFiles\rNetworking\rPackages\rStorage\rSystem\rTools\rUsers and Groups\rVirtualization",
+    "content": "contact me, or see what this site is all about\nAnsible\rBash\rBoot\rContainers\rCyber Security\rDesktop\rFiles\rNetworking\rPackages\rStorage\rSystem\rTools\rUsers and Groups\rVirtualization",
+    "description": "contact me, or see what this site is all about\nAnsible\rBash\rBoot\rContainers\rCyber Security\rDesktop\rFiles\rNetworking\rPackages\rStorage\rSystem\rTools\rUsers and Groups\rVirtualization",
     "tags": [],
     "title": "Linux Reader",
     "uri": "/"
