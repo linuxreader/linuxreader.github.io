@@ -102,8 +102,7 @@ When working with tags, you can use some special tags. [Table
 ::: group
 **Table 11-5** Special Tags Overview
 
-![Image](/Images/11tab05.jpg){width="940" height="252"}
-:::
+![Image](Images/11tab05.jpg)
 
 Apart from these special tags, you might also want to set a **debug**
 tag to easily identify tasks that should be run only if you specifically
