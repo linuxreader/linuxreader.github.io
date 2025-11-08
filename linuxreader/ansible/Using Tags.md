@@ -99,7 +99,6 @@ the playbook listing1114.yaml.
 When working with tags, you can use some special tags. [Table
 11-5](#ch11.xhtml#tab11_5) gives an overview.
 
-::: group
 **Table 11-5** Special Tags Overview
 
 ![](/images/11tab05.jpg)
