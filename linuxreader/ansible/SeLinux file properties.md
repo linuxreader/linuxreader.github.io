@@ -1,6 +1,6 @@
 +++
-title = 'Jinja2 templates'
-description = 'Jinja2 templates'
+title = 'SeLinux File Properties'
+description = 'How to manage SeLinux File Properties with Ansible'
 +++
 
 ### Managing SELinux Properties
