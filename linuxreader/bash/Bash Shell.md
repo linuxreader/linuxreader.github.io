@@ -18,8 +18,6 @@ You can see a list of more shells and a comparison of their features on this [Wi
 
 I meant Terminal Emulators! Silly me.. 
 
-
-
  The **Current shell** 
 - Where a program is executed.
 
