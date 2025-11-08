@@ -21,31 +21,31 @@ In the past decade, test-driven development (TDD), in one form or another, has b
     <meta property="article:section" content="Ansible">
     <meta itemprop="description" content="Chapter 2 Local Infrastructure Development Ansible and Vagrant Prototyping and testing with local virtual machines Ansible works well with any server to which you can connect—remote or local. For speedier testing and development of Ansible playbooks, and for testing in general, it’s a very good idea to work locally. Local development and testing of infrastructure is both safer and faster than doing it on remote/live machines—especially in production environments!
 In the past decade, test-driven development (TDD), in one form or another, has become the norm for much of the software industry. Infrastructure development hasn’t been as organized until recently, and best practices dictate that infrastructure (which is becoming more and more important to the software that runs on it) should be thoroughly tested as well.">
-    <meta itemprop="wordCount" content="1619">
+    <meta itemprop="wordCount" content="1837">
     <title></title>
     <link href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1762537425" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762537425" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762537425" defer></script>
-    <script src="/js/search-lunr.min.js?1762537425" defer></script>
-    <script src="/js/search.min.js?1762537425" defer></script>
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762537425";
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762537425" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762537425" rel="stylesheet">
-    <link href="/css/theme.min.css?1762537425" rel="stylesheet">
-    <link href="/css/format-html.min.css?1762537425" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762635744" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -120,7 +120,7 @@ In the past decade, test-driven development (TDD), in one form or another, has b
 <span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/variables-and-facts/variables/" title="Variables (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -155,7 +155,7 @@ In the past decade, test-driven development (TDD), in one form or another, has b
             </div>
 
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/bash/" title="Bash (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/ad-hoc-ansible-commands/" title="Ad Hoc Ansible Commands (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
 
 
@@ -184,7 +184,7 @@ and for testing in general, it&rsquo;s a very good idea to work locally. Local
 development and testing of infrastructure is both safer and faster than
 doing it on remote/live machines&mdash;especially in production
 environments!</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>In the past decade, test-driven development (TDD), in one form or
 another, has become the norm for much of the software industry.
 Infrastructure development hasn&rsquo;t been as organized until recently, and
@@ -200,7 +200,7 @@ approach is a thousand times better than what, in the software
 development world, would be called &lsquo;cowboy coding&rsquo;&mdash;working directly in
 a production environment, not documenting or encapsulating changes in
 code, and not having a way to roll back to a previous version.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>The past decade has seen the growth of many virtualization tools that
 allow for flexible and very powerful infrastructure emulation, all from
 your local workstation! It&rsquo;s empowering to be able to play around with a
@@ -296,7 +296,14 @@ virtual machine.</p>
 <p>Open the Vagrantfile that was created when we used the <code>vagrant init</code>
 command earlier. Add the following lines just before the final &rsquo;end&rsquo;
 (Vagrantfiles use Ruby syntax, in case you&rsquo;re wondering):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 # Provisioning configuration for Ansible.
+2 config.vm.provision &quot;ansible&quot; do |ansible|
+3   ansible.playbook = &quot;playbook.yml&quot;
+4 end</code></pre>
+</div>
+</figure>
 <p>This is a very basic configuration to get you started using Ansible with
 Vagrant. There are <a href="http://docs.vagrantup.com/v2/provisioning/ansible.html" rel="external" target="_blank">many other Ansible
 options</a> you can
@@ -307,48 +314,109 @@ to configure your VM.</p>
 <p>Let&rsquo;s create the Ansible <code>playbook.yml</code> file now. Create an empty text
 file in the same folder as your Vagrantfile, and put in the following
 contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: all
+3   sudo: yes
+4   tasks:
+5   - name: Ensure NTP (for time synchronization) is installed.
+6     yum: name=ntp state=present
+7   - name: Ensure NTP is running.
+8     service: name=ntpd state=started enabled=yes</code></pre>
+</div>
+</figure>
 <p>I&rsquo;ll get into what this playbook is doing in a minute. For now, let&rsquo;s
 run the playbook on our VM. Make sure you&rsquo;re in the same directory as
 the Vagrantfile and new playbook.yml file, and enter
 <code>vagrant provision</code>. You should see status messages for each of the
 &rsquo;tasks&rsquo; you defined, and then a recap showing what Ansible did on your
 VM&mdash;something like the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>PLAY RECAP ********************************************************************
+default                    : ok=3    changed=1    unreachable=0    failed=0</code></pre>
+</div>
+</figure>
 <p>Ansible just took the simple playbook you defined, parsed the YAML
 syntax, and ran a bunch of commands via SSH to configure the server as
 you specified. Let&rsquo;s go through the playbook, step by step:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---</code></pre>
+</div>
+</figure>
 <p>This first line is a marker showing that the rest of the document will
 be formatted in YAML (read a <a href="http://www.yaml.org/start.html" rel="external" target="_blank">getting started guide for
 YAML</a>).</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>2 - hosts: all</code></pre>
+</div>
+</figure>
 <p>This line tells Ansible to which hosts this playbook applies. <code>all</code>
 works here, since Vagrant is invisibly using its own Ansible inventory
 file (instead of the one we created earlier in <code>/etc/ansible/hosts</code>),
 which just defines the Vagrant VM.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>3   sudo: yes</code></pre>
+</div>
+</figure>
 <p>Since we need privileged access to install NFS and modify system
 configuration, this line tells Ansible to use <code>sudo</code> for all the tasks
 in the playbook.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>4   tasks:</code></pre>
+</div>
+</figure>
 <p>All the tasks after this line will be run on all hosts (or, in our case,
 our one VM).</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>5   - name: Ensure NTP daemon (for time synchronization) is installed.
+6     yum: name=ntp state=present</code></pre>
+</div>
+</figure>
 <p>This command is the equivalent of running <code>yum install ntp</code>, but is much
 more intelligent; it will check if ntp is installed, and, if not,
 install it. This is the equivalent of the following shell script:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>if ! rpm -qa | grep -qw ntp; then
+    yum install ntp
+fi</code></pre>
+</div>
+</figure>
 <p>However, the above script is still not quite as robust as Ansible&rsquo;s
 <code>yum</code> command. What if ntpdate is installed, but not ntp? This script
 would require extra tweaking and complexity to match the simple Ansible
 yum command, especially after we explore the yum module more intimately
 (or the <code>apt</code> module, when using Ubuntu and Debian-flavored Linux).</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>7   - name: Ensure NTP is running.
+8     service: name=ntpd state=started enabled=yes</code></pre>
+</div>
+</figure>
 <p>This final task both checks and ensures that the ntpd service is started
 and running, and sets it to start at system boot. A shell script with
 the same effect would be:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># Start ntpd if it&#39;s not already running.
+if ps aux | grep -v grep | grep &quot;[n]tpd&quot; &gt; /dev/null
+then
+    echo &quot;ntpd is running.&quot; &gt; /dev/null
+else
+    /sbin/service ntpd restart &gt; /dev/null
+    echo &quot;Started ntpd.&quot;
+fi
+# Make sure ntpd is enabled on system startup.
+chkconfig ntpd on</code></pre>
+</div>
+</figure>
 <p>You can see how things start getting complex in the land of shell
 scripts! And this shell script is still not as robust as what you get
 with Ansible. To maintain idempotency and handle error conditions,
@@ -357,8 +425,17 @@ you do with Ansible.</p>
 <p>We could be even more terse (and really demonstrate Ansible&rsquo;s powerful
 simplicity) and not use Ansible&rsquo;s <code>name</code> module to give human-readable
 names to each command, resulting in the following playbook:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: all
+3   sudo: yes
+4   tasks:
+5   - yum: name=ntp state=present
+6   - service: name=ntpd state=started enabled=yes</code></pre>
+</div>
+</figure>
+<aside class="information blurb">
 <p>Just as with code and configuration files, documentation in Ansible
 (e.g. using the <code>name</code> function and/or adding comments to the YAML for
 complicated tasks) is not absolutely necessary. However, I&rsquo;m a firm
@@ -366,7 +443,7 @@ believer in thorough (but concise) documentation, so I almost always
 document what my tasks will do by providing a <code>name</code> for each one. This
 also helps when you&rsquo;re running the playbooks, so you can see what&rsquo;s
 going on in a human-readable format.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap04.xhtml_leanpub-auto-summary-1">Summary</h3>
 <p>Your workstation is on the path to becoming an
 &ldquo;infrastructure-in-a-box,&rdquo; and you can now ensure your infrastructure is
@@ -374,7 +451,21 @@ as well-tested as the code that runs on top if it. With one small
 example, you&rsquo;ve got a glimpse at the simple-yet-powerful Ansible
 playbook. We&rsquo;ll dive deeper into Ansible playbooks later, and we&rsquo;ll also
 explore Vagrant a little more as we go.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code> ______________________________________
+/ I have not failed, I&#39;ve just found   \
+| 10,000 ways that won&#39;t work. (Thomas |
+\ Edison)                              /
+ --------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre>
+</div>
+</figure>
+:::
 <p>[]{#chap05.xhtml}</p>
 <p>::: {}</p>
 
@@ -425,69 +516,52 @@ explore Vagrant a little more as we go.</p>
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/"><input type="checkbox" id="R-section-ee5145c58612a384986769058046b746" aria-controls="R-subsections-ee5145c58612a384986769058046b746"><label for="R-section-ee5145c58612a384986769058046b746"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ad Hoc Commands and Scripting</span></label><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a><ul id="R-subsections-ee5145c58612a384986769058046b746" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/control-node/"><input type="checkbox" id="R-section-51256f203510628e0492e57fa1dd1ec6" aria-controls="R-subsections-51256f203510628e0492e57fa1dd1ec6"><label for="R-section-51256f203510628e0492e57fa1dd1ec6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Control Node</span></label><a class="padding" href="/ansible/control-node/">Control Node</a><ul id="R-subsections-51256f203510628e0492e57fa1dd1ec6" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/control-node/ansible.cfg/"><a class="padding" href="/ansible/control-node/ansible.cfg/">Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/control-node/optimizing-ansible-processing/"><a class="padding" href="/ansible/control-node/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
-            <li class="" data-nav-url="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-files/"><input type="checkbox" id="R-section-7c974a7c4dcf3453ccace14c7f38f13f" aria-controls="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f"><label for="R-section-7c974a7c4dcf3453ccace14c7f38f13f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-files/">Deploying Files</a><ul id="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/jinja2-templates/"><a class="padding" href="/ansible/deploying-files/jinja2-templates/">Jinja2 templates</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/">Jinja2 templates</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-systems/"><input type="checkbox" id="R-section-7cc469ebbd5f7e560963779b9675e597" aria-controls="R-subsections-7cc469ebbd5f7e560963779b9675e597"><label for="R-section-7cc469ebbd5f7e560963779b9675e597"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-systems/">Deploying Files</a><ul id="R-subsections-7cc469ebbd5f7e560963779b9675e597" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/execution-environments/"><input type="checkbox" id="R-section-65eb33a34997cd45f5f49229981c4d2e" aria-controls="R-subsections-65eb33a34997cd45f5f49229981c4d2e"><label for="R-section-65eb33a34997cd45f5f49229981c4d2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/execution-environments/">Execution Environments</a><ul id="R-subsections-65eb33a34997cd45f5f49229981c4d2e" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/execution-environments/ansible-builder/"><a class="padding" href="/ansible/execution-environments/ansible-builder/">Ansible Builder</a></li>
-            <li class="" data-nav-url="/ansible/execution-environments/execution-environments/"><a class="padding" href="/ansible/execution-environments/execution-environments/">Execution Environments</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/inventory/"><input type="checkbox" id="R-section-3f39b2671b9b2dd1dbc36a62b346565a" aria-controls="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a"><label for="R-section-3f39b2671b9b2dd1dbc36a62b346565a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Inventory</span></label><a class="padding" href="/ansible/inventory/">Inventory</a><ul id="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory-command/"><a class="padding" href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></li>
-            <li class="" data-nav-url="/ansible/inventory/dynamic-inventory/"><a class="padding" href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></li>
-            <li class="" data-nav-url="/ansible/inventory/host-name-patterns/"><a class="padding" href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></li>
-            <li class="" data-nav-url="/ansible/inventory/using-multiple-inventories/"><a class="padding" href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/"><input type="checkbox" id="R-section-05c9cec6fb3311e0ece69447be6c4228" aria-controls="R-subsections-05c9cec6fb3311e0ece69447be6c4228"><label for="R-section-05c9cec6fb3311e0ece69447be6c4228"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Processes and Tasks</span></label><a class="padding" href="/ansible/managing-processes-and-tasks/">Managing Processes and Tasks</a><ul id="R-subsections-05c9cec6fb3311e0ece69447be6c4228" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/boot-process/"><a class="padding" href="/ansible/managing-processes-and-tasks/boot-process/">Boot Process</a></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/managing-services/"><a class="padding" href="/ansible/managing-processes-and-tasks/managing-services/">Managing Services</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-software/"><input type="checkbox" id="R-section-e50056380ffea3713f175f637f3fbaba" aria-controls="R-subsections-e50056380ffea3713f175f637f3fbaba"><label for="R-section-e50056380ffea3713f175f637f3fbaba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Software</span></label><a class="padding" href="/ansible/managing-software/">Managing Software</a><ul id="R-subsections-e50056380ffea3713f175f637f3fbaba" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-software/managing-packages/"><a class="padding" href="/ansible/managing-software/managing-packages/">Managing Packages</a></li>
-            <li class="" data-nav-url="/ansible/managing-software/repositories-and-subscriptions/"><a class="padding" href="/ansible/managing-software/repositories-and-subscriptions/">Repositories and subscriptions</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-users/"><input type="checkbox" id="R-section-354866278232268d590e2ad621c06543" aria-controls="R-subsections-354866278232268d590e2ad621c06543"><label for="R-section-354866278232268d590e2ad621c06543"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Users</span></label><a class="padding" href="/ansible/managing-users/">Managing Users</a><ul id="R-subsections-354866278232268d590e2ad621c06543" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-users/encrypted-passwords/"><a class="padding" href="/ansible/managing-users/encrypted-passwords/">Encrypted passwords</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/ssh-connections/"><a class="padding" href="/ansible/managing-users/ssh-connections/">SSH Connections</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/users-and-groups/"><a class="padding" href="/ansible/managing-users/users-and-groups/">Users and Groups</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/modules/"><input type="checkbox" id="R-section-05027151b340155a251c0bf45517b410" aria-controls="R-subsections-05027151b340155a251c0bf45517b410"><label for="R-section-05027151b340155a251c0bf45517b410"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Modules</span></label><a class="padding" href="/ansible/modules/">Modules</a><ul id="R-subsections-05027151b340155a251c0bf45517b410" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/networking/"><input type="checkbox" id="R-section-88666d047a19e08ea2a7a1f576522811" aria-controls="R-subsections-88666d047a19e08ea2a7a1f576522811"><label for="R-section-88666d047a19e08ea2a7a1f576522811"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/ansible/networking/">Networking</a><ul id="R-subsections-88666d047a19e08ea2a7a1f576522811" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/playbooks/"><input type="checkbox" id="R-section-b39ec7807a35bbb89ede99e74c3f8d1c" aria-controls="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c"><label for="R-section-b39ec7807a35bbb89ede99e74c3f8d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Playbooks</span></label><a class="padding" href="/ansible/playbooks/">Playbooks</a><ul id="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
-            <li class="" data-nav-url="/ansible/playbooks/including-and-importing-files/"><a class="padding" href="/ansible/playbooks/including-and-importing-files/">Including and importing Files</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/roles/"><input type="checkbox" id="R-section-c3ddf4cba330014798b46f124f863578" aria-controls="R-subsections-c3ddf4cba330014798b46f124f863578"><label for="R-section-c3ddf4cba330014798b46f124f863578"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Roles</span></label><a class="padding" href="/ansible/roles/">Roles</a><ul id="R-subsections-c3ddf4cba330014798b46f124f863578" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/roles/ansible-galaxy-roles/"><a class="padding" href="/ansible/roles/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-rhel-system-roles/"><a class="padding" href="/ansible/roles/using-rhel-system-roles/">Using RHEL System roles</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/storage/"><input type="checkbox" id="R-section-25ab7c76118917bd6f4fb3e45062f785" aria-controls="R-subsections-25ab7c76118917bd6f4fb3e45062f785"><label for="R-section-25ab7c76118917bd6f4fb3e45062f785"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/ansible/storage/">Storage</a><ul id="R-subsections-25ab7c76118917bd6f4fb3e45062f785" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/storage/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/storage/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
-            <li class="" data-nav-url="/ansible/storage/discovering-storage-related-facts/"><a class="padding" href="/ansible/storage/discovering-storage-related-facts/">Discovering storage related facts</a></li>
-            <li class="" data-nav-url="/ansible/storage/managing-partitions-and-lvm/"><a class="padding" href="/ansible/storage/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
-            <li class="" data-nav-url="/ansible/storage/nfs-setup/"><a class="padding" href="/ansible/storage/nfs-setup/">NFS Setup</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/task-control/"><input type="checkbox" id="R-section-c50bd62a6e6f9028be7fd82767f99cd1" aria-controls="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1"><label for="R-section-c50bd62a6e6f9028be7fd82767f99cd1"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Task Control</span></label><a class="padding" href="/ansible/task-control/">Task Control</a><ul id="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/task-control/handlers/"><a class="padding" href="/ansible/task-control/handlers/">Handlers</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-loops-and-items/"><a class="padding" href="/ansible/task-control/using-loops-and-items/">Using Loops and Items</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/task-control/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/"><input type="checkbox" id="R-section-26d24f44bc3f5644df734f08181e3e2d" aria-controls="R-subsections-26d24f44bc3f5644df734f08181e3e2d"><label for="R-section-26d24f44bc3f5644df734f08181e3e2d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Troubleshooting</span></label><a class="padding" href="/ansible/troubleshooting/">Troubleshooting</a><ul id="R-subsections-26d24f44bc3f5644df734f08181e3e2d" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-tags/"><a class="padding" href="/ansible/troubleshooting/using-tags/">Using Tags</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/"><input type="checkbox" id="R-section-ff32daa8bc11229d5eacc0820ee4c786" aria-controls="R-subsections-ff32daa8bc11229d5eacc0820ee4c786"><label for="R-section-ff32daa8bc11229d5eacc0820ee4c786"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Variable and Facts</span></label><a class="padding" href="/ansible/variables-and-facts/">Variable and Facts</a><ul id="R-subsections-ff32daa8bc11229d5eacc0820ee4c786" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-facts/"><a class="padding" href="/ansible/variables-and-facts/ansible-facts/">Ansible Facts</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-vault/"><a class="padding" href="/ansible/variables-and-facts/ansible-vault/">Ansible Vault</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
-            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/"><a class="padding" href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/"></a></li></ul></li>
+            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/"><a class="padding" href="/ansible/ansible4devops/chapter-2-local-infrastructure-development-ansible-and-vagrant/"></a></li>
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments-1/"><a class="padding" href="/ansible/execution-environments-1/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="" data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
             <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
             <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
             <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
@@ -585,22 +659,22 @@ explore Vagrant a little more as we go.</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762537425" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762537425" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762537425" defer></script>
-    <script src="/js/theme.min.js?1762537425" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
   </body>
 </html>

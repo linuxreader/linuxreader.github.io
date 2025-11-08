@@ -21,31 +21,31 @@ Ansible is flexible when it comes to organizing tasks in more efficient ways so 
     <meta property="article:section" content="Ansible">
     <meta itemprop="description" content="Chapter 6 - Playbook Organization - Roles and Includes So far, we’ve used fairly straightforward examples in this book. Most examples are created for a particular server, and are in one long playbook.
 Ansible is flexible when it comes to organizing tasks in more efficient ways so you can make playbooks more maintainable, reusable, and powerful. We’ll look at two ways to split up tasks more efficiently using includes and roles, and we’ll explore Ansible Galaxy, a repository of some community-maintained roles that help configure common packages and applications.">
-    <meta itemprop="wordCount" content="3955">
+    <meta itemprop="wordCount" content="4765">
     <title></title>
     <link href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1762537425" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762537425" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762537425" defer></script>
-    <script src="/js/search-lunr.min.js?1762537425" defer></script>
-    <script src="/js/search.min.js?1762537425" defer></script>
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762537425";
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762537425" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762537425" rel="stylesheet">
-    <link href="/css/theme.min.css?1762537425" rel="stylesheet">
-    <link href="/css/format-html.min.css?1762537425" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762635744" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -120,7 +120,7 @@ Ansible is flexible when it comes to organizing tasks in more efficient ways so 
 <span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/variables-and-facts/variables/" title="Variables (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -162,7 +162,7 @@ Ansible is flexible when it comes to organizing tasks in more efficient ways so 
             </div>
 
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/bash/" title="Bash (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/ad-hoc-ansible-commands/" title="Ad Hoc Ansible Commands (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
 
 
@@ -197,19 +197,36 @@ and applications.</p>
 <p>We&rsquo;ve already seen one of the most basic ways of including other files
 in Chapter 4, when <code>vars_files</code> was used to place variables into a
 separate <code>vars.yml</code> file instead of inline with the playbook:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- hosts: all
 <p>vars_files:</p>
 <ul>
-<li>vars.yml<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+<li>vars.yml</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>Tasks can easily be included in a similar way. In the <code>tasks:</code> section
 of your playbook, you can add <code>include</code> directives like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>tasks:
+  - include: included-playbook.yml</code></pre>
+</div>
+</figure>
 <p>Just like with variable include files, tasks are formatted in a flat
 list in the included file. As an example, the <code>included-playbook.yml</code>
 could look like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>---
+- name: Add profile info for user.
+  copy:
+    src: example_profile
+    dest: &quot;/home/{{ username }}/.profile&quot;
+    owner: &quot;{{ username }}&quot;
+    group: &quot;{{ username }}&quot;
+    mode: 0744
 <ul>
 <li>
 <p>name: Add private keys for user.
@@ -223,41 +240,82 @@ with_items: ssh_private_keys</p>
 </li>
 <li>
 <p>name: Restart example service.
-service: name=example state=restarted<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+service: name=example state=restarted</code></pre></p>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>In this case, you&rsquo;d probably want to name the file <code>user-config.yml</code>,
 since it&rsquo;s used to configure a user account and restart some service.
 Now, in this and any other playbook that provisions or configures a
 server, if you want to configure a particular user&rsquo;s account, add the
 following in your playbook&rsquo;s <code>tasks</code> section:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- include: example-app-config.yml</code></pre>
+</div>
+</figure>
 <p>We used <code>{{ username }}</code> and <code>{{ ssh_private_keys }}</code> variables in this
 include file instead of hard-coded values so we could make this include
 file reusable. You could define the variables in your playbook&rsquo;s inline
 variables or an included variables file, but Ansible also lets you pass
 variables directly into includes using normal YAML syntax. For example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- { include: user-config.yml, username: johndoe, ssh_private_keys: [] }
+- { include: user-config.yml, username: janedoe, ssh_private_keys: [] }</code></pre>
+</div>
+</figure>
 <p>To make the syntax more readable, you can use structured variables, like
 so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- include: user-config.yml
+  vars:
+    username: johndoe
+    ssh_private_keys:
+      - { src: /path/to/johndoe/key1, dest: id_rsa }
+      - { src: /path/to/johndoe/key2, dest: id_rsa_2 }
+- include: user-config.yml
+  vars:
+    username: janedoe
+    ssh_private_keys:
+      - { src: /path/to/janedoe/key1, dest: id_rsa }
+      - { src: /path/to/janedoe/key2, dest: id_rsa_2 }</code></pre>
+</div>
+</figure>
 <p>Include files can even include other files, so you could have something
 like the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>tasks:
+  - include: user-config.yml</code></pre>
+</div>
+</figure>
 <p><em>inside <code>user-config.yml</code></em></p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- include: ssh-setup.yml</code></pre>
+</div>
+</figure>
 <h4 id="chap08.xhtml_leanpub-auto-dynamic-includes">Dynamic includes</h4>
 <p>Until Ansible 2.0.0, includes were processed when your playbook run
 started, so you couldn&rsquo;t do things like load a particular include when
 some condition was met. Ansible 2.0.0 evaluates includes during playbook
 execution, so you can do something like the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># Include extra tasks file, only if it&#39;s present at runtime.
+- name: Check if extra_tasks.yml is present.
+  stat: path=extras/extra-tasks.yml
+  register: extra_tasks_file
+  connection: local
 <ul>
 <li>include: tasks/extra-tasks.yml
-when: extra_tasks_file.stat.exists<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+when: extra_tasks_file.stat.exists</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>If the file <code>tasks/extra-tasks.yml</code> is not present, Ansible skips the
 <code>include</code>. You can even use a <code>with_items</code> loop (or any other <code>with_*</code>
 loop) with includes. Includes evaluated during playback execution can
@@ -265,7 +323,12 @@ make your playbooks much more flexible!</p>
 <h4 id="chap08.xhtml_leanpub-auto-handler-includes">Handler includes</h4>
 <p>Handlers can be included just like tasks, within a playbook&rsquo;s <code>handlers</code>
 section. For example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>handlers:
+  - include: included-handlers.yml</code></pre>
+</div>
+</figure>
 <p>This can be helpful in limiting the noise in your main playbook, since
 handlers are usually used for things like restarting services or loading
 a configuration, and can distract from the playbook&rsquo;s primary purpose.</p>
@@ -275,14 +338,18 @@ a configuration, and can distract from the playbook&rsquo;s primary purpose.</p>
 have two playbooks&mdash;one to set up your webservers (<code>web.yml</code>), and one
 to set up your database servers (<code>db.yml</code>), you could use the following
 playbook to run both at the same time:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- hosts: all
+  remote_user: root
 <p>tasks:
 [&hellip;]</p>
 <ul>
 <li>include: web.yml</li>
-<li>include: db.yml<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+<li>include: db.yml</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>This way, you can create playbooks to configure all the servers in your
 infrastructure, then create a master playbook that includes each of the
 individual playbooks. When you want to initialize your infrastructure,
@@ -294,14 +361,64 @@ their configuration matches your playbook definitions, you can run one
 playbook from Chapter 4 in just 21 lines? With includes, it&rsquo;s easy; just
 break out each of the sets of tasks into their own include files, and
 you&rsquo;ll end up with a main playbook like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: all
+ 3 
+ 4   vars_files:
+ 5     - vars.yml
+ 6 
+ 7   pre_tasks:
+ 8     - name: Update apt cache if needed.
+ 9       apt: update_cache=yes cache_valid_time=3600
+10 
+11   handlers:
+12     - include: handlers/handlers.yml
+13 
+14   tasks:
+15     - include: tasks/common.yml
+16     - include: tasks/apache.yml
+17     - include: tasks/php.yml
+18     - include: tasks/mysql.yml
+19     - include: tasks/composer.yml
+20     - include: tasks/drush.yml
+21     - include: tasks/drupal.yml</code></pre>
+</div>
+</figure>
 <p>All you need to do is create two new folders in the same folder where
 you saved the Drupal <code>playbook.yml</code> file, <code>handlers</code> and <code>tasks</code>, then
 create files inside for each section of the playbook.</p>
 <p>For example, inside <code>handlers/handlers.yml</code>, you&rsquo;d have:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - name: restart apache
+3   service: name=apache2 state=restarted</code></pre>
+</div>
+</figure>
 <p>And inside <code>tasks/drush.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - name: Check out drush master branch.
+ 3   git:
+ 4     repo: https://github.com/drush-ops/drush.git
+ 5     dest: /opt/drush
+ 6 
+ 7 - name: Install Drush dependencies with Composer.&quot;
+ 8   shell: &gt;
+ 9     /usr/local/bin/composer install
+10     chdir=/opt/drush
+11     creates=/opt/drush/vendor/autoload.php
+12 
+13 - name: Create drush bin symlink.
+14   file:
+15     src: /opt/drush/drush
+16     dest: /usr/local/bin/drush
+17     state: link</code></pre>
+</div>
+</figure>
 <p>Separating all the tasks into separate includes files means you&rsquo;ll have
 more files to manage for your playbook, but it helps keep the main
 playbook more compact. It&rsquo;s easier to see all the installation and
@@ -320,20 +437,25 @@ the playbook run to a certain include file. Using the above example, if
 you wanted to add a &lsquo;drush&rsquo; tag to the included drush file (so you could
 run <code>ansible-playbook playbook.yml --tags=drush</code> and only run the drush
 tasks), you can change line 20 to the following:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>20 - include: tasks/drush.yml tags=drush</code></pre>
+</div>
+</figure>
+<aside class="tip blurb">
 <p>You can find the entire example Drupal LAMP server playbook using
 include files in this book&rsquo;s code repository at
 <a href="https://github.com/geerlingguy/ansible-for-devops" rel="external" target="_blank">https://github.com/geerlingguy/ansible-for-devops</a>, in the <code>includes</code>
 directory.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="warning blurb">
 <p>You can&rsquo;t use variables for task include file names (like you could with
 <code>include_vars</code> directives, e.g.
 <code>include_vars: &quot;{{ ansible_os_family }}.yml&quot;</code> as a task, or with
 <code>vars_files</code>). There&rsquo;s usually a better way than conditional task
 includes to accomplish conditional task inclusion using a different
 playbook structure, or roles, which we will discuss next.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap08.xhtml_leanpub-auto-roles">Roles</h3>
 <p>Including playbooks inside other playbooks makes your playbook
 organization a little more sane, but once you start wrapping up your
@@ -354,23 +476,36 @@ using roles.</p>
 playbooks in a role, Ansible automatically includes any <code>main.yml</code> files
 inside specific directories that make up the role.</p>
 <p>There are only two directories required to make a working Ansible role:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>role_name/
+  meta/
+  tasks/</code></pre>
+</div>
+</figure>
 <p>If you create a directory structure like the one shown above, with a
 <code>main.yml</code> file in each directory, Ansible will run all the tasks
 defined in <code>tasks/main.yml</code> if you call the role from your playbook
 using the following syntax:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: all
+3   roles:
+4     - role_name</code></pre>
+</div>
+</figure>
 <p>Your roles can live in a couple different places: the default global
 Ansible role path (configurable in <code>/etc/ansible/ansible.cfg</code>), or a
 <code>roles</code> folder in the same directory as your main playbook file.</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>Another simple way to build the scaffolding for a role is to use the
 command: <code>ansible-galaxy init role_name</code>. Running this command creates
 an example role in the current working directory, which you can modify
 to suit your needs. Using the <code>init</code> command also ensures the role is
 structured correctly in case you want to someday contribute the role to
 Ansible Galaxy.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap08.xhtml_leanpub-auto-building-your-first-role">Building your first role</h4>
 <p>Let&rsquo;s clean up the Node.js server example from Chapter four, and break
 out one of the main parts of the configuration&mdash;installing Node.js and
@@ -382,7 +517,12 @@ Create two folders inside the <code>nodejs</code> role directory: <code>meta</co
 <code>tasks</code>.</p>
 <p>Inside the <code>meta</code> folder, add a simple <code>main.yml</code> file with the
 following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 dependencies: []</code></pre>
+</div>
+</figure>
 <p>The meta information for your role is defined in this file. In basic
 examples and simple roles, you just need to list any role dependencies
 (other roles that are required to be run before the current role can do
@@ -393,28 +533,55 @@ folder.</p>
 <p>Create a <code>main.yml</code> file in this folder, and add the following contents
 (basically copying and pasting the configuration from the Chapter 4
 example):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - name: Install Node.js (npm plus all its dependencies).
+3   yum: name=npm state=present enablerepo=epel
+4 
+5 - name: Install forever module (to run our Node.js app).
+6   npm: name=forever global=yes state=latest</code></pre>
+</div>
+</figure>
 <p>The Node.js directory structure should now look like the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 nodejs-app/
+ 2   app/
+ 3     app.js
+ 4     package.json
+ 5   playbook.yml
+ 6   roles/
+ 7     nodejs/
+ 8       meta/
+ 9         main.yml
+10       tasks/
+11         main.yml</code></pre>
+</div>
+</figure>
 <p>You now have a complete Ansible role that you can use in your node.js
 server configuration playbook. Delete the Node.js app installation lines
 from <code>playbook.yml</code>, and reformat the playbook so the other tasks run
 first (in a <code>pre_tasks:</code> section instead of <code>tasks:</code>), then the role,
 then the rest of the tasks (in the main <code>tasks:</code> section). Something
 like:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>pre_tasks:
+  # EPEL/GPG setup, firewall configuration...
 <p>roles:</p>
 <ul>
 <li>nodejs</li>
 </ul>
 <p>tasks:</p>
-<h1 id="nodejs-app-deployment-tasks">Node.js app deployment tasks&hellip;<!-- raw HTML omitted --><!-- raw HTML omitted --></h1>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<h1 id="nodejs-app-deployment-tasks">Node.js app deployment tasks&hellip;</code></pre></h1>
+</div>
+</figure>
+<aside class="information blurb">
 <p>You can view the full example of this playbook in the
 <a href="https://github.com/geerlingguy/ansible-for-devops/blob/master/nodejs-role/" rel="external" target="_blank">ansible-for-devops code
 repository</a>.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>Once you finish reformatting the main playbook, everything will run
 exactly the same during an <code>ansible-playbook</code> run, with the exception of
 the tasks inside the <code>nodejs</code> role being prefixed with
@@ -437,22 +604,55 @@ differences between the two later), but will allow your playbooks to
 override the defaults or other role-provided variables if you want.</p>
 <p>Modify the <code>tasks/main.yml</code> file to use a list variable and iterate
 through the list to install as many packages as your playbook wants:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - name: Install Node.js (npm plus all its dependencies).
+3   yum: name=npm state=present enablerepo=epel
+4 
+5 - name: Install npm modules required by our app.
+6   npm: name={{ item }} global=yes state=latest
+7   with_items: node_npm_modules</code></pre>
+</div>
+</figure>
 <p>Let&rsquo;s provide a sane default for the new <code>node_npm_modules</code> variable in
 <code>defaults/main.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 node_npm_modules:
+3   - forever</code></pre>
+</div>
+</figure>
 <p>Now, if you run the playbook as-is, it will still do the exact same
 thing&mdash;install the <code>forever</code> module. But since the role is more
 flexible, we could create a new playbook like our first, but add a
 variable (either in a <code>vars</code> section or in an included file via
 <code>vars_files</code>) to override the default, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 node_npm_modules:
+2   - forever
+3   - async
+4   - request</code></pre>
+</div>
+</figure>
 <p>When you run the playbook with this custom variable (we didn&rsquo;t change
 <em>anything</em> with our <code>nodejs</code> role), all three of the above npm modules
 will be installed.</p>
 <p>Hopefully you&rsquo;re beginning to see how this can be powerful!</p>
 <p>Imagine if you had a playbook structure like:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: appservers
+3   roles:
+4     - yum-repo-setup
+5     - firewall
+6     - nodejs
+7     - app-deploy</code></pre>
+</div>
+</figure>
 <p>Each one of the roles lives in its own isolated world, and can be shared
 with other servers and groups of servers in your infrastructure.</p>
 <ul>
@@ -474,7 +674,7 @@ extremely simple (like the above example), enabling you to see
 <em>everything</em> being configured and deployed on a particular server
 without scrolling through dozens of included playbook files and hundreds
 of tasks.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p><strong>Variable precedence</strong>: Note that Ansible handles variables placed in
 included files in <code>defaults</code> with less precedence than those placed in
 <code>vars</code>. If you have certain variables you need to allow hosts/playbooks
@@ -483,19 +683,31 @@ they are common variables that should almost always be the values
 defined in your role, put them into <code>vars</code>. For more on variable
 precedence, see the aptly-named &ldquo;Variable Precedence&rdquo; section in the
 previous chapter.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap08.xhtml_leanpub-auto-other-role-parts-handlers-files-and-templates">Other role parts: handlers, files, and templates</h4>
 <h5 id="chap08.xhtml_leanpub-auto-handlers-1">Handlers</h5>
 <p>In one of the prior examples, we introduced handlers&mdash;tasks that could
 be called via the <code>notify</code> option after any playbook task resulted in a
 change&mdash;and an example handler for restarting Apache was given:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 handlers:
+2   - name: restart apache
+3     service: name=apache2 state=restarted</code></pre>
+</div>
+</figure>
 <p>In Ansible roles, handlers are first-class citizens, alongside tasks,
 variables, and other configuration. You can store handlers directly
 inside a <code>main.yml</code> file inside a role&rsquo;s <code>handlers</code> directory. So if we
 had a role for Apache configuration, our <code>handlers/main.yml</code> file could
 look like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - name: restart apache
+3   command: service apache2 restart</code></pre>
+</div>
+</figure>
 <p>You can call handlers defined in a role&rsquo;s handlers folder just like
 those included directly in your playbooks (e.g.
 <code>notify: restart apache</code>).</p>
@@ -503,13 +715,42 @@ those included directly in your playbooks (e.g.
 <p>For the following examples, let&rsquo;s assume our role is structured with
 files and templates inside <code>files</code> and <code>templates</code> directories,
 respectively:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 roles/
+ 2   example/
+ 3     files/
+ 4       example.conf
+ 5     meta/
+ 6       main.yml
+ 7     templates/
+ 8       example.xml.j2
+ 9     tasks/
+10       main.yml</code></pre>
+</div>
+</figure>
 <p>when copying a file directly to the server, add the filename or the full
 path from within a role&rsquo;s <code>files</code> directory, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Copy configuration file to server directly.
+  copy: &gt;
+    src=example.conf
+    dest=/etc/myapp/example.conf
+    mode=644</code></pre>
+</div>
+</figure>
 <p>Similarly, when specifying a template, add the filename or the full path
 from within a role&rsquo;s <code>templates</code> directory, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Copy configuration file to server using a template.
+  template: &gt;
+    src=example.xml.j2
+    dest=/etc/myapp/example.xml
+    mode=644</code></pre>
+</div>
+</figure>
 <p>The <code>copy</code> module copies files from within the module&rsquo;s <code>files</code> folder,
 and the <code>template</code> module runs given template files through the Jinja2
 templating engine, merging in any variables available during your
@@ -532,16 +773,56 @@ downloaded to your roles directory with the command
 Galaxy itself later).</p>
 <p>Initially, the role&rsquo;s main <code>tasks/main.yml</code> file looked something like
 the following (generally speaking):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Ensure Apache is installed (via apt).
+2 
+3 - name: Configure Apache with lineinfile.
+4 
+5 - name: Enable Apache modules.</code></pre>
+</div>
+</figure>
 <p>Soon after creating the role, though, I wanted to make the role work
 with both Debian and RedHat hosts. I could&rsquo;ve added two sets of tasks in
 the <code>main.yml</code> file, resulting in twice the number of tasks and a bunch
 of extra <code>when</code> statements:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - name: Ensure Apache is installed (via apt).
+ 2   when: ansible_os_family == &#39;Debian&#39;
+ 3 
+ 4 - name: Ensure Apache is installed (via yum).
+ 5   when: ansible_os_family == &#39;RedHat&#39;
+ 6 
+ 7 - name: Configure Apache with lineinfile (Debian).
+ 8   when: ansible_os_family == &#39;Debian&#39;
+ 9 
+10 - name: Configure Apache with lineinfile (Redhat).
+11   when: ansible_os_family == &#39;RedHat&#39;
+12 
+13 - name: Enable Apache modules (Debian).
+14   when: ansible_os_family == &#39;Debian&#39;
+15 
+16 - name: Other OS-agnostic tasks...</code></pre>
+</div>
+</figure>
 <p>If I had gone this route, and continued with the rest of the playbook
 tasks in one file, I would&rsquo;ve quickly surpassed my informal 100-line
 limit. So I chose to use includes in my main tasks file:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - name: Include OS-specific variables.
+ 2   include_vars: &quot;{{ ansible_os_family }}.yml&quot;
+ 3 
+ 4 - include: setup-RedHat.yml
+ 5   when: ansible_os_family == &#39;RedHat&#39;
+ 6 
+ 7 - include: setup-Debian.yml
+ 8   when: ansible_os_family == &#39;Debian&#39;
+ 9 
+10 - name: Other OS-agnostic tasks...</code></pre>
+</div>
+</figure>
 <p>Two important things to notice about this style of distribution-specific
 inclusion:</p>
 <ol>
@@ -592,12 +873,17 @@ be used in playbooks.</p>
 <p>Remember the basic LAMP (Linux, Apache, MySQL and PHP) server we
 installed earlier in the book? Let&rsquo;s create it again, but this time,
 using a few roles from Galaxy:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible-galaxy install geerlingguy.apache geerlingguy.mysql geerlingguy.php</code></pre>
+</div>
+</figure>
+<aside class="tip blurb">
 <p>The latest version or a role will be downloaded if no version is
 specified. To specify a version, add the version after the role name,
 for example: <code>$ ansible-galaxy install geerlingguy.apache,1.0.0</code>.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="information blurb">
 <p>Ansible Galaxy is still evolving rapidly, and has seen many
 improvements. There are a few areas where Galaxy could use some
 improvement (like browsing for roles by Operating System in the online
@@ -606,7 +892,7 @@ playbooks), but most of these little bugs or rough spots will be fixed
 in time. Please check Ansible Galaxy&rsquo;s
 <a href="https://galaxy.ansible.com/intro" rel="external" target="_blank">About</a> page and stay tuned to
 Ansible&rsquo;s blog for the latest updates.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h5 id="chap08.xhtml_leanpub-auto-using-role-requirements-files-to-manage-dependencies">Using role requirements files to manage dependencies</h5>
 <p>If your infrastructure configuration requires five, ten, fifteen or more
 Ansible roles, installing them all via <code>ansible-galaxy install</code> commands
@@ -622,7 +908,27 @@ install roles from Ansible Galaxy, GitHub, an HTTP download, BitBucket,
 or your own repository. It also allows you to specify the path into
 which the roles should be downloaded. An example <code>requirements.yml</code> file
 looks like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 # From Ansible Galaxy, latest version.
+ 3 - src: geerlingguy.firewall
+ 4 
+ 5 # From Ansible Galaxy, specifying the version.
+ 6 - src: geerlingguy.php
+ 7   version: 1.4.1
+ 8 
+ 9 # From GitHub, into a particular path, with a custom name and version.
+10 - src: https://github.com/geerlingguy/ansible-role-passenger
+11   path: /etc/ansible/roles/
+12   name: passenger
+13   version: 1.0.2
+14 
+15 # From a web server, with a custom name.
+16 - src: https://www.example.com/ansible/roles/my-role-name.tar.gz
+17   name: my-role</code></pre>
+</div>
+</figure>
 <p>To install the roles defined in a requirements file, use the command
 <code>ansible-galaxy install -r requirements.yml</code>. For more documentation on
 Ansible requirements files, see the official documentation: <a href="http://docs.ansible.com/ansible/galaxy.html#advanced-control-over-role-requirements-files" rel="external" target="_blank">Advanced
@@ -636,9 +942,24 @@ provisioner via Vagrant on it, and that you&rsquo;ve run the
 <code>ansible-galaxy install</code> command above to download the required roles.</p>
 <p>First, create an Ansible playbook named <code>lamp.yml</code> with the following
 contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: all
+3   sudo: true
+4 
+5   roles:
+6     - geerlingguy.mysql
+7     - geerlingguy.apache
+8     - geerlingguy.php</code></pre>
+</div>
+</figure>
 <p>Now, run the playbook against a host:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible-playbook -i path/to/custom-inventory lamp.yml</code></pre>
+</div>
+</figure>
 <p>After a few minutes, an entire LAMP server should be set up and running.
 If you add in a few variables, you can configure virtualhosts, PHP
 configuration options, MySQL server settings, etc.</p>
@@ -656,9 +977,24 @@ configuration portability!</p>
 <h4 id="chap08.xhtml_leanpub-auto-a-solr-server-in-eight-lines-of-yaml">A Solr server in eight lines of YAML</h4>
 <p>Let&rsquo;s grab a few more roles and build an Apache Solr search server,
 which requires Java and Apache Tomcat to be installed and configured.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible-galaxy install geerlingguy.java geerlingguy.tomcat6 geerlingguy.solr</code></pre>
+</div>
+</figure>
 <p>Then create a playbook named <code>solr.yml</code> with the following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: all
+3   sudo: yes
+4 
+5   roles:
+6     - geerlingguy.java
+7     - geerlingguy.tomcat6
+8     - geerlingguy.solr</code></pre>
+</div>
+</figure>
 <p>Now we have a fully-functional Solr server, and we could add some
 variables to configure it exactly how we want, by using a non-default
 port, or changing the memory allocation for Tomcat6.</p>
@@ -708,7 +1044,21 @@ maintainable. This chapter introduced different ways of using <code>include</cod
 the power and flexible structure of roles, and how you can utilize
 Ansible Galaxy, the community repository of configurable Ansible roles
 that do just about anything.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code> _________________________________________
+/ When the only tool you own is a hammer, \
+| every problem begins to resemble a      |
+\ nail. (Abraham Maslow)                  /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre>
+</div>
+</figure>
+:::
 <p>[]{#chap09.xhtml}</p>
 <p>::: {}</p>
 
@@ -759,69 +1109,52 @@ that do just about anything.</p>
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/"><input type="checkbox" id="R-section-ee5145c58612a384986769058046b746" aria-controls="R-subsections-ee5145c58612a384986769058046b746"><label for="R-section-ee5145c58612a384986769058046b746"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ad Hoc Commands and Scripting</span></label><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a><ul id="R-subsections-ee5145c58612a384986769058046b746" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/control-node/"><input type="checkbox" id="R-section-51256f203510628e0492e57fa1dd1ec6" aria-controls="R-subsections-51256f203510628e0492e57fa1dd1ec6"><label for="R-section-51256f203510628e0492e57fa1dd1ec6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Control Node</span></label><a class="padding" href="/ansible/control-node/">Control Node</a><ul id="R-subsections-51256f203510628e0492e57fa1dd1ec6" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/control-node/ansible.cfg/"><a class="padding" href="/ansible/control-node/ansible.cfg/">Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/control-node/optimizing-ansible-processing/"><a class="padding" href="/ansible/control-node/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
-            <li class="" data-nav-url="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-files/"><input type="checkbox" id="R-section-7c974a7c4dcf3453ccace14c7f38f13f" aria-controls="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f"><label for="R-section-7c974a7c4dcf3453ccace14c7f38f13f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-files/">Deploying Files</a><ul id="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/jinja2-templates/"><a class="padding" href="/ansible/deploying-files/jinja2-templates/">Jinja2 templates</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/">Jinja2 templates</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-systems/"><input type="checkbox" id="R-section-7cc469ebbd5f7e560963779b9675e597" aria-controls="R-subsections-7cc469ebbd5f7e560963779b9675e597"><label for="R-section-7cc469ebbd5f7e560963779b9675e597"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-systems/">Deploying Files</a><ul id="R-subsections-7cc469ebbd5f7e560963779b9675e597" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/execution-environments/"><input type="checkbox" id="R-section-65eb33a34997cd45f5f49229981c4d2e" aria-controls="R-subsections-65eb33a34997cd45f5f49229981c4d2e"><label for="R-section-65eb33a34997cd45f5f49229981c4d2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/execution-environments/">Execution Environments</a><ul id="R-subsections-65eb33a34997cd45f5f49229981c4d2e" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/execution-environments/ansible-builder/"><a class="padding" href="/ansible/execution-environments/ansible-builder/">Ansible Builder</a></li>
-            <li class="" data-nav-url="/ansible/execution-environments/execution-environments/"><a class="padding" href="/ansible/execution-environments/execution-environments/">Execution Environments</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/inventory/"><input type="checkbox" id="R-section-3f39b2671b9b2dd1dbc36a62b346565a" aria-controls="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a"><label for="R-section-3f39b2671b9b2dd1dbc36a62b346565a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Inventory</span></label><a class="padding" href="/ansible/inventory/">Inventory</a><ul id="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory-command/"><a class="padding" href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></li>
-            <li class="" data-nav-url="/ansible/inventory/dynamic-inventory/"><a class="padding" href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></li>
-            <li class="" data-nav-url="/ansible/inventory/host-name-patterns/"><a class="padding" href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></li>
-            <li class="" data-nav-url="/ansible/inventory/using-multiple-inventories/"><a class="padding" href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/"><input type="checkbox" id="R-section-05c9cec6fb3311e0ece69447be6c4228" aria-controls="R-subsections-05c9cec6fb3311e0ece69447be6c4228"><label for="R-section-05c9cec6fb3311e0ece69447be6c4228"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Processes and Tasks</span></label><a class="padding" href="/ansible/managing-processes-and-tasks/">Managing Processes and Tasks</a><ul id="R-subsections-05c9cec6fb3311e0ece69447be6c4228" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/boot-process/"><a class="padding" href="/ansible/managing-processes-and-tasks/boot-process/">Boot Process</a></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/managing-services/"><a class="padding" href="/ansible/managing-processes-and-tasks/managing-services/">Managing Services</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-software/"><input type="checkbox" id="R-section-e50056380ffea3713f175f637f3fbaba" aria-controls="R-subsections-e50056380ffea3713f175f637f3fbaba"><label for="R-section-e50056380ffea3713f175f637f3fbaba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Software</span></label><a class="padding" href="/ansible/managing-software/">Managing Software</a><ul id="R-subsections-e50056380ffea3713f175f637f3fbaba" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-software/managing-packages/"><a class="padding" href="/ansible/managing-software/managing-packages/">Managing Packages</a></li>
-            <li class="" data-nav-url="/ansible/managing-software/repositories-and-subscriptions/"><a class="padding" href="/ansible/managing-software/repositories-and-subscriptions/">Repositories and subscriptions</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-users/"><input type="checkbox" id="R-section-354866278232268d590e2ad621c06543" aria-controls="R-subsections-354866278232268d590e2ad621c06543"><label for="R-section-354866278232268d590e2ad621c06543"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Users</span></label><a class="padding" href="/ansible/managing-users/">Managing Users</a><ul id="R-subsections-354866278232268d590e2ad621c06543" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-users/encrypted-passwords/"><a class="padding" href="/ansible/managing-users/encrypted-passwords/">Encrypted passwords</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/ssh-connections/"><a class="padding" href="/ansible/managing-users/ssh-connections/">SSH Connections</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/users-and-groups/"><a class="padding" href="/ansible/managing-users/users-and-groups/">Users and Groups</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/modules/"><input type="checkbox" id="R-section-05027151b340155a251c0bf45517b410" aria-controls="R-subsections-05027151b340155a251c0bf45517b410"><label for="R-section-05027151b340155a251c0bf45517b410"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Modules</span></label><a class="padding" href="/ansible/modules/">Modules</a><ul id="R-subsections-05027151b340155a251c0bf45517b410" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/networking/"><input type="checkbox" id="R-section-88666d047a19e08ea2a7a1f576522811" aria-controls="R-subsections-88666d047a19e08ea2a7a1f576522811"><label for="R-section-88666d047a19e08ea2a7a1f576522811"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/ansible/networking/">Networking</a><ul id="R-subsections-88666d047a19e08ea2a7a1f576522811" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/playbooks/"><input type="checkbox" id="R-section-b39ec7807a35bbb89ede99e74c3f8d1c" aria-controls="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c"><label for="R-section-b39ec7807a35bbb89ede99e74c3f8d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Playbooks</span></label><a class="padding" href="/ansible/playbooks/">Playbooks</a><ul id="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
-            <li class="" data-nav-url="/ansible/playbooks/including-and-importing-files/"><a class="padding" href="/ansible/playbooks/including-and-importing-files/">Including and importing Files</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/roles/"><input type="checkbox" id="R-section-c3ddf4cba330014798b46f124f863578" aria-controls="R-subsections-c3ddf4cba330014798b46f124f863578"><label for="R-section-c3ddf4cba330014798b46f124f863578"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Roles</span></label><a class="padding" href="/ansible/roles/">Roles</a><ul id="R-subsections-c3ddf4cba330014798b46f124f863578" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/roles/ansible-galaxy-roles/"><a class="padding" href="/ansible/roles/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-rhel-system-roles/"><a class="padding" href="/ansible/roles/using-rhel-system-roles/">Using RHEL System roles</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/storage/"><input type="checkbox" id="R-section-25ab7c76118917bd6f4fb3e45062f785" aria-controls="R-subsections-25ab7c76118917bd6f4fb3e45062f785"><label for="R-section-25ab7c76118917bd6f4fb3e45062f785"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/ansible/storage/">Storage</a><ul id="R-subsections-25ab7c76118917bd6f4fb3e45062f785" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/storage/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/storage/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
-            <li class="" data-nav-url="/ansible/storage/discovering-storage-related-facts/"><a class="padding" href="/ansible/storage/discovering-storage-related-facts/">Discovering storage related facts</a></li>
-            <li class="" data-nav-url="/ansible/storage/managing-partitions-and-lvm/"><a class="padding" href="/ansible/storage/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
-            <li class="" data-nav-url="/ansible/storage/nfs-setup/"><a class="padding" href="/ansible/storage/nfs-setup/">NFS Setup</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/task-control/"><input type="checkbox" id="R-section-c50bd62a6e6f9028be7fd82767f99cd1" aria-controls="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1"><label for="R-section-c50bd62a6e6f9028be7fd82767f99cd1"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Task Control</span></label><a class="padding" href="/ansible/task-control/">Task Control</a><ul id="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/task-control/handlers/"><a class="padding" href="/ansible/task-control/handlers/">Handlers</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-loops-and-items/"><a class="padding" href="/ansible/task-control/using-loops-and-items/">Using Loops and Items</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/task-control/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/"><input type="checkbox" id="R-section-26d24f44bc3f5644df734f08181e3e2d" aria-controls="R-subsections-26d24f44bc3f5644df734f08181e3e2d"><label for="R-section-26d24f44bc3f5644df734f08181e3e2d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Troubleshooting</span></label><a class="padding" href="/ansible/troubleshooting/">Troubleshooting</a><ul id="R-subsections-26d24f44bc3f5644df734f08181e3e2d" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-tags/"><a class="padding" href="/ansible/troubleshooting/using-tags/">Using Tags</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/"><input type="checkbox" id="R-section-ff32daa8bc11229d5eacc0820ee4c786" aria-controls="R-subsections-ff32daa8bc11229d5eacc0820ee4c786"><label for="R-section-ff32daa8bc11229d5eacc0820ee4c786"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Variable and Facts</span></label><a class="padding" href="/ansible/variables-and-facts/">Variable and Facts</a><ul id="R-subsections-ff32daa8bc11229d5eacc0820ee4c786" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-facts/"><a class="padding" href="/ansible/variables-and-facts/ansible-facts/">Ansible Facts</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-vault/"><a class="padding" href="/ansible/variables-and-facts/ansible-vault/">Ansible Vault</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
-            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/"><a class="padding" href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/"></a></li></ul></li>
+            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/"><a class="padding" href="/ansible/ansible4devops/chapter-6---playbook-organization---roles-and-includes/"></a></li>
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments-1/"><a class="padding" href="/ansible/execution-environments-1/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="" data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
             <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
             <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
             <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
@@ -919,22 +1252,22 @@ that do just about anything.</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762537425" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762537425" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762537425" defer></script>
-    <script src="/js/theme.min.js?1762537425" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
   </body>
 </html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
+    <meta name="description" content="NFS Setup">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NFS Setup :: Linux Reader">
+    <meta name="twitter:description" content="NFS Setup">
+    <meta property="og:url" content="http://linuxreader.com/ansible/nfs-setup/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="NFS Setup :: Linux Reader">
+    <meta property="og:description" content="NFS Setup">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="name" content="NFS Setup :: Linux Reader">
+    <meta itemprop="description" content="NFS Setup">
+    <meta itemprop="wordCount" content="365">
+    <title>NFS Setup :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/nfs-setup/" rel="canonical" type="text/html" title="NFS Setup :: Linux Reader">
+    <link href="/ansible/nfs-setup/index.xml" rel="alternate" type="application/rss+xml" title="NFS Setup :: Linux Reader">
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762635744" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/nfs-setup\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/nfs-setup/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/networking-with-ansible/" title="Networking with Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            NFS Setup
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/nfs-setup/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/optimizing-ansible-processing/" title="Optimizing Ansible Processing (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="nfs-setup">NFS Setup</h1>
+
+<p>Server hosting the storage:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>--- 
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Install Packages
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">package</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>        - nfs-utils
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Ensure directories to export exist
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:  <span style="color:#78787e"># noqa 208</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: <span style="color:#5af78e">&#34;{{ item }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">with_items</span>: <span style="color:#5af78e">&#34;{{ nfs_exports | map(&#39;split&#39;) | map(&#39;first&#39;) | unique }}&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Copy exports file
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: exports.j2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /etc/exports
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">owner</span>: root
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">group</span>: root
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0644</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: reload nfs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Add firewall rule to enable NFS service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ansible.posix.firewalld</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">immediate</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: enabled
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">permanent</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>: nfs
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: reload firewalld
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Start and enable NFS service
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: nfs-server
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff6ac1">when</span>: nfs_exports|length &gt; 0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Set SELinux boolean for NFS
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ansible.posix.seboolean</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: nfs_export_all_rw
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">persistent</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: install required package for sefcontext module
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: policycoreutils-python-utils
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Set proper SELinux context on export dir
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">sefcontext</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">target</span>: /{{ item }}(/.*)?
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">setype</span>: nfs_t
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">notify</span>: run restorecon
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">with_items</span>: <span style="color:#5af78e">&#34;{{ nfs_exports | map(&#39;split&#39;) | map(&#39;first&#39;) | unique }}&#34;</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-j2" data-lang="j2">{% for host in nfs_hosts %}
+/data {{ host }} (rw,wdelay,root_squash,no_subtree_check,sec=sys,rw,root_squash,no_all_squash)
+{% endfor %}</code></pre></div>
+<p>Variables:
+nfs_exports:</p>
+<ul>
+<li>/data server(rw,wdelay,root_squash,no_subtree_check,sec=sys,rw,root_squash,no_all_squash)</li>
+</ul>
+<p>Handlers</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: reload nfs
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">command</span>: <span style="color:#5af78e">&#39;exportfs -ra&#39;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: reload firewalld
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">command</span>: firewall-cmd --reload
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: run restorecon
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">command</span>: restorecon -Rv /codata</span></span></code></pre></div>
+<p>storage:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> <span style="color:#ff6ac1">name</span>: Detect secondary disk name
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">set_fact</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">disk2name</span>: vda
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: ansible_facts[&#39;devices&#39;][&#39;vda&#39;] is defined
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Search for second disk, continue only if it is found
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">assert</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">that</span>:
+</span></span><span style="display:flex;"><span>        - disk2name is defined
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">fail_msg</span>: second hard disk not found
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Debug detected disk
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">debug</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;{{ disk2name }} was found. Moving forward.&#34;</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Create LVM and partitions
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Create LVM Partition on second disk
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">parted</span>: 
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: data
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">label</span>: gpt
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">device</span>: /dev/{{ disk2name }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">number</span>: <span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">flags</span>: [ lvm ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Create an LVM volume group
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">lvg</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">vg</span>: vgcodata
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">pvs</span>: /dev/{{ disk2name }}1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Create lv
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">lvol</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">lv</span>: lvdata
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">size</span>: <span style="color:#ff9f43">100</span>%FREE
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">vg</span>: vgdata
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create filesystem
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">filesystem</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dev</span>: /dev/vgdata/lvdata
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">fstype</span>: xfs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">when</span>: ansible_facts[&#39;devices&#39;][&#39;vda&#39;][&#39;partitions&#39;] is not defined
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Create data directory
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /data
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">777</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Mount the filesystem
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">mount</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: /dev/vgdata/lvdata
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">fstype</span>: xfs
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /data
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: Set permissions on mounted filesystem
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">path</span>: /data
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">mode</span>: <span style="color:#5af78e">&#39;0777&#39;</span>
+</span></span><span style="display:flex;"><span>    ```</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
+  </body>
+</html>

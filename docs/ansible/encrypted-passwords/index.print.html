@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
+    <meta name="description" content="Encrypted passwords">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Encrypted passwords :: Linux Reader">
+    <meta name="twitter:description" content="Encrypted passwords">
+    <meta property="og:url" content="http://linuxreader.com/ansible/encrypted-passwords/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Encrypted passwords :: Linux Reader">
+    <meta property="og:description" content="Encrypted passwords">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="name" content="Encrypted passwords :: Linux Reader">
+    <meta itemprop="description" content="Encrypted passwords">
+    <meta itemprop="wordCount" content="1043">
+    <title>Encrypted passwords :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/encrypted-passwords/" rel="canonical" type="text/html" title="Encrypted passwords :: Linux Reader">
+    <link href="/ansible/encrypted-passwords/index.xml" rel="alternate" type="application/rss+xml" title="Encrypted passwords :: Linux Reader">
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762635744" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/encrypted-passwords\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/encrypted-passwords/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/dynamic-inventory/" title="Dynamic Inventory (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#managing-encrypted-passwords">Managing Encrypted Passwords</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Encrypted passwords
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/encrypted-passwords/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/execution-environments-1/" title="Execution Environments (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="encrypted-passwords">Encrypted passwords</h1>
+
+<h3 id="managing-encrypted-passwords">Managing Encrypted Passwords</h3>
+<p>When managing users in Ansible, you probably want to set user passwords
+as well. The challenge is that you cannot just enter a password as the
+value to the <strong>password:</strong> argument in the user module because the user
+module expects you to use an encrypted string.</p>
+<h4 id="understanding-encrypted-passwords">Understanding Encrypted Passwords</h4>
+<p>When a user creates a password, it is encrypted. The hash of the
+encrypted password is stored in the /etc/shadow file, a file that is
+strictly secured and accessible only with root privileges. The string
+looks like $6$237687687/$9809erhb8oyw48oih290u09. In this string are
+three elements, which are separated by $ signs:</p>
+<p>• The hashing algorithm that was used</p>
+<p>• The random salt that was used to encrypt the password</p>
+<p>• The encrypted hash of the user password</p>
+<p>When a user sets a password, a random salt is used to prevent two users
+who have identical passwords from having identical entries in
+/etc/shadow. The salt and the unencrypted password are combined and
+encrypted, which generates the encrypted hash that is stored in
+/etc/shadow. Based on this string, the password that the user enters can
+be verified against the password field in /etc/shadow, and if it
+matches, the user is authenticated.</p>
+<h4 class="h4" id="generating-encrypted-passwords">Generating Encrypted Passwords</h4>
+<p>When you&rsquo;re creating users with the Ansible user module, there is a
+password option. This option is not capable of generating an encrypted
+password. It expects an encrypted password string as its input. That
+means an external utility must be used to generate an encrypted string.
+This encrypted string must be stored in a variable to create the
+password. Because the variable is basically the user password, the
+variable should be stored securely in, for example, an Ansible Vault
+secured file.</p>
+<p>To generate the encrypted variable, you can choose to create the
+variable before creating the user account. Alternatively, you can run
+the command to create the variable in the playbook, use <strong>register</strong> to
+write the result to a variable, and use that to create the encrypted
+user. If you want to generate the variable beforehand, you can use the
+following ad hoc command:</p>
+<pre><code>ansible localhost -m debug -a &quot;msg={{ ‘password’ | password_hash(‘sha512’,’myrandomsalt’) }}&quot;
+</code></pre>
+<p>This command generates the encrypted string as shown in <a href="/ansible/encrypted-passwords/#ch13.xhtml#list13_11">Listing
+13-11</a>, and this string can next be used in a
+playbook. An example of such a playbook is shown in <a href="/ansible/encrypted-passwords/#ch13.xhtml#list13_12">Listing
+13-12</a>.</p>
+<p><strong>Listing 13-11</strong> Generating the Encrypted Password String</p>
+<p>::: pre_1
+[ansible@control ~]$ ansible localhost -m debug -a &ldquo;msg={{ ‘password’ | password_hash(‘sha512’,’myrandomsalt’) }}&rdquo;
+localhost | SUCCESS =&gt; {
+&ldquo;msg&rdquo;: &ldquo;$6$myrandomsalt$McEB.xAVUWe0./6XqZ8n/7k9VV/Gxndy9nIMLyQAiPnhyBoToMWbxX2vA4f.Uv9PKnPRaYUUc76AjLWVAX6U10&rdquo;
+}
+:::</p>
+<p><strong>Listing 13-12</strong> Sample Playbook That Creates an Encrypted User
+Password</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create user with encrypted pass
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible2.example.com
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">password</span>: <span style="color:#5af78e">&#34;$6$myrandomsalt$McEB.xAVUWe0./6XqZ8n/7k9VV/Gxndy9nIMLyQAiPnhyBoToMWbxX2vA4f.Uv9PKnPRaYUUc76AjLWVAX6U10&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: create the user
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: anna
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">password</span>: <span style="color:#5af78e">&#34;{{ password }}&#34;</span></span></span></code></pre></div>
+<p>The method that is used here works but is not elegant. First, you need
+to generate the encrypted password manually beforehand. Also, the
+encrypted password string is used in a readable way in the playbook. By
+seeing the encrypted password and salt, it&rsquo;s possible to get to the
+original password, which is why the password should not be visible in
+the playbook in a secure environment.</p>
+<p>In <a href="/ansible/encrypted-passwords/#ch13.xhtml#exe13_3">Exercise 13-3</a> you create a playbook that
+prompts for the user password and that uses the debug module, which was
+used in <a href="/ansible/encrypted-passwords/#ch13.xhtml#list13_11">Listing 13-11</a> inside the playbook,
+together with register, so that the password no longer is readable in
+clear text. Before looking at <a href="/ansible/encrypted-passwords/#ch13.xhtml#exe13_3">Exercise 13-3</a>,
+though, let&rsquo;s first look at an alternative approach that also works.</p>
+<p>The procedure to use encrypted passwords while creating user accounts is
+documented in the Frequently Asked Questions from the Ansible
+documentation. Because the documentation is available on the exam, make
+sure you know where to find this information! Search for the item &ldquo;How
+do I generate encrypted passwords for the user module?&rdquo;</p>
+<h4 id="using-an-alternative-approach">Using an Alternative Approach</h4>
+<p>As has been mentioned on multiple occasions, in Ansible often different
+solutions exist for the same problem. And sometimes, apart from the most
+elegant solution, there&rsquo;s also a quick-and-dirty solution, and that
+counts for setting a user-encrypted password as well. Instead of using
+the solution described in the previous section, &ldquo;Generating Encrypted
+Passwords,&rdquo; you can use the Linux command <strong>echo password | passwd
+--stdin</strong> to set the user password. <a href="/ansible/encrypted-passwords/#ch13.xhtml#list13_13">Listing
+13-13</a> shows how to do this. Notice this example
+focuses on how to do it, not on security. If you want to make the
+playbook more secure, it would be nice to store the password in Ansible
+Vault.</p>
+<p><strong>Listing 13-13</strong> Setting the User Password: Alternative Solution</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: create user with encrypted password
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible3
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">password</span>: mypassword
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>: anna
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: configure user {{ user }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">user</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ user }}&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">groups</span>: wheel
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">append</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: set a password for {{ user }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">shell</span>: ‘echo {{ password }} | passwd --stdin {{ user }}’</span></span></code></pre></div>
+<p>::: box
+<strong>Exercise 13-3 Creating Users with Encrypted Passwords</strong></p>
+<p>1. Use your editor to create the file exercise133.yaml.</p>
+<p>2. Write the play header as follows:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: create user with encrypted password
+  hosts: ansible3
+  vars_prompt:
+  - name: passw
+    prompt: which password do you want to use
+  vars:
+    user: sharon
+  tasks:</code></pre></div>
+<p>3. Add the first task that uses the debug module to generate the
+encrypted password string and register to store the string in the
+variable <strong>mypass</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- debug:
+    msg: &#34;{{ ‘{{ passw }}’| password_hash(‘sha512’,’myrandomsalt’) }}&#34;
+  register: mypass</code></pre></div>
+<p>4. Add a debug module to analyze the exact format of the registered
+variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- debug:
+    var: mypass</code></pre></div>
+<p>5. Use <strong>ansible-playbook exercise133.yaml</strong> to run the playbook the
+first time so that you can see the exact name of the variable that you
+have to use. This code shows that the <strong>mypass.msg</strong> variable contains
+the encrypted password string (see <a href="/ansible/encrypted-passwords/#ch13.xhtml#list13_14">Listing
+13-14</a>).</p>
+<p><strong>Listing 13-14</strong> Finding the Variable Name Using debug</p>
+<p>::: pre_1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">TASK [debug] *******************************************************************
+ok: [ansible2] =&gt; {
+    &#34;mypass&#34;: {
+        &#34;changed&#34;: false,
+        &#34;failed&#34;: false,
+        &#34;msg&#34;: &#34;$6$myrandomsalt$Jesm4QGoCGAny9ebP85apmh0/uUXrj0louYb03leLoOWSDy/imjVGmcODhrpIJZt0rz.GBp9pZYpfm0SU2/PO.&#34;
+    }
+}</code></pre></div>
+<p>:::</p>
+<p>6. Based on the output that you saw with the previous command, you can
+now use the user module to refer to the password in the right way. Add
+the following task to do so:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create the user
+  user:
+    name: &#34;{{ user }}&#34;
+    password: &#34;{{ mypass.msg }}&#34;</code></pre></div>
+<p>7. Use <strong>ansible-playbook exercise133.yaml</strong> to run the playbook and
+verify its output.
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
+  </body>
+</html>

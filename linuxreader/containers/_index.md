@@ -11,4 +11,4 @@ featured_image = "images/containers.png"
   publishResources = true
 +++
 
-{{% children type="card" description="true" %}}
+{{% children type="card" description="false" %}}

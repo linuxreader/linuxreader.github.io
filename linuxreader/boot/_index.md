@@ -11,4 +11,4 @@ featured_image = "images/boot.png"
   publishResources = true
 +++
 
-{{% children type="card" description="true" %}}
+{{% children type="card" description="false" %}}

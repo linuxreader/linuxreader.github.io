@@ -21,31 +21,31 @@ Highly-Available Infrastructure with Ansible Real-world web applications require
     <meta property="article:section" content="Ansible">
     <meta itemprop="description" content="Chapter 8 - Ansible Cookbooks Until now, most of this book has demonstrated individual aspects of Ansible—inventory, playbooks, ad-hoc tasks, etc. But this chapter synthesizes everything we’ve gone over in the previous chapters and shows how Ansible is applied to real-world infrastructure management scenarios.
 Highly-Available Infrastructure with Ansible Real-world web applications require redundancy and horizontal scalability with multi-server infrastructure. In the following example, we’ll use Ansible to configure a complex infrastructure on servers provisioned either locally (via Vagrant and VirtualBox) or on a set of automatically-provisioned instances (running on either DigitalOcean or Amazon Web Services):">
-    <meta itemprop="wordCount" content="11369">
+    <meta itemprop="wordCount" content="15376">
     <title></title>
     <link href="/ansible/ansible4devops/chapter-8---ansible-cookbooks/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/ansible/ansible4devops/chapter-8---ansible-cookbooks/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1762537425" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762537425" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762537425" defer></script>
-    <script src="/js/search-lunr.min.js?1762537425" defer></script>
-    <script src="/js/search.min.js?1762537425" defer></script>
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762537425";
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762537425" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762537425" rel="stylesheet">
-    <link href="/css/theme.min.css?1762537425" rel="stylesheet">
-    <link href="/css/format-html.min.css?1762537425" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762635744" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -120,7 +120,7 @@ Highly-Available Infrastructure with Ansible Real-world web applications require
 <span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/variables-and-facts/variables/" title="Variables (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -155,7 +155,7 @@ Highly-Available Infrastructure with Ansible Real-world web applications require
             </div>
 
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/bash/" title="Bash (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/ad-hoc-ansible-commands/" title="Ad Hoc Ansible Commands (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
 
 
@@ -189,7 +189,12 @@ we&rsquo;ll use Ansible to configure a complex infrastructure on servers
 provisioned either locally (via Vagrant and VirtualBox) or on a set of
 automatically-provisioned instances (running on either DigitalOcean or
 Amazon Web Services):</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 60%;">
+<img src="images/8-highly-available-infrastructure.png"
+style="width: 100%;" alt="Highly-Available Infrastructure." />
+<figcaption aria-hidden="true">Highly-Available
+Infrastructure.</figcaption>
+</figure>
 <p><strong>Varnish</strong> acts as a load balancer and reverse proxy, fronting web
 requests and routing them to the application servers. We could just as
 easily use something like <strong>Nginx</strong> or <strong>HAProxy</strong>, or even a
@@ -209,7 +214,22 @@ secondary server for read-only queries to take some load off the master.</p>
 <h4 id="chap10.xhtml_leanpub-auto-directory-structure">Directory Structure</h4>
 <p>In order to keep our configuration organized, we&rsquo;ll use the following
 structure for our playbooks and configuration:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>lamp-infrastructure/
+  inventories/
+  playbooks/
+    db/
+    memcached/
+    varnish/
+    www/
+  provisioners/
+  configure.yml
+  provision.yml
+  requirements.yml
+  Vagrantfile</code></pre>
+</div>
+</figure>
 <p>Organizing things this way allows us to focus on each server
 configuration individually, then build playbooks for provisioning and
 configuring instances on different hosting providers later. This
@@ -225,7 +245,28 @@ to use the playbooks with Ubuntu, Debian, or later versions of CentOS.</p>
 <p><strong>Varnish</strong></p>
 <p>Create a <code>main.yml</code> file within the the <code>playbooks/varnish</code> directory,
 with the following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: lamp-varnish
+ 3   sudo: yes
+ 4 
+ 5   vars_files:
+ 6     - vars.yml
+ 7 
+ 8   roles:
+ 9     - geerlingguy.firewall
+10     - geerlingguy.repo-epel
+11     - geerlingguy.varnish
+12 
+13   tasks:
+14     - name: Copy Varnish default.vcl.
+15       template:
+16         src: &quot;templates/default.vcl.j2&quot;
+17         dest: &quot;/etc/varnish/default.vcl&quot;
+18       notify: restart varnish</code></pre>
+</div>
+</figure>
 <p>We&rsquo;re going to run this playbook on all hosts in the <code>lamp-varnish</code>
 inventory group (we&rsquo;ll create this later), and we&rsquo;ll run a few simple
 roles to configure the server:</p>
@@ -241,7 +282,16 @@ Varnish, telling it where to find our web servers and how to load
 balance requests between the servers.</p>
 <p>Let&rsquo;s create the two files referenced in the above playbook. First,
 <code>vars.yml</code>, in the same directory as <code>main.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 firewall_allowed_tcp_ports:
+3   - &quot;22&quot;
+4   - &quot;80&quot;
+5 
+6 varnish_use_default_vcl: false</code></pre>
+</div>
+</figure>
 <p>The first variable tells the <code>geerlingguy.firewall</code> role to open TCP
 ports 22 and 80 for incoming traffic. The second variable tells the
 <code>geerlingguy.varnish</code> we will supply a custom <code>default.vcl</code> for Varnish
@@ -249,7 +299,34 @@ configuration.</p>
 <p>Create a <code>templates</code> directory inside the <code>playbooks/varnish</code> directory,
 and inside, create a <code>default.vcl.j2</code> file. This file will use Jinja2
 syntax to build Varnish&rsquo;s custom <code>default.vcl</code> file:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 vcl 4.0;
+ 2 
+ 3 import directors;
+ 4 
+ 5 {% for host in groups[&#39;lamp-www&#39;] %}
+ 6 backend www{{ loop.index }} {
+ 7   .host = &quot;{{ host }}&quot;;
+ 8   .port = &quot;80&quot;;
+ 9 }
+10 {% endfor %}
+11 
+12 sub vcl_init {
+13   new vdir = directors.random();
+14 {% for host in groups[&#39;lamp-www&#39;] %}
+15   vdir.add_backend(www{{ loop.index }}, 1);
+16 {% endfor %}
+17 }
+18 
+19 sub vcl_recv {
+20   set req.backend_hint = vdir.backend();
+21 
+22   # For testing ONLY; makes sure load balancing is working correctly.
+23   return (pass);
+24 }</code></pre>
+</div>
+</figure>
 <p>We won&rsquo;t study Varnish&rsquo;s VCL syntax in depth but we&rsquo;ll run through
 <code>default.vcl</code> and highlight what is being configured:</p>
 <ol>
@@ -282,7 +359,34 @@ and customize <code>default.vcl</code> according to your application&rsquo;s nee
 <p><strong>Apache / PHP</strong></p>
 <p>Create a <code>main.yml</code> file within the the <code>playbooks/www</code> directory, with
 the following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: lamp-www
+ 3   sudo: yes
+ 4 
+ 5   vars_files:
+ 6     - vars.yml
+ 7 
+ 8   roles:
+ 9     - geerlingguy.firewall
+10     - geerlingguy.repo-epel
+11     - geerlingguy.apache
+12     - geerlingguy.php
+13     - geerlingguy.php-mysql
+14     - geerlingguy.php-memcached
+15 
+16   tasks:
+17     - name: Remove the Apache test page.
+18       file:
+19         path: /var/www/html/index.html
+20         state: absent
+21     - name: Copy our fancy server-specific home page.
+22       template:
+23         src: templates/index.php.j2
+24         dest: /var/www/html/index.php</code></pre>
+</div>
+</figure>
 <p>As with Varnish&rsquo;s configuration, we&rsquo;ll configure a firewall and add the
 EPEL repository (required for PHP&rsquo;s memcached integration), and we&rsquo;ll
 also add the following roles:</p>
@@ -297,19 +401,120 @@ version of the Apache web server.</li>
 Apache, and replace it with our PHP app.</p>
 <p>As in the Varnish example, create the two files referenced in the above
 playbook. First, <code>vars.yml</code>, alongside <code>main.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 firewall_allowed_tcp_ports:
+3   - &quot;22&quot;
+4   - &quot;80&quot;</code></pre>
+</div>
+</figure>
 <p>Create a <code>templates</code> directory inside the <code>playbooks/www</code> directory, and
 inside, create an <code>index.php.j2</code> file. This file will use Jinja2 syntax
 to build a (relatively) simple PHP script to display the health and
 status of all the servers in our infrastructure:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 &lt;?php
+ 2 /**
+ 3  * @file
+ 4  * Infrastructure test page.
+ 5  *
+ 6  * DO NOT use this in production. It is simply a PoC.
+ 7  */
+ 8 
+ 9 $mysql_servers = array(
+10 {% for host in groups[&#39;lamp-db&#39;] %}
+11   &#39;{{ host }}&#39;,
+12 {% endfor %}
+13 );
+14 $mysql_results = array();
+15 foreach ($mysql_servers as $host) {
+16   if ($result = mysql_test_connection($host)) {
+17     $mysql_results[$host] = &#39;&lt;span style=&quot;color: green;&quot;&gt;PASS&lt;/span&gt;&#39;;
+18     $mysql_results[$host] .= &#39; (&#39; . $result[&#39;status&#39;] . &#39;)&#39;;
+19   }
+20   else {
+21     $mysql_results[$host] = &#39;&lt;span style=&quot;color: red;&quot;&gt;FAIL&lt;/span&gt;&#39;;
+22   }
+23 }
+24 
+25 // Connect to Memcached.
+26 $memcached_result = &#39;&lt;span style=&quot;color: red;&quot;&gt;FAIL&lt;/span&gt;&#39;;
+27 if (class_exists(&#39;Memcached&#39;)) {
+28   $memcached = new Memcached;
+29   $memcached-&gt;addServer(&#39;{{ groups[&#39;lamp-memcached&#39;][0] }}&#39;, 11211);
+30 
+31   // Test adding a value to memcached.
+32   if ($memcached-&gt;add(&#39;test&#39;, &#39;success&#39;, 1)) {
+33     $result = $memcached-&gt;get(&#39;test&#39;);
+34     if ($result == &#39;success&#39;) {
+35       $memcached_result = &#39;&lt;span style=&quot;color: green;&quot;&gt;PASS&lt;/span&gt;&#39;;
+36       $memcached-&gt;delete(&#39;test&#39;);
+37     }
+38   }
+39 }
+40 
+41 /**
+42  * Connect to a MySQL server and test the connection.
+43  *
+44  * @param string $host
+45  *   IP Address or hostname of the server.
+46  *
+47  * @return array
+48  *   Array with keys &#39;success&#39; (bool) and &#39;status&#39; (&#39;slave&#39; or &#39;master&#39;).
+49  *   Empty if connection failure.
+50  */
+51 function mysql_test_connection($host) {
+52   $username = &#39;mycompany_user&#39;;
+53   $password = &#39;secret&#39;;
+54   try {
+55     $db = new PDO(
+56       &#39;mysql:host=&#39; . $host . &#39;;dbname=mycompany_database&#39;,
+57       $username,
+58       $password,
+59       array(PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION));
+60 
+61     // Query to see if the server is configured as a master or slave.
+62     $statement = $db-&gt;prepare(&quot;SELECT variable_value
+63       FROM information_schema.global_variables
+64       WHERE variable_name = &#39;LOG_BIN&#39;;&quot;);
+65     $statement-&gt;execute();
+66     $result = $statement-&gt;fetch();
+67 
+68     return array(
+69       &#39;success&#39; =&gt; TRUE,
+70       &#39;status&#39; =&gt; ($result[0] == &#39;ON&#39;) ? &#39;master&#39; : &#39;slave&#39;,
+71     );
+72   }
+73   catch (PDOException $e) {
+74     return array();
+75   }
+76 }
+77 ?&gt;
+78 &lt;!DOCTYPE html&gt;
+79 &lt;html&gt;
+80 &lt;head&gt;
+81   &lt;title&gt;Host {{ inventory_hostname }}&lt;/title&gt;
+82   &lt;style&gt;* { font-family: Helvetica, Arial, sans-serif }&lt;/style&gt;
+83 &lt;/head&gt;
+84 &lt;body&gt;
+85   &lt;h1&gt;Host {{ inventory_hostname }}&lt;/h1&gt;
+86   &lt;?php foreach ($mysql_results as $host =&gt; $result): ?&gt;
+87     &lt;p&gt;MySQL Connection (&lt;?php print $host; ?&gt;): &lt;?php print $result; ?&gt;&lt;/p&gt;
+88   &lt;?php endforeach; ?&gt;
+89   &lt;p&gt;Memcached Connection: &lt;?php print $memcached_result; ?&gt;&lt;/p&gt;
+90 &lt;/body&gt;
+91 &lt;/html&gt;</code></pre>
+</div>
+</figure>
+<aside class="tip blurb">
 <p>Don&rsquo;t try transcribing this example manually; you can get the code from
 this book&rsquo;s repository on GitHub. Visit the
 <a href="https://github.com/geerlingguy/ansible-for-devops" rel="external" target="_blank">ansible-for-devops</a>
 repository and download the source for
 <a href="https://github.com/geerlingguy/ansible-for-devops/blob/master/lamp-infrastructure/playbooks/www/templates/index.php.j2" rel="external" target="_blank">index.php.j2</a></p>
-<!-- raw HTML omitted -->
+</aside>
 <p>As this is the heart of the example application we&rsquo;re deploying to the
 infrastructure, it&rsquo;s necessarily a bit more complex than most examples
 in the book, but a quick run through follows:</p>
@@ -334,19 +539,45 @@ will test and display the status of all our servers&mdash;is ready to go.</p>
 <p>Compared to the earlier playbooks, the Memcached playbook is quite
 simple. Create <code>playbooks/memcached/main.yml</code> with the following
 contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: lamp-memcached
+ 3   sudo: yes
+ 4 
+ 5   vars_files:
+ 6     - vars.yml
+ 7 
+ 8   roles:
+ 9     - geerlingguy.firewall
+10     - geerlingguy.memcached</code></pre>
+</div>
+</figure>
 <p>As with the other servers, we need to ensure only the required TCP ports
 are open using the simple <code>geerlingguy.firewall</code> role. Next we install
 Memcached using the <code>geerlingguy.memcached</code> role.</p>
 <p>In our <code>vars.yml</code> file (again, alongside <code>main.yml</code>), add the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 firewall_allowed_tcp_ports:
+ 3   - &quot;22&quot;
+ 4 firewall_additional_rules:
+ 5   - &quot;iptables -A INPUT -p tcp --dport 11211 -s {{ groups[&#39;lamp-www&#39;][0] }} -j AC\
+ 6 CEPT&quot;
+ 7   - &quot;iptables -A INPUT -p tcp --dport 11211 -s {{ groups[&#39;lamp-www&#39;][1] }} -j AC\
+ 8 CEPT&quot;
+ 9 
+10 memcached_listen_ip: &quot;{{ groups[&#39;lamp-memcached&#39;][0] }}&quot;</code></pre>
+</div>
+</figure>
 <p>We need port 22 open for remote access, and for Memcached, we&rsquo;re adding
 manual iptables rules to allow access on port 11211 for the web servers
 <em>only</em>. We add one rule per <code>lamp-www</code> server by drilling down into each
 item in the the generated <code>groups</code> variable that Ansible uses to track
 all inventory groups currently available. We also bind Memcached to the
 server&rsquo;s IP address so it will accept connections through IP.</p>
-<!-- raw HTML omitted -->
+<aside class="warning blurb">
 <p>The <strong>principle of least privilege</strong> &ldquo;requires that in a particular
 abstraction layer of a computing environment, every module &hellip; must be
 able to access only the information and resources that are necessary for
@@ -354,7 +585,7 @@ its legitimate purpose&rdquo; (Source:
 <a href="http://en.wikipedia.org/wiki/Principle_of_least_privilege" rel="external" target="_blank">Wikipedia</a>).
 Always restrict services and ports to only those servers or users that
 need access!</p>
-<!-- raw HTML omitted -->
+</aside>
 <p><strong>MySQL</strong></p>
 <p>The MySQL configuration is more complex than the other servers because
 we need to configure MySQL users per-host and configure replication.
@@ -362,7 +593,34 @@ Because we want to maintain an independent and flexible playbook, we
 also need to dynamically create some variables so MySQL will get the
 right server addresses in any potential environment.</p>
 <p>Let&rsquo;s first create the main playbook, <code>playbooks/db/main.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: lamp-db
+ 3   sudo: yes
+ 4 
+ 5   vars_files:
+ 6     - vars.yml
+ 7 
+ 8   pre_tasks:
+ 9     - name: Create dynamic MySQL variables.
+10       set_fact:
+11         mysql_users:
+12           - name: mycompany_user
+13             host: &quot;{{ groups[&#39;lamp-www&#39;][0] }}&quot;
+14             password: secret
+15             priv: &quot;*.*:SELECT&quot;
+16           - name: mycompany_user
+17             host: &quot;{{ groups[&#39;lamp-www&#39;][1] }}&quot;
+18             password: secret
+19             priv: &quot;*.*:SELECT&quot;
+20         mysql_replication_master: &quot;{{ groups[&#39;a4d.lamp.db.1&#39;][0] }}&quot;
+21 
+22   roles:
+23     - geerlingguy.firewall
+24     - geerlingguy.mysql</code></pre>
+</div>
+</figure>
 <p>Most of the playbook is straightforward, but in this instance, we&rsquo;re
 using <code>set_fact</code> as a <code>pre_task</code> (to be run before the
 <code>geerlingguy.firewall</code> and <code>geerlingguy.mysql</code> roles) to dynamically
@@ -384,7 +642,18 @@ are configured to replicate data from the master.</li>
 </ul>
 <p>We&rsquo;ll need a few other normal variables to configure MySQL, so we&rsquo;ll add
 them alongside the firewall variable in <code>playbooks/db/vars.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 firewall_allowed_tcp_ports:
+3   - &quot;22&quot;
+4   - &quot;3306&quot;
+5 
+6 mysql_replication_user: {name: &#39;replication&#39;, password: &#39;secret&#39;}
+7 mysql_databases:
+8   - { name: mycompany_database, collation: utf8_general_ci, encoding: utf8 }</code></pre>
+</div>
+</figure>
 <p>We&rsquo;re opening port 3306 to anyone, but according to the <strong>principle of
 least privilege</strong> discussed earlier, you would be justified in
 restricting this port to only the servers and users that need access to
@@ -402,7 +671,15 @@ server-specific playbooks are ready to go.</p>
 we need for the overall configuration to take place. Create
 <code>configure.yml</code> in the project&rsquo;s root directory, with the following
 contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - include: playbooks/varnish/main.yml
+3 - include: playbooks/www/main.yml
+4 - include: playbooks/db/main.yml
+5 - include: playbooks/memcached/main.yml</code></pre>
+</div>
+</figure>
 <p>At this point, if you had some already-booted servers and statically
 defined inventory groups like <code>lamp-www</code>, <code>lamp-db</code>, etc., you could run
 <code>ansible-playbook configure.yml</code> and have a full HA infrastructure at
@@ -416,7 +693,20 @@ required Ansible Galaxy roles for a given project in a
 <code>ansible-galaxy install -y [role1] [role2] [role3]</code> for each of the
 roles we&rsquo;re using, we can create <code>requirements.yml</code> in the root of our
 project, with the following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - src: geerlingguy.firewall
+ 3 - src: geerlingguy.repo-epel
+ 4 - src: geerlingguy.varnish
+ 5 - src: geerlingguy.apache
+ 6 - src: geerlingguy.php
+ 7 - src: geerlingguy.php-mysql
+ 8 - src: geerlingguy.php-memcached
+ 9 - src: geerlingguy.mysql
+10 - src: geerlingguy.memcached</code></pre>
+</div>
+</figure>
 <p>To make sure all the required dependencies are installed, run
 <code>ansible-galaxy install -r requirements.yml</code> from within the project&rsquo;s
 root.</p>
@@ -436,12 +726,101 @@ hostname configurations.</li>
 can run once at the end of Vagrant&rsquo;s build cycle.</li>
 </ol>
 <p>Here&rsquo;s the Vagrantfile in all its glory:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # -*- mode: ruby -*-
+ 2 # vi: set ft=ruby :
+ 3 
+ 4 Vagrant.configure(&quot;2&quot;) do |config|
+ 5   # Base VM OS configuration.
+ 6   config.vm.box = &quot;geerlingguy/centos6&quot;
+ 7   config.ssh.insert_key = false
+ 8 
+ 9   # General VirtualBox VM configuration.
+10   config.vm.provider :virtualbox do |v|
+11     v.customize [&quot;modifyvm&quot;, :id, &quot;--memory&quot;, 512]
+12     v.customize [&quot;modifyvm&quot;, :id, &quot;--cpus&quot;, 1]
+13     v.customize [&quot;modifyvm&quot;, :id, &quot;--natdnshostresolver1&quot;, &quot;on&quot;]
+14     v.customize [&quot;modifyvm&quot;, :id, &quot;--ioapic&quot;, &quot;on&quot;]
+15   end
+16 
+17   # Varnish.
+18   config.vm.define &quot;varnish&quot; do |varnish|
+19     varnish.vm.hostname = &quot;varnish.dev&quot;
+20     varnish.vm.network :private_network, ip: &quot;192.168.2.2&quot;
+21   end
+22 
+23   # Apache.
+24   config.vm.define &quot;www1&quot; do |www1|
+25     www1.vm.hostname = &quot;www1.dev&quot;
+26     www1.vm.network :private_network, ip: &quot;192.168.2.3&quot;
+27 
+28     www1.vm.provision &quot;shell&quot;,
+29       inline: &quot;sudo yum update -y&quot;
+30 
+31     www1.vm.provider :virtualbox do |v|
+32       v.customize [&quot;modifyvm&quot;, :id, &quot;--memory&quot;, 256]
+33     end
+34   end
+35 
+36   # Apache.
+37   config.vm.define &quot;www2&quot; do |www2|
+38     www2.vm.hostname = &quot;www2.dev&quot;
+39     www2.vm.network :private_network, ip: &quot;192.168.2.4&quot;
+40 
+41     www2.vm.provision &quot;shell&quot;,
+42       inline: &quot;sudo yum update -y&quot;
+43 
+44     www2.vm.provider :virtualbox do |v|
+45       v.customize [&quot;modifyvm&quot;, :id, &quot;--memory&quot;, 256]
+46     end
+47   end
+48 
+49   # MySQL.
+50   config.vm.define &quot;db1&quot; do |db1|
+51     db1.vm.hostname = &quot;db1.dev&quot;
+52     db1.vm.network :private_network, ip: &quot;192.168.2.5&quot;
+53   end
+54 
+55   # MySQL.
+56   config.vm.define &quot;db2&quot; do |db2|
+57     db2.vm.hostname = &quot;db2.dev&quot;
+58     db2.vm.network :private_network, ip: &quot;192.168.2.6&quot;
+59   end
+60 
+61   # Memcached.
+62   config.vm.define &quot;memcached&quot; do |memcached|
+63     memcached.vm.hostname = &quot;memcached.dev&quot;
+64     memcached.vm.network :private_network, ip: &quot;192.168.2.7&quot;
+65 
+66     # Run Ansible provisioner once for all VMs at the end.
+67     memcached.vm.provision &quot;ansible&quot; do |ansible|
+68       ansible.playbook = &quot;configure.yml&quot;
+69       ansible.inventory_path = &quot;inventories/vagrant/inventory&quot;
+70       ansible.limit = &quot;all&quot;
+71       ansible.extra_vars = {
+72         ansible_ssh_user: &#39;vagrant&#39;,
+73         ansible_ssh_private_key_file: &quot;~/.vagrant.d/insecure_private_key&quot;
+74       }
+75     end
+76   end
+77 end</code></pre>
+</div>
+</figure>
 <p>Most of the Vagrantfile is straightforward, and similar to other
 examples used in this book. The last block of code, which defines the
 <code>ansible</code> provisioner configuration, contains three extra values that
 are important for our purposes:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1       ansible.inventory_path = &quot;inventories/vagrant/inventory&quot;
+2       ansible.limit = &quot;all&quot;
+3       ansible.extra_vars = {
+4         ansible_ssh_user: &#39;vagrant&#39;,
+5         ansible_ssh_private_key_file: &quot;~/.vagrant.d/insecure_private_key&quot;
+6       }</code></pre>
+</div>
+</figure>
 <ol>
 <li><code>ansible.inventory_path</code> defines an inventory file to be used with
 the <code>ansible.playbook</code>. You could certainly create a dynamic
@@ -463,11 +842,35 @@ file, but it&rsquo;s easiest to set them once for all servers here.</li>
 </ol>
 <p>Before running <code>vagrant up</code> to see the fruits of our labor, we need to
 create an inventory file for Vagrant at <code>inventories/vagrant/inventory</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 [lamp-varnish]
+ 2 192.168.2.2
+ 3 
+ 4 [lamp-www]
+ 5 192.168.2.3
+ 6 192.168.2.4
+ 7 
+ 8 [a4d.lamp.db.1]
+ 9 192.168.2.5
+10 
+11 [lamp-db]
+12 192.168.2.5
+13 192.168.2.6
+14 
+15 [lamp-memcached]
+16 192.168.2.7</code></pre>
+</div>
+</figure>
 <p>Now <code>cd</code> into the project&rsquo;s root directory, run <code>vagrant up</code>, and after
 ten or fifteen minutes, load <code>http://192.168.2.2/</code> in your browser.
 Voila!</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-ha-infrastructure-success.png"
+style="width: 100%;" alt="Highly Available Infrastructure - Success!" />
+<figcaption aria-hidden="true">Highly Available Infrastructure -
+Success!</figcaption>
+</figure>
 <p>You should see something like the above screenshot. The PHP app displays
 the current app server&rsquo;s IP address, the individual MySQL servers'
 status, and the Memcached server status. Refresh the page a few times to
@@ -488,11 +891,29 @@ allow us to add other provisioner configurations later, alongside the
 <code>digitalocean.yml</code> playbook. As with our example in Chapter 7, we will
 use a local connection to provision cloud instances. Begin the playbook
 with:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: localhost
+3   connection: local
+4   gather_facts: false</code></pre>
+</div>
+</figure>
 <p>Next we need to define some metadata to describe each of our droplets.
 For simplicity&rsquo;s sake, we&rsquo;ll inline the <code>droplets</code> variable in this
 playbook:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 6   vars:
+ 7     droplets:
+ 8       - { name: a4d.lamp.varnish, group: &quot;lamp-varnish&quot; }
+ 9       - { name: a4d.lamp.www.1, group: &quot;lamp-www&quot; }
+10       - { name: a4d.lamp.www.2, group: &quot;lamp-www&quot; }
+11       - { name: a4d.lamp.db.1, group: &quot;lamp-db&quot; }
+12       - { name: a4d.lamp.db.2, group: &quot;lamp-db&quot; }
+13       - { name: a4d.lamp.memcached, group: &quot;lamp-memcached&quot; }</code></pre>
+</div>
+</figure>
 <p>Each droplet is an object with two keys:</p>
 <ul>
 <li><code>name</code>: The name of the Droplet for DigitalOcean&rsquo;s listings and
@@ -502,13 +923,30 @@ Ansible&rsquo;s host inventory.</li>
 <p>Next we need to add a task to create the droplets, using the <code>droplets</code>
 list as a guide, and as part of the same task, register each droplet&rsquo;s
 information in a separate dictionary, <code>created_droplets</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>15   tasks:
+16     - name: Provision DigitalOcean droplets.
+17       digital_ocean:
+18         state: &quot;{{ item.state | default(&#39;present&#39;) }}&quot;
+19         command: droplet
+20         name: &quot;{{ item.name }}&quot;
+21         private_networking: yes
+22         size_id: &quot;{{ item.size | default(66) }}&quot; # 512mb
+23         image_id: &quot;{{ item.image | default(6372108) }}&quot; # CentOS 6 x64.
+24         region_id: &quot;{{ item.region | default(4) }}&quot; # NYC2
+25         ssh_key_ids: &quot;{{ item.ssh_key | default(&#39;138954&#39;) }}&quot; # geerlingguy
+26         unique_name: yes
+27       register: created_droplets
+28       with_items: droplets</code></pre>
+</div>
+</figure>
 <p>Many of the options (e.g. <code>size_id</code>) are defined as
 <code>{{ item.property | default('default_value') }}</code>, which allows us to use
 optional variables per droplet. For any of the defined droplets, we
 could add <code>size_id: 72</code> (or another valid value), and it would override
 the default value set in the task.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>You could specify an SSH public key per droplet, or use the same key for
 all hosts by providing a default (as I did above). In this example, I
 added an SSH key to my DigitalOcean account, then used the DigitalOcean
@@ -518,13 +956,28 @@ chapter).</p>
 to your DigitalOcean account so Ansible can connect using secure keys
 instead of insecure passwords&mdash;especially since these instances will be
 created with only a root account.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>We loop through all the defined <code>droplets</code> using <code>with_items: droplets</code>,
 and after each droplet is created, we add the droplet&rsquo;s metadata (name,
 IP address, etc.) to the <code>created_droplets</code> variable. Next, we&rsquo;ll loop
 through that variable to build our inventory on-the-fly so our
 configuration applies to the correct servers:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>30     - name: Add DigitalOcean hosts to their respective inventory groups.
+31       add_host:
+32         name: &quot;{{ item.1.droplet.ip_address }}&quot;
+33         groups: &quot;do,{{ droplets[item.0].group }},{{ item.1.droplet.name }}&quot;
+34         # You can dynamically add inventory variables per-host.
+35         ansible_ssh_user: root
+36         mysql_replication_role: &gt;
+37           &quot;{{ &#39;master&#39; if (item.1.droplet.name == &#39;a4d.lamp.db.1&#39;)
+38           else &#39;slave&#39; }}&quot;
+39         mysql_server_id: &quot;{{ item.0 }}&quot;
+40       when: item.1.droplet is defined
+41       with_indexed_items: created_droplets.results</code></pre>
+</div>
+</figure>
 <p>You&rsquo;ll notice a few interesting things happening in this task:</p>
 <ul>
 <li>This is the first time we&rsquo;ve used <code>with_indexed_items</code>. Though less
@@ -544,7 +997,7 @@ particular droplet.</li>
 this, we add the variable name as a key and the variable value as that
 key&rsquo;s value. Simple, but powerful!</li>
 </ul>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>There are a few different ways you can approach dynamic provisioning and
 inventory management for your infrastructure. There are ways to avoid
 using more exotic features of Ansible (e.g. <code>with_indexed_items</code>) and
@@ -552,30 +1005,63 @@ complex if/else conditions, especially if you only use one cloud
 infrastructure provider. This example is slightly more complex because
 the playbook is being created to be interchangeable with similar
 provisioning playbooks.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>The final step in our provisioning is to make sure all the droplets are
 booted and can be reached via SSH. So at the end of the
 <code>digitalocean.yml</code> playbook, add another play to be run on hosts in the
 <code>do</code> group we just defined:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>43 - hosts: do
+44   remote_user: root
+45   gather_facts: no
+46 
+47   tasks:
+48     - name: Wait for port 22 to become available.
+49       local_action: &quot;wait_for port=22 host={{ inventory_hostname }}&quot;</code></pre>
+</div>
+</figure>
 <p>Once we know port 22 is reachable, we know the droplet is up and ready
 for configuration.</p>
 <p>We&rsquo;re now <em>almost</em> ready to provision and configure our entire
 infrastructure on DigitalOcean, but first we need to create one last
 playbook to tie everything together. Create <code>provision.yml</code> in the
 project root with the following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - include: provisioners/digitalocean.yml
+3 - include: configure.yml</code></pre>
+</div>
+</figure>
 <p>That&rsquo;s it! Now, assuming you set the environment variables
 <code>DO_CLIENT_ID</code> and <code>DO_API_KEY</code>, you can run
 <code>$ ansible-playbook provision.yml</code> to provision and configure the
 infrastructure on DigitalOcean.</p>
 <p>The entire process should take about 15 minutes; once it&rsquo;s complete, you
 should see something like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>PLAY RECAP *****************************************************************
+107.170.27.137             : ok=19   changed=13   unreachable=0    failed=0
+107.170.3.23               : ok=13   changed=8    unreachable=0    failed=0
+107.170.51.216             : ok=40   changed=18   unreachable=0    failed=0
+107.170.54.218             : ok=27   changed=16   unreachable=0    failed=0
+162.243.20.29              : ok=24   changed=15   unreachable=0    failed=0
+192.241.181.197            : ok=40   changed=18   unreachable=0    failed=0
+localhost                  : ok=2    changed=1    unreachable=0    failed=0</code></pre>
+</div>
+</figure>
 <p>Visit the IP address of the varnish server, and you will be greeted with
 a status page similar to the one generated by the Vagrant-based
 infrastructure:</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-ha-infrastructure-digitalocean.png"
+style="width: 100%;"
+alt="Highly Available Infrastructure on DigitalOcean." />
+<figcaption aria-hidden="true">Highly Available Infrastructure on
+DigitalOcean.</figcaption>
+</figure>
 <p>Because everything in this playbook is idempotent, running
 <code>$ ansible-playbook provision.yml</code> again should report no changes, and
 this will help you verify that everything is running correctly.</p>
@@ -597,12 +1083,42 @@ particular example we will need to configure security groups prior to
 provisioning instances.</p>
 <p>To begin, create <code>aws.yml</code> inside the <code>provisioners</code> directory and begin
 the playbook the same way as for DigitalOcean:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: localhost
+3   connection: local
+4   gather_facts: false</code></pre>
+</div>
+</figure>
 <p>EC2 instances use security groups as an AWS-level firewall (which
 operates outside the individual instance&rsquo;s OS). We will need to define a
 list of <code>security_groups</code> alongside our EC2 <code>instances</code>. First, the
 <code>instances</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 6   vars:
+ 7     instances:
+ 8       - name: a4d.lamp.varnish
+ 9         group: &quot;lamp-varnish&quot;
+10         security_group: [&quot;default&quot;, &quot;a4d_lamp_http&quot;]
+11       - name: a4d.lamp.www.1
+12         group: &quot;lamp-www&quot;
+13         security_group: [&quot;default&quot;, &quot;a4d_lamp_http&quot;]
+14       - name: a4d.lamp.www.2
+15         group: &quot;lamp-www&quot;
+16         security_group: [&quot;default&quot;, &quot;a4d_lamp_http&quot;]
+17       - name: a4d.lamp.db.1
+18         group: &quot;lamp-db&quot;
+19         security_group: [&quot;default&quot;, &quot;a4d_lamp_db&quot;]
+20       - name: a4d.lamp.db.2
+21         group: &quot;lamp-db&quot;
+22         security_group: [&quot;default&quot;, &quot;a4d_lamp_db&quot;]
+23       - name: a4d.lamp.memcached
+24         group: &quot;lamp-memcached&quot;
+25         security_group: [&quot;default&quot;, &quot;a4d_lamp_memcached&quot;]</code></pre>
+</div>
+</figure>
 <p>Inside the <code>instances</code> variable, each instance is an object with three
 keys:</p>
 <ul>
@@ -615,17 +1131,36 @@ will be placed. The <code>default</code> security group is added to your AWS
 account upon creation, and has one rule to allow outgoing traffic on
 any port to any IP address.</li>
 </ul>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>If you use AWS exclusively, it would be best to autoscaling groups and
 change the design of this infrastructure a bit. For this example, we
 just need to ensure that the six instances we explicitly define are
 created, so we&rsquo;re using particular <code>name</code>s and an <code>exact_count</code> to
 enforce the 1:1 relationship.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>With our instances defined, we&rsquo;ll next define a <code>security_groups</code>
 variable containing all the required security group configuration for
 each server:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>27     security_groups:
+28       - name: a4d_lamp_http
+29         rules:
+30           - { proto: tcp, from_port: 80, to_port: 80, cidr_ip: 0.0.0.0/0 }
+31           - { proto: tcp, from_port: 22, to_port: 22, cidr_ip: 0.0.0.0/0 }
+32         rules_egress: []
+33       - name: a4d_lamp_db
+34         rules:
+35           - { proto: tcp, from_port: 3306, to_port: 3306, cidr_ip: 0.0.0.0/0 }
+36           - { proto: tcp, from_port: 22, to_port: 22, cidr_ip: 0.0.0.0/0 }
+37         rules_egress: []
+38       - name: a4d_lamp_memcached
+39         rules:
+40           - { proto: tcp, from_port: 11211, to_port: 11211, cidr_ip: 0.0.0.0/0 }
+41           - { proto: tcp, from_port: 22, to_port: 22, cidr_ip: 0.0.0.0/0 }
+42         rules_egress: []</code></pre>
+</div>
+</figure>
 <p>Each security group has a <code>name</code> (which was used to identify the
 security group in the <code>instances</code> list), <code>rules</code> (a list of firewall
 rules&mdash;like protocol, ports, and IP ranges&mdash;to limit <em>incoming</em>
@@ -637,14 +1172,48 @@ traffic), and <code>rules_egress</code> (a list of firewall rules to limit
 <p>Now that we have all the data we need to set up security groups and
 instances, our first task is to create or verify the existence of the
 security groups:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>44   tasks:
+45     - name: Configure EC2 Security Groups.
+46       ec2_group:
+47         name: &quot;{{ item.name }}&quot;
+48         description: Example EC2 security group for A4D.
+49         region: &quot;{{ item.region | default(&#39;us-west-2&#39;) }}&quot; # Oregon
+50         state: present
+51         rules: &quot;{{ item.rules }}&quot;
+52         rules_egress: &quot;{{ item.rules_egress }}&quot;
+53       with_items: security_groups</code></pre>
+</div>
+</figure>
 <p>The <code>ec2_group</code> requires a name, region, and rules for each security
 group. Security groups will be created if they don&rsquo;t exist, modified to
 match the supplied values if they do exist, or verified if they both
 exist and match the given values.</p>
 <p>With the security groups configured, we can provision the defined EC2
 instances by looping through <code>instances</code> with the <code>ec2</code> module:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>55     - name: Provision EC2 instances.
+56       ec2:
+57         key_name: &quot;{{ item.ssh_key | default(&#39;jeff_mba_home&#39;) }}&quot;
+58         instance_tags:
+59           inventory_group: &quot;{{ item.group | default(&#39;&#39;) }}&quot;
+60           inventory_host: &quot;{{ item.name | default(&#39;&#39;) }}&quot;
+61         group: &quot;{{ item.security_group | default(&#39;&#39;) }}&quot;
+62         instance_type: &quot;{{ item.type | default(&#39;t2.micro&#39;)}}&quot; # Free Tier
+63         image: &quot;{{ item.image | default(&#39;ami-11125e21&#39;) }}&quot; # RHEL6 x64 hvm
+64         region: &quot;{{ item.region | default(&#39;us-west-2&#39;) }}&quot; # Oregon
+65         wait: yes
+66         wait_timeout: 500
+67         exact_count: 1
+68         count_tag:
+69           inventory_group: &quot;{{ item.group | default(&#39;&#39;) }}&quot;
+70           inventory_host: &quot;{{ item.name | default(&#39;&#39;) }}&quot;
+71       register: created_instances
+72       with_items: instances</code></pre>
+</div>
+</figure>
 <p>This example is slightly more complex than the DigitalOcean example, and
 a few parts warrant a deeper look:</p>
 <ul>
@@ -668,7 +1237,22 @@ wanted to <em>remove</em> all your instances, you could set <code>exact_count</c
 <p>Each provisioned instance will have its metadata added to the registered
 <code>created_instances</code> variable, which we will use to build Ansible
 inventory groups for the server configuration playbooks.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>74     - name: Add EC2 instances to their respective inventory groups.
+75       add_host:
+76         name: &quot;{{ item.1.tagged_instances.0.public_ip }}&quot;
+77         groups: &quot;aws,{{ item.1.item.group }},{{ item.1.item.name }}&quot;
+78         # You can dynamically add inventory variables per-host.
+79         ansible_ssh_user: ec2-user
+80         mysql_replication_role: &gt;
+81           {{ &#39;master&#39; if (item.1.item.name == &#39;a4d.lamp.db.1&#39;)
+82           else &#39;slave&#39; }}
+83         mysql_server_id: &quot;{{ item.0 }}&quot;
+84       when: item.1.instances is defined
+85       with_indexed_items: created_instances.results</code></pre>
+</div>
+</figure>
 <p>This <code>add_host</code> example is slightly simpler than the one for
 DigitalOcean, because AWS attaches metadata to EC2 instances which we
 can re-use when building groups or hostnames (e.g. <code>item.1.item.group</code>).
@@ -680,24 +1264,61 @@ replication.</p>
 <p>The final steps in provisioning the EC2 instances are to ensure we can
 connect to them, and to set <code>selinux</code> into permissive mode so the
 configuration we supply will work correctly.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>87 # Run some general configuration on all AWS hosts.
+88 - hosts: aws
+89   gather_facts: false
+90 
+91   tasks:
+92     - name: Wait for port 22 to become available.
+93       local_action: &quot;wait_for port=22 host={{ inventory_hostname }}&quot;
+94 
+95     - name: Set selinux into &#39;permissive&#39; mode.
+96       selinux: policy=targeted state=permissive
+97       sudo: yes</code></pre>
+</div>
+</figure>
 <p>Since we defined <code>ansible_ssh_user</code> as <code>ec2-user</code> in the
 dynamically-generated inventory above, we need to ensure the <code>selinux</code>
 task runs explicitly with <code>sudo</code>.</p>
 <p>Now, modify the <code>provision.yml</code> file in the root of the project folder
 and change the provisioners include to look like the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - include: provisioners/aws.yml
+3 - include: configure.yml</code></pre>
+</div>
+</figure>
 <p>Assuming the environment variables <code>AWS_ACCESS_KEY_ID</code> and
 <code>AWS_SECRET_ACCESS_KEY</code> are set in your current terminal session, you
 can run <code>$ ansible-playbook provision.yml</code> to provision and configure
 the infrastructure on AWS.</p>
 <p>The entire process should take about 15 minutes, and once it&rsquo;s complete,
 you should see something like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>PLAY RECAP *****************************************************************
+54.148.100.44              : ok=24   changed=16   unreachable=0    failed=0
+54.148.120.23              : ok=40   changed=19   unreachable=0    failed=0
+54.148.41.134              : ok=40   changed=19   unreachable=0    failed=0
+54.148.56.137              : ok=13   changed=9    unreachable=0    failed=0
+54.69.160.32               : ok=27   changed=17   unreachable=0    failed=0
+54.69.86.187               : ok=19   changed=14   unreachable=0    failed=0
+localhost                  : ok=3    changed=1    unreachable=0    failed=0</code></pre>
+</div>
+</figure>
 <p>Visit the IP address of the Varnish server, and you will be greeted with
 a status page similar to the one generated by the Vagrant and
 DigitalOcean-based infrastructure:</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-ha-infrastructure-aws.png"
+style="width: 100%;"
+alt="Highly Available Infrastructure on AWS EC2." />
+<figcaption aria-hidden="true">Highly Available Infrastructure on AWS
+EC2.</figcaption>
+</figure>
 <p>As with the earlier examples, running <code>ansible-playbook provision.yml</code>
 again should produce no changes, because everything in this playbook is
 idempotent. If one of your instances was somehow terminated, running the
@@ -727,12 +1348,12 @@ application infrastructure.</p>
 network (or in a private cloud, or even on a few bare metal servers),
 Ansible provides deep stack-specific integration so you can do whatever
 you need to do and manage the provider&rsquo;s services within your playbooks.</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>You can find the entire contents of this example in the <a href="https://github.com/geerlingguy/ansible-for-devops" rel="external" target="_blank">Ansible for
 DevOps GitHub
 repository</a>, in the
 <code>lamp-infrastructure</code> directory.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap10.xhtml_leanpub-auto-elk-logging-with-ansible">ELK Logging with Ansible</h3>
 <p>Though application, database, and backup servers may be some of the most
 mission-critical components of a well-rounded infrastructure, one area
@@ -748,7 +1369,12 @@ files, logrotate, and grep don&rsquo;t cut it anymore.</p>
 (Elasticsearch, Logstash, and Kibana) has come to the fore as one of the
 best-performing and easiest-to-configure open source centralized logging
 solutions.</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-elk-kibana-example.png" style="width: 100%;"
+alt="An example Kibana logging dashboard." />
+<figcaption aria-hidden="true">An example Kibana logging
+dashboard.</figcaption>
+</figure>
 <p>In our example, we&rsquo;ll configure a single ELK server to handle
 aggregation, searching, and graphical display of logged data from a
 variety of other servers, and give some common configuration examples to
@@ -764,12 +1390,54 @@ walk through each role and variable in detail. Then I&rsquo;ll show how you
 can use this base server to aggregate logs, then how to point your other
 servers&rsquo; log files to it using Logstash Forwarder.</p>
 <p>Here&rsquo;s our main playbook, saved as <code>provisioning/elk/playbook.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - hosts: logs
+ 2   gather_facts: yes
+ 3 
+ 4   vars_files:
+ 5     - vars/main.yml
+ 6 
+ 7   pre_tasks:
+ 8     - name: Update apt cache if needed.
+ 9       apt: update_cache=yes cache_valid_time=86400
+10 
+11   roles:
+12     - geerlingguy.java
+13     - geerlingguy.nginx
+14     - geerlingguy.elasticsearch
+15     - geerlingguy.elasticsearch-curator
+16     - geerlingguy.kibana
+17     - geerlingguy.logstash
+18     - geerlingguy.logstash-forwarder</code></pre>
+</div>
+</figure>
 <p>This assumes you have a <code>logs</code> group in your inventory with at least one
 server listed. The playbook includes a vars file located in
 <code>provisioning/elk/vars/main.yml</code>, so create that file, and then put the
 following inside:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 java_packages:
+ 3   - openjdk-7-jdk
+ 4 
+ 5 nginx_user: www-data
+ 6 nginx_worker_connections: 1024
+ 7 nginx_remove_default_vhost: true
+ 8 
+ 9 kibana_server_name: logs
+10 kibana_username: kibana
+11 kibana_password: password
+12 
+13 logstash_monitor_local_syslog: false
+14 logstash_forwarder_files:
+15   - paths:
+16       - /var/log/auth.log
+17     fields:
+18       type: syslog</code></pre>
+</div>
+</figure>
 <p>You&rsquo;ll want to use something other than &lsquo;password&rsquo; for
 <code>kibana_password</code>. Other options are straightforward, with the exception
 of the two <code>logstash_*</code> variables.</p>
@@ -786,32 +1454,75 @@ messages correctly).</p>
 create a local VM using Vagrant like you have in most other examples in
 the book. Create a <code>Vagrantfile</code> in the same directory as the
 <code>provisioning</code> folder, with the following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # -*- mode: ruby -*-
+ 2 # vi: set ft=ruby :
+ 3 
+ 4 VAGRANTFILE_API_VERSION = &quot;2&quot;
+ 5 
+ 6 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+ 7   config.vm.box = &quot;geerlingguy/ubuntu1204&quot;
+ 8 
+ 9   config.vm.provider :virtualbox do |v|
+10     v.customize [&quot;modifyvm&quot;, :id, &quot;--natdnshostresolver1&quot;, &quot;on&quot;]
+11     v.customize [&quot;modifyvm&quot;, :id, &quot;--memory&quot;, 1024]
+12     v.customize [&quot;modifyvm&quot;, :id, &quot;--cpus&quot;, 2]
+13     v.customize [&quot;modifyvm&quot;, :id, &quot;--ioapic&quot;, &quot;on&quot;]
+14   end
+15 
+16   # ELK server.
+17   config.vm.define &quot;logs&quot; do |logs|
+18     logs.vm.hostname = &quot;logs&quot;
+19     logs.vm.network :private_network, ip: &quot;192.168.9.90&quot;
+20 
+21     logs.vm.provision :ansible do |ansible|
+22       ansible.playbook = &quot;provisioning/elk/playbook.yml&quot;
+23       ansible.inventory_path = &quot;provisioning/elk/inventory&quot;
+24       ansible.sudo = true
+25     end
+26   end
+27 
+28 end</code></pre>
+</div>
+</figure>
 <p>This Vagrant configuration expects an inventory file at
 <code>provisioning/elk/inventory</code>, so quickly create one with the following
 contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 logs ansible_ssh_host=192.168.9.90 ansible_ssh_port=22</code></pre>
+</div>
+</figure>
 <p>Now, run <code>vagrant up</code>. The build should take about five minutes, and
 upon completion, if you add a line like <code>logs 192.168.9.90</code> to your
 <code>/etc/hosts</code> file, you can visit <code>http://logs/</code> in your browser and see
 Kibana&rsquo;s default homepage:</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-elk-kibana-default.png" style="width: 100%;"
+alt="Kibana&#39;s default homepage." />
+<figcaption>Kibana’s default homepage.</figcaption>
+</figure>
 <p>Kibana helpfully links to an example dashboard for Logstash (under the
 &ldquo;Are you a Logstash User?&rdquo; section), and if you select it, you should
 see a live dashboard that shows logged activity for the past day:</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-elk-kibana-logstash-dashboard.png"
+style="width: 100%;" alt="Kibana&#39;s default Logstash dashboard." />
+<figcaption>Kibana’s default Logstash dashboard.</figcaption>
+</figure>
 <p>In this example, we won&rsquo;t dive too deep into customizing Kibana&rsquo;s
 dashboard customization, since there are many guides to using Kibana
 available freely, including <a href="http://www.elasticsearch.org/guide/en/kibana/current/index.html" rel="external" target="_blank">Kibana&rsquo;s official
 guide</a>.
 For our purposes, we&rsquo;ll use the default dashboard.</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>This example uses Kibana 3.x, but a stable release of Kibana 4.x is on
 the horizon (as of early 2015). Some of the screenshots may show a
 different interface than the latest release, but this book will likely
 be updated with newer screenshots and updated guides once the 4.x
 release comes out.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap10.xhtml_leanpub-auto-forwarding-logs-from-other-servers">Forwarding Logs from Other Servers</h4>
 <p>It&rsquo;s great that we have the ELK stack running. Elasticsearch will store
 and make available log data with one search index per day, Logstash will
@@ -833,17 +1544,69 @@ webserver access logs for a variety of reasons, especially to watch for
 traffic spikes and increases in non-200 responses for certain
 resources.) Add the following server definition inside the Vagrantfile,
 just after the <code>end</code> of the ELK server definition:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>28   # Web server.
+29   config.vm.define &quot;webs&quot; do |webs|
+30     webs.vm.hostname = &quot;webs&quot;
+31     webs.vm.network :private_network, ip: &quot;192.168.9.91&quot;
+32 
+33     webs.vm.provision :ansible do |ansible|
+34       ansible.playbook = &quot;provisioning/web/playbook.yml&quot;
+35       ansible.inventory_path = &quot;provisioning/web/inventory&quot;
+36       ansible.sudo = true
+37     end
+38   end</code></pre>
+</div>
+</figure>
 <p>We&rsquo;ll next set up the simple playbook to install and configure both
 Nginx and Logstash Forwarder, at <code>provisioning/web/playbook.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - hosts: webs
+ 2   gather_facts: yes
+ 3 
+ 4   vars_files:
+ 5     - vars/main.yml
+ 6 
+ 7   pre_tasks:
+ 8     - name: Update apt cache if needed.
+ 9       apt: update_cache=yes cache_valid_time=86400
+10 
+11   roles:
+12     - geerlingguy.nginx
+13     - geerlingguy.logstash-forwarder
+14 
+15   tasks:
+16     - name: Set up virtual host for testing.
+17       copy:
+18         src: files/example.conf
+19         dest: /etc/nginx/conf.d/example.conf
+20         owner: root
+21         group: root
+22         mode: 0644
+23       notify: restart nginx</code></pre>
+</div>
+</figure>
 <p>This playbook installs the <code>geerlingguy.nginx</code> and
 <code>geerlingguy.logstash-forwarder</code> roles, and in the <code>tasks</code>, there is an
 additional task to configure one virtualhost in a Nginx configuration
 directory, via the file <code>example.conf</code>. Create that file now at the path
 <code>provisioning/web/files/example.conf</code>, and define one Nginx virtualhost
 for our testing:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 server {
+2   listen 80 default_server;
+3 
+4   root /usr/share/nginx/www;
+5   index index.html index.htm;
+6 
+7   access_log /var/log/nginx/access.log combined;
+8   error_log /var/log/nginx/error.log debug;
+9 }</code></pre>
+</div>
+</figure>
 <p>Since this is the only <code>server</code> definition, and it&rsquo;s set as the
 <code>default_server</code> on port 80, all requests will be directed to it. We
 routed the <code>access_log</code> to <code>/var/log/nginx/access.log</code>, and told Nginx
@@ -852,7 +1615,27 @@ Logstash server will expect nginx access logs to be formatted.</p>
 <p>Next, set up the required variables to tell the <code>nginx</code> and
 <code>logstash-forwarder</code> roles how to configure their respective services.
 Inside <code>provisioning/web/vars/main.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 nginx_user: www-data
+ 3 nginx_worker_connections: 1024
+ 4 nginx_remove_default_vhost: true
+ 5 
+ 6 logstash_forwarder_logstash_server: 192.168.9.90
+ 7 logstash_forwarder_logstash_server_port: 5000
+ 8 
+ 9 logstash_forwarder_files:
+10   - paths:
+11       - /var/log/secure
+12     fields:
+13       type: syslog
+14   - paths:
+15       - /var/log/nginx/access.log
+16     fields:
+17       type: nginx</code></pre>
+</div>
+</figure>
 <p>The <code>nginx</code> variables remove the default virtualhost entry and ensure
 Nginx will run optimally on our Ubuntu server. The <code>logstash_forwarder</code>
 variables tell <code>geerlingguy.logstash-forwarder</code> what logs to forward to
@@ -868,7 +1651,7 @@ file, and <code>/var/log/nginx/access.log</code> is of type <code>nginx</code> (
 be parsed correctly on the Logstash server since it&rsquo;s in the combined
 log format popularized by Apache).</li>
 </ul>
-<!-- raw HTML omitted -->
+<aside class="warning blurb">
 <p>Note that this demonstration configuration does not use a custom
 certificate to authenticate logging connections. You should normally
 configure your own secure certificate and give the logstash-forwarder
@@ -877,10 +1660,14 @@ role the path to the certificate using the
 example provided with the project, you could expose your logging
 infrastructure to the outside, and you&rsquo;ll get a <code>***SECURITY RISK***</code>
 warning in the logs every time the Logstash role is run.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>To allow Vagrant to pass the proper connection details to Ansible,
 create <code>provisioning/web/inventory</code> with the <code>webs</code> host details:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 webs ansible_ssh_host=192.168.9.91 ansible_ssh_port=22</code></pre>
+</div>
+</figure>
 <p>Run <code>vagrant up</code> again. Vagrant should verify that the first server
 (<code>logs</code>) is running, then create and run the Ansible provisioner on the
 newly-defined <code>webs</code> Nginx server.</p>
@@ -888,8 +1675,14 @@ newly-defined <code>webs</code> Nginx server.</p>
 and you should see a <code>Welcome to nginx!</code> message on the page. You can
 refresh the page a few times, then switch back over to <code>http://logs/</code> to
 view some new log entries on the ELK server:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-logstash-forwarding-nginx.png"
+style="width: 100%;"
+alt="Entries populating the Logstash Search Kibana dashboard." />
+<figcaption aria-hidden="true">Entries populating the Logstash Search
+Kibana dashboard.</figcaption>
+</figure>
+<aside class="tip blurb">
 <p>If you refresh the page a few times, and no entries show up in the
 Kibana Logstash dashboard, it could be that Nginx is buffering the log
 entries. In this case, keep refreshing a while (so you generate a few
@@ -898,18 +1691,28 @@ to disk (thus allowing Logstash Forwarder to convey the logs to the
 Logstash server). Read more about Nginx log buffering in the <a href="http://nginx.org/en/docs/http/ngx_http_log_module.html" rel="external" target="_blank">Nginx&rsquo;s
 ngx_http_log_module
 documentation</a>.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>A few requests being logged through logstash forwarder isn&rsquo;t all that
 exciting. Let&rsquo;s use the popular <code>ab</code> tool available most anywhere to put
 some load on the web server. On a modest MacBook Air, running the
 command below resulted in Nginx serving around 1,200 requests per
 second.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>ab -n 20000 -c 50 http://webs/</code></pre>
+</div>
+</figure>
 <p>During the course of the load test, I set Kibana to show only the past 5
 minutes of log data (automatically refreshed every 5 seconds) and I
 could monitor the requests on the ELK server just a few seconds after
 they were served by Nginx:</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-logstash-forwarding-ab-load.png"
+style="width: 100%;"
+alt="Monitoring a deluge of Nginx requests in near-realtime." />
+<figcaption aria-hidden="true">Monitoring a deluge of Nginx requests in
+near-realtime.</figcaption>
+</figure>
 <p>Logstash Forwarder uses a highly-efficient TCP-like protocol,
 Lumberjack, to transmit log entries securely between servers. With the
 right tuning and scaling, you can efficiently process and display
@@ -928,7 +1731,13 @@ your infrastructure&rsquo;s pertinent log data to the server.</p>
 instead of having one giant server with one storage volume, one
 database, one application instance, etc., most apps use two, four, ten,
 or dozens of servers.</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-glusterfs-architecture.png"
+style="width: 100%;"
+alt="GlusterFS is a distributed filesystem for servers." />
+<figcaption aria-hidden="true">GlusterFS is a distributed filesystem for
+servers.</figcaption>
+</figure>
 <p>Many applications can be scaled horizontally with ease. But what happens
 when you need shared resources, like files, application code, or other
 transient data, to be shared on all the servers? And how do you have
@@ -990,15 +1799,105 @@ server). As your infrastructure grows, you can set other options for
 data consistency and transport according to your needs.</p>
 <p>To build the two-server infrastructure locally, create a folder
 <code>gluster</code> containing the following <code>Vagrantfile</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # -*- mode: ruby -*-
+ 2 # vi: set ft=ruby :
+ 3 
+ 4 Vagrant.configure(&quot;2&quot;) do |config|
+ 5   # Base VM OS configuration.
+ 6   config.vm.box = &quot;geerlingguy/ubuntu1404&quot;
+ 7   config.vm.synced_folder &#39;.&#39;, &#39;/vagrant&#39;, disabled: true
+ 8   config.ssh.insert_key = false
+ 9 
+10   config.vm.provider :virtualbox do |v|
+11     v.memory = 256
+12     v.cpus = 1
+13   end
+14 
+15   # Define two VMs with static private IP addresses.
+16   boxes = [
+17     { :name =&gt; &quot;gluster1&quot;, :ip =&gt; &quot;192.168.29.2&quot; },
+18     { :name =&gt; &quot;gluster2&quot;, :ip =&gt; &quot;192.168.29.3&quot; }
+19   ]
+20 
+21   # Provision each of the VMs.
+22   boxes.each do |opts|
+23     config.vm.define opts[:name] do |config|
+24       config.vm.hostname = opts[:name]
+25       config.vm.network :private_network, ip: opts[:ip]
+26 
+27       # Provision both VMs using Ansible after the last VM is booted.
+28       if opts[:name] == &quot;gluster2&quot;
+29         config.vm.provision &quot;ansible&quot; do |ansible|
+30           ansible.playbook = &quot;playbooks/provision.yml&quot;
+31           ansible.inventory_path = &quot;inventory&quot;
+32           ansible.limit = &quot;all&quot;
+33         end
+34       end
+35     end
+36   end
+37 
+38 end</code></pre>
+</div>
+</figure>
 <p>This configuration creates two servers, <code>gluster1</code> and <code>gluster2</code>, and
 will run a playbook at <code>playbooks/provision.yml</code> on the servers defined
 in an <code>inventory</code> file in the same directory as the Vagrantfile.</p>
 <p>Create the <code>inventory</code> file to help Ansible connect to the two servers:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 [gluster]
+2 192.168.29.2
+3 192.168.29.3
+4 
+5 [gluster:vars]
+6 ansible_ssh_user=vagrant
+7 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key</code></pre>
+</div>
+</figure>
 <p>Now, create a playbook named <code>provision.yml</code> inside a <code>playbooks</code>
 directory:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: gluster
+ 3   sudo: yes
+ 4 
+ 5   vars_files:
+ 6     - vars.yml
+ 7 
+ 8   roles:
+ 9     - geerlingguy.firewall
+10     - geerlingguy.glusterfs
+11 
+12   tasks:
+13     - name: Ensure Gluster brick and mount directories exist.
+14       file: &quot;path={{ item }} state=directory mode=0775&quot;
+15       with_items:
+16         - &quot;{{ gluster_brick_dir }}&quot;
+17         - &quot;{{ gluster_mount_dir }}&quot;
+18 
+19     - name: Configure Gluster volume.
+20       gluster_volume:
+21         state: present
+22         name: &quot;{{ gluster_brick_name }}&quot;
+23         brick: &quot;{{ gluster_brick_dir }}&quot;
+24         replicas: 2
+25         cluster: &quot;{{ groups.gluster | join(&#39;,&#39;) }}&quot;
+26         host: &quot;{{ inventory_hostname }}&quot;
+27         force: yes
+28       run_once: true
+29 
+30     - name: Ensure Gluster volume is mounted.
+31       mount:
+32         name: &quot;{{ gluster_mount_dir }}&quot;
+33         src: &quot;{{ inventory_hostname }}:/{{ gluster_brick_name }}&quot;
+34         fstype: glusterfs
+35         opts: &quot;defaults,_netdev&quot;
+36         state: mounted</code></pre>
+</div>
+</figure>
 <p>This playbook uses two roles to set up a firewall and install the
 required packages for GlusterFS to work. You can manually install both
 of the required roles with the command
@@ -1045,19 +1944,58 @@ the Gluster volume is mounted on each of the servers, in the
 <p>After the playbook is created, we need to define all the variables used
 in the playbook. Create a <code>vars.yml</code> file inside the <code>playbooks</code>
 directory, with the following variables:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 # Firewall configuration.
+ 3 firewall_allowed_tcp_ports:
+ 4   - 22
+ 5   # For Gluster.
+ 6   - 111
+ 7   # Port-mapper for Gluster 3.4+.
+ 8   # - 2049
+ 9   # Gluster Daemon.
+10   - 24007
+11   # 24009+ for Gluster &lt;= 3.3; 49152+ for Gluster 3.4+.
+12   - 24009
+13   - 24010
+14   # Gluster inline NFS server.
+15   - 38465
+16   - 38466
+17 firewall_allowed_udp_ports:
+18   - 111
+19 
+20 # Gluster configuration.
+21 gluster_mount_dir: /mnt/gluster
+22 gluster_brick_dir: /srv/gluster/brick
+23 gluster_brick_name: gluster</code></pre>
+</div>
+</figure>
 <p>This variables file should be pretty self-explanatory; all the ports
 required for Gluster are opened in the firewall, and the three
 Gluster-related variables we use in the playbook are defined.</p>
 <p>Now that we have everything set up, the folder structure should look
 like this:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>gluster/
+  playbooks/
+    provision.yml
+    main.yml
+  inventory
+  Vagrantfile</code></pre>
+</div>
+</figure>
 <p>Change directory into the <code>gluster</code> directory, and run <code>vagrant up</code>.
 After a few minutes, provisioning should have completed successfully. To
 ensure Gluster is working properly, you can run the following two
 commands, which should give information about Gluster&rsquo;s peer connections
 and the configured <code>gluster</code> volume:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible gluster -i inventory -a &quot;gluster peer status&quot; -s
+192.168.29.2 | success | rc=0 &gt;&gt;
+Number of Peers: 1
 <p>Hostname: 192.168.29.3
 Port: 24007
 Uuid: 1340bcf1-1ae6-4e55-9716-2642268792a4
@@ -1067,9 +2005,13 @@ Number of Peers: 1</p>
 <p>Hostname: 192.168.29.2
 Port: 24007
 Uuid: 63d4a5c8-6b27-4747-8cc1-16af466e4e10
-State: Peer in Cluster (Connected)<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+State: Peer in Cluster (Connected)</code></pre></p>
+</div>
+</figure>
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible gluster -i inventory -a &quot;gluster volume info&quot; -s
+192.168.29.3 | success | rc=0 &gt;&gt;
 <p>Volume Name: gluster
 Type: Replicate
 Volume ID: b75e9e45-d39b-478b-a642-ccd16b7d89d8
@@ -1088,8 +2030,9 @@ Number of Bricks: 1 x 2 = 2
 Transport-type: tcp
 Bricks:
 Brick1: 192.168.29.2:/srv/gluster/brick
-Brick2: 192.168.29.3:/srv/gluster/brick<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+Brick2: 192.168.29.3:/srv/gluster/brick</code></pre></p>
+</div>
+</figure>
 <p>You can also do the following to confirm that files are being
 replicated/distributed correctly:</p>
 <ol>
@@ -1142,18 +2085,32 @@ using Ansible.</p>
 <p>I usually begin building a playbook by adding the basic scaffolding
 first, then filling in details as I go. You can follow along by creating
 the playbook <code>main.yml</code> with:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: localhost
+ 3   user: jgeerling
+ 4   connection: local
+ 5 
+ 6   vars_files:
+ 7     - vars/main.yml
+ 8 
+ 9   roles: []
+10 
+11   tasks: []</code></pre>
+</div>
+</figure>
 <p>We&rsquo;ll store any variables we need in the included <code>vars/main.yml</code> file.
 The <code>user</code> is set to my local user account (in this case, <code>jgeerling</code>),
 so file permissions are set for my account, and tasks are run under my
 own account in order to minimize surprises.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>If certain tasks need to be run with sudo privileges, you can add
 <code>sudo: yes</code> to the task, and either run the playbook with
 <code>--ask-sudo-pass</code> (in which case, Ansible will prompt you for your sudo
 password before running the playbook) or run the playbook normally, and
 wait for Ansible to prompt you for your sudo password.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap10.xhtml_leanpub-auto-automating-homebrew-package-and-app-management">Automating Homebrew package and app management</h4>
 <p>Since I use Homebrew (billed as &ldquo;the missing package manager for OS X&rdquo;)
 for most of my application installation and configuration, I created the
@@ -1162,9 +2119,47 @@ installs all the applications and packages I configure in a few simple
 variables.</p>
 <p>The next step, then, is to add the Homebrew role and configure the
 required variables. Inside <code>main.yml</code>, update the <code>roles</code> section:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 9   roles:
+10     - geerlingguy.homebrew</code></pre>
+</div>
+</figure>
 <p>Then add the following into <code>vars/main.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 homebrew_installed_packages:
+ 3   - ansible
+ 4   - sqlite
+ 5   - mysql
+ 6   - php56
+ 7   - python
+ 8   - ssh-copy-id
+ 9   - cowsay
+10   - pv
+11   - drush
+12   - wget
+13   - brew-cask
+14 
+15 homebrew_taps:
+16   - caskroom/cask
+17   - homebrew/binary
+18   - homebrew/dupes
+19   - homebrew/php
+20   - homebrew/versions
+21 
+22 homebrew_cask_appdir: /Applications
+23 homebrew_cask_apps:
+24   - google-chrome
+25   - firefox
+26   - sequel-pro
+27   - sublime-text
+28   - vagrant
+29   - vagrant-manager
+30   - virtualbox</code></pre>
+</div>
+</figure>
 <p>Homebrew has a few tricks up its sleeve, like being able to manage
 general packages like PHP, MySQL, Python, Pipe Viewer, etc. natively
 (using commands like <code>brew install [package]</code> and
@@ -1183,19 +2178,36 @@ some custom tasks to manage cask applications.</p>
 <p>Just like there&rsquo;s a <code>homebrew</code> role on Ansible Galaxy, made for
 configuring and installing packages via Homebrew, there&rsquo;s a <code>dotfiles</code>
 role you can use to download and configure your local dotfiles.</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>Dotfiles are named as such because they are files in your home directory
 that begin with a <code>.</code>. Many programs and shell environments read local
 configuration from dotfiles, so dotfiles are a simple, efficient, and
 easily-synchronized method of customizing your development environment
 for maximum efficiency.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>In this example, we&rsquo;ll use the author&rsquo;s dotfiles, but you can tell the
 role to use whatever set of dotfiles you want.</p>
 <p>Add another role to the <code>roles</code> list:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 9   roles:
+10     - geerlingguy.homebrew
+11     - geerlingguy.dotfiles</code></pre>
+</div>
+</figure>
 <p>Then, add the following three variables to your <code>vars/main.yml</code> file:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>2 dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+3 dotfiles_repo_local_destination: ~/repositories/dotfiles
+4 dotfiles_files:
+5   - .bash_profile
+6   - .gitignore
+7   - .inputrc
+8   - .osx
+9   - .vimrc</code></pre>
+</div>
+</figure>
 <p>The first variable gives the git repository URL for the dotfiles to be
 cloned. The second gives a local path for the repository to be stored,
 and the final variable tells the role which dotfiles it should use from
@@ -1206,7 +2218,14 @@ into your home folder (removing any existing dotfiles of the same name).</p>
 <p>If you want to run the <code>.osx</code> dotfile, which adjusts many system and
 application settings, add in a new task under the <code>tasks</code> section in the
 main playbook:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1   tasks:
+2     - name: Run .osx dotfiles.
+3       shell: ~/.osx --no-restart
+4       changed_when: false</code></pre>
+</div>
+</figure>
 <p>In this case, the <code>.osx</code> dotfile allows a <code>--no-restart</code> flag to be
 passed to prevent the script from restarting certain apps and services
 including Terminal&mdash;which is good, since you&rsquo;d likely be running the
@@ -1239,40 +2258,70 @@ You can think of Docker containers as sort-of lightweight virtual
 machines. This book won&rsquo;t go into the details of how Docker and Linux
 containers work, but will provide an introduction to how Ansible can
 integrate with Docker to build, manage, and deploy containers.</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>Prior to running example Docker commands or building and managing
 containers using Ansible, you&rsquo;ll need to make sure Docker is installed
 either on your workstation or a VM or server where you&rsquo;ll be testing
 everything. Please see the <a href="https://docs.docker.com/installation/" rel="external" target="_blank">installation guide for
 Docker</a> for help installing
 Docker on whatever platform you&rsquo;re using.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap10.xhtml_leanpub-auto-a-brief-introduction-to-docker-containers">A brief introduction to Docker containers</h4>
 <p>Starting with an extremely simple example, let&rsquo;s build a Docker image
 from a Dockerfile. In this case, we want to show how Dockerfiles work
 and how we can use Ansible to build the image in the same way as if we
 were to use the command line with <code>docker build</code>.</p>
 <p>Let&rsquo;s start with a really simple Dockerfile:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 # Build an example Docker container image.
+2 FROM busybox
+3 MAINTAINER Jeff Geerling &lt;geerlingguy@mac.com&gt;
+4 
+5 # Run a command when the container starts.
+6 CMD [&quot;/bin/true&quot;]</code></pre>
+</div>
+</figure>
 <p>This Docker container doesn&rsquo;t do much, but that&rsquo;s okay; we just want to
 build it and verify that it&rsquo;s present and working&mdash;first with Docker,
 then with Ansible.</p>
 <p>Save the above file as <code>Dockerfile</code> inside a new directory, and then on
 the command line, run the following command to build the container:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ docker build -t test .</code></pre>
+</div>
+</figure>
 <p>After a few seconds, the Docker image should be built, and if you list
 all local images with <code>docker image</code>, you should see your new test image
 (along with the busybox image, which was used as a base):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ docker images
+REPOSITORY  TAG     IMAGE ID      CREATED             VIRTUAL SIZE
+test        latest  50d6e6479bc7  About a minute ago  2.433 MB
+busybox     latest  4986bf8c1536  2 weeks ago         2.433 MB</code></pre>
+</div>
+</figure>
 <p>If you want to run the container image you just created, enter the
 following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ docker run --name=test test</code></pre>
+</div>
+</figure>
 <p>This creates a Docker container with the name <code>test</code>, and starts the
 container. Since the only thing our container does is calls <code>/bin/true</code>,
 the container will run the command, then exit. You can see the current
 status of all your containers (whether or not they&rsquo;re actively running)
 with the <code>docker ps -a</code> command:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ docker ps -a
+CONTAINER ID  IMAGE        [...]  CREATED        STATUS
+bae0972c26d4  test:latest  [...]  3 seconds ago  Exited (0) 2 seconds ago</code></pre>
+</div>
+</figure>
 <p>You can control the container using either the container ID (in this
 case, <code>bae0972c26d4</code>) or the name (<code>test</code>); start with
 <code>docker start [container]</code>, stop with <code>docker stop [container]</code>,
@@ -1306,46 +2355,76 @@ Dockerfile) we just created.</p>
 <p>Move the Dockerfile you had into a subdirectory, and create a new
 Ansible playbook (call it <code>main.yml</code>) in the project root directory. The
 directory layout should look like:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>docker/
+  main.yml
+  test/
+    Dockerfile</code></pre>
+</div>
+</figure>
 <p>Inside the new playbook, add the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: localhost
+ 3   connection: local
+ 4 
+ 5   tasks:
+ 6     - name: Build Docker image from Dockerfiles.
+ 7       docker_image:
+ 8         name: test
+ 9         path: test
+10         state: build</code></pre>
+</div>
+</figure>
 <p>The playbook uses the <code>docker_image</code> module to build an image. Provide a
 name for the image, the path to the Dockerfile (in this case, inside the
 <code>test</code> directory), and tell Ansible via the <code>state</code> parameter whether
 the image should be <code>present</code>, <code>absent</code>, or built (via <code>build</code>).</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>Ansible&rsquo;s Docker integration may require you to install an extra Docker
 python library on the system running the Ansible playbook. For example,
 on ArchLinux, if you get the error &ldquo;failed to import Python module&rdquo;, you
 will need to install the <code>python2-docker-py</code> package.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="warning blurb">
 <p>The <code>docker_image</code> module is listed as being deprecated as of early
 2015. The module&rsquo;s functionality will soon be moved into the main
 <code>docker</code> module, but until that time, this playbook should work as-is.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>Run the playbook (<code>$ ansible-playbook main.yml</code>), and then list all the
 Docker images (<code>$ docker images</code>). If all was successful, you should see
 a fresh <code>test</code> image in the list.</p>
 <p>Run <code>docker ps -a</code> again, though, and you&rsquo;ll see that the new <code>test</code>
 image was never run and is absent from the output. Let&rsquo;s remedy that by
 adding another task to our Ansible playbook:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>12 - name: Run the test container.
+13   docker:
+14     image: test:latest
+15     name: test
+16     state: running</code></pre>
+</div>
+</figure>
 <p>If you run the playbook again, Ansible will run the Docker container.
 Check the list of containers with <code>docker ps -a</code>, and you&rsquo;ll note that
 the <code>test</code> container is again present.</p>
 <p>You can remove the container and the image via ansible by changing the
 <code>state</code> parameter to <code>absent</code> for both tasks.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>This playbook assumes you have both Docker and Ansible installed on
 whatever host you&rsquo;re using to test Docker containers. If this is not the
 case, you may need to modify the example so the Ansible playbook is
 targeting the correct <code>hosts</code> and using the right connection settings.
 Additionally, if the user account under which you run the playbook can&rsquo;t
 run <code>docker</code> commands, you may need to use <code>sudo</code> with this playbook.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="information blurb">
 <p>The code example above can be found in the <a href="https://github.com/geerlingguy/ansible-for-devops/tree/master/docker" rel="external" target="_blank">Ansible for DevOps GitHub
 repository</a>.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap10.xhtml_leanpub-auto-building-a-flask-app-with-ansible-and-docker">Building a Flask app with Ansible and Docker</h4>
 <p>Let&rsquo;s build a more useful Docker-powered environment, with a container
 that runs our application (built with Flask, a lightweight Python web
@@ -1353,32 +2432,101 @@ framework), and a container that runs a database (MySQL), along with a
 data container. We need a separate data container to persist the MySQL
 database, because data changed inside the MySQL container is lost every
 time the container stops.</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 60%;">
+<img src="images/8-flask-docker-stack.png" style="width: 100%;"
+alt="Docker stack for Flask App" />
+<figcaption aria-hidden="true">Docker stack for Flask App</figcaption>
+</figure>
 <p>We&rsquo;ll create a VM using Vagrant to run our Docker containers so the same
 Docker configuration can be tested on on any machine capable of running
 Ansible and Vagrant. Create a <code>docker</code> folder, and inside it, the
 following <code>Vagrantfile</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # -*- mode: ruby -*-
+ 2 # vi: set ft=ruby :
+ 3 
+ 4 VAGRANTFILE_API_VERSION = &quot;2&quot;
+ 5 
+ 6 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+ 7   config.vm.box = &quot;geerlingguy/ubuntu1404&quot;
+ 8   config.vm.network :private_network, ip: &quot;192.168.33.39&quot;
+ 9   config.ssh.insert_key = false
+10 
+11   config.vm.provider :virtualbox do |v|
+12     v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;docker.dev&quot;]
+13     v.customize [&quot;modifyvm&quot;, :id, &quot;--natdnshostresolver1&quot;, &quot;on&quot;]
+14     v.customize [&quot;modifyvm&quot;, :id, &quot;--memory&quot;, 1024]
+15     v.customize [&quot;modifyvm&quot;, :id, &quot;--cpus&quot;, 2]
+16     v.customize [&quot;modifyvm&quot;, :id, &quot;--ioapic&quot;, &quot;on&quot;]
+17   end
+18 
+19   # Enable provisioning with Ansible.
+20   config.vm.provision &quot;ansible&quot; do |ansible|
+21     ansible.playbook = &quot;provisioning/main.yml&quot;
+22   end
+23 
+24 end</code></pre>
+</div>
+</figure>
 <p>We&rsquo;ll use Ubuntu 14.04 for this example, and we&rsquo;ve specified an Ansible
 playbook (<code>provisioning/main.yml</code>) to set everything up. Inside
 <code>provisioning/main.yml</code>, we need to first install and configure Docker
 (which we&rsquo;ll do using the Ansible Galaxy role <code>angstwad.docker_ubuntu</code>),
 then run some additional setup tasks, and finally build and start the
 required Docker containers:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: all
+ 3   sudo: yes
+ 4 
+ 5   roles:
+ 6     - role: angstwad.docker_ubuntu
+ 7 
+ 8   tasks:
+ 9     - include: setup.yml
+10     - include: docker.yml</code></pre>
+</div>
+</figure>
 <p>We&rsquo;re using <code>sudo</code> for everything because Docker either requires root
 privileges, or requires the current user account to be in the <code>docker</code>
 group. It&rsquo;s simplest for our purposes to set everything up with <code>sudo</code>.</p>
 <p>Angstwad&rsquo;s <code>docker_ubuntu</code> role requires no additional settings or
 configuration, so we can move on to <code>setup.yml</code> (in the same
 <code>provisioning</code> directory alongside <code>main.yml</code>):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - name: Install Pip.
+3   apt: name=python-pip state=present
+4   sudo: yes
+5 
+6 - name: Install Docker Python library.
+7   pip: name=docker-py state=present
+8   sudo: yes</code></pre>
+</div>
+</figure>
 <p>Ansible needs the <code>docker-py</code> library in order to control Docker via
 Python, so we install <code>pip</code>, then use it to install <code>docker-py</code>.</p>
 <p>Next is the meat of the playbook: <code>docker.yml</code> (also in the
 <code>provisioning</code> directory). The first task is to build Docker images for
 our data, application, and database containers:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - name: Build Docker images from Dockerfiles.
+ 3   docker_image:
+ 4     name: &quot;{{ item.name }}&quot;
+ 5     tag: &quot;{{ item.tag }}&quot;
+ 6     path: &quot;/vagrant/provisioning/{{ item.directory }}&quot;
+ 7     state: build
+ 8   with_items:
+ 9     - { name: data, tag: &quot;data&quot;, directory: data }
+10     - { name: www, tag: &quot;flask&quot;, directory: www }
+11     - { name: db, tag: mysql, directory: db }</code></pre>
+</div>
+</figure>
 <p>Don&rsquo;t worry that we haven&rsquo;t yet created the actual Dockerfiles required
 to create the Docker images; we&rsquo;ll do that after we finish structuring
 everything with Ansible.</p>
@@ -1394,7 +2542,33 @@ Docker image.</p>
 least make sure a container is <em>present</em>, in the case of the <code>data</code>
 container&mdash;since you can use data volumes from non-running containers).
 We&rsquo;ll do that in three separate <code>docker</code> tasks:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>13 # Data containers don&#39;t need to be running to be utilized.
+14 - name: Run a Data container.
+15   docker:
+16     image: data:data
+17     name: data
+18     state: present
+19 
+20 - name: Run a Flask container.
+21   docker:
+22     image: www:flask
+23     name: www
+24     state: running
+25     command: python /opt/www/index.py
+26     ports: &quot;80:80&quot;
+27 
+28 - name: Run a MySQL container.
+29   docker:
+30     image: db:mysql
+31     name: db
+32     state: running
+33     volumes_from: data
+34     command: /opt/start-mysql.sh
+35     ports: &quot;3306:3306&quot;</code></pre>
+</div>
+</figure>
 <p>Each of these containers&rsquo; configuration is a little more involved than
 the previous. In the case of the first container, it&rsquo;s just <code>present</code>;
 Ansible will ensure a <code>data</code> container is present.</p>
@@ -1402,7 +2576,11 @@ Ansible will ensure a <code>data</code> container is present.</p>
 running, but <em>continues</em> to run. So, unlike our earlier usage of
 <code>/bin/true</code> to run a container briefly and exit, in this case we will
 provide an explicit command to run:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>26     command: python /opt/www/index.py</code></pre>
+</div>
+</figure>
 <p>Calling the script directly will launch the app in the foreground and
 log everything to stdout, making it easy to inspect what&rsquo;s going on with
 <code>docker logs [container]</code> if needed.</p>
@@ -1425,8 +2603,20 @@ Docker-based infrastructure, we&rsquo;ll build out each of the three
 Dockerfiles and related configuration to support the <code>data</code>, <code>www</code>, and
 <code>db</code> containers.</p>
 <p>At this point, we should have a directory structure like:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>docker/
+  provisioning/
+    data/
+    db/
+    www/
+    docker.yml
+    main.yml
+    setup.yml
+  Vagrantfile</code></pre>
+</div>
+</figure>
+<aside class="warning blurb">
 <p>It&rsquo;s best to use lightweight base images without any extra frills
 instead of heavyweight &lsquo;VM-like&rsquo; images. Additionally, lightweight
 server environments where containers are built and run, like CoreOS,
@@ -1438,15 +2628,25 @@ tricks with managing and configuring containers with Ansible on CoreOS
 servers: <a href="https://coreos.com/blog/managing-coreos-with-ansible/" rel="external" target="_blank">Managing CoreOS with
 Ansible</a> and
 <a href="http://www.tazj.in/en/1410951452" rel="external" target="_blank">Provisioning CoreOS with Ansible</a>.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h5 id="chap10.xhtml_leanpub-auto-data-storage-container">Data storage container</h5>
 <p>For the data storage container, we don&rsquo;t need much; we just need to
 create a directory and set it as an exposed mount point using <code>VOLUME</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 # Build a simple MySQL data volume Docker container.
+2 FROM busybox
+3 MAINTAINER Jeff Geerling &lt;geerlingguy@mac.com&gt;
+4 
+5 # Create data volume for MySQL.
+6 RUN mkdir -p /var/lib/mysql
+7 VOLUME /var/lib/mysql</code></pre>
+</div>
+</figure>
 <p>We create a directory (line 6), and expose the directory as a volume
 (line 7) which can be mounted by the host or other containers. Save the
 above into a new file, <code>docker/provisioning/data/Dockerfile</code>.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>This container builds on top of the official <code>busybox</code> base image.
 Busybox is an extremely simple distribution that is Linux-like but does
 not contain every option or application generally found in popular
@@ -1455,7 +2655,7 @@ create and share a directory, we don&rsquo;t need any additional &lsquo;baggage&
 inside the container. In the Docker world, it&rsquo;s best to use the most
 minimal base images possible, and to only install and run the bare
 necessities inside each container to support the container&rsquo;s app.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h5 id="chap10.xhtml_leanpub-auto-flask-container">Flask container</h5>
 <p><a href="http://flask.pocoo.org/" rel="external" target="_blank">Flask</a> is a lightweight Python web framework
 &ldquo;based on Werkzeug, Jinja 2 and good intentions&rdquo;. It&rsquo;s a great web
@@ -1466,7 +2666,43 @@ simple web page (very much like our PHP example, in the earlier
 Highly-Available Infrastructure example).</p>
 <p>Here&rsquo;s the code for the Flask app (save it as
 <code>docker/provisioning/www/index.py.j2</code>):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # Infrastructure test page.
+ 2 from flask import Flask
+ 3 from flask import Markup
+ 4 from flask import render_template
+ 5 from flask.ext.sqlalchemy import SQLAlchemy
+ 6 
+ 7 app = Flask(__name__)
+ 8 
+ 9 # Configure MySQL connection.
+10 db = SQLAlchemy()
+11 db_uri = &#39;mysql://admin:admin@{{ host_ip_address }}/information_schema&#39;
+12 app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = db_uri
+13 db.init_app(app)
+14 
+15 @app.route(&quot;/&quot;)
+16 def test():
+17     mysql_result = False
+18     try:
+19         if db.session.query(&quot;1&quot;).from_statement(&quot;SELECT 1&quot;).all():
+20             mysql_result = True
+21     except:
+22         pass
+23 
+24     if mysql_result:
+25         result = Markup(&#39;&lt;span style=&quot;color: green;&quot;&gt;PASS&lt;/span&gt;&#39;)
+26     else:
+27         result = Markup(&#39;&lt;span style=&quot;color: red;&quot;&gt;FAIL&lt;/span&gt;&#39;)
+28 
+29     # Return the page with the result.
+30     return render_template(&#39;index.html&#39;, result=result)
+31 
+32 if __name__ == &quot;__main__&quot;:
+33     app.run(host=&quot;0.0.0.0&quot;, port=80)</code></pre>
+</div>
+</figure>
 <p>This simple app defines one route (<code>/</code>), listens on every interface on
 port 80, and shows a MySQL connection status page rendered by the
 template <code>index.html</code>. There&rsquo;s nothing particularly complicated in this
@@ -1477,7 +2713,21 @@ installed via the Dockerfile.</p>
 <p>Since we are using a Jinja2 template to render the page, let&rsquo;s create
 that template in <code>docker/provisioning/www/templates/index.html</code> (Flask
 automatically picks up any templates inside a <code>templates</code> directory):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 &lt;!DOCTYPE html&gt;
+ 2 &lt;html&gt;
+ 3 &lt;head&gt;
+ 4   &lt;title&gt;Flask + MySQL Docker Example&lt;/title&gt;
+ 5   &lt;style&gt;* { font-family: Helvetica, Arial, sans-serif }&lt;/style&gt;
+ 6 &lt;/head&gt;
+ 7 &lt;body&gt;
+ 8   &lt;h1&gt;Flask + MySQL Docker Example&lt;/h1&gt;
+ 9   &lt;p&gt;MySQL Connection: {{ result }}&lt;/p&gt;
+10 &lt;/body&gt;
+11 &lt;/html&gt;</code></pre>
+</div>
+</figure>
 <p>In this case, the <code>.html</code> template contains a Jinja2 variable
 (<code>{{ result }}</code>), and Flask will fill in that variable with the status
 of the MySQL connection.</p>
@@ -1486,7 +2736,26 @@ the app. Here is a Dockerfile that will install all the required
 dependencies, then copy a simple Ansible playbook and the app itself
 into place so we can do the more complicated configuration (like copying
 a template with variable replacement) through Ansible:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # A simple Flask app container.
+ 2 FROM ansible/ubuntu14.04-ansible
+ 3 MAINTAINER Jeff Geerling &lt;geerlingguy@mac.com&gt;
+ 4 
+ 5 # Install Flask app dependencies.
+ 6 RUN apt-get install -y libmysqlclient-dev python-dev
+ 7 RUN pip install flask flask-sqlalchemy mysql-python
+ 8 
+ 9 # Install playbook and run it.
+10 COPY playbook.yml /etc/ansible/playbook.yml
+11 COPY index.py.j2 /etc/ansible/index.py.j2
+12 COPY templates /etc/ansible/templates
+13 RUN mkdir -m 755 /opt/www
+14 RUN ansible-playbook /etc/ansible/playbook.yml --connection=local
+15 
+16 EXPOSE 80</code></pre>
+</div>
+</figure>
 <p>Instead of installing apt and pip packages using Ansible, we&rsquo;ll install
 them using <code>RUN</code> commands in the Dockerfile. This allows those commands
 to be cached by Docker. Generally, more complicated package installation
@@ -1498,7 +2767,7 @@ worth the verbosity of the Dockerfile.</p>
 in the same directory as the Dockerfile) and expose port 80 so the app
 can be accessed via HTTP by the outside world. Next we&rsquo;ll create the app
 deployment playbook.</p>
-<!-- raw HTML omitted -->
+<aside class="warning blurb">
 <p>Purists might cringe at the sight of an Ansible playbook inside a
 Dockerfile, and for good reason! Commands like the <code>ansible-playbook</code>
 command cover up configuration that might normally be done (and cached)
@@ -1509,12 +2778,40 @@ However, for brevity and ease of maintenance, we&rsquo;re using Ansible to
 manage all the app configuration inside the container (otherwise we&rsquo;d
 need to run a bunch of verbose and incomprehensible shell commands to
 replace Ansible&rsquo;s <code>template</code> functionality).</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>In order for the Flask app to function properly, we need to get the
 <code>host_ip_address</code>, then replace the variable in the <code>index.py.j2</code>
 template. Create the Flask deployment playbook at
 <code>docker/provisioning/www/playbook.yml</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: localhost
+ 3   sudo: yes
+ 4 
+ 5   tasks:
+ 6     - name: Get host IP address.
+ 7       shell: &quot;/sbin/ip route|awk &#39;/default/ { print $3 }&#39;&quot;
+ 8       register: host_ip
+ 9       changed_when: false
+10 
+11     - name: Set host_ip_address variable.
+12       set_fact:
+13         host_ip_address: &quot;{{ host_ip.stdout }}&quot;
+14 
+15     - name: Copy Flask app into place.
+16       template:
+17         src: /etc/ansible/index.py.j2
+18         dest: /opt/www/index.py
+19         mode: 0755
+20 
+21     - name: Copy Flask templates into place.
+22       copy:
+23         src: /etc/ansible/templates
+24         dest: /opt/www
+25         mode: 0755</code></pre>
+</div>
+</figure>
 <p>The shell command that registers the <code>host_ip</code> is a simple way to
 retrieve the IP while still letting Docker do it&rsquo;s own virtual network
 management.</p>
@@ -1522,7 +2819,16 @@ management.</p>
 place.</p>
 <p>The <code>docker/provisioning/www</code> directory should now contain the
 following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>www/
+  templates/
+    index.html
+  Dockerfile
+  index.py.j2
+  playbook.yml</code></pre>
+</div>
+</figure>
 <h5 id="chap10.xhtml_leanpub-auto-mysql-container">MySQL container</h5>
 <p>We&rsquo;ve configured MySQL a few times throughout this book, so little time
 will be spent discussing how MySQL is set up. We&rsquo;ll instead dive into
@@ -1530,7 +2836,23 @@ how MySQL is configured to work inside a Docker container, with a
 persistent data volume from the previously-configured <code>data</code> container.</p>
 <p>First, we&rsquo;ll create a really simple Ansible playbook to install and
 configure MySQL using the <code>geerlingguy.mysql</code> role:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: localhost
+ 3   sudo: yes
+ 4 
+ 5   vars:
+ 6     mysql_users:
+ 7       - name: admin
+ 8         host: &quot;%&quot;
+ 9         password: admin
+10         priv: &quot;*.*:ALL&quot;
+11 
+12   roles:
+13     - geerlingguy.mysql</code></pre>
+</div>
+</figure>
 <p>This playbook sets up one MySQL user using the <code>mysql_users</code> variable
 and runs the <code>geerlingguy.mysql</code> role. Save it as
 <code>docker/provisioning/db/playbook.yml</code>.</p>
@@ -1552,7 +2874,21 @@ the data is there.</p>
 <p>Here&rsquo;s a simple script to do just that, using the playbook we just
 created to do most of the heavy lifting. Save this as
 <code>docker/provisioning/db/start-mysql.sh</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 #!/bin/bash
+ 2 
+ 3 # If connecting to a new data volume, we need to reconfigure MySQL.
+ 4 if [[ ! -d /var/lib/mysql/mysql ]]; then
+ 5     rm -f ~/.my.cnf
+ 6     mysql_install_db
+ 7     ansible-playbook /etc/ansible/playbook.yml --connection=local
+ 8     mysqladmin shutdown
+ 9 fi
+10 
+11 exec /usr/bin/mysqld_safe</code></pre>
+</div>
+</figure>
 <p>This bash script checks if there&rsquo;s already a <code>mysql</code> directory inside
 MySQL&rsquo;s default data directory, and if not (as is the case when we run
 the container with the <code>data</code> volume), it will remove any existing
@@ -1566,7 +2902,26 @@ is &ldquo;the recommended way to start a mysqld server on Unix&rdquo;.</p>
 <p>Next comes the Dockerfile, where we&rsquo;ll make sure the <code>playbook.yml</code>
 playbook and <code>start-mysql.sh</code> script are put in the right places, and
 expose the MySQL port so other containers can connect to MySQL.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # A simple MySQL container.
+ 2 FROM ansible/ubuntu14.04-ansible
+ 3 MAINTAINER Jeff Geerling &lt;geerlingguy@mac.com&gt;
+ 4 
+ 5 # Install required Ansible roles.
+ 6 RUN ansible-galaxy install geerlingguy.mysql
+ 7 
+ 8 # Copy startup script.
+ 9 COPY start-mysql.sh /opt/start-mysql.sh
+10 RUN chmod +x /opt/start-mysql.sh
+11 
+12 # Install playbook and run it.
+13 COPY playbook.yml /etc/ansible/playbook.yml
+14 RUN ansible-playbook /etc/ansible/playbook.yml --connection=local
+15 
+16 EXPOSE 3306</code></pre>
+</div>
+</figure>
 <p>Just as with the Flask app container, we&rsquo;re using a base image with
 Ubuntu 14.04 and Ansible. This time, since we&rsquo;re doing a bit more
 configuration via the playbook, we also need to install the
@@ -1578,14 +2933,26 @@ permissions so Docker can execute the file.</p>
 <p>Finally, the Ansible playbook that configures MySQL is copied into
 place, then run, and port 3306 is exposed.</p>
 <p>The <code>docker/provisioning/db</code> directory should now contain the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>db/
+  Dockerfile
+  playbook.yml
+  start-mysql.sh</code></pre>
+</div>
+</figure>
 <h4 id="chap10.xhtml_leanpub-auto-ship-it">Ship it!</h4>
 <p>Now that everything&rsquo;s in place, you should be able to cd into the main
 <code>docker</code> directory, and run <code>vagrant up</code>. After 10 minutes or so,
 Vagrant should show that Ansible provisioning was successful, and if you
 visit <code>http://192.168.33.39/</code> in your browser, you should see something
 like the following:</p>
-<!-- raw HTML omitted -->
+<figure class="image center" style="width: 80%;">
+<img src="images/8-docker-success.png" style="width: 100%;"
+alt="Docker orchestration success!" />
+<figcaption aria-hidden="true">Docker orchestration
+success!</figcaption>
+</figure>
 <p>If you see &ldquo;MySQL Connection: PASS&rdquo;, congratulations, everything worked!
 If it shows &lsquo;FAIL&rsquo;, you might need to give the MySQL a little extra time
 to finish it&rsquo;s reconfiguration, since it has to rebuild the database on
@@ -1604,7 +2971,21 @@ of Dockerfiles, the deployment of images, and the running and linking of
 containers. Ansible is a solid contender for managing Docker containers
 (<em>and</em> the infrastruction on which they run), and can even be used
 within a Dockerfile to simplify complex container configurations.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code> _________________________________________
+/ Any sufficiently advanced technology is \
+| indistinguishable from magic.           |
+\ (Arthur C. Clarke)                      /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre>
+</div>
+</figure>
+:::
 <p>[]{#chap11.xhtml}</p>
 <p>::: {}</p>
 
@@ -1655,69 +3036,52 @@ within a Dockerfile to simplify complex container configurations.</p>
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/"><input type="checkbox" id="R-section-ee5145c58612a384986769058046b746" aria-controls="R-subsections-ee5145c58612a384986769058046b746"><label for="R-section-ee5145c58612a384986769058046b746"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ad Hoc Commands and Scripting</span></label><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a><ul id="R-subsections-ee5145c58612a384986769058046b746" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/control-node/"><input type="checkbox" id="R-section-51256f203510628e0492e57fa1dd1ec6" aria-controls="R-subsections-51256f203510628e0492e57fa1dd1ec6"><label for="R-section-51256f203510628e0492e57fa1dd1ec6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Control Node</span></label><a class="padding" href="/ansible/control-node/">Control Node</a><ul id="R-subsections-51256f203510628e0492e57fa1dd1ec6" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/control-node/ansible.cfg/"><a class="padding" href="/ansible/control-node/ansible.cfg/">Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/control-node/optimizing-ansible-processing/"><a class="padding" href="/ansible/control-node/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
-            <li class="" data-nav-url="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-files/"><input type="checkbox" id="R-section-7c974a7c4dcf3453ccace14c7f38f13f" aria-controls="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f"><label for="R-section-7c974a7c4dcf3453ccace14c7f38f13f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-files/">Deploying Files</a><ul id="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/jinja2-templates/"><a class="padding" href="/ansible/deploying-files/jinja2-templates/">Jinja2 templates</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/">Jinja2 templates</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-systems/"><input type="checkbox" id="R-section-7cc469ebbd5f7e560963779b9675e597" aria-controls="R-subsections-7cc469ebbd5f7e560963779b9675e597"><label for="R-section-7cc469ebbd5f7e560963779b9675e597"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-systems/">Deploying Files</a><ul id="R-subsections-7cc469ebbd5f7e560963779b9675e597" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/execution-environments/"><input type="checkbox" id="R-section-65eb33a34997cd45f5f49229981c4d2e" aria-controls="R-subsections-65eb33a34997cd45f5f49229981c4d2e"><label for="R-section-65eb33a34997cd45f5f49229981c4d2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/execution-environments/">Execution Environments</a><ul id="R-subsections-65eb33a34997cd45f5f49229981c4d2e" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/execution-environments/ansible-builder/"><a class="padding" href="/ansible/execution-environments/ansible-builder/">Ansible Builder</a></li>
-            <li class="" data-nav-url="/ansible/execution-environments/execution-environments/"><a class="padding" href="/ansible/execution-environments/execution-environments/">Execution Environments</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/inventory/"><input type="checkbox" id="R-section-3f39b2671b9b2dd1dbc36a62b346565a" aria-controls="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a"><label for="R-section-3f39b2671b9b2dd1dbc36a62b346565a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Inventory</span></label><a class="padding" href="/ansible/inventory/">Inventory</a><ul id="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory-command/"><a class="padding" href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></li>
-            <li class="" data-nav-url="/ansible/inventory/dynamic-inventory/"><a class="padding" href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></li>
-            <li class="" data-nav-url="/ansible/inventory/host-name-patterns/"><a class="padding" href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></li>
-            <li class="" data-nav-url="/ansible/inventory/using-multiple-inventories/"><a class="padding" href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/"><input type="checkbox" id="R-section-05c9cec6fb3311e0ece69447be6c4228" aria-controls="R-subsections-05c9cec6fb3311e0ece69447be6c4228"><label for="R-section-05c9cec6fb3311e0ece69447be6c4228"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Processes and Tasks</span></label><a class="padding" href="/ansible/managing-processes-and-tasks/">Managing Processes and Tasks</a><ul id="R-subsections-05c9cec6fb3311e0ece69447be6c4228" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/boot-process/"><a class="padding" href="/ansible/managing-processes-and-tasks/boot-process/">Boot Process</a></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/managing-services/"><a class="padding" href="/ansible/managing-processes-and-tasks/managing-services/">Managing Services</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-software/"><input type="checkbox" id="R-section-e50056380ffea3713f175f637f3fbaba" aria-controls="R-subsections-e50056380ffea3713f175f637f3fbaba"><label for="R-section-e50056380ffea3713f175f637f3fbaba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Software</span></label><a class="padding" href="/ansible/managing-software/">Managing Software</a><ul id="R-subsections-e50056380ffea3713f175f637f3fbaba" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-software/managing-packages/"><a class="padding" href="/ansible/managing-software/managing-packages/">Managing Packages</a></li>
-            <li class="" data-nav-url="/ansible/managing-software/repositories-and-subscriptions/"><a class="padding" href="/ansible/managing-software/repositories-and-subscriptions/">Repositories and subscriptions</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-users/"><input type="checkbox" id="R-section-354866278232268d590e2ad621c06543" aria-controls="R-subsections-354866278232268d590e2ad621c06543"><label for="R-section-354866278232268d590e2ad621c06543"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Users</span></label><a class="padding" href="/ansible/managing-users/">Managing Users</a><ul id="R-subsections-354866278232268d590e2ad621c06543" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-users/encrypted-passwords/"><a class="padding" href="/ansible/managing-users/encrypted-passwords/">Encrypted passwords</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/ssh-connections/"><a class="padding" href="/ansible/managing-users/ssh-connections/">SSH Connections</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/users-and-groups/"><a class="padding" href="/ansible/managing-users/users-and-groups/">Users and Groups</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/modules/"><input type="checkbox" id="R-section-05027151b340155a251c0bf45517b410" aria-controls="R-subsections-05027151b340155a251c0bf45517b410"><label for="R-section-05027151b340155a251c0bf45517b410"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Modules</span></label><a class="padding" href="/ansible/modules/">Modules</a><ul id="R-subsections-05027151b340155a251c0bf45517b410" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/networking/"><input type="checkbox" id="R-section-88666d047a19e08ea2a7a1f576522811" aria-controls="R-subsections-88666d047a19e08ea2a7a1f576522811"><label for="R-section-88666d047a19e08ea2a7a1f576522811"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/ansible/networking/">Networking</a><ul id="R-subsections-88666d047a19e08ea2a7a1f576522811" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/playbooks/"><input type="checkbox" id="R-section-b39ec7807a35bbb89ede99e74c3f8d1c" aria-controls="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c"><label for="R-section-b39ec7807a35bbb89ede99e74c3f8d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Playbooks</span></label><a class="padding" href="/ansible/playbooks/">Playbooks</a><ul id="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
-            <li class="" data-nav-url="/ansible/playbooks/including-and-importing-files/"><a class="padding" href="/ansible/playbooks/including-and-importing-files/">Including and importing Files</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/roles/"><input type="checkbox" id="R-section-c3ddf4cba330014798b46f124f863578" aria-controls="R-subsections-c3ddf4cba330014798b46f124f863578"><label for="R-section-c3ddf4cba330014798b46f124f863578"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Roles</span></label><a class="padding" href="/ansible/roles/">Roles</a><ul id="R-subsections-c3ddf4cba330014798b46f124f863578" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/roles/ansible-galaxy-roles/"><a class="padding" href="/ansible/roles/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-rhel-system-roles/"><a class="padding" href="/ansible/roles/using-rhel-system-roles/">Using RHEL System roles</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/storage/"><input type="checkbox" id="R-section-25ab7c76118917bd6f4fb3e45062f785" aria-controls="R-subsections-25ab7c76118917bd6f4fb3e45062f785"><label for="R-section-25ab7c76118917bd6f4fb3e45062f785"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/ansible/storage/">Storage</a><ul id="R-subsections-25ab7c76118917bd6f4fb3e45062f785" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/storage/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/storage/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
-            <li class="" data-nav-url="/ansible/storage/discovering-storage-related-facts/"><a class="padding" href="/ansible/storage/discovering-storage-related-facts/">Discovering storage related facts</a></li>
-            <li class="" data-nav-url="/ansible/storage/managing-partitions-and-lvm/"><a class="padding" href="/ansible/storage/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
-            <li class="" data-nav-url="/ansible/storage/nfs-setup/"><a class="padding" href="/ansible/storage/nfs-setup/">NFS Setup</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/task-control/"><input type="checkbox" id="R-section-c50bd62a6e6f9028be7fd82767f99cd1" aria-controls="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1"><label for="R-section-c50bd62a6e6f9028be7fd82767f99cd1"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Task Control</span></label><a class="padding" href="/ansible/task-control/">Task Control</a><ul id="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/task-control/handlers/"><a class="padding" href="/ansible/task-control/handlers/">Handlers</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-loops-and-items/"><a class="padding" href="/ansible/task-control/using-loops-and-items/">Using Loops and Items</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/task-control/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/"><input type="checkbox" id="R-section-26d24f44bc3f5644df734f08181e3e2d" aria-controls="R-subsections-26d24f44bc3f5644df734f08181e3e2d"><label for="R-section-26d24f44bc3f5644df734f08181e3e2d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Troubleshooting</span></label><a class="padding" href="/ansible/troubleshooting/">Troubleshooting</a><ul id="R-subsections-26d24f44bc3f5644df734f08181e3e2d" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-tags/"><a class="padding" href="/ansible/troubleshooting/using-tags/">Using Tags</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/"><input type="checkbox" id="R-section-ff32daa8bc11229d5eacc0820ee4c786" aria-controls="R-subsections-ff32daa8bc11229d5eacc0820ee4c786"><label for="R-section-ff32daa8bc11229d5eacc0820ee4c786"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Variable and Facts</span></label><a class="padding" href="/ansible/variables-and-facts/">Variable and Facts</a><ul id="R-subsections-ff32daa8bc11229d5eacc0820ee4c786" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-facts/"><a class="padding" href="/ansible/variables-and-facts/ansible-facts/">Ansible Facts</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-vault/"><a class="padding" href="/ansible/variables-and-facts/ansible-vault/">Ansible Vault</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
-            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-8---ansible-cookbooks/"><a class="padding" href="/ansible/ansible4devops/chapter-8---ansible-cookbooks/"></a></li></ul></li>
+            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-8---ansible-cookbooks/"><a class="padding" href="/ansible/ansible4devops/chapter-8---ansible-cookbooks/"></a></li>
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments-1/"><a class="padding" href="/ansible/execution-environments-1/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="" data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
             <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
             <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
             <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
@@ -1815,22 +3179,22 @@ within a Dockerfile to simplify complex container configurations.</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762537425" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762537425" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762537425" defer></script>
-    <script src="/js/theme.min.js?1762537425" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
   </body>
 </html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
+    <meta name="description" content="Jinja2 templates">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Jinja2 templates :: Linux Reader">
+    <meta name="twitter:description" content="Jinja2 templates">
+    <meta property="og:url" content="http://linuxreader.com/ansible/jinja2-templates/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Jinja2 templates :: Linux Reader">
+    <meta property="og:description" content="Jinja2 templates">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="name" content="Jinja2 templates :: Linux Reader">
+    <meta itemprop="description" content="Jinja2 templates">
+    <meta itemprop="wordCount" content="1570">
+    <title>Jinja2 templates :: Linux Reader</title>
+    <link href="http://linuxreader.com/ansible/jinja2-templates/" rel="canonical" type="text/html" title="Jinja2 templates :: Linux Reader">
+    <link href="/ansible/jinja2-templates/index.xml" rel="alternate" type="application/rss+xml" title="Jinja2 templates :: Linux Reader">
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-print.min.css?1762635744" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/jinja2-templates\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support print" data-url="/ansible/jinja2-templates/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/including-and-importing-files/" title="Including and importing Files (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#using-jinja2-templates">Using Jinja2 Templates</a></li>
+        <li><a href="#lab-generating-a-template-with-a-conditional-statement">LAB: Generating a Template with a Conditional Statement</a></li>
+      </ul>
+    </li>
+    <li><a href="#from-">From https://docs.ansible.com:</a>
+      <ul>
+        <li></li>
+        <li><a href="#lab-working-with-conditional-statements-in-templates">Lab: Working with Conditional Statements in Templates</a></li>
+        <li><a href="#lab-generate-an-etchosts-file">Lab: Generate an /etc/hosts File</a></li>
+        <li><a href="#lab-manage-a-vsftpd-service">Lab: Manage a vsftpd Service</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Jinja2 templates
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/jinja2-templates/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/selinux-file-properties/" title="Jinja2 templates (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="jinja2-templates">Jinja2 templates</h1>
+
+<h3 id="using-jinja2-templates">Using Jinja2 Templates</h3>
+<ul>
+<li>A template is a configuration file that contains variables and, based on the variables, is generated on the managed hosts according to host-specific requirements.</li>
+<li>Using templates allows for a structural way to generate configuration files, which is much more powerful than changing specific lines from specific files.</li>
+<li>Ansible uses Jinja2 to generate templates.</li>
+<li>Jinja2 is a generic templating language for Python developers.</li>
+<li>It is used in Ansible templates, but Jinja2-based approaches are also found in other parts of Ansible. For instance, the way variables are referred to is based on Jinja2.</li>
+</ul>
+<p>In a Jinja2 template, three elements can be used.
+<strong>data</strong></p>
+<ul>
+<li><code>sample text</code>
+<strong>comment</strong></li>
+<li><code>{# sample text #}</code>
+<strong>variable</strong></li>
+<li><code>{{ ansible_facts['default_ipv4']['address'] }}</code>
+<strong>expression</strong></li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{% for myhost in groups[&#39;web&#39;] %}
+{{ myhost }}
+{% endfor %}</code></pre></div>
+<ul>
+<li>To work with a template, you must create a template file, written in Jinja2.</li>
+<li>Template file must be included in an Ansible playbook that uses the template module.</li>
+</ul>
+<p>Sample Template:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># {{ ansible_managed }}
+
+&lt;VirtualHost *:80&gt;
+        ServerAdmin webmaster@{{ ansible_facts[&#39;fqdn&#39;] }}
+        ServerName {{ ansible_facts[&#39;fqdn&#39;] }}
+        ErrorLog logs/{{ ansible_facts[&#39;hostname&#39;] }}-error.log
+        CustomLog       logs/{{ ansible_facts[&#39;hostname&#39;] }}-common.log common
+        DocumentRoot /var/www/vhosts/{{ ansible_facts[&#39;hostname&#39;] }}/
+
+        &lt;Directory /var/www/vhosts/{{ ansible_facts[&#39;hostname&#39;] }}&gt;
+                Options +Indexes +FollowSymlinks +Includes
+                Require all granted
+        &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre></div>
+<ul>
+<li>
+<p>starts with <strong># {{ ansible_managed }}</strong>.</p>
+</li>
+<li>
+<p>This string is commonly used to identify that a file is managed by Ansible so that administrators are not going to change file contents by accident.</p>
+</li>
+<li>
+<p>While processing the template, this string is replaced with the value of the <strong>ansible_managed</strong> variable.</p>
+</li>
+<li>
+<p>This variable can be set in ansible.cfg.</p>
+</li>
+<li>
+<p>For instance, you can use <strong>ansible_managed = This file is managed by Ansible</strong> to substitute the variable with its value while generating the template.</p>
+</li>
+<li>
+<p>template file is just a text file that uses variables to substitute specific variables to their values.</p>
+</li>
+</ul>
+<p>Calling a template:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: installing a template file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">yum</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: start and enable httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: install vhost config file
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">src</span>: listing813.j2
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">dest</span>: /etc/httpd/conf.d/vhost.conf
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">owner</span>: root
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">group</span>: root
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0644</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">name</span>: restart httpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">name</span>: httpd
+</span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">state</span>: restarted</span></span></code></pre></div>
+<h4 id="applying-control-structures-in-jinja2-using-for">Applying Control Structures in Jinja2 Using for</h4>
+<ul>
+<li>Control structures can be used to dynamically generate contents.</li>
+<li>A <strong>for</strong> statement can be used to iterate over all elements that exist as the value of a variable.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{% for node in groups[&#39;all&#39;] %}
+host_port={{ node }}:8080
+{% endfor %}</code></pre></div>
+<ul>
+<li>variable with the name <strong>host_ports</strong> is defined on the second line (which is the line that will be written to the target file).</li>
+<li>To produce its value, the host group <strong>all</strong> is processed in the <strong>for</strong> statement on the first line.</li>
+<li>While processing the host group, a temporary variable with the name <strong>node</strong> is defined.</li>
+<li>This value of the <strong>node</strong> variable is replaced with the name of the host while it is processed, and after the host name, the string <strong>:8080</strong> is copied, which will result in a separate line for each host that was found.</li>
+<li>As the last element, <strong>{% endfor %}</strong> is used to close the <strong>for</strong> loop.</li>
+</ul>
+<h3 id="lab-generating-a-template-with-a-conditional-statement">LAB: Generating a Template with a Conditional Statement</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    ---
+    - name: generate host list
+      hosts: ansible2
+      tasks:
+      - name: template loop
+        template:
+          src: listing815.j2
+          dest: /tmp/hostports.txt</code></pre></div>
+<p>To verify, you can use the ad hoc command <code>ansible ansible2 -a &quot;cat /tmp/hostports.txt&quot;</code></p>
+<h4 id="using-conditional-statements-with-if">Using Conditional Statements with if</h4>
+<ul>
+<li>The <strong>for</strong> statement can be used in templates to iterate over a series of values.</li>
+<li>The <strong>if</strong> statement can be used to include text only if a variable contains a specific value or evaluates to a Boolean true.</li>
+</ul>
+<p>Template Example with <strong>if</strong>
+if.j2</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>    {% if apache_package == &#39;apache2&#39; %}
+      Welcome to Apache2
+    {% else %}
+      Welcome to httpd
+    {% endif %}</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: work with template file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">apache_package</span>: <span style="color:#5af78e">&#39;httpd&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: if.j2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /tmp/httpd.conf</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control ~<span style="color:#ff6ac1">]</span>$ ansible ansible2 -a <span style="color:#5af78e">&#34;cat /tmp/httpd.conf&#34;</span>
+</span></span><span style="display:flex;"><span>ansible2 | CHANGED | <span style="color:#ff5c57">rc</span><span style="color:#ff6ac1">=</span><span style="color:#ff9f43">0</span> &gt;&gt;
+</span></span><span style="display:flex;"><span>  Welcome to httpd</span></span></code></pre></div>
+<h4 id="using-filters">Using Filters</h4>
+<ul>
+<li>In Jinja2 templates, you can use filters.</li>
+<li>Filters are a way to perform an operation on the value of a template expression, such as a variable.</li>
+<li>The filter is included in the variable definition itself, and the result of the variable and its filter is used in the file that is generated.</li>
+</ul>
+<p>Common filters
+<strong>{{ myvar | to_json }}</strong></p>
+<ul>
+<li>writes the contents of myvar in JSON format
+<strong>{{ myvar || to_yaml }}</strong></li>
+<li>writes the contents of myvar in YAML format
+<strong>{{ myvar | ipaddr }}</strong></li>
+<li>tests whether myvar contains an IP address</li>
+</ul>
+<h2 id="from-">From <a href="https://docs.ansible.com" rel="external" target="_blank">https://docs.ansible.com</a>:</h2>
+<h4 id="how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template">How do I loop over a list of hosts in a group, inside of a template?</h4>
+<p>A pretty common pattern is to iterate over a list of hosts inside of a host group, perhaps to populate a template configuration file with a list of servers. To do this, you can just access the “$groups” dictionary in your template, like this:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{% for host in groups[&#39;db_servers&#39;] %}
+    {{ host }}
+{% endfor %}</code></pre></div>
+<p>If you need to access facts about these hosts, for example, the IP address of each hostname, you need to make sure that the facts have been populated. For example, make sure you have a play that talks to db_servers:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>- hosts:  db_servers
+  tasks:
+    - debug: msg=&#34;doesn&#39;t matter what you do, just that they were talked to previously.&#34;</code></pre></div>
+<p>Then you can use the facts inside your template, like this:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{% for host in groups[&#39;db_servers&#39;] %}
+   {{ hostvars[host][&#39;ansible_eth0&#39;][&#39;ipv4&#39;][&#39;address&#39;] }}
+{% endfor %}</code></pre></div>
+<h3 id="lab-working-with-conditional-statements-in-templates">Lab: Working with Conditional Statements in Templates</h3>
+<p>1. Use your editor to create the file exercise83.j2. Include the following line to open the Jinja2 conditional statement:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">{% for host in groups[&#39;all&#39;] %}</code></pre></div>
+<p>2. This statement defines a variable with the name <strong>host</strong>. This variable iterates over the magic variable <strong>groups</strong>, which holds all Ansible host groups as defined in inventory. Of these groups, the <strong>all</strong> group (which holds all inventory host names) is processed.</p>
+<p>3. Add the following line (write it as one line; it will wrap over two lines, but do not press Enter to insert a newline character):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">{{ hostvars[host][&#39;ansible_default_ipv4&#39;][&#39;address&#39;] }} {{ hostvars[host][&#39;ansible_fqdn&#39;] }} {{ hostvars[host][&#39;ansible_hostname&#39;] }}</code></pre></div>
+<ul>
+<li>This line writes a single line for each inventory host, containing three items.</li>
+<li>To do so, you use the magic variable <strong>hostvars</strong>, which can be used to identify Ansible facts that were discovered on the inventory host.</li>
+<li>The <strong>[host]</strong> part is replaced with the name of the current host, and after that, the specific facts are referred to. As a result, for each host a line is produced that holds the IP address, the FQDN, and next the host name.</li>
+</ul>
+<p>4. Add the following line to close the <strong>for</strong> loop:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">{% endfor %}</code></pre></div>
+<p>5. Verify that the complete file contents look like the following and write and quit the file:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">{% for host in groups[&#39;all&#39;] %}
+{{ hostvars[host][&#39;ansible_default_ipv4&#39;][&#39;address&#39;] }} {{ hostvars[host][&#39;ansible_fqdn&#39;] }} {{ hostvars[host][&#39;ansible_hostname&#39;] }}
+{% endfor %}</code></pre></div>
+<p>6. Use your editor to create the file exercise83.yaml. It should contain the following lines:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: generate /etc/hosts file
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">src</span>: exercise83.j2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dest</span>: /tmp/hosts</span></span></code></pre></div>
+<p>7. Run the playbook by using <code>ansible-playbook exercise83.yaml</code></p>
+<p>8. Verify the /tmp/hosts file was generated by using <code>ansible all -a &quot;cat /tmp/hosts&quot;</code></p>
+<p>This lab only worked if every host in the inventory file was reachable.</p>
+<h3 id="lab-generate-an-etchosts-file">Lab: Generate an /etc/hosts File</h3>
+<p>Write a playbook that generates an /etc/hosts file on all managed hosts.
+Apply the following requirements:</p>
+<p>• All hosts that are defined in inventory should be added to the
+/etc/hosts file.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>[ansible@control ~]$ cat hostfile.yaml
+---
+- name: generate /etc/hosts
+  hosts: all
+  gather_facts: yes
+  tasks: 
+  - name: Generate hosts file with template
+    template: 
+      src: hosts.j2
+      dest: /etc/hosts
+[ansible@control ~]$ cat hosts.j2
+{% for host in groups[&#39;all&#39;] %}
+{{ hostvars[host][&#39;ansible_default_ipv4&#39;][&#39;address&#39;] }} {{ hostvars[host][&#39;ansible_fqdn&#39;] }} {{ hostvars[host][&#39;ansible_hostname&#39;] }}
+{% endfor %}}</code></pre></div>
+<h3 id="lab-manage-a-vsftpd-service">Lab: Manage a vsftpd Service</h3>
+<ul>
+<li>Write a playbook that uses at least two plays to install a vsftpd service</li>
+<li>configure the vsftpd service using templates</li>
+<li>configure permissions as well as SELinux.</li>
+<li>Install, start, and enable the vsftpd service.</li>
+<li>open a port in the firewall to make it accessible.</li>
+<li>Use the /etc/vsftpd/vsftpd.conf file to generate a template.</li>
+<li>In this template, you should use the following variables to configure specific settings.</li>
+<li>Replace these settings with the variables and leave all else unmodified:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Anonymous_enable: yes
+Local_enable: yes
+Write_enable: yes
+Anon_upload_enable: yes</code></pre></div>
+<ul>
+<li>Set permissions on the /var/ftp/pub directory to mode 0777.</li>
+<li>Configure the <strong>ftpd_anon_write</strong> Boolean to allow anonymous user writes.</li>
+<li>Set the <strong>public_content_rw_t</strong> SELinux context type to the /var/ftp/pub directory.</li>
+<li>If any additional tasks are required to get this done, take care of them.</li>
+</ul>
+<p><code> vim vsftpd.yaml</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: manage vsftpd
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">anonymous_enable</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">local_enable</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">write_enable</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">Anon_upload_enable</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: install vsftpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">dnf</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: vsftpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: configure vsftpd configuration file
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">template</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">src</span>: vsftpd.j2
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">dest</span>: /etc/vsftpd/vsftpd.conf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: apply permissions
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: ansible1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set folder permissions to /var/ftp/pub
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">path</span>: /var/ftp/pub
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">mode</span>: <span style="color:#ff9f43">0777</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set ftpd_anon_write boolean
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">seboolean</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: ftpd_anon_write
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">persistent</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: set public_content_rw_t SELinux context type to /var/ftp/pub directory
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">sefcontext</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">target</span>: <span style="color:#5af78e">&#39;/var/ftp/pub(/.*)?&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">setype</span>: public_content_rw_t
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: present
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">notify</span>: restore selinux contexts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: firewall stuff
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">firewalld</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">service</span>: ftp
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: enabled
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">permanent</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">immediate</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: start and enable fsftpd
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">service</span>: 
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">name</span>: vsftpd
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: started
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">enabled</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">handlers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: restore selinux contexts
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">command</span>: restorecon -v /var/ftp/pub</span></span></code></pre></div>
+<p>vsftpd.j2</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{{ ansible_managed }}
+
+anonymous_enable={{ anonymous_enable }}
+local_enable={{ local_enable }}
+write_enable={{ write_enable }}
+Anon_upload_enable{{ Anon_upload_enable }}
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=NO
+listen_ipv6=YES
+pam_service_name=vsftpd
+userlist_enable=YES</code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
+  </body>
+</html>

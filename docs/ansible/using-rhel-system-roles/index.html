@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
+    <meta name="description" content="Using RHEL System roles">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Using RHEL System roles :: Linux Reader">
+    <meta name="twitter:description" content="Using RHEL System roles">
+    <meta property="og:url" content="http://linuxreader.com/ansible/using-rhel-system-roles/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:title" content="Using RHEL System roles :: Linux Reader">
+    <meta property="og:description" content="Using RHEL System roles">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="name" content="Using RHEL System roles :: Linux Reader">
+    <meta itemprop="description" content="Using RHEL System roles">
+    <meta itemprop="wordCount" content="1151">
+    <title>Using RHEL System roles :: Linux Reader</title>
+    <link href="/ansible/using-rhel-system-roles/index.xml" rel="alternate" type="application/rss+xml" title="Using RHEL System roles :: Linux Reader">
+    <link href="/ansible/using-rhel-system-roles/index.print.html" rel="alternate" type="text/html" title="Using RHEL System roles :: Linux Reader">
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762635744" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/using-rhel-system-roles\/';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/using-rhel-system-roles/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/using-multiple-inventories/" title="Using Multiple Inventories (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#using-rhel-system-roles">Using RHEL System Roles</a></li>
+        <li><a href="#lab-sets-the-httpd_-context-type-to-the-web-directory">Lab: Sets the <strong>httpd_sys_content_t</strong> context type to the <strong>/web</strong> directory.</a></li>
+        <li><a href="#lab-using-an-rhel-system-role-to-manage-time-synchronization">Lab: Using an RHEL System Role to Manage Time Synchronization</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            Using RHEL System roles
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/using-rhel-system-roles/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/using-tags/" title="Using Tags (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="using-rhel-system-roles">Using RHEL System roles</h1>
+
+<h3 id="using-rhel-system-roles">Using RHEL System Roles</h3>
+<ul>
+<li>Allows for a uniform approach while managing multiple RHEL versions</li>
+<li>Red Hat provides RHEL System Roles.</li>
+<li>RHEL System Roles make managing different parts of the operating system easy.</li>
+</ul>
+<p>RHEL System Roles:</p>
+<p><strong>rhel-system-roles.kdump</strong></p>
+<ul>
+<li>Configures the kdump crash recovery service
+<strong>rhel system-roles.network</strong></li>
+<li>Configures network interfaces
+<strong>rhel system-roles.postfix</strong></li>
+<li>Configures hosts as a Mail Transfer Agent using Postfix
+<strong>rhel system-roles.selinux</strong></li>
+<li>Manages SELinux settings
+<strong>rhel system-roles.storage</strong></li>
+<li>Configures storage
+<strong>rhel system-roles.timesync</strong></li>
+<li>Configures time synchronization</li>
+</ul>
+<h4 id="understanding-rhel-system-roles">Understanding RHEL System Roles</h4>
+<ul>
+<li>RHEL System Roles are based on the community Linux System Roles</li>
+<li>Provide a uniform interface to make configuration tasks easier where significant differences may exist between versions of the managed operating system.</li>
+<li>RHEL System Roles can be used to manage Red Hat Enterprise Linux 6.10 and later, as well as RHEL 7.4 and later, and all versions of RHEL 8.</li>
+<li>Linux System Roles are not supported by RHEL technical support.</li>
+</ul>
+<h4 id="installing-rhel-system-roles">Installing RHEL System Roles</h4>
+<ul>
+<li>
+<p>To use RHEL System Roles, you need to install the <strong>rhel-system-roles</strong> package on the control node by using <code>sudo yum install rhel-system-roles</code>.</p>
+</li>
+<li>
+<p>This package can be found in the RHEL 8 AppStream repository.</p>
+</li>
+<li>
+<p>After installation, the roles are copied to the <strong>/usr/share/ansible/roles</strong> directory, a directory that is a default part of the Ansible <strong>roles_path</strong> setting.</p>
+</li>
+<li>
+<p>If a modification to the <strong>roles_path</strong> setting has been made in ansible.cfg, the roles are applied to the first directory listed in the <strong>roles_path</strong>.</p>
+</li>
+<li>
+<p>With the roles, some very useful documentation is installed also; you can find it in the <strong>/usr/share/doc/rhel-system-roles</strong> directory.</p>
+</li>
+<li>
+<p>To pass configuration to the RHEL System Roles, variables are important.</p>
+</li>
+<li>
+<p>In the documentation directory, you can find information about variables that are required and used by the role.</p>
+</li>
+<li>
+<p>Some roles also contain a sample playbook that can be used as a blueprint when defining your own role.</p>
+</li>
+<li>
+<p>It&rsquo;s a good idea to use these as the basis for your own RHEL System Roles&ndash;based configuration.</p>
+</li>
+<li>
+<p>The next two sections describe the SELinux and the TimeSync System Roles, which provide nice and easy-to-implement examples of how you can use the RHEL System Roles.</p>
+</li>
+</ul>
+<h4 id="using-the-rhel-selinux-system-role">Using the RHEL SELinux System Role</h4>
+<ul>
+<li>
+<p>You learned earlier how to manage SELinux settings using task definitions in your own playbooks.</p>
+</li>
+<li>
+<p>Using the RHEL SELinux System Role provides an easy-to-use alternative.</p>
+</li>
+<li>
+<p>To use this role, start by looking at the documentation, which is in the /usr/share/doc/rhel-system-roles/selinux directory.</p>
+</li>
+<li>
+<p>A good file to start with is the README.md file, which provides lists of all the ingredients that can be used.</p>
+</li>
+<li>
+<p>The SELinux System Role also comes with a sample playbook file.</p>
+</li>
+<li>
+<p>The most important part of this file is the <strong>vars:</strong> section, which defines the variables that should be applied by SELinux.</p>
+</li>
+</ul>
+<p>Variable Definition in the SELinux System Role:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">hosts</span>: all
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_method</span>: sudo
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">become_user</span>: root
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_policy</span>: targeted
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_state</span>: enforcing
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_booleans</span>:
+</span></span><span style="display:flex;"><span>          - { <span style="color:#ff6ac1">name: ’samba_enable_home_dirs’, state</span>: ’on’ }
+</span></span><span style="display:flex;"><span>          - { <span style="color:#ff6ac1">name: ’ssh_sysadm_login’, state: ’on’, persistent</span>: ’yes’ }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_fcontexts</span>:
+</span></span><span style="display:flex;"><span>          - { <span style="color:#ff6ac1">target: ’/tmp/test_dir(/.*)?’, setype: ’user_home_dir_t’, ftype</span>: ’d’ }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_restore_dirs</span>:
+</span></span><span style="display:flex;"><span>          - /tmp/test_dir
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_ports</span>:
+</span></span><span style="display:flex;"><span>          - { <span style="color:#ff6ac1">ports: ’22100’, proto: ’tcp’, setype: ’ssh_port_t’, state</span>: ’present’ }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">selinux_logins</span>:
+</span></span><span style="display:flex;"><span>          - { <span style="color:#ff6ac1">login: ’sar-user’, seuser: ’staff_u’, serange: ’s0-s0:c0.c1023’, state</span>: ’present’ }</span></span></code></pre></div>
+<p>SELinux Variables Overview</p>
+<p><strong>selinux_policy</strong></p>
+<ul>
+<li>
+<p>Policy to use, usually set to targeted
+<strong>selinux_state</strong></p>
+</li>
+<li>
+<p>SELinux state, as managed with setenforce
+<strong>selinux_booleans</strong></p>
+</li>
+<li>
+<p>List of Booleans that need to be set
+<strong>selinux_fcontext</strong></p>
+</li>
+<li>
+<p>List of file contexts that need to be set, including the target file or directory to which they should be applied.
+<strong>selinux_restore_dir</strong></p>
+</li>
+<li>
+<p>List of directories at which the Linux restorecon command needs to be executed to apply new context.
+<strong>selinux_ports</strong></p>
+</li>
+<li>
+<p>List of ports and SELinux port types
+<strong>selinux_logins</strong></p>
+</li>
+<li>
+<p>A list of SELinux user and roles that can be created</p>
+</li>
+<li>
+<p>Most of the time while configuring SELinux, you need to apply the correct state as well as file context.</p>
+</li>
+<li>
+<p>To set the appropriate file context, you first need to define the <strong>selinux_fcontext</strong> variable.</p>
+</li>
+<li>
+<p>Next, you have to define <strong>selinux_restore_dirs</strong> also to ensure that the desired context is applied correctly.</p>
+</li>
+</ul>
+<h3 id="lab-sets-the-httpd_-context-type-to-the-web-directory">Lab: Sets the <strong>httpd_sys_content_t</strong> context type to the <strong>/web</strong> directory.</h3>
+<ul>
+<li>Sample doc is used and unnecessary lines are removed and the values of two variables have been set</li>
+<li>When you use the RHEL SELinux System Role, some changes require the managed host to be rebooted.</li>
+<li>To take care of this, a block structure is used, where the System Role runs in the block.</li>
+<li>When a change that requires a reboot is applied, the SELinux System Role sets the variable <strong>selinux_reboot_required</strong> and fails.</li>
+<li>As a result, the rescue section in the playbook is executed.</li>
+<li>This rescue section first makes sure that the playbook fails because of the <strong>selinux_reboot_required</strong> variable being set to true.</li>
+<li>If that is the case, the reboot module is called to reboot the managed host.</li>
+<li>While rebooting, playbook execution waits for the rebooted host to reappear, and when that happens, the RHEL SELinux System Role is called again to complete its work.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_policy</span>: targeted
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_state</span>: enforcing
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_fcontexts</span>:
+</span></span><span style="display:flex;"><span>      - { <span style="color:#ff6ac1">target: ’/web(/.*)?’, setype: ’httpd_sys_content_t’, ftype</span>: ’d’ }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">selinux_restore_dirs</span>:
+</span></span><span style="display:flex;"><span>      - /web
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#78787e"># prepare prerequisites which are used in this playbook</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: Creates directory
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">file</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">path</span>: /web
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">state</span>: directory
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">name</span>: execute the role and catch errors
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">block</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff6ac1">name</span>: rhel-system-roles.selinux
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">rescue</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#78787e"># Fail if failed for a different reason than selinux_reboot_required.</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff6ac1">name</span>: handle errors
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">fail</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff6ac1">msg</span>: <span style="color:#5af78e">&#34;role failed&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">when</span>: not selinux_reboot_required
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff6ac1">name</span>: restart managed host
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">shell</span>: sleep 2 &amp;&amp; shutdown -r now &#34;Ansible updates triggered&#34;
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">async</span>: <span style="color:#ff9f43">1</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">poll</span>: <span style="color:#ff9f43">0</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">ignore_errors</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff6ac1">name</span>: wait for managed host to come back
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">wait_for_connection</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff6ac1">delay</span>: <span style="color:#ff9f43">10</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff6ac1">timeout</span>: <span style="color:#ff9f43">300</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff6ac1">name</span>: reapply the role
+</span></span><span style="display:flex;"><span>              <span style="color:#ff6ac1">include_role</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff6ac1">name</span>: rhel-system-roles.selinux</span></span></code></pre></div>
+<h4 id="using-the-rhel-timesync-system-role">Using the RHEL TimeSync System Role</h4>
+<p><strong>timesync_ntp_servers</strong> variable</p>
+<ul>
+<li>
+<p>most important setting</p>
+</li>
+<li>
+<p>specifies attributes to indicate which time servers should be used.</p>
+</li>
+<li>
+<p>The <strong>hostname</strong> attribute identifies the name of IP address of the time server.</p>
+</li>
+<li>
+<p>The <strong>iburst</strong> option is used to enable or disable fast initial time synchronization using the <strong>timesync_ntp_servers</strong> variable.</p>
+</li>
+<li>
+<p>The System Role finds out which version of RHEL is used, and according to the currently used version, it either configures NTP or Chronyd.</p>
+</li>
+</ul>
+<h3 id="lab-using-an-rhel-system-role-to-manage-time-synchronization">Lab: Using an RHEL System Role to Manage Time Synchronization</h3>
+<p>1. Copy the sample timesync playbook to the current directory:
+<code>cp /usr/share/doc/rhel-system-roles/timesync/example-single-pool-playbook.yml timesync.yaml</code></p>
+<p>2. Add the target host, NTP hostname pool.ntp.org, and remove pool true in the file timesync.yaml:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">name</span>: Configure NTP
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">hosts</span>: <span style="color:#5af78e">&#34;{{ host }}&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">timesync_ntp_servers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ff6ac1">hostname</span>: pool.ntp.org
+</span></span><span style="display:flex;"><span>        <span style="color:#ff6ac1">iburst</span>: <span style="color:#ff6ac1">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">roles</span>:
+</span></span><span style="display:flex;"><span>    - rhel-system-roles.timesync</span></span></code></pre></div>
+<p>3. Add the timezone module and the <strong>timezone</strong> variable to the playbook to set the timezone as well. The complete playbook should look like the following:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>- <span style="color:#ff6ac1">hosts</span>: ansible2
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">vars</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">timesync_ntp_servers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff6ac1">hostname</span>: pool.ntp.org
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">iburst</span>: <span style="color:#ff6ac1">yes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">timezone</span>: UTC
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">roles</span>:
+</span></span><span style="display:flex;"><span>  - rhel-system-roles.timesync
+</span></span><span style="display:flex;"><span>  <span style="color:#ff6ac1">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ff6ac1">name</span>: set timezone
+</span></span><span style="display:flex;"><span>    <span style="color:#ff6ac1">timezone</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff6ac1">name</span>: <span style="color:#5af78e">&#34;{{ timezone }}&#34;</span></span></span></code></pre></div>
+<p>4. Use <code>ansible-playbook timesync.yaml</code> to run the playbook. Observe its output. Notice that some messages in red are shown, but these can safely be ignored.</p>
+<p>5. Use <code>ansible ansible2 -a &quot;timedatectl show&quot;</code> and notice that the <strong>timezone</strong> variable is set to UTC.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments-1/"><a class="padding" href="/ansible/execution-environments-1/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="active " data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
+            <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
+            <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
+            <li class="" data-nav-url="/boot/"><input type="checkbox" id="R-section-a53bfb333437907a8d5bdc636d15c75d" aria-controls="R-subsections-a53bfb333437907a8d5bdc636d15c75d"><label for="R-section-a53bfb333437907a8d5bdc636d15c75d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Boot</span></label><a class="padding" href="/boot/"><i class="fa-solid fa-hourglass-start"></i> Boot</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu">
+            <li class="" data-nav-url="/boot/boot-process-grub2-and-kernel/"><a class="padding" href="/boot/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="" data-nav-url="/boot/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/boot/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li></ul></li>
+            <li class="" data-nav-url="/containers/"><input type="checkbox" id="R-section-98e55644e7defe4a283b28e510b18cf5" aria-controls="R-subsections-98e55644e7defe4a283b28e510b18cf5"><label for="R-section-98e55644e7defe4a283b28e510b18cf5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Containers</span></label><a class="padding" href="/containers/"><i class="fa-solid fa-cubes"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu">
+            <li class="" data-nav-url="/containers/containers-1/"><a class="padding" href="/containers/containers-1/">Containers</a></li></ul></li>
+            <li class="" data-nav-url="/cyber-security/"><input type="checkbox" id="R-section-f95cf8cea1c115dd046e46a833f33dfa" aria-controls="R-subsections-f95cf8cea1c115dd046e46a833f33dfa"><label for="R-section-f95cf8cea1c115dd046e46a833f33dfa"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Cyber Security</span></label><a class="padding" href="/cyber-security/"><i class="fa-solid fa-user-secret"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu">
+            <li class="" data-nav-url="/cyber-security/security-enhanced-linux/"><a class="padding" href="/cyber-security/security-enhanced-linux/">Security Enhanced Linux</a></li>
+            <li class="" data-nav-url="/cyber-security/the-linux-firewall/"><a class="padding" href="/cyber-security/the-linux-firewall/">The Linux Firewall</a></li>
+            <li class="" data-nav-url="/cyber-security/the-secure-shell-service/"><a class="padding" href="/cyber-security/the-secure-shell-service/">The Secure Shell Service</a></li></ul></li>
+            <li class="" data-nav-url="/desktop/"><input type="checkbox" id="R-section-e1fc414efb00462ad25041a21e45e696" aria-controls="R-subsections-e1fc414efb00462ad25041a21e45e696"><label for="R-section-e1fc414efb00462ad25041a21e45e696"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Desktop</span></label><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu">
+            <li class="" data-nav-url="/desktop/new-setup/"><a class="padding" href="/desktop/new-setup/">Configure Fedora Desktop using Ansible</a></li>
+            <li class="" data-nav-url="/desktop/learning-touch-typing/"><a class="padding" href="/desktop/learning-touch-typing/">Learning Touch Typing</a></li>
+            <li class="" data-nav-url="/desktop/my-fedora-setup/"><a class="padding" href="/desktop/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-url="/desktop/silverblue/"><a class="padding" href="/desktop/silverblue/">Silverblue</a></li></ul></li>
+            <li class="" data-nav-url="/files/"><input type="checkbox" id="R-section-31e56884d732922d4a0e407592968056" aria-controls="R-subsections-31e56884d732922d4a0e407592968056"><label for="R-section-31e56884d732922d4a0e407592968056"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Files</span></label><a class="padding" href="/files/"><i class="fa-solid fa-copy"></i> Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu">
+            <li class="" data-nav-url="/files/advanced-file-management/"><a class="padding" href="/files/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-url="/files/file-management/"><a class="padding" href="/files/file-management/">Basic File Managment</a></li></ul></li>
+            <li class="" data-nav-url="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-url="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
+            <li class="" data-nav-url="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
+            <li class="" data-nav-url="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-url="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
+            <li class="" data-nav-url="/networking/ccna/ccna-notes/my-ccna-notes/"><a class="padding" href="/networking/ccna/ccna-notes/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-url="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
+            <li class="" data-nav-url="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-url="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
+            <li class="" data-nav-url="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
+            <li class="" data-nav-url="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-url="/packages/"><input type="checkbox" id="R-section-bdf1e8ce92aa8ff6883c617f10480430" aria-controls="R-subsections-bdf1e8ce92aa8ff6883c617f10480430"><label for="R-section-bdf1e8ce92aa8ff6883c617f10480430"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Packages</span></label><a class="padding" href="/packages/"><i class="fa-solid fa-box-open"></i> Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu">
+            <li class="" data-nav-url="/packages/advanced-package-management/"><a class="padding" href="/packages/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-url="/packages/basic-package-management/"><a class="padding" href="/packages/basic-package-management/">Basic Package Management</a></li></ul></li>
+            <li class="" data-nav-url="/storage/"><input type="checkbox" id="R-section-28a53f7a259bc0e6bfd5bf73591250a9" aria-controls="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9"><label for="R-section-28a53f7a259bc0e6bfd5bf73591250a9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/storage/"><i class="fa-solid fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu">
+            <li class="" data-nav-url="/storage/autofs/"><a class="padding" href="/storage/autofs/">AutoFS</a></li>
+            <li class="" data-nav-url="/storage/local-file-systems-and-swap/"><a class="padding" href="/storage/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-url="/storage/network-file-system-nfs/"><a class="padding" href="/storage/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-url="/storage/partitioning-mbr-and-gpt/"><a class="padding" href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></li>
+            <li class="" data-nav-url="/storage/remove-a-filesystem-from-a-partition/"><a class="padding" href="/storage/remove-a-filesystem-from-a-partition/">Remove a filesystem from a partition</a></li>
+            <li class="" data-nav-url="/storage/thin-provisioning/"><a class="padding" href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></li>
+            <li class="" data-nav-url="/storage/virtual-data-optimizer-vdo/"><a class="padding" href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></li></ul></li>
+            <li class="" data-nav-url="/system/"><input type="checkbox" id="R-section-0ea554b019cc5a3e6337c45b68b3a647" aria-controls="R-subsections-0ea554b019cc5a3e6337c45b68b3a647"><label for="R-section-0ea554b019cc5a3e6337c45b68b3a647"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu System</span></label><a class="padding" href="/system/"><i class="fa-solid fa-server"></i> System</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu">
+            <li class="" data-nav-url="/system/installation/"><a class="padding" href="/system/installation/">Installation</a></li>
+            <li class="" data-nav-url="/system/interaction/"><a class="padding" href="/system/interaction/">Interaction</a></li>
+            <li class="" data-nav-url="/system/process-and-task-scheduling/"><a class="padding" href="/system/process-and-task-scheduling/">Process and Task Scheduling</a></li></ul></li>
+            <li class="" data-nav-url="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-url="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX</a></li>
+            <li class="" data-nav-url="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo</a></li>
+            <li class="" data-nav-url="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/">How to Process Bookfusion Highlights with Vim</a></li>
+            <li class="" data-nav-url="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme</a></li>
+            <li class="" data-nav-url="/tools/nextcloud-on-rhel-based-systems/"><a class="padding" href="/tools/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></li>
+            <li class="" data-nav-url="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></li>
+            <li class="" data-nav-url="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/">Using Vagrant on Linux</a></li>
+            <li class="" data-nav-url="/tools/vimguide/"><a class="padding" href="/tools/vimguide/">Vim Guide</a></li>
+            <li class="" data-nav-url="/tools/using-man-pages/"><a class="padding" href="/tools/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li>
+            <li class="" data-nav-url="/users-and-groups/"><input type="checkbox" id="R-section-ea23e0c86f0adbd857ee01a4f4dd70e4" aria-controls="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4"><label for="R-section-ea23e0c86f0adbd857ee01a4f4dd70e4"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Users and Groups</span></label><a class="padding" href="/users-and-groups/"><i class="fa-solid fa-users"></i> Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu">
+            <li class="" data-nav-url="/users-and-groups/advanced-user-management/"><a class="padding" href="/users-and-groups/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-url="/users-and-groups/basic-user-management/"><a class="padding" href="/users-and-groups/basic-user-management/">Basic User Management</a></li></ul></li>
+            <li class="" data-nav-url="/virtualization/"><input type="checkbox" id="R-section-da8ee4406de37987b502b79e5b0a9d1c" aria-controls="R-subsections-da8ee4406de37987b502b79e5b0a9d1c"><label for="R-section-da8ee4406de37987b502b79e5b0a9d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Virtualization</span></label><a class="padding" href="/virtualization/"><i class="fa-solid fa-microchip"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu">
+            <li class="" data-nav-url="/virtualization/rhcsa-vagrant-lab-setup/"><a class="padding" href="/virtualization/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-url="https://www.youtube.com/@linuxreader"><a class="padding" href="https://www.youtube.com/@linuxreader" rel="external" target="_blank"><i class='fas fa-fw fa-play'></i> YouTube</a></li>
+            <li class="" data-nav-url="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-url="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-url="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+            <li class="" data-nav-url="https://everythingelsexyz.github.io/"><a class="padding" href="https://everythingelsexyz.github.io/" rel="external" target="_blank"><i class='fa-solid fa-circle-notch'></i> Everything Else</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
+  </body>
+</html>

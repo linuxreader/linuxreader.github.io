@@ -21,31 +21,31 @@ We’ll cover how to run plays with more granularity, how to organize your tasks
     <meta property="article:section" content="Ansible">
     <meta itemprop="description" content="Chapter 5 - Ansible Playbooks - Beyond the Basics The playbooks and simple playbook organization we used in the previous chapter cover many common use cases. When discussing the breadth of system administration needs, there are thousands more features of Ansible you need to know.
 We’ll cover how to run plays with more granularity, how to organize your tasks and playbooks for simplicity and usability, and other advanced playbook topics that will help you manage your infrastructure with even more confidence.">
-    <meta itemprop="wordCount" content="6828">
+    <meta itemprop="wordCount" content="8166">
     <title></title>
     <link href="/ansible/ansible4devops/chapter-5---ansible-playbooks---beyond-the-basics/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/ansible/ansible4devops/chapter-5---ansible-playbooks---beyond-the-basics/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1762537425" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762537425" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762537425" defer></script>
-    <script src="/js/search-lunr.min.js?1762537425" defer></script>
-    <script src="/js/search.min.js?1762537425" defer></script>
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762537425";
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762537425" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762537425" rel="stylesheet">
-    <link href="/css/theme.min.css?1762537425" rel="stylesheet">
-    <link href="/css/format-html.min.css?1762537425" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762635744" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -120,7 +120,7 @@ We’ll cover how to run plays with more granularity, how to organize your tasks
 <span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/variables-and-facts/variables/" title="Variables (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -182,7 +182,7 @@ We’ll cover how to run plays with more granularity, how to organize your tasks
             </div>
 
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/bash/" title="Bash (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/ad-hoc-ansible-commands/" title="Ad Hoc Ansible Commands (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
 
 
@@ -216,29 +216,48 @@ more confidence.</p>
 <p>In chapter 4, the Ubuntu LAMP server example used a simple handler to
 restart Apache, and certain tasks that affected Apache&rsquo;s configuration
 notified the handler with the option <code>notify: restart apache</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>handlers:
+  - name: restart apache
+    service: name=apache2 state=restarted
 <p>tasks:</p>
 <ul>
 <li>name: Enable Apache rewrite module.
 apache2_module: name=rewrite state=present
-notify: restart apache<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+notify: restart apache</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>In some circumstances you may want to notify multiple handlers, or even
 have handlers notify additionally handlers. Both are easy to do with
 Ansible. To notify multiple handlers from one task, use a list for the
 <code>notify</code> option:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Rebuild application configuration.
+  command: /opt/app/rebuild.sh
+  notify:
+    - restart apache
+    - restart memcached</code></pre>
+</div>
+</figure>
 <p>To have one handler notify another, add a <code>notify</code> option onto the
 handler&mdash;handlers are basically glorified tasks that can be called by
 the <code>notify</code> option, but since they act as tasks themselves, they can
 chain themselves to other handlers:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>handlers:
+  - name: restart apache
+    service: name=apache2 state=restarted
+    notify: restart memcached
 <ul>
 <li>name: restart memcached
-service: name=memcached state=restarted<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+service: name=memcached state=restarted</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>There are a few other considerations when dealing with handlers:</p>
 <ul>
 <li>Handlers will only be run if a task notifies the handler; if a task
@@ -261,14 +280,31 @@ unreachable during the playbook&rsquo;s run.</li>
 ways. First of all, if you need to set some environment variables for
 your remote user account, you can do that by adding lines to the remote
 user&rsquo;s <code>.bash_profile</code>, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Add an environment variable to the remote user&#39;s shell.
+  lineinfile: dest=~/.bash_profile regexp=^ENV_VAR= line=ENV_VAR=value</code></pre>
+</div>
+</figure>
 <p>All subsequent tasks will then have access to this environment variable
 (remember, of course, only the <code>shell</code> module will understand shell
 commands that use environment variables!). To use an environment
 variable in further tasks, it&rsquo;s recommended you use a task&rsquo;s <code>register</code>
 option to store the environment variable in a variable Ansible can use
 later, for example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Add an environment variable to the remote user&#39;s shell.
+2   lineinfile: dest=~/.bash_profile regexp=^ENV_VAR= line=ENV_VAR=value
+3 
+4 - name: Get the value of the environment variable we just added.
+5   shell: &#39;source ~/.bash_profile &amp;&amp; echo $ENV_VAR&#39;
+6   register: foo
+7 
+8 - name: Print the value of the environment variable.
+9   debug: msg=&quot;The variable is {{ foo.stdout }}&quot;</code></pre>
+</div>
+</figure>
 <p>We use <code>source ~/.bash_profile</code> in line 4 because Ansible needs to make
 sure it&rsquo;s using the latest environment configuration for the remote
 user. In some situations, the tasks all run over a persistent or
@@ -276,7 +312,7 @@ quasi-cached SSH session, over which <code>$ENV_VAR</code> wouldn&rsquo;t yet be
 <p>(This is also the first time the <code>debug</code> module has made an appearance.
 It will be explored more in-depth along with other debugging techniques
 later.).</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>Why <code>~/.bash_profile</code>? There are many different places you can store
 environment variables, including <code>.bashrc</code>, <code>.profile</code>, and
 <code>.bash_profile</code> in a user&rsquo;s home folder. In our case, since we want the
@@ -285,10 +321,16 @@ shell session, in which case <code>.bash_profile</code> is used to configure the
 environment. You can read more about shell session configuration and
 these dotfiles in <em><a href="http://mywiki.wooledge.org/DotFiles" rel="external" target="_blank">Configuring your login sessions with
 dotfiles</a></em>.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>Linux will also read global environment variables added to
 <code>/etc/environment</code>, so you can add your variable there:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Add a global environment variable.
+  lineinfile: dest=/etc/environment regexp=^ENV_VAR= line=ENV_VAR=value
+  sudo: yes</code></pre>
+</div>
+</figure>
 <p>In any case, it&rsquo;s pretty simple to manage environment variables on the
 server with <code>lineinfile</code>. If your application requires many environment
 variables (as is the case in many Java applications), you might consider
@@ -298,34 +340,65 @@ using <code>copy</code> or <code>template</code> with a local file instead of us
 <p>You can also set the environment for just one play, using the
 <code>environment</code> option for that play. As an example, let&rsquo;s say you need to
 set an http proxy for a certain file download. This can be done with:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Download a file, using example-proxy as a proxy.
+  get_url: url=http://www.example.com/file.tar.gz dest=~/Downloads/
+  environment:
+    http_proxy: http://example-proxy:80/</code></pre>
+</div>
+</figure>
 <p>That could be rather cumbersome, though, especially if you have many
 tasks that require a proxy or some other environment variable. In this
 case, you can pass an environment in via a variable in your playbook&rsquo;s
 <code>vars</code> section (or via an included variables file), like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>vars:
+  var_proxy:
+    http_proxy: http://example-proxy:80/
+    https_proxy: https://example-proxy:443/
+    [etc...]
 <p>tasks:</p>
 <ul>
 <li>name: Download a file, using example-proxy as a proxy.
 get_url: url=http://www.example.com/file.tar.gz dest=~/Downloads/
-environment: var_proxy<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+environment: var_proxy</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>If a proxy needs to be set system-wide (as is the case behind many
 corporate firewalls), I like to do so using the global
 <code>/etc/environment</code> file:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 # In the &#39;vars&#39; section of the playbook (set to &#39;absent&#39; to disable proxy):
+ 2 proxy_state: present
+ 3 
+ 4 # In the &#39;tasks&#39; section of the playbook:
+ 5 - name: Configure the proxy.
+ 6   lineinfile:
+ 7     dest: /etc/environment
+ 8     regexp: &quot;{{ item.regexp }}&quot;
+ 9     line: &quot;{{ item.line }}&quot;
+10     state: &quot;{{ proxy_state }}&quot;
+11   with_items:
+12     - { regexp: &quot;^http_proxy=&quot;, line: &quot;http_proxy=http://example-proxy:80/&quot; }
+13     - { regexp: &quot;^https_proxy=&quot;, line: &quot;https_proxy=https://example-proxy:443/&quot; }
+14     - { regexp: &quot;^ftp_proxy=&quot;, line: &quot;ftp_proxy=http://example-proxy:80/&quot; }</code></pre>
+</div>
+</figure>
 <p>Doing it this way allows me to configure whether the proxy is enabled
 per-server (using the <code>proxy_state</code> variable), and with one play, set
 the http, https, and ftp proxies. You can use a similar kind of play for
 any other types of environment variables you need to set system-wide.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>You can test remote environment variables using the <code>ansible</code> command:
 <code>ansible test -m shell -a 'echo $TEST'</code>. When doing so, be careful with
 your use of quotes and escaping&mdash;you might end up using double quotes
 where you meant to use single quotes, or vice-versa, and end up printing
 a local environment variable instead of one from the remote server!</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap07.xhtml_leanpub-auto-variables">Variables</h3>
 <p>Variables in Ansible work just like variables in most other systems.
 Variables always begin with a letter (<code>[A-Za-z]</code>), and can include any
@@ -338,15 +411,27 @@ typically avoid numbers in variable names (no <code>camelCase</code> or
 and <code>foo bar</code>.</p>
 <p>In an inventory file, a variable&rsquo;s value is assigned using an equals
 sign, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>foo=bar</code></pre>
+</div>
+</figure>
 <p>In a playbook or variables include file, a variable&rsquo;s value is assigned
 using a colon, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>foo: bar</code></pre>
+</div>
+</figure>
 <h4 id="chap07.xhtml_leanpub-auto-playbook-variables">Playbook Variables</h4>
 <p>There are many different ways you can define variables to use in tasks.</p>
 <p>Variables can be passed in via the command line, when calling
 <code>ansible-playbook</code>, with the <code>--extra-vars</code> option:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>ansible-playbook example.yml --extra-vars &quot;foo=bar&quot;</code></pre>
+</div>
+</figure>
 <p>You can also pass in extra variables using quoted JSON, YAML, or even by
 passing a JSON or YAML file directly, like
 <code>--extra-vars &quot;@even_more_vars.json&quot;</code> or
@@ -354,11 +439,37 @@ passing a JSON or YAML file directly, like
 better off using one of the other methods below.</p>
 <p>Variables may be included inline with the rest of a playbook, in a
 <code>vars</code> section:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: example
+3   vars:
+4     foo: bar
+5   tasks:
+6     # Prints &quot;Variable &#39;foo&#39; is set to bar&quot;.
+7     - debug: msg=&quot;Variable &#39;foo&#39; is set to {{ foo }}&quot;</code></pre>
+</div>
+</figure>
 <p>Variables may also be included in a separate file, using the
 <code>vars_files</code> section:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 # Main playbook file.
+3 - hosts: example
+4   vars_files:
+5     - vars.yml
+6   tasks:
+7     - debug: msg=&quot;Variable &#39;foo&#39; is set to {{ foo }}&quot;</code></pre>
+</div>
+</figure>
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 # Variables file &#39;vars.yml&#39; in the same folder as the playbook.
+3 foo: bar</code></pre>
+</div>
+</figure>
 <p>Notice how the variables are all at the root level of the YAML file.
 They don&rsquo;t need to be under any kind of <code>vars</code> heading when they are
 included as a standalone file.</p>
@@ -367,7 +478,16 @@ you have one set of variables for your CentOS servers (where the Apache
 service is named <code>httpd</code>), and another for your Debian servers (where
 the Apache service is named <code>apache2</code>). In this case, you could use a
 conditional <code>vars_files</code> include:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 - hosts: example
+3   vars_files:
+4     - [ &quot;apache_{{ ansible_os_family }}.yml&quot;, &quot;apache_default.yml&quot; ]
+5   tasks:
+6     - service: name={{ apache }} state=running</code></pre>
+</div>
+</figure>
 <p>Then, add two files in the same folder as your example playbook,
 <code>apache_CentOS.yml</code>, and <code>apache_default.yml</code>. Define the variable
 <code>apache: httpd</code> in the CentOS file, and <code>apache: apache2</code> in the default
@@ -382,7 +502,19 @@ there is no <code>apache_Debian.yml</code> or <code>apache_Ubuntu.yml</code> fil
 <h4 id="chap07.xhtml_inventory-variables">Inventory variables</h4>
 <p>Variables may also be added via Ansible inventory files, either inline
 with a host definition, or after a group:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 # Host-specific variables (defined inline).
+2 [washington]
+3 app1.example.com proxy_state=present
+4 app2.example.com proxy_state=absent
+5 
+6 # Variables defined for the entire group.
+7 [washington:vars]
+8 cdn_host=washington.static.example.com
+9 api_version=3.0.1</code></pre>
+</div>
+</figure>
 <p>If you need to define more than a few variables, especially variables
 that apply to more than one or two hosts, inventory files can be
 cumbersome. In fact, Ansible&rsquo;s documentation recommends <em>not</em> storing
@@ -393,7 +525,13 @@ assign them to individual hosts and groups defined in your inventory.</p>
 create a blank file named <code>app1.example.com</code> at the location
 <code>/etc/ansible/host_vars/app1.example.com</code>, and add variables as you
 would in an included <code>vars_files</code> YAML file:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>---
+foo: bar
+baz: qux</code></pre>
+</div>
+</figure>
 <p>To apply a set of variables to the entire <code>washington</code> group, create a
 similar file in the location <code>/etc/ansible/group_vars/washington</code>
 (substitute <code>washington</code> for whatever group name&rsquo;s variables you&rsquo;re
@@ -413,7 +551,18 @@ output of a particular command in a variable at runtime.</p>
 <p>In the previous chapter, we used <code>register</code> to get the output of the
 <code>forever list</code> command, then used the output to determine whether we
 needed to start our Node.js app:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>39 - name: &quot;Node: Check list of Node.js apps running.&quot;
+40   command: forever list
+41   register: forever_list
+42   changed_when: false
+43 
+44 - name: &quot;Node: Start example Node.js app.&quot;
+45   command: forever start {{ node_apps_location }}/app/app.js
+46   when: &quot;forever_list.stdout.find(&#39;{{ node_apps_location}}/app/app.js&#39;) == -1&quot;</code></pre>
+</div>
+</figure>
 <p>In that example, we used a string function built into Python (<code>find</code>) to
 search for the path to our app, and if it was not present, the Node.js
 app was started.</p>
@@ -422,7 +571,11 @@ app was started.</p>
 <p>Simple variables (gathered by Ansible, defined in inventory files, or
 defined in playbook or variable files) can be used as part of a task
 using syntax like <code>{{ variable }}</code>. For example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- command: /opt/my-app/rebuild {{ my_environment }}</code></pre>
+</div>
+</figure>
 <p>When the command is run, Ansible will substitute the contents of
 <code>my_environment</code> for <code>{{ my_environment }}</code>. So the resulting command
 would be something like <code>/opt/my-app/rebuild dev</code>.</p>
@@ -431,10 +584,22 @@ accessing the array <code>foo</code> would not give you enough information to be
 useful (except when passing in the array in a context where Ansible will
 use the entire array, like when using <code>with_items</code>).</p>
 <p>If you define a list variable like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>foo_list:
+  - one
+  - two
+  - three</code></pre>
+</div>
+</figure>
 <p>You could access the first item in that array with either of the
 following syntax:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>foo[0]
+foo|first</code></pre>
+</div>
+</figure>
 <p>Note that the first line uses standard Python array access syntax
 (&lsquo;retrieve the first (0-indexed) element of the array&rsquo;), whereas the
 second line uses a convenient <em>filter</em> provided by Jinja2. Either way is
@@ -447,20 +612,74 @@ array keys, either using bracket (<code>[]</code>) or dot (<code>.</code>) synta
 example, if you would like to retrieve the information about the <code>eth0</code>
 network interface, you could first take a look at the entire array using
 <code>debug</code> in your playbook:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># In your playbook.
+tasks:
+  - debug: var=ansible_eth0</code></pre>
+</div>
+</figure>
+<figure class="code">
+<div class="highlight">
+<pre><code>TASK: [debug var=ansible_eth0] *****************************************
+ok: [webserver] =&gt; {
+    &quot;ansible_eth0&quot;: {
+        &quot;active&quot;: true,
+        &quot;device&quot;: &quot;eth0&quot;,
+        &quot;ipv4&quot;: {
+            &quot;address&quot;: &quot;10.0.2.15&quot;,
+            &quot;netmask&quot;: &quot;255.255.255.0&quot;,
+            &quot;network&quot;: &quot;10.0.2.0&quot;
+        },
+        &quot;ipv6&quot;: [
+            {
+                &quot;address&quot;: &quot;fe80::a00:27ff:feb1:589a&quot;,
+                &quot;prefix&quot;: &quot;64&quot;,
+                &quot;scope&quot;: &quot;link&quot;
+            }
+        ],
+        &quot;macaddress&quot;: &quot;08:00:27:b1:58:9a&quot;,
+        &quot;module&quot;: &quot;e1000&quot;,
+        &quot;mtu&quot;: 1500,
+        &quot;promisc&quot;: false,
+        &quot;type&quot;: &quot;ether&quot;
+    }
+}</code></pre>
+</div>
+</figure>
 <p>Now that you know the overall structure of the variable, you can use
 either of the following techniques to retrieve only the IPv4 address of
 the server:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>{{ ansible_eth0.ipv4.address }}
+{{ ansible_eth0[&#39;ipv4&#39;][&#39;address&#39;] }}</code></pre>
+</div>
+</figure>
 <h4 id="chap07.xhtml_leanpub-auto-host-and-group-variables">Host and Group variables</h4>
 <p>Ansible conveniently lets you define or override variables on a per-host
 or per-group basis. As we learned earlier, your inventory file can
 define groups and hosts like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 [group]
+2 host1
+3 host2</code></pre>
+</div>
+</figure>
 <p>The simplest way to define variables on a per-host or per-group basis is
 to do so directly within the inventory file:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 [group]
+2 host1 admin_user=jane
+3 host2 admin_user=jack
+4 host3
+5 
+6 [group:vars]
+7 admin_user=john</code></pre>
+</div>
+</figure>
 <p>In this case, Ansible will use the group default variable &lsquo;john&rsquo; for
 <code>{{ admin_user }}</code>, but for <code>host1</code> and <code>host2</code>, the admin users defined
 alongside the hostname will be used.</p>
@@ -477,8 +696,20 @@ inside <code>/etc/ansible</code> if you&rsquo;re using the default inventory fil
 <p>You can place YAML files inside these directories named after the group
 name or hostname defined in your inventory file. Continuing our example
 above, let&rsquo;s move the specific variables into place:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 # File: /etc/ansible/group_vars/group
+3 admin_user: john</code></pre>
+</div>
+</figure>
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 # File: /etc/ansible/host_vars/host1
+3 admin_user: jane</code></pre>
+</div>
+</figure>
 <p>Even if you&rsquo;re using the default inventory file (or an inventory file
 outside of your playbook&rsquo;s root directory), Ansible will also use host
 and group variables files located within your playbook&rsquo;s own
@@ -495,7 +726,12 @@ and roles (which will be discussed later).</p>
 host, Ansible provides a magic <code>hostvars</code> variable containing all the
 defined host variables (from inventory files and any discovered YAML
 files inside <code>host_vars</code> directories).</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># From any host, returns &quot;jane&quot;.
+{{ hostvars[&#39;host1&#39;][&#39;admin_user&#39;] }}</code></pre>
+</div>
+</figure>
 <p>There are a variety of other variables Ansible provides that you may
 need to use from time to time:</p>
 <ul>
@@ -517,13 +753,16 @@ further usage examples.</p>
 <p>By default, whenever you run an Ansible playbook, Ansible first gathers
 information (&ldquo;facts&rdquo;) about each host in the play. You may have noticed
 this whenever we ran playbooks in earlier chapters:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible-playbook playbook.yml
 <p>PLAY [group] **********************************************************</p>
 <p>GATHERING FACTS *******************************************************
 ok: [host1]
 ok: [host2]
-ok: [host3]<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+ok: [host3]</code></pre></p>
+</div>
+</figure>
 <p>Facts can be extremely helpful when you&rsquo;re running playbooks; you can
 use gathered information like host IP addresses, CPU type, disk space,
 operating system information, and network interface information to
@@ -531,16 +770,33 @@ change when certain tasks are run, or to change certain information used
 in configuration files.</p>
 <p>To get a list of every gathered fact available, you can use the
 <code>ansible</code> command with the <code>setup</code> module:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible munin -m setup
+munin.midwesternmac.com | success &gt;&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;ansible_all_ipv4_addresses&quot;: [
+            &quot;167.88.120.81&quot;
+        ],
+        &quot;ansible_all_ipv6_addresses&quot;: [
+            &quot;2604:180::a302:9076&quot;,
+[...]</code></pre>
+</div>
+</figure>
 <p>If you don&rsquo;t need to use facts, and would like to save a few seconds
 per-host when running playbooks (this can be especially helpful when
 running an Ansible playbook against dozens or hundreds of servers), you
 can set <code>gather_facts: no</code> in your playbook:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- hosts: db
+  gather_facts: no</code></pre>
+</div>
+</figure>
 <p>Many of my own playbooks and roles use facts like <code>ansible_os_family</code>,
 <code>ansible_hostname</code>, and <code>ansible_memtotal_mb</code> to register new variables
 or in tandem with <code>when</code>, to determine whether to run certain tasks.</p>
-<!-- raw HTML omitted -->
+<aside class="information blurb">
 <p>If you have <a href="https://tickets.puppetlabs.com/browse/FACT" rel="external" target="_blank">Facter</a> or
 <a href="http://docs.getchef.com/ohai.html" rel="external" target="_blank">Ohai</a> installed on a remote host,
 Ansible will also include their gathered facts as well, prefixed by
@@ -550,7 +806,8 @@ system-information-gathering tools, you can conveniently use them within
 Ansible as well. If not, Ansible&rsquo;s Facts are usually sufficient for
 whatever you need to do, and can be made even more flexible through the
 use of Local Facts.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="tip blurb">
 <p>If you run a playbook against similar servers or virtual machines (e.g.
 all your servers are running the same OS, same hosting provider, etc.),
 facts are almost always consistent in their behavior. When running
@@ -561,7 +818,7 @@ For <a href="https://servercheck.in/" rel="external" target="_blank">Server Chec
 less than five different hosting providers, running on vastly different
 hardware, so I am sure to monitor the output of my <code>ansible-playbook</code>
 runs for abnormalities, especially when adding new servers to the mix.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h5 id="chap07.xhtml_leanpub-auto-local-facts-factsd">Local Facts (Facts.d)</h5>
 <p>Another way of defining host-specific facts is to place <code>.fact</code> file in
 a special directory on remote hosts, <code>/etc/ansible/facts.d/</code>. These
@@ -569,16 +826,44 @@ files can be either JSON or INI files, or you could use executables that
 return JSON. As an example, create the file
 <code>/etc/ansible/facts.d/settings.fact</code> on a remote host, with the
 following contents:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 [users]
+2 admin=jane,john
+3 normal=jim</code></pre>
+</div>
+</figure>
 <p>Next, use Ansible&rsquo;s <code>setup</code> module to display the new facts on the
 remote host:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible hostname -m setup -a &quot;filter=ansible_local&quot;
+munin.midwesternmac.com | success &gt;&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;ansible_local&quot;: {
+            &quot;settings&quot;: {
+                &quot;users&quot;: {
+                    &quot;admin&quot;: &quot;jane,john&quot;,
+                    &quot;normal&quot;: &quot;jim&quot;
+                }
+            }
+        }
+    },
+    &quot;changed&quot;: false
+}</code></pre>
+</div>
+</figure>
 <p>If you are using a playbook to provision a new server, and part of that
 playbook adds a local <code>.fact</code> file which generates local facts that are
 used later, you can explicitly tell Ansible to reload the local facts
 using a task like the following:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Reload local facts.
+2   setup: filter=ansible_local</code></pre>
+</div>
+</figure>
+<aside class="warning blurb">
 <p>While it may be tempting to use local facts rather than host_vars or
 other variable definition methods, remember that it&rsquo;s often better to
 build your playbooks in a way that doesn&rsquo;t rely (or care about) specific
@@ -587,10 +872,11 @@ facts (especially if you are using executables in facts.d to define the
 facts based on changing local environments), but it&rsquo;s almost always
 better to keep configuration in a central repository, and move away from
 host-specific facts.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="warning blurb">
 <p>Note that <code>setup</code> module options (like <code>filter</code>) won&rsquo;t work on remote
 Windows hosts, as of this writing.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap07.xhtml_leanpub-auto-ansible-vault---keeping-secrets-secret">Ansible Vault - Keeping secrets secret</h4>
 <p>If you use Ansible to fully automate the provisioning and configuration
 of your servers, chances are you will need to use passwords or other
@@ -630,10 +916,29 @@ you run your playbook.</li>
 </ol>
 <p>Let&rsquo;s see how it works in practice. Here&rsquo;s a playbook that connects to a
 service&rsquo;s API, and requires a secure API key to do so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: appserver
+ 3 
+ 4   vars_files:
+ 5     - vars/api_key.yml
+ 6 
+ 7   tasks:
+ 8     - name: Connect to service with our API key.
+ 9       command: connect_to_service
+10       environment:
+11         SERVICE_API_KEY: &quot;{{ myapp_service_api_key }}&quot;</code></pre>
+</div>
+</figure>
 <p>The vars_file, which is stored alongside the playbook, in plain text,
 looks like:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 ---
+2 myapp_service_api_key: &quot;yJJvPqhqgxyPZMispRycaVMBmBWPqYDf3DFanPxAMAm4UZcw&quot;</code></pre>
+</div>
+</figure>
 <p>This is convenient, but it&rsquo;s not safe to store the API key in plain
 text. Even when running the playbook locally on an access-restricted
 computer, secrets should be encrypted. If you&rsquo;re running the playbook
@@ -647,19 +952,47 @@ ever checked the original file into version control, it&rsquo;s also a good
 time to expire the old key and generate a new one, since the old key is
 part of the plaintext history of your project!</p>
 <p>To encrypt the file with Vault, run:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible-vault encrypt api_key.yml</code></pre>
+</div>
+</figure>
 <p>Enter a secure password for the file, and Ansible will encrypt it. If
 you open the file now, you should see something like:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 $ANSIBLE_VAULT;1.1;AES256
+ 2 653635363963663439383865313262396665353063663839616266613737616539303
+ 3 530313663316264336133626266336537616463366465653862366231310a30633064
+ 4 633234306335333739623661633132376235666563653161353239383664613433663
+ 5 1303132303566316232373865356237383539613437653563300a3263386336393866
+ 6 376535646562336664303137346432313563373534373264363835303739366362393
+ 7 639646137656633656630313933323464333563376662643336616534353234663332
+ 8 656138326530366434313161363562333639383864333635333766316161383832383
+ 9 831626166623762643230313436386339373437333830306438653833666364653164
+10 6633613132323738633266363437</code></pre>
+</div>
+</figure>
 <p>Next time you run the playbook, you will need to provide the password
 you used for the vault so Ansible can decrypt the playbook in memory for
 the brief period in which it will be used. If you don&rsquo;t specify the
 password, you&rsquo;ll receive an error:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible-playbook test.yml
+ERROR: A vault password must be specified to decrypt vars/api_key.yml</code></pre>
+</div>
+</figure>
 <p>There are a number of ways you can provide the password, depending on
 how you run playbooks. Providing the password at playbook runtime works
 well when running a playbook interactively:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># Use --ask-vault-pass to supply the vault password at runtime.
+$ ansible-playbook test.yml --ask-vault-pass
+Vault password:</code></pre>
+</div>
+</figure>
 <p>After supplying the password, Ansible decrypts the vault (in memory) and
 runs the playbook with the decrypted data.</p>
 <p>You can edit the encrypted file with <code>ansible-vault edit</code>. You can also
@@ -674,21 +1007,27 @@ permissions (e.g. <code>600</code>) so only <em>you</em> can read or write this 
 Create the file <code>~/.ansible/vault_pass.txt</code> with your password in it,
 set permissions to <code>600</code>, and tell Ansible the location of the file when
 you run the playbook:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># Use --vault-password-file to supply the password via file or script.
+$ ansible-playbook test.yml --vault-password-file ~/.ansible/vault_pass.txt</code></pre>
+</div>
+</figure>
 <p>You could also use an executable script (e.g. <code>~/.ansible/vault_pass.py</code>
 with execute permissions, <code>700</code>), as long as the script outputs a single
 line of text, the vault password.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>You can make Ansible&rsquo;s Vault operations slightly faster by installing
 Python&rsquo;s <code>cryptography</code> library, with <code>pip install cryptography</code>.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="information blurb">
 <p>Are you worried about the security of Vault-encrypted files? AES-256
 encryption is extremely secure; it would take <em>billions of billions</em> of
 years to decrypt this single file, even if all of today&rsquo;s fastest
 supercomputer clusters were all put to the task 24x7. Of course, every
 vault is only as secure as its password, so make sure you use a secure
 password and store <em>it</em> securely!</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>More options and examples are available in the <a href="http://docs.ansible.com/ansible/playbooks_vault.html" rel="external" target="_blank">official documentation
 for Ansible
 Vault</a>.</p>
@@ -766,12 +1105,19 @@ placing them within parenthesis.</p>
 probably pick up basic usage of Jinja2 expressions in Ansible very
 quickly.</p>
 <p>For example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># The following expressions evaluate to &#39;true&#39;:
+1 in [1, 2, 3]
+&#39;see&#39; in &#39;Can you see me?&#39;
+foo != bar
+(1 &lt; 2) and (&#39;a&#39; not in &#39;best&#39;)
 <h1 id="the-following-expressions-evaluate-to-39false39">The following expressions evaluate to 'false':</h1>
 <p>4 in [1, 2, 3]
 foo == bar
-(foo != foo) or (a in [1, 2, 3])<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+(foo != foo) or (a in [1, 2, 3])</code></pre></p>
+</div>
+</figure>
 <p>Jinja2 also offers a helpful set of &rsquo;tests&rsquo; you can use to test a given
 object. For example, if you define the variable <code>foo</code> for only a certain
 group of servers, but not others, you can use the expression
@@ -794,7 +1140,13 @@ find the major version of a particular project. Assuming the variable
 splitting the string on the <code>.</code> character, then using the first element
 of the array. I can check if the major version is <code>4</code> using <code>when</code>, and
 choose to run (or not run) a certain task:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Do something only for version 4 of the software.
+2   [task here]
+3   when: software_version.split(&#39;.&#39;)[0] == &#39;4&#39;</code></pre>
+</div>
+</figure>
 <p>It&rsquo;s generally best to stick with simpler Jinja2 filters and variables,
 but it&rsquo;s nice to be able to use Python when you&rsquo;re doing more advanced
 variable manipulation.</p>
@@ -804,7 +1156,12 @@ that variable will be available to all subsequent tasks. Registered
 variables work just like normal variables or host facts.</p>
 <p>Many times, you may need the output (stdout or stderr) of a shell
 command, and you can get that in a variable using the following syntax:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- shell: my_command_here
+  register: my_command_result</code></pre>
+</div>
+</figure>
 <p>Later, you can access stdout (as a string) with
 <code>my_command_result.stdout</code>, and stderr with <code>my_command_result.stderr</code>.</p>
 <p>Registered facts are very helpful for many types of tasks, and can be
@@ -813,7 +1170,7 @@ any part of the play. As an example, if you have a command that outputs
 a version number string like &ldquo;10.0.4&rdquo;, and you register the output as
 <code>version</code>, you can use the string later when doing a code checkout by
 printing the variable <code>{{ version.stdout }}</code>.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>If you want to see the different properties of a particular registered
 variable, you can run a playbook with <code>-v</code> to inspect play output.
 Usually, you&rsquo;ll get access to values like <code>changed</code> (whether the play
@@ -821,32 +1178,54 @@ resulted in a change), <code>delta</code> (the time it took to run the play),
 <code>stderr</code> and <code>stdout</code>, etc. Some Ansible modules (like <code>stat</code>) add much
 more data to the registered variable, so always inspect the output with
 <code>-v</code> if you need to see what&rsquo;s inside.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap07.xhtml_leanpub-auto-when"><code>when</code></h4>
 <p>One of the most helpful extra keys you can add to a play is a <code>when</code>
 statement. Let&rsquo;s take a look at a simple use of <code>when</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- yum: name=mysql-server state=present
+  when: is_db_server</code></pre>
+</div>
+</figure>
 <p>The above statement assumes you&rsquo;ve defined the <code>is_db_server</code> variable
 as a boolean (<code>true</code> or <code>false</code>) earlier, and will run the play if the
 value is true, or skip the play when the value is false.</p>
 <p>If you only define the <code>is_db_server</code> variable on database servers
 (meaning there are times when the variable may not be defined at all),
 you could run tasks conditionally like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- yum: name=mysql-server state=present
+  when: (is_db_server is defined) and is_db_server</code></pre>
+</div>
+</figure>
 <p><code>when</code> is even more powerful if used in conjunction with variables
 registered by previous tasks. As an example, we want to check the status
 of a running application, and run a play only when that application
 reports it is &lsquo;ready&rsquo; in its output:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- command: my-app --status
+  register: myapp_result
 <ul>
 <li>command: do-something-to-my-app
-when: &quot;'ready' in myapp_result.stdout&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+when: &quot;'ready' in myapp_result.stdout&quot;</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>These examples are a little contrived, but they illustrate basic uses of
 <code>when</code> in your tasks. Here are some examples of uses of <code>when</code> in
 real-world playbooks:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># From our Node.js playbook - register a command&#39;s output, then see
+# if the path to our app is in the output. Start the app if it&#39;s
+# not present.
+- command: forever list
+  register: forever_list
+- command: forever start /path/to/app/app.js
+  when: &quot;forever_list.stdout.find(&#39;/path/to/app/app.js&#39;) == -1&quot;
 <h1 id="run-39ping-hostssh39-script-if-39ping_hosts39-variable-is-true">Run 'ping-hosts.sh' script if 'ping_hosts' variable is true.</h1>
 <ul>
 <li>command: /usr/local/bin/ping-hosts.sh
@@ -873,9 +1252,10 @@ when: &quot;'7.0' in php_version.stdout&quot;</li>
 <li>stat: path=/etc/hosts
 register: hosts_file</li>
 <li>copy: src=path/to/local/file dest=/path/to/remote/file
-when: hosts_file.stat.exists == false<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+when: hosts_file.stat.exists == false</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <h4 id="chap07.xhtml_leanpub-auto-changedwhen-and-failedwhen"><code>changed_when</code> and <code>failed_when</code></h4>
 <p>Just like <code>when</code>, you can use <code>changed_when</code> and <code>failed_when</code> to
 influence Ansible&rsquo;s reporting of when a certain task results in changes
@@ -888,7 +1268,14 @@ also override this behavior by invoking <code>changed_when</code> yourself.</p>
 <p>When using PHP Composer as a command to install project dependencies,
 it&rsquo;s useful to know when Composer installed something, or when nothing
 changed. Here&rsquo;s an example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Install dependencies via Composer.
+2   command: &quot;/usr/local/bin/composer global require phpunit/phpunit --prefer-dist&quot;
+3   register: composer
+4   changed_when: &quot;&#39;Nothing to install or update&#39; not in composer.stdout&quot;</code></pre>
+</div>
+</figure>
 <p>You can see we used <code>register</code> to store the results of the command, then
 we checked whether a certain string was in the registered variable&rsquo;s
 stdout. Only when Composer doesn&rsquo;t do anything will it print &ldquo;Nothing to
@@ -899,7 +1286,16 @@ so <code>failed_when</code> can be used to tell Ansible when a task has <em>actu
 failed and is not just reporting its results in the wrong way. Here&rsquo;s an
 example where we need to parse the stderr of a Jenkins CLI command to
 see if Jenkins did, in fact, fail to perform the command we requested:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Import a Jenkins job via CLI.
+2   shell: &gt;
+3     java -jar /opt/jenkins-cli.jar -s http://localhost:8080/
+4     create-job &quot;My Job&quot; &lt; /usr/local/my-job.xml
+5   register: import
+6   failed_when: &quot;import.stderr and &#39;already exists&#39; not in import.stderr&quot;</code></pre>
+</div>
+</figure>
 <p>In this case, we only want Ansible to report a failure when the command
 returns an error, <strong>and</strong> that error doesn&rsquo;t contain &lsquo;already exists&rsquo;.
 It&rsquo;s debatable whether the command should report a job already exists
@@ -922,22 +1318,50 @@ require Ansible to run the task on the host machine (running the
 playbook) or another host besides the one(s) being managed by the
 playbook. Ansible allows any task to be delegated to a particular host
 using <code>delegate_to</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Add server to Munin monitoring configuration.
+2   command: monitor-server webservers {{ inventory_hostname }}
+3   delegate_to: &quot;{{ monitoring_master }}&quot;</code></pre>
+</div>
+</figure>
 <p>Delegation is often used to manage a server&rsquo;s participation in a load
 balancer or replication pool; you might either run a particular command
 locally (as in the example below), or you could use one of Ansible&rsquo;s
 built-in load balancer modules and <code>delegate_to</code> a specific load
 balancer host directly:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Remove server from load balancer.
+2   command: remove-from-lb {{ inventory_hostname }}
+3   delegate_to: 127.0.0.1</code></pre>
+</div>
+</figure>
 <p>If you&rsquo;re delegating a task to localhost, Ansible has a convenient
 shorthand you can use, <code>local_action</code>, instead of adding the entire
 <code>delegate_to</code> line:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Remove server from load balancer.
+2   local_action: command remove-from-lb {{ inventory_hostname }}</code></pre>
+</div>
+</figure>
 <h4 id="chap07.xhtml_leanpub-auto-pausing-playbook-execution-with-waitfor">Pausing playbook execution with <code>wait_for</code></h4>
 <p>You might also use <code>local_action</code> in the middle of a playbook to wait
 for a freshly-booted server or application to start listening on a
 particular port:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Wait for webserver to start.
+2   local_action:
+3     module: wait_for
+4     host: &quot;{{ inventory_hostname }}&quot;
+5     port: &quot;{{ webserver_port }}&quot;
+6     delay: 10
+7     timeout: 300
+8     state: started</code></pre>
+</div>
+</figure>
 <p>The above task waits until <code>webserver_port</code> is open on
 <code>inventory_hostname</code>, as checked from the host running the Ansible
 playbook, with a 5-minute timeout (and 10 seconds before the first
@@ -962,7 +1386,21 @@ you can use <code>--connection=local</code> to speed up playbook execution by
 avoiding the SSH connection overhead.</p>
 <p>As a quick example, here&rsquo;s a short playbook that you can run with the
 command <code>ansible-playbook test.yml --connection=local</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: 127.0.0.1
+ 3   gather_facts: no
+ 4 
+ 5   tasks:
+ 6     - name: Check the current system date.
+ 7       command: date
+ 8       register: date
+ 9 
+10     - name: Print the current system date.
+11       debug: var=date.stdout</code></pre>
+</div>
+</figure>
 <p>This playbook will run on localhost and output the current date in a
 debug message. It should run <em>very</em> fast (it took about .2 seconds on my
 Mac!) since it&rsquo;s running entirely over a local connection.</p>
@@ -981,7 +1419,20 @@ can be configured (e.g. using environment variables, inventory
 variables, etc.), use <code>vars_prompt</code>.</p>
 <p>As a simple example, you can request a user to enter a username and
 password that could be used to login to a network share:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: all
+ 3 
+ 4   vars_prompt:
+ 5     - name: share_user
+ 6       prompt: &quot;What is your network username?&quot;
+ 7 
+ 8     - name: share_pass
+ 9       prompt: &quot;What is your network password?&quot;
+10       private: yes</code></pre>
+</div>
+</figure>
 <p>Before Ansible runs the play, Ansible prompts the user for a username
 and password, the latter&rsquo;s input being hidden on the command line for
 security purposes.</p>
@@ -1009,14 +1460,46 @@ playbook run.</p>
 <p>You can tag roles, included files, individual tasks, and even entire
 plays. The syntax is simple, and below are examples of the different
 ways you can add tags:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 # You can apply tags to an entire play.
+ 3 - hosts: webservers
+ 4   tags: deploy
+ 5 
+ 6   roles:
+ 7     # Tags applied to a role will be applied to the tasks in the role.
+ 8     - { role: tomcat, tags: [&#39;tomcat&#39;, &#39;app&#39;] }
+ 9 
+10   tasks:
+11     - name: Notify on completion.
+12       local_action:
+13         module: osx_say
+14         msg: &quot;{{inventory_hostname}} is finished!&quot;
+15         voice: Zarvox
+16       tags:
+17         - notifications
+18         - say
+19 
+20     - include: foo.yml
+21       tags: foo</code></pre>
+</div>
+</figure>
 <p>Assuming we save the above playbook as <code>tags.yml</code>, you could run the
 command below to only run the <code>tomcat</code> role and the
 <code>Notify on completion</code> task:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 $ ansible-playbook tags.yml --tags &quot;tomcat,say&quot;</code></pre>
+</div>
+</figure>
 <p>If you want to exclude anything tagged with <code>notifications</code>, you can use
 <code>--skip-tags</code>.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 $ ansible-playbook tags.yml --skip-tags &quot;notifications&quot;</code></pre>
+</div>
+</figure>
 <p>This is incredibly handy if you have a decent tagging structure; when
 you want to only run a particular portion of a playbook, or one play in
 a series (or, alternatively, if you want to exclude a play or included
@@ -1025,7 +1508,10 @@ tasks), then it&rsquo;s easy to do using <code>--tags</code> or <code>--skip-tag
 option in a playbook: you can use the shorthand <code>tags: tagname</code> when
 adding just one tag, but if adding more than one tag, you have to use
 YAML&rsquo;s list syntax, for example:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code># Shorthand list syntax.
+tags: [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]
 <h1 id="explicit-list-syntax">Explicit list syntax.</h1>
 <p>tags:</p>
 <ul>
@@ -1034,8 +1520,9 @@ YAML&rsquo;s list syntax, for example:</p>
 <li>three</li>
 </ul>
 <h1 id="non-working-example">Non-working example.</h1>
-<p>tags: one, two, three<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+<p>tags: one, two, three</code></pre></p>
+</div>
+</figure>
 <p>In general, I tend to use tags for larger playbooks, especially with
 individual roles and plays, but unless I&rsquo;m debugging a set of tasks, I
 generally avoid adding tags to individual tasks or includes (not adding
@@ -1049,7 +1536,28 @@ also allow you to handle errors inside the blocks in a way similar to
 most programming languages&rsquo; exception handling.</p>
 <p>Here&rsquo;s an example playbook that uses blocks with <code>when</code> to run group of
 tasks specific to one platform without <code>when</code> parameters on each task:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 ---
+ 2 - hosts: web
+ 3   tasks:
+ 4     # Install and configure Apache on RedHat/CentOS hosts.
+ 5     - block:
+ 6         - yum: name=httpd state=present
+ 7         - template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+ 8         - service: name=httpd state=started enabled=yes
+ 9       when: ansible_os_family == &#39;RedHat&#39;
+10       sudo: yes
+11 
+12     # Install and configure Apache on Debian/Ubuntu hosts.
+13     - block:
+14         - apt: name=apache2 state=present
+15         - template: src=httpd.conf.j2 dest=/etc/apache2/apache2.conf
+16         - service: name=apache2 state=started enabled=yes
+17       when: ansible_os_family == &#39;Debian&#39;
+18       sudo: yes</code></pre>
+</div>
+</figure>
 <p>If you want to perform a series of tasks with one set of task parameters
 (e.g. <code>with_items</code>, <code>when</code>, or <code>sudo</code>) applied, blocks are quite handy.</p>
 <p>Blocks are also useful if you want to be able to gracefully handle
@@ -1058,7 +1566,20 @@ to a monitoring service that&rsquo;s not essential for a deployment to
 succeed, so it would be better to gracefully handle a failure than to
 bail out of the entire deployment!</p>
 <p>Here&rsquo;s how to use a block to gracefully handle task failures:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 tasks:
+ 2   - block:
+ 3       - name: Shell script to connect the app to a monitoring service.
+ 4         script: monitoring-connect.sh
+ 5     rescue:
+ 6       - name: This will only run in case of an error in the block.
+ 7         debug: msg=&quot;There was an error in the block.&quot;
+ 8     always:
+ 9       - name: This will always run, no matter what.
+10         debug: msg=&quot;This always executes.&quot;</code></pre>
+</div>
+</figure>
 <p>Tasks inside the <code>block</code> will be run first. If there is a failure in any
 task in <code>block</code>, tasks inside <code>rescue</code> will be run. The tasks inside
 <code>always</code> will always be run, whether or not there were failures in
@@ -1077,7 +1598,20 @@ tags, and more.</p>
 <p>The more you understand the fundamental components of a playbook, the
 more efficient you will be at building and expanding your infrastructure
 with Ansible.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code> ____________________________________
+/ Men have become the tools of their \
+\ tools. (Henry David Thoreau)       /
+ ------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre>
+</div>
+</figure>
+:::
 <p>[]{#chap08.xhtml}</p>
 <p>::: {}</p>
 
@@ -1128,69 +1662,52 @@ with Ansible.</p>
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/"><input type="checkbox" id="R-section-ee5145c58612a384986769058046b746" aria-controls="R-subsections-ee5145c58612a384986769058046b746"><label for="R-section-ee5145c58612a384986769058046b746"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ad Hoc Commands and Scripting</span></label><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a><ul id="R-subsections-ee5145c58612a384986769058046b746" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/control-node/"><input type="checkbox" id="R-section-51256f203510628e0492e57fa1dd1ec6" aria-controls="R-subsections-51256f203510628e0492e57fa1dd1ec6"><label for="R-section-51256f203510628e0492e57fa1dd1ec6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Control Node</span></label><a class="padding" href="/ansible/control-node/">Control Node</a><ul id="R-subsections-51256f203510628e0492e57fa1dd1ec6" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/control-node/ansible.cfg/"><a class="padding" href="/ansible/control-node/ansible.cfg/">Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/control-node/optimizing-ansible-processing/"><a class="padding" href="/ansible/control-node/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
-            <li class="" data-nav-url="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-files/"><input type="checkbox" id="R-section-7c974a7c4dcf3453ccace14c7f38f13f" aria-controls="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f"><label for="R-section-7c974a7c4dcf3453ccace14c7f38f13f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-files/">Deploying Files</a><ul id="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/jinja2-templates/"><a class="padding" href="/ansible/deploying-files/jinja2-templates/">Jinja2 templates</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/">Jinja2 templates</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-systems/"><input type="checkbox" id="R-section-7cc469ebbd5f7e560963779b9675e597" aria-controls="R-subsections-7cc469ebbd5f7e560963779b9675e597"><label for="R-section-7cc469ebbd5f7e560963779b9675e597"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-systems/">Deploying Files</a><ul id="R-subsections-7cc469ebbd5f7e560963779b9675e597" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/execution-environments/"><input type="checkbox" id="R-section-65eb33a34997cd45f5f49229981c4d2e" aria-controls="R-subsections-65eb33a34997cd45f5f49229981c4d2e"><label for="R-section-65eb33a34997cd45f5f49229981c4d2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/execution-environments/">Execution Environments</a><ul id="R-subsections-65eb33a34997cd45f5f49229981c4d2e" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/execution-environments/ansible-builder/"><a class="padding" href="/ansible/execution-environments/ansible-builder/">Ansible Builder</a></li>
-            <li class="" data-nav-url="/ansible/execution-environments/execution-environments/"><a class="padding" href="/ansible/execution-environments/execution-environments/">Execution Environments</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/inventory/"><input type="checkbox" id="R-section-3f39b2671b9b2dd1dbc36a62b346565a" aria-controls="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a"><label for="R-section-3f39b2671b9b2dd1dbc36a62b346565a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Inventory</span></label><a class="padding" href="/ansible/inventory/">Inventory</a><ul id="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory-command/"><a class="padding" href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></li>
-            <li class="" data-nav-url="/ansible/inventory/dynamic-inventory/"><a class="padding" href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></li>
-            <li class="" data-nav-url="/ansible/inventory/host-name-patterns/"><a class="padding" href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></li>
-            <li class="" data-nav-url="/ansible/inventory/using-multiple-inventories/"><a class="padding" href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/"><input type="checkbox" id="R-section-05c9cec6fb3311e0ece69447be6c4228" aria-controls="R-subsections-05c9cec6fb3311e0ece69447be6c4228"><label for="R-section-05c9cec6fb3311e0ece69447be6c4228"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Processes and Tasks</span></label><a class="padding" href="/ansible/managing-processes-and-tasks/">Managing Processes and Tasks</a><ul id="R-subsections-05c9cec6fb3311e0ece69447be6c4228" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/boot-process/"><a class="padding" href="/ansible/managing-processes-and-tasks/boot-process/">Boot Process</a></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/managing-services/"><a class="padding" href="/ansible/managing-processes-and-tasks/managing-services/">Managing Services</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-software/"><input type="checkbox" id="R-section-e50056380ffea3713f175f637f3fbaba" aria-controls="R-subsections-e50056380ffea3713f175f637f3fbaba"><label for="R-section-e50056380ffea3713f175f637f3fbaba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Software</span></label><a class="padding" href="/ansible/managing-software/">Managing Software</a><ul id="R-subsections-e50056380ffea3713f175f637f3fbaba" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-software/managing-packages/"><a class="padding" href="/ansible/managing-software/managing-packages/">Managing Packages</a></li>
-            <li class="" data-nav-url="/ansible/managing-software/repositories-and-subscriptions/"><a class="padding" href="/ansible/managing-software/repositories-and-subscriptions/">Repositories and subscriptions</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-users/"><input type="checkbox" id="R-section-354866278232268d590e2ad621c06543" aria-controls="R-subsections-354866278232268d590e2ad621c06543"><label for="R-section-354866278232268d590e2ad621c06543"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Users</span></label><a class="padding" href="/ansible/managing-users/">Managing Users</a><ul id="R-subsections-354866278232268d590e2ad621c06543" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-users/encrypted-passwords/"><a class="padding" href="/ansible/managing-users/encrypted-passwords/">Encrypted passwords</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/ssh-connections/"><a class="padding" href="/ansible/managing-users/ssh-connections/">SSH Connections</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/users-and-groups/"><a class="padding" href="/ansible/managing-users/users-and-groups/">Users and Groups</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/modules/"><input type="checkbox" id="R-section-05027151b340155a251c0bf45517b410" aria-controls="R-subsections-05027151b340155a251c0bf45517b410"><label for="R-section-05027151b340155a251c0bf45517b410"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Modules</span></label><a class="padding" href="/ansible/modules/">Modules</a><ul id="R-subsections-05027151b340155a251c0bf45517b410" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/networking/"><input type="checkbox" id="R-section-88666d047a19e08ea2a7a1f576522811" aria-controls="R-subsections-88666d047a19e08ea2a7a1f576522811"><label for="R-section-88666d047a19e08ea2a7a1f576522811"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/ansible/networking/">Networking</a><ul id="R-subsections-88666d047a19e08ea2a7a1f576522811" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/playbooks/"><input type="checkbox" id="R-section-b39ec7807a35bbb89ede99e74c3f8d1c" aria-controls="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c"><label for="R-section-b39ec7807a35bbb89ede99e74c3f8d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Playbooks</span></label><a class="padding" href="/ansible/playbooks/">Playbooks</a><ul id="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
-            <li class="" data-nav-url="/ansible/playbooks/including-and-importing-files/"><a class="padding" href="/ansible/playbooks/including-and-importing-files/">Including and importing Files</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/roles/"><input type="checkbox" id="R-section-c3ddf4cba330014798b46f124f863578" aria-controls="R-subsections-c3ddf4cba330014798b46f124f863578"><label for="R-section-c3ddf4cba330014798b46f124f863578"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Roles</span></label><a class="padding" href="/ansible/roles/">Roles</a><ul id="R-subsections-c3ddf4cba330014798b46f124f863578" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/roles/ansible-galaxy-roles/"><a class="padding" href="/ansible/roles/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-rhel-system-roles/"><a class="padding" href="/ansible/roles/using-rhel-system-roles/">Using RHEL System roles</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/storage/"><input type="checkbox" id="R-section-25ab7c76118917bd6f4fb3e45062f785" aria-controls="R-subsections-25ab7c76118917bd6f4fb3e45062f785"><label for="R-section-25ab7c76118917bd6f4fb3e45062f785"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/ansible/storage/">Storage</a><ul id="R-subsections-25ab7c76118917bd6f4fb3e45062f785" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/storage/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/storage/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
-            <li class="" data-nav-url="/ansible/storage/discovering-storage-related-facts/"><a class="padding" href="/ansible/storage/discovering-storage-related-facts/">Discovering storage related facts</a></li>
-            <li class="" data-nav-url="/ansible/storage/managing-partitions-and-lvm/"><a class="padding" href="/ansible/storage/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
-            <li class="" data-nav-url="/ansible/storage/nfs-setup/"><a class="padding" href="/ansible/storage/nfs-setup/">NFS Setup</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/task-control/"><input type="checkbox" id="R-section-c50bd62a6e6f9028be7fd82767f99cd1" aria-controls="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1"><label for="R-section-c50bd62a6e6f9028be7fd82767f99cd1"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Task Control</span></label><a class="padding" href="/ansible/task-control/">Task Control</a><ul id="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/task-control/handlers/"><a class="padding" href="/ansible/task-control/handlers/">Handlers</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-loops-and-items/"><a class="padding" href="/ansible/task-control/using-loops-and-items/">Using Loops and Items</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/task-control/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/"><input type="checkbox" id="R-section-26d24f44bc3f5644df734f08181e3e2d" aria-controls="R-subsections-26d24f44bc3f5644df734f08181e3e2d"><label for="R-section-26d24f44bc3f5644df734f08181e3e2d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Troubleshooting</span></label><a class="padding" href="/ansible/troubleshooting/">Troubleshooting</a><ul id="R-subsections-26d24f44bc3f5644df734f08181e3e2d" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-tags/"><a class="padding" href="/ansible/troubleshooting/using-tags/">Using Tags</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/"><input type="checkbox" id="R-section-ff32daa8bc11229d5eacc0820ee4c786" aria-controls="R-subsections-ff32daa8bc11229d5eacc0820ee4c786"><label for="R-section-ff32daa8bc11229d5eacc0820ee4c786"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Variable and Facts</span></label><a class="padding" href="/ansible/variables-and-facts/">Variable and Facts</a><ul id="R-subsections-ff32daa8bc11229d5eacc0820ee4c786" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-facts/"><a class="padding" href="/ansible/variables-and-facts/ansible-facts/">Ansible Facts</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-vault/"><a class="padding" href="/ansible/variables-and-facts/ansible-vault/">Ansible Vault</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
-            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-5---ansible-playbooks---beyond-the-basics/"><a class="padding" href="/ansible/ansible4devops/chapter-5---ansible-playbooks---beyond-the-basics/"></a></li></ul></li>
+            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-5---ansible-playbooks---beyond-the-basics/"><a class="padding" href="/ansible/ansible4devops/chapter-5---ansible-playbooks---beyond-the-basics/"></a></li>
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments-1/"><a class="padding" href="/ansible/execution-environments-1/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="" data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
             <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
             <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
             <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
@@ -1288,22 +1805,22 @@ with Ansible.</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762537425" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762537425" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762537425" defer></script>
-    <script src="/js/theme.min.js?1762537425" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
   </body>
 </html>

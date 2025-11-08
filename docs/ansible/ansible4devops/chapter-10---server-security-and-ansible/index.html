@@ -25,31 +25,31 @@ Use secure and encrypted communication. Disable root login and use sudo. Remove 
     <meta itemprop="description" content="Chapter 10 - Server Security and Ansible The first configuration to be performed on any new server—especially any server with any exposure (direct or indirect) to the public Internet)—is security configuration.
 There are nine basic measures to ensure servers are secure from unauthorized access or intercepted communications:
 Use secure and encrypted communication. Disable root login and use sudo. Remove unused software, open only required ports. Use the principle of least privilege. Update the OS and installed software. Use a properly-configured firewall. Make sure log files are populated and rotated. Monitor logins and block suspect IP addresses. Use SELinux (Security-Enhanced Linux). Your infrastructure is as weak as the weakest server; in many high-profile security breaches, one poorly-secured server acts as a gateway into the rest of the network. Don’t let your servers be those servers! Good security also helps you achieve the holy grail of system administration—100% uptime.">
-    <meta itemprop="wordCount" content="5313">
+    <meta itemprop="wordCount" content="6023">
     <title></title>
     <link href="/ansible/ansible4devops/chapter-10---server-security-and-ansible/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="/ansible/ansible4devops/chapter-10---server-security-and-ansible/index.print.html" rel="alternate" type="text/html" title="">
-    <link href="/images/favicon.svg?1762537425" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762537425" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762537425" defer></script>
-    <script src="/js/search-lunr.min.js?1762537425" defer></script>
-    <script src="/js/search.min.js?1762537425" defer></script>
+    <link href="/images/favicon.svg?1762635744" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1762635744" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1762635744" defer></script>
+    <script src="/js/search-lunr.min.js?1762635744" defer></script>
+    <script src="/js/search.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762537425";
+      window.relearn.index_js_url="/searchindex.en.js?1762635744";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762537425" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762537425" defer></script>
+    <script src="/js/lunr/lunr.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1762635744" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1762635744" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762537425" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762537425" rel="stylesheet">
-    <link href="/css/theme.min.css?1762537425" rel="stylesheet">
-    <link href="/css/format-html.min.css?1762537425" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762635744" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762635744" rel="stylesheet">
+    <link href="/css/theme.min.css?1762635744" rel="stylesheet">
+    <link href="/css/format-html.min.css?1762635744" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -124,7 +124,7 @@ Use secure and encrypted communication. Disable root login and use sudo. Remove 
 <span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
             </div>
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/variables-and-facts/variables/" title="Variables (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
 
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -165,7 +165,7 @@ Use secure and encrypted communication. Disable root login and use sudo. Remove 
             </div>
 
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/bash/" title="Bash (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/ad-hoc-ansible-commands/" title="Ad Hoc Ansible Commands (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
 
 
@@ -244,7 +244,7 @@ connections, or checking if a particular service is operating correctly
 on a remote server (like an HTTP server on port 80, mysql on port 3306,
 or munin on port 4949), but it is not installed by default on modern
 Linux distributions.</p>
-<!-- raw HTML omitted -->
+<aside class="warning blurb">
 <p>Plain text communications over a network are only as secure as the
 network&rsquo;s weakest link. In the early days of computer networking,
 networks were usually isolated to a specific company or educational
@@ -268,7 +268,7 @@ Each of these connection points&mdash;and each network device and cable
 connecting them&mdash;is a weak point exposing you to a man-in-the-middle
 attack. Strong encryption is needed between your computer and the
 destination if you want to ensure data security.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap12.xhtml_leanpub-auto-rlogin-rsh-and-rcp">rlogin, rsh and rcp</h4>
 <p><code>rlogin</code> was introduced in BSD 4.2 in 1983, and has been distributed
 with many UNIX-like systems alongside Telnet until recently. rlogin was
@@ -429,12 +429,35 @@ over an encrypted connection.</p>
 authentication (make sure you can already log in via your SSH key before
 you do this!), disable remote root login, and change the port over which
 SSH operates. Let&rsquo;s do it!</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - hosts: example
+ 2   tasks:
+ 3     - name: Update SSH configuration to be more secure.
+ 4       lineinfile:
+ 5         dest: /etc/ssh/sshd_config
+ 6         regexp: &quot;{{ item.regexp }}&quot;
+ 7         line: &quot;{{ item.line }}&quot;
+ 8         state: present
+ 9       with_items:
+10         - regexp: &quot;^PasswordAuthentication&quot;
+11           line: &quot;PasswordAuthentication no&quot;
+12         - regexp: &quot;^PermitRootLogin&quot;
+13           line: &quot;PermitRootLogin no&quot;
+14         - regexp: &quot;^Port&quot;
+15           line: &quot;Port 2849&quot;
+16       notify: restart ssh
+17 
+18   handlers:
+19     - name: restart ssh
+20       service: name=ssh state=restarted</code></pre>
+</div>
+</figure>
 <p>In this extremely simple playbook, we set three options in SSH
 configuration (<code>PasswordAuthentication no</code>, <code>PermitRootLogin no</code>, and
 <code>Port 2849</code>) using Ansible&rsquo;s <code>lineinfile</code> module, then use a handler we
 define in the <code>handlers</code> section to restart the ssh service.</p>
-<!-- raw HTML omitted -->
+<aside class="warning blurb">
 <p>If you change certain SSH settings, like the port for SSH, you need to
 make sure Ansible&rsquo;s inventory is updated. You can explicitly define the
 SSH port for a host with the option <code>ansible_ssh_port</code>, and the local
@@ -442,7 +465,7 @@ path to a private key file (identity file) with
 <code>ansible_ssh_private_key_file</code>, though Ansible uses keys defined by your
 <code>ssh-agent</code> setup, so typically a manual definition of the key file is
 not required.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap12.xhtml_leanpub-auto-disable-root-login-and-use-sudo">Disable root login and use <code>sudo</code></h3>
 <p>We&rsquo;ve already disabled root login with Ansible&rsquo;s <code>lineinfile</code> module in
 the previous section, but we&rsquo;ll cover a general Linux best practice
@@ -460,7 +483,13 @@ or admin-level system account, and use the <code>sudo</code> parameter with a va
 of <code>yes</code> with any play or playbook include requiring elevated
 privileges. For example, if restarting Apache requires elevated
 privileges, you would write the play like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Restart Apache.
+  service: name=httpd state=restarted
+  sudo: yes</code></pre>
+</div>
+</figure>
 <p>Add <code>sudo_user: [username]</code> to a task to specify a specific user account
 to use with <code>sudo</code> (this will only apply if <code>sudo</code> is already set on the
 task or in the playbook).</p>
@@ -470,7 +499,16 @@ required to enter a password, among other things.</p>
 <p>As an example, set up the user <code>johndoe</code> with permission to use any
 command as root via <code>sudo</code> by adding a line in the <code>/etc/sudoers</code> file
 with Ansible&rsquo;s <code>lineinfile</code> module:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Add sudo group rights for deployment user.
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: &#39;^%johndoe&#39;
+    line: &#39;johndoe ALL=(ALL) NOPASSWD: ALL&#39;
+    state: present</code></pre>
+</div>
+</figure>
 <p>If you&rsquo;re ever editing the sudoers file by hand, you should use
 <code>visudo</code>, which validates your changes and makes sure you don&rsquo;t break
 sudo when you save the changes. When using Ansible with <code>lineinfile</code>,
@@ -479,20 +517,28 @@ is correct.</p>
 <p>Another way of changing the sudoers file, and ensuring the integrity of
 the file, is to create a sudoers file locally, and copy it using
 Ansible&rsquo;s <code>copy</code> module, with a validation command, like so:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Copy validated sudoers file into place.
+  copy:
+    src: sudoers
+    dest: /etc/sudoers
+    validate: &#39;visudo -cf %s&#39;</code></pre>
+</div>
+</figure>
 <p>The <code>%s</code> is a placeholder for the file&rsquo;s path, and will be filled in by
 Ansible before the sudoers file is copied into its final destination.
 The same parameter can be passed into Ansible&rsquo;s <code>template</code> module, if
 you need to copy a filled-in template to the server instead of a static
 file.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>The sudoers file syntax is very powerful and flexible, but also a bit
 obtuse. Read the entire <a href="http://www.sudo.ws/sudoers.man.html" rel="external" target="_blank">Sudoers
 Manual</a> for all the details, or
 check out the <a href="http://www.sudo.ws/sudo/sample.sudoers" rel="external" target="_blank">sample sudoers
 file</a> for some practical
 examples.</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap12.xhtml_leanpub-auto-remove-unused-software-open-only-required-ports">Remove unused software, open only required ports</h3>
 <p>Before the widespread use of configuration management tools for servers,
 when snowflake servers were the norm, servers would become bloated with
@@ -505,7 +551,16 @@ infrastructure, this shouldn&rsquo;t be an issue, since you could just bring
 up new servers to replace old ones when you have major configuration
 and/or package changes. But if not, consider adding in a &lsquo;cleanup&rsquo; role
 or at least a task to remove packages that shouldn&rsquo;t be installed, like:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Remove unused packages.
+2   apt: name={{ item }} state=absent purge=yes
+3   with_items:
+4     - apache2
+5     - nano
+6     - mailutils</code></pre>
+</div>
+</figure>
 <p>With modules like <code>yum</code>, <code>apt</code>, <code>file</code>, and <code>mysql_db</code>, a <code>state=absent</code>
 parameter means Ansible will remove whatever packages, files or
 databases you want, and will check to make sure this is still the case
@@ -549,19 +604,39 @@ etc.), you should explicitly define the correct permissions and
 ownership. For example, for a configuration file (in our example, the
 GitLab configuration file) that should <em>only</em> be readable or writeable
 by the root user, set the following:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Configure the GitLab global configuration file.
+2   file:
+3     path: /etc/gitlab/gitlab.rb
+4     owner: root
+5     group: root
+6     mode: 0600</code></pre>
+</div>
+</figure>
+<aside class="information blurb">
 <p>File permissions may seem a bit obtuse, and sometimes, they may cause
 headaches. But in reality, using octal numbers to represent file
 permissions is a helpful way to encapsulate a lot of configuration in
 three numbers. The main thing to remember is the following: for each of
 the file&rsquo;s <em>user</em>, <em>group</em>, and for <em>everyone</em> (each of the three
 digits), use the following digits to represent permission levels:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>7: rwx (read/write/execute)
+6: rw- (read/write)
+5: r-x (read/execute)
+4: r-- (read)
+3: -wx (write/execute)
+2: -w- (write)
+1: --x (execute)
+0: --- (no permissions)</code></pre>
+</div>
+</figure>
 <p>Basically, 4 = read, 2 = write and 1 = execute. Therefore read (4) and
 write (2) is 6 in the octal representation, and read (4) and execute (1)
 is 5.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>Less experienced admins are overly permissive, setting files and
 directories to <code>777</code> to fix issues they have with their applications. To
 allow one user (for example, your webserver user, <code>httpd</code> or <code>nginx</code>)
@@ -588,9 +663,17 @@ applying the same on your production infrastructure.</p>
 described via Ansible inventories, you should be able to use a command
 like the following to upgrade all installed packages on a RedHat-based
 system:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible webservers -m yum -a &quot;name=* state=latest&quot;</code></pre>
+</div>
+</figure>
 <p>On a Debian-based system, the syntax is similar:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ ansible webservers -m apt -a &quot;upgrade=dist update_cache=yes&quot;</code></pre>
+</div>
+</figure>
 <p>The above commands will upgrade <em>everything</em> installed on your server.
 Sometimes, you only want to install security-related updates, or exclude
 certain packages. In those cases, you need to configure <code>yum</code> or <code>apt</code>
@@ -604,20 +687,28 @@ frequent automated upgrades (especially if your application has been
 known to break due to past package updates, or relies on custom builds
 or specific package versions), but if you do it for your servers, it
 will increase the depth of your infrastructure&rsquo;s security.</p>
-<!-- raw HTML omitted -->
+<aside class="warning blurb">
 <p>As mentioned in an earlier sidebar, GPG package signature checking is
 enabled by default for all package-related functionality. It&rsquo;s best to
 leave GPG checks in place, and import keys from trusted sources when
 necessary, <em>especially</em> when using automatic updates, if you want to
 prevent potentially insecure packages from being installed on your
 servers!</p>
-<!-- raw HTML omitted -->
+</aside>
 <h4 id="chap12.xhtml_leanpub-auto-automating-updates-for-redhat-based-systems">Automating updates for RedHat-based systems</h4>
 <p>RedHat 6 and later (and modern versions of Fedora, and RedHat
 derivatives like CentOS) uses a cron-based package, <code>yum-cron</code>, for
 automatic updates. For basic, set-and-forget usage, install <code>yum-cron</code>
 and make sure it&rsquo;s started and set to run on system boot:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 - name: Install yum-cron.
+2   yum: name=yum-cron state=present
+3 
+4 - name: Ensure yum-cron is running and enabled on boot.
+5   service: name=yum-cron state=started enabled=yes</code></pre>
+</div>
+</figure>
 <p>Further configuration (such as packages to exclude from automatic
 updates) is done in the <code>yum.conf</code> file, at <code>/etc/yum.conf</code>.</p>
 <h4 id="chap12.xhtml_leanpub-auto-automating-updates-for-debian-based-systems">Automating updates for Debian-based systems</h4>
@@ -625,23 +716,57 @@ updates) is done in the <code>yum.conf</code> file, at <code>/etc/yum.conf</code
 package to configure automatic updates. Like <code>yum-cron</code>, it is easy to
 install, and its configuration is placed in a variety of files within
 <code>/etc/apt/apt.conf.d/</code>:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - name: Install unattended upgrades package.
+ 2   apt: name=unattended-upgrades state=present
+ 3 
+ 4 - name: Copy unattended-upgrades configuration files in place.
+ 5   template:
+ 6     src: &quot;../templates/{{ item }}.j2&quot;
+ 7     dest: &quot;/etc/apt/apt.conf.d/{{ item }}&quot;
+ 8     owner: root
+ 9     group: root
+10     mode: 0644
+11   with_items:
+12     - 10periodic
+13     - 50unattended-upgrades</code></pre>
+</div>
+</figure>
 <p>The template files copied in the second task should look something like
 the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 # File: /etc/apt/apt.conf.d/10periodic
+2 APT::Periodic::Update-Package-Lists &quot;1&quot;;
+3 APT::Periodic::Download-Upgradeable-Packages &quot;1&quot;;
+4 APT::Periodic::AutocleanInterval &quot;7&quot;;
+5 APT::Periodic::Unattended-Upgrade &quot;1&quot;;</code></pre>
+</div>
+</figure>
 <p>This file provides configuration for the <code>apt</code> script that runs as part
 of the unattended upgrades package, and tells apt whether to enable
 unattended upgrades.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code>1 # File: /etc/apt/apt.conf.d/50unattended-upgrades
+2 Unattended-Upgrade::Automatic-Reboot &quot;false&quot;;
+3 
+4 Unattended-Upgrade::Allowed-Origins {
+5         &quot;Ubuntu lucid-security&quot;;
+6 //      &quot;Ubuntu lucid-updates&quot;;
+7 };</code></pre>
+</div>
+</figure>
 <p>This file provides further configuration for unattended upgrades, like
 whether to automatically restart the server for package and kernel
 upgrades requiring a reboot, or what <code>apt</code> sources should be checked for
 updated packages.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>Make sure you get notifications or check in on your servers periodically
 so you know when they&rsquo;ll need a manual reboot if you have
 <code>Automatic-Reboot</code> set to <code>false</code>!</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap12.xhtml_leanpub-auto-use-a-properly-configured-firewall">Use a properly-configured firewall</h3>
 <p>If you were building a secure bank vault, you wouldn&rsquo;t want to have a
 many doors and windows leading into the vault. You&rsquo;d instead build
@@ -659,11 +784,38 @@ other external firewall services.</p>
 <p>Below is an entire firewall configuration to lock down most everything
 on a Debian or Ubuntu server, allowing traffic only through ports 22
 (SSH), 80 (HTTP), and 123 (NTP):</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - name: Configure open ports with ufw.
+ 2   ufw:
+ 3     rule: &quot;{{ item.rule }}&quot;
+ 4     port: &quot;{{ item.port }}&quot;
+ 5     proto: &quot;{{ item.proto }}&quot;
+ 6   with_items:
+ 7     - { rule: &#39;allow&#39;, port: 22, proto: &#39;tcp&#39; }
+ 8     - { rule: &#39;allow&#39;, port: 80, proto: &#39;tcp&#39; }
+ 9     - { rule: &#39;allow&#39;, port: 123, proto: &#39;udp&#39; }
+10 
+11 - name: Configure default incoming/outgoing rules with ufw.
+12   ufw:
+13     direction: &quot;{{ item.direction }}&quot;
+14     policy: &quot;{{ item.policy }}&quot;
+15     state: enabled
+16   with_items:
+17     - { direction: outgoing, policy: allow }
+18     - { direction: incoming, policy: deny }</code></pre>
+</div>
+</figure>
 <p>If you run a playbook with the above rules, the log into the machine (or
 use the <code>ansible</code> command) and run <code>sudo ufw status verbose</code>, you should
 see the configuration has been updated to the following:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
 <p>To                         Action      From</p>
 <hr>
 <p>22/tcp                     ALLOW IN    Anywhere
@@ -671,25 +823,54 @@ see the configuration has been updated to the following:</p>
 123/udp                    ALLOW IN    Anywhere
 22/tcp (v6)                ALLOW IN    Anywhere (v6)
 80/tcp (v6)                ALLOW IN    Anywhere (v6)
-123/udp (v6)               ALLOW IN    Anywhere (v6)<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+123/udp (v6)               ALLOW IN    Anywhere (v6)</code></pre></p>
+</div>
+</figure>
 <h4 id="chap12.xhtml_leanpub-auto-configuring-a-firewall-with-firewalld-on-redhat-fedora-or-centos">Configuring a firewall with <code>firewalld</code> on RedHat, Fedora, or CentOS</h4>
 <p>The same firewall configuration can be done via <code>firewalld</code> for
 RedHat-based systems with similar ease:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - name: Configure open ports with firewalld.
+ 2   firewalld:
+ 3     state: &quot;{{ item.state }}&quot;
+ 4     port: &quot;{{ item.port }}&quot;
+ 5     zone: external
+ 6     immediate: yes
+ 7     permanent: yes
+ 8   with_items:
+ 9     - { state: &#39;enabled&#39;, port: &#39;22/tcp&#39; }
+10     - { state: &#39;enabled&#39;, port: &#39;80/tcp&#39; }
+11     - { state: &#39;enabled&#39;, port: &#39;123/udp&#39; }</code></pre>
+</div>
+</figure>
+<aside class="warning blurb">
 <p>The <code>immediate</code> parameter was added in Ansible 1.9, and is required to
 make the rules effective immediately when the <code>permanent</code> parameter is
 set to <code>yes</code>. If you are running an older version of Ansible, you will
 need to restart to see your changes, or set <code>permanent</code> to <code>no</code>.</p>
-<!-- raw HTML omitted -->
+</aside>
+<aside class="information blurb">
 <p><code>firewalld</code> doesn&rsquo;t have an explicit command to allow setting default
 inbound/outbound policies, but you can still use <code>iptables</code> commands or
 manage the firewall via XML files inside <code>/etc/firewalld</code>.</p>
-<!-- raw HTML omitted -->
+</aside>
 <p>If you run <code>sudo firewall-cmd --zone=external --list-all</code>, you should
 see the open ports:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>$ sudo firewall-cmd --zone=external --list-all
+external
+  interfaces:
+  sources:
+  services: ssh
+  ports: 123/udp 80/tcp 22/tcp
+  masquerade: yes
+  forward-ports:
+  icmp-blocks:
+  rich rules:</code></pre>
+</div>
+</figure>
 <p>Some still prefer configuring firewalls with <code>iptables</code> (which is
 sometimes obtuse, but is almost infinitely malleable). This approach is
 used in the <code>geerlingguy.firewall</code> role on Ansible Galaxy, which
@@ -702,12 +883,12 @@ security-related discussions: only allow access on ports absolutely
 necessary for the functionality of your server, and restrict the use of
 those ports to only the hosts or subnets needing access to the services
 listening on the ports.</p>
-<!-- raw HTML omitted -->
+<aside class="tip blurb">
 <p>When you&rsquo;re building up a firewall, make sure you don&rsquo;t accidentally
 lock down ports or IP addresses that will lock you out of the server
 entirely, otherwise you&rsquo;ll have to connect to the server through a local
 terminal connection and start over!</p>
-<!-- raw HTML omitted -->
+</aside>
 <h3 id="chap12.xhtml_leanpub-auto-make-sure-log-files-are-populated-and-rotated">Make sure log files are populated and rotated</h3>
 <p>Checking server logs is one of the most effective ways to not only see
 what attacks have taken place on a server, but also to see trends over
@@ -717,7 +898,22 @@ potential catastrophe.</p>
 effective data, aren&rsquo;t being monitored in any way, or are <em>the cause</em> of
 an outage! Many root cause analyses conclude, &ldquo;the server&rsquo;s disk was
 full because log file <em>x</em> took up all the free space&rdquo;.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 sshd[19731]: input_userauth_request: invalid user db2admin
+ 2 sshd[19731]: Received disconnect from 218.78.214.9: 11: Bye Bye
+ 3 sshd[19732]: Invalid user jenkins from 218.78.214.9
+ 4 sshd[19733]: input_userauth_request: invalid user jenkins
+ 5 sshd[19733]: Received disconnect from 218.78.214.9: 11: Bye Bye
+ 6 sshd[19734]: Invalid user jenkins from 218.78.214.9
+ 7 sshd[19735]: input_userauth_request: invalid user jenkins
+ 8 sshd[19735]: Received disconnect from 218.78.214.9: 11: Bye Bye
+ 9 sshd[19736]: Invalid user minecraft from 218.78.214.9
+10 sshd[19737]: input_userauth_request: invalid user minecraft
+11 sshd[19737]: Received disconnect from 218.78.214.9: 11: Bye Bye</code></pre>
+</div>
+<figcaption>I have my eyes on you, 218.78.214.9…</figcaption>
+</figure>
 <p>Only you will know what logs are the most important to monitor on your
 servers, but some of the most common ones are database slow query logs,
 webserver access and error logs, authorization logs, and cron logs. Use
@@ -746,7 +942,20 @@ unsuccessful login attempts in a given period of time.</p>
 <p>Here&rsquo;s a set of tasks you could add to your playbook to install Fail2Ban
 and make sure it&rsquo;s started on either Debian or RedHat-based
 distributions:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre class="lineno"><code> 1 - name: Install fail2ban (RedHat).
+ 2   yum: name=fail2ban state=present enablerepo=epel
+ 3   when: ansible_os_family == &#39;RedHat&#39;
+ 4 
+ 5 - name: Install fail2ban (Debian).
+ 6   apt: name=fail2ban state=present
+ 7   when: ansible_os_family == &#39;Debian&#39;
+ 8 
+ 9 - name: Ensure fail2ban is running and enabled on boot.
+10   service: name=fail2ban state=started enabled=yes</code></pre>
+</div>
+</figure>
 <p>Fail2Ban configuration is managed in a series of <code>.conf</code> files inside
 <code>/etc/fail2ban</code>, and most configuration can be done by overriding
 defaults in a local override file, <code>/etc/fail2ban/jail.local</code>. See the
@@ -777,16 +986,25 @@ cover SELinux in a bit more depth.</p>
 <p>To enable SELinux in <code>targeted</code> mode (which is the most secure mode
 without being almost impossible to work with), make sure the Python
 SELinux library is installed, then use Ansible&rsquo;s <code>selinux</code> module:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Install Python SELinux library.
+  yum: name=libselinux-python state=present
 <ul>
 <li>Ensure SELinux is enabled in <code>targeted</code> mode.
-selinux: policy=targeted state=enforcing<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+selinux: policy=targeted state=enforcing</code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+</div>
+</figure>
 <p>Ansible also has a <code>seboolean</code> module that allows setting SELinux
 booleans. A very common setting for web servers involves setting the
 <code>httpd_can_network_connect</code> boolean:</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code>- name: Ensure httpd can connect to the network.
+  seboolean: name=httpd_can_network_connect state=yes persistent=yes</code></pre>
+</div>
+</figure>
 <p>The Ansible <code>file</code> module also integrates well with SELinux, allowing
 the four security context fields for a file or directory to be set, one
 per parameter:</p>
@@ -824,7 +1042,21 @@ Tips</a></li>
 <p>Much of the security configuration in this chapter is encapsulated in a
 role on Ansible Galaxy, for use on your own servers: <a href="https://galaxy.ansible.com/list#/roles/1030" rel="external" target="_blank">security role by
 geerlingguy</a>.</p>
-<!-- raw HTML omitted -->
+<figure class="code">
+<div class="highlight">
+<pre><code> _____________________________________
+/ Bad planning on your part does not  \
+| constitute an emergency on my part. |
+\ (Proverb)                           /
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre>
+</div>
+</figure>
+:::
 <p>[]{#chap13.xhtml}</p>
 <p>::: {}</p>
 
@@ -875,69 +1107,52 @@ geerlingguy</a>.</p>
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/"><input type="checkbox" id="R-section-ee5145c58612a384986769058046b746" aria-controls="R-subsections-ee5145c58612a384986769058046b746"><label for="R-section-ee5145c58612a384986769058046b746"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ad Hoc Commands and Scripting</span></label><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/">Ad Hoc Commands and Scripting</a><ul id="R-subsections-ee5145c58612a384986769058046b746" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
-            <li class="" data-nav-url="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/ad-hoc-commands-and-scripting/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/control-node/"><input type="checkbox" id="R-section-51256f203510628e0492e57fa1dd1ec6" aria-controls="R-subsections-51256f203510628e0492e57fa1dd1ec6"><label for="R-section-51256f203510628e0492e57fa1dd1ec6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Control Node</span></label><a class="padding" href="/ansible/control-node/">Control Node</a><ul id="R-subsections-51256f203510628e0492e57fa1dd1ec6" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/control-node/ansible.cfg/"><a class="padding" href="/ansible/control-node/ansible.cfg/">Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/control-node/optimizing-ansible-processing/"><a class="padding" href="/ansible/control-node/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
-            <li class="" data-nav-url="/ansible/control-node/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/control-node/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-files/"><input type="checkbox" id="R-section-7c974a7c4dcf3453ccace14c7f38f13f" aria-controls="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f"><label for="R-section-7c974a7c4dcf3453ccace14c7f38f13f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-files/">Deploying Files</a><ul id="R-subsections-7c974a7c4dcf3453ccace14c7f38f13f" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-files/deploying-files/"><a class="padding" href="/ansible/deploying-files/deploying-files/">Deploying files</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/jinja2-templates/"><a class="padding" href="/ansible/deploying-files/jinja2-templates/">Jinja2 templates</a></li>
-            <li class="" data-nav-url="/ansible/deploying-files/selinux-file-properties/"><a class="padding" href="/ansible/deploying-files/selinux-file-properties/">Jinja2 templates</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/deploying-systems/"><input type="checkbox" id="R-section-7cc469ebbd5f7e560963779b9675e597" aria-controls="R-subsections-7cc469ebbd5f7e560963779b9675e597"><label for="R-section-7cc469ebbd5f7e560963779b9675e597"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Deploying Files</span></label><a class="padding" href="/ansible/deploying-systems/">Deploying Files</a><ul id="R-subsections-7cc469ebbd5f7e560963779b9675e597" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/deploying-systems/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/execution-environments/"><input type="checkbox" id="R-section-65eb33a34997cd45f5f49229981c4d2e" aria-controls="R-subsections-65eb33a34997cd45f5f49229981c4d2e"><label for="R-section-65eb33a34997cd45f5f49229981c4d2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Execution Environments</span></label><a class="padding" href="/ansible/execution-environments/">Execution Environments</a><ul id="R-subsections-65eb33a34997cd45f5f49229981c4d2e" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/execution-environments/ansible-builder/"><a class="padding" href="/ansible/execution-environments/ansible-builder/">Ansible Builder</a></li>
-            <li class="" data-nav-url="/ansible/execution-environments/execution-environments/"><a class="padding" href="/ansible/execution-environments/execution-environments/">Execution Environments</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/inventory/"><input type="checkbox" id="R-section-3f39b2671b9b2dd1dbc36a62b346565a" aria-controls="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a"><label for="R-section-3f39b2671b9b2dd1dbc36a62b346565a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Inventory</span></label><a class="padding" href="/ansible/inventory/">Inventory</a><ul id="R-subsections-3f39b2671b9b2dd1dbc36a62b346565a" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory/"><a class="padding" href="/ansible/inventory/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
-            <li class="" data-nav-url="/ansible/inventory/ansible-inventory-command/"><a class="padding" href="/ansible/inventory/ansible-inventory-command/">Ansible-inventory command</a></li>
-            <li class="" data-nav-url="/ansible/inventory/dynamic-inventory/"><a class="padding" href="/ansible/inventory/dynamic-inventory/">Dynamic Inventory</a></li>
-            <li class="" data-nav-url="/ansible/inventory/host-name-patterns/"><a class="padding" href="/ansible/inventory/host-name-patterns/">Host Name Patterns</a></li>
-            <li class="" data-nav-url="/ansible/inventory/using-multiple-inventories/"><a class="padding" href="/ansible/inventory/using-multiple-inventories/">Using Multiple Inventories</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/"><input type="checkbox" id="R-section-05c9cec6fb3311e0ece69447be6c4228" aria-controls="R-subsections-05c9cec6fb3311e0ece69447be6c4228"><label for="R-section-05c9cec6fb3311e0ece69447be6c4228"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Processes and Tasks</span></label><a class="padding" href="/ansible/managing-processes-and-tasks/">Managing Processes and Tasks</a><ul id="R-subsections-05c9cec6fb3311e0ece69447be6c4228" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/boot-process/"><a class="padding" href="/ansible/managing-processes-and-tasks/boot-process/">Boot Process</a></li>
-            <li class="" data-nav-url="/ansible/managing-processes-and-tasks/managing-services/"><a class="padding" href="/ansible/managing-processes-and-tasks/managing-services/">Managing Services</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-software/"><input type="checkbox" id="R-section-e50056380ffea3713f175f637f3fbaba" aria-controls="R-subsections-e50056380ffea3713f175f637f3fbaba"><label for="R-section-e50056380ffea3713f175f637f3fbaba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Software</span></label><a class="padding" href="/ansible/managing-software/">Managing Software</a><ul id="R-subsections-e50056380ffea3713f175f637f3fbaba" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-software/managing-packages/"><a class="padding" href="/ansible/managing-software/managing-packages/">Managing Packages</a></li>
-            <li class="" data-nav-url="/ansible/managing-software/repositories-and-subscriptions/"><a class="padding" href="/ansible/managing-software/repositories-and-subscriptions/">Repositories and subscriptions</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/managing-users/"><input type="checkbox" id="R-section-354866278232268d590e2ad621c06543" aria-controls="R-subsections-354866278232268d590e2ad621c06543"><label for="R-section-354866278232268d590e2ad621c06543"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Managing Users</span></label><a class="padding" href="/ansible/managing-users/">Managing Users</a><ul id="R-subsections-354866278232268d590e2ad621c06543" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/managing-users/encrypted-passwords/"><a class="padding" href="/ansible/managing-users/encrypted-passwords/">Encrypted passwords</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/ssh-connections/"><a class="padding" href="/ansible/managing-users/ssh-connections/">SSH Connections</a></li>
-            <li class="" data-nav-url="/ansible/managing-users/users-and-groups/"><a class="padding" href="/ansible/managing-users/users-and-groups/">Users and Groups</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/modules/"><input type="checkbox" id="R-section-05027151b340155a251c0bf45517b410" aria-controls="R-subsections-05027151b340155a251c0bf45517b410"><label for="R-section-05027151b340155a251c0bf45517b410"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Modules</span></label><a class="padding" href="/ansible/modules/">Modules</a><ul id="R-subsections-05027151b340155a251c0bf45517b410" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/modules/common-modules-with-examples/"><a class="padding" href="/ansible/modules/common-modules-with-examples/">Common modules with examples</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/networking/"><input type="checkbox" id="R-section-88666d047a19e08ea2a7a1f576522811" aria-controls="R-subsections-88666d047a19e08ea2a7a1f576522811"><label for="R-section-88666d047a19e08ea2a7a1f576522811"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/ansible/networking/">Networking</a><ul id="R-subsections-88666d047a19e08ea2a7a1f576522811" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/networking/networking-with-ansible/"><a class="padding" href="/ansible/networking/networking-with-ansible/">Networking with Ansible</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/playbooks/"><input type="checkbox" id="R-section-b39ec7807a35bbb89ede99e74c3f8d1c" aria-controls="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c"><label for="R-section-b39ec7807a35bbb89ede99e74c3f8d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Playbooks</span></label><a class="padding" href="/ansible/playbooks/">Playbooks</a><ul id="R-subsections-b39ec7807a35bbb89ede99e74c3f8d1c" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/playbooks/ansible-playbooks/"><a class="padding" href="/ansible/playbooks/ansible-playbooks/">Ansible Playbooks</a></li>
-            <li class="" data-nav-url="/ansible/playbooks/including-and-importing-files/"><a class="padding" href="/ansible/playbooks/including-and-importing-files/">Including and importing Files</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/roles/"><input type="checkbox" id="R-section-c3ddf4cba330014798b46f124f863578" aria-controls="R-subsections-c3ddf4cba330014798b46f124f863578"><label for="R-section-c3ddf4cba330014798b46f124f863578"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Roles</span></label><a class="padding" href="/ansible/roles/">Roles</a><ul id="R-subsections-c3ddf4cba330014798b46f124f863578" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/roles/ansible-galaxy-roles/"><a class="padding" href="/ansible/roles/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-ansible-roles/"><a class="padding" href="/ansible/roles/using-ansible-roles/">Ansible Roles</a></li>
-            <li class="" data-nav-url="/ansible/roles/using-rhel-system-roles/"><a class="padding" href="/ansible/roles/using-rhel-system-roles/">Using RHEL System roles</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/storage/"><input type="checkbox" id="R-section-25ab7c76118917bd6f4fb3e45062f785" aria-controls="R-subsections-25ab7c76118917bd6f4fb3e45062f785"><label for="R-section-25ab7c76118917bd6f4fb3e45062f785"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/ansible/storage/">Storage</a><ul id="R-subsections-25ab7c76118917bd6f4fb3e45062f785" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/storage/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/storage/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
-            <li class="" data-nav-url="/ansible/storage/discovering-storage-related-facts/"><a class="padding" href="/ansible/storage/discovering-storage-related-facts/">Discovering storage related facts</a></li>
-            <li class="" data-nav-url="/ansible/storage/managing-partitions-and-lvm/"><a class="padding" href="/ansible/storage/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
-            <li class="" data-nav-url="/ansible/storage/nfs-setup/"><a class="padding" href="/ansible/storage/nfs-setup/">NFS Setup</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/task-control/"><input type="checkbox" id="R-section-c50bd62a6e6f9028be7fd82767f99cd1" aria-controls="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1"><label for="R-section-c50bd62a6e6f9028be7fd82767f99cd1"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Task Control</span></label><a class="padding" href="/ansible/task-control/">Task Control</a><ul id="R-subsections-c50bd62a6e6f9028be7fd82767f99cd1" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/task-control/handlers/"><a class="padding" href="/ansible/task-control/handlers/">Handlers</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-loops-and-items/"><a class="padding" href="/ansible/task-control/using-loops-and-items/">Using Loops and Items</a></li>
-            <li class="" data-nav-url="/ansible/task-control/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/task-control/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/"><input type="checkbox" id="R-section-26d24f44bc3f5644df734f08181e3e2d" aria-controls="R-subsections-26d24f44bc3f5644df734f08181e3e2d"><label for="R-section-26d24f44bc3f5644df734f08181e3e2d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Troubleshooting</span></label><a class="padding" href="/ansible/troubleshooting/">Troubleshooting</a><ul id="R-subsections-26d24f44bc3f5644df734f08181e3e2d" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/troubleshooting/ansible-documentation/"><a class="padding" href="/ansible/troubleshooting/ansible-documentation/">Ansible Documentation</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/troubleshooting/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/troubleshooting/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
-            <li class="" data-nav-url="/ansible/troubleshooting/using-tags/"><a class="padding" href="/ansible/troubleshooting/using-tags/">Using Tags</a></li></ul></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/"><input type="checkbox" id="R-section-ff32daa8bc11229d5eacc0820ee4c786" aria-controls="R-subsections-ff32daa8bc11229d5eacc0820ee4c786"><label for="R-section-ff32daa8bc11229d5eacc0820ee4c786"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Variable and Facts</span></label><a class="padding" href="/ansible/variables-and-facts/">Variable and Facts</a><ul id="R-subsections-ff32daa8bc11229d5eacc0820ee4c786" class="collapsible-menu">
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-facts/"><a class="padding" href="/ansible/variables-and-facts/ansible-facts/">Ansible Facts</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/ansible-vault/"><a class="padding" href="/ansible/variables-and-facts/ansible-vault/">Ansible Vault</a></li>
-            <li class="" data-nav-url="/ansible/variables-and-facts/variables/"><a class="padding" href="/ansible/variables-and-facts/variables/">Variables</a></li></ul></li>
-            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-10---server-security-and-ansible/"><a class="padding" href="/ansible/ansible4devops/chapter-10---server-security-and-ansible/"></a></li></ul></li>
+            <li class="active hidden " data-nav-url="/ansible/ansible4devops/chapter-10---server-security-and-ansible/"><a class="padding" href="/ansible/ansible4devops/chapter-10---server-security-and-ansible/"></a></li>
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/configuring-storage-advanced-exercise/">Configuring Storage Advanced Exercise</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments-1/"><a class="padding" href="/ansible/execution-environments-1/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="" data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
             <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
             <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
             <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
@@ -1035,22 +1250,22 @@ geerlingguy</a>.</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762537425" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762537425" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-color.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1762635744" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1762635744" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762537425" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762537425" defer></script>
-    <script src="/js/theme.min.js?1762537425" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1762635744" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762635744" defer></script>
+    <script src="/js/theme.min.js?1762635744" defer></script>
   </body>
 </html>
