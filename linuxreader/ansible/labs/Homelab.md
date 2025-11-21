@@ -1,4 +1,4 @@
-- Configure passwordless ssh access to all servers
+Configure passwordless ssh access to all servers
 	- write an adhoc script to copy keys to other servers
 - Storage has secondary disk attached
 - Configure ansible user "davidt" with password for all servers.
