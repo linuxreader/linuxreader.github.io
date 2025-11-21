@@ -7,12 +7,9 @@ When content is included, it is dynamically processed at the moment that Ansible
 
 Files can be included and imported at different levels:
 
-• **Roles:** Roles are typically used to process a complete set of
-instructions provided by the role. Roles have a specific structure as
-well.
+• **Roles:** Roles are typically used to process a complete set of instructions provided by the role. Roles have a specific structure as well.
 
-• **Playbooks:** Playbooks can be imported as a complete playbook. You
-cannot do this from within a play. Playbooks can be imported only at the
+• **Playbooks:** Playbooks can be imported as a complete playbook. You cannot do this from within a play. Playbooks can be imported only at the
 top level of the playbook.
 
 • **Tasks:** A task file is just a list of tasks and can be imported or
@@ -119,14 +116,13 @@ listing105.yaml** command.
 
 #### Importing and Including Task Files {.h4}
 
-Instead of importing complete playbooks, you may include task files.
-When you use **import_tasks**, the tasks are statically imported while
-executing the playbook. When you use **include_tasks**, the tasks are
-dynamically included at the moment they are needed. Dynamically
-including task files is recommended when the task file is used in a
-conditional statement. If task files are mainly used to make development
-easier by working with separate task files, they can be statically
-imported.
+**import_tasks**
+- tasks are statically imported while executing the playbook. 
+
+**include_tasks**
+- tasks are dynamically included at the moment they are needed. 
+- Dynamically including task files is recommended when the task file is used in a conditional statement. 
+- If task files are mainly used to make development easier by working with separate task files, they can be statically imported.
 
 There are a few considerations when working with **import_tasks** to
 statically import tasks:

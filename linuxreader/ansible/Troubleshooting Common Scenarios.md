@@ -78,8 +78,6 @@ they are not available.
 A few settings play a role in authentication on the remote host to
 execute tasks:
 
-![Image](/Images/key_topic_icon.jpg){width="64" height="51"}
-
 • The **remote_user** setting determines which user account to use on
 the managed nodes.
 

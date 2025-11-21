@@ -2,8 +2,6 @@
 title = 'Basic File Managment'
 description = 'File types, linking, viewing, and archiving files.'
 +++
-# Chapter 3 RHCSA Notes - File Management
-
 ## 7 File types 
 1.  regular
 2.  directory
