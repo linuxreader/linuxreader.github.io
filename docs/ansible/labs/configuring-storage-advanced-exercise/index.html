@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta name="author" content="David Thomas">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta property="og:url" content="http://linuxreader.com/ansible/labs/configuring-storage-advanced-exercise/">
+    <meta property="og:site_name" content="Linux Reader">
+    <meta property="og:description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Ansible">
+    <meta itemprop="description" content="Configuring Storage Advanced Exercise To work on this exercise, you need managed machines with an additional disk device: add a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.
+Exercise 15-3 Setting Up an Advanced Storage Solution">
+    <meta itemprop="wordCount" content="2271">
+    <title></title>
+    <link href="/ansible/labs/configuring-storage-advanced-exercise/index.xml" rel="alternate" type="application/rss+xml" title="">
+    <link href="/ansible/labs/configuring-storage-advanced-exercise/index.print.html" rel="alternate" type="text/html" title="">
+    <link href="/images/favicon.svg?1763752405" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1763752405" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1763752405" defer></script>
+    <script src="/js/search-lunr.min.js?1763752405" defer></script>
+    <script src="/js/search.min.js?1763752405" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1763752405";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1763752405" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1763752405" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1763752405" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1763752405" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763752405" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763752405" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1763752405" rel="stylesheet">
+    <link href="/css/theme.min.css?1763752405" rel="stylesheet">
+    <link href="/css/format-html.min.css?1763752405" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/ansible\/labs\/configuring-storage-advanced-exercise\/';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/linuxreader.com';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'oled' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><style>
+:root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+    --MAIN-WIDTH-MAX: 80rem;
+    font-size: 1.2rem;
+}
+</style>
+
+  </head>
+  <body class="mobile-support html" data-url="/ansible/labs/configuring-storage-advanced-exercise/">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/" title="Ansible (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#configuring-storage-advanced-exercise">Configuring Storage Advanced Exercise</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <span class="topbar-breadcrumbs highlightable">
+            
+          </span>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/labs/configuring-storage-advanced-exercise/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></span>
+            </div>
+
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle link noborder notitle interactive"><a href="/ansible/ad-hoc-ansible-commands/" title="Ad Hoc Ansible Commands (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable ansible" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id=""></h1>
+
+<h3 id="configuring-storage-advanced-exercise">Configuring Storage Advanced Exercise</h3>
+<p>To work on this exercise, you need managed machines with an additional disk device: add
+a 10 GB second disk to host ansible2 and a 5 GB second disk to host ansible3. The exercise assumes the name of the second disk is /dev/sdb; if a different disk name is used in your configuration, change this according to your specifications.</p>
+<p><strong>Exercise 15-3 Setting Up an Advanced Storage Solution</strong></p>
+<p>In this exercise you need to set up a storage solution that meets the
+following requirements:</p>
+<p>• Tasks in this playbook should be executed only on hosts where the device /dev/sdb exists.</p>
+<p>• If no device /dev/sdb exists, the playbook should print &ldquo;device sdb not present&rdquo; and stop executing tasks on that host.</p>
+<p>• Configure the device with one partition that includes all available disk space.</p>
+<p>• Create an LVM volume group with the name vgfiles.</p>
+<p>• If the volume group is bigger than 5 GB, create an LVM logical volume with the name lvfiles and a size of 6 GB. Note that you must check the LVM volume group size and not the /dev/sdb1 size because in theory you could have multiple block devices in a volume group.</p>
+<p>• If the volume group is equal to or smaller than 5 GB, create an LVM logical volume with the name lvfiles and a size of 3 GB.</p>
+<p>• Format the volume with the XFS file system.</p>
+<p>• Mount it on the /files directory.</p>
+<p>1. Check the size of the volume group. You can, however, write a test that works on a default volume group, and that is what you&rsquo;re going to do first, using the name of the default volume group on CentOS 8, which is &ldquo;cl&rdquo;. The purpose is to test the constructions, which is why it doesn&rsquo;t really matter that the two tasks have overlapping <strong>when</strong> statements. So create a file with the name exercise153-dev1.yaml and give it the following contents:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: get vg sizes
+  hosts: all
+  tasks:
+  - name: find small vgroup sizes
+    debug:
+      msg: volume group smaller than or equal to 20G
+    when:
+    - ansible_facts[’lvm’][’vgs’][’cl’] is defined
+    - ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00
+  - name: find large vgroup size
+    debug:
+      msg: volume group larger than or equal to 19G
+    when:
+    - ansible_facts[’lvm’][’vgs’][’cl’] is defined
+    - ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &gt;= 19.00</code></pre></div>
+<p>2. Run the playbook by using <strong>ansible-playbook
+exercise153-dev1.yaml</strong>. You&rsquo;ll notice that it fails with the error
+shown in <a href="/ansible/labs/configuring-storage-advanced-exercise/#ch15.xhtml#list15_12">Listing 15-12</a>.</p>
+<p><strong>Listing 15-12 exercise153-dev1.yaml</strong> Failure Message</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>TASK [find small vgroups sizes] ***************************************************
+fatal: [ansible1]: FAILED! =&gt; \{\&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] \\&lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+fatal: [ansible2]: FAILED! =&gt; {&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+fatal: [ansible3]: FAILED! =&gt; {&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+fatal: [ansible4]: FAILED! =&gt; {&#34;msg&#34;: &#34;The conditional check ’ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00’ failed. The error was: Unexpected templating type error occurred on ({% if ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] &lt;= 20.00 %} True {% else %} False {% endif %}): ’&lt;=’ not supported between instances of ’AnsibleUnsafeText’ and ’float’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-dev1.yaml’: line 5, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n  - name: find small vgroups sizes\n    ^ here\n&#34;}
+skipping: [ansible5]
+skipping: [ansible6]
+
+TASK [find large vgroups sizes] ***************************************************
+skipping: [ansible5]
+skipping: [ansible6]</code></pre></div>
+<p>:::</p>
+<p>3. As you can see in the errors in <a href="/ansible/labs/configuring-storage-advanced-exercise/#ch15.xhtml#list15_12">Listing
+15-12</a>, there are two problems in the playbook.
+The first problem is that there is no <strong>ignore_errors</strong> in the failing
+play, which means that only hosts that haven&rsquo;t failed will reach the
+next task. The second error is the &ldquo;Unexpected templating error&rdquo;. The
+playbook in its current form is trying to perform a logical test to
+compare the value of two variables that have an incompatible variable
+type. The Ansible fact has the type &ldquo;AnsibleUnsafeText&rdquo;, and the value
+of 20.00 is a float, not an integer. To make this test work, you must
+force the type of both variables to be set to an integer. Now write
+<strong>exercise153-dev2.yaml</strong> where this is happening; notice the use of the
+filter <strong>int</strong>, which is essential for the success of this playbook:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: get vg sizes
+  ignore_errors: yes
+  hosts: all
+  tasks:
+  - name: set vgroup sizes in variables
+    set_fact:
+      vgsize: &#34;{{ ansible_facts[’lvm’][’vgs’][’cl’][’size_g’] | int }}&#34;
+  - name: debug this
+    debug:
+      msg: the value of vgsize is {{ vgsize }}
+  - name: testing big vgsize value
+    debug:
+      msg: the value of vgsize is bigger than 5
+    when: vgsize | int &gt; 5
+  - name: testing small vgsize value
+    debug:
+      msg: the value of vgsize is smaller than 5
+    when: vgsize | int &lt;= 5</code></pre></div>
+<p>4. Run this playbook. You&rsquo;ll notice it skips and ignores some tasks but
+doesn&rsquo;t fail anywhere, which means that this playbook&mdash;although
+absolutely not perfect&mdash;is usable as an example to test the size of the
+vgfiles volume group later in this exercise.</p>
+<p>5. Now that you&rsquo;ve tested the most complex part of the assignment, you
+can start writing the rest of the playbook. Do this in a new file with
+the name exercise153.yaml. Because this playbook has quite a few tasks
+to accomplish, it might be smart to define the rough structure and
+ensure that all elements that are needed later are at least documented
+so that you can later work out the details. So let&rsquo;s start with the
+first part, where the play header is defined, as well as the rough
+structure. This is the part where you still have the global overview of
+all the tasks in this requirement, so you need to make sure you won&rsquo;t
+forget about them later, which is a real risk if you&rsquo;ve been into the
+details too much for too long.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: set up hosts that have an sdb device
+  hosts: all
+  tasks:
+  - name: getting out with a nice failure message if there is no second disk
+    # fail:
+    debug:
+      msg: write a nice failure message and a when test here
+    # when: something
+  - name: create a partition
+    #parted
+    debug:
+      msg: creating the partition
+  - name: create a volume group
+    #lvg:
+    debug:
+      msg: creating the volume group
+  - name: get the vg size and store it in a variable
+    #set_fact:
+    debug:
+      msg: storing variable as an integer
+  - name: create an LVM on big volume groups
+    #lvol:
+    debug:
+      msg: use when statement to create 6g lvol if vsize &gt; 5
+  - name: create an LVM on small volume groups
+    #lvol:
+    debug:
+      msg: use when statement to create 3g lvol if vsize &lt;= 5
+  - name: formatting the XFS filesystem
+    # filesystem
+    debug:
+      msg: creating the filesystem
+  - name: mounting /dev/vgfiles/lvfiles
+    # mount:
+    debug:
+      msg: mounting the volume</code></pre></div>
+<p>6. The advantage of a generic structure like the one you just defined
+is that you can run a test at any moment. Now it&rsquo;s time to fill it in.
+Start with the play header and then check whether /dev/sdb is present on
+the managed system:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">---
+- name: setup up hosts that have an sdb device
+  hosts: all
+  tasks:
+  - name: getting out with a nice failure message if there is no second disk
+    fail:
+      msg: there is no second disk
+    when: ansible_facts[’devices’][’sdb’] is not defined</code></pre></div>
+<p>7. At this point I recommend you run a test to see that the playbook
+really does skip all hosts that don&rsquo;t have a second disk device. Use
+<strong>ansible-playbook exercise153.yaml</strong> to do so and observe that you see
+a lot of skipping messages in the output.</p>
+<p>8. If all is well so far, you can continue to create the partition and
+create the logical volume group as well. Here are the tasks you need to
+enter. Notice that no size is specified at any point, which means that
+the partition and the volume group will be allowed to grow up to the
+maximum size.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create a partition
+  parted:
+    device: /dev/sdb
+    number: 1
+    state: present
+- name: create a volume group
+  lvg:
+    pvs: /dev/sdb1
+    vg: vgfiles</code></pre></div>
+<p>9. At this point you can insert the part where you save the volume
+group size into a variable, which can be used in the <strong>when</strong> statement
+that will occur in one of the next tasks. Also, because it&rsquo;s good to
+check a lot while you are writing a complex playbook, use the debug
+module to verify the results.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: get vg size and convert to integer in new variable
+  set_fact:
+    vgsize: &#34;{{ ansible_facts[’lvm’][’vgs’][’vgfiles’][’size_g’] | int }}&#34;
+- name: show vgsize value
+  debug:
+    var: &#34;{{ vgsize }}&#34;</code></pre></div>
+<p>10. After this important step, it&rsquo;s time to run a test. If you need it,
+you can find a sample playbook of the state so far named
+exercise153-step9.yaml in the GitHub repository at
+<a href="https://github.com/sandervanvugt/rhce8-book" rel="external" target="_blank">https://github.com/sandervanvugt/rhce8-book</a>, but it&rsquo;s obviously much
+better and recommended to run your own code! So use <strong>ansible-playbook
+exercise153.yaml</strong> to verify what you&rsquo;ve got so far. Notice that you
+<em>must</em> make sure to run it on hosts that don&rsquo;t have any configuration
+yet. If a configuration already exists, that will most likely give you
+false positives! If you want to make sure all is clean, use <strong>ansible
+all -a &ldquo;dd if=/dev/zero of=/dev/sdb bs=1M count=10&rdquo;</strong> to wipe the
+/dev/sdb devices on your managed hosts, followed by <strong>ansible all -m
+reboot</strong> to reboot all of them before you test. The purpose of all this
+is that at this point you see the error message shown in <a href="/ansible/labs/configuring-storage-advanced-exercise/#ch15.xhtml#list15_13">Listing
+15-13</a>. Before moving on to the next step, try to
+understand what is going wrong.</p>
+<p><strong>Listing 15-13</strong> Error Message After <a href="/ansible/labs/configuring-storage-advanced-exercise/#ch15.xhtml#exe15_3">Exercise
+15-3</a> Step 10</p>
+<p>::: pre_1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">TASK [get vg size and convert to integer in new variable] ******************************
+fatal: [ansible2]: FAILED! =&gt; {&#34;msg&#34;: &#34;The task includes an option with an undefined variable. The error was: ’dict object’ has no attribute ’vgfiles’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-step9.yaml’: line 18, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      vg: vgfiles\n  - name: get vg size and convert to integer in new variable\n    ^ here\n&#34;}
+fatal: [ansible3]: FAILED! =&gt; {&#34;msg&#34;: &#34;The task includes an option with an undefined variable. The error was: ’dict object’ has no attribute ’vgfiles’\n\nThe error appears to be in ’/home/ansible/rhce8-book/exercise153-step9.yaml’: line 18, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      vg: vgfiles\n  - name: get vg size and convert to integer in new variable\n    ^ here\n&#34;}</code></pre></div>
+<p>:::</p>
+<p>11. As you can see, the variable that you are trying to use has no
+value yet. And that is for the simple reason that fact gathering is
+required to set the variable, and fact gathering is happening at the
+beginning of the playbook. At this point, you need to add a task that
+runs the setup module right after creating the volume group, and then
+you can try again. In the output you have to look at the [show vgsize
+value] task, which should look all right now, and everything after that
+can be ignored. See exercise153-step11.yaml in the GitHub repository if
+you need the complete example.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1"># skipping first part of the playbook in this listing
+- name: create a volume group
+  lvg:
+    pvs: /dev/sdb1
+    vg: vgfiles
+- name: run the setup module so that we can use updated facts
+  setup:
+- name: get vg size and convert to integer in new variable
+  set_fact:
+    vgsize: &#34;{{ ansible_facts[’lvm’][’vgs’][’vgfiles’][’size_g’] | int }}&#34;
+- name: show vgsize value
+  debug:
+    var: &#34;{{ vgsize }}&#34;</code></pre></div>
+<p>12. Assuming that all went well, you can now add the two conditional
+tests, where according to the <strong>vgsize</strong> value, the lvol module is used
+to create the logical volumes:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: create an LVM on big volume groups
+  lvol:
+    vg: vgfiles
+    lv: lvfiles
+    size: 6g
+  when: vgsize | int &gt; 5
+- name: create an LVM on small volume groups
+  lvol:
+    vg: vgfiles
+    lv: lvfiles
+    size: 3g
+  when: vgsize | int &lt;= 5</code></pre></div>
+<p>13. Add the tasks to format the volumes with the XFS file system and
+mount them:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-pre1" data-lang="pre1">- name: formatting the XFS filesystem
+  filesystem:
+    dev: /dev/vgfiles/lvfiles
+    fstype: xfs
+- name: mounting /dev/vgfile/lvfiles
+  mount:
+    path: /file
+    state: mounted
+    src: /dev/vgfiles/lvfiles
+    fstype: xfs</code></pre></div>
+<p>14. That&rsquo;s all! The playbook is now ready for use. Run it by using
+<strong>ansible-playbook exercise153.yaml</strong> and verify its output.</p>
+<p>15. Use the ad hoc command <strong>ansible ansible2,ansible3 -a &ldquo;lvs&rdquo;</strong> to
+show LVM logical volume sizes on the machines with the additional hard
+drive. You should see that all has worked out well and you are done!
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a href="https://linuxreader.com">
+  <img src="/images/linuxreader.svg" alt="Linux Reader" >
+</a>
+
+        </div>
+        <search><form action="/search/" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-url="/ansible/"><input type="checkbox" id="R-section-e5b911977d99c31c82b120cc3d2f2606" aria-controls="R-subsections-e5b911977d99c31c82b120cc3d2f2606" checked><label for="R-section-e5b911977d99c31c82b120cc3d2f2606"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Ansible</span></label><a class="padding" href="/ansible/"><i class="fa-solid fa-robot"></i> Ansible</a><ul id="R-subsections-e5b911977d99c31c82b120cc3d2f2606" class="collapsible-menu">
+            <li class="active hidden " data-nav-url="/ansible/labs/configuring-storage-advanced-exercise/"><a class="padding" href="/ansible/labs/configuring-storage-advanced-exercise/"></a></li>
+            <li class="" data-nav-url="/ansible/ad-hoc-ansible-commands/"><a class="padding" href="/ansible/ad-hoc-ansible-commands/">Ad Hoc Ansible Commands</a></li>
+            <li class="" data-nav-url="/ansible/ansible-builder/"><a class="padding" href="/ansible/ansible-builder/">Ansible Builder</a></li>
+            <li class="" data-nav-url="/ansible/ansible-documentation/"><a class="padding" href="/ansible/ansible-documentation/">Ansible Documentation</a></li>
+            <li class="" data-nav-url="/ansible/ansible-facts/"><a class="padding" href="/ansible/ansible-facts/">Ansible Facts</a></li>
+            <li class="" data-nav-url="/ansible/ansible-galaxy-roles/"><a class="padding" href="/ansible/ansible-galaxy-roles/">Ansible Galaxy Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory/"><a class="padding" href="/ansible/ansible-inventory/">Ansible Inventory and Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/ansible-playbooks/"><a class="padding" href="/ansible/ansible-playbooks/">Ansible Playbooks</a></li>
+            <li class="" data-nav-url="/ansible/using-ansible-roles/"><a class="padding" href="/ansible/using-ansible-roles/">Ansible Roles</a></li>
+            <li class="" data-nav-url="/ansible/ansible-vault/"><a class="padding" href="/ansible/ansible-vault/">Ansible Vault</a></li>
+            <li class="" data-nav-url="/ansible/ansible-inventory-command/"><a class="padding" href="/ansible/ansible-inventory-command/">Ansible-inventory command</a></li>
+            <li class="" data-nav-url="/ansible/ansible.cfg/"><a class="padding" href="/ansible/ansible.cfg/">Ansible.cfg</a></li>
+            <li class="" data-nav-url="/ansible/boot-process/"><a class="padding" href="/ansible/boot-process/">Boot Process</a></li>
+            <li class="" data-nav-url="/ansible/building-an-ansible-lab-with-ansible/"><a class="padding" href="/ansible/building-an-ansible-lab-with-ansible/">Building an Ansible lab with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/common-modules-with-examples/"><a class="padding" href="/ansible/common-modules-with-examples/">Common modules with examples</a></li>
+            <li class="" data-nav-url="/ansible/deploying-files/"><a class="padding" href="/ansible/deploying-files/">Deploying files</a></li>
+            <li class="" data-nav-url="/ansible/discovering-storage-related-facts/"><a class="padding" href="/ansible/discovering-storage-related-facts/">Discovering storage related facts</a></li>
+            <li class="" data-nav-url="/ansible/dynamic-inventory/"><a class="padding" href="/ansible/dynamic-inventory/">Dynamic Inventory</a></li>
+            <li class="" data-nav-url="/ansible/encrypted-passwords/"><a class="padding" href="/ansible/encrypted-passwords/">Encrypted passwords</a></li>
+            <li class="" data-nav-url="/ansible/execution-environments/"><a class="padding" href="/ansible/execution-environments/">Execution Environments</a></li>
+            <li class="" data-nav-url="/ansible/handlers/"><a class="padding" href="/ansible/handlers/">Handlers</a></li>
+            <li class="" data-nav-url="/ansible/host-name-patterns/"><a class="padding" href="/ansible/host-name-patterns/">Host Name Patterns</a></li>
+            <li class="" data-nav-url="/ansible/including-and-importing-files/"><a class="padding" href="/ansible/including-and-importing-files/">Including and importing Files</a></li>
+            <li class="" data-nav-url="/ansible/jinja2-templates/"><a class="padding" href="/ansible/jinja2-templates/">Jinja2 templates</a></li>
+            <li class="" data-nav-url="/ansible/managing-ansible-errors-and-logs/"><a class="padding" href="/ansible/managing-ansible-errors-and-logs/">Managing Ansible Errors and Logs</a></li>
+            <li class="" data-nav-url="/ansible/managing-packages/"><a class="padding" href="/ansible/managing-packages/">Managing Packages</a></li>
+            <li class="" data-nav-url="/ansible/managing-partitions-and-lvm/"><a class="padding" href="/ansible/managing-partitions-and-lvm/">Managing Partitions and LVM</a></li>
+            <li class="" data-nav-url="/ansible/managing-services/"><a class="padding" href="/ansible/managing-services/">Managing Services</a></li>
+            <li class="" data-nav-url="/ansible/networking-with-ansible/"><a class="padding" href="/ansible/networking-with-ansible/">Networking with Ansible</a></li>
+            <li class="" data-nav-url="/ansible/nfs-setup/"><a class="padding" href="/ansible/nfs-setup/">NFS Setup</a></li>
+            <li class="" data-nav-url="/ansible/optimizing-ansible-processing/"><a class="padding" href="/ansible/optimizing-ansible-processing/">Optimizing Ansible Processing</a></li>
+            <li class="" data-nav-url="/ansible/repositories-and-subscriptions/"><a class="padding" href="/ansible/repositories-and-subscriptions/">Repositories and subscriptions</a></li>
+            <li class="" data-nav-url="/ansible/selinux-file-properties/"><a class="padding" href="/ansible/selinux-file-properties/">SeLinux File Properties</a></li>
+            <li class="" data-nav-url="/ansible/setting-up-an-ansible-lab/"><a class="padding" href="/ansible/setting-up-an-ansible-lab/">Setting up an Ansible Lab</a></li>
+            <li class="" data-nav-url="/ansible/ssh-connections/"><a class="padding" href="/ansible/ssh-connections/">SSH Connections</a></li>
+            <li class="" data-nav-url="/ansible/troubleshooting-common-scenarios/"><a class="padding" href="/ansible/troubleshooting-common-scenarios/">Troubleshooting Common Scenarios</a></li>
+            <li class="" data-nav-url="/ansible/users-and-groups/"><a class="padding" href="/ansible/users-and-groups/">Users and Groups</a></li>
+            <li class="" data-nav-url="/ansible/using-ad-hoc-commands-in-scripts/"><a class="padding" href="/ansible/using-ad-hoc-commands-in-scripts/">Using Ad Hoc commands in scripts</a></li>
+            <li class="" data-nav-url="/ansible/using-loops-and-items/"><a class="padding" href="/ansible/using-loops-and-items/">Using Loops and Items</a></li>
+            <li class="" data-nav-url="/ansible/using-modules-for-troubleshooting-and-testing/"><a class="padding" href="/ansible/using-modules-for-troubleshooting-and-testing/">Using Modules for Troubleshooting and Testing</a></li>
+            <li class="" data-nav-url="/ansible/using-multiple-inventories/"><a class="padding" href="/ansible/using-multiple-inventories/">Using Multiple Inventories</a></li>
+            <li class="" data-nav-url="/ansible/using-rhel-system-roles/"><a class="padding" href="/ansible/using-rhel-system-roles/">Using RHEL System roles</a></li>
+            <li class="" data-nav-url="/ansible/using-tags/"><a class="padding" href="/ansible/using-tags/">Using Tags</a></li>
+            <li class="" data-nav-url="/ansible/using-when-to-run-tasks-conditionally/"><a class="padding" href="/ansible/using-when-to-run-tasks-conditionally/">Using when to Run Tasks Conditionally</a></li>
+            <li class="" data-nav-url="/ansible/variables/"><a class="padding" href="/ansible/variables/">Variables</a></li></ul></li>
+            <li class="" data-nav-url="/bash/"><input type="checkbox" id="R-section-4b42c24c987a75657a389c72aa61a56d" aria-controls="R-subsections-4b42c24c987a75657a389c72aa61a56d"><label for="R-section-4b42c24c987a75657a389c72aa61a56d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-4b42c24c987a75657a389c72aa61a56d" class="collapsible-menu">
+            <li class="" data-nav-url="/bash/bash/"><input type="checkbox" id="R-section-71480ec9bdfe435a45f1d55639972038" aria-controls="R-subsections-71480ec9bdfe435a45f1d55639972038"><label for="R-section-71480ec9bdfe435a45f1d55639972038"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Bash</span></label><a class="padding" href="/bash/bash/"><i class="fa-fw fas fa-code"></i> Bash</a><ul id="R-subsections-71480ec9bdfe435a45f1d55639972038" class="collapsible-menu">
+            <li class="" data-nav-url="/bash/bash/bash-shell/"><a class="padding" href="/bash/bash/bash-shell/">Bash</a></li>
+            <li class="" data-nav-url="/bash/bash/shell-scripting/"><a class="padding" href="/bash/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
+            <li class="" data-nav-url="/bash/containers/"><input type="checkbox" id="R-section-db2f639835f54e3e2445b5a502f86cec" aria-controls="R-subsections-db2f639835f54e3e2445b5a502f86cec"><label for="R-section-db2f639835f54e3e2445b5a502f86cec"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Containers</span></label><a class="padding" href="/bash/containers/"><i class="fa-solid fa-cubes"></i> Containers</a><ul id="R-subsections-db2f639835f54e3e2445b5a502f86cec" class="collapsible-menu">
+            <li class="" data-nav-url="/bash/containers/containers-1/"><a class="padding" href="/bash/containers/containers-1/">Containers</a></li></ul></li>
+            <li class="" data-nav-url="/bash/desktop/"><input type="checkbox" id="R-section-524b4ed865bd0d9514f4ef896112961e" aria-controls="R-subsections-524b4ed865bd0d9514f4ef896112961e"><label for="R-section-524b4ed865bd0d9514f4ef896112961e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Desktop</span></label><a class="padding" href="/bash/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-524b4ed865bd0d9514f4ef896112961e" class="collapsible-menu">
+            <li class="" data-nav-url="/bash/desktop/my-fedora-setup/"><a class="padding" href="/bash/desktop/my-fedora-setup/">My Fedora Setup</a></li></ul></li>
+            <li class="" data-nav-url="/bash/packages/"><input type="checkbox" id="R-section-da0abdac4fddfb52fd5202344424ce6e" aria-controls="R-subsections-da0abdac4fddfb52fd5202344424ce6e"><label for="R-section-da0abdac4fddfb52fd5202344424ce6e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Packages</span></label><a class="padding" href="/bash/packages/"><i class="fa-solid fa-box-open"></i> Packages</a><ul id="R-subsections-da0abdac4fddfb52fd5202344424ce6e" class="collapsible-menu">
+            <li class="" data-nav-url="/bash/packages/advanced-package-management/"><a class="padding" href="/bash/packages/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-url="/bash/packages/basic-package-management/"><a class="padding" href="/bash/packages/basic-package-management/">Basic Package Management</a></li></ul></li>
+            <li class="" data-nav-url="/bash/bash-shell/"><a class="padding" href="/bash/bash-shell/">Bash</a></li>
+            <li class="" data-nav-url="/bash/shell-scripting/"><a class="padding" href="/bash/shell-scripting/">Shell Scripting</a></li></ul></li>
+            <li class="" data-nav-url="/boot/"><input type="checkbox" id="R-section-a53bfb333437907a8d5bdc636d15c75d" aria-controls="R-subsections-a53bfb333437907a8d5bdc636d15c75d"><label for="R-section-a53bfb333437907a8d5bdc636d15c75d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Boot</span></label><a class="padding" href="/boot/"><i class="fa-solid fa-hourglass-start"></i> Boot</a><ul id="R-subsections-a53bfb333437907a8d5bdc636d15c75d" class="collapsible-menu">
+            <li class="" data-nav-url="/boot/boot-process-grub2-and-kernel/"><a class="padding" href="/boot/boot-process-grub2-and-kernel/">Boot Process, Grub2, and Kernel</a></li>
+            <li class="" data-nav-url="/boot/system-initialization-message-logging-and-system-tuning/"><a class="padding" href="/boot/system-initialization-message-logging-and-system-tuning/">System Initialization, Message Logging, and System Tuning</a></li></ul></li>
+            <li class="" data-nav-url="/containers/"><input type="checkbox" id="R-section-98e55644e7defe4a283b28e510b18cf5" aria-controls="R-subsections-98e55644e7defe4a283b28e510b18cf5"><label for="R-section-98e55644e7defe4a283b28e510b18cf5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Containers</span></label><a class="padding" href="/containers/"><i class="fa-solid fa-cubes"></i> Containers</a><ul id="R-subsections-98e55644e7defe4a283b28e510b18cf5" class="collapsible-menu">
+            <li class="" data-nav-url="/containers/containers-1/"><a class="padding" href="/containers/containers-1/">Containers</a></li></ul></li>
+            <li class="" data-nav-url="/cyber-security/"><input type="checkbox" id="R-section-f95cf8cea1c115dd046e46a833f33dfa" aria-controls="R-subsections-f95cf8cea1c115dd046e46a833f33dfa"><label for="R-section-f95cf8cea1c115dd046e46a833f33dfa"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Cyber Security</span></label><a class="padding" href="/cyber-security/"><i class="fa-solid fa-user-secret"></i> Cyber Security</a><ul id="R-subsections-f95cf8cea1c115dd046e46a833f33dfa" class="collapsible-menu">
+            <li class="" data-nav-url="/cyber-security/files/"><input type="checkbox" id="R-section-305c6113524ea2dfc8edb7ae91c9a7c7" aria-controls="R-subsections-305c6113524ea2dfc8edb7ae91c9a7c7"><label for="R-section-305c6113524ea2dfc8edb7ae91c9a7c7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Files</span></label><a class="padding" href="/cyber-security/files/"><i class="fa-solid fa-copy"></i> Files</a><ul id="R-subsections-305c6113524ea2dfc8edb7ae91c9a7c7" class="collapsible-menu">
+            <li class="" data-nav-url="/cyber-security/files/advanced-file-management/"><a class="padding" href="/cyber-security/files/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-url="/cyber-security/files/file-management/"><a class="padding" href="/cyber-security/files/file-management/">Basic File Managment</a></li></ul></li>
+            <li class="" data-nav-url="/cyber-security/security-enhanced-linux/"><a class="padding" href="/cyber-security/security-enhanced-linux/">Security Enhanced Linux</a></li>
+            <li class="" data-nav-url="/cyber-security/the-linux-firewall/"><a class="padding" href="/cyber-security/the-linux-firewall/">The Linux Firewall</a></li>
+            <li class="" data-nav-url="/cyber-security/the-secure-shell-service/"><a class="padding" href="/cyber-security/the-secure-shell-service/">The Secure Shell Service</a></li></ul></li>
+            <li class="" data-nav-url="/desktop/"><input type="checkbox" id="R-section-e1fc414efb00462ad25041a21e45e696" aria-controls="R-subsections-e1fc414efb00462ad25041a21e45e696"><label for="R-section-e1fc414efb00462ad25041a21e45e696"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Desktop</span></label><a class="padding" href="/desktop/"><i class="fa-fw fas fa-computer"></i> Desktop</a><ul id="R-subsections-e1fc414efb00462ad25041a21e45e696" class="collapsible-menu">
+            <li class="" data-nav-url="/desktop/new-setup/"><a class="padding" href="/desktop/new-setup/">Configure Fedora Desktop using Ansible</a></li>
+            <li class="" data-nav-url="/desktop/learning-touch-typing/"><a class="padding" href="/desktop/learning-touch-typing/">Learning Touch Typing</a></li>
+            <li class="" data-nav-url="/desktop/my-fedora-setup/"><a class="padding" href="/desktop/my-fedora-setup/">My Fedora Setup</a></li>
+            <li class="" data-nav-url="/desktop/silverblue/"><a class="padding" href="/desktop/silverblue/">Silverblue</a></li></ul></li>
+            <li class="" data-nav-url="/files/"><input type="checkbox" id="R-section-31e56884d732922d4a0e407592968056" aria-controls="R-subsections-31e56884d732922d4a0e407592968056"><label for="R-section-31e56884d732922d4a0e407592968056"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Files</span></label><a class="padding" href="/files/"><i class="fa-solid fa-copy"></i> Files</a><ul id="R-subsections-31e56884d732922d4a0e407592968056" class="collapsible-menu">
+            <li class="" data-nav-url="/files/advanced-file-management/"><a class="padding" href="/files/advanced-file-management/">Advanced File Management</a></li>
+            <li class="" data-nav-url="/files/file-management/"><a class="padding" href="/files/file-management/">Basic File Managment</a></li></ul></li>
+            <li class="" data-nav-url="/networking/"><input type="checkbox" id="R-section-d7c3359b808d40df139a3bb9f9073483" aria-controls="R-subsections-d7c3359b808d40df139a3bb9f9073483"><label for="R-section-d7c3359b808d40df139a3bb9f9073483"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Networking</span></label><a class="padding" href="/networking/"><i class="fa-fw fas fa-network-wired"></i> Networking</a><ul id="R-subsections-d7c3359b808d40df139a3bb9f9073483" class="collapsible-menu">
+            <li class="" data-nav-url="/networking/consoling_in_to_mx80_from_linux/"><a class="padding" href="/networking/consoling_in_to_mx80_from_linux/">Consoling in to MX80 from linux</a></li>
+            <li class="" data-nav-url="/networking/dns-and-time-synchronization/"><a class="padding" href="/networking/dns-and-time-synchronization/">DNS</a></li>
+            <li class="" data-nav-url="/networking/how-to-study-for-the-ccna-exam/"><a class="padding" href="/networking/how-to-study-for-the-ccna-exam/">How to Study for the CCNA Exam</a></li>
+            <li class="" data-nav-url="/networking/juniper_cli_basics/"><a class="padding" href="/networking/juniper_cli_basics/">Juniper CLI Basics</a></li>
+            <li class="" data-nav-url="/networking/ccna/ccna-notes/my-ccna-notes/"><a class="padding" href="/networking/ccna/ccna-notes/my-ccna-notes/">My CCNA Notes</a></li>
+            <li class="" data-nav-url="/networking/networking-network-devices-and-network-connections/"><a class="padding" href="/networking/networking-network-devices-and-network-connections/">Networking Network Devices and Network Connections</a></li>
+            <li class="" data-nav-url="/networking/resources-for-passing-ccna/"><a class="padding" href="/networking/resources-for-passing-ccna/">Resources for Passing CCNA</a></li>
+            <li class="" data-nav-url="/networking/time-synchronization/"><a class="padding" href="/networking/time-synchronization/">Time Synchronization</a></li>
+            <li class="" data-nav-url="/networking/toggle_poe/"><a class="padding" href="/networking/toggle_poe/">Toggle PoE on a Juniper Switch</a></li>
+            <li class="" data-nav-url="/networking/what-to-learn-after-ccna/"><a class="padding" href="/networking/what-to-learn-after-ccna/">What to Learn After CCNA</a></li></ul></li>
+            <li class="" data-nav-url="/packages/"><input type="checkbox" id="R-section-bdf1e8ce92aa8ff6883c617f10480430" aria-controls="R-subsections-bdf1e8ce92aa8ff6883c617f10480430"><label for="R-section-bdf1e8ce92aa8ff6883c617f10480430"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Packages</span></label><a class="padding" href="/packages/"><i class="fa-solid fa-box-open"></i> Packages</a><ul id="R-subsections-bdf1e8ce92aa8ff6883c617f10480430" class="collapsible-menu">
+            <li class="" data-nav-url="/packages/advanced-package-management/"><a class="padding" href="/packages/advanced-package-management/">Advanced Package Management</a></li>
+            <li class="" data-nav-url="/packages/basic-package-management/"><a class="padding" href="/packages/basic-package-management/">Basic Package Management</a></li></ul></li>
+            <li class="" data-nav-url="/storage/"><input type="checkbox" id="R-section-28a53f7a259bc0e6bfd5bf73591250a9" aria-controls="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9"><label for="R-section-28a53f7a259bc0e6bfd5bf73591250a9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Storage</span></label><a class="padding" href="/storage/"><i class="fa-solid fa-hard-drive"></i> Storage</a><ul id="R-subsections-28a53f7a259bc0e6bfd5bf73591250a9" class="collapsible-menu">
+            <li class="" data-nav-url="/storage/autofs/"><a class="padding" href="/storage/autofs/">AutoFS</a></li>
+            <li class="" data-nav-url="/storage/local-file-systems-and-swap/"><a class="padding" href="/storage/local-file-systems-and-swap/">Local File Systems and Swap</a></li>
+            <li class="" data-nav-url="/storage/network-file-system-nfs/"><a class="padding" href="/storage/network-file-system-nfs/">Network File System (NFS)</a></li>
+            <li class="" data-nav-url="/storage/partitioning-mbr-and-gpt/"><a class="padding" href="/storage/partitioning-mbr-and-gpt/">Partitioning, MBR, and GPT</a></li>
+            <li class="" data-nav-url="/storage/remove-a-filesystem-from-a-partition/"><a class="padding" href="/storage/remove-a-filesystem-from-a-partition/">Remove a filesystem from a partition</a></li>
+            <li class="" data-nav-url="/storage/thin-provisioning/"><a class="padding" href="/storage/thin-provisioning/">Thin Provisioning and LVM</a></li>
+            <li class="" data-nav-url="/storage/virtual-data-optimizer-vdo/"><a class="padding" href="/storage/virtual-data-optimizer-vdo/">Virtual Data Optimizer (VDO)</a></li></ul></li>
+            <li class="" data-nav-url="/system/"><input type="checkbox" id="R-section-0ea554b019cc5a3e6337c45b68b3a647" aria-controls="R-subsections-0ea554b019cc5a3e6337c45b68b3a647"><label for="R-section-0ea554b019cc5a3e6337c45b68b3a647"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu System</span></label><a class="padding" href="/system/"><i class="fa-solid fa-server"></i> System</a><ul id="R-subsections-0ea554b019cc5a3e6337c45b68b3a647" class="collapsible-menu">
+            <li class="" data-nav-url="/system/installation/"><a class="padding" href="/system/installation/">Installation</a></li>
+            <li class="" data-nav-url="/system/interaction/"><a class="padding" href="/system/interaction/">Interaction</a></li>
+            <li class="" data-nav-url="/system/process-and-task-scheduling/"><a class="padding" href="/system/process-and-task-scheduling/">Process and Task Scheduling</a></li></ul></li>
+            <li class="" data-nav-url="/tools/"><input type="checkbox" id="R-section-bf1399820dde3dd110e03ace4147ff86" aria-controls="R-subsections-bf1399820dde3dd110e03ace4147ff86"><label for="R-section-bf1399820dde3dd110e03ace4147ff86"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Tools</span></label><a class="padding" href="/tools/"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</a><ul id="R-subsections-bf1399820dde3dd110e03ace4147ff86" class="collapsible-menu">
+            <li class="" data-nav-url="/tools/calibre-web-with-docker-and-nginx/"><a class="padding" href="/tools/calibre-web-with-docker-and-nginx/">Calibre Web with Docker and NGINX</a></li>
+            <li class="" data-nav-url="/tools/how-to-build-a-website-with-hugo/"><a class="padding" href="/tools/how-to-build-a-website-with-hugo/">How to Build a website With Hugo</a></li>
+            <li class="" data-nav-url="/tools/process-bookfusion-highlights/"><a class="padding" href="/tools/process-bookfusion-highlights/">How to Process Bookfusion Highlights with Vim</a></li>
+            <li class="" data-nav-url="/tools/how-to-set-up-hugo-relearn-theme/"><a class="padding" href="/tools/how-to-set-up-hugo-relearn-theme/">How to Set Up Hugo Relearn Theme</a></li>
+            <li class="" data-nav-url="/tools/nextcloud-on-rhel-based-systems/"><a class="padding" href="/tools/nextcloud-on-rhel-based-systems/">Nextcloud on RHEL Based Systems</a></li>
+            <li class="" data-nav-url="/tools/setting-up-a-self-hosted-nextcloud-server/"><a class="padding" href="/tools/setting-up-a-self-hosted-nextcloud-server/">Self hosting a Nextcloud Server</a></li>
+            <li class="" data-nav-url="/tools/using-vagrant-on-linux/"><a class="padding" href="/tools/using-vagrant-on-linux/">Using Vagrant on Linux</a></li>
+            <li class="" data-nav-url="/tools/vimguide/"><a class="padding" href="/tools/vimguide/">Vim Guide</a></li>
+            <li class="" data-nav-url="/tools/using-man-pages/"><a class="padding" href="/tools/using-man-pages/">You Need to Learn Man Pages</a></li></ul></li>
+            <li class="" data-nav-url="/users-and-groups/"><input type="checkbox" id="R-section-ea23e0c86f0adbd857ee01a4f4dd70e4" aria-controls="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4"><label for="R-section-ea23e0c86f0adbd857ee01a4f4dd70e4"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Users and Groups</span></label><a class="padding" href="/users-and-groups/"><i class="fa-solid fa-users"></i> Users and Groups</a><ul id="R-subsections-ea23e0c86f0adbd857ee01a4f4dd70e4" class="collapsible-menu">
+            <li class="" data-nav-url="/users-and-groups/advanced-user-management/"><a class="padding" href="/users-and-groups/advanced-user-management/">Advanced User Management</a></li>
+            <li class="" data-nav-url="/users-and-groups/basic-user-management/"><a class="padding" href="/users-and-groups/basic-user-management/">Basic User Management</a></li></ul></li>
+            <li class="" data-nav-url="/virtualization/"><input type="checkbox" id="R-section-da8ee4406de37987b502b79e5b0a9d1c" aria-controls="R-subsections-da8ee4406de37987b502b79e5b0a9d1c"><label for="R-section-da8ee4406de37987b502b79e5b0a9d1c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Virtualization</span></label><a class="padding" href="/virtualization/"><i class="fa-solid fa-microchip"></i> Virtualization</a><ul id="R-subsections-da8ee4406de37987b502b79e5b0a9d1c" class="collapsible-menu">
+            <li class="" data-nav-url="/virtualization/rhcsa-vagrant-lab-setup/"><a class="padding" href="/virtualization/rhcsa-vagrant-lab-setup/">RHCSA Vagrant Lab Setup</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/about/"><a class="padding" href="/about/"><i class='fas fa-solid fa-circle-info'></i> About</a></li>
+            <li class="" data-nav-url="https://www.youtube.com/@linuxreader"><a class="padding" href="https://www.youtube.com/@linuxreader" rel="external" target="_blank"><i class='fas fa-fw fa-play'></i> YouTube</a></li>
+            <li class="" data-nav-url="/contact/"><a class="padding" href="/contact/"><i class='fas fa-fw fa-envelope'></i> Contact</a></li>
+            <li class="" data-nav-url="https://github.com/linuxreader"><a class="padding" href="https://github.com/linuxreader" rel="external" target="_blank"><i class='fab fa-fw fa-github'></i> GitHub</a></li>
+            <li class="" data-nav-url="https://linkedin.com/in/linuxreader/"><a class="padding" href="https://linkedin.com/in/linuxreader/" rel="external" target="_blank"><i class='fab fa-fw fa-linkedin'></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-color.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1763752405" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="/js/clipboard/clipboard.min.js?1763752405" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1763752405" defer></script>
+    <script src="/js/theme.min.js?1763752405" defer></script>
+  </body>
+</html>

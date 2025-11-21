@@ -5,44 +5,44 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+d150cc8909ed7836ff5d545e76544f6923ffacf5">
-    <meta name="description" content="Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
+    <meta name="description" content="FilesAdvanced File ManagementFile permissions, ACLs, and finding thingsBasic File ManagmentFile types, linking, viewing, and archiving files.Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
     <meta name="author" content="David Thomas">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Cyber Security :: Linux Reader">
-    <meta name="twitter:description" content="Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
+    <meta name="twitter:description" content="FilesAdvanced File ManagementFile permissions, ACLs, and finding thingsBasic File ManagmentFile types, linking, viewing, and archiving files.Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
     <meta property="og:url" content="http://linuxreader.com/cyber-security/">
     <meta property="og:site_name" content="Linux Reader">
     <meta property="og:title" content="Cyber Security :: Linux Reader">
-    <meta property="og:description" content="Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
+    <meta property="og:description" content="FilesAdvanced File ManagementFile permissions, ACLs, and finding thingsBasic File ManagmentFile types, linking, viewing, and archiving files.Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="Cyber Security :: Linux Reader">
-    <meta itemprop="description" content="Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
-    <meta itemprop="wordCount" content="23">
+    <meta itemprop="description" content="FilesAdvanced File ManagementFile permissions, ACLs, and finding thingsBasic File ManagmentFile types, linking, viewing, and archiving files.Security Enhanced LinuxThe confusing world of SELinuxThe Linux FirewallFirewalld stuff mostlyThe Secure Shell ServiceOpenSSH, system access, file transfer">
+    <meta itemprop="wordCount" content="43">
     <title>Cyber Security :: Linux Reader</title>
     <link href="http://linuxreader.com/cyber-security/" rel="canonical" type="text/html" title="Cyber Security :: Linux Reader">
     <link href="/cyber-security/index.xml" rel="alternate" type="application/rss+xml" title="Cyber Security :: Linux Reader">
-    <link href="/images/favicon.svg?1762645317" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1762645317" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1762645317" defer></script>
-    <script src="/js/search-lunr.min.js?1762645317" defer></script>
-    <script src="/js/search.min.js?1762645317" defer></script>
+    <link href="/images/favicon.svg?1763752405" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1763752405" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1763752405" defer></script>
+    <script src="/js/search-lunr.min.js?1763752405" defer></script>
+    <script src="/js/search.min.js?1763752405" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1762645317";
+      window.relearn.index_js_url="/searchindex.en.js?1763752405";
     </script>
-    <script src="/js/lunr/lunr.min.js?1762645317" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1762645317" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1762645317" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1762645317" defer></script>
+    <script src="/js/lunr/lunr.min.js?1763752405" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1763752405" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1763752405" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1763752405" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762645317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1762645317" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1762645317" rel="stylesheet">
-    <link href="/css/theme.min.css?1762645317" rel="stylesheet">
-    <link href="/css/format-print.min.css?1762645317" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763752405" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763752405" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1763752405" rel="stylesheet">
+    <link href="/css/theme.min.css?1763752405" rel="stylesheet">
+    <link href="/css/format-print.min.css?1763752405" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -139,7 +139,7 @@
             </div>
 
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
-<span class="btn cstyle link noborder notitle interactive"><a href="/cyber-security/security-enhanced-linux/" title="Security Enhanced Linux (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle link noborder notitle interactive"><a href="/cyber-security/files/" title="Files (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
 
 
@@ -161,6 +161,24 @@
 <h1 id="cyber-security">Cyber Security</h1>
 
 <div class="children children-type-card children-sort-"><ul class="card-container">
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-8889c4b3cf9afe9c380bdc871342cade">
+    <div class="card-content">
+      <div class="card-title" id="R-card-8889c4b3cf9afe9c380bdc871342cade">
+        <a href="/cyber-security/files/">
+        Files
+        </a>
+      </div>
+      <div class="card-content-text">
+          <p>
+Advanced File ManagementFile permissions, ACLs, and finding thingsBasic File ManagmentFile types, linking, viewing, and archiving files.
+      </div>
+    </div>
+    <div class="card-image">
+        <img src="images/files.png">
+    </div>
+  </article>
+</li>
 <li>
   <article class="card card-popout" aria-labelledby="R-card-33aeee5290c2225fd5277b6f8e0c670b">
     <div class="card-content">
@@ -214,6 +232,1401 @@ OpenSSH, system access, file transfer
 </article>
           <section>
             <h1 class="a11y-only">Subsections of Cyber Security</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="files">Files</h1>
+
+<div class="children children-type-card children-sort-"><ul class="card-container">
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-d58c8c96efffe08280286f4e5fdc5643">
+    <div class="card-content">
+      <div class="card-title" id="R-card-d58c8c96efffe08280286f4e5fdc5643">
+        <a href="/cyber-security/files/advanced-file-management/">
+        Advanced File Management
+        </a>
+      </div>
+      <div class="card-content-text">
+          <p>
+File permissions, ACLs, and finding things
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-ee7a6ac9b2a81c0fcd5b150999bd472b">
+    <div class="card-content">
+      <div class="card-title" id="R-card-ee7a6ac9b2a81c0fcd5b150999bd472b">
+        <a href="/cyber-security/files/file-management/">
+        Basic File Managment
+        </a>
+      </div>
+      <div class="card-content-text">
+          <p>
+File types, linking, viewing, and archiving files.
+      </div>
+    </div>
+  </article>
+</li>
+</ul>
+</div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Files</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="advanced-file-management">Advanced File Management</h1>
+
+<h2 id="permission-classes-and-types">Permission Classes and Types</h2>
+<p><strong>Permission classes</strong></p>
+<ul>
+<li>user (u)</li>
+<li>group (g)</li>
+<li>other (o) (public)</li>
+<li>all (a) &lt;- all combined</li>
+</ul>
+<p><strong>Permission types</strong></p>
+<ul>
+<li>r,w,x</li>
+<li>works differently on files and directories</li>
+<li>hyphen (-) represents no permissions set</li>
+</ul>
+<h3 id="ls-results-permissions-groupings">ls results permissions groupings</h3>
+<ul>
+<li>
+<ul>
+<li>rwx rw- r&ndash;
+<ul>
+<li>user (owner), group, and other (public)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ls-results-first-character-meaning">ls results first character meaning</h3>
+<ul>
+<li>regular file
+d directory
+l symbolic link
+c character device file
+b block device file
+p named pipe
+s socket</li>
+</ul>
+<h3 id="modifying-access-permission-bits">Modifying Access Permission Bits</h3>
+<h3 id="chmod--command"><code>chmod</code>  command</h3>
+<ul>
+<li>Modify permissions using symbolic or octal notation.</li>
+<li>Used by root or the file owner.</li>
+</ul>
+<p>Flags
+chmod -v ::: Verbose.</p>
+<h3 id="symbolic-notation">Symbolic notation</h3>
+<ul>
+<li>Letters (ugo/rwx) and symbols (+, -, =) used to add, revoke, or assign permission bits.</li>
+</ul>
+<h3 id="octal-notation">Octal Notation</h3>
+<p>Three-digit numbering system ranging from 0 to 7.
+0 &mdash;
+1 &ndash;x
+2 -w-
+3 -wx
+4 r&ndash;
+5 r-x
+6 rw-
+7 rwx</p>
+<h3 id="default-permissions">Default Permissions</h3>
+<ul>
+<li>Calculated based on the umask (user mask) value subtracted from the initial permissions value.</li>
+</ul>
+<h4 id="umask">umask</h4>
+<ul>
+<li>Three-digit value (octal or symbolic) that refers to read, write, and execute permissions for owner, group, and public.</li>
+<li>Default umask value is 0022 for the root user and 0002 normal users.</li>
+<li>The left-most 0 has no significance.</li>
+<li>If umask is set to 000 files will get max of 666</li>
+<li>If the initial permissions are 666 and the umask is 002 then the default permissions are 664. (666-002)</li>
+<li>Any new files or directories created after changing the umask will have the new default permissions set.</li>
+<li>umask settings are lost when you log off. Add it to the appropriate startup file to make it permanent.</li>
+</ul>
+<p>Defaults</p>
+<ul>
+<li>files 666 rw-rw-rw-</li>
+<li>directories 777 rwxrwxrwx</li>
+</ul>
+<h3 id="umask-command">umask command</h3>
+<p>Options</p>
+<ul>
+<li>-S symbolic form</li>
+</ul>
+<h3 id="special-permission-bits">Special Permission Bits</h3>
+<hr>
+<ul>
+<li>3 types of special permission bits for executable files or directories for non root users
+<ul>
+<li>setuid</li>
+<li>setgid</li>
+<li>sticky</li>
+</ul>
+</li>
+<li>setuid
+<ul>
+<li>set on exe&rsquo;s to provide non-owners the ability to run them with the privileges of the owning user</li>
+<li>may be set on directories and files but will have no effect.</li>
+<li>example: the su command</li>
+<li>shows an &rsquo;s&rsquo; in ls -l listing at the end of owners permissions</li>
+<li>If the file already has the “x” bit set for the user, the long listing will show a lowercase “s”, otherwise it will list it with an uppercase “S”.</li>
+</ul>
+</li>
+<li>setgid
+<ul>
+<li>set on exe&rsquo;s to provide non-group members the ability to run them with the privileges of the owning group.</li>
+<li>May be set on shared directories
+<ul>
+<li>allow files and subdirectories created underneath to automatically inherit the directory’s owning group.</li>
+<li>saves group members who are sharing the directory contents from changing the group ID for every new file and subdirectory that they add.</li>
+</ul>
+</li>
+<li>write command has this set by default so a member of the tty group can run it. If the file already has the “x” bit set for the group, the long listing will show a lowercase “s”, otherwise it will list it with an uppercase “S”.</li>
+</ul>
+</li>
+<li>Sticky bit
+<ul>
+<li>may be set on public directories for inhibiting file deletion by non-owners</li>
+<li>may be set on directories and files but will have no effect.</li>
+<li>Set on /tmp and /var/tmp by default</li>
+<li>Letter &ldquo;t&rdquo; in other permission feild</li>
+<li>If the directory already has the “x” bit set for public, the long listing will show a lowercase “t”, otherwise it will list it with an uppercase “T”.</li>
+</ul>
+</li>
+</ul>
+<h2 id="access-control-lists-acls">Access Control Lists (ACLs)</h2>
+<ul>
+<li>
+<p>Setting a default ACL on a directory allows content sharing among user&rsquo;s without having to modify access on each new file and subdirectory.</p>
+</li>
+<li>
+<p>Extra permissions that can be set on files and directories.</p>
+</li>
+<li>
+<p>Define permissions for named user and named groups.</p>
+</li>
+<li>
+<p>Configured the same way on both files and directories.</p>
+</li>
+<li>
+<p>Named Users</p>
+<ul>
+<li>May or may not be a part of the same group.</li>
+</ul>
+</li>
+<li>
+<p>2 different groups of ACLs. Default ACLs and Access ACLs.</p>
+<ul>
+<li>Access ACLs
+<ul>
+<li>Set on individual files and directories</li>
+</ul>
+</li>
+<li>Default ACLs
+<ul>
+<li>Applied on directories</li>
+<li>files and subdirectories inherit the ACL</li>
+<li>Execute bit must be set on the directory for public.</li>
+<li>Files receive the shared directory&rsquo;s default ACLs as their access ACLs - what the mask limits.</li>
+<li>Subdirectories receive both default ACLs and access ACLs as they are.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>A &ldquo;+&rdquo; at the end of ls -l listing indicates ACL is set</p>
+<ul>
+<li>-rw-rw-r&ndash;+</li>
+</ul>
+</li>
+</ul>
+<h3 id="acl-commands">ACL Commands</h3>
+<p><code>getfacl</code></p>
+<ul>
+<li>Display ACL settings
+<ul>
+<li>Displays:</li>
+<li>name of file</li>
+<li>owner</li>
+<li>owning group</li>
+<li>Permissions
+<ul>
+<li>colon characters save space for named user/group (or UID/GID) when extended Permissions are set.</li>
+<li>Example: user:1000:r&ndash;
+<ul>
+<li>the named user with UID 1000, who is neither the file owner nor a member of the owning group, is allowed read-only access to this file.</li>
+</ul>
+</li>
+<li>Example: group:dba:rw-
+<ul>
+<li>give the named group (dba) read and write access to the file.
+<code>setfacl</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>set, modify, substitute, or delete ACL settings</li>
+<li>If you want to give read and write permissions to a specific user (user1) and change the mask to read-only at the same time, the setfacl command will allocate the permissions as mentioned; however, the effective permissions for the named user will only be read-only.</li>
+</ul>
+</li>
+</ul>
+<p>u:UID:perms</p>
+<ul>
+<li>named user must exist in /etc/passwd</li>
+<li>if no user specified, permissions are given to the owner of the file/directory</li>
+</ul>
+<p>g:GID:perms</p>
+<ul>
+<li>Named group must exist in /etc/group</li>
+<li>If no group specified, permissions are given to the owning group of the file/directory</li>
+</ul>
+<p>o:perms</p>
+<ul>
+<li>Neither owner or owning group</li>
+</ul>
+<p>m:perms</p>
+<ul>
+<li>Maximum permissions for named user or named group</li>
+</ul>
+<p>Switches</p>
+<table>
+  <thead>
+      <tr>
+          <th>Switch</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-b</td>
+          <td>Remove all Access ACLs</td>
+      </tr>
+      <tr>
+          <td>-d</td>
+          <td>Applies to default ACLs</td>
+      </tr>
+      <tr>
+          <td>-k</td>
+          <td>Removes all default ACLs</td>
+      </tr>
+      <tr>
+          <td>-m</td>
+          <td>Sets or modifies ACLs</td>
+      </tr>
+      <tr>
+          <td>-n</td>
+          <td>Prevent auto mask recalculation</td>
+      </tr>
+      <tr>
+          <td>-R</td>
+          <td>Apply Recursively to directory</td>
+      </tr>
+      <tr>
+          <td>-x</td>
+          <td>Remove Access ACL</td>
+      </tr>
+      <tr>
+          <td>-c</td>
+          <td>Display output without header</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="mask-value">Mask Value</h3>
+<ul>
+<li>Determine maximum allowable permissions for named user or named group</li>
+<li>Mask value displayed on separate line in getfacl output</li>
+<li>Mask is recalculated every time an ACL is modified unless value is manually entered.</li>
+<li>Overrides the set ACL value.</li>
+</ul>
+<h2 id="find-command">Find Command</h2>
+<ul>
+<li>Search files and display the full path.</li>
+<li>Execute command on search results.</li>
+<li>Different search criteria
+<ul>
+<li>name</li>
+<li>part name</li>
+<li>ownership</li>
+<li>owning group</li>
+<li>permissions</li>
+<li>inode number</li>
+<li>last access</li>
+<li>modification time in days or minutes</li>
+<li>size</li>
+<li>file type</li>
+</ul>
+</li>
+<li>Command syntax
+<ul>
+<li>{find} + {path} + {search option} + {action}</li>
+</ul>
+</li>
+<li>Options
+<ul>
+<li>-name / -iname (search by name)</li>
+<li>-user / -group (UID / GID)</li>
+<li>-perm (permissions)</li>
+<li>-inum (inode)</li>
+<li>-atime/amin (access time)</li>
+<li>-mtime/amin (modification time)</li>
+<li>-size / -type (size / type)</li>
+<li></li>
+</ul>
+</li>
+<li>Action
+<ul>
+<li>copy, erase, rename, change ownership, modify permissions
+<ul>
+<li>-exec  {} \;
+<ul>
+<li>replaces {} for each filename as it is found. The semicolon character (;) marks the termination of the command and it is escaped with the backslash character (\).</li>
+</ul>
+</li>
+<li>-ok  {} \;
+<ul>
+<li>same as exec but requires confirmation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>-delete</li>
+<li>-print &lt;- default</li>
+</ul>
+</li>
+</ul>
+<h1 id="advanced-file-management-labs">Advanced File Management Labs</h1>
+<h3 id="lab-find-stuff">Lab: find stuff</h3>
+<ol>
+<li>Create file 10 and search for it.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo touch /root/file10
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo find / -name file10 -print
+</span></span><span style="display:flex;"><span>/root/file10</span></span></code></pre></div>
+<ol start="2">
+<li>Perform a case insensitive search for files and directories in /dev that begin with &ldquo;usb&rdquo; followed by any characters.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ find /dev -iname usb*
+</span></span><span style="display:flex;"><span>/dev/usbmon0</span></span></code></pre></div>
+<ol start="3">
+<li>Find files smaller than 1MB (-1M) in size (-size) in the root user’s home directory (~).</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ find ~ -size -1M</span></span></code></pre></div>
+<ol start="4">
+<li>Search for files larger than 40MB (+40M) in size (-size) in the /usr directory:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /usr -size +40M
+</span></span><span style="display:flex;"><span>/usr/share/GeoIP/GeoLite2-City.b</span></span></code></pre></div>
+<ol start="5">
+<li>Find files in the entire root file system (/) with ownership (-user) set to user daemon and owning group (-group) set to any group other than (-not or ! for negation) user1:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find / -user daemon -not -group user1</span></span></code></pre></div>
+<ol start="6">
+<li>Search for directories (-type) by the name “src” (-name) in /usr at a maximum of two subdirectory levels below (-maxdepth):</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /usr -maxdepth <span style="color:#ff9f43">2</span> -type d -name src
+</span></span><span style="display:flex;"><span>/usr/local/src
+</span></span><span style="display:flex;"><span>/usr/src</span></span></code></pre></div>
+<ol start="7">
+<li>Run the above search but at least three subdirectory levels beneath /usr, substitute -maxdepth 2 with -mindepth 3.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /usr -mindepth <span style="color:#ff9f43">3</span> -type d -name src
+</span></span><span style="display:flex;"><span>/usr/src/kernels/4.18.0-425.3.1.el8.x86_64/drivers/gpu/drm//display/dmub/src
+</span></span><span style="display:flex;"><span>/usr/src/kernels/4.18.0-425.3.1.el8.x86_64/tools/usb/usbip/src</span></span></code></pre></div>
+<ol start="8">
+<li>Find files in the /etc directory that were modified (-mtime) more than (the + sign) 2000 days ago:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /etc -mtime +2000
+</span></span><span style="display:flex;"><span>/etc/libuser.conf
+</span></span><span style="display:flex;"><span>/etc/xattr.conf
+</span></span><span style="display:flex;"><span>/etc/whois.conf</span></span></code></pre></div>
+<ol start="9">
+<li>Run the above search for files that were modified exactly 12 days ago, replace “+2000” with “12”.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /etc -mtime <span style="color:#ff9f43">12</span></span></span></code></pre></div>
+<ol start="10">
+<li>To find files in the /var/log directory that have been modified (-mmin) in the past (the - sign) 100 minutes:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /var/log -mmin -100
+</span></span><span style="display:flex;"><span>/var/log/rhsm/rhsmcertd.log
+</span></span><span style="display:flex;"><span>/var/log/rhsm/rhsm.log
+</span></span><span style="display:flex;"><span>/var/log/audit/audit.log
+</span></span><span style="display:flex;"><span>/var/log/dnf.librepo.log
+</span></span><span style="display:flex;"><span>/var/log/dnf.rpm.log
+</span></span><span style="display:flex;"><span>/var/log/sa
+</span></span><span style="display:flex;"><span>/var/log/sa/sa16
+</span></span><span style="display:flex;"><span>/var/log/sa/sar15
+</span></span><span style="display:flex;"><span>/var/log/dnf.log
+</span></span><span style="display:flex;"><span>/var/log/hawkey.log
+</span></span><span style="display:flex;"><span>/var/log/cron
+</span></span><span style="display:flex;"><span>/var/log/messages
+</span></span><span style="display:flex;"><span>/var/log/secure</span></span></code></pre></div>
+<ol start="11">
+<li>Run the above search for files that have been modified exactly 25 minutes ago, replace “-100” with “25”.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /var/log -mmin <span style="color:#ff9f43">25</span></span></span></code></pre></div>
+<ol start="12">
+<li>To search for block device files (-type) in the /dev directory with permissions (-perm) set to exactly 660:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /dev -type b -perm <span style="color:#ff9f43">660</span>
+</span></span><span style="display:flex;"><span>/dev/dm-1
+</span></span><span style="display:flex;"><span>/dev/dm-0
+</span></span><span style="display:flex;"><span>/dev/sda2
+</span></span><span style="display:flex;"><span>/dev/sda1
+</span></span><span style="display:flex;"><span>/dev/sda</span></span></code></pre></div>
+<ol start="13">
+<li>Search for character device files (-type) in the /dev directory with at least (-222) world writable permissions (this example would ignore checking the write and execute permissions):</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /dev -type c -perm -222</span></span></code></pre></div>
+<ol start="14">
+<li>Find files in the /etc/systemd directory that are executable by at least their owner or group members:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find /etc/systemd -perm /110</span></span></code></pre></div>
+<ol start="15">
+<li>Search for symlinked files (-type) in /usr with permissions (-perm) set to read and write for the owner and owning group:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo find /usr -type l -perm -ug<span style="color:#ff6ac1">=</span>rw</span></span></code></pre></div>
+<ol start="16">
+<li>Search for directories in the entire directory tree (/) by the name “core” (-name) and list them (ls-ld) as they are discovered without prompting for user confirmation (-exec):</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 etc<span style="color:#ff6ac1">]</span>$ sudo find / -name core -exec ls -ld <span style="color:#ff6ac1">{}</span> <span style="color:#5af78e">\;</span></span></span></code></pre></div>
+<ol start="17">
+<li>Use the -ok switch to prompt for confirmation before it copies each matched file (-name) in /etc/sysconfig to /tmp:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo find /etc/sysconfig -name <span style="color:#5af78e">&#39;*.conf&#39;</span> -ok  cp <span style="color:#ff6ac1">{}</span> /tmp <span style="color:#5af78e">\;</span></span></span></code></pre></div>
+<h3 id="lab-display-acl-and-give-permissions">Lab: Display ACL and give permissions</h3>
+<ol>
+<li>Create and empty file aclfile1 in /tmp and display ACLs on it:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> touch aclfile1
+</span></span><span style="display:flex;"><span> getfacl aclfile1</span></span></code></pre></div>
+<ol start="2">
+<li>Give rw permission to user 1 but with a mask of read only and view the results.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user1:rw,m:r aclfile1</span></span></code></pre></div>
+<ol start="3">
+<li>Promote the mask value to include write bit and verify:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m m:rw aclfile1
+</span></span><span style="display:flex;"><span> getfacl -c aclfile1</span></span></code></pre></div>
+<h3 id="lab-identify-apply-and-erase-access-acls">Lab: Identify, Apply, and Erase Access ACLs</h3>
+<ol>
+<li>Switch to user1 and create file acluser1 in /tmp:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> touch acluser1</span></span></code></pre></div>
+<ol start="2">
+<li>Use ls and getfacl to check existing acl entries:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l acluser1
+</span></span><span style="display:flex;"><span> getfacl acluser1 -c</span></span></code></pre></div>
+<ol start="3">
+<li>Allocate rw permissions to user100 with setfacl in octal form:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user100:6 acluser1</span></span></code></pre></div>
+<ol start="4">
+<li>Run ls (+) and getfacl to verify:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l acluser1
+</span></span><span style="display:flex;"><span> getfacl -c acluser1</span></span></code></pre></div>
+<ol start="5">
+<li>
+<p>Open another terminal as user100 and open the file and edit it.</p>
+</li>
+<li>
+<p>Add user200 with full rwx permissions to acluser1 using the symbolic notation and then show the updated ACL settings:</p>
+</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user200:rwx acluser1
+</span></span><span style="display:flex;"><span> getfacl -c acluser1</span></span></code></pre></div>
+<ol start="7">
+<li>Delete the ACL entries set for user200 and validate:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -x u:user200 acluser1
+</span></span><span style="display:flex;"><span> getfacl acluser1 -c</span></span></code></pre></div>
+<ol start="8">
+<li>Delete the rest of the ACLs:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -b acluser1</span></span></code></pre></div>
+<ol start="9">
+<li>Use the ls and getfacl commands and confirm for the ACLs removal:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l acluser1
+</span></span><span style="display:flex;"><span> getfacl acluser1 -c</span></span></code></pre></div>
+<ol start="10">
+<li>create group aclgroup1</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> groupadd -g <span style="color:#ff9f43">8000</span> aclgroup1</span></span></code></pre></div>
+<ol start="11">
+<li>add this group as a named group along with the two named users (user100 and user200).</li>
+</ol>
+<h3 id="lab-apply-identify-and-erase-default-acls">Lab: Apply, Identify, and erase default ACLs</h3>
+<ol>
+<li>Switch or log in as user1 and create a directory projects in /tmp:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> mkdir projects</span></span></code></pre></div>
+<ol start="2">
+<li>Use the getfacl command for an initial look at the permissions on the directory:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> getfacl -c projects</span></span></code></pre></div>
+<ol start="3">
+<li>Allocate default read, write, and execute permissions to user100 and user200 on the directory. Use both octal and symbolic notations and the -d (default) option with the setfacl command.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -dm u:user100:7,u:user200:rwx projects/
+</span></span><span style="display:flex;"><span> getfacl -c projects/</span></span></code></pre></div>
+<ol start="4">
+<li>Create a subdirectory prjdir1 under projects and observe the ACL inheritance:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> mkdir prjdir1
+</span></span><span style="display:flex;"><span> getfacl -c prjdir1</span></span></code></pre></div>
+<ol start="5">
+<li>Create a file prjfile1 under projects and observe the ACL inheritance:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch prjfile1
+</span></span><span style="display:flex;"><span> getfacl -c prjfilel</span></span></code></pre></div>
+<ol start="6">
+<li>log in as one of the named users, change directory into /tmp/projects, and edit prjfile1 (add some random text). Then change into the prjdir1 and create file file100.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user100
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp/projects
+</span></span><span style="display:flex;"><span> vim prjfile1
+</span></span><span style="display:flex;"><span> ls -l prjfile1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> prjdir1
+</span></span><span style="display:flex;"><span> touch file100
+</span></span><span style="display:flex;"><span> pwd</span></span></code></pre></div>
+<ol start="7">
+<li>Delete all the default ACLs from the projects directory as user1 and confirm:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">exit</span>
+</span></span><span style="display:flex;"><span> su - user1
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /tmp
+</span></span><span style="display:flex;"><span> setfacl -k projects
+</span></span><span style="display:flex;"><span> getfacl -c projects</span></span></code></pre></div>
+<ol start="8">
+<li>create a group such as aclgroup2 by running groupadd -g 9000 aclgroup2 as the root user and repeat this exercise by adding this group as a named group along with the two named users (user100 and user200).</li>
+</ol>
+<h3 id="lab-modify-permission-bits-using-symbolic-form">Lab: Modify Permission Bits Using Symbolic Form</h3>
+<ol>
+<li>Add an execute bit for the owner and a write bit for group and public</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod u+x permfile1 -v
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0444</span> <span style="color:#ff6ac1">(</span>r--r--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v go+w permfile1
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="2">
+<li>Revoke the write bit from public</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v o-w permfile1
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff5c57">a</span><span style="color:#ff6ac1">=</span>rwx permfile1
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0777</span> <span style="color:#ff6ac1">(</span>rwxrwxrwx<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="3">
+<li>Revoke write from the owning group and write and execute bits from public.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod g-w,o-wx permfile1 -v
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile1&#39;</span> changed from <span style="color:#ff9f43">0777</span> <span style="color:#ff6ac1">(</span>rwxrwxrwx<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0754</span> <span style="color:#ff6ac1">(</span>rwxr-xr--<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<h3 id="lab-modify-permission-bits-using-octal-form">Lab: Modify Permission Bits Using Octal Form</h3>
+<ol>
+<li>Read only for user, group, and other:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ touch permfile2
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod <span style="color:#ff9f43">444</span> permfile2
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -l permfile2
+</span></span><span style="display:flex;"><span> -r--r--r--. <span style="color:#ff9f43">1</span> vagrant vagrant <span style="color:#ff9f43">0</span> Feb  <span style="color:#ff9f43">4</span> 12:22 permfile2</span></span></code></pre></div>
+<ol start="2">
+<li>Add an execute bit for the owner:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">544</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0444</span> <span style="color:#ff6ac1">(</span>r--r--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="3">
+<li>Add a write permission bit for group and public:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">566</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0544</span> <span style="color:#ff6ac1">(</span>r-xr--r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="4">
+<li>Revoke the write bit for public:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">564</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0566</span> <span style="color:#ff6ac1">(</span>r-xrw-rw-<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="5">
+<li>Assign read, write, and execute permission bits to all three user categories:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ chmod -v <span style="color:#ff9f43">777</span> permfile2
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;permfile2&#39;</span> changed from <span style="color:#ff9f43">0564</span> <span style="color:#ff6ac1">(</span>r-xrw-r--<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">0777</span> <span style="color:#ff6ac1">(</span>rwxrwxrwx<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="6">
+<li>Run the umask command without any options and it will display the current umask value in octal notation:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">umask</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff9f43">0002</span></span></span></code></pre></div>
+<ol start="7">
+<li>Symbolic form</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">umask</span> -S
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">u</span><span style="color:#ff6ac1">=</span>rwx,g<span style="color:#ff6ac1">=</span>rwx,o<span style="color:#ff6ac1">=</span>rx</span></span></code></pre></div>
+<ol start="8">
+<li>Set all new files and directories to get 640 and 750 permissions,</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">umask</span> <span style="color:#ff9f43">027</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">umask</span> <span style="color:#ff5c57">u</span><span style="color:#ff6ac1">=</span>rwx,g<span style="color:#ff6ac1">=</span>rx,o<span style="color:#ff6ac1">=</span></span></span></code></pre></div>
+<ol start="9">
+<li>Test new umask (666-027=640) (777-027=750)</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ touch tempfile1
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -l tempfile1
+</span></span><span style="display:flex;"><span> -rw-r-----. <span style="color:#ff9f43">1</span> vagrant vagrant <span style="color:#ff9f43">0</span> Feb  <span style="color:#ff9f43">5</span> 12:09 tempfile1
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ mkdir tempdir1
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -ld tempdir1
+</span></span><span style="display:flex;"><span> drwxr-x---. <span style="color:#ff9f43">2</span> vagrant vagrant <span style="color:#ff9f43">6</span> Feb  <span style="color:#ff9f43">5</span> 12:10 tempdir1</span></span></code></pre></div>
+<h3 id="lab--view-suid-bit-on-su-command">Lab:  View suid bit on su command</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -l /usr/bin/su
+</span></span><span style="display:flex;"><span> -rwsr-xr-x. <span style="color:#ff9f43">1</span> root root <span style="color:#ff9f43">50152</span> Aug <span style="color:#ff9f43">22</span> 10:08 /usr/bin/su</span></span></code></pre></div>
+<h3 id="lab-test-the-effect-of-setuid-bit-on-executable-files">Lab: Test the Effect of setuid Bit on Executable Files</h3>
+<ol>
+<li>Open 2 terminal windows. Switch to user1 in terminal1</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ su - user1
+</span></span><span style="display:flex;"><span> Password:
+</span></span><span style="display:flex;"><span> Last login: Sun Feb  <span style="color:#ff9f43">5</span> 12:37:12 UTC <span style="color:#ff9f43">2023</span> on pts/1</span></span></code></pre></div>
+<ol start="2">
+<li>Switch to root on terminal2</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo su - root</span></span></code></pre></div>
+<ol start="3">
+<li>T1 Revoke the setuid bit from /usr/bin/su</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chmod -v u-s /usr/bin/su</span></span></code></pre></div>
+<ol start="4">
+<li>T2 log off as root</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ctrl+d</span></span></code></pre></div>
+<ol start="5">
+<li>Try to log in has root from both terminals</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user1@server1 ~<span style="color:#ff6ac1">]</span>$ su - root
+</span></span><span style="display:flex;"><span> Password:
+</span></span><span style="display:flex;"><span> su: Authentication failure</span></span></code></pre></div>
+<ol start="6">
+<li>T1 restore the setuid bit</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo chmod -v +4000 /usr/bin/su
+</span></span><span style="display:flex;"><span> mode of <span style="color:#5af78e">&#39;/usr/bin/su&#39;</span> changed from <span style="color:#ff9f43">0755</span> <span style="color:#ff6ac1">(</span>rwxr-xr-x<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">4755</span> <span style="color:#ff6ac1">(</span>rwsr-xr-x<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<h3 id="lab-test-the-effect-of-setgid-bit-on-executable-files">Lab: Test the Effect of setgid Bit on Executable Files</h3>
+<ol>
+<li>
+<p>Log into two terminals
+T1 root
+T2 user1
+Opened with ssh</p>
+</li>
+<li>
+<p>T2 list users currently logged in</p>
+</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>who</span></span></code></pre></div>
+<ol start="3">
+<li>T2 send a message to root</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>write root</span></span></code></pre></div>
+<ol start="3">
+<li>T1 revoke setgid from /usr/bin/write</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod g-s /usr/bin/write -v</span></span></code></pre></div>
+<ol start="4">
+<li>Try to write root</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user1@server1 ~<span style="color:#ff6ac1">]</span>$ write root
+</span></span><span style="display:flex;"><span>write: effective gid does not match group of /dev/pts/0</span></span></code></pre></div>
+<ol start="5">
+<li>Restore the setgid bit on /usr/bin/write:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># sudo chmod -v +2000 /usr/bin/write</span>
+</span></span><span style="display:flex;"><span>mode of <span style="color:#5af78e">&#39;/usr/bin/write&#39;</span> changed from <span style="color:#ff9f43">0755</span> <span style="color:#ff6ac1">(</span>rwxr-xr-x<span style="color:#ff6ac1">)</span> to <span style="color:#ff9f43">2755</span> <span style="color:#ff6ac1">(</span>rwxr-sr-x<span style="color:#ff6ac1">)</span></span></span></code></pre></div>
+<ol start="6">
+<li>Test</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>write root</span></span></code></pre></div>
+<h3 id="lab-set-up-shared-directory-for-group-collaboration">Lab: Set up Shared Directory for Group Collaboration</h3>
+<ol>
+<li>set up 2 test users</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># adduser user100</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># adduser user200</span></span></span></code></pre></div>
+<ol start="2">
+<li>Add group sgrp with GID 9999 with the groupadd command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># groupadd -g 9999 sgrp</span></span></span></code></pre></div>
+<ol start="3">
+<li>Add user100 and user200 as members to sgrp using the usermod command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># usermod -aG sgrp user100</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># usermod -aG sgrp user200</span></span></span></code></pre></div>
+<ol start="4">
+<li>Create /sdir directory</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># mkdir /sdir</span></span></span></code></pre></div>
+<ol start="5">
+<li>Set ownership and owning group on /sdir to root and sgrp, using the chown command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># chown root:sgrp /sdir</span></span></span></code></pre></div>
+<ol start="6">
+<li>Set the setgid bit on /sdir using the chmod command:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo chmod g+s /sdir</span></span></code></pre></div>
+<ol start="7">
+<li>Add write permission to the group members on /sdir and revoke all permissions from public:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># chmod g+w,o-rx /sdir</span></span></span></code></pre></div>
+<ol start="8">
+<li>Verify</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># ls -ld /sdir</span>
+</span></span><span style="display:flex;"><span> drwxrws---. <span style="color:#ff9f43">2</span> root sgrp <span style="color:#ff9f43">6</span> Feb <span style="color:#ff9f43">13</span> 15:49 /sdir</span></span></code></pre></div>
+<ol start="9">
+<li>Switch or log in as user100 and change to the /sdir directory:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># su - user100</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user100@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span> /sdir</span></span></code></pre></div>
+<ol start="10">
+<li>Create a file and check the owner and owning group on it:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user100@server1 sdir<span style="color:#ff6ac1">]</span>$ touch file100
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user100@server1 sdir<span style="color:#ff6ac1">]</span>$ ls -l file100
+</span></span><span style="display:flex;"><span> -rw-rw-r--. <span style="color:#ff9f43">1</span> user100 sgrp <span style="color:#ff9f43">0</span> Feb <span style="color:#ff9f43">10</span> 22:41 file100</span></span></code></pre></div>
+<ol start="11">
+<li>Log out as user100, and switch or log in as user200 and change to the /sdir directory:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>root@server1 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># su - user200</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 ~<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span> /sdir</span></span></code></pre></div>
+<ol start="12">
+<li>Create a file and check the owner and owning group on it:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 sdir<span style="color:#ff6ac1">]</span>$ touch file200
+</span></span><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 sdir<span style="color:#ff6ac1">]</span>$ ls -l file200
+</span></span><span style="display:flex;"><span> -rw-rw-r--. <span style="color:#ff9f43">1</span> user200 sgrp <span style="color:#ff9f43">0</span> Feb <span style="color:#ff9f43">13</span> 16:01 file200</span></span></code></pre></div>
+<h3 id="lab-view-t-in-permissions-for-sticky-bit">Lab: View &ldquo;t&rdquo; in permissions for sticky bit</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff6ac1">[</span>user200@server1 sdir<span style="color:#ff6ac1">]</span>$ ls -l /tmp /var/tmp -d
+</span></span><span style="display:flex;"><span> drwxrwxrwt. <span style="color:#ff9f43">8</span> root root <span style="color:#ff9f43">185</span> Feb <span style="color:#ff9f43">13</span> 16:12 /tmp
+</span></span><span style="display:flex;"><span> drwxrwxrwt. <span style="color:#ff9f43">4</span> root root <span style="color:#ff9f43">113</span> Feb <span style="color:#ff9f43">13</span> 16:00 /var/tmp</span></span></code></pre></div>
+<h3 id="lab-test-the-effect-of-sticky-bit">Lab: Test the effect of Sticky Bit</h3>
+<ol>
+<li>Switch to user100 and change to the /tmp directory</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user100@server1 sdir<span style="color:#ff6ac1">]</span>$ <span style="color:#ff5c57">cd</span> /tmp</span></span></code></pre></div>
+<ol start="2">
+<li>Create file called stckyfile</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user100@server1 tmp<span style="color:#ff6ac1">]</span>$ touch stickyfile</span></span></code></pre></div>
+<ol start="3">
+<li>Try to delete the file as user200</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>user200@server1 tmp<span style="color:#ff6ac1">]</span>$ rm stickyfile
+</span></span><span style="display:flex;"><span>rm: remove write-protected regular empty file <span style="color:#5af78e">&#39;stickyfile&#39;</span>? y
+</span></span><span style="display:flex;"><span>rm: cannot remove <span style="color:#5af78e">&#39;stickyfile&#39;</span>: Operation not permitted</span></span></code></pre></div>
+<ol start="4">
+<li>Revoke the /tmp stickybit and confirm</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ sudo chmod o-t /tmp
+</span></span><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>vagrant@server1 ~<span style="color:#ff6ac1">]</span>$ ls -ld /tmp
+</span></span><span style="display:flex;"><span>drwxrwxrwx. <span style="color:#ff9f43">8</span> root root <span style="color:#ff9f43">4096</span> Feb <span style="color:#ff9f43">13</span> 22:00 /tmp</span></span></code></pre></div>
+<ol start="5">
+<li>Retry the removal as user200</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm stickyfile</span></span></code></pre></div>
+<ol start="6">
+<li>Restore the sticky bit on /tmp</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod -v +1000 /tmp</span></span></code></pre></div>
+<h3 id="lab-manipulate-file-permissions-user1">Lab: Manipulate File Permissions (user1)</h3>
+<ol>
+<li>Create file file11 and directory dir11 in the home directory. Make a note of the permissions on them.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch file11
+</span></span><span style="display:flex;"><span> mkdir dir11</span></span></code></pre></div>
+<ol start="2">
+<li>Run the umask command to determine the current umask.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> umask</span></span></code></pre></div>
+<ol start="3">
+<li>Change the umask value to 0035 using symbolic notation.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#ff5c57">umask</span> <span style="color:#ff5c57">g</span><span style="color:#ff6ac1">=</span>r,0<span style="color:#ff6ac1">=</span>w</span></span></code></pre></div>
+<ol start="4">
+<li>Create file22 and directory dir22 in the home directory.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch file22
+</span></span><span style="display:flex;"><span> mkdir dir22</span></span></code></pre></div>
+<ol start="5">
+<li>Observe the permissions on file22 and dir22, and compare them with the permissions on file11 and dir11.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> ls -l</span></span></code></pre></div>
+<ol start="6">
+<li>Use the chmod command and modify the permissions on file11 to match those on file22.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chmod g-w,o-r,o+w file11</span></span></code></pre></div>
+<ol start="7">
+<li>Use the chmod command and modify the permissions on dir22 to match those on dir11. Do not remove file11, file22, dir11, and dir22 yet.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chmod g-wx,o-rx,o+w dir11</span></span></code></pre></div>
+<h3 id="lab-configure-group-collaboration-and-prevent-file-deletion-root">Lab: Configure Group Collaboration and Prevent File Deletion (root)</h3>
+<ol>
+<li>create directory /sdir. Create group sgrp and create user1000 and user2000 and add them to the group:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> mkdir /sdir
+</span></span><span style="display:flex;"><span> groupadd sgrp
+</span></span><span style="display:flex;"><span> adduser user1000 <span style="color:#ff6ac1">&amp;&amp;</span> adduser user2000
+</span></span><span style="display:flex;"><span> usermod -a -G sgrp user1000
+</span></span><span style="display:flex;"><span> usermod -a -G sgrp user2000</span></span></code></pre></div>
+<ol start="2">
+<li>Set up appropriate ownership (root), owning group (sgrp), and permissions (rwx for group, &mdash; for public, s for group, and t for public) on the directory to support group collaboration and ensure non-owners cannot delete files.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> chgrp sgrp sdir
+</span></span><span style="display:flex;"><span> chmod <span style="color:#ff5c57">g</span><span style="color:#ff6ac1">=</span>rwx,o<span style="color:#ff6ac1">=</span>--- sdir
+</span></span><span style="display:flex;"><span> chmod o+t sdir
+</span></span><span style="display:flex;"><span> chmod g+s sdir</span></span></code></pre></div>
+<ol start="3">
+<li>Log on as user1000 and create a file under /sdir.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user1000
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /sdir
+</span></span><span style="display:flex;"><span> touch testfile</span></span></code></pre></div>
+<ol start="4">
+<li>Log on as user2000 and try to edit that file. You should be able to edit the file successfully.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> su - user200
+</span></span><span style="display:flex;"><span> <span style="color:#ff5c57">cd</span> /sdir
+</span></span><span style="display:flex;"><span> vim testfile
+</span></span><span style="display:flex;"><span> cat testfile</span></span></code></pre></div>
+<ol start="5">
+<li>As user2000 try to delete the file. You should not be able to.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> rm testfile</span></span></code></pre></div>
+<h3 id="lab-find-files-root">Lab: Find Files (root)</h3>
+<ol>
+<li>Search for all files in the entire directory structure that have been modified in the last 300 minutes and display their type.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> find /sdir -mtime -300 -exec file <span style="color:#ff6ac1">{}</span> <span style="color:#5af78e">\;</span></span></span></code></pre></div>
+<ol start="2">
+<li>Search for named pipe and socket files.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> find / -type p
+</span></span><span style="display:flex;"><span> find / -type s</span></span></code></pre></div>
+<h3 id="lab-find-files-using-different-criteria-root">Lab: Find Files Using Different Criteria (root)</h3>
+<ol>
+<li>Search for regular files under /usr that were accessed more than 100 days ago, are not bigger than 5MB in size, and are owned by the user root.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> find /usr -type f -mtime +100 -size -5M -user root</span></span></code></pre></div>
+<h3 id="lab-apply-acl-settings-root">Lab: Apply ACL Settings (root)</h3>
+<ol>
+<li>Create file testfile under /tmp.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> touch /tmp/testfile</span></span></code></pre></div>
+<ol start="2">
+<li>Create users.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> adduser user2000
+</span></span><span style="display:flex;"><span> adduser user3000
+</span></span><span style="display:flex;"><span> adduser user4000</span></span></code></pre></div>
+<ol start="3">
+<li>Apply ACL settings on the file so that user2000 gets 7, user3000 gets 6, and user4000 gets 4 permissions.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -m u:user2000:7 testfile
+</span></span><span style="display:flex;"><span> setfacl -m u:user3000:6 testfile
+</span></span><span style="display:flex;"><span> setfacl -m u:user4000:4 testfile</span></span></code></pre></div>
+<ol start="4">
+<li>Remove the ACLs for user2000, and verify.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -x user2000 testfile
+</span></span><span style="display:flex;"><span> getfacl testfile</span></span></code></pre></div>
+<ol start="5">
+<li>Erase all remaining ACLs at once, and confirm.</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> setfacl -b testfile
+</span></span><span style="display:flex;"><span> getfacl testfile</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="basic-file-managment">Basic File Managment</h1>
+
+<h1 id="chapter-3-rhcsa-notes---file-management">Chapter 3 RHCSA Notes - File Management</h1>
+<h2 id="7-file-types">7 File types</h2>
+<ol>
+<li>regular</li>
+<li>directory</li>
+<li>block special device</li>
+<li>character special device</li>
+<li>symbolic link</li>
+<li>named pipe</li>
+<li>socket</li>
+</ol>
+<p>Commands</p>
+<ul>
+<li>ls</li>
+<li>stat</li>
+<li>file</li>
+</ul>
+<h3 id="regular-files">Regular files</h3>
+<ul>
+<li>Text or binary data.</li>
+<li>Represented by hyphen (-).</li>
+</ul>
+<h3 id="directory-files">Directory Files</h3>
+<ul>
+<li>Identified by the letter &ldquo;d&rdquo; in the beginning of ls output.</li>
+</ul>
+<h3 id="block-and-character-raw-special-device-files">Block and Character (raw) Special Device Files</h3>
+<ul>
+<li>All hardware has device file in /dev/.</li>
+<li>Used by system to communicate with device.</li>
+<li>Identified by &ldquo;c&rdquo; or &ldquo;b&rdquo; in ls listing.</li>
+<li>Each device driver is assigned a unique number called the major number</li>
+<li>Character device
+<ul>
+<li>Reads and writes 8 bits at a time.</li>
+<li>Serial</li>
+</ul>
+</li>
+<li>Block device
+<ul>
+<li>Receives data in fixed block size determined by drivers</li>
+<li>512 or 4096 bytes</li>
+</ul>
+</li>
+</ul>
+<h4 id="major-number">Major Number</h4>
+<ul>
+<li>Used by kernel to recognize device driver type.</li>
+<li>Column 5 of ls listing.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l /dev/sda</code></pre></div>
+<h4 id="minor-number">Minor Number</h4>
+<ul>
+<li>Each device controlled by the same device driver gets a Minor Number</li>
+<li>Applies to disk partitions as well.</li>
+<li>The same driver can control multiple devices of the same type.</li>
+<li>Column 6 of ls listing</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l /dev/sda</code></pre></div>
+<h3 id="symbolic-links">Symbolic Links</h3>
+<ul>
+<li>Shortcut to another file or directory.</li>
+<li>Begins with &ldquo;l&rdquo; in ls listing.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l /usr/sbin/vigr
+lrwxrwxrwx. 1 root root 4 Jul 21 14:36 /usr/sbin/vigr -&gt; vipw</code></pre></div>
+<h2 id="compression-and-archiving">Compression and Archiving</h2>
+<h3 id="archiving">Archiving</h3>
+<ul>
+<li>Preserves file attributes such as ownership, owning group, and timestamp.</li>
+<li>Preserves extended file attributes such as ACLs and SELinux contexts.</li>
+<li>Syntax of <code>tar</code> and <code>star</code> are identical.</li>
+</ul>
+<h3 id="star-command">star command</h3>
+<h3 id="tar-tape-archive-command">tar (tape archive) command</h3>
+<ul>
+<li>Create, append, update, list, and extract files/directory tree to/from a file called a tarball(tarfile)</li>
+<li>Can compress a tarball after it&rsquo;s been created.</li>
+<li>Automatically removes &ldquo;/&rdquo; so you do not have to specify the full pathname  when restoring files at any location.</li>
+</ul>
+<p>flags
+tar -c :: Create tarball.
+tar -f :: Specify tarball name.
+tar -p :: Preserve file permissions. Default for the root user. Specify this if you create an archive as a normal user.
+tar -r :: Append files to the end of an existing uncompressed tarball.
+tar -t :: List contents of a tarball.
+tar -u :: Append files to the end of an existing uncompressed tarball provided the specified files being added are newer.
+-z
+-j
+-C</p>
+<h4 id="archive-entire-home-directory">Archive entire home directory:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -cvf /tmp/home.tar /home</code></pre></div>
+<h4 id="archive-two-specific-files">Archive two specific files:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -cvf /tmp/files.tar /etc/passwd /etc/yum.conf</code></pre></div>
+<h4 id="append-files-in-a-directory-to-existing-tarball">Append files in a directory to existing tarball:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -rvf /tmp/files.tar /etc/yum.repos.d</code></pre></div>
+<h4 id="list-what-is-included-in-hometar-tarball">List what is included in home.tar tarball:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -tvf /tmp/files.tar</code></pre></div>
+<h4 id="restore-single-file-and-confirm">Restore single file and confirm:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -xf /tmp/files.tar etc/yum.conf
+ls -l etc/yum.conf</code></pre></div>
+<h4 id="restore-all-files-and-confirm">Restore all files and confirm:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -xf /tmp/files.tar
+ls</code></pre></div>
+<h4 id="create-a-gzip-compressed-tarball-under-tmp-for-home">Create a gzip-compressed tarball under /tmp for /home:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -czf /tmp/home.tar.gz /home</code></pre></div>
+<h4 id="create-bzip2-compressed-tarball-under-tmp-for-home">Create bzip2-compressed tarball under /tmp for /home:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo tar -cjf /tmp/home.tar.bz2 /home</code></pre></div>
+<h4 id="list-content-of-gzip-compressed-archive-without-uncompressing-it">List content of gzip-compressed archive without uncompressing it:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -tf /tmp/home.tar.gz</code></pre></div>
+<h4 id="extract-files-from-gzip-compressed-tarball-in-the-current-directory">Extract files from gzip-compressed tarball in the current directory:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -xf /tmp/home.tar.gz</code></pre></div>
+<h4 id="extract-files-from-the-bzip2-compressed-tarball-under-tmp">Extract files from the bzip2-compressed tarball under /tmp:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -xf /tmp/home.tar.bz2 -C /tmp</code></pre></div>
+<h2 id="compression-tools">Compression tools</h2>
+<h3 id="gzip-gunzip-command">gzip (gunzip) command</h3>
+<ul>
+<li>Create a compressed file for each of the specified files.</li>
+<li>Adds .gz extension.</li>
+</ul>
+<p>Flags</p>
+<h4 id="copy-etcfstab-to-the-current-directory-and-display-filename-when-uncompressed">Copy /etc/fstab to the current directory and display filename when uncompressed:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp /etc/fstab .
+ls -l fstab</code></pre></div>
+<h4 id="gzip-fstab-and-view-details">gzip fstab and view details:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>gzip fstab
+ls -l fstab.gz</code></pre></div>
+<h4 id="display-compression-info">Display compression info:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>gzip -l fstab.gz</code></pre></div>
+<h4 id="uncompress-fstabgz">Uncompress fstab.gz:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>gunzip fstab.gz
+ls -l fstab</code></pre></div>
+<h3 id="bzip2-bunzip2-command"><code>bzip2</code> (<code>bunzip2</code>) command</h3>
+<ul>
+<li>Adds .bz2 extension.</li>
+</ul>
+<ul>
+<li>Better compression/ decompression ratio but is slower than gzip.</li>
+</ul>
+<h4 id="compress-fstab-using-bzip-and-view-details">Compress fstab using bzip and view details:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>bzip2 fstab
+ls -l fstab.bz2</code></pre></div>
+<h4 id="unzip-fstabbz2-and-view-details">Unzip fstab.bz2 and view details:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>bunzip2 fstab.bz2
+ls -l fstab</code></pre></div>
+<h2 id="file-editing">File Editing</h2>
+<h3 id="vim">Vim</h3>
+<p><a href="../../tools%201/vimguide.md">vimguide</a></p>
+<h3 id="file-and-directory-operations">File and Directory Operations</h3>
+<h3 id="touch-command">touch command</h3>
+<ul>
+<li>File is created with 0 bytes in size.</li>
+<li>Run touch on it and it will get a new timestamp</li>
+</ul>
+<p>Flags</p>
+<h4 id="set-date-on-file1-to-2019-09-20">Set date on file1 to 2019-09-20:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>touch -d 2019-09-20 file1</code></pre></div>
+<h4 id="change-modification-time-on-file1-to-current-system-time">Change modification time on file1 to current system time:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>touch -m file1</code></pre></div>
+<h3 id="mkdir-command">mkdir command</h3>
+<ul>
+<li>Create a new directory.</li>
+</ul>
+<p>flags</p>
+<h4 id="create-dir1-verbosely">Create dir1 verbosely:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mkdir dir1 -v</code></pre></div>
+<h4 id="create-dir2perlperl5">Create dir2/perl/perl5:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mkdir -vp dir2/perl/perl5</code></pre></div>
+<h2 id="commands-for-displaying-file-contents">Commands for displaying file contents</h2>
+<ul>
+<li>cat</li>
+<li>more</li>
+<li>less</li>
+<li>head</li>
+<li>tail</li>
+</ul>
+<h3 id="cat-command">cat command</h3>
+<ul>
+<li>Concatenate and print files to standard output.</li>
+</ul>
+<p>Flags</p>
+<h4 id="redirect-output-to-specified-file">Redirect output to specified file:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; catfile1</code></pre></div>
+<h3 id="tac-command">tac command</h3>
+<ul>
+<li>Display file contents in reverse</li>
+</ul>
+<h3 id="more-command">more command</h3>
+<ul>
+<li>Display files on page-by-page basis.</li>
+<li>Forward text searching only.</li>
+</ul>
+<h4 id="navigation">Navigation</h4>
+<h3 id="less-command">less command</h3>
+<ul>
+<li>Display files on page-by-page basis.</li>
+<li>Forward and backwards searching.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>less /usr/bin/znew</code></pre></div>
+<h4 id="navigation-1">Navigation</h4>
+<h3 id="head-command">head command</h3>
+<ul>
+<li>Displays first 10 lines of a file.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>head /etc/profile</code></pre></div>
+<h4 id="view-top-3-lines-of-a-file">View top 3 lines of a file:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>head -3 /etc/profile</code></pre></div>
+<h3 id="tail-command">tail command</h3>
+<ul>
+<li>Display last 10 lines of a file.</li>
+</ul>
+<p>Flags</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tail /etc/profile</code></pre></div>
+<h4 id="view-last-3-lines-of-etcprofile">View last 3 lines of /etc/profile:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tail -3 /etc/profile</code></pre></div>
+<h4 id="view-updates-to-the-system-log-file-varlogmessages-in-real-time">View updates to the system log file /varlog/messages in real time:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo tail -f /var/log/messages</code></pre></div>
+<h2 id="counting-words-lines-and-characters-in-text-files">Counting Words, Lines, and Characters in Text Files</h2>
+<h3 id="wc-word-count-command">wc (word count) command</h3>
+<ul>
+<li>Display the number of lines, words, and characters (or bytes) contained in a text file or input supplied.</li>
+</ul>
+<p>Flags</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code> wc /etc/profile
+  85  294 2123 /etc/profile</code></pre></div>
+<h4 id="display-count-of-characters-on-etcprofile">Display count of characters on /etc/profile:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wc -m /etc/profile</code></pre></div>
+<h2 id="copying-files-and-directories">Copying Files and Directories</h2>
+<h3 id="cp-command">cp command</h3>
+<ul>
+<li>Copy files or directories.</li>
+<li>Overwrites destination without warning.</li>
+<li>root has a custom alias in their .bashrc file that automatically adds the -i option.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>alias cp=&#39;cp -i&#39;</code></pre></div>
+<p>Flags</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp file1 newfile1</code></pre></div>
+<h4 id="copy-file-to-new-directory">Copy file to new directory:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp file1 dir1</code></pre></div>
+<h4 id="get-confirmation-before-overwriting">Get confirmation before overwriting:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp file1 dir1 -i
+cp: overwrite &#39;dir1/file1&#39;? y</code></pre></div>
+<h4 id="copy-a-directory-and-view-hierarchy">Copy a directory and view hierarchy:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp -r dir1 dir2
+ls -l dir2 -R</code></pre></div>
+<h4 id="copy-file-while-preserving-attributes">Copy file while preserving attributes:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp -p file1 /tmp</code></pre></div>
+<h2 id="moving-and-renaming-files-and-directories">Moving and renaming Files and Directories</h2>
+<h3 id="mv-command">mv command</h3>
+<ul>
+<li>Move or rename files and directories.</li>
+<li>Can move a directory into another directory.
+<ul>
+<li>Target directory must exist otherwise you are just renaming the directory.</li>
+</ul>
+</li>
+<li>Alias exists in root&rsquo;s home directory for -i in the .bashrc file.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>alias—“alias mv=’mv -i’&#34;&#34;</code></pre></div>
+<p>Flags</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mv -i file1 dir1</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mv newfile1 newfile2</code></pre></div>
+<h4 id="move-a-dir-into-another-dir-target-exists">Move a dir into another dir (target exists):</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mv dir1 dir2</code></pre></div>
+<h4 id="rename-a-directory-target-does-not-exist">Rename a directory (Target does not exist):</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mv dir2 dir20</code></pre></div>
+<h2 id="removing-files">Removing files</h2>
+<h3 id="rm-command">rm command</h3>
+<ul>
+<li>Delete one or more specified files or directories.</li>
+<li>Alias—“alias rm=’rm -i’”— in the .bashrc file in the root user’s home directory.</li>
+<li>Remember to backslash &ldquo;&quot; any wildcard characters in filenames.</li>
+</ul>
+<p>Flags</p>
+<h4 id="erase-newfile2">Erase newfile2:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>rm -i newfile2</code></pre></div>
+<h4 id="rm-a-directory">rm a directory:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code> rm -dv emptydir</code></pre></div>
+<h4 id="rm-a-directory-recursively">rm a directory recursively:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>rm -r dir20</code></pre></div>
+<h4 id="rmdir-command">rmdir command</h4>
+<ul>
+<li>Remove empty directories.</li>
+</ul>
+<p>Flags</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>rmdir emptydir -v</code></pre></div>
+<h2 id="file-linking">File Linking</h2>
+<h3 id="inode-index-node">inode (index node)</h3>
+<ul>
+<li>Contains metadata about a file (128 bytes)
+<ul>
+<li>File type, Size, permissions, owner name, owning group, access times, link count, etc.</li>
+<li>Also shows number of allocated blocks and pointers to the data storage location.</li>
+</ul>
+</li>
+<li>Assigned a unique numeric identifier that is used by the kernel for accessing, tracking, and managing the file.</li>
+<li>Does not store the filename.</li>
+<li>Filename and corresponding inode number mapping is maintained in the directory’s metadata where the file resides.</li>
+<li>Links are not created between files and directories</li>
+</ul>
+<h3 id="hard-links">Hard links</h3>
+<ul>
+<li>Mapping between one or more filenames and an inode number.</li>
+<li>Hard-linked files are indistinguishable from one another.</li>
+<li>All hard-linked files will have identical metadata.</li>
+<li>Changes to the file metadata and content can be made by accessing any of the filenames.</li>
+<li>Cannot cross file system boundaries.</li>
+<li>Cannot link directories.</li>
+</ul>
+<h4 id="ls--li-output">ls -li output</h4>
+<ul>
+<li>Column 1 inode number.</li>
+<li>Column 3 link count.</li>
+</ul>
+<h2 id="soft-links">Soft Links</h2>
+<ul>
+<li>Symbolic (symlink).</li>
+<li>Like a Windows shortcut.</li>
+<li>Unique inode number for each symlink.</li>
+<li>Link count does not increase or decrease.</li>
+<li>Size of soft link is the number of character in pathname to target.</li>
+<li>Can cross file system boundaries.</li>
+<li>Can link directories.</li>
+<li>ls-l shows l at the beginning of the permissions for soft link</li>
+<li>if you remove the original file, the softlink will point to a file that doesn&rsquo;t exist.</li>
+<li>RHEL 8 has four soft-linked directories under /.
+<ol>
+<li>bin -&gt; usr/bin</li>
+<li>lib -&gt; usr/lib</li>
+<li>lib64 -&gt;usr/lib64</li>
+<li>sbin -&gt; usr/sbin</li>
+</ol>
+</li>
+<li>Same syntax for creating linked directories</li>
+</ul>
+<h3 id="ln-command">ln command</h3>
+<ul>
+<li>Create links between files.</li>
+<li>Creates hard link by default.</li>
+</ul>
+<h3 id="hard-link-file10-and-file20-and-verify-the-inode-number">Hard link file10 and file20 and verify the inode number:</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>touch file10
+ln file10 file20
+ls -li</code></pre></div>
+<h4 id="create-a-soft-link-to-file10-called-soft10">Create a soft link to file10 called soft10:</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ln -s file10 soft10</code></pre></div>
+<h2 id="copying-vs-linking">Copying vs linking</h2>
+<p>Copying</p>
+<ul>
+<li>Duplicates source file.</li>
+<li>Each copy stores data at a unique location.</li>
+<li>Each copied file has a unique inode number and unique metadata.</li>
+<li>If a copy is moved, erased, or renamed, the source file will have no impact, and vice versa.</li>
+<li>Copy is used when the data needs to be edited independent of the other.</li>
+<li>Permissions on the source and the copy are managed independent of each other.</li>
+</ul>
+<p>Linking</p>
+<ul>
+<li>Creates a shortcut that points to the source file.</li>
+<li>Source can be accessed or modified using either the source file or the link.</li>
+<li>All linked files point to the same data.</li>
+<li>Hard Link: All hard-linked files share the same inode number, and hence the metadata.</li>
+<li>Symlink: Each symlinked file has a unique inode number, but the inode number stores only the pathname to the source.</li>
+<li>Hard Link: If the hard link is weeded out, the other file and the data will remain untouched.</li>
+<li>Symlink: If the source is deleted, the soft link will be broken and become meaningless. If the soft link is removed, the source will have no impact.</li>
+<li>Links are used when access to the same source is required from multiple locations.</li>
+<li>Permissions are managed on the source file.</li>
+</ul>
+<h2 id="labs">Labs</h2>
+<h3 id="lab-viewing-regular-file-information">Lab: Viewing regular file information:</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>touch file1
+ls -l</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>file file1</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>stat file1</code></pre></div>
+<h3 id="lab-create-and-manage-hard-links">Lab Create and Manage Hard Links</h3>
+<ol>
+<li>Create an empty file /tmp/hard1, and display the long file listing including the inode number:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>touch /tmp/hard1
+ls -li /tmp/hard1</code></pre></div>
+<ol start="2">
+<li>Create two hard links called hard2 and hard3 under /tmp, and display the long listing:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ln /tmp/hard1 /tmp/hard2
+ln /tmp/hard1 /tmp/hard3
+ls -li /tmp/hard*</code></pre></div>
+<ol start="3">
+<li>Edit file hard2 and add some random text. Display the long listing for all three files again:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>vim /tmp/hard2
+ls -li /tmp/hard*</code></pre></div>
+<ol start="4">
+<li>Erase file hard1 and hard3, and display the long listing for the remaining file:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>rm -f /tmp/hard1 /tmp/hard3
+ls -li /tmp/hard*</code></pre></div>
+<h3 id="lab-create-and-manage-soft-links">Lab: Create and Manage Soft Links</h3>
+<ol>
+<li>Create soft link /root/soft1 pointing to /tmp/hard2, and display the long file listing for both:</li>
+</ol>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo ln -s /tmp/hard2 /root/soft1
+ls -li /tmp/hard2 /root/soft1
+sudo ls -li /tmp/hard2 /root/soft1</code></pre></div>
+<p>2.Edit soft1 and display the long listing again:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo vim /root/soft1
+sudo ls -li /tmp/hard2 /root/soft1</code></pre></div>
+<p>3.Remove hard2 and display the long listing:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo ls -li /tmp/hard2 /root/soft1</code></pre></div>
+<p>remove the soft link</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>rm -f /root/soft1.</code></pre></div>
+<h3 id="lab-archive-list-and-restore-files">Lab: Archive, List, and Restore Files</h3>
+<p>Create a gzip-compressed archive of the /etc directory.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>tar -czf etc.tar.gz /etc</code></pre></div>
+<p>Create a bzip2-compressed archive of the /etc directory.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo tar -cjf etc.tar.bz2 /etc</code></pre></div>
+<p>Compare the file sizes of the two archives.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l etc*</code></pre></div>
+<p>Run the tar command and uncompress and restore both archives without  specifying the compression tool used.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo tar -xf etc.tar.bz2 ; sudo tar -xf etc.tar.gz</code></pre></div>
+<h3 id="lab-practice-the-vim-editor">Lab: Practice the vim Editor</h3>
+<p>As user1 on server1, create a file called vipractice in the home directory using vim. Type (do not copy and paste) each sentence from Lab 3-1 on a separate line (do not worry about line wrapping). Save the file and quit the editor.</p>
+<h4 id="open-vipractice-in-vim-again-and-reveal-line-numbering-copy-lines-2-and-3-to-the-end-of-the-file-to-make-the-total-number-of-lines-in-the-file-to-6">Open vipractice in vim again and reveal line numbering. Copy lines 2 and 3 to the end of the file to make the total number of lines in the file to 6.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:set number!
+#then
+yy and p</code></pre></div>
+<h4 id="move-line-3-to-make-it-line-1">Move line 3 to make it line 1.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>3m0</code></pre></div>
+<h4 id="go-to-the-last-line-and-append-the-contents-of-the-bash_profile">Go to the last line and append the contents of the .bash_profile.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:r ~/.bashrc</code></pre></div>
+<h4 id="substitute-all-occurrences-of-the-string-profile-with-pro-file-and-all-occurrences-of-the-string-profile-with-pro-file">Substitute all occurrences of the string “Profile” with “Pro File”, and all occurrences of the string “profile” with “pro file”.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:%s/profile/pro file/gi</code></pre></div>
+<h4 id="erase-lines-5-to-8">Erase lines 5 to 8.</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>:5,8d</code></pre></div>
+<p>Provide a count of lines, words, and characters in the vipractice file using the wc command.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wc vipractice</code></pre></div>
+<h3 id="lab-file-and-directory-operations">Lab: File and Directory Operations</h3>
+<p>As user1 on server1, create one file and one directory in the home directory.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>touch file3
+mkdir dir5</code></pre></div>
+<p>List the file and directory and observe the permissions, ownership, and owning group.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ls -l file3
+ls -l dir5
+ls -ld dir5</code></pre></div>
+<p>Try to move the file and the directory to the /var/log directory and notice what happens.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mv dir5 /var/log
+mv file3 /var/log</code></pre></div>
+<p>Try again to move them to the /tmp directory.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mv dir5 /tmp
+ls /tmp</code></pre></div>
+<p>Duplicate the file with the cp command, and then rename the duplicated file using any name.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cp /tmp/file3 file4
+ls /tmp
+ls</code></pre></div>
+<p>Erase the file and directory created for this lab.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>rm -d /tmp/dir5; rm file4</code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+          </section>
 <article class="default">
   <header class="headline">
   </header>
@@ -1104,8 +2517,8 @@ when the issue is resolved.</p>
 </span></span><span style="display:flex;"><span> Current password: 
 </span></span><span style="display:flex;"><span> roopasswd: Authentication token manipulation error</span></span></code></pre></div>
 <p>The following is a sample denial record from the same file in raw format:</p>
-<p><a href="#R-image-cb9cbf0d5505dd47012848096efe3298" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cb9cbf0d5505dd47012848096efe3298"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg"></a></p>
+<p><a href="#R-image-e673366d859ca3f021514975d7362ee2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e673366d859ca3f021514975d7362ee2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg"></a></p>
 <ul>
 <li>AVC type</li>
 <li>Related to the <code>passwd</code> command (comm)</li>
@@ -1116,8 +2529,8 @@ when the issue is resolved.</p>
 <li>This message indicates that the <em>/etc/shadow</em> file does not have the correct context set on it, and that&rsquo;s why SELinux prevented the <code>passwd</code> command from updating the user&rsquo;s password.</li>
 </ul>
 <p>Use <code>sealert</code> to analyze (<code>-a</code>) all <strong>AVC</strong> records in the <em>audit.log</em> file. This command produces a formatted report with all relevant details:</p>
-<p><a href="#R-image-2a8ff913e07caec8c1bf844b54ea1279" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2a8ff913e07caec8c1bf844b54ea1279"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg"></a></p>
+<p><a href="#R-image-55f342025d4503794c917d11cb0f7218" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-55f342025d4503794c917d11cb0f7218"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg"></a></p>
 <h2 id="selinux-diy-labs">SELinux DIY Labs</h2>
 <h3 id="lab-disable-and-enable-the-selinux-operating-mode">Lab: Disable and Enable the SELinux Operating Mode</h3>
 <ul>
@@ -2306,22 +3719,22 @@ to the ssh keys.</p>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-color.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1762645317" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1762645317" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-color.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1763752405" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1763752405" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1762645317" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1762645317" defer></script>
-    <script src="/js/theme.min.js?1762645317" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1763752405" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1763752405" defer></script>
+    <script src="/js/theme.min.js?1763752405" defer></script>
   </body>
 </html>
