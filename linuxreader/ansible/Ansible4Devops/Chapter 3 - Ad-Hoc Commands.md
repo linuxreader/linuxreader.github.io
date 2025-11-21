@@ -1,5 +1,4 @@
-
-- quickly perform common tasks on, and gather data from, one or many servers with ad-hoc commands.
+quickly perform common tasks on, and gather data from, one or many servers with ad-hoc commands.
 
 ### Your first ad-hoc commands
 
