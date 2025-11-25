@@ -4,65 +4,47 @@ description = 'Managing Boot Process with Ansible'
 +++
 ### Managing the Boot Process
 
-Managing the boot process with Ansible is a bit disappointing because
-Ansible offers no specific modules to do so. As a result, you must use
-generic modules instead, like the file module to manage the systemd boot
-targets or the lineinfile module to manage the GRUB configuration. What
-Ansible does offer, however, is the reboot module, which enables you to
-reboot a host and pick up after the reboot at the exact same location.
-The next two sections describe how to do this.
+No modules for managing boot process.
 
-#### Managing Systemd Targets {.h4}
+**file** module
+- manage the systemd boot targets
 
-Managing the default target that a host should start in is a common task
-on Ansible. However, the systemd module has no options to manage this
-setting, and no other option to manage it is available. For that reason,
-you must fall back to a generic option instead.
+**lineinfile** module 
+- manage the GRUB configuration.
 
-If you need to manage the default systemd target, a file with the name
-/etc/systemd/system/default.target has to exist as a symbolic link to
-the desired default target. See, for instance, [Listing
-14-5](#ch14.xhtml#list14_5), where the output of the Linux **ls -l**
-command is used to show the current configuration.
+**reboot** module
+- enables you to reboot a host and pick up after the reboot at the exact same location.
 
-**Listing 14-5** Showing the Default Systemd Target
+#### Managing Systemd Targets
 
-::: pre_1
-    [ansible@control rhce8-book]$ ls -l /etc/systemd/system/default.target
+To manage the default systemd target:
+- /etc/systemd/system/default.target file must exist as a symbolic link to the desired default target.
+
+```bash
+ls -l /etc/systemd/system/default.target
     lrwxrwxrwx. 1 root root 37 Mar 23 05:33 /etc/systemd/system/default.target -> /lib/systemd/system/multi-user.target
-:::
+```
 
-Because Ansible itself doesn't have any module to specifically set the
-default.target, you must use a generic module. In theory, you could use
-either the command module or the file module, but because the file
-module is a more specific module to generate the symbolic link, you
-should use the file module. [Listing 14-6](#ch14.xhtml#list14_6) shows
-how to manage the boot target.
+```yaml
+---
+- name: set default boot target
+    hosts: ansible2
+    tasks:
+    - name: set boot target to graphical
+      file:            
+        src: /usr/lib/systemd/system/graphical.target
+        dest: /etc/systemd/system/default.target
+        state: link
+```
 
-**Listing 14-6** Managing the Default Boot Target
+#### Rebooting Managed Hosts
 
-::: pre_1
-    ---
-    - name: set default boot target
-      hosts: ansible2
-      tasks:
-        - name: set boot target to graphical
-          file:
-            src: /usr/lib/systemd/system/graphical.target
-            dest: /etc/systemd/system/default.target
-            state: link
-:::
+**reboot** module.
+- Restart managed nodes. 
 
-#### Rebooting Managed Hosts {.h4}
-
-In some cases, a managed host needs to be rebooted while running a
-playbook. To do so, you can use the reboot module. This module uses
-several arguments to restart managed nodes. To verify the renewed
-availability of the managed hosts, you need to specify the
-**test_command** argument. This argument specifies an arbitrary command
-that Ansible should run successfully on the managed hosts after the
-reboot. The success of this command indicates that the rebooted host is
-available again.
+**test_command** argument
+- Verify the renewed availability of the managed hosts
+- Specifies an arbitrary command that Ansible should run successfully on the managed hosts after the reboot. The success of this command indicates that the rebooted host is available again.
 
 Equally useful while using the reboot module are the arguments that
 relate to timeouts. The reboot module uses no fewer than four of them:
