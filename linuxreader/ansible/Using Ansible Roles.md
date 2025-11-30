@@ -5,7 +5,6 @@ description = 'Ansible Roles'
 
 Work with roles and Create roles
 
-
 ### Using Ansible Roles
 
 - Ready-to-use playbook-based Ansible solutions that you can easily include in your own playbooks.
