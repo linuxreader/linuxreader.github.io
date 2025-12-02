@@ -1,7 +1,7 @@
 +++
 title = 'Ad Hoc Ansible Commands'
 description = 'Ad Hoc Ansible Commands '
-hidden = true
+hide_in_sidebar = true
 
 [_build]
   render = "always"

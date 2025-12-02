@@ -29,27 +29,27 @@ AnsibleBashBootContainersCyber SecurityDesktopFilesNetworkingPackagesSt
     <link href="https://linuxreader.com/" rel="canonical" type="text/html" title="Linux Reader">
     <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Linux Reader">
     <link href="/index.searchindex.html" rel="alternate" type="text/html" title="Linux Reader">
-    <link href="/images/favicon.svg?1764694307" rel="icon" type="image/svg+xml">
-    <link href="/css/auto-complete/auto-complete.min.css?1764694307" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1764694307" defer></script>
-    <script src="/js/search-lunr.min.js?1764694307" defer></script>
-    <script src="/js/search.min.js?1764694307" defer></script>
+    <link href="/images/favicon.svg?1764694857" rel="icon" type="image/svg+xml">
+    <link href="/css/auto-complete/auto-complete.min.css?1764694857" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1764694857" defer></script>
+    <script src="/js/search-lunr.min.js?1764694857" defer></script>
+    <script src="/js/search.min.js?1764694857" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1764694307";
+      window.relearn.index_js_url="/searchindex.en.js?1764694857";
     </script>
-    <script src="/js/lunr/lunr.min.js?1764694307" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1764694307" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1764694307" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1764694307" defer></script>
+    <script src="/js/lunr/lunr.min.js?1764694857" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1764694857" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1764694857" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1764694857" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1764694307" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1764694307" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1764694307" rel="stylesheet">
-    <link href="/css/theme.min.css?1764694307" rel="stylesheet">
-    <link href="/css/format-print.min.css?1764694307" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1764694857" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1764694857" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1764694857" rel="stylesheet">
+    <link href="/css/theme.min.css?1764694857" rel="stylesheet">
+    <link href="/css/format-print.min.css?1764694857" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -423,6 +423,17 @@ AnsibleBashBootContainersCyber SecurityDesktopFilesNetworkingPackagesSt
 <h1 id="ansible">Ansible</h1>
 
 <div class="children children-type-card children-sort-"><ul class="card-container">
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-0cb304954d81b8c216baa18e049ea2ae">
+    <div class="card-content">
+      <div class="card-title" id="R-card-0cb304954d81b8c216baa18e049ea2ae">
+        <a href="/ansible/ad-hoc-ansible-commands/">
+        Ad Hoc Ansible Commands
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
 <li>
   <article class="card card-popout" aria-labelledby="R-card-2522694e37c1f00bc365c570a30dbb0c">
     <div class="card-content">
@@ -908,6 +919,35 @@ AnsibleBashBootContainersCyber SecurityDesktopFilesNetworkingPackagesSt
   <header class="headline">
   </header>
 
+<h1 id="ad-hoc-ansible-commands">Ad Hoc Ansible Commands</h1>
+
+<p>Ad hoc commands are ansible tasks you can run against managed hosts without the need of a playbook or script. These are used for bringing nodes to their desired states, verifying playbook results, and verifying nodes meet any needed criteria/pre-requisites. These must be ran as the ansible user (whatever your remote_user directive is set to under [defaults] in ansible.cfg)</p>
+<p>Run the user module with the argument name=lisa on all hosts to make sure the user &ldquo;lisa&rdquo; exists. If the user doesn&rsquo;t exist, it will be created on the remote system:
+<code>ansible all -m user -a &quot;name=lisa&quot;</code></p>
+<p><code>{command} {host} -m {module} -a {&quot;argument1 argument2 argument3&quot;}</code></p>
+<p>In our lab:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible all -m user -a <span style="color:#5af78e">&#34;name=lisa&#34;</span></span></span></code></pre></div>
+<p>This Ad Hoc command created user &ldquo;Lisa&rdquo; on ansible1 and ansible2. If we run the command again, we get &ldquo;SUCCESS&rdquo; on the first line instead of &ldquo;CHANGED&rdquo;. Which means the hosts already meet the requirements:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m user -a <span style="color:#5af78e">&#34;name=lisa&#34;</span></span></span></code></pre></div>
+<p><em>indempotent</em>
+Regardless of current condition, the host is brought to the desired state. Even if you run the command multiple times.</p>
+<p>Run the command <code>id lisa</code> on all managed hosts:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m <span style="color:#ff5c57">command</span> -a <span style="color:#5af78e">&#34;id lisa&#34;</span></span></span></code></pre></div>
+<p>Here, the command module is used to run a command on the specified hosts. And the output is displayed on screen. To note, this does not show up in our ansible user&rsquo;s command history on the host:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@ansible1 ~<span style="color:#ff6ac1">]</span>$ history</span></span></code></pre></div>
+<p>Remove the user lisa from all managed hosts:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>ansible@control base<span style="color:#ff6ac1">]</span>$ ansible all -m user -a <span style="color:#5af78e">&#34;name=lisa state=absent&#34;</span></span></span></code></pre></div>
+<p>You can also use the <code>-u</code> option to specify the Ansible user that Ansible will use to run the command. Remember, with no modules specified, ansible uses the <code>command</code> module:
+<code>ansible all -a &quot;free -m&quot; -u david</code>
+`</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
 <h1 id="ansible-builder">Ansible Builder</h1>
 
 <p>Build portable control nodes packaged as containers. (Execution environments)</p>
@@ -1003,8 +1043,8 @@ system.</p>
 <p>There are two supported formats for using Ansible fact variables:</p>
 <p>It&rsquo;s recommended to use square brackets: <code>ansible_facts['default_ipv4']['address']</code> but dotted notation is also supported for now: <code>ansible_facts.default_ipv4.address</code></p>
 <p>Commonly used ansible_facts:</p>
-<p><a href="#R-image-cd92495c372c6a29e24b8b2abda97825" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../../images/Pasted%20image%2020250518052059.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cd92495c372c6a29e24b8b2abda97825"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../../images/Pasted%20image%2020250518052059.png"></a></p>
+<p><a href="#R-image-b6f9edb6976186678b76ed417983904a" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../../images/Pasted%20image%2020250518052059.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b6f9edb6976186678b76ed417983904a"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../../images/Pasted%20image%2020250518052059.png"></a></p>
 <p>There are additional Ansible modules for gathering more information. See `ansible-doc -l | grep fact</p>
 <hr>
 <p><code>package_facts</code> module collects information about software packages installed on managed hosts.</p>
@@ -1207,10 +1247,10 @@ enabled = true</code></pre></div>
 </ul>
 <h4 id="working-with-galaxy">Working with Galaxy</h4>
 <p>The easiest way to work with Ansible Galaxy is to use the website at <a href="https://galaxy.ansible.com" rel="external" target="_blank">https://galaxy.ansible.com</a>:</p>
-<p><a href="#R-image-098092fa59f2bff0a36d3d927232c4f6" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/2436_09fig01.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-098092fa59f2bff0a36d3d927232c4f6"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/2436_09fig01.jpg"></a></p>
-<p><a href="#R-image-7c771daefb5f321fbe5389ed4b9c92b9" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/2436_09fig02.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7c771daefb5f321fbe5389ed4b9c92b9"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/2436_09fig02.jpg"></a></p>
+<p><a href="#R-image-4b8815f88a74062c05a4952ffa2e8b20" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/2436_09fig01.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b8815f88a74062c05a4952ffa2e8b20"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/2436_09fig01.jpg"></a></p>
+<p><a href="#R-image-5ee0ef46bfb61b4a85e83b1985dc72fc" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/2436_09fig02.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5ee0ef46bfb61b4a85e83b1985dc72fc"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/2436_09fig02.jpg"></a></p>
 <ul>
 <li>
 <p>Use the Search Feature to Search for Specific Packages</p>
@@ -1240,8 +1280,8 @@ enabled = true</code></pre></div>
 <p>These tags provide more information about a role and make it  possible to search for roles in a more efficient way.</p>
 </li>
 </ul>
-<p><a href="#R-image-67736531cfe9a9e557265b69bc211b36" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/2436_09fig03.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-67736531cfe9a9e557265b69bc211b36"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/2436_09fig03.jpg"></a></p>
+<p><a href="#R-image-cf12b00047fea3542e40e0fa31d80648" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/2436_09fig03.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cf12b00047fea3542e40e0fa31d80648"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/2436_09fig03.jpg"></a></p>
 <ul>
 <li>You can download roles directly from the Ansible Galaxy website</li>
 <li>You can also use the <code>ansible-galaxy</code> command</li>
@@ -3066,8 +3106,8 @@ ensuring that a file from the control host is synchronized to a file with that n
 <h1 id="discovering-storage-related-facts">Discovering storage related facts</h1>
 
 <p><strong>Table 15-2</strong> Modules for Managing Storage</p>
-<p><a href="#R-image-52bb994d6d63a0fd17286b6fe207934a" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/15tab02.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-52bb994d6d63a0fd17286b6fe207934a"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/15tab02.jpg"></a></p>
+<p><a href="#R-image-fbd5520c22446c4e1d80e9b101719be1" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/15tab02.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fbd5520c22446c4e1d80e9b101719be1"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/15tab02.jpg"></a></p>
 <p>To make sure that your playbook is applied to the right devices, you first need to find which devices are available on your managed system.</p>
 <p>After you find them, you can use conditionals to make sure that tasks are executed on the right devices.</p>
 <h4 id="using-storage-related-facts">Using Storage-Related Facts</h4>
@@ -4740,8 +4780,8 @@ ansible4                   : ok=3    changed=2    unreachable=0    failed=0    s
 <p>:::</p>
 <p>In the output of any <strong>ansible-playbook</strong> command, you can see different
 items:</p>
-<p><a href="#R-image-5092c3d4ec6bc94c46a2162b6b17e176" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/key_topic_icon.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5092c3d4ec6bc94c46a2162b6b17e176"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/key_topic_icon.jpg"></a>{width=&ldquo;64&rdquo; height=&ldquo;51&rdquo;}</p>
+<p><a href="#R-image-051f34977c0eefd801a099f1deb667e8" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/key_topic_icon.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-051f34977c0eefd801a099f1deb667e8"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/key_topic_icon.jpg"></a>{width=&ldquo;64&rdquo; height=&ldquo;51&rdquo;}</p>
 <p>• An indicator of the play that is started</p>
 <p>• If not disabled, the Gathering Facts task that is executed for each
 play</p>
@@ -4751,8 +4791,8 @@ play</p>
 11-2</a> gives an overview.</p>
 <p>::: group
 <strong>Table 11-2</strong> Playbook Recap Overview</p>
-<p><a href="#R-image-f75c67398d0c74c8a21dc4f7eb5b0a49" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab02.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f75c67398d0c74c8a21dc4f7eb5b0a49"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab02.jpg"></a>{width=&ldquo;941&rdquo; height=&ldquo;338&rdquo;}
+<p><a href="#R-image-ed5e259d236d11b315a6c89dc442f160" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab02.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ed5e259d236d11b315a6c89dc442f160"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab02.jpg"></a>{width=&ldquo;941&rdquo; height=&ldquo;338&rdquo;}
 :::</p>
 <p>As discussed before, when you use the <strong>ansible-playbook</strong> command, you
 can increase the output verbosity level using one or more <strong>-v</strong>
@@ -4769,8 +4809,8 @@ file, though, so that you can read it in an easy way. Even for a simple
 playbook, it can easily generate more than 10 screens of output.</p>
 <p>::: group
 <strong>Table 11-3</strong> Verbosity Options Overview</p>
-<p><a href="#R-image-7f3db84797e2b57ee68a6293b0cbad33" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab03.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7f3db84797e2b57ee68a6293b0cbad33"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab03.jpg"></a>{width=&ldquo;941&rdquo; height=&ldquo;209&rdquo;}
+<p><a href="#R-image-7baf8e7a40052694eef5cd1e3dab1c86" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/11tab03.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7baf8e7a40052694eef5cd1e3dab1c86"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/11tab03.jpg"></a>{width=&ldquo;941&rdquo; height=&ldquo;209&rdquo;}
 :::</p>
 <p>In <a href="/ansible/managing-ansible-errors-and-logs/#ch11.xhtml#list11_5">Listing 11-5</a> you can see the output of a
 small playbook that runs different tasks on the managed hosts. <a href="/ansible/managing-ansible-errors-and-logs/#ch11.xhtml#list11_5">Listing
@@ -4941,8 +4981,8 @@ playbook to completion.
 
 <h3 id="using-modules-to-manage-packages">Using Modules to Manage Packages</h3>
 <p>Modules used to manage packages:
-<a href="#R-image-b4e3a3dfc189483e78a15374e9cf30ee" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/12tab02.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b4e3a3dfc189483e78a15374e9cf30ee"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/12tab02.jpg"></a></p>
+<a href="#R-image-db7683189c555c336a678f3168cc7e13" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/12tab02.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-db7683189c555c336a678f3168cc7e13"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/12tab02.jpg"></a></p>
 <h4 id="configuring-repository-access">Configuring Repository Access</h4>
 <p>The <strong>yum_repository</strong> module lets you work with yum repository files in the /etc/yum.repos.d/ directory.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    ---
@@ -4957,8 +4997,8 @@ playbook to completion.
 </span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">baseurl</span>: ftp://control.example.com/repo/
 </span></span><span style="display:flex;"><span>          <span style="color:#ff6ac1">gpgcheck</span>: <span style="color:#ff6ac1">no</span></span></span></code></pre></div>
 <p>yum_repository Key Arguments</p>
-<p><a href="#R-image-675ac5dbccfac94de5bdeb8aef8263f9" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/12tab03.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-675ac5dbccfac94de5bdeb8aef8263f9"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/12tab03.jpg"></a></p>
+<p><a href="#R-image-f2396ba67eed4e92d7aef9644539ac89" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/12tab03.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f2396ba67eed4e92d7aef9644539ac89"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/12tab03.jpg"></a></p>
 <p>Notice that use of the <strong>gpgcheck</strong> argument is recommended but not
 mandatory. Most repositories are provided with a GPG key to verify that
 packages in the repository have not been tampered with. However, if no
@@ -5352,8 +5392,8 @@ target that a managed system should be started in, and it can reboot
 running machines. <a href="/ansible/managing-services/#ch14.xhtml#tab14_2">Table 14-2</a> gives an overview of
 the most significant modules for managing services.</p>
 <p><strong>Table 14-2</strong> Modules Related to Service Management</p>
-<p><a href="#R-image-6ba860f6afc2d05b0a894737dd46bf38" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/14tab02.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6ba860f6afc2d05b0a894737dd46bf38"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/14tab02.jpg"></a></p>
+<p><a href="#R-image-c87e4e26fabaf05d5d854807977afd15" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/14tab02.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c87e4e26fabaf05d5d854807977afd15"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/14tab02.jpg"></a></p>
 <h4 id="managing-systemd-services">Managing Systemd Services</h4>
 <p>Throughout this book you have used the service module a lot. This module
 enables you to manage services, regardless of the init system that is
@@ -5441,8 +5481,8 @@ with Linux at, the Ansible at module is provided. <a href="/ansible/managing-ser
 to specify how the task should be executed.</p>
 <p>::: group
 <strong>Table 14-3</strong> at Module Arguments Overview</p>
-<p><a href="#R-image-316f3134ffdf9cb15cf9f539d5f93ac5" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/14tab03.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-316f3134ffdf9cb15cf9f539d5f93ac5"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/14tab03.jpg"></a></p>
+<p><a href="#R-image-cb47d94d949052ca3e7e6bc847ca726a" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/14tab03.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cb47d94d949052ca3e7e6bc847ca726a"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/14tab03.jpg"></a></p>
 <p>The most important point to understand when working with at is that it
 is used to defined how far from now a task has to be executed. This is
 done using <strong>count</strong> and <strong>units</strong>. If, for example, you want to run a
@@ -6310,8 +6350,8 @@ variable precedence.
       </tr>
   </tbody>
 </table>
-<p><a href="#R-image-cdcf9a62f7e93c1af2ae4b74ff4d059a" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250403052342.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cdcf9a62f7e93c1af2ae4b74ff4d059a"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250403052342.png"></a></p>
+<p><a href="#R-image-a788e021845e58e31efddd180ef2aea6" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250403052342.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a788e021845e58e31efddd180ef2aea6"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250403052342.png"></a></p>
 <h3 id="setting-hostnames-and-verifying-dependencies">Setting hostnames and verifying dependencies</h3>
 <p>Set a hostname on all three machines:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@localhost ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># hostnamectl set-hostname control.example.com</span>
@@ -7115,8 +7155,8 @@ may prove useful when troubleshooting Ansible. <a href="/ansible/using-modules-f
 11-4</a> gives an overview.</p>
 <p>::: group
 <strong>Table 11-4</strong> Troubleshooting Modules Overview</p>
-<p><a href="#R-image-d82c3643ff09a2be13edc0617dd77343" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="Images/11tab04.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d82c3643ff09a2be13edc0617dd77343"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="Images/11tab04.jpg"></a> {width=&ldquo;940&rdquo; height=&ldquo;295&rdquo;}
+<p><a href="#R-image-242c1e40433d0449efe9833ca2f1cc43" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="Images/11tab04.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-242c1e40433d0449efe9833ca2f1cc43"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="Images/11tab04.jpg"></a> {width=&ldquo;940&rdquo; height=&ldquo;295&rdquo;}
 :::</p>
 <p>The following sections discuss how these modules can be used.</p>
 <h4 class="h4" id="using-the-debug-module">Using the Debug Module</h4>
@@ -7818,8 +7858,8 @@ the playbook listing1114.yaml.</p>
 <p>When working with tags, you can use some special tags. <a href="/ansible/using-tags/#ch11.xhtml#tab11_5">Table
 11-5</a> gives an overview.</p>
 <p><strong>Table 11-5</strong> Special Tags Overview</p>
-<p><a href="#R-image-4b4bb2410258da4419a59c4961191e39" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/11tab05.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b4bb2410258da4419a59c4961191e39"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/11tab05.jpg"></a></p>
+<p><a href="#R-image-91d928a9e653c64167fd1b8351795303" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/11tab05.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-91d928a9e653c64167fd1b8351795303"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/11tab05.jpg"></a></p>
 <p>Apart from these special tags, you might also want to set a <strong>debug</strong>
 tag to easily identify tasks that should be run only if you specifically
 want to run debug tasks as well. If combined with the <strong>never</strong> tag, the
@@ -8364,8 +8404,8 @@ web_service: httpd</code></pre></div>
 <li>There are about 30 magic variables</li>
 <li>Common Magic Variables</li>
 </ul>
-<p><a href="#R-image-ba3ea0537ce3f53a9889237da3f4802c" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/06tab05.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ba3ea0537ce3f53a9889237da3f4802c"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/06tab05.jpg"></a></p>
+<p><a href="#R-image-c365a27417c25ed39f2d6d963cf2cff7" class="lightbox-link"><img alt="Image" class="lazy lightbox figure-image" loading="lazy" src="/Images/06tab05.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c365a27417c25ed39f2d6d963cf2cff7"><img alt="Image" class="lazy lightbox lightbox-image" loading="lazy" src="/Images/06tab05.jpg"></a></p>
 <ul>
 <li>you cannot use their name for anything else.</li>
 <li>If you try to set a magic variable to another value anyway, it always resets to the default internal value.</li>
@@ -8550,14 +8590,14 @@ available for all modules. Consult the module documentation for more information
 <h1 id="bash">Bash</h1>
 
 <h2 id="my-name-is-marcel-and-im-partially-a-shell">My name is Marcel and I&rsquo;m partially a shell..</h2>
-<p><a href="#R-image-c401d08b4f69505ffbd3bfae09ac8cbc" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250316051144.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c401d08b4f69505ffbd3bfae09ac8cbc"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250316051144.png"></a></p>
+<p><a href="#R-image-fbbc18c598c5f5f9f2a55558d1c5b696" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250316051144.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fbbc18c598c5f5f9f2a55558d1c5b696"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250316051144.png"></a></p>
 <p>A shell is a program that takes commands and passes them to the operating system.^1^ This is done via <strong>terminal emulator</strong> with keyboard commands or by using scripts ran on the system. There are many shell programs that you can use on Linux. Almost all Linux distributions come with a shell called <strong>Bash</strong>. Some others include <strong>zsh</strong>, <strong>fsh</strong>, <strong>ksh</strong>, and <strong>Tcsh</strong>. (But not limited to)</p>
 <p>Shells have different features such as built in commands, job control, alias definitions, history substitution, PATH searching, command completion, and more. Each shell has it&rsquo;s own syntax, hotkeys, way of doing things. Most of them follow a standard called &ldquo;POSIX&rdquo; that help with script portability between shells.</p>
 <p>You can see a list of more shells and a comparison of their features on this <a href="https://en.wikipedia.org/wiki/Comparison_of_command_shells" rel="external" target="_blank">Wikipedia page</a>.</p>
 <h2 id="terminator-emulators">Terminator emulators..</h2>
-<p><a href="#R-image-52328a323ececa0c7781240da5d38c19" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250316051955.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-52328a323ececa0c7781240da5d38c19"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250316051955.png"></a></p>
+<p><a href="#R-image-0affd1cfc92df1ede1ce4d7e43722a2b" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020250316051955.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0affd1cfc92df1ede1ce4d7e43722a2b"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020250316051955.png"></a></p>
 <p>I meant Terminal Emulators! Silly me..</p>
 <p>The <strong>Current shell</strong></p>
 <ul>
@@ -9839,8 +9879,8 @@ variable, you will get nothing:</p>
 </ul>
 </li>
 </ul>
-<p><a href="#R-image-9142a4480965578e76d044a1b244af77" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-G1VF6C4I%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9142a4480965578e76d044a1b244af77"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-G1VF6C4I%201.jpg"></a></p>
+<p><a href="#R-image-3149527909dab8231dcf25eb77031d85" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-G1VF6C4I%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3149527909dab8231dcf25eb77031d85"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-G1VF6C4I%201.jpg"></a></p>
 <ul>
 <li>Just like the variable and command substitutions, the shell uses the dollar ($) sign for special and positional parameter expansions as well.</li>
 </ul>
@@ -10017,8 +10057,8 @@ variable, you will get nothing:</p>
 <li>Begins with an <code>if</code> and ends with a <code>fi</code></li>
 <li>Can execute an action only if the specified condition is true. It quits the statement if the condition is untrue.</li>
 </ul>
-<p><a href="#R-image-f9c49178b5122d1d5e1d9845d52a9c27" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-7FX8FVMW%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f9c49178b5122d1d5e1d9845d52a9c27"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-7FX8FVMW%201.jpg"></a></p>
+<p><a href="#R-image-bdd8457388c57c968c41ce0b0565dd4f" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-7FX8FVMW%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bdd8457388c57c968c41ce0b0565dd4f"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-7FX8FVMW%201.jpg"></a></p>
 <p>The general syntax of this statement is as follows:</p>
 <p>if condition &gt; then &gt; action &gt; fi</p>
 <h3 id="script07-the-if-then-fi-construct">Script07: The if-then-fi Construct</h3>
@@ -10055,8 +10095,8 @@ executed without exactly two arguments specified at the command line:</p>
 <ul>
 <li>Can execute an action if the condition is true and another action if the condition is false.</li>
 </ul>
-<p><a href="#R-image-d5e8d3d3483fde79e46426150698a712" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-CMLV644G%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d5e8d3d3483fde79e46426150698a712"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-CMLV644G%201.jpg"></a></p>
+<p><a href="#R-image-2bda995a1a15179b12bed7a642bb0285" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-CMLV644G%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2bda995a1a15179b12bed7a642bb0285"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-CMLV644G%201.jpg"></a></p>
 <p>The general syntax of this statement is as follows:</p>
 <p>if condition &gt; then &gt; action1 &gt; else &gt; action2 &gt; fi</p>
 <h3 id="script08-the-if-then-else-fi-construct">Script08: The if-then-else-fi Construct</h3>
@@ -10088,8 +10128,8 @@ fi</code></pre></div>
 <li>Can define multiple conditions and associate an action with each one of them.</li>
 <li>The action corresponding to the true condition is performed.</li>
 </ul>
-<p><a href="#R-image-64f3e84b9c47d6cb359f49dd014420d5" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-TNYN7SP2%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-64f3e84b9c47d6cb359f49dd014420d5"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-TNYN7SP2%201.jpg"></a></p>
+<p><a href="#R-image-69064d7d4f75cc55951777e56a5bd668" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-TNYN7SP2%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-69064d7d4f75cc55951777e56a5bd668"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-TNYN7SP2%201.jpg"></a></p>
 <p>The general syntax of this statement is as follows:</p>
 <p>if  condition1 &gt; then action1 &gt; elif condition2 &gt; then action2 &gt; elif  condition3 &gt; then action3 &gt; else &gt; action(n) &gt; fi</p>
 <h3 id="script09-the-if-then-elif-fi-construct-example-1">Script09: The if-then-elif-fi Construct (Example 1)</h3>
@@ -10227,8 +10267,8 @@ fi</code></pre></div>
 <li>Executed on an array of elements until all the elements in the array are consumed.</li>
 <li>Each element is assigned to a variable one after the other for processing.</li>
 </ul>
-<p><a href="#R-image-3849b22d579d39ae3e442bcc605aae3d" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-BPQ7RWER%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3849b22d579d39ae3e442bcc605aae3d"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-BPQ7RWER%201.jpg"></a></p>
+<p><a href="#R-image-410776f80ca5b1767a4c7296e10cfce2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-BPQ7RWER%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-410776f80ca5b1767a4c7296e10cfce2"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-BPQ7RWER%201.jpg"></a></p>
 <p>The general syntax of this construct is as follows:</p>
 <p>for VAR in list &gt; do &gt; action &gt; done</p>
 <h3 id="script11-print-alphabets-using-for-loop">Script11: Print Alphabets Using for Loop</h3>
@@ -11247,8 +11287,8 @@ timeout value when GRUB2 menu appears.</p>
 </li>
 </ul>
 <p>Append &ldquo;emergency&rdquo; to the kernel line entry:</p>
-<p><a href="#R-image-337322df1dd6fb266133fdf4dec980fb" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-337322df1dd6fb266133fdf4dec980fb"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png"></a></p>
+<p><a href="#R-image-8cede788015abef46080185ca1097ad1" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8cede788015abef46080185ca1097ad1"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240321045343.png"></a></p>
 <p>Other options:</p>
 <ul>
 <li>&ldquo;rescue&rdquo;</li>
@@ -11266,8 +11306,8 @@ timeout value when GRUB2 menu appears.</p>
 </li>
 <li>
 <p>Modify this kernel string and append &ldquo;rd.break&rdquo; to the end of the line.
-<a href="#R-image-cb6c8c2f52cb66a881a32645177a3274" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cb6c8c2f52cb66a881a32645177a3274"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png"></a></p>
+<a href="#R-image-46ec5b043f20a889b592e2c7088ec1c3" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-46ec5b043f20a889b592e2c7088ec1c3"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240321045933.png"></a></p>
 </li>
 <li>
 <p>Press Ctrl+x when done to boot to the special shell. The system mounts the root file system read-only on the <em>/sysroot</em> directory. Make <em>/sysroot</em> appear as mounted on <em>/</em> using the <em>chroot</em> command:</p>
@@ -12921,8 +12961,8 @@ journals</li>
 <li>Share the same Linux kernel and require far fewer hardware resources than do virtual machines, which contributes to their speedy start and stop.</li>
 <li>Given the presence of an extra layer of hypervisor services, it may be more beneficial and economical to run containers directly on non-virtualized physical servers.</li>
 </ul>
-<p><a href="#R-image-285187da414eb4c1279bf1aec9221f9b" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-3RXCU9W7%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-285187da414eb4c1279bf1aec9221f9b"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-3RXCU9W7%201.jpg"></a></p>
+<p><a href="#R-image-1de61660eef22f44cf6aad95c4e1ab1e" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-3RXCU9W7%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1de61660eef22f44cf6aad95c4e1ab1e"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-3RXCU9W7%201.jpg"></a></p>
 <h3 id="container-images-and-container-registries">Container Images and Container Registries</h3>
 <ul>
 <li>Launching a container requires a pre-packaged image to be available.</li>
@@ -16678,8 +16718,8 @@ when the issue is resolved.</p>
 </span></span><span style="display:flex;"><span> Current password: 
 </span></span><span style="display:flex;"><span> roopasswd: Authentication token manipulation error</span></span></code></pre></div>
 <p>The following is a sample denial record from the same file in raw format:</p>
-<p><a href="#R-image-fd016567139549d3a22e285d78c7dda4" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fd016567139549d3a22e285d78c7dda4"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg"></a></p>
+<p><a href="#R-image-0a891f9442c64548ac6937de49cd1023" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0a891f9442c64548ac6937de49cd1023"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-C7TMRBJO%201.jpg"></a></p>
 <ul>
 <li>AVC type</li>
 <li>Related to the <code>passwd</code> command (comm)</li>
@@ -16690,8 +16730,8 @@ when the issue is resolved.</p>
 <li>This message indicates that the <em>/etc/shadow</em> file does not have the correct context set on it, and that&rsquo;s why SELinux prevented the <code>passwd</code> command from updating the user&rsquo;s password.</li>
 </ul>
 <p>Use <code>sealert</code> to analyze (<code>-a</code>) all <strong>AVC</strong> records in the <em>audit.log</em> file. This command produces a formatted report with all relevant details:</p>
-<p><a href="#R-image-88666d515ae1f12235a553e666aeea88" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-88666d515ae1f12235a553e666aeea88"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg"></a></p>
+<p><a href="#R-image-66cb1932f7ee64919c14af5b7219ed83" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-66cb1932f7ee64919c14af5b7219ed83"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-WYWDQX1V%201.jpg"></a></p>
 <h2 id="selinux-diy-labs">SELinux DIY Labs</h2>
 <h3 id="lab-disable-and-enable-the-selinux-operating-mode">Lab: Disable and Enable the SELinux Operating Mode</h3>
 <ul>
@@ -18356,8 +18396,8 @@ or <code>sudo dnf clean all</code></p>
 <p>Here is some other stuff I install from the software center.</p>
 <h3 id="input-leap">Input Leap</h3>
 <p>Input Leap let&rsquo;s you share a mouse and keyboard between two workstations.</p>
-<p><a href="#R-image-8abcad0614e43ee7777686e257f37303" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905105932.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8abcad0614e43ee7777686e257f37303"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905105932.png"></a></p>
+<p><a href="#R-image-9530a59507fd74f37fb55f2d79a3db2d" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905105932.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9530a59507fd74f37fb55f2d79a3db2d"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905105932.png"></a></p>
 <p>I don&rsquo;t know what this is or why it is here:
 installing Git and a bunch of other stuff?</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf install git cmake make gcc-c++ xorg-x11-server-devel <span style="color:#5af78e">\
@@ -18367,31 +18407,31 @@ installing Git and a bunch of other stuff?</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#5af78e"></span>                 openssl-devel libXrandr-devel libXinerama-devel</span></span></code></pre></div>
 <h2 id="virtual-machine-manager">Virtual machine Manager</h2>
 <p>The best way to manage VMs on desktop.</p>
-<p><a href="#R-image-36fea6d8cec7702b3993bf313cd61274" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110024.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-36fea6d8cec7702b3993bf313cd61274"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110024.png"></a></p>
+<p><a href="#R-image-1f23d083902b859f425a6f18372dcbf0" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110024.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1f23d083902b859f425a6f18372dcbf0"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110024.png"></a></p>
 <h2 id="box-buddy">Box Buddy</h2>
 <p>For managing containers.</p>
-<p><a href="#R-image-97efa98666a2effc8cd2dd81f642c95e" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110223.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-97efa98666a2effc8cd2dd81f642c95e"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110223.png"></a></p>
+<p><a href="#R-image-ccf39b2c881cc98fa4577d4a59eb2bd9" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110223.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ccf39b2c881cc98fa4577d4a59eb2bd9"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110223.png"></a></p>
 <h2 id="warehouse">Warehouse</h2>
 <p>Managing installed applications.</p>
-<p><a href="#R-image-504e69a1532a69239527735663ca83d9" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240905110143.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-504e69a1532a69239527735663ca83d9"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240905110143.png"></a></p>
+<p><a href="#R-image-883d422479cc3555b85cc3e9cb743b01" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240905110143.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-883d422479cc3555b85cc3e9cb743b01"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240905110143.png"></a></p>
 <h2 id="mission-center">Mission Center</h2>
 <p>Task Manager like application.</p>
-<p><a href="#R-image-5e5d224cbdb88971fb35916b440ff316" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110500.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5e5d224cbdb88971fb35916b440ff316"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110500.png"></a></p>
+<p><a href="#R-image-8849b9b9773b5527f66205e5d33107ea" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110500.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8849b9b9773b5527f66205e5d33107ea"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110500.png"></a></p>
 <h2 id="pika-backup">Pika Backup</h2>
 <p>For backing up your desktop.
-<a href="#R-image-0b3adbcc68e8089bcdc0599d1dc632e2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110555.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0b3adbcc68e8089bcdc0599d1dc632e2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110555.png"></a></p>
+<a href="#R-image-5fc7e648d3ec248845368676d53f8ea7" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110555.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5fc7e648d3ec248845368676d53f8ea7"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110555.png"></a></p>
 <h2 id="clapper">Clapper</h2>
 <p>Video player.</p>
-<p><a href="#R-image-9ffca6e9ca1934dadacb60d1a9110421" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110319.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9ffca6e9ca1934dadacb60d1a9110421"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110319.png"></a></p>
+<p><a href="#R-image-7b28792c7bda4f4665eba63edbd77bca" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905110319.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7b28792c7bda4f4665eba63edbd77bca"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905110319.png"></a></p>
 <p>And some extensions installed through Extension Manager:
-<a href="#R-image-e18ac93dd1465428185e1a4e11b96306" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905105517.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e18ac93dd1465428185e1a4e11b96306"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905105517.png"></a></p>
+<a href="#R-image-153831ddcfa4964b5cceedc7b4773e25" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240905105517.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-153831ddcfa4964b5cceedc7b4773e25"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240905105517.png"></a></p>
 <p>Install Gnome Screenshot tool:</p>
 <p>Install the extention:
 <a href="https://extensions.gnome.org/extension/1112/screenshot-tool/" rel="external" target="_blank">https://extensions.gnome.org/extension/1112/screenshot-tool/</a></p>
@@ -18598,8 +18638,8 @@ adjust permissions of flatpacks</p>
 </span></span><span style="display:flex;"><span>$ exit</span></span></code></pre></div>
 <p>For subsequent git pushes:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git commit -a -m <span style="color:#5af78e">&#34;commit&#34;</span> <span style="color:#ff6ac1">&amp;&amp;</span> git push</span></span></code></pre></div>
-<p><a href="#R-image-ef8e63e89cb93dc4584fceeebcb73456" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240904141011.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ef8e63e89cb93dc4584fceeebcb73456"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240904141011.png"></a></p>
+<p><a href="#R-image-a080a362edb6947311ca422cefca01b0" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240904141011.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a080a362edb6947311ca422cefca01b0"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240904141011.png"></a></p>
 <h3 id="from-a-second-machine">From a second machine:</h3>
 <p>Install all dotfiles with a single command:
 <code>chezmoi init --apply https://github.com/$GITHUB_USERNAME/dotfiles.git</code></p>
@@ -18619,8 +18659,8 @@ adjust permissions of flatpacks</p>
 <code>chezmoi merge $FILE</code></p>
 <p>From any machine, you can pull and apply changes from your repo:
 <code>chezmoi update -v</code></p>
-<p><a href="#R-image-3030a5de1f8bd7dfbf397890e474f179" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240904141728.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3030a5de1f8bd7dfbf397890e474f179"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240904141728.png"></a></p>
+<p><a href="#R-image-d6e566b32983f75ff076e702d4e54497" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240904141728.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d6e566b32983f75ff076e702d4e54497"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240904141728.png"></a></p>
 <p>Add the justfile:
 <code>chezmoi add .justfile</code></p>
 <h2 id="install-connect-tunnel">Install Connect Tunnel</h2>
@@ -20244,8 +20284,8 @@ root of the name space is represented by a period (	- redhat.com is a second-lev
 </ul>
 </li>
 </ul>
-<p><a href="#R-image-a13d14897849d0825aae90eaf4edb5ed" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-TJ7OW7U5%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a13d14897849d0825aae90eaf4edb5ed"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-TJ7OW7U5%201.jpg"></a></p>
+<p><a href="#R-image-7ba21ff3f45640bd229b07e1a8dc05a3" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-TJ7OW7U5%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ba21ff3f45640bd229b07e1a8dc05a3"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-TJ7OW7U5%201.jpg"></a></p>
 <ul>
 <li>Deepest level of the hierarchy are the leaves (systems, nodes, or any device with an IP address) of the name space.
 <ul>
@@ -20597,8 +20637,8 @@ root of the name space is represented by a period (	- redhat.com is a second-lev
 
 <h1 id="how-to-study-for-the-ccna-exam">How to Study for the CCNA Exam</h1>
 
-<p><a href="#R-image-fafe4a1ba90b34aa51b9eddfaf4eb374" class="lightbox-link"><img alt="CCNA Study Calendar" class="lazy lightbox figure-image" loading="lazy" src="/images/CCNA.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fafe4a1ba90b34aa51b9eddfaf4eb374"><img alt="CCNA Study Calendar" class="lazy lightbox lightbox-image" loading="lazy" src="/images/CCNA.png"></a></p>
+<p><a href="#R-image-7fba951868e02d70964a232e7aa1604c" class="lightbox-link"><img alt="CCNA Study Calendar" class="lazy lightbox figure-image" loading="lazy" src="/images/CCNA.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7fba951868e02d70964a232e7aa1604c"><img alt="CCNA Study Calendar" class="lazy lightbox lightbox-image" loading="lazy" src="/images/CCNA.png"></a></p>
 <p>It took me a whopping 2 years to finish my CCNA! I kept giving up and quitting my studies for months at a time. Why? Because I couldn&rsquo;t remember the massive amount of content covered in the CCNA. It felt hopeless. I could have done it in 6 month (or faster) if I knew how to study.</p>
 <p>I hadn&rsquo;t taken a test in 10 years before this. So I had completely forgotten how to learn. This post is about the mistakes I made studying for the CCNA and how to avoid them.</p>
 <p>You will also learn, as I did, about spaced repetition. I&rsquo;ve also included a 6 month CCNA spaced repetition calendar.</p>
@@ -21550,8 +21590,8 @@ Examples:</p>
 <p>Servers sharing the same stratum can be configured as peers to exchange time updates with one another.</p>
 </li>
 </ul>
-<p><a href="#R-image-e6b35d3885c55e91aef3bede73b7de46" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-OOGYXDFA%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e6b35d3885c55e91aef3bede73b7de46"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-OOGYXDFA%201.jpg"></a></p>
+<p><a href="#R-image-ee0824c7a54661b881e8d86e22e532ec" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-OOGYXDFA%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ee0824c7a54661b881e8d86e22e532ec"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-OOGYXDFA%201.jpg"></a></p>
 <p>There are numerous public NTP servers available for free that synchronize time.
 They normally operate at higher stratum levels such as 2 and 3.</p>
 <h3 id="chrony-configuration-file">Chrony Configuration File</h3>
@@ -23402,8 +23442,8 @@ Useful for:
 <ol>
 <li>
 <p>Go to the VirtualBox VM Manager and make sure that the RHEL 8 image is attached to RHEL9-VM1 as depicted below:
-<a href="#R-image-5e4e6e60f800f8df3e4bf4858268d187" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5e4e6e60f800f8df3e4bf4858268d187"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png"></a></p>
+<a href="#R-image-56d4127e15991aed014d42ecde6b5fcd" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-56d4127e15991aed014d42ecde6b5fcd"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240713164339.png"></a></p>
 </li>
 <li>
 <p>Open the /etc/fstab file in the vim editor (or another editor of your choice) and add the following line entry at the end of the file to mount the DVD image (/dev/sr0) in read-only (ro) mode on the /mnt directory.</p>
@@ -26501,8 +26541,8 @@ understands both MBR and GPT formats.</p>
 <li>mirroring and striping across multiple disks</li>
 <li>snapshotting of logical volumes.</li>
 </ul>
-<p><a href="#R-image-a1685e4cf7097944ebed29d4190fc09c" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-0A8W8M1U.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a1685e4cf7097944ebed29d4190fc09c"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-0A8W8M1U.jpg"></a></p>
+<p><a href="#R-image-62887b5bb92b1c4d32801fc5257dc949" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-0A8W8M1U.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62887b5bb92b1c4d32801fc5257dc949"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-0A8W8M1U.jpg"></a></p>
 <ul>
 <li>Made up of three key objects called physical volume, volume group, and logical volume.</li>
 <li>These objects are further virtually broken down into Physical Extents (PEs) and Logical Extents (LEs).</li>
@@ -27210,8 +27250,8 @@ active logical volume&rdquo; message.</p>
 <li>Makes use of thin provisioning to identify and eliminate empty (zero-byte) data blocks. (zero-block elimination)</li>
 <li>Removes randomization of data blocks by moving in-use data blocks to contiguous locations on the storage device.</li>
 </ul>
-<p><a href="#R-image-6c4db5e557167dd9fec1109921564b69" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6c4db5e557167dd9fec1109921564b69"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
+<p><a href="#R-image-c97056677fb3a0e96e29fbe135492c25" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/image-XYSCLXMC.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c97056677fb3a0e96e29fbe135492c25"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/image-XYSCLXMC.jpg"></a></p>
 <p><strong>Stage 2</strong></p>
 <ul>
 <li>If it detects that new data is an identical copy of some existing data, it makes an internal note of it but does not actually write the redundant data to the disk. (de-duplication)</li>
@@ -28673,8 +28713,8 @@ s</li>
 </ul>
 </li>
 </ul>
-<p><a href="#R-image-af855b8cfd5cbdc692ce8cc700c4e223" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-5YWJN0KN%201.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-af855b8cfd5cbdc692ce8cc700c4e223"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-5YWJN0KN%201.jpg"></a></p>
+<p><a href="#R-image-4cbc5f114584f5b8ddaca2dbb4662752" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/image-5YWJN0KN%201.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4cbc5f114584f5b8ddaca2dbb4662752"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/image-5YWJN0KN%201.jpg"></a></p>
 <h3 id="ps-command"><code>ps</code> command</h3>
 <ul>
 <li>Lists processes specific to the terminal where this command is issued.</li>
@@ -29322,8 +29362,8 @@ example crontable line</li>
 </li>
 </ul>
 <p><em>/etc/crontab</em> contents:
-<a href="#R-image-c0749d8e841f4a0de8c39b189394af34" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240815080652.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c0749d8e841f4a0de8c39b189394af34"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240815080652.png"></a></p>
+<a href="#R-image-e9817f1c9273fd93c26ec52d5a0ecff2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020240815080652.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e9817f1c9273fd93c26ec52d5a0ecff2"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020240815080652.png"></a></p>
 <ul>
 <li>Step values may be used with * and ranges in the crontables using the forward slash character (/).</li>
 <li>Step values allow the number of skips for a given value.</li>
@@ -30118,38 +30158,38 @@ ufw allow 443</code></pre></div>
 <h1 id="how-to-process-bookfusion-highlights-with-vim">How to Process Bookfusion Highlights with Vim</h1>
 
 <p>Here are my highlights pulled up in Vim:</p>
-<p><a href="#R-image-dacce151feddbbee8111cc73c5983330" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-dacce151feddbbee8111cc73c5983330"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png"></a></p>
+<p><a href="#R-image-0bc06dc099d0ab165e83f5e5ffb023f1" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0bc06dc099d0ab165e83f5e5ffb023f1"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034031.png"></a></p>
 <p>As you can see, Bookfusion gives you a lot of extra information when you export highlights. First, let&rsquo;s get rid of the lines that begin with <code>##</code></p>
 <p>Enter command mode in Vim by pressing <code>esc</code>. Then type <code>:g/^##/d</code> and press enter.</p>
 <p>Much better.</p>
-<p><a href="#R-image-2ce2edf2b830a7a06ee417458554f4ff" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2ce2edf2b830a7a06ee417458554f4ff"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png"></a></p>
+<p><a href="#R-image-4b893774507918eff6a3cc080d1701f5" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b893774507918eff6a3cc080d1701f5"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034407.png"></a></p>
 <p>Now let&rsquo;s get rid of the color references:`</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:g/^Color/d</span></span></code></pre></div>
-<p><a href="#R-image-fcef6c2f963c91cf5b697ab80a12409b" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fcef6c2f963c91cf5b697ab80a12409b"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png"></a></p>
+<p><a href="#R-image-348b029f0111778d546758b7613aca4a" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-348b029f0111778d546758b7613aca4a"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414034652.png"></a></p>
 <p>To get rid of the timestamps, we must find a different commonality between the lines. In this case, each line ends with &ldquo;UTC&rdquo;. Let&rsquo;s match that:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:g/UTC$/d</span></span></code></pre></div>
 <p>Where <code>$</code> matches the end of the line.</p>
-<p><a href="#R-image-10940d5859dca4aabebed0dee0615d02" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-10940d5859dca4aabebed0dee0615d02"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png"></a></p>
+<p><a href="#R-image-b8373d4b79c9049e8518ae806d0dd845" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b8373d4b79c9049e8518ae806d0dd845"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035013.png"></a></p>
 <p>Now, I want to get rid of the <code>&gt; </code> on each line:
 <code>%s/&gt; //g</code></p>
-<p><a href="#R-image-a91369e208c0c765596de8e9bac88259" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a91369e208c0c765596de8e9bac88259"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png"></a></p>
+<p><a href="#R-image-02c4ee0997e09c656cad66efba776945" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-02c4ee0997e09c656cad66efba776945"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035218.png"></a></p>
 <p>Almost there, you&rsquo;ll notice there are 6 empty lines in between each highlight. Let&rsquo;s shrink those down into one:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:%s/<span style="color:#5af78e">\(\n\)\{</span>3,<span style="color:#ff6ac1">}</span>/<span style="color:#5af78e">\r\r</span>/g</span></span></code></pre></div>
-<p><a href="#R-image-068431128a938a7987ae9a03291827e7" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-068431128a938a7987ae9a03291827e7"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png"></a></p>
+<p><a href="#R-image-c66444ad770136d81ce7bae685cac3dc" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c66444ad770136d81ce7bae685cac3dc"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414035716.png"></a></p>
 <p>The command above matches newline character <code>n</code> 3 or more times and replaces them with two newline characters <code>/r/r</code>.</p>
 <p>As we scroll down, I see a few weird artifacts from the book conversion to markdown.</p>
-<p><a href="#R-image-1c313db27c7516f1ea43a403365a60d8" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1c313db27c7516f1ea43a403365a60d8"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png"></a></p>
+<p><a href="#R-image-d984c273b2afbe518f5ea76c69517269" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d984c273b2afbe518f5ea76c69517269"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040052.png"></a></p>
 <p>Now, I want to get rid of any carrot brackets in the file. Let&rsquo;s use the substitute command again here:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>%s/&lt;//g</span></span></code></pre></div>
-<p><a href="#R-image-4e3859fefdd029b319190216b3e17f04" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4e3859fefdd029b319190216b3e17f04"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png"></a></p>
+<p><a href="#R-image-f0af570ea1d5e08dbff7a93217e663ef" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f0af570ea1d5e08dbff7a93217e663ef"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240414040338.png"></a></p>
 <p>Depending on your book and formatting. You may have some other stuff to edit.</p>
 
   <footer class="footline">
@@ -30565,8 +30605,8 @@ Extract the contents to /var/www/nextcloud
 <p>Before you go any further, you will need to have a domain name set up for your server. I use Cloudflare to manage my DNS records. You will want to make a CNAME record for your nextcloud subdomain.</p>
 <p>Just add &ldquo;nextcloud&rdquo; as the name and &ldquo;yourwebsite.com&rdquo; as the content. This will make it so &ldquo;nextcloud.yourwebsite.com&rdquo; is the site for your nextcloud dashboard. Also, make sure to select &ldquo;DNS Only&rdquo; under proxy status.</p>
 <p>Here&rsquo;s what my CloudFlare domain setup looks with this blog as the main site, and cloud.perfectdarkmode.com as the nextcloud site:</p>
-<p><a href="#R-image-3b18a7412a04efb61f0a939a401f3766" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3b18a7412a04efb61f0a939a401f3766"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
+<p><a href="#R-image-bfec3c48ca3df1c102aae872cbd63237" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bfec3c48ca3df1c102aae872cbd63237"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050325.png"></a></p>
 <p>Then you need to update trusted domains in /var/www/nextcloud/config/config.php:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#5af78e">&#39;trusted_domains&#39;</span> <span style="color:#ff6ac1">=</span>&gt;
 </span></span><span style="display:flex;"><span>   <span style="color:#ff6ac1">[</span>
@@ -30590,11 +30630,11 @@ Extract the contents to /var/www/nextcloud
 <p>Obtain an SSL certificate. (See my <a href="/tools/obsidian-site-setup/">Obsidian site setup</a> post for information about Certbot and Apache setup.)</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>sudo certbot -d {subdomain}.{domain}.com</code></pre></div>
 <p>Now log into nextcloud with your admin account using the DNS name you set earlier:</p>
-<p><a href="#R-image-d36469529687f2100fa1b8b7e9d56d1e" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d36469529687f2100fa1b8b7e9d56d1e"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
+<p><a href="#R-image-d0cafa1f848f082df14247325b1315b8" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d0cafa1f848f082df14247325b1315b8"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020241229050541.png"></a></p>
 <p>I recommend setting up a normal user account instead of doing everything as &ldquo;admin&rdquo;. Just hit the &ldquo;A&rdquo; icon at the top right and go to &ldquo;Accounts&rdquo;. Then just select &ldquo;New Account&rdquo; and create a user account with whatever privileges you want.</p>
-<p><a href="#R-image-6ca0779a50553b4fd1cb7fcc8d7c759c" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6ca0779a50553b4fd1cb7fcc8d7c759c"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
+<p><a href="#R-image-ac5cfccb4e562f642d63d347c1a0c9c3" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ac5cfccb4e562f642d63d347c1a0c9c3"><img class="lazy lightbox lightbox-image" loading="lazy" src="../../images/Pasted%20image%2020241229051101.png"></a></p>
 <p>I may make a post about which Nextcloud apps I recommend and customize the setup a bit. Let me know if that&rsquo;s something you&rsquo;d like to see. That&rsquo;s all for now.</p>
 <h3 id="make-log-dir">Make log dir:</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /var/log/nextcloud
@@ -31581,8 +31621,8 @@ requires neovim?</p>
 <p>When you see file in a man page, think file and or directory</p>
 <p><strong>Description</strong>
 short and long options do the same thing
-<a href="#R-image-3b517564780d22dfe1d3cfe075b71c3d" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3b517564780d22dfe1d3cfe075b71c3d"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png"></a></p>
+<a href="#R-image-9f0158924719bbb125d4edace5197189" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9f0158924719bbb125d4edace5197189"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240709211540.png"></a></p>
 <p>Current section number is printed at the top left of the man page.</p>
 <p>-k to search sections using apropos</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff6ac1">[</span>root@server30 ~<span style="color:#ff6ac1">]</span><span style="color:#78787e"># man -k unlink</span>
@@ -31641,11 +31681,11 @@ short and long options do the same thing
 <code>man bash</code></p>
 <p>Search for the Shell Builtins section:
 <code>/SHELL BUILTIN COMMANDS</code></p>
-<p><a href="#R-image-e7ec896f2ec9917aa8b18127973eeca2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e7ec896f2ec9917aa8b18127973eeca2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png"></a></p>
+<p><a href="#R-image-a638731e35deaaa141cb602bc5194d4f" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a638731e35deaaa141cb602bc5194d4f"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050240.png"></a></p>
 <p>You can find help on builtins with the help command:
-<a href="#R-image-f41281786c6b9c724a5981c4791303ea" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f41281786c6b9c724a5981c4791303ea"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png"></a></p>
+<a href="#R-image-a0cc932f132facec4e6401a3957d60d8" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a0cc932f132facec4e6401a3957d60d8"><img class="lazy lightbox lightbox-image" loading="lazy" src="/images/Pasted%20image%2020240710050536.png"></a></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#e2e4e5;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>david@fedora:~$ <span style="color:#ff5c57">help</span> <span style="color:#ff5c57">hash</span>
 </span></span><span style="display:flex;"><span>hash: <span style="color:#ff5c57">hash</span> <span style="color:#ff6ac1">[</span>-lr<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">[</span>-p pathname<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">[</span>-dt<span style="color:#ff6ac1">]</span> <span style="color:#ff6ac1">[</span>name ...<span style="color:#ff6ac1">]</span>
 </span></span><span style="display:flex;"><span>    Remember or display program locations.
@@ -33216,23 +33256,23 @@ vagrand resume</code></pre></div>
       }, JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/js-yaml/js-yaml.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-color.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1764694307" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1764694307" defer></script>
+    <script src="/js/js-yaml/js-yaml.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-color.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1764694857" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1764694857" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
     </script>
-    <script src="/js/clipboard/clipboard.min.js?1764694307" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1764694307" defer></script>
-    <script src="/js/theme.min.js?1764694307" defer></script><script async src="https://eomail5.com/form/d37e6864-cf88-11f0-8615-fbed900cb19e.js" data-form="d37e6864-cf88-11f0-8615-fbed900cb19e"></script>
+    <script src="/js/clipboard/clipboard.min.js?1764694857" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1764694857" defer></script>
+    <script src="/js/theme.min.js?1764694857" defer></script><script async src="https://eomail5.com/form/d37e6864-cf88-11f0-8615-fbed900cb19e.js" data-form="d37e6864-cf88-11f0-8615-fbed900cb19e"></script>
 
   </body>
 </html>
