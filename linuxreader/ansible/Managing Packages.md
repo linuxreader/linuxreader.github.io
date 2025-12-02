@@ -4,30 +4,14 @@ description = 'Managing Packages'
 +++
 ### Using Modules to Manage Packages
 
-Managing software packages on managed nodes is one of the firstrequirements when working with Ansible. Different modules are available.
-[Table 12-2](#ch12.xhtml#tab12_2) provides an overview.
-
-
-**Table 12-2** Software Management Modules Overview
-
-![Image](/Images/12tab02.jpg){width="941" height="295"}
-:::
+Modules used to manage packages:
+![Image](/Images/12tab02.jpg)
 
 #### Configuring Repository Access
 
-Before you can manage any software packages, you need to set up access
-to a repository. To do so, the yum_repository module is provided. If you
-have worked with yum repository files in the /etc/yum.repos.d/
-directory, using the yum_repository module is not difficult because it
-uses the same information.
+The **yum_repository** module lets you work with yum repository files in the /etc/yum.repos.d/ directory.
 
-[Listing 12-1](#ch12.xhtml#list12_1) shows an example of a playbook that
-sets up access to a yum repository. Notice that this is an example only,
-and it doesn't work yet because the repository has not been set up yet.
-
-**Listing 12-1** Configuring Repository Access
-
-::: pre_1
+```yaml
     ---
     - name: setting up repository access
       hosts: all
@@ -39,19 +23,11 @@ and it doesn't work yet because the repository has not been set up yet.
           file: examplerepo
           baseurl: ftp://control.example.com/repo/
           gpgcheck: no
-:::
+```
 
-While setting up repository access, you should use a few arguments. You
-can see an example of them in [Listing 12-1](#ch12.xhtml#list12_1).
-[Table 12-3](#ch12.xhtml#tab12_3) provides an overview.
+yum_repository Key Arguments
 
-
-
-::: group
-**Table 12-3** yum_repository Key Arguments
-
-![Image](/Images/12tab03.jpg){width="941" height="275"}
-:::
+![Image](/Images/12tab03.jpg)
 
 Notice that use of the **gpgcheck** argument is recommended but not
 mandatory. Most repositories are provided with a GPG key to verify that

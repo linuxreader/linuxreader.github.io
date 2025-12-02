@@ -102,6 +102,22 @@ Variable equirements:
 - In this directory, a file with the name of the host group is created, and in this file all variables are defined. 
 - ie: **group_vars/webservers**
 
+If no variables are defined at the command prompt, it will use the variable set for the play. You can also define the variables with the `-e` flag when running the playbook:
+```bash
+[ansible@control base]$ ansible-playbook variable-pb.yaml -e users=john
+
+PLAY [create a user using a variable] ************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+ok: [ansible1]
+
+TASK [create a user john on host ansible1] *******************************************************************************************************************
+changed: [ansible1]
+
+PLAY RECAP ***************************************************************************************************************************************************
+ansible1                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
 ### LAB: Using Host and Host Group Variables
 
 1\. Create a project directory in your home directory. Type **mkdir ~/chapter6** to create the chapter6 project directory, and use **cd \~/chapter6** to go into this directory.

@@ -2,31 +2,12 @@
 title = 'Ansible Facts'
 description = 'Ansible Facts'
 +++
-An ansible **fact** variable is a variable that is automatically set based on the managed system. Facts are a default behavior used to discover information to use in conditionals. They are collected when Ansible executes on a remote system. 
+An Ansible **fact** is a variable that contains information about a target system.This information can be used in conditional statements to tailor playbooks to that system. **Systems facts** are system property values. **Custom facts** are user-defined variables stored on managed hosts. 
+system. 
 
-There are **systems facts** and **custom facts**. Systems facts are system property values. And custom facts are user-defined variables stored on managed hosts. 
+Facts are collected when Ansible executes on the remote system. You'll see a "Gathering Facts" task  everytime you run a playbook. These facts are then stored in the variable **ansible_facts**.
 
-If no variables are defined at the command prompt, it will use the variable set for the play. You can also define the variables with the `-e` flag when running the playbook:
-```bash
-[ansible@control base]$ ansible-playbook variable-pb.yaml -e users=john
-
-PLAY [create a user using a variable] ************************************************************************************************************************
-
-TASK [Gathering Facts] ***************************************************************************************************************************************
-ok: [ansible1]
-
-TASK [create a user john on host ansible1] *******************************************************************************************************************
-changed: [ansible1]
-
-PLAY RECAP ***************************************************************************************************************************************************
-ansible1                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-```
-
-A **magic variable** is a system variable that is automatically set. 
-
-Notice the "Gathering Facts" task. when you run a playbook. This is an implicit tasks ran every time you run a playbook. This task grabs facts from managed hosts and stores them in the variable **ansible_facts**. 
-
-You can use the **debug** module to display variables like so:
+Use the **debug** module to check the value of variables. This module requires variables to be enclosed in curly brackets. This example shows a large list of facts from managed nodes:
 ```yaml
 ---
 - name: show facts
@@ -34,14 +15,12 @@ You can use the **debug** module to display variables like so:
   tasks:
   - name: show facts
     debug:
-      var: ansible_facts <-- this module does require variables to be enclosed in curly brackets
+      var: ansible_facts
 ```
 
-This outputs a gigantic list of facts from our managed nodes. 
+There are two supported formats for using Ansible fact variables:
 
-Two formats for using ansible facts variables:
-Square brackets (prefered): `ansible_facts['default_ipv4']['address']`
-Dotted: `ansible_facts.default_ipv4.address`
+It's recommended to use square brackets: `ansible_facts['default_ipv4']['address']` but dotted notation is also supported for now: `ansible_facts.default_ipv4.address`
 
 Commonly used ansible_facts:
 
