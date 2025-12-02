@@ -2,8 +2,8 @@
 title = 'Ad Hoc Ansible Commands'
 description = 'Ad Hoc Ansible Commands '
 [_build]
-  render = "always"
-  list = "never"
+  render = "never"
+  list = "always"
   publishResources = true
 +++
 
