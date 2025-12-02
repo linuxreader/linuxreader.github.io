@@ -113,7 +113,7 @@ https://www.justinjbird.me/blog/2023/adding-comments-to-a-hugo-site-using-giscus
 
 Problems with Giscus:
 - Requires people to sign in with Github. 
-- Doesn't email user when you replay to comment.
+- Doesn't email user when you reply to comment.
 - Themes don't match my website
 
 cusdis
