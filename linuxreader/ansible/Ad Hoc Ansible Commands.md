@@ -2,6 +2,10 @@
 title = 'Ad Hoc Ansible Commands'
 description = 'Ad Hoc Ansible Commands '
 hidden = true
+
+[_build]
+  render = "always"
+  publishResources = true
 +++
 
  Ad hoc commands are ansible tasks you can run against managed hosts without the need of a playbook or script. These are used for bringing nodes to their desired states, verifying playbook results, and verifying nodes meet any needed criteria/pre-requisites. These must be ran as the ansible user (whatever your remote_user directive is set to under \[defaults\] in ansible.cfg)
