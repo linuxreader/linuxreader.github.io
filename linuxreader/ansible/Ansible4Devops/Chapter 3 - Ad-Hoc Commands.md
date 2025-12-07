@@ -1,10 +1,3 @@
-quickly perform common tasks on, and gather data from, one or many servers with ad-hoc commands.
-
-### Your first ad-hoc commands
-
-Use tools like Munin, Nagios, Cacti, Hyperic, etc. to ensure you have a good idea of your servers' past and present resource usage! 
-If you're running a website or web application available over the Internet, you should probably also use an external
-monitoring solution like Pingdom or Server Check.in.
 
 #### Discover Ansible's parallel nature
 
@@ -79,7 +72,7 @@ the target *after* the other arguments
 
 </aside>
 
-#### Learning about your environment {#chap05.xhtml_leanpub-auto-learning-about-your-environment}
+#### Learning about your environment 
 
 Now that we trust Vagrant's ability to set hostnames correctly, let's
 make sure everything else is in order.
@@ -187,7 +180,7 @@ list).
 
 </aside>
 
-#### Make changes using Ansible modules {#chap05.xhtml_leanpub-auto-make-changes-using-ansible-modules}
+#### Make changes using Ansible modules
 
 We want to install the NTP daemon on the server to keep the time in
 sync. Instead of running the command `yum install -y ntp` on each of the
